@@ -1,0 +1,7 @@
+[12:46:34.997] [info] Logging to <logs/debug.txt>
+[12:46:34.999] [info] AcCoRD 2
+[12:46:34.999] [debug] Debug Message
+[12:46:34.999] [info] Info Message
+[12:46:34.999] [warning] Warn Message
+[12:46:35.000] [error] Error Message
+[12:46:35.000] [critical] Critical Message
