@@ -16,6 +16,7 @@
     <ClCompile Include="src\math\vec2b.cpp" />
     <ClCompile Include="src\math\vec2d.cpp" />
     <ClCompile Include="src\math\vec2i.cpp" />
+    <ClCompile Include="test\output_binary_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger.h" />
@@ -127,6 +128,9 @@
     <ClInclude Include="src\math\vec2b.h" />
     <ClInclude Include="src\math\vec2d.h" />
     <ClInclude Include="src\math\vec2i.h" />
+    <ClInclude Include="src\output_binary_singles.h" />
+    <ClInclude Include="test\output_binary_test.h" />
+    <ClInclude Include="src\output_binary_vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\nlohmann\LICENSE.MIT" />

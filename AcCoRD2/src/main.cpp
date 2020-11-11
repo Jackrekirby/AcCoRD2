@@ -6,6 +6,7 @@
 #include "json_test.h"
 #include "random_test.h"
 #include "vec_test.h"
+#include "output_binary_test.h"
 
 int main()
 {
@@ -14,11 +15,10 @@ int main()
 	// set run time global Logger level
 	AcCoRD::Logger::GetLogger()->set_level(spdlog::level::trace);
 
-	//LOG_INFO("AcCoRD 2");
-
 	//AcCoRD::LoggerTest();
 	//AcCoRD::JsonTest();
 	//AcCoRD::RandomTest();
-	AcCoRD::VecTest();
-
+	//AcCoRD::VecTest();
+	AcCoRD::OutputBinaryTest();
+	AcCoRD::OutputBinaryVectorTest();
 }

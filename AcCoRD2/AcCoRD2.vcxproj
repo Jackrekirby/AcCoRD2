@@ -32,6 +32,7 @@
     <ClCompile Include="src\random.cpp" />
     <ClCompile Include="test\json_test.cpp" />
     <ClCompile Include="test\logger_test.cpp" />
+    <ClCompile Include="test\output_binary_test.cpp" />
     <ClCompile Include="test\random_test.cpp" />
     <ClCompile Include="test\vec_test.cpp" />
   </ItemGroup>
@@ -140,9 +141,12 @@
     <ClInclude Include="src\math\vec3b.h" />
     <ClInclude Include="src\math\vec3d.h" />
     <ClInclude Include="src\math\vec3i.h" />
+    <ClInclude Include="src\output_binary_singles.h" />
+    <ClInclude Include="src\output_binary_vectors.h" />
     <ClInclude Include="src\random.h" />
     <ClInclude Include="test\json_test.h" />
     <ClInclude Include="test\logger_test.h" />
+    <ClInclude Include="test\output_binary_test.h" />
     <ClInclude Include="test\random_test.h" />
     <ClInclude Include="test\vec_test.h" />
   </ItemGroup>
