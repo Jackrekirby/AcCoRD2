@@ -19,13 +19,113 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\json.cpp" />
     <ClCompile Include="src\logger.cpp" />
-    <ClCompile Include="test\logger_test.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="test\logger_test.h" />
+    <ClCompile Include="test\json_test.cpp" />
+    <ClCompile Include="test\logger_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lib\nlohmann\json.hpp" />
+    <ClInclude Include="lib\spdlog\async.h" />
+    <ClInclude Include="lib\spdlog\async_logger-inl.h" />
+    <ClInclude Include="lib\spdlog\async_logger.h" />
+    <ClInclude Include="lib\spdlog\cfg\argv.h" />
+    <ClInclude Include="lib\spdlog\cfg\env.h" />
+    <ClInclude Include="lib\spdlog\cfg\helpers-inl.h" />
+    <ClInclude Include="lib\spdlog\cfg\helpers.h" />
+    <ClInclude Include="lib\spdlog\common-inl.h" />
+    <ClInclude Include="lib\spdlog\common.h" />
+    <ClInclude Include="lib\spdlog\details\backtracer-inl.h" />
+    <ClInclude Include="lib\spdlog\details\backtracer.h" />
+    <ClInclude Include="lib\spdlog\details\circular_q.h" />
+    <ClInclude Include="lib\spdlog\details\console_globals.h" />
+    <ClInclude Include="lib\spdlog\details\file_helper-inl.h" />
+    <ClInclude Include="lib\spdlog\details\file_helper.h" />
+    <ClInclude Include="lib\spdlog\details\fmt_helper.h" />
+    <ClInclude Include="lib\spdlog\details\log_msg-inl.h" />
+    <ClInclude Include="lib\spdlog\details\log_msg.h" />
+    <ClInclude Include="lib\spdlog\details\log_msg_buffer-inl.h" />
+    <ClInclude Include="lib\spdlog\details\log_msg_buffer.h" />
+    <ClInclude Include="lib\spdlog\details\mpmc_blocking_q.h" />
+    <ClInclude Include="lib\spdlog\details\null_mutex.h" />
+    <ClInclude Include="lib\spdlog\details\os-inl.h" />
+    <ClInclude Include="lib\spdlog\details\os.h" />
+    <ClInclude Include="lib\spdlog\details\periodic_worker-inl.h" />
+    <ClInclude Include="lib\spdlog\details\periodic_worker.h" />
+    <ClInclude Include="lib\spdlog\details\registry-inl.h" />
+    <ClInclude Include="lib\spdlog\details\registry.h" />
+    <ClInclude Include="lib\spdlog\details\synchronous_factory.h" />
+    <ClInclude Include="lib\spdlog\details\tcp_client-windows.h" />
+    <ClInclude Include="lib\spdlog\details\tcp_client.h" />
+    <ClInclude Include="lib\spdlog\details\thread_pool-inl.h" />
+    <ClInclude Include="lib\spdlog\details\thread_pool.h" />
+    <ClInclude Include="lib\spdlog\details\windows_include.h" />
+    <ClInclude Include="lib\spdlog\fmt\bin_to_hex.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\chrono.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\color.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\compile.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\core.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\format-inl.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\format.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\locale.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\os.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\ostream.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\posix.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\printf.h" />
+    <ClInclude Include="lib\spdlog\fmt\bundled\ranges.h" />
+    <ClInclude Include="lib\spdlog\fmt\chrono.h" />
+    <ClInclude Include="lib\spdlog\fmt\fmt.h" />
+    <ClInclude Include="lib\spdlog\fmt\ostr.h" />
+    <ClInclude Include="lib\spdlog\formatter.h" />
+    <ClInclude Include="lib\spdlog\fwd.h" />
+    <ClInclude Include="lib\spdlog\logger-inl.h" />
+    <ClInclude Include="lib\spdlog\logger.h" />
+    <ClInclude Include="lib\spdlog\pattern_formatter-inl.h" />
+    <ClInclude Include="lib\spdlog\pattern_formatter.h" />
+    <ClInclude Include="lib\spdlog\sinks\android_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\ansicolor_sink-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\ansicolor_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\base_sink-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\base_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\basic_file_sink-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\basic_file_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\daily_file_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\dist_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\dup_filter_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\msvc_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\null_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\ostream_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\ringbuffer_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\rotating_file_sink-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\rotating_file_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\sink-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\stdout_color_sinks-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\stdout_color_sinks.h" />
+    <ClInclude Include="lib\spdlog\sinks\stdout_sinks-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\stdout_sinks.h" />
+    <ClInclude Include="lib\spdlog\sinks\syslog_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\systemd_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\tcp_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\wincolor_sink-inl.h" />
+    <ClInclude Include="lib\spdlog\sinks\wincolor_sink.h" />
+    <ClInclude Include="lib\spdlog\sinks\win_eventlog_sink.h" />
+    <ClInclude Include="lib\spdlog\spdlog-inl.h" />
+    <ClInclude Include="lib\spdlog\spdlog.h" />
+    <ClInclude Include="lib\spdlog\stopwatch.h" />
+    <ClInclude Include="lib\spdlog\tweakme.h" />
+    <ClInclude Include="lib\spdlog\version.h" />
+    <ClInclude Include="src\json.h" />
     <ClInclude Include="src\logger.h" />
+    <ClInclude Include="test\json_test.h" />
+    <ClInclude Include="test\logger_test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\nlohmann\LICENSE.MIT" />
+    <None Include="lib\nlohmann\README.md" />
+    <None Include="lib\spdlog\LICENSE" />
+    <None Include="lib\spdlog\README.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -106,7 +206,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)test;$(ProjectDir)lib;$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +222,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)test;$(ProjectDir)lib;$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,7 +238,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)test;$(ProjectDir)lib;$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,7 +254,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)test;$(ProjectDir)lib;$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

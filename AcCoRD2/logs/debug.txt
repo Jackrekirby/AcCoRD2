@@ -1,7 +1,12 @@
-[12:46:34.997] [info] Logging to <logs/debug.txt>
-[12:46:34.999] [info] AcCoRD 2
-[12:46:34.999] [debug] Debug Message
-[12:46:34.999] [info] Info Message
-[12:46:34.999] [warning] Warn Message
-[12:46:35.000] [error] Error Message
-[12:46:35.000] [critical] Critical Message
+[14:50:31.708] [info] Logging to <logs/debug.txt>
+[14:50:31.711] [info] AcCoRD 2
+[14:50:31.711] [debug] Debug Message
+[14:50:31.711] [info] Info Message
+[14:50:31.711] [warning] Warn Message
+[14:50:31.712] [error] Error Message
+[14:50:31.712] [critical] Critical Message
+[14:50:31.712] [info] Json in normal format: {"key":"index","array":[1,2,3,4,5]}
+[14:50:31.713] [info] Json in pretty format: {
+    "key": "index",
+    "array": [ 1, 2, 3, 4, 5 ]
+}

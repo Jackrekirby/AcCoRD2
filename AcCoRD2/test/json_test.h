@@ -2,6 +2,5 @@
 
 namespace AcCoRD
 {
-	void LoggerTest();
+	void JsonTest();
 } // namespace AcCoRD
-

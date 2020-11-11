@@ -1,5 +1,4 @@
 #include "logger_test.h"
-
 #include "logger.h"
 
 namespace AcCoRD

@@ -1,6 +1,9 @@
 #include "logger.h"
+#include "json.h"
 
 #include "logger_test.h"
+#include "json_test.h"
+
 
 int main()
 {
@@ -9,12 +12,14 @@ int main()
 	const std::string NOTIME_LOG_PATTERN = "[%^%l%$] %s:%# %!() %v";
 	const std::string BASIC_LOG_PATTERN = "%v";
 
-	Logger::Initialise("logs/debug.txt", NOSOURCE_LOG_PATTERN);
+	AcCoRD::Logger::Initialise("logs/debug.txt", NOSOURCE_LOG_PATTERN);
 
 	// set run time global Logger level
-	Logger::GetLogger()->set_level(spdlog::level::debug);
+	AcCoRD::Logger::GetLogger()->set_level(spdlog::level::debug);
 
 	LOG_INFO("AcCoRD 2");
 
 	AcCoRD::LoggerTest();
+	AcCoRD::JsonTest();
+
 }
