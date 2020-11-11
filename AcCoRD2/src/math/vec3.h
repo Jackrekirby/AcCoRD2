@@ -130,28 +130,6 @@ namespace AcCoRD::math
 		}
 
 
-		Vec3 operator % (const Vec3& v) const
-		{
-			return { x % v.x, y % v.y, z % v.z };
-		}
-
-		Vec3 operator % (const T s) const
-		{
-			return { x % s, y % s, z % s };
-		}
-
-		friend Vec3 operator % (const T s, const Vec3& v)
-		{
-			return { s % v.x, s % v.y, s % v.z };
-		}
-
-		Vec3 operator %= (const Vec3& v) const
-		{
-			x %= v.x;
-			y %= v.y;
-			z %= v.z;
-		}
-
 
 		Vec3b operator < (const Vec3& v) const
 		{

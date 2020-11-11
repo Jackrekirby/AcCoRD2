@@ -23,6 +23,9 @@
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\constants.cpp" />
+    <ClCompile Include="src\math\vec2b.cpp" />
+    <ClCompile Include="src\math\vec2d.cpp" />
+    <ClCompile Include="src\math\vec2i.cpp" />
     <ClCompile Include="src\math\vec3b.cpp" />
     <ClCompile Include="src\math\vec3d.cpp" />
     <ClCompile Include="src\math\vec3i.cpp" />
@@ -129,6 +132,10 @@
     <ClInclude Include="src\json.h" />
     <ClInclude Include="src\logger.h" />
     <ClInclude Include="src\math\constants.h" />
+    <ClInclude Include="src\math\vec2.h" />
+    <ClInclude Include="src\math\vec2b.h" />
+    <ClInclude Include="src\math\vec2d.h" />
+    <ClInclude Include="src\math\vec2i.h" />
     <ClInclude Include="src\math\vec3.h" />
     <ClInclude Include="src\math\vec3b.h" />
     <ClInclude Include="src\math\vec3d.h" />
