@@ -22,11 +22,15 @@
     <ClCompile Include="src\json.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\random.cpp" />
     <ClCompile Include="test\json_test.cpp" />
     <ClCompile Include="test\logger_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\nlohmann\json.hpp" />
+    <ClInclude Include="lib\pcg\pcg_extras.hpp" />
+    <ClInclude Include="lib\pcg\pcg_random.hpp" />
+    <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
     <ClInclude Include="lib\spdlog\async.h" />
     <ClInclude Include="lib\spdlog\async_logger-inl.h" />
     <ClInclude Include="lib\spdlog\async_logger.h" />
@@ -118,14 +122,23 @@
     <ClInclude Include="lib\spdlog\version.h" />
     <ClInclude Include="src\json.h" />
     <ClInclude Include="src\logger.h" />
+    <ClInclude Include="src\random.h" />
     <ClInclude Include="test\json_test.h" />
     <ClInclude Include="test\logger_test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\nlohmann\LICENSE.MIT" />
     <None Include="lib\nlohmann\README.md" />
+    <None Include="lib\pcg\CONTRIBUTING.md" />
+    <None Include="lib\pcg\LICENSE.spdx" />
+    <None Include="lib\pcg\README.md" />
     <None Include="lib\spdlog\LICENSE" />
     <None Include="lib\spdlog\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lib\pcg\LICENSE-APACHE.txt" />
+    <Text Include="lib\pcg\LICENSE-MIT.txt" />
+    <Text Include="lib\pcg\LICENSE.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -206,7 +219,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -222,7 +235,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -238,7 +251,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -254,7 +267,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

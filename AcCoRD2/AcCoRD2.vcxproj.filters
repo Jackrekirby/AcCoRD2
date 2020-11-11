@@ -6,6 +6,7 @@
     <ClCompile Include="test\logger_test.cpp" />
     <ClCompile Include="src\json.cpp" />
     <ClCompile Include="test\json_test.cpp" />
+    <ClCompile Include="src\random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger.h" />
@@ -102,11 +103,23 @@
     <ClInclude Include="lib\spdlog\tweakme.h" />
     <ClInclude Include="lib\spdlog\version.h" />
     <ClInclude Include="test\json_test.h" />
+    <ClInclude Include="src\random.h" />
+    <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
+    <ClInclude Include="lib\pcg\pcg_random.hpp" />
+    <ClInclude Include="lib\pcg\pcg_extras.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\nlohmann\LICENSE.MIT" />
     <None Include="lib\nlohmann\README.md" />
     <None Include="lib\spdlog\LICENSE" />
     <None Include="lib\spdlog\README.md" />
+    <None Include="lib\pcg\README.md" />
+    <None Include="lib\pcg\LICENSE.spdx" />
+    <None Include="lib\pcg\CONTRIBUTING.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lib\pcg\LICENSE.txt" />
+    <Text Include="lib\pcg\LICENSE-APACHE.txt" />
+    <Text Include="lib\pcg\LICENSE-MIT.txt" />
   </ItemGroup>
 </Project>

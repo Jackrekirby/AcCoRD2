@@ -32,5 +32,5 @@ namespace AcCoRD
     std::string JsonToString(const Json& j);
 
     std::string JsonToPrettyString(const Json& j);
-}
+} // namespace AcCoRD
 

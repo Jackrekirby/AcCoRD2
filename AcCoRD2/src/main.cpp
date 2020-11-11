@@ -1,5 +1,6 @@
 #include "logger.h"
 #include "json.h"
+#include "random.h"
 
 #include "logger_test.h"
 #include "json_test.h"
@@ -22,4 +23,12 @@ int main()
 	AcCoRD::LoggerTest();
 	AcCoRD::JsonTest();
 
+	AcCoRD::Random::SetSeed();
+
+	LOG_INFO(AcCoRD::Random::GenerateRealUniform());
+	LOG_INFO(AcCoRD::Random::GenerateExponential(1));
+	LOG_INFO(AcCoRD::Random::GenerateIntUniform(0, 100));
+	LOG_INFO(AcCoRD::Random::GenerateNormal(0, 1));
+	LOG_INFO(AcCoRD::Random::GeneratePoisson(4.7));
+	LOG_INFO(AcCoRD::Random::GenerateTriangular());
 }
