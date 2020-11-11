@@ -6,12 +6,19 @@
 #include <iostream> // for std::cout
 #include <fstream> // for std::ofstream
 
+// DEFAULT_LOG_PATTERN          "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v"
+// NOSOURCE_LOG_PATTERN         "[%H:%M:%S.%e] [%^%l%$] %v"
+// NOTIME_LOG_PATTERN           "[%^%l%$] %s:%# %!() %v"
+// NOSOURCEORTIME_LOG_PATTERN   "[%^%l%$] %v"
+// BASIC_LOG_PATTERN            "%v"
+
 namespace AcCoRD
 {
     std::shared_ptr<spdlog::logger> Logger::s_logger;
 
-    void Logger::Initialise(std::string file_path, std::string pattern)
+    void Logger::Initialise(std::string file_path)
     {
+        std::string pattern = "[%^%l%$] %v";
         // empty the log file and check it can be opened
         std::ofstream ofs(file_path, std::ofstream::out | std::ofstream::trunc);
         if (!ofs)

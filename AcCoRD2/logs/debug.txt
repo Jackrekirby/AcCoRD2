@@ -1,18 +1,5 @@
-[16:09:53.671] [info] Logging to <logs/debug.txt>
-[16:09:53.672] [info] AcCoRD 2
-[16:09:53.672] [debug] Debug Message
-[16:09:53.673] [info] Info Message
-[16:09:53.673] [warning] Warn Message
-[16:09:53.673] [error] Error Message
-[16:09:53.673] [critical] Critical Message
-[16:09:53.674] [info] Json in normal format: {"key":"index","array":[1,2,3,4,5]}
-[16:09:53.674] [info] Json in pretty format: {
-    "key": "index",
-    "array": [ 1, 2, 3, 4, 5 ]
-}
-[16:09:53.691] [info] 0.8570760331860483
-[16:09:53.692] [info] 0.15986876094463015
-[16:09:53.692] [info] 56
-[16:09:53.692] [info] -0.44829635627770514
-[16:09:53.692] [info] 4
-[16:09:53.693] [info] 1.53221493234269
+[info] Logging to <logs/debug.txt>
+[info] a[1, 2, 3] + b[4, 5, 6] = [5, 7, 9]
+[info] a[1, 2, 3] > c[3, 1, 5] = [0, 1, 0]
+[info] volume of [3, 1, 5] = 15.0
+[info] Vec3d[1.6, 4.8, -9.8] to Vec3i[1, 4, -9]

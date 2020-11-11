@@ -22,9 +22,15 @@
     <ClCompile Include="src\json.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\math\constants.cpp" />
+    <ClCompile Include="src\math\vec3b.cpp" />
+    <ClCompile Include="src\math\vec3d.cpp" />
+    <ClCompile Include="src\math\vec3i.cpp" />
     <ClCompile Include="src\random.cpp" />
     <ClCompile Include="test\json_test.cpp" />
     <ClCompile Include="test\logger_test.cpp" />
+    <ClCompile Include="test\random_test.cpp" />
+    <ClCompile Include="test\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\nlohmann\json.hpp" />
@@ -122,9 +128,16 @@
     <ClInclude Include="lib\spdlog\version.h" />
     <ClInclude Include="src\json.h" />
     <ClInclude Include="src\logger.h" />
+    <ClInclude Include="src\math\constants.h" />
+    <ClInclude Include="src\math\vec3.h" />
+    <ClInclude Include="src\math\vec3b.h" />
+    <ClInclude Include="src\math\vec3d.h" />
+    <ClInclude Include="src\math\vec3i.h" />
     <ClInclude Include="src\random.h" />
     <ClInclude Include="test\json_test.h" />
     <ClInclude Include="test\logger_test.h" />
+    <ClInclude Include="test\random_test.h" />
+    <ClInclude Include="test\vec_test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\nlohmann\LICENSE.MIT" />
