@@ -19,13 +19,6 @@ namespace AcCoRD
     void Logger::Initialise(std::string file_path)
     {
         std::string pattern = "[%^%l%$] %v";
-        // empty the log file and check it can be opened
-        std::ofstream ofs(file_path, std::ofstream::out | std::ofstream::trunc);
-        if (!ofs)
-        {
-            std::cout << "[Warning] Logger could not open file <" << file_path << ">" << std::endl;
-        }
-        ofs.close();
 
         try
         {
@@ -45,8 +38,6 @@ namespace AcCoRD
             s_logger->set_level(spdlog::level::trace);
             // The level of a child sink has priority over the parent sink if it is higher than the parent sink.
             spdlog::set_default_logger(s_logger);
-
-            SPDLOG_INFO("Logging to <{}>", file_path);
         }
         catch (const spdlog::spdlog_ex& ex)
         {

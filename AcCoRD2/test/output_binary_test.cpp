@@ -17,12 +17,12 @@ namespace AcCoRD
 
 		obs.Close(); // would automatically be closed by deconstructor
 
-		// check copy constructor works
+		// check copy constructor does not work
 		//OBSd obs2 = obs;
 		//OBSd obs3(obs);
 		// obs3 would overwrite obs which has already closed
 
-		// vector will resize, calling the copy constructor of obs
+		// vector will resize, calling the move constructor of obs
 		std::vector<OBSd> binaries;
 		std::string file_path = "logs/binary_test_copy.bin";
 		binaries.emplace_back(file_path);

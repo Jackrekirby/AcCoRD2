@@ -18,64 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\math\constants.cpp" />
-    <ClCompile Include="src\math\vec2b.cpp" />
-    <ClCompile Include="src\math\vec2d.cpp" />
-    <ClCompile Include="src\math\vec2i.cpp" />
-    <ClCompile Include="src\math\vec3b.cpp" />
-    <ClCompile Include="src\math\vec3d.cpp" />
-    <ClCompile Include="src\math\vec3i.cpp" />
-    <ClCompile Include="src\random.cpp" />
-    <ClCompile Include="test\json_test.cpp" />
-    <ClCompile Include="test\logger_test.cpp" />
-    <ClCompile Include="test\output_binary_test.cpp" />
-    <ClCompile Include="test\random_test.cpp" />
-    <ClCompile Include="test\vec_test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="lib\pcg\pcg_extras.hpp" />
-    <ClInclude Include="lib\pcg\pcg_random.hpp" />
-    <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
-    <ClInclude Include="src\math\constants.h" />
-    <ClInclude Include="src\math\vec2.h" />
-    <ClInclude Include="src\math\vec2b.h" />
-    <ClInclude Include="src\math\vec2d.h" />
-    <ClInclude Include="src\math\vec2i.h" />
-    <ClInclude Include="src\math\vec3.h" />
-    <ClInclude Include="src\math\vec3b.h" />
-    <ClInclude Include="src\math\vec3d.h" />
-    <ClInclude Include="src\math\vec3i.h" />
-    <ClInclude Include="src\output_binary_singles.h" />
-    <ClInclude Include="src\output_binary_vectors.h" />
-    <ClInclude Include="src\random.h" />
-    <ClInclude Include="test\json_test.h" />
-    <ClInclude Include="test\logger_test.h" />
-    <ClInclude Include="test\output_binary_test.h" />
-    <ClInclude Include="test\random_test.h" />
-    <ClInclude Include="test\vec_test.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="lib\pcg\LICENSE-APACHE.txt" />
-    <Text Include="lib\pcg\LICENSE-MIT.txt" />
-    <Text Include="lib\pcg\LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="lib\pcg\CONTRIBUTING.md" />
-    <None Include="lib\pcg\LICENSE.spdx" />
-    <None Include="lib\pcg\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AcCoRD2_IO\AcCoRD2_IO.vcxproj">
-      <Project>{7f06e203-7f68-4eba-9506-1d0fe54b4aca}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{969cd8fd-5cad-4689-88dd-dbf56b4ac2a7}</ProjectGuid>
-    <RootNamespace>AcCoRD2</RootNamespace>
+    <ProjectGuid>{839c9e0a-a932-450d-92c7-fe80ae4cb43c}</ProjectGuid>
+    <RootNamespace>AcCoRD2B2J</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -150,7 +97,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,7 +113,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -182,7 +129,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -198,7 +145,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -207,6 +154,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AcCoRD2_IO\AcCoRD2_IO.vcxproj">
+      <Project>{7f06e203-7f68-4eba-9506-1d0fe54b4aca}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

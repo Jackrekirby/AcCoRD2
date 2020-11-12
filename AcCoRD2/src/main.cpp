@@ -13,7 +13,7 @@ int main()
 	AcCoRD::Logger::Initialise("logs/debug.txt");
 
 	// set run time global Logger level
-	AcCoRD::Logger::GetLogger()->set_level(spdlog::level::trace);
+	//AcCoRD::Logger::GetLogger()->set_level(spdlog::level::trace);
 
 	//AcCoRD::LoggerTest();
 	//AcCoRD::JsonTest();
