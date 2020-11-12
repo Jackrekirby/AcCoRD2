@@ -17,12 +17,11 @@ namespace AcCoRD
 			}
 		}
 
-		// copy constructor, useful if class stored in vector as ofstream are not copyable
-		// its not recommended to have multiple objects writing to the same file as they will overwrite eachother.
-		OutputBinaryVectors(const OutputBinaryVectors& other)
-			: file_path(other.file_path), file(other.file_path, std::ofstream::binary)
+		// move constructor
+		OutputBinaryVectors(OutputBinaryVectors&& other) noexcept
 		{
-
+			file_path = std::move(other.file_path);
+			file = std::move(other.file);
 		}
 
 		~OutputBinaryVectors()

@@ -17,11 +17,11 @@ namespace AcCoRD
 			}
 		}
 
-		// copy constructor, useful if class stored in vector as ofstream are not copyable
-		OutputBinarySingles(const OutputBinarySingles& other)
-			: file_path(other.file_path), file(other.file_path, std::ofstream::binary)
+		// move constructor
+		OutputBinarySingles(OutputBinarySingles&& other) noexcept
 		{
-
+			file_path = std::move(other.file_path);
+			file = std::move(other.file);
 		}
 
 		~OutputBinarySingles()
