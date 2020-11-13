@@ -9,7 +9,7 @@ namespace accord
 	{
 		{
 			using OBS = accord::OutputBinarySingles<int>;
-			OBS obs("D:/dev/binaries/b.bin");
+			OBS obs("D:/dev/binaries/_b.bin");
 			for (int i = 1; i <= 5; i++)
 			{
 				obs.Write((i % 2) == 1);
@@ -18,7 +18,7 @@ namespace accord
 		}
 		{
 			using OBS = accord::OutputBinarySingles<double>;
-			OBS obs("D:/dev/binaries/t.bin");
+			OBS obs("D:/dev/binaries/_t.bin");
 			for (double i = 1; i <= 5; i += 0.26384)
 			{
 				obs.Write(i);
@@ -28,8 +28,8 @@ namespace accord
 		{
 			using OBV = accord::OutputBinaryVectors<accord::math::Vec3d>;
 			using OBS = accord::OutputBinarySingles<size_t>;
-			OBV obv("D:/dev/binaries/p.bin");
-			OBS obs("D:/dev/binaries/c.bin");
+			OBV obv("D:/dev/binaries/_p.bin");
+			OBS obs("D:/dev/binaries/_c.bin");
 			std::vector<accord::math::Vec3d> positions;
 
 			for (int n = 0; n < 5; n++)

@@ -1,6 +1,9 @@
 [info] AcCoRD2 Binary To Json Conversion Tool
-[info] Searching for available Binary Files in Directory <D:\dev\binaries>
-[info] Removing Binary Files not matching key <p>
-[info] Converting Binary Files to Json
-[info] Saved Molecule Positions to <D:\dev\binaries\p.json>
-[info] Conversion Complete
+[info] Searching directory <D:\dev\binaries> for binary files
+[info] Found 4 file(s) to convert
+[info] List of converted file(s):
+[info] _b.bin
+[info] _c.bin
+[info] _p.bin
+[info] _t.bin
+[info] All file(s) converted
