@@ -12,7 +12,7 @@
 // NOSOURCEORTIME_LOG_PATTERN   "[%^%l%$] %v"
 // BASIC_LOG_PATTERN            "%v"
 
-namespace AcCoRD
+namespace accord
 {
     std::shared_ptr<spdlog::logger> Logger::s_logger;
 
@@ -44,4 +44,4 @@ namespace AcCoRD
             std::cout << "[Error] Logger initialisation failed: " << ex.what() << std::endl;
         }
     }
-} // namespace AcCoRD
+} // namespace accord

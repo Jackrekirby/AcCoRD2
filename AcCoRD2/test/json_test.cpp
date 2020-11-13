@@ -4,7 +4,7 @@
 
 #include <fstream>
 
-namespace AcCoRD
+namespace accord
 {
 	void JsonTest()
 	{
@@ -21,4 +21,4 @@ namespace AcCoRD
 		json_file << JsonToPrettyString(g_json);
 		json_file.close();
 	}
-} // namespace AcCoRD
+} // namespace accord

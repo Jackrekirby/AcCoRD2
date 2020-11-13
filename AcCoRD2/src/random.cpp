@@ -2,7 +2,7 @@
 
 #include <random>
 
-namespace AcCoRD
+namespace accord
 {
 	pcg32 Random::s_rng;
 
@@ -60,4 +60,4 @@ namespace AcCoRD
 		return distribution(Random::s_rng);
 	}
 
-} // namespace AcCoRD
+} // namespace accord

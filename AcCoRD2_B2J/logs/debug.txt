@@ -1,1 +1,0 @@
-[info] AcCoRD Binary To Json Conversion Tool

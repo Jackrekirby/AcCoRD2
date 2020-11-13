@@ -1,12 +1,57 @@
 #include "logger.h"
 #include "output_binary_singles.h"
 #include "output_binary_vectors.h"
+#include "math/vec3d.h"
 
-namespace AcCoRD
+namespace accord
 {
+	void WriteBinarySingles()
+	{
+		{
+			using OBS = accord::OutputBinarySingles<int>;
+			OBS obs("D:/dev/binaries/b.bin");
+			for (int i = 1; i <= 5; i++)
+			{
+				obs.Write((i % 2) == 1);
+			}
+			obs.Close();
+		}
+		{
+			using OBS = accord::OutputBinarySingles<double>;
+			OBS obs("D:/dev/binaries/t.bin");
+			for (double i = 1; i <= 5; i += 0.26384)
+			{
+				obs.Write(i);
+			}
+			obs.Close();
+		}
+		{
+			using OBV = accord::OutputBinaryVectors<accord::math::Vec3d>;
+			using OBS = accord::OutputBinarySingles<size_t>;
+			OBV obv("D:/dev/binaries/p.bin");
+			OBS obs("D:/dev/binaries/c.bin");
+			std::vector<accord::math::Vec3d> positions;
+
+			for (int n = 0; n < 5; n++)
+			{
+				for (double i = 0; i < n; i++)
+				{
+					positions.emplace_back(i * 3, i * 3 + 1, i * 3 + 2);
+					LOG_INFO(positions.back());
+				}
+				obv.Write(positions);
+				obs.Write(positions.size());
+				positions.clear();
+			}
+
+			obv.Close();
+			obs.Close();
+		}
+	}
+
 	void OutputBinaryTest()
 	{
-		using OBSd = AcCoRD::OutputBinarySingles<double>;
+		using OBSd = accord::OutputBinarySingles<double>;
 
 		OBSd obs("logs/binary_test_singles.bin");
 
@@ -51,7 +96,7 @@ namespace AcCoRD
 
 	void OutputBinaryVectorTest()
 	{
-		using OBVd = AcCoRD::OutputBinaryVectors<double>;
+		using OBVd = accord::OutputBinaryVectors<double>;
 
 		OBVd obs("logs/binary_test_vectors.bin");
 
@@ -65,4 +110,4 @@ namespace AcCoRD
 
 		obs.Close(); // would automatically be closed by deconstructor
 	}
-} // namespace AcCoRD
+} // namespace accord

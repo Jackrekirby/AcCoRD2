@@ -1,8 +1,10 @@
 #pragma once
 
-namespace AcCoRD
+namespace accord
 {
+	void WriteBinarySingles();
+
 	void OutputBinaryTest();
 
 	void OutputBinaryVectorTest();
-} // namespace AcCoRD
+} // namespace accord

@@ -1,7 +1,7 @@
 #pragma once
 
-namespace AcCoRD
+namespace accord
 {
 	void RandomTest();
-} // namespace AcCoRD
+} // namespace accord
 

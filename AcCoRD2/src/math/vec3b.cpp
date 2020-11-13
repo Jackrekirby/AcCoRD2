@@ -1,6 +1,6 @@
 #include "vec3b.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
     Vec3b::Vec3b(bool x, bool y, bool z)
         : x(x), y(y), z(z)

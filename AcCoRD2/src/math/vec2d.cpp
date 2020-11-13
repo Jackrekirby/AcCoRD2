@@ -1,7 +1,7 @@
 #include "vec2d.h"
 #include "vec2b.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
 	Vec2d::Vec2d(double x, double y)
 		: x(x), y(y)

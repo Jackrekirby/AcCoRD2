@@ -2,7 +2,7 @@
 #include "json.h"
 #include <array>
 
-namespace AcCoRD::math
+namespace accord::math
 {
     struct Vec3b {
     public:

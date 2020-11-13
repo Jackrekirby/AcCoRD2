@@ -1,7 +1,7 @@
 #pragma once
 #include "vec3b.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
 	template <typename T>
 	struct Vec3

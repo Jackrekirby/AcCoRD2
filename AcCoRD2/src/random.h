@@ -1,7 +1,7 @@
 #pragma once
 #include "pcg/pcg_random.hpp"
 
-namespace AcCoRD
+namespace accord
 {
 	class Random
 	{
@@ -27,4 +27,4 @@ namespace AcCoRD
 	private:
 		static pcg32 s_rng;
 	};
-} // namespace AcCoRD
+} // namespace accord

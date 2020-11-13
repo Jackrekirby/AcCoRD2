@@ -23,7 +23,7 @@
     Change the using Json to switch between the two.
 */
 
-namespace AcCoRD
+namespace accord
 {
     using Json = nlohmann::ordered_json;
 
@@ -32,5 +32,5 @@ namespace AcCoRD
     std::string JsonToString(const Json& j);
 
     std::string JsonToPrettyString(const Json& j);
-} // namespace AcCoRD
+} // namespace accord
 

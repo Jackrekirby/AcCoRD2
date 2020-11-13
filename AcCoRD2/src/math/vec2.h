@@ -1,7 +1,7 @@
 #pragma once
 #include "json.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
 	struct Vec2b;
 

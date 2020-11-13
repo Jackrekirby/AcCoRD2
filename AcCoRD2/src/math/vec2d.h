@@ -4,7 +4,7 @@
 
 #include <array>
 
-namespace AcCoRD::math
+namespace accord::math
 {
 
 	struct Vec2b;

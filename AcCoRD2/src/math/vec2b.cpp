@@ -1,6 +1,6 @@
 #include "vec2b.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
     Vec2b::Vec2b(bool x, bool y)
         : x(x), y(y)

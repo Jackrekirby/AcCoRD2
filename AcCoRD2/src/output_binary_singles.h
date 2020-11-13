@@ -2,7 +2,7 @@
 #include <string> // for std::string
 #include <fstream> // for std::ofstream
 
-namespace AcCoRD
+namespace accord
 {
 	template<typename T>
 	class OutputBinarySingles

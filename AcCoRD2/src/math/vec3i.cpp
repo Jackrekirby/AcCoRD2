@@ -1,7 +1,7 @@
 #include "vec3i.h"
 #include "vec3b.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
 	Vec3i::Vec3i(int x, int y, int z)
 		: x(x), y(y), z(z)

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace AcCoRD
+namespace accord
 {
 	void JsonTest();
-} // namespace AcCoRD
+} // namespace accord

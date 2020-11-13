@@ -1,6 +1,6 @@
 #pragma once
 
-namespace AcCoRD::math
+namespace accord::math
 {
 	extern const double PI;
 }

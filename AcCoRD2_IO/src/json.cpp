@@ -3,7 +3,7 @@
 #include <iomanip> // for std::setw
 #include <sstream> // for std::stringstream
 
-namespace AcCoRD
+namespace accord
 {
 	Json g_json;
 

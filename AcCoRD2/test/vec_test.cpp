@@ -11,7 +11,7 @@
 #include "math/vec2i.h"
 #include "math/vec2.h"
 
-namespace AcCoRD
+namespace accord
 {
 	void VecTest()
 	{
@@ -44,4 +44,4 @@ namespace AcCoRD
 			LOG_INFO("Vec2d{} to Vec2i{}", d, Vec2i(d));
 		}
 	}
-} // namespace AcCoRD
+} // namespace accord

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace AcCoRD
+namespace accord
 {
 	void VecTest();
-} // namespace AcCoRD
+} // namespace accord

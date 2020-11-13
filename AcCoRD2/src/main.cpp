@@ -10,15 +10,16 @@
 
 int main()
 {
-	AcCoRD::Logger::Initialise("logs/debug.txt");
+	accord::Logger::Initialise("logs/debug.txt");
 
 	// set run time global Logger level
-	//AcCoRD::Logger::GetLogger()->set_level(spdlog::level::trace);
+	//accord::Logger::GetLogger()->set_level(spdlog::level::trace);
 
-	//AcCoRD::LoggerTest();
-	//AcCoRD::JsonTest();
-	//AcCoRD::RandomTest();
-	//AcCoRD::VecTest();
-	AcCoRD::OutputBinaryTest();
-	AcCoRD::OutputBinaryVectorTest();
+	//accord::LoggerTest();
+	//accord::JsonTest();
+	//accord::RandomTest();
+	//accord::VecTest();
+	//accord::OutputBinaryTest();
+	//accord::OutputBinaryVectorTest();
+	accord::WriteBinarySingles();
 }

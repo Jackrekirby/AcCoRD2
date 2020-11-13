@@ -1,7 +1,7 @@
 #include "logger_test.h"
 #include "logger.h"
 
-namespace AcCoRD
+namespace accord
 {
 	// set define SPDLOG_ACTIVE_LEVEL to change which levels display
 	void LoggerTest()
@@ -13,4 +13,4 @@ namespace AcCoRD
 		LOG_ERROR("Error Message");
 		LOG_CRITICAL("Critical Message");
 	}
-} // namespace AcCoRD
+} // namespace accord

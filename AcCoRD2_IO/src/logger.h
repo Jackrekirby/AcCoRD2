@@ -7,7 +7,7 @@
 #include <memory> // for std::shared_ptr
 #include <string> // for std::string
 
-namespace AcCoRD
+namespace accord
 {
 	class Logger
 	{
@@ -17,7 +17,7 @@ namespace AcCoRD
 	private:
 		static std::shared_ptr<spdlog::logger> s_logger;
 	};
-} // namespace AcCoRD
+} // namespace accord
 
 #define LOG_TRACE(...) SPDLOG_TRACE(__VA_ARGS__)
 #define LOG_DEBUG(...) SPDLOG_DEBUG(__VA_ARGS__)

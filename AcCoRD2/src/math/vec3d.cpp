@@ -2,7 +2,7 @@
 #include "vec3b.h"
 #include "vec3.h"
 
-namespace AcCoRD::math
+namespace accord::math
 {
 	Vec3d::Vec3d(double x, double y, double z)
 		: x(x), y(y), z(z)
