@@ -14,13 +14,13 @@ namespace accord
 		{
 			BinariesToJson(entry, key);
 		}
-		else if (entry.path().extension() != ".bin")
+		else if (entry.path().extension() == ".bin")
 		{
 			SingleBinaryToJson(entry);
 		}
 		else
 		{
-			LOG_WARN("Path must be a directory or binary file ({})", path);
+			LOG_WARN("Path must be a directory or binary file <{}>", path);
 		}
 	}
 
@@ -58,7 +58,7 @@ namespace accord
 
 		ConvertBinary(binary_file);
 
-		LOG_INFO("File convertd");
+		LOG_INFO("File converted");
 	}
 
 	void BinaryToJson::FindBinaries(DirEntry base_directory, std::optional<std::string> key,
