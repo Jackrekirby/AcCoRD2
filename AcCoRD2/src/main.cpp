@@ -10,7 +10,7 @@
 
 int main()
 {
-	accord::Logger::Initialise("logs/debug.txt");
+	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
 
 	// set run time global Logger level
 	//accord::Logger::GetLogger()->set_level(spdlog::level::trace);

@@ -12,7 +12,7 @@ namespace accord
 	class Logger
 	{
 	public:
-		static void Initialise(std::string path);
+		static void Initialise(std::string path, std::string pattern);
 		inline static std::shared_ptr<spdlog::logger>& GetLogger() { return s_logger; }
 	private:
 		static std::shared_ptr<spdlog::logger> s_logger;

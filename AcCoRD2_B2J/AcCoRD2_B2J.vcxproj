@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="src\BinaryToJson.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Vec3d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AcCoRD2_IO\AcCoRD2_IO.vcxproj">
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BinaryToJson.h" />
+    <ClInclude Include="src\Vec3d.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

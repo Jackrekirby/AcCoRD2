@@ -16,10 +16,8 @@ namespace accord
 {
     std::shared_ptr<spdlog::logger> Logger::s_logger;
 
-    void Logger::Initialise(std::string file_path)
+    void Logger::Initialise(std::string file_path, std::string pattern)
     {
-        std::string pattern = "[%^%l%$] %v";
-
         try
         {
             // create console sink
