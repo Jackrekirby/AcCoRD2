@@ -101,7 +101,7 @@ namespace accord
 				return false;
 			}
 		}
-		else if (file_type == "p.bin")
+		else if (file_type == "c.bin")
 		{
 			return ConvertMoleculeCounts(file_path);
 		}

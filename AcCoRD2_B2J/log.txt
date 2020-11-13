@@ -1,9 +1,9 @@
-[22:42:38.330] [info] AcCoRD2 Binary To Json Conversion Tool
-[22:42:38.333] [info] Searching directory <D:\dev\binaries> for binary files
-[22:42:38.338] [info] Found 4 file(s) to convert
-[22:42:38.338] [info] List of converted file(s):
-[22:42:38.340] [info] _b.bin
-[22:42:38.341] [info] _c.bin
-[22:42:38.347] [info] _p.bin
-[22:42:38.351] [info] _t.bin
-[22:42:38.351] [info] All file(s) converted
+[22:48:51.427] [info] AcCoRD2 Binary To Json Conversion Tool
+[22:48:51.429] [info] Searching directory <D:\dev\binaries> for binary files
+[22:48:51.433] [info] Found 4 file(s) to convert
+[22:48:51.433] [info] List of converted file(s):
+[22:48:51.435] [info] _b.bin
+[22:48:51.437] [info] _c.bin
+[22:48:51.441] [info] _p.bin
+[22:48:51.443] [info] _t.bin
+[22:48:51.443] [info] All file(s) converted
