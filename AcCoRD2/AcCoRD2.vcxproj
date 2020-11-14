@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\event.cpp" />
+    <ClCompile Include="src\event_queue.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\constants.cpp" />
     <ClCompile Include="src\math\vec2b.cpp" />
@@ -38,6 +40,8 @@
     <ClInclude Include="lib\pcg\pcg_extras.hpp" />
     <ClInclude Include="lib\pcg\pcg_random.hpp" />
     <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
+    <ClInclude Include="src\event.h" />
+    <ClInclude Include="src\event_queue.h" />
     <ClInclude Include="src\math\constants.h" />
     <ClInclude Include="src\math\vec2.h" />
     <ClInclude Include="src\math\vec2b.h" />
