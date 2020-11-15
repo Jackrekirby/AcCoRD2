@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "vec2i.h"
 #include "vec2b.h"
 

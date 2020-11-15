@@ -1,5 +1,6 @@
+#include "pch.h"
 #include "vec_test.h"
-#include "logger.h"
+//#include "logger.h"
 
 #include "math/vec3d.h"
 #include "math/vec3b.h"

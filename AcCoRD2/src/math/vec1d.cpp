@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "vec1d.h"
 
 namespace accord::math

@@ -1,6 +1,7 @@
 #pragma once
 #include "math/vec3d.h"
-#include <optional>
+//#include <optional>
+#include "pch.h"
 
 namespace accord::shapes
 {

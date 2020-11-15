@@ -1,9 +1,10 @@
 #pragma once
-#include "json.h"
+//#include "json.h"
 #include "vec2d.h"
 #include "axis.h"
 
-#include <array>
+//#include <array>
+#include "pch.h"
 
 namespace accord::math
 {

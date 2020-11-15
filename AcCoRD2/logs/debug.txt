@@ -1,2 +1,3 @@
-[info] origin = [0, 10, 0], end = [7, 11, 0]
-[info] no collision
+[info] hi
+[info] origin = [0, 10, 0], end = [7, 10, 0]
+[info] time = 0.714286, intersection = [5, 10, 0], reflection =[3, 10, 0]

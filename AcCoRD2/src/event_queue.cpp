@@ -1,6 +1,7 @@
+#include "pch.h"
 #include "event_queue.h"
 
-#include "logger.h"
+//#include "logger.h"
 #include "Event.h"
 
 namespace accord

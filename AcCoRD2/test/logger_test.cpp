@@ -1,5 +1,6 @@
+#include "pch.h"
 #include "logger_test.h"
-#include "logger.h"
+//#include "logger.h"
 
 namespace accord
 {

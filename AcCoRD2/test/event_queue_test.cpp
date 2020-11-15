@@ -1,6 +1,8 @@
+#include "pch.h"
+
 #include "event_queue_test.h"
-#include "logger.h"
-#include "random.h"
+//#include "logger.h"
+//#include "random.h"
 #include "event_queue.h"
 #include "event.h"
 

@@ -1,6 +1,4 @@
-#include "logger.h"
-#include "json.h"
-#include "random.h"
+#include "pch.h"
 
 #include "logger_test.h"
 #include "json_test.h"
@@ -20,6 +18,8 @@ int main()
 
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
+
+	LOG_INFO("hi");
 
 	using namespace accord::shapes;
 	using namespace accord::math;

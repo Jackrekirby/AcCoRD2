@@ -28,6 +28,7 @@
     <ClCompile Include="src\shapes\box2d.cpp" />
     <ClCompile Include="src\shapes\collision_3d.cpp" />
     <ClCompile Include="src\shapes\surface_3d.cpp" />
+    <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test\logger_test.h" />
@@ -64,6 +65,7 @@
     <ClInclude Include="src\shapes\box_2d.h" />
     <ClInclude Include="src\shapes\surface_3d_shape.h" />
     <ClInclude Include="src\shapes\collision_3d.h" />
+    <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE.txt" />

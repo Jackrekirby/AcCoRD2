@@ -1,8 +1,9 @@
+//#include "pch.h"
 #include "BinaryToJson.h"
-#include "logger.h"
+//#include "logger.h"
 #include "Vec3d.h"
+//#include <fstream>
 
-#include <fstream>
 
 namespace accord
 {

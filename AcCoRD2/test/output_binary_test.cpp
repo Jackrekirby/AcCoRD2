@@ -1,4 +1,5 @@
-#include "logger.h"
+#include "pch.h"
+//#include "logger.h"
 #include "output_binary_singles.h"
 #include "output_binary_vectors.h"
 #include "math/vec3d.h"

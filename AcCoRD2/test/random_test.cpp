@@ -1,6 +1,8 @@
+
+#include "pch.h"
 #include "random_test.h"
-#include "random.h"
-#include "logger.h"
+//#include "random.h"
+//#include "logger.h"
 
 namespace accord
 {

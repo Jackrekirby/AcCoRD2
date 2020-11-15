@@ -1,5 +1,8 @@
+#include "pch.h"
+
 #include "axis.h"
-#include "logger.h"
+//#include "logger.h"
+
 
 namespace accord::math
 {

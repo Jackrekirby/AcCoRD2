@@ -1,6 +1,7 @@
 #pragma once
-#include <memory>
-#include <optional>
+//#include <memory>
+//#include <optional>
+#include "pch.h"
 
 namespace accord::math
 {

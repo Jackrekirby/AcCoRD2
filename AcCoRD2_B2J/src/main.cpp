@@ -1,4 +1,5 @@
-#include "logger.h"
+#include "pch.h"
+//#include "logger.h"
 #include "BinaryToJson.h"
 
 int main(int argc, char** argv)

@@ -1,8 +1,11 @@
+#include "pch.h"
+
 #include "vec3d.h"
 #include "vec3b.h"
 #include "vec3.h"
-#include "logger.h"
+//#include "logger.h"
 #include "axis.h"
+
 
 namespace accord::math
 {

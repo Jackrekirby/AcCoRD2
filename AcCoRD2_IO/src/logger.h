@@ -6,13 +6,14 @@
 
 #include <memory> // for std::shared_ptr
 #include <string> // for std::string
+#include <optional>
 
 namespace accord
 {
 	class Logger
 	{
 	public:
-		static void Initialise(std::string path, std::string pattern);
+		static void Initialise(std::optional<std::string> file_path = std::nullopt, std::optional<std::string> pattern = std::nullopt);
 		inline static std::shared_ptr<spdlog::logger>& GetLogger() { return s_logger; }
 	private:
 		static std::shared_ptr<spdlog::logger> s_logger;
