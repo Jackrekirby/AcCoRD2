@@ -9,12 +9,6 @@ namespace accord::math
 
 	}
 
-	Vec2d::Vec2d(double a)
-		: x(a), y(a)
-	{
-
-	}
-
 	// returns the larger of x or y
 	double Vec2d::Max() const
 	{
@@ -61,7 +55,7 @@ namespace accord::math
 		return { x / m, y / m};
 	}
 
-	Vec2d Vec2d::CrossProduct(const Vec2d& v, const Vec2d& u)
+	double Vec2d::CrossProduct(const Vec2d& v, const Vec2d& u)
 	{
 		return ((v.x * u.y) - (v.y * u.x));
 	}

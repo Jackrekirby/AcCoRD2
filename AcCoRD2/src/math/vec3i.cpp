@@ -9,12 +9,6 @@ namespace accord::math
 
 	}
 
-	Vec3i::Vec3i(int a)
-		: x(a), y(a), z(a)
-	{
-
-	}
-
 	// returns the larger of x, y or z
 	int Vec3i::Max() const
 	{

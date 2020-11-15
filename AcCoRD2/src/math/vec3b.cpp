@@ -8,18 +8,6 @@ namespace accord::math
 
     }
 
-    Vec3b::Vec3b(bool a)
-        : x(a), y(a), z(a)
-    {
-
-    }
-
-    Vec3b::Vec3b()
-        : x(false), y(false), z(false)
-    {
-
-    }
-
     bool Vec3b::All() const
     {
         return (x && y && z);

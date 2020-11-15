@@ -1,6 +1,8 @@
 #include "vec3d.h"
 #include "vec3b.h"
 #include "vec3.h"
+#include "logger.h"
+#include "axis.h"
 
 namespace accord::math
 {
@@ -10,10 +12,34 @@ namespace accord::math
 
 	}
 
-	Vec3d::Vec3d(double a)
-		: x(a), y(a), z(a)
+	double Vec3d::GetAxis(Axis3D axis)
 	{
+		switch (axis)
+		{
+		case Axis3D::x:
+			return x;
+		case Axis3D::y:
+			return y;
+		case Axis3D::z:
+			return z;
+		}
+		LOG_CRITICAL("Unknown Axis3D type");
+		throw std::exception();
+	}
 
+	Vec2d Vec3d::GetPlane(Axis3D axis)
+	{
+		switch (axis)
+		{
+		case Axis3D::x:
+			return { y, z };
+		case Axis3D::y:
+			return { x, z };
+		case Axis3D::z:
+			return { x, y };
+		}
+		LOG_CRITICAL("Unknown Axis3D type");
+		throw std::exception();
 	}
 
 	// returns the larger of x, y or z

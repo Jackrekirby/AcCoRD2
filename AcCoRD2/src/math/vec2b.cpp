@@ -8,17 +8,6 @@ namespace accord::math
 
     }
 
-    Vec2b::Vec2b(bool a)
-        : x(a), y(a)
-    {
-
-    }
-
-    Vec2b::Vec2b()
-        : x(false), y(false)
-    {
-    }
-
     bool Vec2b::All() const
     {
         return (x && y);

@@ -22,12 +22,6 @@ namespace accord::math
 
 		}
 
-		Vec3(T a)
-			: x(a), y(a), z(a)
-		{
-
-		}
-
 		Vec3() = default;
 
 		template<typename U>

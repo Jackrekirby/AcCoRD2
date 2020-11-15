@@ -25,16 +25,7 @@ namespace accord::math
 
 		Vec2i(int x, int y);
 
-		Vec2i(int a);
-
 		Vec2i() = default;
-
-		template<typename T>
-		Vec2i(T v)
-		{
-			x = static_cast<int>(v.x);
-			y = static_cast<int>(v.y);
-		}
 
 		// returns the larger of x or y
 		int Max() const;

@@ -26,16 +26,7 @@ namespace accord::math
 
 		Vec2d(double x, double y);
 
-		Vec2d(double a);
-
 		Vec2d() = default;
-
-		template<typename T>
-		Vec2d(T v)
-		{
-			x = static_cast<double>(v.x);
-			y = static_cast<double>(v.y);
-		}
 
 		// returns the larger of x or y
 		double Max() const;
@@ -60,7 +51,7 @@ namespace accord::math
 
 		Vec2d Normalise() const;
 
-		static Vec2d CrossProduct(const Vec2d& v, const Vec2d& u);
+		static double CrossProduct(const Vec2d& v, const Vec2d& u);
 
 		static double DotProduct(const Vec2d& v, const Vec2d& u);
 

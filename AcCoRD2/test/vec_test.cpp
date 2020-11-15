@@ -28,7 +28,7 @@ namespace accord
 			LOG_INFO("volume of {} = {}", c, c.Volume());
 
 			Vec3d d(1.6, 4.8, -9.8);
-			LOG_INFO("Vec3d{} to Vec3i{}", d, Vec3i(d));
+			LOG_INFO("Vec3d{} to Vec3i{}", d, Vec3i(d.x, d.y, d.z));
 		}
 		{
 			Vec2d a(1, 2);
@@ -41,7 +41,7 @@ namespace accord
 			LOG_INFO("volume of {} = {}", c, c.Area());
 
 			Vec2d d(1.6, -4.8);
-			LOG_INFO("Vec2d{} to Vec2i{}", d, Vec2i(d));
+			LOG_INFO("Vec2d{} to Vec2i{}", d, Vec2i(d.x, d.y));
 		}
 	}
 } // namespace accord

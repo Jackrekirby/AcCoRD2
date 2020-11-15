@@ -9,12 +9,6 @@ namespace accord::math
 
 	}
 
-	Vec2i::Vec2i(int a)
-		: x(a), y(a)
-	{
-
-	}
-
 	// returns the larger of x or y
 	int Vec2i::Max() const
 	{

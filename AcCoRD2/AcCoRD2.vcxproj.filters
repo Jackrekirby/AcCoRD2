@@ -17,6 +17,17 @@
     <ClCompile Include="test\output_binary_test.cpp" />
     <ClCompile Include="src\event.cpp" />
     <ClCompile Include="src\event_queue.cpp" />
+    <ClCompile Include="src\shapes\abstract_plane_3d.cpp" />
+    <ClCompile Include="src\shapes\plane_x_3d.cpp" />
+    <ClCompile Include="src\shapes\plane_y_3d.cpp" />
+    <ClCompile Include="src\shapes\plane_z_3d.cpp" />
+    <ClCompile Include="src\math\axis.cpp" />
+    <ClCompile Include="src\math\vec1d.cpp" />
+    <ClCompile Include="src\shapes\plane.cpp" />
+    <ClCompile Include="test\event_queue_test.cpp" />
+    <ClCompile Include="src\shapes\box2d.cpp" />
+    <ClCompile Include="src\shapes\collision_3d.cpp" />
+    <ClCompile Include="src\shapes\surface_3d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test\logger_test.h" />
@@ -41,6 +52,18 @@
     <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
     <ClInclude Include="src\event.h" />
     <ClInclude Include="src\event_queue.h" />
+    <ClInclude Include="src\math\axis.h" />
+    <ClInclude Include="src\shapes\abstract_plane_3d.h" />
+    <ClInclude Include="src\shapes\plane_x_3d.h" />
+    <ClInclude Include="src\shapes\plane_y_3d.h" />
+    <ClInclude Include="src\shapes\plane_z_3d.h" />
+    <ClInclude Include="src\math\vec1d.h" />
+    <ClInclude Include="src\shapes\plane.h" />
+    <ClInclude Include="test\event_queue_test.h" />
+    <ClInclude Include="src\shapes\surface_3d.h" />
+    <ClInclude Include="src\shapes\box_2d.h" />
+    <ClInclude Include="src\shapes\surface_3d_shape.h" />
+    <ClInclude Include="src\shapes\collision_3d.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE.txt" />

@@ -7,29 +7,37 @@
 #include "random_test.h"
 #include "vec_test.h"
 #include "output_binary_test.h"
+#include "event_queue_test.h"
 
-#include "event_queue.h"
-#include "event.h"
+#include "shapes/surface_3d.h"
+#include "shapes/box_2d.h"
+#include "shapes/plane_x_3d.h"
+#include "shapes/collision_3d.h"
 
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
 
-	accord::Random::SetSeed();
+	//set run time global Logger level
+	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
 
-	accord::EventQueue event_queue(3);
-	accord::Event event(5.0, 0, &event_queue);
-	accord::Event event2(5.0, 0, &event_queue);
-	accord::Event event3(5.0, 0, &event_queue);
+	using namespace accord::shapes;
+	using namespace accord::math;
 
-	LOG_DEBUG(event_queue);
-	event2.UpdateTime(6.0);
-	LOG_DEBUG(event_queue);
-	event3.UpdateTime(5.5);
-	LOG_DEBUG(event_queue);
+	PlaneX_3D plane(5);
+	Box2D box(Vec2d(0, 0), Vec2d(10, 10));
 
-	// set run time global Logger level
-	//accord::Logger::GetLogger()->set_level(spdlog::level::trace);
+	Surface3D surface(std::make_unique<PlaneX_3D>(5), std::make_unique<Box2D>(box));
+
+	accord::math::Vec3d origin(0, 10, 0);
+	accord::math::Vec3d end(7, 10, 0);
+
+	LOG_INFO("origin = {}, end = {}", origin, end);
+	LOG_INFO(surface.CalculateCollisionDataWithNegativeFace(origin, end));
+
+	//accord::math::EnumToString(accord::math::Axis3D::z);
+
+	//LOG_INFO(accord::math::Axis3D::z);
 
 	//accord::LoggerTest();
 	//accord::JsonTest();
@@ -38,4 +46,5 @@ int main()
 	//accord::OutputBinaryTest();
 	//accord::OutputBinaryVectorTest();
 	//accord::WriteBinarySingles();
+	//accord::EventQueueTest();
 }

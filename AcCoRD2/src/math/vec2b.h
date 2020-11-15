@@ -19,9 +19,7 @@ namespace accord::math
 
         Vec2b(bool x, bool y);
 
-        Vec2b(bool a);
-
-        Vec2b();
+        Vec2b() = default;
 
         bool All() const;
 

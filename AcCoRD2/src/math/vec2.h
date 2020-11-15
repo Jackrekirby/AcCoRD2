@@ -23,12 +23,6 @@ namespace accord::math
 		{
 
 		}
-		
-		Vec2(T a)
-			: x(a), y(a)
-		{
-
-		}
 
 		Vec2() = default;
 

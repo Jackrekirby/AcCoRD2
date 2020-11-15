@@ -18,9 +18,7 @@ namespace accord::math
 
         Vec3b(bool x, bool y, bool z);
 
-        Vec3b(bool a);
-
-        Vec3b();
+        Vec3b() = default;
 
         bool All() const;
 

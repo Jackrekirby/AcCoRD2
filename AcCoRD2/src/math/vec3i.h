@@ -24,17 +24,7 @@ namespace accord::math
 
 		Vec3i(int x, int y, int z);
 
-		Vec3i(int a);
-
 		Vec3i() = default;
-
-		template<typename T>
-		Vec3i(T v)
-		{
-			x = static_cast<int>(v.x);
-			y = static_cast<int>(v.y);
-			z = static_cast<int>(v.z);
-		}
 
 		// returns the larger of x, y or z
 		int Max() const;

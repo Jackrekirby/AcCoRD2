@@ -1,5 +1,7 @@
 #pragma once
 #include "json.h"
+#include "vec2d.h"
+#include "axis.h"
 
 #include <array>
 
@@ -24,17 +26,11 @@ namespace accord::math
 
 		Vec3d(double x, double y, double z);
 
-		Vec3d(double a);
-
 		Vec3d() = default;
 
-		template<typename T>
-		Vec3d(T v)
-		{
-			x = static_cast<double>(v.x);
-			y = static_cast<double>(v.y);
-			z = static_cast<double>(v.z);
-		}
+		double GetAxis(Axis3D axis);
+
+		Vec2d GetPlane(Axis3D axis);
 
 		// returns the larger of x, y or z
 		double Max() const;
