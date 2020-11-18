@@ -16,10 +16,13 @@
 #include "generating_plane_z_3d.h"
 #include "generating_surface_3d.h"
 #include "generating_box_2d.h"
+#include "generating_box_3d.h"
+#include "generating_plane_3d_factory.h"
 
 #include "relation_box_2d.h"
 #include "relation_box_3d.h"
 #include "relation_circle.h"
+
 
 void BoxCollisionTest()
 {
@@ -49,18 +52,12 @@ void BoxCollisionTest()
 	//LOG_INFO(accord::JsonToPrettyString(j));
 }
 
-int main()
+void BoxRelationTest()
 {
-	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
-
-	//set run time global Logger level
-	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
-
 	using namespace accord;
 	using namespace accord::shape;
-	
-	Random::SetSeed();
 
+	Random::SetSeed();
 	relation::Box2D b1({ 0, 0 }, { 10, 10 });
 	relation::Box2D b2({ 5, 5 }, { 10, 10 });
 	relation::Box2D b3({ -5, -5 }, { 20, 20 });
@@ -98,14 +95,31 @@ int main()
 	relation::Box3D box3d2({ 10, 1, 0 }, { 10, 10, 10 });
 
 	LOG_DEBUG(box3d1.IsPartiallyNeighbouring(box3d2));
+}
 
-	//generating::Surface3D surface(std::make_unique<generating::PlaneZ3D>(10), std::make_unique<generating::Box2D>(Vec2d(0, 0), Vec2d(100, 100)));
+int main()
+{
+	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
 
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	LOG_DEBUG(surface.GeneratePointOnSurface());
-	//}
-	//
+	//set run time global Logger level
+	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
+
+	using namespace accord;
+	using namespace accord::shape;
+	
+	Random::SetSeed();
+
+	auto a = generating::CreatePlane(5, Axis3D::x);
+
+
+	generating::Box3D b1({ 0, 0, 0 }, { 10, 10, 10 });
+	for (int i = 0; i < 10; i++)
+	{
+		LOG_DEBUG(b1.GeneratePointOnSurface());
+	}
+	
+
+	
 
 	//accord::LoggerTest();
 	//accord::JsonTest();

@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\generating_surface_3d_factory.cpp" />
+    <ClCompile Include="src\generating_plane_3d_factory.cpp" />
+    <ClCompile Include="src\generating_box_3d.cpp" />
     <ClCompile Include="src\basic_box_2d.cpp" />
     <ClCompile Include="src\basic_box_3d.cpp" />
     <ClCompile Include="src\basic_circle.cpp" />
@@ -128,6 +131,9 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\generating_surface_3d_factory.h" />
+    <ClInclude Include="src\generating_plane_3d_factory.h" />
+    <ClInclude Include="src\generating_box_3d.h" />
     <ClInclude Include="lib\pcg\pcg_extras.hpp" />
     <ClInclude Include="lib\pcg\pcg_random.hpp" />
     <ClInclude Include="lib\pcg\pcg_uint128.hpp" />

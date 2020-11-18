@@ -12,7 +12,7 @@ namespace accord::shape::relation
 		
 	}
 
-	std::enum_array<accord::shape::basic::Box3D::Faces, Surface3D, 6> Box3D::GenerateFaces()
+	std::enum_array<Faces, Surface3D, 6> Box3D::GenerateFaces()
 	{
 		return {
 		Surface3D(Plane3D(GetOrigin().x, Axis3D::x), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::x), GetEnd().GetPlane(Axis3D::x))),
