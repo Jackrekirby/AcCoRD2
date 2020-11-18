@@ -121,17 +121,20 @@
     <ClCompile Include="src\generating_box_2d.cpp">
       <Filter>src\shapes\generating\box</Filter>
     </ClCompile>
-    <ClCompile Include="src\shapes\relation_box_2d.cpp">
-      <Filter>src\shapes\relation\box</Filter>
+    <ClCompile Include="src\relation_surface_3d_shape.cpp">
+      <Filter>src\shapes\relation\surface</Filter>
     </ClCompile>
-    <ClCompile Include="src\shapes\relation_plane_3d.cpp">
+    <ClCompile Include="src\relation_surface_3d.cpp">
+      <Filter>src\shapes\relation\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_plane_3d.cpp">
       <Filter>src\shapes\relation\plane</Filter>
     </ClCompile>
-    <ClCompile Include="src\shapes\relation_surface_3d.cpp">
-      <Filter>src\shapes\relation\surface</Filter>
+    <ClCompile Include="src\relation_box_2d.cpp">
+      <Filter>src\shapes\relation\box</Filter>
     </ClCompile>
-    <ClCompile Include="src\shapes\relation_surface_3d_shape.cpp">
-      <Filter>src\shapes\relation\surface</Filter>
+    <ClCompile Include="src\relation_box_3d.cpp">
+      <Filter>src\shapes\relation\box</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,17 +276,23 @@
     <ClInclude Include="src\generating_box_2d.h">
       <Filter>src\shapes\generating\box</Filter>
     </ClInclude>
-    <ClInclude Include="src\shapes\relation_box_2d.h">
-      <Filter>src\shapes\relation\box</Filter>
+    <ClInclude Include="src\relation_surface_3d_shape.h">
+      <Filter>src\shapes\relation\surface</Filter>
     </ClInclude>
-    <ClInclude Include="src\shapes\relation_plane_3d.h">
+    <ClInclude Include="src\relation_surface_3d.h">
+      <Filter>src\shapes\relation\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_plane_3d.h">
       <Filter>src\shapes\relation\plane</Filter>
     </ClInclude>
-    <ClInclude Include="src\shapes\relation_surface_3d.h">
-      <Filter>src\shapes\relation\surface</Filter>
+    <ClInclude Include="src\relation_box_2d.h">
+      <Filter>src\shapes\relation\box</Filter>
     </ClInclude>
-    <ClInclude Include="src\shapes\relation_surface_3d_shape.h">
-      <Filter>src\shapes\relation\surface</Filter>
+    <ClInclude Include="src\relation_box_3d.h">
+      <Filter>src\shapes\relation\box</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enum_array.h">
+      <Filter>src\other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

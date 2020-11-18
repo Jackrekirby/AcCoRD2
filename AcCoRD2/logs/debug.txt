@@ -1,10 +1,8 @@
-[debug] [13.3518, 54.2813, 10]
-[debug] [98.4317, 22.8539, 10]
-[debug] [43.9707, 38.8778, 10]
-[debug] [40.3631, 85.185, 10]
-[debug] [91.0681, 41.2574, 10]
-[debug] [17.4197, 29.0957, 10]
-[debug] [51.2504, 91.7105, 10]
-[debug] [14.4138, 39.5898, 10]
-[debug] [94.5983, 66.2861, 10]
-[debug] [78.6652, 72.9349, 10]
+[debug] true
+[debug] true
+[debug] true
+[debug] false
+[debug] true
+[debug] true
+[debug] true
+[debug] false

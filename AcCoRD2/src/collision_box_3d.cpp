@@ -23,17 +23,17 @@ namespace accord::shape::collision
 	std::optional<Collision3D> Box3D::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end)
 	{
 		std::optional<Collision3D> collision;
-		collision = faces.at(static_cast<int>(Faces::nx)).CalculateCollisionDataWithNegativeFace(origin, end);
+		collision = faces.at(Faces::nx).CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("nx"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::ny)).CalculateCollisionDataWithNegativeFace(origin, end);
+		collision = faces.at(Faces::ny).CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("ny"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::nz)).CalculateCollisionDataWithNegativeFace(origin, end);
+		collision = faces.at(Faces::nz).CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("nz"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::px)).CalculateCollisionDataWithPositiveFace(origin, end);
+		collision = faces.at(Faces::px).CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("px"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::py)).CalculateCollisionDataWithPositiveFace(origin, end);
+		collision = faces.at(Faces::py).CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("py"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::pz)).CalculateCollisionDataWithPositiveFace(origin, end);
+		collision = faces.at(Faces::pz).CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("pz"); }
 		return collision;
 	}
@@ -41,17 +41,17 @@ namespace accord::shape::collision
 	std::optional<Collision3D> Box3D::CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end)
 	{
 		std::optional<Collision3D> collision;
-		collision = faces.at(static_cast<int>(Faces::nx)).CalculateCollisionDataWithPositiveFace(origin, end);
+		collision = faces.at(Faces::nx).CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("nx");  return collision; }
-		collision = faces.at(static_cast<int>(Faces::ny)).CalculateCollisionDataWithPositiveFace(origin, end);
+		collision = faces.at(Faces::ny).CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("ny"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::nz)).CalculateCollisionDataWithPositiveFace(origin, end);
+		collision = faces.at(Faces::nz).CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("nz"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::px)).CalculateCollisionDataWithNegativeFace(origin, end);
+		collision = faces.at(Faces::px).CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("px"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::py)).CalculateCollisionDataWithNegativeFace(origin, end);
+		collision = faces.at(Faces::py).CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("py"); return collision; }
-		collision = faces.at(static_cast<int>(Faces::pz)).CalculateCollisionDataWithNegativeFace(origin, end);
+		collision = faces.at(Faces::pz).CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision.has_value()) { LOG_DEBUG("pz"); }
 		return collision;
 	}

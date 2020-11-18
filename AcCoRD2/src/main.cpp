@@ -17,6 +17,8 @@
 #include "generating_surface_3d.h"
 #include "generating_box_2d.h"
 
+#include "relation_box_2d.h"
+
 void BoxCollisionTest()
 {
 	using namespace accord::shape;
@@ -57,13 +59,31 @@ int main()
 	
 	Random::SetSeed();
 
-	generating::Surface3D surface(std::make_unique<generating::PlaneZ3D>(10), std::make_unique<generating::Box2D>(Vec2d(0, 0), Vec2d(100, 100)));
+	relation::Box2D b1({ 0, 0 }, { 10, 10 });
+	relation::Box2D b2({ 5, 5 }, { 10, 10 });
+	relation::Box2D b3({ -5, -5 }, { 20, 20 });
 
-	for (int i = 0; i < 10; i++)
-	{
-		LOG_DEBUG(surface.GeneratePointOnSurface());
-	}
-	
+	relation::Surface3DShape& s1 = b1;
+	relation::Surface3DShape& s2 = b2;
+	relation::Surface3DShape& s3 = b3;
+
+	LOG_DEBUG(b1.IsOverlapping(b2));
+	LOG_DEBUG(b2.IsOverlapping(b1));
+	LOG_DEBUG(b3.IsEnveloping(b1));
+	LOG_DEBUG(b1.IsEnveloping(b3));
+
+	LOG_DEBUG(s1.IsOverlapping(s2));
+	LOG_DEBUG(s2.IsOverlapping(s1));
+	LOG_DEBUG(s3.IsEnveloping(s1));
+	LOG_DEBUG(s1.IsEnveloping(s3));
+
+	//generating::Surface3D surface(std::make_unique<generating::PlaneZ3D>(10), std::make_unique<generating::Box2D>(Vec2d(0, 0), Vec2d(100, 100)));
+
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	LOG_DEBUG(surface.GeneratePointOnSurface());
+	//}
+	//
 
 	//accord::LoggerTest();
 	//accord::JsonTest();

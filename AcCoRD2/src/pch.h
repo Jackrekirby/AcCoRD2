@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include "enum_array.h"
 
 #include <optional>
 #include <memory>

@@ -9,12 +9,6 @@ namespace accord::shape::collision
 	class Box3D : public basic::Box3D
 	{
 	public:
-
-		enum class Faces : int
-		{
-			nx, ny, nz, px, py, pz
-		};
-
 		Box3D(Vec3d origin, Vec3d length);
 
 		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end);
@@ -27,12 +21,12 @@ namespace accord::shape::collision
 
 		bool IsOnBorder(const Vec3d& position) const;
 
-		const std::array<Surface3D, 6>& GetFaces() const
+		const std::enum_array<Faces, Surface3D, 6>& GetFaces() const
 		{
 			return faces;
 		}
 	private:
-		std::array<Surface3D, 6> faces;
+		std::enum_array<Faces, Surface3D, 6> faces;
 	};
 
 	void to_json(Json& j, const Box3D& box);

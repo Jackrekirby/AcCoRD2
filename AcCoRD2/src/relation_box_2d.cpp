@@ -10,6 +10,21 @@ namespace accord::shape::relation
 
 	}
 
+	bool Box2D::IsOverlapping(const Surface3DShape& other) const
+	{
+		return other.IsOverlapping(*this);
+	}
+
+	bool Box2D::IsEnveloping(const Surface3DShape& other) const
+	{
+		return other.IsEnvelopedBy(*this);
+	}
+
+	bool Box2D::IsEnvelopedBy(const Surface3DShape& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
 	bool Box2D::IsOverlapping(const Box2D& other) const
 	{
 		return (GetOrigin() <= other.GetEnd() && GetEnd() >= other.GetOrigin()).All();
@@ -18,6 +33,11 @@ namespace accord::shape::relation
 	bool Box2D::IsEnveloping(const Box2D& other) const
 	{
 		return (GetOrigin() <= other.GetOrigin() && GetEnd() >= other.GetEnd()).All();
+	}
+
+	bool Box2D::IsEnvelopedBy(const Box2D& other) const
+	{
+		return other.IsEnveloping(*this);
 	}
 
 	void Box2D::ToJson(Json& j) const
