@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "relation_box_2d.h"
 #include "vec2b.h"
+#include "relation_circle.h"
 
 namespace accord::shape::relation
 {
@@ -36,6 +37,21 @@ namespace accord::shape::relation
 	}
 
 	bool Box2D::IsEnvelopedBy(const Box2D& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
+	bool Box2D::IsOverlapping(const Circle& other) const
+	{
+		return other.IsOverlapping(*this);
+	}
+
+	bool Box2D::IsEnveloping(const Circle& other) const
+	{
+		return ((other.GetCentre() - CalculateCentre()).Abs() + other.GetRadius() < (GetLength() / 2)).All();
+	}
+
+	bool Box2D::IsEnvelopedBy(const Circle& other) const
 	{
 		return other.IsEnveloping(*this);
 	}

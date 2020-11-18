@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "basic_box_2d.h"
-#include "vec2b.h"
 
 namespace accord::shape::basic
 {
@@ -35,6 +34,11 @@ namespace accord::shape::basic
 	const Vec2d& Box2D::GetLength() const
 	{
 		return length;
+	}
+
+	Vec2d Box2D::CalculateCentre() const
+	{
+		return origin + 0.5 * length;
 	}
 	
 	void Box2D::ToJson(Json& j) const

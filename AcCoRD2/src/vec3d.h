@@ -33,6 +33,9 @@ namespace accord
 
 		Vec2d GetPlane(Axis3D axis) const;
 
+		// calculates the absolute value of each axis
+		Vec3d Abs() const;
+
 		// returns the larger of x, y or z
 		double Max() const;
 
@@ -101,6 +104,11 @@ namespace accord
 		friend Vec3d operator * (const double s, const Vec3d& v);
 
 		void operator *= (const Vec3d& v);
+
+
+		Vec3d operator * (const Vec3b& v) const;
+
+		friend Vec3d operator * (const Vec3b& b, const Vec3d& v);
 
 
 
