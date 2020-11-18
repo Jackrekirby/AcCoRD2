@@ -44,6 +44,11 @@ namespace accord
 		LOG_CRITICAL("Unknown Axis3D type");
 		throw std::exception();
 	}
+	// calculates the absolute value of each axis
+	Vec3d Vec3d::Abs() const
+	{
+		return { std::abs(x), std::abs(y), std::abs(z) };
+	}
 
 	// returns the larger of x, y or z
 	double Vec3d::Max() const
@@ -194,6 +199,16 @@ namespace accord
 		z *= v.z;
 	}
 
+
+	Vec3d Vec3d::operator * (const Vec3b& v) const
+	{
+		return { x * static_cast<double>(v.x), y * static_cast<double>(v.y), z * static_cast<double>(v.z) };
+	}
+
+	Vec3d operator * (const Vec3b& b, const Vec3d& v)
+	{
+		return { static_cast<double>(b.x) * v.x, static_cast<double>(b.y) * v.y, static_cast<double>(b.z) * v.z };
+	}
 
 
 	Vec3d Vec3d::operator / (const Vec3d& v) const

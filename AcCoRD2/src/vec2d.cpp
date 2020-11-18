@@ -11,6 +11,12 @@ namespace accord
 
 	}
 
+	// calculates the absolute value of each axis
+	Vec2d Vec2d::Abs() const
+	{
+		return { std::abs(x), std::abs(y) };
+	}
+
 	// returns the larger of x or y
 	double Vec2d::Max() const
 	{
@@ -152,6 +158,17 @@ namespace accord
 	{
 		x *= v.x;
 		y *= v.y;
+	}
+
+
+	Vec2d Vec2d::operator * (const Vec2b& v) const
+	{
+		return { x * static_cast<double>(v.x), y * static_cast<double>(v.y) };
+	}
+
+	Vec2d operator * (const Vec2b& b, const Vec2d& v)
+	{
+		return { static_cast<double>(b.x) * v.x, static_cast<double>(b.y) * v.y };
 	}
 
 

@@ -29,6 +29,9 @@ namespace accord
 
 		Vec2d() = default;
 
+		// calculates the absolute value of each axis
+		Vec2d Abs() const;
+
 		// returns the larger of x or y
 		double Max() const;
 
@@ -99,6 +102,10 @@ namespace accord
 
 		void operator *= (const Vec2d& v);
 
+
+		Vec2d operator * (const Vec2b& v) const;
+
+		friend Vec2d operator * (const Vec2b& b, const Vec2d& v);
 
 
 		Vec2d operator / (const Vec2d& v) const;

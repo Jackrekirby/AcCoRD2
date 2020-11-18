@@ -5,6 +5,7 @@
 namespace accord::shape::relation
 {
 	class Box2D;
+	class Circle;
 
 	class Surface3DShape
 	{
@@ -16,6 +17,12 @@ namespace accord::shape::relation
 		virtual bool IsEnveloping(const Box2D& other) const = 0;
 
 		virtual bool IsEnvelopedBy(const Box2D& other) const = 0;
+
+		virtual bool IsOverlapping(const Circle& other) const = 0;
+
+		virtual bool IsEnveloping(const Circle& other) const = 0;
+
+		virtual bool IsEnvelopedBy(const Circle& other) const = 0;
 
 		virtual bool IsOverlapping(const Surface3DShape& other) const = 0;
 

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\basic_box_2d.cpp" />
     <ClCompile Include="src\basic_box_3d.cpp" />
+    <ClCompile Include="src\basic_circle.cpp" />
     <ClCompile Include="src\event.cpp" />
     <ClCompile Include="src\event_queue.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -45,6 +46,7 @@
     <ClCompile Include="src\generating_surface_3d_shape.cpp" />
     <ClCompile Include="src\generating_box_2d.cpp" />
     <ClCompile Include="src\relation_box_2d.cpp" />
+    <ClCompile Include="src\relation_circle.cpp" />
     <ClCompile Include="src\relation_plane_3d.cpp" />
     <ClCompile Include="src\relation_surface_3d.cpp" />
     <ClCompile Include="src\relation_surface_3d_shape.cpp" />
@@ -131,6 +133,7 @@
     <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
     <ClInclude Include="src\basic_box_2d.h" />
     <ClInclude Include="src\basic_box_3d.h" />
+    <ClInclude Include="src\basic_circle.h" />
     <ClInclude Include="src\event.h" />
     <ClInclude Include="src\event_queue.h" />
     <ClInclude Include="src\axis.h" />
@@ -144,6 +147,7 @@
     <ClInclude Include="src\generating_surface_3d_shape.h" />
     <ClInclude Include="src\generating_box_2d.h" />
     <ClInclude Include="src\relation_box_2d.h" />
+    <ClInclude Include="src\relation_circle.h" />
     <ClInclude Include="src\relation_plane_3d.h" />
     <ClInclude Include="src\relation_surface_3d.h" />
     <ClInclude Include="src\relation_surface_3d_shape.h" />

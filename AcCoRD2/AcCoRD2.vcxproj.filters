@@ -136,6 +136,12 @@
     <ClCompile Include="src\relation_box_3d.cpp">
       <Filter>src\shapes\relation\box</Filter>
     </ClCompile>
+    <ClCompile Include="src\basic_circle.cpp">
+      <Filter>src\shapes\basic\circle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_circle.cpp">
+      <Filter>src\shapes\relation\circle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -294,6 +300,12 @@
     <ClInclude Include="src\enum_array.h">
       <Filter>src\other</Filter>
     </ClInclude>
+    <ClInclude Include="src\basic_circle.h">
+      <Filter>src\shapes\basic\circle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_circle.h">
+      <Filter>src\shapes\relation\circle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -419,6 +431,12 @@
     </Filter>
     <Filter Include="src\shapes\basic\plane">
       <UniqueIdentifier>{820b2788-680f-4715-9482-4d01cb95cdf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\relation\circle">
+      <UniqueIdentifier>{3027f246-a752-498b-aa4c-48b4c8f596dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\circle">
+      <UniqueIdentifier>{ce92f9d3-28f9-4873-9b98-de39dbe902e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
