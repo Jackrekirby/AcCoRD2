@@ -1,3 +1,4 @@
 [info] hi
-[info] origin = [0, 10, 0], end = [7, 10, 0]
-[info] time = 0.714286, intersection = [5, 10, 0], reflection =[3, 10, 0]
+[info] origin = [5, 5, 5], end = [-19, -13, 12]
+[debug] nx
+[info] time = 0.208333, intersection = [0, 1.25, 6.45833], reflection = [19, -13, 12]

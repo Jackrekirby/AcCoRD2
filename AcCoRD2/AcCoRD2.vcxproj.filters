@@ -1,80 +1,325 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="test\logger_test.cpp" />
-    <ClCompile Include="test\json_test.cpp" />
-    <ClCompile Include="src\random.cpp" />
-    <ClCompile Include="test\random_test.cpp" />
-    <ClCompile Include="src\math\vec3d.cpp" />
-    <ClCompile Include="src\math\vec3b.cpp" />
-    <ClCompile Include="src\math\vec3i.cpp" />
-    <ClCompile Include="src\math\constants.cpp" />
-    <ClCompile Include="test\vec_test.cpp" />
-    <ClCompile Include="src\math\vec2b.cpp" />
-    <ClCompile Include="src\math\vec2d.cpp" />
-    <ClCompile Include="src\math\vec2i.cpp" />
-    <ClCompile Include="test\output_binary_test.cpp" />
-    <ClCompile Include="src\event.cpp" />
-    <ClCompile Include="src\event_queue.cpp" />
-    <ClCompile Include="src\shapes\abstract_plane_3d.cpp" />
-    <ClCompile Include="src\shapes\plane_x_3d.cpp" />
-    <ClCompile Include="src\shapes\plane_y_3d.cpp" />
-    <ClCompile Include="src\shapes\plane_z_3d.cpp" />
-    <ClCompile Include="src\math\axis.cpp" />
-    <ClCompile Include="src\math\vec1d.cpp" />
-    <ClCompile Include="src\shapes\plane.cpp" />
-    <ClCompile Include="test\event_queue_test.cpp" />
-    <ClCompile Include="src\shapes\box2d.cpp" />
-    <ClCompile Include="src\shapes\collision_3d.cpp" />
-    <ClCompile Include="src\shapes\surface_3d.cpp" />
-    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\event.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event_queue.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src\other</Filter>
+    </ClCompile>
+    <ClCompile Include="src\random.cpp">
+      <Filter>src\other\random</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <Filter>src\other\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="src\abstract_plane_3d.cpp">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_3d.cpp">
+      <Filter>src\shapes\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane.cpp">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane_x_3d.cpp">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane_y_3d.cpp">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane_z_3d.cpp">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec3i.cpp">
+      <Filter>src\math\vec\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec3d.cpp">
+      <Filter>src\math\vec\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec3b.cpp">
+      <Filter>src\math\vec\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec2i.cpp">
+      <Filter>src\math\vec\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec2d.cpp">
+      <Filter>src\math\vec\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec2b.cpp">
+      <Filter>src\math\vec\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec1d.cpp">
+      <Filter>src\math\vec\1D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\constants.cpp">
+      <Filter>src\math\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="src\axis.cpp">
+      <Filter>src\math\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\random_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\output_binary_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logger_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event_queue_test.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_box_2d.cpp">
+      <Filter>src\shapes\basic\box</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_box_3d.cpp">
+      <Filter>src\shapes\basic\box</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_box_2d.cpp">
+      <Filter>src\shapes\collision\box</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_box_3d.cpp">
+      <Filter>src\shapes\collision\box</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_surface_3d_shape.cpp">
+      <Filter>src\shapes\collision\surfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_surface_3d.cpp">
+      <Filter>src\shapes\collision\surfaces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="test\logger_test.h" />
-    <ClInclude Include="test\json_test.h" />
-    <ClInclude Include="src\random.h" />
-    <ClInclude Include="test\random_test.h" />
-    <ClInclude Include="src\math\vec3d.h" />
-    <ClInclude Include="src\math\vec3b.h" />
-    <ClInclude Include="src\math\vec3i.h" />
-    <ClInclude Include="src\math\constants.h" />
-    <ClInclude Include="src\math\vec3.h" />
-    <ClInclude Include="test\vec_test.h" />
-    <ClInclude Include="src\math\vec2.h" />
-    <ClInclude Include="src\math\vec2b.h" />
-    <ClInclude Include="src\math\vec2d.h" />
-    <ClInclude Include="src\math\vec2i.h" />
-    <ClInclude Include="src\output_binary_singles.h" />
-    <ClInclude Include="test\output_binary_test.h" />
-    <ClInclude Include="src\output_binary_vectors.h" />
-    <ClInclude Include="lib\pcg\pcg_extras.hpp" />
-    <ClInclude Include="lib\pcg\pcg_random.hpp" />
-    <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
-    <ClInclude Include="src\event.h" />
-    <ClInclude Include="src\event_queue.h" />
-    <ClInclude Include="src\math\axis.h" />
-    <ClInclude Include="src\shapes\abstract_plane_3d.h" />
-    <ClInclude Include="src\shapes\plane_x_3d.h" />
-    <ClInclude Include="src\shapes\plane_y_3d.h" />
-    <ClInclude Include="src\shapes\plane_z_3d.h" />
-    <ClInclude Include="src\math\vec1d.h" />
-    <ClInclude Include="src\shapes\plane.h" />
-    <ClInclude Include="test\event_queue_test.h" />
-    <ClInclude Include="src\shapes\surface_3d.h" />
-    <ClInclude Include="src\shapes\box_2d.h" />
-    <ClInclude Include="src\shapes\surface_3d_shape.h" />
-    <ClInclude Include="src\shapes\collision_3d.h" />
-    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="lib\pcg\pcg_uint128.hpp">
+      <Filter>lib\pcg</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\pcg\pcg_random.hpp">
+      <Filter>lib\pcg</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\pcg\pcg_extras.hpp">
+      <Filter>lib\pcg</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_queue.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\output_binary_singles.h">
+      <Filter>src\other\binary</Filter>
+    </ClInclude>
+    <ClInclude Include="src\output_binary_vectors.h">
+      <Filter>src\other\binary</Filter>
+    </ClInclude>
+    <ClInclude Include="src\random.h">
+      <Filter>src\other\random</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>src\other\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="src\abstract_plane_3d.h">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_3d.h">
+      <Filter>src\shapes\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\plane.h">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\plane_x_3d.h">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\plane_y_3d.h">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\plane_z_3d.h">
+      <Filter>src\shapes\basic\planes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec3i.h">
+      <Filter>src\math\vec\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec3d.h">
+      <Filter>src\math\vec\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec3b.h">
+      <Filter>src\math\vec\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec3.h">
+      <Filter>src\math\vec\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec2i.h">
+      <Filter>src\math\vec\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec2d.h">
+      <Filter>src\math\vec\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec2b.h">
+      <Filter>src\math\vec\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec2.h">
+      <Filter>src\math\vec\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec1d.h">
+      <Filter>src\math\vec\1D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants.h">
+      <Filter>src\math\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\axis.h">
+      <Filter>src\math\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vec_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\random_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\output_binary_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logger_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_queue_test.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic_box_2d.h">
+      <Filter>src\shapes\basic\box</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic_box_3d.h">
+      <Filter>src\shapes\basic\box</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_box_2d.h">
+      <Filter>src\shapes\collision\box</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_box_3d.h">
+      <Filter>src\shapes\collision\box</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_surface_3d_shape.h">
+      <Filter>src\shapes\collision\surfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_surface_3d.h">
+      <Filter>src\shapes\collision\surfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="lib\pcg\LICENSE.txt" />
-    <Text Include="lib\pcg\LICENSE-APACHE.txt" />
-    <Text Include="lib\pcg\LICENSE-MIT.txt" />
+    <Text Include="lib\pcg\LICENSE-MIT.txt">
+      <Filter>lib\pcg</Filter>
+    </Text>
+    <Text Include="lib\pcg\LICENSE-APACHE.txt">
+      <Filter>lib\pcg</Filter>
+    </Text>
+    <Text Include="lib\pcg\LICENSE.txt">
+      <Filter>lib\pcg</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
-    <None Include="lib\pcg\CONTRIBUTING.md" />
-    <None Include="lib\pcg\LICENSE.spdx" />
-    <None Include="lib\pcg\README.md" />
+    <None Include="lib\pcg\LICENSE.spdx">
+      <Filter>lib\pcg</Filter>
+    </None>
+    <None Include="lib\pcg\CONTRIBUTING.md">
+      <Filter>lib\pcg</Filter>
+    </None>
+    <None Include="lib\pcg\README.md">
+      <Filter>lib\pcg</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="lib">
+      <UniqueIdentifier>{6388351f-e287-4a2b-82a4-96c0f529e266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{f72c3509-6b8e-4ca3-8319-29b4de0921ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\pcg">
+      <UniqueIdentifier>{190d5d9b-372d-4414-b424-884ff1e70504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\json">
+      <UniqueIdentifier>{bdf5be7a-23eb-464b-957f-4ecc57c86cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\spdlog">
+      <UniqueIdentifier>{d54b4f69-fcdb-48cf-9b56-c27f5e267c1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math">
+      <UniqueIdentifier>{e3d0557b-3345-4cc1-a8e9-d38c16819e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\vec">
+      <UniqueIdentifier>{325ca5ba-38b1-4aec-a935-89f4f9936e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes">
+      <UniqueIdentifier>{4efc59fa-6c85-4210-9719-97d08b3f99f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic">
+      <UniqueIdentifier>{8cc28919-8100-431e-8dd7-2c03a0e84a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\planes">
+      <UniqueIdentifier>{820b2788-680f-4715-9482-4d01cb95cdf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\box">
+      <UniqueIdentifier>{97ca53b2-9c6b-4c56-aebc-78f42a1c7510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\collision">
+      <UniqueIdentifier>{55c15517-8474-4b2c-a944-7596ef7b4cc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\generating">
+      <UniqueIdentifier>{f43c645a-e03a-43cf-88d8-bd764c90b645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\relation">
+      <UniqueIdentifier>{c0a3d719-7c40-4d85-8994-c021e01568f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\event">
+      <UniqueIdentifier>{2c64c1b5-6e38-4b80-b4ff-442c915505bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tests">
+      <UniqueIdentifier>{c2730454-72b2-41ea-ac77-2a08a0e8f6ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\other">
+      <UniqueIdentifier>{c127e013-c096-4c11-aa63-81b751ba92a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\surfaces">
+      <UniqueIdentifier>{19664892-8231-4de1-9147-45dc23b3a2c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\vec\1D">
+      <UniqueIdentifier>{757e3288-446a-41ef-b0fb-8cbb71aaef4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\vec\3D">
+      <UniqueIdentifier>{719834c4-1e29-4ca3-95a9-b4fb9a067d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\vec\2D">
+      <UniqueIdentifier>{8541fe96-59af-4d38-92d5-c19a08219df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\axis">
+      <UniqueIdentifier>{72d1abc6-51e6-4f4d-8d68-689b0c6afc8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\constants">
+      <UniqueIdentifier>{4cee4f28-9ad3-483e-a0c9-e5a7b7618b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\other\binary">
+      <UniqueIdentifier>{a36730ac-8fdb-49aa-8139-f9f0ee9ebc0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\other\random">
+      <UniqueIdentifier>{212ada0a-1ba8-4ec3-a41e-f5c97fc04760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\other\pch">
+      <UniqueIdentifier>{c4a8652b-8740-4343-a543-dc9f795114ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\collision\box">
+      <UniqueIdentifier>{7fd56c08-3153-427f-a6af-337f5259df9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\collision\surfaces">
+      <UniqueIdentifier>{b155638c-4d01-4221-83bf-f5b76447532b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
