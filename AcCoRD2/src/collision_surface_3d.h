@@ -26,9 +26,9 @@ namespace accord::shape::collision
 
 		std::optional<Collision3D> CalculateIntersectionAndReflection(std::optional<double> time, const Vec3d& origin, const Vec3d& end) const;
 	
-		AbstractPlane3D& GetPlane() const;
+		const AbstractPlane3D& GetPlane() const;
 
-		Surface3DShape& GetShape() const;
+		const Surface3DShape& GetShape() const;
 	private:
 		std::unique_ptr<AbstractPlane3D> plane;
 		std::unique_ptr<Surface3DShape> shape;

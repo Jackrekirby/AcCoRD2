@@ -1,6 +1,6 @@
 #pragma once
 #include "basic_box_2d.h"
-#include "surface_3d_shape.h"
+#include "collision_surface_3d_shape.h"
 
 namespace accord::shape::collision
 {

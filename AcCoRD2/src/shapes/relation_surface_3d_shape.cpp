@@ -1,8 +1,8 @@
 #pragma once
 #include "pch.h"
-#include "collision_surface_3d_shape.h"
+#include "relation_surface_3d_shape.h"
 
-namespace accord::shape::collision
+namespace accord::shape::relation
 {
 	void to_json(Json& j, const Surface3DShape& surface_shape)
 	{

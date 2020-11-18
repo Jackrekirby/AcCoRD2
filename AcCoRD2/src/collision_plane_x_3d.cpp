@@ -1,4 +1,4 @@
-#include "plane_x_3d.h"
+#include "collision_plane_x_3d.h"
 #include "vec1d.h"
 
 namespace accord::shape::collision
@@ -11,17 +11,17 @@ namespace accord::shape::collision
 
 	std::optional<double> PlaneX_3D::CalculateCollisionTimeWithPositiveFace(const Vec3d& origin, const Vec3d& end) const
 	{
-		return Plane::CalculateCollisionTimeWithPositiveFace(origin.x, end.x);
+		return Plane1D::CalculateCollisionTimeWithPositiveFace(origin.x, end.x);
 	}
 
 	std::optional<double> PlaneX_3D::CalculateCollisionTimeWithNegativeFace(const Vec3d& origin, const Vec3d& end) const
 	{
-		return Plane::CalculateCollisionTimeWithNegativeFace(origin.x, end.x);
+		return Plane1D::CalculateCollisionTimeWithNegativeFace(origin.x, end.x);
 	}
 
 	Vec3d PlaneX_3D::CalculateIntersection(const Vec3d& origin, const Vec3d& end, double time) const
 	{
-		return { position, Lerp(origin.y, end.y, time),  Lerp(origin.z, end.z, time) };
+		return { GetPosition(), Lerp(origin.y, end.y, time),  Lerp(origin.z, end.z, time) };
 	}
 
 	Vec3d PlaneX_3D::CalculateReflection(const Vec3d& intersection, const Vec3d& end) const

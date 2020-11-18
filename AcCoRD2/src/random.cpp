@@ -48,9 +48,9 @@ namespace accord
 	}
 
 	// Value will be in range [0,1)
-	double Random::GenerateRealUniform()
+	double Random::GenerateRealUniform(double lower_bound, double upper_bound)
 	{
-		std::uniform_real_distribution<double> distribution(0.0, 1.0);
+		std::uniform_real_distribution<double> distribution(lower_bound, upper_bound);
 		return distribution(Random::s_rng);
 	}
 

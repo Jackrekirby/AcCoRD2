@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "collision_box_3d.h"
 #include "vec3b.h"
-#include "plane_x_3d.h"
-#include "plane_y_3d.h"
-#include "plane_z_3d.h"
+#include "collision_plane_x_3d.h"
+#include "collision_plane_y_3d.h"
+#include "collision_plane_z_3d.h"
 #include "collision_box_2d.h"
 
 namespace accord::shape::collision

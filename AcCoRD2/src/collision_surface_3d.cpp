@@ -1,9 +1,9 @@
 #pragma once
-#include "surface_3d.h"
+#include "collision_surface_3d.h"
 
 #include "collision_3d.h"
-#include "abstract_plane_3d.h"
-#include "surface_3d_shape.h"
+#include "abstract_collision_plane_3d.h"
+#include "collision_surface_3d_shape.h"
 
 namespace accord::shape::collision
 {
@@ -40,12 +40,12 @@ namespace accord::shape::collision
 		return std::nullopt;
 	}
 
-	AbstractPlane3D& Surface3D::GetPlane() const
+	const AbstractPlane3D& Surface3D::GetPlane() const
 	{
 		return *plane;
 	}
 
-	Surface3DShape& Surface3D::GetShape() const
+	const Surface3DShape& Surface3D::GetShape() const
 	{
 		return *shape;
 	}

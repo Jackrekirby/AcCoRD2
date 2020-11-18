@@ -1,9 +1,10 @@
-#include "abstract_plane_3d.h"
+#include "pch.h"
+#include "basic_plane_3d.h"
 
-namespace accord::shape::collision
+namespace accord::shape::basic
 {
 	AbstractPlane3D::AbstractPlane3D(double position, Axis3D axis)
-		: Plane(position), axis(axis)
+		: position(position), axis(axis)
 	{
 
 	}
@@ -11,6 +12,11 @@ namespace accord::shape::collision
 	const  Axis3D& AbstractPlane3D::GetAxis() const
 	{
 		return axis;
+	}
+
+	const double& AbstractPlane3D::GetPosition() const
+	{
+		return position;
 	}
 
 	void to_json(Json& j, const AbstractPlane3D& plane)

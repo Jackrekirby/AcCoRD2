@@ -20,7 +20,7 @@ namespace accord
 
 		static double GenerateTriangular();
 
-		static double GenerateRealUniform();
+		static double GenerateRealUniform(double lower_bound = 0.0, double upper_bound = 1.0);
 
 		static int GenerateIntUniform(int lower_bound, int upper_bound);
 

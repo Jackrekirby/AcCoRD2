@@ -2,23 +2,19 @@
 //#include <optional>
 //#include "json.h"
 #include "pch.h"
+#include "basic_plane_3d.h"
 
 namespace accord::shape::collision
 {
-	class Plane
+	class Plane1D : public basic::AbstractPlane3D
 	{
 	public:
-		Plane(double position);
+		Plane1D(double position, Axis3D axis);
 
 		std::optional<double> CalculateCollisionTimeWithPositiveFace(double origin, double end) const;
 
 		std::optional<double> CalculateCollisionTimeWithNegativeFace(double origin, double end) const;
-
-		const double& GetPosition() const;
-	protected:
-	
-		double position;
 	};
 
-	void to_json(Json& j, const Plane& plane);
+	void to_json(Json& j, const Plane1D& plane);
 }
