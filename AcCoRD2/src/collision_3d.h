@@ -1,7 +1,6 @@
 #pragma once
 #include "vec3d.h"
 //#include <optional>
-#include "pch.h"
 
 namespace accord::shape::collision
 {

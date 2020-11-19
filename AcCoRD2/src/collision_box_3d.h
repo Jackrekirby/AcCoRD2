@@ -1,7 +1,6 @@
 #pragma once
-#include "vec3d.h"
+//#include "vec3d.h"
 #include "basic_box_3d.h"
-#include "collision_3d.h"
 #include "collision_surface_3d.h"
 
 namespace accord::shape::collision
@@ -21,12 +20,11 @@ namespace accord::shape::collision
 
 		bool IsOnBorder(const Vec3d& position) const;
 
-		const std::enum_array<Faces, Surface3D, 6>& GetFaces() const
-		{
-			return faces;
-		}
+		const std::enum_array<Faces, Surface3D, 6>& GetFaces() const;
 	private:
 		std::enum_array<Faces, Surface3D, 6> faces;
+
+		std::enum_array<Faces, Surface3D, 6> GenerateFaces() const;
 	};
 
 	void to_json(Json& j, const Box3D& box);

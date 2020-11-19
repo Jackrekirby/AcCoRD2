@@ -99,6 +99,7 @@
     <ClInclude Include="lib\nlohmann\json.hpp" />
     <ClInclude Include="src\json.h" />
     <ClInclude Include="src\logger.h" />
+    <ClInclude Include="src\json_fwd.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\logger.cpp" />

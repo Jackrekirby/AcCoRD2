@@ -1,8 +1,6 @@
 #pragma once
 #include "basic_box_2d.h"
 #include "relation_surface_3d_shape.h"
-#include "vec2b.h"
-#include "vec2d.h"
 
 namespace accord::shape::relation
 {
@@ -31,15 +29,9 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Surface3DShape& other) const;
 
-		Vec2d CalculateNearestPointOnBoundary(const Vec2d& position) const
-		{
-			return Vec2d::Max(GetOrigin(), Vec2d::Min(position, GetEnd()));
-		}
+		Vec2d CalculateNearestPointOnBoundary(const Vec2d& position) const;
 
-		Vec2d CalculateFurthestCornerFromPoint(const Vec2d& position) const
-		{
-			return GetOrigin() + (position < CalculateCentre()) * GetLength();
-		}
+		Vec2d CalculateFurthestCornerFromPoint(const Vec2d& position) const;
 
 		void ToJson(Json& j) const;
 	};

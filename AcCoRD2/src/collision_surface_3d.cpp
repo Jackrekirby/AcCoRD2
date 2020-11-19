@@ -1,10 +1,6 @@
 #pragma once
 #include "collision_surface_3d.h"
 
-#include "collision_3d.h"
-#include "abstract_collision_plane_3d.h"
-#include "collision_surface_3d_shape.h"
-
 namespace accord::shape::collision
 {
 	Surface3D::Surface3D(std::unique_ptr<AbstractPlane3D> plane, std::unique_ptr<Surface3DShape> shape)

@@ -1,19 +1,12 @@
 #pragma once
 //#include <memory>
 //#include <optional>
-#include "pch.h"
-
-namespace accord
-{
-	struct Vec3d;
-}
+#include "collision_3d.h"
+#include "abstract_collision_plane_3d.h"
+#include "collision_surface_3d_shape.h"
 
 namespace accord::shape::collision
 {
-	class AbstractPlane3D;
-	class Surface3DShape;
-	class Collision3D;
-
 	class Surface3D
 	{
 	public:

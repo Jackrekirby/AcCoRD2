@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "relation_box_3d.h"
 #include "relation_box_2d.h"
+#include "relation_surface_3d_factory.h"
 //#include "basic_box_3d.h"
 #include "vec3b.h"
 
@@ -15,12 +16,12 @@ namespace accord::shape::relation
 	std::enum_array<Faces, Surface3D, 6> Box3D::GenerateFaces()
 	{
 		return {
-		Surface3D(Plane3D(GetOrigin().x, Axis3D::x), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::x), GetEnd().GetPlane(Axis3D::x))),
-		Surface3D(Plane3D(GetOrigin().y, Axis3D::y), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::y), GetEnd().GetPlane(Axis3D::y))),
-		Surface3D(Plane3D(GetOrigin().z, Axis3D::z), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::z), GetEnd().GetPlane(Axis3D::z))),
-		Surface3D(Plane3D(GetEnd().x, Axis3D::x), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::x), GetEnd().GetPlane(Axis3D::x))),
-		Surface3D(Plane3D(GetEnd().y, Axis3D::y), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::y), GetEnd().GetPlane(Axis3D::y))),
-		Surface3D(Plane3D(GetEnd().z, Axis3D::z), std::make_unique<Box2D>(GetOrigin().GetPlane(Axis3D::z), GetEnd().GetPlane(Axis3D::z)))
+			CreateBoxSurface(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetOrigin(), Axis3D::y, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetOrigin(), Axis3D::z, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::x, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::y, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::z, GetOrigin(), GetEnd())
 		};
 	}
 
@@ -57,5 +58,10 @@ namespace accord::shape::relation
 	void Box3D::ToJson(Json& j) const
 	{
 		j = static_cast<basic::Box3D>(*this);
+	}
+
+	const std::enum_array<Faces, Surface3D, 6>& Box3D::GetFaces() const
+	{
+		return faces;
 	}
 }

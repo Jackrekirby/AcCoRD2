@@ -1,10 +1,10 @@
 #pragma once
 #include "pch.h"
-#include "generating_surface_3d_factory.h"
-#include "generating_plane_3d_factory.h"
-#include "generating_box_2d.h"
+#include "collision_surface_3d_factory.h"
+#include "collision_plane_3d_factory.h"
+#include "collision_box_2d.h"
 
-namespace accord::shape::generating
+namespace accord::shape::collision
 {
 	Surface3D CreateBoxSurface(double position, Axis3D axis, const Vec2d& origin, const Vec2d& end)
 	{

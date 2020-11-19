@@ -1,7 +1,6 @@
 #pragma once
 //#include <optional>
 //#include "json.h"
-#include "pch.h"
 #include "basic_plane_3d.h"
 
 namespace accord::shape::collision

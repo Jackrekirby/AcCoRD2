@@ -3,10 +3,10 @@
 
 namespace accord::shape::collision
 {
-	class PlaneY_3D : public AbstractPlane3D
+	class PlaneY3D : public AbstractPlane3D
 	{
 	public:
-		PlaneY_3D(double y);
+		PlaneY3D(double y);
 
 		std::optional<double> CalculateCollisionTimeWithPositiveFace(const Vec3d& origin, const Vec3d& end) const;
 

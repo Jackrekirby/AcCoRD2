@@ -1,10 +1,5 @@
 #include "pch.h"
 #include "generating_box_3d.h"
-#include "generating_box_2d.h"
-#include "generating_plane_x_3d.h"
-#include "generating_plane_y_3d.h"
-#include "generating_plane_z_3d.h"
-
 #include "generating_surface_3d_factory.h"
 
 namespace accord::shape::generating
@@ -24,7 +19,7 @@ namespace accord::shape::generating
 			CreateBoxSurface(GetOrigin(), Axis3D::z, GetOrigin(), GetEnd()),
 			CreateBoxSurface(GetEnd(), Axis3D::x, GetOrigin(), GetEnd()),
 			CreateBoxSurface(GetEnd(), Axis3D::y, GetOrigin(), GetEnd()),
-			CreateBoxSurface(GetEnd(), Axis3D::z, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::z, GetOrigin(), GetEnd())
 		};
 	}
 

@@ -1,7 +1,14 @@
 #pragma once
-#include "generating_surface_3d.h"
+#include "collision_surface_3d.h"
+#include "axis.h"
 
-namespace accord::shape::generating
+namespace accord
+{
+	struct Vec2d;
+	struct Vec3d;
+}
+
+namespace accord::shape::collision
 {
 	Surface3D CreateBoxSurface(double position, Axis3D axis, const Vec2d& origin, const Vec2d& end);
 

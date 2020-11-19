@@ -1,23 +1,27 @@
 #include "pch.h"
 #include "collision_box_3d.h"
+#include "collision_surface_3d_factory.h"
 #include "vec3b.h"
-#include "collision_plane_x_3d.h"
-#include "collision_plane_y_3d.h"
-#include "collision_plane_z_3d.h"
-#include "collision_box_2d.h"
 
 namespace accord::shape::collision
 {
 	Box3D::Box3D(Vec3d origin, Vec3d length)
-		: basic::Box3D(origin, length),
-		faces { Surface3D(std::make_unique<PlaneX_3D>(GetOrigin().x), std::make_unique<collision::Box2D>(GetOrigin().GetPlane(Axis3D::x), GetEnd().GetPlane(Axis3D::x))),
-				Surface3D(std::make_unique<PlaneY_3D>(GetOrigin().y), std::make_unique<collision::Box2D>(GetOrigin().GetPlane(Axis3D::y), GetEnd().GetPlane(Axis3D::y))),
-				Surface3D(std::make_unique<PlaneZ_3D>(GetOrigin().z), std::make_unique<collision::Box2D>(GetOrigin().GetPlane(Axis3D::z), GetEnd().GetPlane(Axis3D::z))),
-				Surface3D(std::make_unique<PlaneX_3D>(GetEnd().x), std::make_unique<collision::Box2D>(GetOrigin().GetPlane(Axis3D::x), GetEnd().GetPlane(Axis3D::x))),
-				Surface3D(std::make_unique<PlaneY_3D>(GetEnd().y), std::make_unique<collision::Box2D>(GetOrigin().GetPlane(Axis3D::y), GetEnd().GetPlane(Axis3D::y))),
-				Surface3D(std::make_unique<PlaneZ_3D>(GetEnd().z), std::make_unique<collision::Box2D>(GetOrigin().GetPlane(Axis3D::z), GetEnd().GetPlane(Axis3D::z))) }
+		: basic::Box3D(origin, length), faces(GenerateFaces())
 	{
 
+	}
+
+	std::enum_array<Faces, Surface3D, 6> Box3D::GenerateFaces() const
+	{
+		return
+		{
+			CreateBoxSurface(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetOrigin(), Axis3D::y, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetOrigin(), Axis3D::z, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::x, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::y, GetOrigin(), GetEnd()),
+			CreateBoxSurface(GetEnd(), Axis3D::z, GetOrigin(), GetEnd()),
+		};
 	}
 
 	std::optional<Collision3D> Box3D::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end)
@@ -69,6 +73,11 @@ namespace accord::shape::collision
 	bool Box3D::IsOnBorder(const Vec3d& position) const
 	{
 		return ((position == GetOrigin()) || (position == GetEnd())).All();
+	}
+
+	const std::enum_array<Faces, Surface3D, 6>& Box3D::GetFaces() const
+	{
+		return faces;
 	}
 
 	void to_json(Json& j, const Box3D& box)

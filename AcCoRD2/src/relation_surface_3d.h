@@ -1,8 +1,4 @@
 #pragma once
-#include "pch.h"
-#include "vec3d.h"
-#include "random.h"
-
 #include "relation_plane_3d.h"
 #include "relation_surface_3d_shape.h"
 

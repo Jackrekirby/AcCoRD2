@@ -56,6 +56,16 @@ namespace accord::shape::relation
 		return other.IsEnveloping(*this);
 	}
 
+	Vec2d Box2D::CalculateNearestPointOnBoundary(const Vec2d& position) const
+	{
+		return Vec2d::Max(GetOrigin(), Vec2d::Min(position, GetEnd()));
+	}
+
+	Vec2d Box2D::CalculateFurthestCornerFromPoint(const Vec2d& position) const
+	{
+		return (GetOrigin() + (position < CalculateCentre()) * GetLength());
+	}
+
 	void Box2D::ToJson(Json& j) const
 	{
 		j = static_cast<basic::Box2D>(*this);

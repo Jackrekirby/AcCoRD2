@@ -19,10 +19,7 @@ namespace accord::shape::relation
 
 		void ToJson(Json& j) const;
 
-		const std::enum_array<Faces, Surface3D, 6>& GetFaces() const
-		{
-			return faces;
-		}
+		const std::enum_array<Faces, Surface3D, 6>& GetFaces() const;
 	private:
 		std::enum_array<Faces, Surface3D, 6> faces;
 

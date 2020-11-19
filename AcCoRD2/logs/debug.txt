@@ -1,10 +1,16 @@
-[debug] [0.18051, 8.10048, 10]
-[debug] [8.68794, 0, 4.3629]
-[debug] [7.49691, 10, 7.98265]
-[debug] [7.78272, 9.1405, 0]
-[debug] [0, 8.39471, 0.0779908]
-[debug] [9.10771, 6.41234, 0]
-[debug] [8.15206, 10, 9.28811]
-[debug] [2.36551, 6.28266, 0]
-[debug] [1.29372, 0, 7.54031]
-[debug] [0, 9.02678, 5.71119]
+[debug] true
+[debug] true
+[debug] false
+[debug] true
+[debug] false
+[debug] false
+[debug] true
+[debug] true
+[debug] true
+[debug] true
+[debug] false
+[debug] true
+[debug] true
+[debug] true
+[debug] false
+[debug] true

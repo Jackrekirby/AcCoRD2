@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include "vec2d.h"
 
 namespace accord::shape::generating

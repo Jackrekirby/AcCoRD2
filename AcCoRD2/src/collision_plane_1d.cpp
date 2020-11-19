@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "collision_plane_1d.h"
 
 namespace accord::shape::collision

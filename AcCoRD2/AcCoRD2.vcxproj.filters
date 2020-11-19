@@ -151,6 +151,18 @@
     <ClCompile Include="src\generating_surface_3d_factory.cpp">
       <Filter>src\shapes\generating\surface</Filter>
     </ClCompile>
+    <ClCompile Include="src\collision_surface_3d_factory.cpp">
+      <Filter>src\shapes\collision\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_plane_3d_factory.cpp">
+      <Filter>src\shapes\collision\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_surface_3d_factory.cpp">
+      <Filter>src\shapes\relation\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shape_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -323,6 +335,21 @@
     </ClInclude>
     <ClInclude Include="src\generating_surface_3d_factory.h">
       <Filter>src\shapes\generating\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_surface_3d_factory.h">
+      <Filter>src\shapes\collision\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_plane_3d_factory.h">
+      <Filter>src\shapes\collision\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_surface_3d_factory.h">
+      <Filter>src\shapes\relation\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shape_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json_fwd_test.h">
+      <Filter>src\tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
