@@ -16,6 +16,8 @@
 #include "relation_box_2d.h"
 #include "relation_box_3d.h"
 #include "relation_circle.h"
+#include "relation_box_surface_3d.h"
+
 
 namespace accord
 {
@@ -107,5 +109,11 @@ namespace accord
 		relation::Box3D box3d2({ 10, 1, 0 }, { 10, 10, 10 });
 
 		LOG_DEBUG(box3d1.IsPartiallyNeighbouring(box3d2));
+
+
+		relation::Box3D bx1({ 0, 0, 0 }, { 10, 10, 10 });
+		relation::Box3D bx2({ 4, 5, 6 }, { 10, 10, 10 });
+		LOG_DEBUG(JsonToPrettyString(bx1.GenerateOverlapBox(bx2)));
+
 	}
 }

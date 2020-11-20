@@ -4,8 +4,8 @@
 namespace accord::shape::relation
 {
 
-	Surface3D::Surface3D(Plane3D plane, std::unique_ptr<Surface3DShape> shape)
-		: plane(plane), shape(std::move(shape))
+	Surface3D::Surface3D(Plane3D plane)
+		: plane(plane)
 	{
 
 	}
@@ -23,11 +23,6 @@ namespace accord::shape::relation
 	const Plane3D& Surface3D::GetPlane() const
 	{
 		return plane;
-	}
-
-	const Surface3DShape& Surface3D::GetShape() const
-	{
-		return *shape;
 	}
 
 	void to_json(Json& j, const Surface3D& surface)

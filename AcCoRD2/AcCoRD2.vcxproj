@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\relation_box_surface_3d.cpp" />
+    <ClCompile Include="src\relation_circle_surface_3d.cpp" />
     <ClCompile Include="src\shape_test.cpp" />
-    <ClCompile Include="src\relation_surface_3d_factory.cpp" />
     <ClCompile Include="src\collision_plane_3d_factory.cpp" />
     <ClCompile Include="src\collision_surface_3d_factory.cpp" />
     <ClCompile Include="src\generating_surface_3d_factory.cpp" />
@@ -135,9 +136,10 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\relation_box_surface_3d.h" />
     <ClInclude Include="src\json_fwd_test.h" />
+    <ClInclude Include="src\relation_circle_surface_3d.h" />
     <ClInclude Include="src\shape_test.h" />
-    <ClInclude Include="src\relation_surface_3d_factory.h" />
     <ClInclude Include="src\collision_plane_3d_factory.h" />
     <ClInclude Include="src\collision_surface_3d_factory.h" />
     <ClInclude Include="src\generating_surface_3d_factory.h" />

@@ -157,11 +157,14 @@
     <ClCompile Include="src\collision_plane_3d_factory.cpp">
       <Filter>src\shapes\collision\plane</Filter>
     </ClCompile>
-    <ClCompile Include="src\relation_surface_3d_factory.cpp">
-      <Filter>src\shapes\relation\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\shape_test.cpp">
       <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_box_surface_3d.cpp">
+      <Filter>src\shapes\relation\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_circle_surface_3d.cpp">
+      <Filter>src\shapes\relation\surface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -342,14 +345,17 @@
     <ClInclude Include="src\collision_plane_3d_factory.h">
       <Filter>src\shapes\collision\plane</Filter>
     </ClInclude>
-    <ClInclude Include="src\relation_surface_3d_factory.h">
-      <Filter>src\shapes\relation\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\shape_test.h">
       <Filter>src\tests</Filter>
     </ClInclude>
     <ClInclude Include="src\json_fwd_test.h">
       <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_box_surface_3d.h">
+      <Filter>src\shapes\relation\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_circle_surface_3d.h">
+      <Filter>src\shapes\relation\surface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

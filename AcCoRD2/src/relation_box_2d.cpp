@@ -66,6 +66,14 @@ namespace accord::shape::relation
 		return (GetOrigin() + (position < CalculateCentre()) * GetLength());
 	}
 
+	// assumes there is overlap
+	Box2D Box2D::GenerateOverlapBox(const Box2D& other) const
+	{
+		Vec2d origin = Vec2d::Max(GetOrigin(), other.GetOrigin());
+		Vec2d end = Vec2d::Min(GetEnd(), other.GetEnd());
+		return { origin, end - origin };
+	}
+
 	void Box2D::ToJson(Json& j) const
 	{
 		j = static_cast<basic::Box2D>(*this);

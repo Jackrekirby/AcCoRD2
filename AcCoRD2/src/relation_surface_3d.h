@@ -7,7 +7,7 @@ namespace accord::shape::relation
 	class Surface3D
 	{
 	public:
-		Surface3D(Plane3D plane, std::unique_ptr<Surface3DShape> shape);
+		Surface3D(Plane3D plane);
 
 		bool IsPartiallyNeighbouring(const Surface3D& other) const;
 
@@ -15,11 +15,10 @@ namespace accord::shape::relation
 
 		const Plane3D& GetPlane() const;
 
-		const Surface3DShape& GetShape() const;
+		virtual const Surface3DShape& GetShape() const = 0;
 
 	private:
 		Plane3D plane;
-		std::unique_ptr<Surface3DShape> shape;
 	};
 
 	void to_json(Json& j, const Surface3DShape& surface_shape);
