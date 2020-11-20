@@ -9,17 +9,16 @@ namespace accord::shape::generating
 	class Surface3D
 	{
 	public:
-		Surface3D(std::unique_ptr<AbstractPlane3D> plane, std::unique_ptr<Surface3DShape> shape);
+		Surface3D(std::unique_ptr<AbstractPlane3D> plane);
 
 		Vec3d GeneratePointOnSurface() const;
 
 		const AbstractPlane3D& GetPlane() const;
 
-		const Surface3DShape& GetShape() const;
+		virtual const Surface3DShape& GetShape() const = 0;
 
 	private:
 		std::unique_ptr<AbstractPlane3D> plane;
-		std::unique_ptr<Surface3DShape> shape;
 	};
 
 	void to_json(Json& j, const Surface3DShape& surface_shape);

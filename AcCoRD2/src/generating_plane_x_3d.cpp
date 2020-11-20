@@ -14,4 +14,9 @@ namespace accord::shape::generating
 	{
 		return { GetPosition(), position.x, position.y };
 	}
+
+	Vec3d PlaneX3D::GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const
+	{
+		return { GetPosition() + normal, tangential.x, tangential.y };
+	}
 }

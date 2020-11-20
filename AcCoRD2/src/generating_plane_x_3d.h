@@ -9,5 +9,7 @@ namespace accord::shape::generating
 		PlaneX3D(double x);
 
 		Vec3d PlacePointOnPlane(const Vec2d& position) const;
+
+		Vec3d GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const;
 	};
 }

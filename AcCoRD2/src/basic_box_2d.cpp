@@ -40,6 +40,11 @@ namespace accord::shape::basic
 	{
 		return origin + 0.5 * length;
 	}
+
+	double Box2D::CalculateArea() const
+	{
+		return length.Area();
+	}
 	
 	void Box2D::ToJson(Json& j) const
 	{

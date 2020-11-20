@@ -26,6 +26,8 @@ namespace accord::shape::basic
 		const Vec3d& GetEnd() const;
 
 		const Vec3d& GetLength() const;
+
+		double CalculateVolume() const;
 	private:
 		Vec3d origin;
 		Vec3d end;

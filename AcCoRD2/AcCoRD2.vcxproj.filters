@@ -148,9 +148,6 @@
     <ClCompile Include="src\generating_plane_3d_factory.cpp">
       <Filter>src\shapes\generating\plane</Filter>
     </ClCompile>
-    <ClCompile Include="src\generating_surface_3d_factory.cpp">
-      <Filter>src\shapes\generating\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\collision_surface_3d_factory.cpp">
       <Filter>src\shapes\collision\surface</Filter>
     </ClCompile>
@@ -165,6 +162,9 @@
     </ClCompile>
     <ClCompile Include="src\relation_circle_surface_3d.cpp">
       <Filter>src\shapes\relation\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\generating_box_surface_3d.cpp">
+      <Filter>src\shapes\generating\surface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -336,9 +336,6 @@
     <ClInclude Include="src\generating_plane_3d_factory.h">
       <Filter>src\shapes\generating\plane</Filter>
     </ClInclude>
-    <ClInclude Include="src\generating_surface_3d_factory.h">
-      <Filter>src\shapes\generating\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\collision_surface_3d_factory.h">
       <Filter>src\shapes\collision\surface</Filter>
     </ClInclude>
@@ -356,6 +353,9 @@
     </ClInclude>
     <ClInclude Include="src\relation_circle_surface_3d.h">
       <Filter>src\shapes\relation\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\generating_box_surface_3d.h">
+      <Filter>src\shapes\generating\surface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

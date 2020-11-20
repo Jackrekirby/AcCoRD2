@@ -19,6 +19,8 @@ namespace accord::shape::basic
 		const Vec2d& GetLength() const;
 
 		Vec2d CalculateCentre() const;
+
+		double CalculateArea() const;
 		
 		void ToJson(Json& j) const;
 

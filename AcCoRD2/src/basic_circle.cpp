@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "basic_circle.h"
+#include "constants.h"
 
 namespace accord::shape::basic
 {
@@ -27,6 +28,11 @@ namespace accord::shape::basic
 	const double& Circle::GetRadius() const
 	{
 		return radius;
+	}
+
+	double Circle::CalculateArea() const
+	{
+		return PI * radius * radius;
 	}
 
 	void Circle::ToJson(Json& j) const

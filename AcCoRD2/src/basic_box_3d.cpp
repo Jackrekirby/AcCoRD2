@@ -36,6 +36,11 @@ namespace accord::shape::basic
 		return length;
 	}
 
+	double Box3D::CalculateVolume() const
+	{
+		return length.Volume();
+	}
+
 	void to_json(Json& j, const Box3D& box)
 	{
 		j["origin"] = box.GetOrigin();
