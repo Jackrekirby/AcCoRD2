@@ -22,18 +22,18 @@
     <ClCompile Include="src\axis_2d.cpp" />
     <ClCompile Include="src\basic_sphere.cpp" />
     <ClCompile Include="src\generating_circle.cpp" />
-    <ClCompile Include="src\box_3d_faces.cpp" />
-    <ClCompile Include="src\generating_box_surface_3d.cpp" />
+    <ClCompile Include="src\box_faces.cpp" />
+    <ClCompile Include="src\generating_rect_surface.cpp" />
     <ClCompile Include="src\generating_sphere.cpp" />
-    <ClCompile Include="src\relation_box_surface_3d.cpp" />
-    <ClCompile Include="src\relation_circle_surface_3d.cpp" />
+    <ClCompile Include="src\relation_box_surface.cpp" />
+    <ClCompile Include="src\relation_circle_surface.cpp" />
     <ClCompile Include="src\shape_test.cpp" />
-    <ClCompile Include="src\collision_plane_3d_factory.cpp" />
-    <ClCompile Include="src\collision_surface_3d_factory.cpp" />
-    <ClCompile Include="src\generating_plane_3d_factory.cpp" />
-    <ClCompile Include="src\generating_box_3d.cpp" />
-    <ClCompile Include="src\basic_box_2d.cpp" />
-    <ClCompile Include="src\basic_box_3d.cpp" />
+    <ClCompile Include="src\collision_plane_factory.cpp" />
+    <ClCompile Include="src\collision_surface_factory.cpp" />
+    <ClCompile Include="src\generating_plane_factory.cpp" />
+    <ClCompile Include="src\generating_box.cpp" />
+    <ClCompile Include="src\basic_rect.cpp" />
+    <ClCompile Include="src\basic_box.cpp" />
     <ClCompile Include="src\basic_circle.cpp" />
     <ClCompile Include="src\event.cpp" />
     <ClCompile Include="src\event_queue.cpp">
@@ -50,20 +50,20 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\basic_plane_3d.cpp" />
-    <ClCompile Include="src\abstract_generating_plane_3d.cpp" />
-    <ClCompile Include="src\generating_plane_x_3d.cpp" />
-    <ClCompile Include="src\generating_plane_y_3d.cpp" />
-    <ClCompile Include="src\generating_plane_z_3d.cpp" />
-    <ClCompile Include="src\generating_surface_3d.cpp" />
-    <ClCompile Include="src\generating_surface_3d_shape.cpp" />
-    <ClCompile Include="src\generating_box_2d.cpp" />
-    <ClCompile Include="src\relation_box_2d.cpp" />
+    <ClCompile Include="src\basic_plane.cpp" />
+    <ClCompile Include="src\abstract_generating_plane.cpp" />
+    <ClCompile Include="src\generating_plane_x.cpp" />
+    <ClCompile Include="src\generating_plane_y.cpp" />
+    <ClCompile Include="src\generating_plane_z.cpp" />
+    <ClCompile Include="src\generating_surface.cpp" />
+    <ClCompile Include="src\generating_surface_shape.cpp" />
+    <ClCompile Include="src\generating_rect.cpp" />
+    <ClCompile Include="src\relation_rect.cpp" />
     <ClCompile Include="src\relation_circle.cpp" />
-    <ClCompile Include="src\relation_plane_3d.cpp" />
-    <ClCompile Include="src\relation_surface_3d.cpp" />
-    <ClCompile Include="src\relation_surface_3d_shape.cpp" />
-    <ClCompile Include="src\relation_box_3d.cpp" />
+    <ClCompile Include="src\relation_plane.cpp" />
+    <ClCompile Include="src\relation_surface.cpp" />
+    <ClCompile Include="src\relation_surface_shape.cpp" />
+    <ClCompile Include="src\relation_box.cpp" />
     <ClCompile Include="src\vec1d.cpp" />
     <ClCompile Include="src\vec2b.cpp" />
     <ClCompile Include="src\vec2d.cpp" />
@@ -83,19 +83,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\abstract_collision_plane_3d.cpp">
+    <ClCompile Include="src\abstract_collision_plane.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_box_2d.cpp">
+    <ClCompile Include="src\collision_rect.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_box_3d.cpp" />
+    <ClCompile Include="src\collision_box.cpp" />
     <ClCompile Include="src\collision_3d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -108,31 +108,31 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_plane_x_3d.cpp">
+    <ClCompile Include="src\collision_plane_x.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_plane_y_3d.cpp">
+    <ClCompile Include="src\collision_plane_y.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_plane_z_3d.cpp">
+    <ClCompile Include="src\collision_plane_z.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_surface_3d.cpp">
+    <ClCompile Include="src\collision_surface.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_surface_3d_shape.cpp" />
+    <ClCompile Include="src\collision_surface_shape.cpp" />
     <ClCompile Include="src\event_queue_test.cpp" />
     <ClCompile Include="src\json_test.cpp" />
     <ClCompile Include="src\logger_test.cpp" />
@@ -144,42 +144,42 @@
     <ClInclude Include="src\axis_2d.h" />
     <ClInclude Include="src\basic_sphere.h" />
     <ClInclude Include="src\generating_circle.h" />
-    <ClInclude Include="src\box_3d_faces.h" />
-    <ClInclude Include="src\generating_box_surface_3d.h" />
+    <ClInclude Include="src\box_faces.h" />
+    <ClInclude Include="src\generating_rect_surface.h" />
     <ClInclude Include="src\generating_sphere.h" />
-    <ClInclude Include="src\relation_box_surface_3d.h" />
+    <ClInclude Include="src\relation_box_surface.h" />
     <ClInclude Include="src\json_fwd_test.h" />
-    <ClInclude Include="src\relation_circle_surface_3d.h" />
+    <ClInclude Include="src\relation_circle_surface.h" />
     <ClInclude Include="src\shape_test.h" />
-    <ClInclude Include="src\collision_plane_3d_factory.h" />
-    <ClInclude Include="src\collision_surface_3d_factory.h" />
-    <ClInclude Include="src\generating_plane_3d_factory.h" />
-    <ClInclude Include="src\generating_box_3d.h" />
+    <ClInclude Include="src\collision_plane_factory.h" />
+    <ClInclude Include="src\collision_surface_factory.h" />
+    <ClInclude Include="src\generating_plane_factory.h" />
+    <ClInclude Include="src\generating_box.h" />
     <ClInclude Include="lib\pcg\pcg_extras.hpp" />
     <ClInclude Include="lib\pcg\pcg_random.hpp" />
     <ClInclude Include="lib\pcg\pcg_uint128.hpp" />
-    <ClInclude Include="src\basic_box_2d.h" />
-    <ClInclude Include="src\basic_box_3d.h" />
+    <ClInclude Include="src\basic_rect.h" />
+    <ClInclude Include="src\basic_box.h" />
     <ClInclude Include="src\basic_circle.h" />
     <ClInclude Include="src\event.h" />
     <ClInclude Include="src\event_queue.h" />
     <ClInclude Include="src\axis_3d.h" />
     <ClInclude Include="src\constants.h" />
-    <ClInclude Include="src\basic_plane_3d.h" />
-    <ClInclude Include="src\abstract_generating_plane_3d.h" />
-    <ClInclude Include="src\generating_plane_x_3d.h" />
-    <ClInclude Include="src\generating_plane_y_3d.h" />
-    <ClInclude Include="src\generating_plane_z_3d.h" />
-    <ClInclude Include="src\generating_surface_3d.h" />
-    <ClInclude Include="src\generating_surface_3d_shape.h" />
-    <ClInclude Include="src\generating_box_2d.h" />
-    <ClInclude Include="src\relation_box_2d.h" />
+    <ClInclude Include="src\basic_plane.h" />
+    <ClInclude Include="src\abstract_generating_plane.h" />
+    <ClInclude Include="src\generating_plane_x.h" />
+    <ClInclude Include="src\generating_plane_y.h" />
+    <ClInclude Include="src\generating_plane_z.h" />
+    <ClInclude Include="src\generating_surface.h" />
+    <ClInclude Include="src\generating_surface_shape.h" />
+    <ClInclude Include="src\generating_rect.h" />
+    <ClInclude Include="src\relation_rect.h" />
     <ClInclude Include="src\relation_circle.h" />
-    <ClInclude Include="src\relation_plane_3d.h" />
-    <ClInclude Include="src\relation_surface_3d.h" />
-    <ClInclude Include="src\relation_surface_3d_shape.h" />
+    <ClInclude Include="src\relation_plane.h" />
+    <ClInclude Include="src\relation_surface.h" />
+    <ClInclude Include="src\relation_surface_shape.h" />
     <ClInclude Include="src\enum_array.h" />
-    <ClInclude Include="src\relation_box_3d.h" />
+    <ClInclude Include="src\relation_box.h" />
     <ClInclude Include="src\vec1d.h" />
     <ClInclude Include="src\vec2.h" />
     <ClInclude Include="src\vec2b.h" />
@@ -193,16 +193,16 @@
     <ClInclude Include="src\output_binary_vectors.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\random.h" />
-    <ClInclude Include="src\abstract_collision_plane_3d.h" />
-    <ClInclude Include="src\collision_box_2d.h" />
-    <ClInclude Include="src\collision_box_3d.h" />
+    <ClInclude Include="src\abstract_collision_plane.h" />
+    <ClInclude Include="src\collision_rect.h" />
+    <ClInclude Include="src\collision_box.h" />
     <ClInclude Include="src\collision_3d.h" />
     <ClInclude Include="src\collision_plane_1d.h" />
-    <ClInclude Include="src\collision_plane_x_3d.h" />
-    <ClInclude Include="src\collision_plane_y_3d.h" />
-    <ClInclude Include="src\collision_plane_z_3d.h" />
-    <ClInclude Include="src\collision_surface_3d.h" />
-    <ClInclude Include="src\collision_surface_3d_shape.h" />
+    <ClInclude Include="src\collision_plane_x.h" />
+    <ClInclude Include="src\collision_plane_y.h" />
+    <ClInclude Include="src\collision_plane_z.h" />
+    <ClInclude Include="src\collision_surface.h" />
+    <ClInclude Include="src\collision_surface_shape.h" />
     <ClInclude Include="src\event_queue_test.h" />
     <ClInclude Include="src\json_test.h" />
     <ClInclude Include="src\logger_test.h" />

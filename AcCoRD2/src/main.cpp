@@ -10,36 +10,68 @@
 
 #include "basic_box_2d.h"
 
-class Fruit
+
+#include "axis_3d.h"
+
+class Axis3D
 {
 public:
-	enum Value : uint8_t
+	enum Type
 	{
-		Apple,
-		Pear,
-		Banana,
-		Strawberry
+		x, y, z
 	};
 
-	Fruit() = default;
-	constexpr Fruit(Value aFruit) : value(aFruit) { }
+	constexpr Axis3D(Type type) 
+		: type(type) 
+	{ 
 
+	}
 
-	operator Value() const { return value; }  // Allow switch and comparisons.
-											  // note: Putting constexpr here causes
-											  // clang to stop warning on incomplete
-											  // case handling.
-	explicit operator bool() = delete;        // Prevent usage: if(fruit)
+	constexpr operator Type() const { return type; }
 
-	constexpr bool operator==(Fruit a) const { return value == a.value; }
-	constexpr bool operator!=(Fruit a) const { return value != a.value; }
+	constexpr bool operator == (Axis3D axis) const 
+	{
+		return type == axis.type; 
+	}
+	constexpr bool operator != (Axis3D axis) const 
+	{
+		return type != axis.type; 
+	}
 
-	constexpr bool IsYellow() const { return value == Banana; }
-
+	std::string ToString() const
+	{
+		switch (type)
+		{
+		case Axis3D::x:
+			return "x";
+		case Axis3D::y:
+			return "y";
+		case Axis3D::z:
+			return "z";
+		}
+		LOG_CRITICAL("Unknown Axis3D type");
+		throw std::exception();
+	}
 private:
-	Value value;
+	Type type;
 };
 
+void to_json(accord::Json& j, Axis3D axis)
+{
+	j = axis.ToString();
+}
+
+template<typename OStream>
+OStream& operator<<(OStream& os, const Axis3D::Type& type)
+{
+	return os << Axis3D::ToString(type);
+}
+
+template<typename OStream>
+OStream& operator<<(OStream& os, const Axis3D& type)
+{
+	return os << type.ToString();
+}
 
 int main()
 {
@@ -56,7 +88,7 @@ int main()
 	//accord::OutputBinaryVectorTest();
 	//accord::WriteBinarySingles();
 	//accord::EventQueueTest();
-	accord::ShapeRelationTest();
+	//accord::ShapeRelationTest();
 
 	//accord::Json j = accord::shape::basic::Box2D({ 0,0 }, { 10, 10 });
 
