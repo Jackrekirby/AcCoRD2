@@ -10,6 +10,37 @@
 
 #include "basic_box_2d.h"
 
+class Fruit
+{
+public:
+	enum Value : uint8_t
+	{
+		Apple,
+		Pear,
+		Banana,
+		Strawberry
+	};
+
+	Fruit() = default;
+	constexpr Fruit(Value aFruit) : value(aFruit) { }
+
+
+	operator Value() const { return value; }  // Allow switch and comparisons.
+											  // note: Putting constexpr here causes
+											  // clang to stop warning on incomplete
+											  // case handling.
+	explicit operator bool() = delete;        // Prevent usage: if(fruit)
+
+	constexpr bool operator==(Fruit a) const { return value == a.value; }
+	constexpr bool operator!=(Fruit a) const { return value != a.value; }
+
+	constexpr bool IsYellow() const { return value == Banana; }
+
+private:
+	Value value;
+};
+
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");

@@ -13,7 +13,7 @@ namespace accord
 				T x, y, z;
 			};
 
-			std::array<T, 3> axis;
+			std::enum_array<Axis3D, T, 3> axis;
 		};
 
 		Vec3(T x, T y, T z)

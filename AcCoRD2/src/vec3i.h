@@ -1,9 +1,6 @@
 #pragma once
-//#include "json.h"
-
-//#include <array>
-
 #include "pch.h"
+#include "axis_3d.h"
 
 namespace accord
 {
@@ -21,7 +18,7 @@ namespace accord
 				int x, y, z;
 			};
 
-			std::array<int, 3> axis;
+			std::enum_array<Axis3D, int, 3> axis;
 		};
 
 		Vec3i(int x, int y, int z);

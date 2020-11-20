@@ -1,15 +1,11 @@
 #pragma once
-//#include "json.h"
-#include "vec2d.h"
-#include "axis.h"
-
-//#include <array>
 #include "pch.h"
+#include "vec2d.h"
+#include "axis_3d.h"
 
 namespace accord
 {
 	struct Vec3b;
-
 	template<typename U>
 	struct Vec3;
 
@@ -22,12 +18,14 @@ namespace accord
 				double x, y, z;
 			};
 
-			std::array<double, 3> axis;
+			std::enum_array<Axis3D, double, 3> axis;
 		};
 
 		Vec3d(double x, double y, double z);
 
 		Vec3d() = default;
+
+		static Vec3d PolarToCartesian(double radius, double theta, double phi);
 
 		double GetAxis(Axis3D axis) const;
 

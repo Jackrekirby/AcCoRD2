@@ -1,8 +1,5 @@
 #include "pch.h"
-
-#include "axis.h"
-//#include "logger.h"
-
+#include "axis_3d.h"
 
 namespace accord
 {

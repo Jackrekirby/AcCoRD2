@@ -1,7 +1,7 @@
 #pragma once
 #include "collision_plane_1d.h"
 #include "vec3d.h"
-#include "axis.h"
+#include "axis_3d.h"
 
 namespace accord::shape::collision
 {

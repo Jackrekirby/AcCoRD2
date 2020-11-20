@@ -1,10 +1,7 @@
 #include "pch.h"
-
 #include "vec3d.h"
 #include "vec3b.h"
 #include "vec3.h"
-//#include "logger.h"
-#include "axis.h"
 
 
 namespace accord
@@ -15,19 +12,19 @@ namespace accord
 
 	}
 
+	Vec3d Vec3d::PolarToCartesian(double radius, double theta, double phi)
+	{
+		return 
+		{ 
+			radius * std::cos(theta) * std::sin(phi), 
+			radius * std::sin(theta) * std::sin(phi),
+			radius * std::cos(phi)
+		};
+	}
+
 	double Vec3d::GetAxis(Axis3D axis) const
 	{
-		switch (axis)
-		{
-		case Axis3D::x:
-			return x;
-		case Axis3D::y:
-			return y;
-		case Axis3D::z:
-			return z;
-		}
-		LOG_CRITICAL("Unknown Axis3D type");
-		throw std::exception();
+		return this->axis.at(axis);
 	}
 
 	Vec2d Vec3d::GetPlane(Axis3D axis) const

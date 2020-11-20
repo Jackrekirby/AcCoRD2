@@ -11,6 +11,11 @@ namespace accord
 
 	}
 
+	Vec2d Vec2d::PolarToCartesian(double radius, double theta)
+	{
+		return { radius * std::cos(theta), radius * std::sin(theta) };
+	}
+
 	// calculates the absolute value of each axis
 	Vec2d Vec2d::Abs() const
 	{

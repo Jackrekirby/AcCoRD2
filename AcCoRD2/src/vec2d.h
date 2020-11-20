@@ -1,9 +1,6 @@
 #pragma once
-
-//#include "json.h"
-
-//#include <array>
 #include "pch.h"
+#include "axis_2d.h"
 
 namespace accord
 {
@@ -22,17 +19,14 @@ namespace accord
 				double x, y;
 			};
 
-			std::array<double, 2> axis;
+			std::enum_array<Axis2D, double, 2> axis;
 		};
 
 		Vec2d(double x, double y);
 
 		Vec2d() = default;
 
-		static Vec2d PolarToCartesian(double radius, double theta)
-		{
-			return { radius * std::cos(theta), radius * std::sin(theta) };
-		}
+		static Vec2d PolarToCartesian(double radius, double theta);
 
 		// calculates the absolute value of each axis
 		Vec2d Abs() const;

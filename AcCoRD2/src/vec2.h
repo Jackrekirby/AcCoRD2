@@ -1,6 +1,6 @@
 #pragma once
-//#include "json.h"
 #include "pch.h"
+#include "axis_2d.h"
 
 namespace accord
 {
@@ -16,7 +16,7 @@ namespace accord
 				T x, y;
 			};
 
-			std::array<T, 2> axis;
+			std::enum_array<Axis2D, T, 2> axis;
 		};
 
 		Vec2(T x, T y)

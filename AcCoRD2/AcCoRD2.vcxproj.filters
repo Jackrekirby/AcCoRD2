@@ -43,9 +43,6 @@
     <ClCompile Include="src\constants.cpp">
       <Filter>src\math\constants</Filter>
     </ClCompile>
-    <ClCompile Include="src\axis.cpp">
-      <Filter>src\math\axis</Filter>
-    </ClCompile>
     <ClCompile Include="src\vec_test.cpp">
       <Filter>src\tests</Filter>
     </ClCompile>
@@ -172,6 +169,18 @@
     <ClCompile Include="src\generating_circle.cpp">
       <Filter>src\shapes\generating\circle</Filter>
     </ClCompile>
+    <ClCompile Include="src\basic_sphere.cpp">
+      <Filter>src\shapes\basic\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="src\generating_sphere.cpp">
+      <Filter>src\shapes\generating\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="src\axis_3d.cpp">
+      <Filter>src\math\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\axis_2d.cpp">
+      <Filter>src\math\axis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -233,9 +242,6 @@
     </ClInclude>
     <ClInclude Include="src\constants.h">
       <Filter>src\math\constants</Filter>
-    </ClInclude>
-    <ClInclude Include="src\axis.h">
-      <Filter>src\math\axis</Filter>
     </ClInclude>
     <ClInclude Include="src\vec_test.h">
       <Filter>src\tests</Filter>
@@ -368,6 +374,18 @@
     </ClInclude>
     <ClInclude Include="src\generating_circle.h">
       <Filter>src\shapes\generating\circle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic_sphere.h">
+      <Filter>src\shapes\basic\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="src\generating_sphere.h">
+      <Filter>src\shapes\generating\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="src\axis_3d.h">
+      <Filter>src\math\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="src\axis_2d.h">
+      <Filter>src\math\axis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -506,6 +524,9 @@
     </Filter>
     <Filter Include="src\shapes\generating\sphere">
       <UniqueIdentifier>{4b9b2004-fb27-46fa-8793-13020cd6853c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\sphere">
+      <UniqueIdentifier>{0531371f-a22e-4945-9415-7708ebf9dd4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

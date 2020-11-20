@@ -1,7 +1,6 @@
 #pragma once
-//#include "json.h"
-//#include <array>
 #include "pch.h"
+#include "axis_3d.h"
 
 namespace accord
 {
@@ -14,7 +13,7 @@ namespace accord
                 bool x, y, z;
             };
 
-            std::array<bool, 3> axis;
+            std::enum_array<Axis3D, bool, 3> axis;
         };
 
         Vec3b(bool x, bool y, bool z);
