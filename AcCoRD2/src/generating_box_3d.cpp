@@ -34,6 +34,15 @@ namespace accord::shape::generating
 		return faces.at(static_cast<Face>(Random::GenerateIntUniform(0, 5))).GeneratePointOnSurface();
 	}
 
+	Vec3d Box3D::GeneratePointInVolume() const
+	{
+		return { 
+			Random::GenerateRealUniform(GetOrigin().x, GetEnd().x),
+			Random::GenerateRealUniform(GetOrigin().y, GetEnd().y),
+			Random::GenerateRealUniform(GetOrigin().z, GetEnd().z)
+		};
+	}
+
 	void Box3D::ToJson(Json& j) const
 	{
 		j = static_cast<basic::Box3D>(*this);

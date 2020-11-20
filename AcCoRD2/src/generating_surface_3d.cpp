@@ -12,7 +12,7 @@ namespace accord::shape::generating
 
 	Vec3d Surface3D::GeneratePointOnSurface() const
 	{
-		return plane->PlacePointOnPlane(GetShape().GeneratePointOnSurface());
+		return plane->PlacePointOnPlane(GetShape().GeneratePointInArea());
 	}
 
 	const AbstractPlane3D& Surface3D::GetPlane() const

@@ -29,6 +29,11 @@ namespace accord
 
 		Vec2d() = default;
 
+		static Vec2d PolarToCartesian(double radius, double theta)
+		{
+			return { radius * std::cos(theta), radius * std::sin(theta) };
+		}
+
 		// calculates the absolute value of each axis
 		Vec2d Abs() const;
 

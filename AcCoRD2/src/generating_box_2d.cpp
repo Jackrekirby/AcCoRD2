@@ -9,7 +9,7 @@ namespace accord::shape::generating
 
 	}
 
-	Vec2d Box2D::GeneratePointOnSurface() const
+	Vec2d Box2D::GeneratePointInArea() const
 	{
 		return { Random::GenerateRealUniform(GetOrigin().x, GetEnd().x) ,
 			Random::GenerateRealUniform(GetOrigin().y, GetEnd().y)

@@ -8,7 +8,7 @@ namespace accord::shape::generating
 	public:
 		Surface3DShape() = default;
 
-		virtual Vec2d GeneratePointOnSurface() const = 0;
+		virtual Vec2d GeneratePointInArea() const = 0;
 
 		virtual void ToJson(Json& j) const = 0;
 	};

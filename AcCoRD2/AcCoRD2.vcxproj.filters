@@ -169,6 +169,9 @@
     <ClCompile Include="src\box_3d_faces.cpp">
       <Filter>src\shapes\basic\box</Filter>
     </ClCompile>
+    <ClCompile Include="src\generating_circle.cpp">
+      <Filter>src\shapes\generating\circle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -363,6 +366,9 @@
     <ClInclude Include="src\box_3d_faces.h">
       <Filter>src\shapes\basic\box</Filter>
     </ClInclude>
+    <ClInclude Include="src\generating_circle.h">
+      <Filter>src\shapes\generating\circle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -494,6 +500,12 @@
     </Filter>
     <Filter Include="src\shapes\basic\circle">
       <UniqueIdentifier>{ce92f9d3-28f9-4873-9b98-de39dbe902e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\generating\circle">
+      <UniqueIdentifier>{5f71fbd6-d1f7-4e17-96ba-a5e2bbc813d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\generating\sphere">
+      <UniqueIdentifier>{4b9b2004-fb27-46fa-8793-13020cd6853c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

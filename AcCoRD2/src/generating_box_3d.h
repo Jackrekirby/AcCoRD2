@@ -11,6 +11,8 @@ namespace accord::shape::generating
 
 		Vec3d GeneratePointOnSurface() const;
 
+		Vec3d GeneratePointInVolume() const;
+
 		void ToJson(Json& j) const;
 	private:
 		std::enum_array<Face, BoxSurface3D, 6> faces;
