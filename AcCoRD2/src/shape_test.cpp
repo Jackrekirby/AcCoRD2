@@ -106,9 +106,19 @@ namespace accord
 
 		relation::Box3D box3d1({ 0, 0, 0 }, { 10, 10, 10 });
 
-		relation::Box3D box3d2({ 10, 1, 0 }, { 10, 10, 10 });
+		relation::Box3D box3d2({ 10, 2, 0 }, { 10, 10, 10 });
 
-		LOG_DEBUG(box3d1.IsPartiallyNeighbouring(box3d2));
+		auto face = box3d1.IsPartiallyNeighbouring(box3d2);
+		if (face.has_value())
+		{
+			LOG_DEBUG("neighbouring face = {}", face.value());
+		}
+		else
+		{
+			LOG_DEBUG("no neighbour");
+		}
+		
+		
 
 
 		relation::Box3D bx1({ 0, 0, 0 }, { 10, 10, 10 });

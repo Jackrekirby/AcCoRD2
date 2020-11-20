@@ -13,7 +13,7 @@
 [debug] true
 [debug] true
 [debug] false
-[debug] true
+[debug] neighbouring face = negative z
 [debug] {
     "origin": [ 4.0, 5.0, 6.0 ],
     "length": [ 6.0, 5.0, 4.0 ],

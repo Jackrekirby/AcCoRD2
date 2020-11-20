@@ -12,7 +12,7 @@ namespace accord::shape::relation
 		
 	}
 
-	std::enum_array<Faces, BoxSurface3D, 6> Box3D::GenerateFaces()
+	std::enum_array<Face, BoxSurface3D, 6> Box3D::GenerateFaces()
 	{
 		return {
 			GenerateFace(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
@@ -39,24 +39,22 @@ namespace accord::shape::relation
 		return (GetOrigin() <= other.GetOrigin() && GetEnd() >= other.GetEnd()).All();
 	}
 
-	bool Box3D::IsPartiallyNeighbouring(const Box3D& other) const
+	std::optional<Face> Box3D::IsPartiallyNeighbouring(const Box3D& other) const
 	{
-		if (faces.at(Faces::nx).IsPartiallyNeighbouring(other.faces.at(Faces::px))) return true;
-		if (faces.at(Faces::ny).IsPartiallyNeighbouring(other.faces.at(Faces::py))) return true;
-		if (faces.at(Faces::nz).IsPartiallyNeighbouring(other.faces.at(Faces::pz))) return true;
-		if (faces.at(Faces::px).IsPartiallyNeighbouring(other.faces.at(Faces::nx))) return true;
-		if (faces.at(Faces::py).IsPartiallyNeighbouring(other.faces.at(Faces::ny))) return true;
-		return faces.at(Faces::pz).IsPartiallyNeighbouring(other.faces.at(Faces::nz));
+		for (auto& face : face_types)
+		{
+			if (faces.at(face).IsPartiallyNeighbouring(other.faces.at(GetOppositeFace(face)))) return face;
+		}
+		return std::nullopt;
 	}
 
-	bool Box3D::IsFullyNeighbouring(const Box3D& other) const
+	std::optional<Face> Box3D::IsFullyNeighbouring(const Box3D& other) const
 	{
-		if (faces.at(Faces::nx).IsFullyNeighbouring(other.faces.at(Faces::px))) return true;
-		if (faces.at(Faces::ny).IsFullyNeighbouring(other.faces.at(Faces::py))) return true;
-		if (faces.at(Faces::nz).IsFullyNeighbouring(other.faces.at(Faces::pz))) return true;
-		if (faces.at(Faces::px).IsFullyNeighbouring(other.faces.at(Faces::nx))) return true;
-		if (faces.at(Faces::py).IsFullyNeighbouring(other.faces.at(Faces::ny))) return true;
-		return faces.at(Faces::pz).IsFullyNeighbouring(other.faces.at(Faces::nz));
+		for (auto& face : face_types)
+		{
+			if (faces.at(face).IsFullyNeighbouring(other.faces.at(GetOppositeFace(face)))) return face;
+		}
+		return std::nullopt;
 	}
 
 	// assumes there is overlap
@@ -72,7 +70,7 @@ namespace accord::shape::relation
 		j = static_cast<basic::Box3D>(*this);
 	}
 
-	const std::enum_array<Faces, BoxSurface3D, 6>& Box3D::GetFaces() const
+	const std::enum_array<Face, BoxSurface3D, 6>& Box3D::GetFaces() const
 	{
 		return faces;
 	}

@@ -166,6 +166,9 @@
     <ClCompile Include="src\generating_box_surface_3d.cpp">
       <Filter>src\shapes\generating\surface</Filter>
     </ClCompile>
+    <ClCompile Include="src\box_3d_faces.cpp">
+      <Filter>src\shapes\basic\box</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -356,6 +359,9 @@
     </ClInclude>
     <ClInclude Include="src\generating_box_surface_3d.h">
       <Filter>src\shapes\generating\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\box_3d_faces.h">
+      <Filter>src\shapes\basic\box</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

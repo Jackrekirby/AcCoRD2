@@ -20,11 +20,11 @@ namespace accord::shape::collision
 
 		bool IsOnBorder(const Vec3d& position) const;
 
-		const std::enum_array<Faces, Surface3D, 6>& GetFaces() const;
+		const std::enum_array<Face, Surface3D, 6>& GetFaces() const;
 	private:
-		std::enum_array<Faces, Surface3D, 6> faces;
+		std::enum_array<Face, Surface3D, 6> faces;
 
-		std::enum_array<Faces, Surface3D, 6> GenerateFaces() const;
+		std::enum_array<Face, Surface3D, 6> GenerateFaces() const;
 	};
 
 	void to_json(Json& j, const Box3D& box);

@@ -11,7 +11,7 @@ namespace accord::shape::generating
 
 	}
 
-	std::enum_array<Faces, BoxSurface3D, 6> Box3D::GenerateFaces() const
+	std::enum_array<Face, BoxSurface3D, 6> Box3D::GenerateFaces() const
 	{
 		return
 		{
@@ -31,7 +31,7 @@ namespace accord::shape::generating
 
 	Vec3d Box3D::GeneratePointOnSurface() const
 	{
-		return faces.at(static_cast<Faces>(Random::GenerateIntUniform(0, 5))).GeneratePointOnSurface();
+		return faces.at(static_cast<Face>(Random::GenerateIntUniform(0, 5))).GeneratePointOnSurface();
 	}
 
 	void Box3D::ToJson(Json& j) const

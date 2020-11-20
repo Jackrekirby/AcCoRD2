@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\box_3d_faces.cpp" />
     <ClCompile Include="src\generating_box_surface_3d.cpp" />
     <ClCompile Include="src\relation_box_surface_3d.cpp" />
     <ClCompile Include="src\relation_circle_surface_3d.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\box_3d_faces.h" />
     <ClInclude Include="src\generating_box_surface_3d.h" />
     <ClInclude Include="src\relation_box_surface_3d.h" />
     <ClInclude Include="src\json_fwd_test.h" />

@@ -13,9 +13,9 @@ namespace accord::shape::generating
 
 		void ToJson(Json& j) const;
 	private:
-		std::enum_array<Faces, BoxSurface3D, 6> faces;
+		std::enum_array<Face, BoxSurface3D, 6> faces;
 
-		std::enum_array<Faces, BoxSurface3D, 6> GenerateFaces() const;
+		std::enum_array<Face, BoxSurface3D, 6> GenerateFaces() const;
 
 		BoxSurface3D GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end) const;
 	};

@@ -8,6 +8,8 @@
 //#include "event_queue_test.h"
 #include "shape_test.h"
 
+#include "basic_box_2d.h"
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
@@ -24,6 +26,8 @@ int main()
 	//accord::WriteBinarySingles();
 	//accord::EventQueueTest();
 	accord::ShapeRelationTest();
+
+	//accord::Json j = accord::shape::basic::Box2D({ 0,0 }, { 10, 10 });
 
 	//rename tests to Test...() or put in namespace test
 }
