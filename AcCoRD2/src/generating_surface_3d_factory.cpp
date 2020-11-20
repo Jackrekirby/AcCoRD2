@@ -1,8 +1,8 @@
 #pragma once
 #include "pch.h"
-#include "generating_surface_3d_factory.h"
-#include "generating_plane_3d_factory.h"
-#include "generating_box_2d.h"
+#include "generating_surface_factory.h"
+#include "generating_plane_factory.h"
+#include "generating_box.h"
 
 namespace accord::shape::generating
 {

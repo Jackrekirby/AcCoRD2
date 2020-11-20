@@ -1,31 +1,31 @@
-#include "collision_box_2d.h"
+#include "collision_rect.h"
 #include "vec2b.h"
 
 namespace accord::shape::collision
 {
-	Box2D::Box2D(Vec2d origin, Vec2d length)
-		: basic::Box2D(origin, length), Surface3DShape()
+	Rect::Rect(Vec2d origin, Vec2d length)
+		: basic::Rect(origin, length), SurfaceShape()
 	{
 
 	}
 
-	bool Box2D::IsWithinBorder(const Vec2d& position) const
+	bool Rect::IsWithinBorder(const Vec2d& position) const
 	{
 		return ((position > GetOrigin()).All() && (position < GetEnd()).All());
 	}
 
-	bool Box2D::IsWithinOrOnBorder(const Vec2d& position) const
+	bool Rect::IsWithinOrOnBorder(const Vec2d& position) const
 	{
 		return ((position >= GetOrigin()).All() && (position <= GetEnd()).All());
 	}
 
-	bool Box2D::IsOnBorder(const Vec2d& position) const
+	bool Rect::IsOnBorder(const Vec2d& position) const
 	{
 		return ((position == GetOrigin()) || (position == GetEnd())).All();
 	}
 
-	void Box2D::ToJson(Json& j) const
+	void Rect::ToJson(Json& j) const
 	{
-		j = static_cast<basic::Box2D>(*this);
+		j = static_cast<basic::Rect>(*this);
 	}
 }

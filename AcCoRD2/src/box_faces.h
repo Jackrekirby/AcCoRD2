@@ -21,6 +21,4 @@ namespace accord::shape
 	{
 		return os << EnumToString(face);
 	}
-
-
 }

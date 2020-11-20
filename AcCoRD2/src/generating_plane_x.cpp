@@ -1,21 +1,21 @@
 #pragma once
 #include "pch.h"
-#include "generating_plane_x_3d.h"
+#include "generating_plane_x.h"
 
 namespace accord::shape::generating
 {
-	PlaneX3D::PlaneX3D(double x)
-		: AbstractPlane3D(x, Axis3D::x)
+	PlaneX::PlaneX(double x)
+		: AbstractPlane(x, Axis3D::x)
 	{
 
 	}
 
-	Vec3d PlaneX3D::PlacePointOnPlane(const Vec2d& position) const
+	Vec3d PlaneX::PlacePointOnPlane(const Vec2d& position) const
 	{
 		return { GetPosition(), position.x, position.y };
 	}
 
-	Vec3d PlaneX3D::GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const
+	Vec3d PlaneX::GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const
 	{
 		return { GetPosition() + normal, tangential.x, tangential.y };
 	}

@@ -1,18 +1,18 @@
 #include "pch.h"
-#include "relation_box_3d.h"
-#include "relation_box_2d.h"
-//#include "basic_box_3d.h"
+#include "relation_box.h"
+#include "relation_box.h"
+//#include "basic_box.h"
 #include "vec3b.h"
 
 namespace accord::shape::relation
 {
-	Box3D::Box3D(Vec3d origin, Vec3d length)
-		: basic::Box3D(origin, length), faces(GenerateFaces())
+	Box::Box(Vec3d origin, Vec3d length)
+		: basic::Box(origin, length), faces(GenerateFaces())
 	{
 		
 	}
 
-	std::enum_array<Face, BoxSurface3D, 6> Box3D::GenerateFaces()
+	std::enum_array<Face, RectSurface, 6> Box::GenerateFaces()
 	{
 		return {
 			GenerateFace(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
@@ -24,22 +24,22 @@ namespace accord::shape::relation
 		};
 	}
 
-	BoxSurface3D Box3D::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end)
+	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end)
 	{
 		return { { origin.GetAxis(axis), axis }, { origin.GetPlane(axis), end.GetPlane(axis) } };
 	}
 
-	bool Box3D::IsOverlapping(const Box3D& other) const
+	bool Box::IsOverlapping(const Box& other) const
 	{
 		return (GetOrigin() <= other.GetEnd() && GetEnd() >= other.GetOrigin()).All();
 	}
 
-	bool Box3D::IsEnveloping(const Box3D& other) const
+	bool Box::IsEnveloping(const Box& other) const
 	{
 		return (GetOrigin() <= other.GetOrigin() && GetEnd() >= other.GetEnd()).All();
 	}
 
-	std::optional<Face> Box3D::IsPartiallyNeighbouring(const Box3D& other) const
+	std::optional<Face> Box::IsPartiallyNeighbouring(const Box& other) const
 	{
 		for (auto& face : face_types)
 		{
@@ -48,7 +48,7 @@ namespace accord::shape::relation
 		return std::nullopt;
 	}
 
-	std::optional<Face> Box3D::IsFullyNeighbouring(const Box3D& other) const
+	std::optional<Face> Box::IsFullyNeighbouring(const Box& other) const
 	{
 		for (auto& face : face_types)
 		{
@@ -58,19 +58,19 @@ namespace accord::shape::relation
 	}
 
 	// assumes there is overlap
-	Box3D Box3D::GenerateOverlapBox(const Box3D& other) const
+	Box Box::GenerateOverlapBox(const Box& other) const
 	{
 		Vec3d origin = Vec3d::Max(GetOrigin(), other.GetOrigin());
 		Vec3d end = Vec3d::Min(GetEnd(), other.GetEnd());
 		return { origin, end - origin };
 	}
 
-	void Box3D::ToJson(Json& j) const
+	void Box::ToJson(Json& j) const
 	{
-		j = static_cast<basic::Box3D>(*this);
+		j = static_cast<basic::Box>(*this);
 	}
 
-	const std::enum_array<Face, BoxSurface3D, 6>& Box3D::GetFaces() const
+	const std::enum_array<Face, RectSurface, 6>& Box::GetFaces() const
 	{
 		return faces;
 	}

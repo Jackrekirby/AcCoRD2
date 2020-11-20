@@ -1,14 +1,14 @@
 #pragma once
 //#include "vec3d.h"
-#include "basic_box_3d.h"
-#include "collision_surface_3d.h"
+#include "basic_box.h"
+#include "collision_surface.h"
 
 namespace accord::shape::collision
 {
-	class Box3D : public basic::Box3D
+	class Box : public basic::Box
 	{
 	public:
-		Box3D(Vec3d origin, Vec3d length);
+		Box(Vec3d origin, Vec3d length);
 
 		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end);
 
@@ -20,12 +20,12 @@ namespace accord::shape::collision
 
 		bool IsOnBorder(const Vec3d& position) const;
 
-		const std::enum_array<Face, Surface3D, 6>& GetFaces() const;
+		const std::enum_array<Face, Surface, 6>& GetFaces() const;
 	private:
-		std::enum_array<Face, Surface3D, 6> faces;
+		std::enum_array<Face, Surface, 6> faces;
 
-		std::enum_array<Face, Surface3D, 6> GenerateFaces() const;
+		std::enum_array<Face, Surface, 6> GenerateFaces() const;
 	};
 
-	void to_json(Json& j, const Box3D& box);
+	void to_json(Json& j, const Box& box);
 }

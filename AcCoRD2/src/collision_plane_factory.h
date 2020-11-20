@@ -1,7 +1,7 @@
 #pragma once
-#include "abstract_collision_plane_3d.h"
+#include "abstract_collision_plane.h"
 
 namespace accord::shape::collision
 {
-	std::unique_ptr<AbstractPlane3D> CreatePlane(double position, Axis3D axis);
+	std::unique_ptr<AbstractPlane> CreatePlane(double position, Axis3D axis);
 }

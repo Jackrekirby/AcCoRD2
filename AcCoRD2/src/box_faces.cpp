@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "box_3d_faces.h"
+#include "box_faces.h"
 
 namespace accord::shape
 {

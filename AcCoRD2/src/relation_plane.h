@@ -1,9 +1,9 @@
 #pragma once
-#include "basic_plane_3d.h"
+#include "basic_plane.h"
 
 namespace accord::shape::relation
 {
-	class Plane3D : public basic::AbstractPlane3D
+	class Plane3D : public basic::AbstractPlane
 	{
 	public:
 		Plane3D(double position, Axis3D axis);

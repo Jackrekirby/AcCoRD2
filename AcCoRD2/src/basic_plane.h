@@ -3,10 +3,10 @@
 
 namespace accord::shape::basic
 {
-	class AbstractPlane3D
+	class AbstractPlane
 	{
 	public:
-		AbstractPlane3D(double position, Axis3D axis);
+		AbstractPlane(double position, Axis3D axis);
 
 		const Axis3D& GetAxis() const;
 
@@ -16,5 +16,5 @@ namespace accord::shape::basic
 		Axis3D axis;
 	};
 
-	void to_json(Json& j, const AbstractPlane3D& plane);
+	void to_json(Json& j, const AbstractPlane& plane);
 }

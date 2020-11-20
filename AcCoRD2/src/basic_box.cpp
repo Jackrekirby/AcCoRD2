@@ -1,47 +1,47 @@
 #include "pch.h"
-#include "basic_box_3d.h"
+#include "basic_box.h"
 
 namespace accord::shape::basic
 {
-	Box3D::Box3D(Vec3d origin, Vec3d length)
+	Box::Box(Vec3d origin, Vec3d length)
 		: origin(origin), length(length), end(origin + length)
 	{
 
 	}
 
-	void Box3D::Move(const Vec3d& origin)
+	void Box::Move(const Vec3d& origin)
 	{
 		this->origin = origin;
 		this->end = origin + length;
 	}
 
-	void Box3D::Resize(const Vec3d& length)
+	void Box::Resize(const Vec3d& length)
 	{
 		this->length = length;
 		this->end = origin + length;
 	}
 
-	const Vec3d& Box3D::GetOrigin() const
+	const Vec3d& Box::GetOrigin() const
 	{
 		return origin;
 	}
 
-	const Vec3d& Box3D::GetEnd() const
+	const Vec3d& Box::GetEnd() const
 	{
 		return end;
 	}
 
-	const Vec3d& Box3D::GetLength() const
+	const Vec3d& Box::GetLength() const
 	{
 		return length;
 	}
 
-	double Box3D::CalculateVolume() const
+	double Box::CalculateVolume() const
 	{
 		return length.Volume();
 	}
 
-	void to_json(Json& j, const Box3D& box)
+	void to_json(Json& j, const Box& box)
 	{
 		j["origin"] = box.GetOrigin();
 		j["length"] = box.GetLength();

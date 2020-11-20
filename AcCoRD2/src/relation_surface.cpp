@@ -1,31 +1,31 @@
 #include "pch.h"
-#include "relation_surface_3d.h"
+#include "relation_surface.h"
 
 namespace accord::shape::relation
 {
 
-	Surface3D::Surface3D(Plane3D plane)
+	Surface::Surface(Plane3D plane)
 		: plane(plane)
 	{
 
 	}
 
-	bool Surface3D::IsPartiallyNeighbouring(const Surface3D& other) const
+	bool Surface::IsPartiallyNeighbouring(const Surface& other) const
 	{
 		return (GetPlane().IsNeighbouring(other.GetPlane()) && GetShape().IsOverlapping(other.GetShape()));
 	}
 
-	bool Surface3D::IsFullyNeighbouring(const Surface3D& other) const
+	bool Surface::IsFullyNeighbouring(const Surface& other) const
 	{
 		return (GetPlane().IsNeighbouring(other.GetPlane()) && GetShape().IsEnveloping(other.GetShape()));
 	}
 
-	const Plane3D& Surface3D::GetPlane() const
+	const Plane3D& Surface::GetPlane() const
 	{
 		return plane;
 	}
 
-	void to_json(Json& j, const Surface3D& surface)
+	void to_json(Json& j, const Surface& surface)
 	{
 		j["plane"] = surface.GetPlane();
 		j["shape"] = surface.GetShape();

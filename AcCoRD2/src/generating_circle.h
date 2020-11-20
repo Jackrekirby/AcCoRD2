@@ -1,10 +1,10 @@
 #pragma once
 #include "basic_circle.h"
-#include "generating_surface_3d_shape.h"
+#include "generating_surface_shape.h"
 
 namespace accord::shape::generating
 {
-	class Circle : public basic::Circle, public Surface3DShape
+	class Circle : public basic::Circle, public SurfaceShape
 	{
 	public:
 		Circle(Vec2d centre, double radius);

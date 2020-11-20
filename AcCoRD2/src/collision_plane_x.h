@@ -1,12 +1,12 @@
 #pragma once
-#include "abstract_collision_plane_3d.h"
+#include "abstract_collision_plane.h"
 
 namespace accord::shape::collision
 {
-	class PlaneX3D : public AbstractPlane3D
+	class PlaneX : public AbstractPlane
 	{
 	public:
-		PlaneX3D(double x);
+		PlaneX(double x);
 
 		std::optional<double> CalculateCollisionTimeWithPositiveFace(const Vec3d& origin, const Vec3d& end) const;
 

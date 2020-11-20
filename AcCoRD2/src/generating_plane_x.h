@@ -1,12 +1,12 @@
 #pragma once
-#include "abstract_generating_plane_3d.h"
+#include "abstract_generating_plane.h"
 
 namespace accord::shape::generating
 {
-	class PlaneX3D : public generating::AbstractPlane3D
+	class PlaneX : public generating::AbstractPlane
 	{
 	public:
-		PlaneX3D(double x);
+		PlaneX(double x);
 
 		Vec3d PlacePointOnPlane(const Vec2d& position) const;
 

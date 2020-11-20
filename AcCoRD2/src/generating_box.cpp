@@ -1,17 +1,17 @@
 #include "pch.h"
-#include "generating_box_3d.h"
-#include "generating_surface_3d_factory.h"
-#include "generating_plane_3d_factory.h"
+#include "generating_box.h"
+//#include "generating_surface_factory.h"
+#include "generating_plane_factory.h"
 
 namespace accord::shape::generating
 {
-	Box3D::Box3D(Vec3d origin, Vec3d length)
-		: basic::Box3D(origin, length), faces(GenerateFaces())
+	Box::Box(Vec3d origin, Vec3d length)
+		: basic::Box(origin, length), faces(GenerateFaces())
 	{
 
 	}
 
-	std::enum_array<Face, BoxSurface3D, 6> Box3D::GenerateFaces() const
+	std::enum_array<Face, RectSurface, 6> Box::GenerateFaces() const
 	{
 		return
 		{
@@ -24,17 +24,17 @@ namespace accord::shape::generating
 		};
 	}
 
-	BoxSurface3D Box3D::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end) const
+	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end) const
 	{
 		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), end.GetPlane(axis) } };
 	}
 
-	Vec3d Box3D::GeneratePointOnSurface() const
+	Vec3d Box::GeneratePointOnSurface() const
 	{
 		return faces.at(static_cast<Face>(Random::GenerateIntUniform(0, 5))).GeneratePointOnSurface();
 	}
 
-	Vec3d Box3D::GeneratePointInVolume() const
+	Vec3d Box::GeneratePointInVolume() const
 	{
 		return { 
 			Random::GenerateRealUniform(GetOrigin().x, GetEnd().x),
@@ -43,8 +43,8 @@ namespace accord::shape::generating
 		};
 	}
 
-	void Box3D::ToJson(Json& j) const
+	void Box::ToJson(Json& j) const
 	{
-		j = static_cast<basic::Box3D>(*this);
+		j = static_cast<basic::Box>(*this);
 	}
 }

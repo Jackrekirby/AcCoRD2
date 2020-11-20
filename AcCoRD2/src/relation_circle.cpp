@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "relation_circle.h"
 #include "vec2b.h"
-#include "relation_box_2d.h"
+#include "relation_rect.h"
 
 namespace accord::shape::relation
 {
@@ -11,32 +11,32 @@ namespace accord::shape::relation
 
 	}
 
-	bool Circle::IsOverlapping(const Surface3DShape& other) const
+	bool Circle::IsOverlapping(const SurfaceShape& other) const
 	{
 		return other.IsOverlapping(*this);
 	}
 
-	bool Circle::IsEnveloping(const Surface3DShape& other) const
+	bool Circle::IsEnveloping(const SurfaceShape& other) const
 	{
 		return other.IsEnvelopedBy(*this);
 	}
 
-	bool Circle::IsEnvelopedBy(const Surface3DShape& other) const
+	bool Circle::IsEnvelopedBy(const SurfaceShape& other) const
 	{
 		return other.IsEnveloping(*this);
 	}
 
-	bool Circle::IsOverlapping(const Box2D& other) const
+	bool Circle::IsOverlapping(const Rect& other) const
 	{
 		return (other.CalculateNearestPointOnBoundary(GetCentre()) - GetCentre()).Size() < GetRadius();
 	}
 
-	bool Circle::IsEnveloping(const Box2D& other) const
+	bool Circle::IsEnveloping(const Rect& other) const
 	{
 		return (other.CalculateFurthestCornerFromPoint(GetCentre()) - GetCentre()).Size() < GetRadius();
 	}
 
-	bool Circle::IsEnvelopedBy(const Box2D& other) const
+	bool Circle::IsEnvelopedBy(const Rect& other) const
 	{
 		return other.IsEnveloping(*this);
 	}

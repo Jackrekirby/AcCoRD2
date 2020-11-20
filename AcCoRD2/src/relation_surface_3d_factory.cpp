@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
-#include "relation_surface_3d_factory.h"
-#include "relation_box_2d.h"
+#include "relation_surface_factory.h"
+#include "relation_box.h"
 #include "vec3d.h"
 
 namespace accord::shape::relation

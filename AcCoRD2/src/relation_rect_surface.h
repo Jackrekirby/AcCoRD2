@@ -1,16 +1,16 @@
 #pragma once
 #include "relation_surface.h"
-#include "relation_circle.h"
+#include "relation_rect.h"
 
 namespace accord::shape::relation
 {
 	class RectSurface : public Surface
 	{
 	public:
-		RectSurface(Plane3D plane, Circle circle);
+		RectSurface(Plane3D plane, Rect box);
 
-		const Circle& GetShape() const;
+		const Rect& GetShape() const;
 	private:
-		Circle circle;
+		Rect box;
 	};
 }

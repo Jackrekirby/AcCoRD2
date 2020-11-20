@@ -169,9 +169,6 @@
     <ClCompile Include="src\relation_circle_surface.cpp">
       <Filter>src\shapes\relation\surface</Filter>
     </ClCompile>
-    <ClCompile Include="src\relation_box_surface.cpp">
-      <Filter>src\shapes\relation\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\relation_plane.cpp">
       <Filter>src\shapes\relation\plane</Filter>
     </ClCompile>
@@ -179,7 +176,10 @@
       <Filter>src\shapes\relation\box</Filter>
     </ClCompile>
     <ClCompile Include="src\relation_rect.cpp">
-      <Filter>src\shapes\relation\box</Filter>
+      <Filter>src\shapes\relation\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_rect_surface.cpp">
+      <Filter>src\shapes\relation\surface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -375,9 +375,6 @@
     <ClInclude Include="src\relation_circle_surface.h">
       <Filter>src\shapes\relation\surface</Filter>
     </ClInclude>
-    <ClInclude Include="src\relation_box_surface.h">
-      <Filter>src\shapes\relation\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\relation_plane.h">
       <Filter>src\shapes\relation\plane</Filter>
     </ClInclude>
@@ -385,7 +382,10 @@
       <Filter>src\shapes\relation\box</Filter>
     </ClInclude>
     <ClInclude Include="src\relation_rect.h">
-      <Filter>src\shapes\relation\box</Filter>
+      <Filter>src\shapes\relation\rect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_rect_surface.h">
+      <Filter>src\shapes\relation\surface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -539,6 +539,9 @@
     </Filter>
     <Filter Include="src\shapes\collision\data">
       <UniqueIdentifier>{44716964-bd5a-411f-bd04-8b23553f0bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\relation\rect">
+      <UniqueIdentifier>{2e870e9d-068f-4c12-a645-acf70c24dc4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

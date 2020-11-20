@@ -1,25 +1,25 @@
 #pragma once
 #include "pch.h"
 #include "vec3d.h"
-#include "abstract_generating_plane_3d.h"
-#include "generating_surface_3d_shape.h"
+#include "abstract_generating_plane.h"
+#include "generating_surface_shape.h"
 
 namespace accord::shape::generating
 {
-	class Surface3D
+	class Surface
 	{
 	public:
-		Surface3D(std::unique_ptr<AbstractPlane3D> plane);
+		Surface(std::unique_ptr<AbstractPlane> plane);
 
 		Vec3d GeneratePointOnSurface() const;
 
-		const AbstractPlane3D& GetPlane() const;
+		const AbstractPlane& GetPlane() const;
 
-		virtual const Surface3DShape& GetShape() const = 0;
+		virtual const SurfaceShape& GetShape() const = 0;
 
 	private:
-		std::unique_ptr<AbstractPlane3D> plane;
+		std::unique_ptr<AbstractPlane> plane;
 	};
 
-	void to_json(Json& j, const Surface3DShape& surface_shape);
+	void to_json(Json& j, const SurfaceShape& surface_shape);
 }

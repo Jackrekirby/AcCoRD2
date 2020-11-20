@@ -1,23 +1,23 @@
 #include "pch.h"
-#include "generating_box_2d.h"
+#include "generating_box.h"
 
 namespace accord::shape::generating
 {
-	Box2D::Box2D(Vec2d origin, Vec2d length)
-		: basic::Box2D(origin, length), Surface3DShape()
+	Rect::Rect(Vec2d origin, Vec2d length)
+		: basic::Rect(origin, length), SurfaceShape()
 	{
 
 	}
 
-	Vec2d Box2D::GeneratePointInArea() const
+	Vec2d Rect::GeneratePointInArea() const
 	{
 		return { Random::GenerateRealUniform(GetOrigin().x, GetEnd().x) ,
 			Random::GenerateRealUniform(GetOrigin().y, GetEnd().y)
 		};
 	}
 
-	void Box2D::ToJson(Json& j) const
+	void Rect::ToJson(Json& j) const
 	{
-		j = static_cast<basic::Box2D>(*this);
+		j = static_cast<basic::Rect>(*this);
 	}
 }

@@ -1,15 +1,15 @@
 #include "pch.h"
-#include "relation_circle_surface_3d.h"
+#include "relation_circle_surface.h"
 
 namespace accord::shape::relation
 {
-	BoxSurface3D::BoxSurface3D(Plane3D plane, Circle circle)
-		: Surface3D(plane), circle(circle)
+	RectSurface::RectSurface(Plane3D plane, Circle circle)
+		: Surface(plane), circle(circle)
 	{
 
 	}
 
-	const Circle& BoxSurface3D::GetShape() const
+	const Circle& RectSurface::GetShape() const
 	{
 		return circle;
 	}

@@ -7,15 +7,15 @@ namespace accord
 
 namespace accord::shape::collision
 {
-	class Surface3DShape
+	class SurfaceShape
 	{
 	public:
-		Surface3DShape() = default;
+		SurfaceShape() = default;
 
 		virtual bool IsWithinOrOnBorder(const Vec2d& position) const = 0;
 
 		virtual void ToJson(Json& j) const = 0;
 	};
 
-	void to_json(Json& j, const Surface3DShape& surface_shape);
+	void to_json(Json& j, const SurfaceShape& surface_shape);
 }

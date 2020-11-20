@@ -1,5 +1,5 @@
 #pragma once
-#include "generating_surface_3d.h"
+#include "generating_surface.h"
 
 namespace accord::shape::generating
 {

@@ -2,16 +2,16 @@
 //#include <memory>
 //#include <optional>
 #include "collision_3d.h"
-#include "abstract_collision_plane_3d.h"
-#include "collision_surface_3d_shape.h"
+#include "abstract_collision_plane.h"
+#include "collision_surface_shape.h"
 
 namespace accord::shape::collision
 {
-	class Surface3D
+	class Surface
 	{
 	public:
 
-		Surface3D(std::unique_ptr<AbstractPlane3D> plane, std::unique_ptr<Surface3DShape> shape);
+		Surface(std::unique_ptr<AbstractPlane> plane, std::unique_ptr<SurfaceShape> shape);
 
 		std::optional<Collision3D> CalculateCollisionDataWithPositiveFace(const Vec3d& origin, const Vec3d& end) const;
 
@@ -19,13 +19,13 @@ namespace accord::shape::collision
 
 		std::optional<Collision3D> CalculateIntersectionAndReflection(std::optional<double> time, const Vec3d& origin, const Vec3d& end) const;
 	
-		const AbstractPlane3D& GetPlane() const;
+		const AbstractPlane& GetPlane() const;
 
-		const Surface3DShape& GetShape() const;
+		const SurfaceShape& GetShape() const;
 	private:
-		std::unique_ptr<AbstractPlane3D> plane;
-		std::unique_ptr<Surface3DShape> shape;
+		std::unique_ptr<AbstractPlane> plane;
+		std::unique_ptr<SurfaceShape> shape;
 	};
 
-	void to_json(Json& j, const Surface3D& surface);
+	void to_json(Json& j, const Surface& surface);
 }

@@ -1,12 +1,12 @@
 #pragma once
 #include "basic_circle.h"
-#include "relation_surface_3d_shape.h"
+#include "relation_surface_shape.h"
 
 namespace accord::shape::relation
 {
-	class Box2D;
+	class Rect;
 
-	class Circle : public basic::Circle, public Surface3DShape
+	class Circle : public basic::Circle, public SurfaceShape
 	{
 	public:
 		Circle(Vec2d centre, double radius);
@@ -17,17 +17,17 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Circle& other) const;
 
-		bool IsOverlapping(const Box2D& other) const;
+		bool IsOverlapping(const Rect& other) const;
 
-		bool IsEnveloping(const Box2D& other) const;
+		bool IsEnveloping(const Rect& other) const;
 
-		bool IsEnvelopedBy(const Box2D& other) const;
+		bool IsEnvelopedBy(const Rect& other) const;
 
-		bool IsOverlapping(const Surface3DShape& other) const;
+		bool IsOverlapping(const SurfaceShape& other) const;
 
-		bool IsEnveloping(const Surface3DShape& other) const;
+		bool IsEnveloping(const SurfaceShape& other) const;
 
-		bool IsEnvelopedBy(const Surface3DShape& other) const;
+		bool IsEnvelopedBy(const SurfaceShape& other) const;
 
 		void ToJson(Json& j) const;
 	};

@@ -1,25 +1,25 @@
 #pragma once
 #include "pch.h"
-#include "relation_surface_3d_shape.h"
+#include "relation_surface_shape.h"
 
 namespace accord::shape::relation
 {
-	bool Surface3DShape::IsOverlapping(const Surface3DShape& other) const
+	bool SurfaceShape::IsOverlapping(const SurfaceShape& other) const
 	{
 		return other.IsOverlapping(*this);
 	}
 
-	bool Surface3DShape::IsEnveloping(const Surface3DShape& other) const
+	bool SurfaceShape::IsEnveloping(const SurfaceShape& other) const
 	{
 		return other.IsEnvelopedBy(*this);
 	}
 
-	bool Surface3DShape::IsEnvelopedBy(const Surface3DShape& other) const
+	bool SurfaceShape::IsEnvelopedBy(const SurfaceShape& other) const
 	{
 		return other.IsEnveloping(*this);
 	}
 
-	void to_json(Json& j, const Surface3DShape& surface_shape)
+	void to_json(Json& j, const SurfaceShape& surface_shape)
 	{
 		surface_shape.ToJson(j);
 	}

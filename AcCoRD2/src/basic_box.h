@@ -1,13 +1,13 @@
 #pragma once
 #include "vec3d.h"
-#include "box_3d_faces.h"
+#include "box_faces.h"
 
 namespace accord::shape::basic
 {
-	class Box3D
+	class Box
 	{
 	public:
-		Box3D(Vec3d origin, Vec3d length);
+		Box(Vec3d origin, Vec3d length);
 
 		void Move(const Vec3d& origin);
 
@@ -26,5 +26,5 @@ namespace accord::shape::basic
 		Vec3d length;
 	};
 
-	void to_json(Json& j, const Box3D& box);
+	void to_json(Json& j, const Box& box);
 }

@@ -1,26 +1,26 @@
 #include "pch.h"
-#include "generating_surface_3d.h"
+#include "generating_surface.h"
 
 namespace accord::shape::generating
 {
 
-	Surface3D::Surface3D(std::unique_ptr<AbstractPlane3D> plane)
+	Surface::Surface(std::unique_ptr<AbstractPlane> plane)
 		: plane(std::move(plane))
 	{
 
 	}
 
-	Vec3d Surface3D::GeneratePointOnSurface() const
+	Vec3d Surface::GeneratePointOnSurface() const
 	{
 		return plane->PlacePointOnPlane(GetShape().GeneratePointInArea());
 	}
 
-	const AbstractPlane3D& Surface3D::GetPlane() const
+	const AbstractPlane& Surface::GetPlane() const
 	{
 		return *plane;
 	}
 
-	void to_json(Json& j, const Surface3D& surface)
+	void to_json(Json& j, const Surface& surface)
 	{
 		j["plane"] = surface.GetPlane();
 		j["shape"] = surface.GetShape();

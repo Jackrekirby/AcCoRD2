@@ -1,16 +1,16 @@
 #include "pch.h"
-#include "abstract_generating_plane_3d.h"
+#include "abstract_generating_plane.h"
 
 namespace accord::shape::generating
 {
-	AbstractPlane3D::AbstractPlane3D(double position, Axis3D axis)
-		: basic::AbstractPlane3D(position, axis)
+	AbstractPlane::AbstractPlane(double position, Axis3D axis)
+		: basic::AbstractPlane(position, axis)
 	{
 
 	}
 
-	void to_json(Json& j, const AbstractPlane3D& plane)
+	void to_json(Json& j, const AbstractPlane& plane)
 	{
-		j = static_cast<basic::AbstractPlane3D>(plane);
+		j = static_cast<basic::AbstractPlane>(plane);
 	}
 }

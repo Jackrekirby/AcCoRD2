@@ -3,10 +3,10 @@
 
 namespace accord::shape::basic
 {
-	class Box2D
+	class Rect
 	{
 	public:
-		Box2D(Vec2d origin, Vec2d length);
+		Rect(Vec2d origin, Vec2d length);
 
 		void Move(const Vec2d& origin);
 
@@ -30,5 +30,5 @@ namespace accord::shape::basic
 		Vec2d length;
 	};
 
-	void to_json(Json& j, const Box2D& box);
+	void to_json(Json& j, const Rect& box);
 }
