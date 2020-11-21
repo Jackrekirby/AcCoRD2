@@ -19,11 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="collision_sphere.cpp" />
+    <ClCompile Include="src\collision_circle.cpp" />
+    <ClCompile Include="src\collision_2d.cpp" />
+    <ClCompile Include="src\collision_circle_surface.cpp" />
+    <ClCompile Include="src\collision_rect_surface.cpp" />
+    <ClCompile Include="src\collision_sphere.cpp" />
     <ClCompile Include="src\axis_2d.cpp" />
     <ClCompile Include="src\basic_sphere.cpp" />
     <ClCompile Include="src\generating_circle.cpp" />
     <ClCompile Include="src\box_faces.cpp" />
+    <ClCompile Include="src\generating_circle_surface.cpp" />
     <ClCompile Include="src\generating_rect_surface.cpp" />
     <ClCompile Include="src\generating_sphere.cpp" />
     <ClCompile Include="src\relation_rect_surface.cpp" />
@@ -32,7 +37,6 @@
     <ClCompile Include="src\relation_sphere.cpp" />
     <ClCompile Include="src\shape_test.cpp" />
     <ClCompile Include="src\collision_plane_factory.cpp" />
-    <ClCompile Include="src\collision_surface_factory.cpp" />
     <ClCompile Include="src\generating_plane_factory.cpp" />
     <ClCompile Include="src\generating_box.cpp" />
     <ClCompile Include="src\basic_rect.cpp" />
@@ -144,11 +148,16 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="collision_sphere.h" />
+    <ClInclude Include="src\collision_circle.h" />
+    <ClInclude Include="src\collision_2d.h" />
+    <ClInclude Include="src\collision_circle_surface.h" />
+    <ClInclude Include="src\collision_rect_surface.h" />
+    <ClInclude Include="src\collision_sphere.h" />
     <ClInclude Include="src\axis_2d.h" />
     <ClInclude Include="src\basic_sphere.h" />
     <ClInclude Include="src\generating_circle.h" />
     <ClInclude Include="src\box_faces.h" />
+    <ClInclude Include="src\generating_circle_surface.h" />
     <ClInclude Include="src\generating_rect_surface.h" />
     <ClInclude Include="src\generating_sphere.h" />
     <ClInclude Include="src\relation_rect_surface.h" />
@@ -158,7 +167,6 @@
     <ClInclude Include="src\relation_shape_3d.h" />
     <ClInclude Include="src\shape_test.h" />
     <ClInclude Include="src\collision_plane_factory.h" />
-    <ClInclude Include="src\collision_surface_factory.h" />
     <ClInclude Include="src\generating_plane_factory.h" />
     <ClInclude Include="src\generating_box.h" />
     <ClInclude Include="lib\pcg\pcg_extras.hpp" />

@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "generating_rect_surface.h"
+#include "collision_rect_surface.h"
 
-namespace accord::shape::generating
+namespace accord::shape::collision
 {
 	RectSurface::RectSurface(std::unique_ptr<AbstractPlane> plane, Rect rect)
 		: Surface(std::move(plane)), rect(rect)

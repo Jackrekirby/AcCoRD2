@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "basic_rect.h"
+#include "vec2b.h"
 
 namespace accord::shape::basic
 {
@@ -45,16 +46,31 @@ namespace accord::shape::basic
 	{
 		return length.Area();
 	}
+
+	bool Rect::IsWithinBorder(const Vec2d& position) const
+	{
+		return ((position > GetOrigin()).All() && (position < GetEnd()).All());
+	}
+
+	bool Rect::IsWithinOrOnBorder(const Vec2d& position) const
+	{
+		return ((position >= GetOrigin()).All() && (position <= GetEnd()).All());
+	}
+
+	bool Rect::IsOnBorder(const Vec2d& position) const
+	{
+		return ((position == GetOrigin()) || (position == GetEnd())).All();
+	}
 	
 	void Rect::ToJson(Json& j) const
 	{
 		j = *this;
 	}
 
-	void to_json(Json& j, const Rect& box)
+	void to_json(Json& j, const Rect& rect)
 	{
-		j["origin"] = box.GetOrigin();
-		j["length"] = box.GetLength();
-		j["end"] = box.GetEnd();
+		j["origin"] = rect.GetOrigin();
+		j["length"] = rect.GetLength();
+		j["end"] = rect.GetEnd();
 	}
 }

@@ -21,6 +21,12 @@ namespace accord::shape::basic
 		Vec2d CalculateCentre() const;
 
 		double CalculateArea() const;
+
+		bool IsWithinBorder(const Vec2d& position) const;
+
+		bool IsWithinOrOnBorder(const Vec2d& position) const;
+
+		bool IsOnBorder(const Vec2d& position) const;
 		
 		void ToJson(Json& j) const;
 
@@ -37,5 +43,5 @@ namespace accord::shape::basic
 		Vec2d length;
 	};
 
-	void to_json(Json& j, const Rect& box);
+	void to_json(Json& j, const Rect& rect);
 }

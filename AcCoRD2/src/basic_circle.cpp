@@ -5,7 +5,7 @@
 namespace accord::shape::basic
 {
 	Circle::Circle(Vec2d centre, double radius)
-		: centre(centre), radius(radius)
+		: centre(centre), radius(radius), radius2(radius*radius)
 	{
 
 	}
@@ -18,6 +18,7 @@ namespace accord::shape::basic
 	void Circle::Resize(const double radius)
 	{
 		this->radius = radius;
+		radius2 = radius * radius;
 	}
 
 	const Vec2d& Circle::GetCentre() const
@@ -30,9 +31,19 @@ namespace accord::shape::basic
 		return radius;
 	}
 
+	const double& Circle::GetRadius2() const
+	{
+		return radius2;
+	}
+
 	double Circle::CalculateArea() const
 	{
 		return PI * radius * radius;
+	}
+
+	bool Circle::IsWithinOrOnBorder(const Vec2d& position) const
+	{
+		return ((position - GetCentre()).Size2() < GetRadius2());
 	}
 
 	void Circle::ToJson(Json& j) const

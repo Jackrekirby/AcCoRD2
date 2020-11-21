@@ -1,6 +1,6 @@
 #pragma once
 
-namespace accord
+namespace accord::Vec1d
 {
 	// intersection = origin + time * (end - origin)
 	double Lerp(double origin, double end, double time);

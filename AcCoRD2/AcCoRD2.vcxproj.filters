@@ -118,9 +118,6 @@
     <ClCompile Include="src\collision_surface.cpp">
       <Filter>src\shapes\collision\surface</Filter>
     </ClCompile>
-    <ClCompile Include="src\collision_surface_factory.cpp">
-      <Filter>src\shapes\collision\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\collision_surface_shape.cpp">
       <Filter>src\shapes\collision\surface</Filter>
     </ClCompile>
@@ -187,8 +184,23 @@
     <ClCompile Include="src\relation_shape_3d.cpp">
       <Filter>src\shapes\relation\shape</Filter>
     </ClCompile>
-    <ClCompile Include="collision_sphere.cpp">
+    <ClCompile Include="src\collision_sphere.cpp">
       <Filter>src\shapes\collision\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_2d.cpp">
+      <Filter>src\shapes\collision\data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\generating_circle_surface.cpp">
+      <Filter>src\shapes\generating\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_rect_surface.cpp">
+      <Filter>src\shapes\collision\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_circle_surface.cpp">
+      <Filter>src\shapes\collision\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_circle.cpp">
+      <Filter>src\shapes\collision\circle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -333,9 +345,6 @@
     <ClInclude Include="src\collision_surface.h">
       <Filter>src\shapes\collision\surface</Filter>
     </ClInclude>
-    <ClInclude Include="src\collision_surface_factory.h">
-      <Filter>src\shapes\collision\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\collision_surface_shape.h">
       <Filter>src\shapes\collision\surface</Filter>
     </ClInclude>
@@ -402,8 +411,23 @@
     <ClInclude Include="src\relation_shape_3d.h">
       <Filter>src\shapes\relation\shape</Filter>
     </ClInclude>
-    <ClInclude Include="collision_sphere.h">
+    <ClInclude Include="src\collision_sphere.h">
       <Filter>src\shapes\collision\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_2d.h">
+      <Filter>src\shapes\collision\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\generating_circle_surface.h">
+      <Filter>src\shapes\generating\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_rect_surface.h">
+      <Filter>src\shapes\collision\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_circle_surface.h">
+      <Filter>src\shapes\collision\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_circle.h">
+      <Filter>src\shapes\collision\circle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -569,6 +593,9 @@
     </Filter>
     <Filter Include="src\shapes\collision\sphere">
       <UniqueIdentifier>{ac31e2bd-5ab5-4b26-942e-40de8c96b2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\collision\circle">
+      <UniqueIdentifier>{eae2942d-beb1-4ef4-bec7-a91f4612078e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

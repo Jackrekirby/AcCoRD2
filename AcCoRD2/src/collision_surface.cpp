@@ -3,8 +3,8 @@
 
 namespace accord::shape::collision
 {
-	Surface::Surface(std::unique_ptr<AbstractPlane> plane, std::unique_ptr<SurfaceShape> shape)
-		: plane(std::move(plane)), shape(std::move(shape))
+	Surface::Surface(std::unique_ptr<AbstractPlane> plane)
+		: plane(std::move(plane))
 	{
 
 	}
@@ -39,11 +39,6 @@ namespace accord::shape::collision
 	const AbstractPlane& Surface::GetPlane() const
 	{
 		return *plane;
-	}
-
-	const SurfaceShape& Surface::GetShape() const
-	{
-		return *shape;
 	}
 
 	void to_json(Json& j, const Surface& surface)

@@ -11,7 +11,7 @@ namespace accord::shape::collision
 	{
 	public:
 
-		Surface(std::unique_ptr<AbstractPlane> plane, std::unique_ptr<SurfaceShape> shape);
+		Surface(std::unique_ptr<AbstractPlane> plane);
 
 		std::optional<Collision3D> CalculateCollisionDataWithPositiveFace(const Vec3d& origin, const Vec3d& end) const;
 
@@ -21,10 +21,9 @@ namespace accord::shape::collision
 	
 		const AbstractPlane& GetPlane() const;
 
-		const SurfaceShape& GetShape() const;
+		virtual const SurfaceShape& GetShape() const = 0;
 	private:
 		std::unique_ptr<AbstractPlane> plane;
-		std::unique_ptr<SurfaceShape> shape;
 	};
 
 	void to_json(Json& j, const Surface& surface);

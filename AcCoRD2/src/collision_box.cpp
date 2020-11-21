@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "collision_box.h"
-#include "collision_surface_factory.h"
-#include "vec3b.h"
+#include "collision_rect_surface.h"
+#include "collision_plane_factory.h"
 
 namespace accord::shape::collision
 {
@@ -11,17 +11,22 @@ namespace accord::shape::collision
 
 	}
 
-	std::enum_array<Face, Surface, 6> Box::GenerateFaces() const
+	std::enum_array<Face, RectSurface, 6> Box::GenerateFaces() const
 	{
 		return
 		{
-			CreateBoxSurface(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
-			CreateBoxSurface(GetOrigin(), Axis3D::y, GetOrigin(), GetEnd()),
-			CreateBoxSurface(GetOrigin(), Axis3D::z, GetOrigin(), GetEnd()),
-			CreateBoxSurface(GetEnd(), Axis3D::x, GetOrigin(), GetEnd()),
-			CreateBoxSurface(GetEnd(), Axis3D::y, GetOrigin(), GetEnd()),
-			CreateBoxSurface(GetEnd(), Axis3D::z, GetOrigin(), GetEnd()),
+			GenerateFace(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
+			GenerateFace(GetOrigin(), Axis3D::y, GetOrigin(), GetEnd()),
+			GenerateFace(GetOrigin(), Axis3D::z, GetOrigin(), GetEnd()),
+			GenerateFace(GetEnd(), Axis3D::x, GetOrigin(), GetEnd()),
+			GenerateFace(GetEnd(), Axis3D::y, GetOrigin(), GetEnd()),
+			GenerateFace(GetEnd(), Axis3D::z, GetOrigin(), GetEnd())
 		};
+	}
+
+	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end) const
+	{
+		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), end.GetPlane(axis) } };
 	}
 
 	std::optional<Collision3D> Box::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end)
@@ -60,29 +65,19 @@ namespace accord::shape::collision
 		return collision;
 	}
 
-	bool Box::IsWithinBorder(const Vec3d& position) const
-	{
-		return ((position > GetOrigin()).All() && (position < GetEnd()).All());
-	}
-
-	bool Box::IsWithinOrOnBorder(const Vec3d& position) const
-	{
-		return ((position >= GetOrigin()).All() && (position <= GetEnd()).All());
-	}
-
-	bool Box::IsOnBorder(const Vec3d& position) const
-	{
-		return ((position == GetOrigin()) || (position == GetEnd())).All();
-	}
-
-	const std::enum_array<Face, Surface, 6>& Box::GetFaces() const
+	const std::enum_array<Face, RectSurface, 6>& Box::GetFaces() const
 	{
 		return faces;
 	}
 
+	void Box::ToJson(Json& j) const
+	{
+		j = static_cast<basic::Box>(*this);
+		j["faces"] = GetFaces();
+	}
+
 	void to_json(Json& j, const Box& box)
 	{
-		j = static_cast<basic::Box>(box);
-		j["faces"] = box.GetFaces();
+		box.ToJson(j);
 	}
 }

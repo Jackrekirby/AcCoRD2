@@ -20,21 +20,6 @@ public:
 	}
 };
 
-class derived : public base
-{
-public:
-	derived(int y)
-		: base(y)
-	{
-
-	}
-};
-
-void to_json(accord::Json& j, const base& b)
-{
-	j = "this is base class";
-}
-
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
@@ -51,11 +36,8 @@ int main()
 	//accord::WriteBinarySingles();
 	//accord::EventQueueTest();
 	//accord::ShapeRelationTest();
-	accord::Shape3DRelationTest();
-
-	accord::Json j = derived(7);
-
-	LOG_INFO(accord::JsonToPrettyString(j));
+	//accord::Shape3DRelationTest();
+	accord::ShapeCollisionTest();
 
 	//accord::Json j = accord::shape::basic::Rect({ 0,0 }, { 10, 10 });
 

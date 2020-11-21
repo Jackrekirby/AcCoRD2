@@ -23,6 +23,12 @@ namespace accord::shape::basic
 
 		double CalculateVolume() const;
 
+		bool IsWithinBorder(const Vec3d& position) const;
+
+		bool IsWithinOrOnBorder(const Vec3d& position) const;
+
+		bool IsOnBorder(const Vec3d& position) const;
+
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const Box& box)
 		{

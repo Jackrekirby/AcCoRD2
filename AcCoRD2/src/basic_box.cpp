@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "basic_box.h"
+#include "vec3b.h"
 
 namespace accord::shape::basic
 {
@@ -44,6 +45,21 @@ namespace accord::shape::basic
 	double Box::CalculateVolume() const
 	{
 		return length.Volume();
+	}
+
+	bool Box::IsWithinBorder(const Vec3d& position) const
+	{
+		return ((position > GetOrigin()).All() && (position < GetEnd()).All());
+	}
+
+	bool Box::IsWithinOrOnBorder(const Vec3d& position) const
+	{
+		return ((position >= GetOrigin()).All() && (position <= GetEnd()).All());
+	}
+
+	bool Box::IsOnBorder(const Vec3d& position) const
+	{
+		return ((position == GetOrigin()) || (position == GetEnd())).All();
 	}
 
 	void to_json(Json& j, const Box& box)

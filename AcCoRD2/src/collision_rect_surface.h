@@ -1,8 +1,8 @@
 #pragma once
-#include "generating_surface.h"
-#include "generating_rect.h"
+#include "collision_surface.h"
+#include "collision_rect.h"
 
-namespace accord::shape::generating
+namespace accord::shape::collision
 {
 	class RectSurface : public Surface
 	{

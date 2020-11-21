@@ -28,12 +28,12 @@ namespace accord::shape::relation
 
 	bool Sphere::IsOverlapping(const Box& other) const
 	{
-		return (other.CalculateNearestPointOnBoundary(GetCentre()) - GetCentre()).Size() < GetRadius();
+		return IsWithinOrOnBorder(other.CalculateNearestPointOnBoundary(GetCentre()));
 	}
 
 	bool Sphere::IsEnveloping(const Box& other) const
 	{
-		return (other.CalculateFurthestCornerFromPoint(GetCentre()) - GetCentre()).Size() < GetRadius();
+		return IsWithinOrOnBorder(other.CalculateFurthestCornerFromPoint(GetCentre()));
 	}
 
 	bool Sphere::IsEnvelopedBy(const Box& other) const

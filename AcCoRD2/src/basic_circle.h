@@ -16,7 +16,11 @@ namespace accord::shape::basic
 
 		const double& GetRadius() const;
 
+		const double& GetRadius2() const;
+
 		double CalculateArea() const;
+
+		bool IsWithinOrOnBorder(const Vec2d& position) const;
 		
 		void ToJson(Json& j) const;
 
@@ -30,6 +34,7 @@ namespace accord::shape::basic
 	private:
 		Vec2d centre;
 		double radius;
+		double radius2;
 	};
 
 	void to_json(Json& j, const Circle& circle);

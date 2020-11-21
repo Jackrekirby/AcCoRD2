@@ -1,5 +1,4 @@
 #include "collision_rect.h"
-#include "vec2b.h"
 
 namespace accord::shape::collision
 {
@@ -9,19 +8,9 @@ namespace accord::shape::collision
 
 	}
 
-	bool Rect::IsWithinBorder(const Vec2d& position) const
-	{
-		return ((position > GetOrigin()).All() && (position < GetEnd()).All());
-	}
-
 	bool Rect::IsWithinOrOnBorder(const Vec2d& position) const
 	{
-		return ((position >= GetOrigin()).All() && (position <= GetEnd()).All());
-	}
-
-	bool Rect::IsOnBorder(const Vec2d& position) const
-	{
-		return ((position == GetOrigin()) || (position == GetEnd())).All();
+		return basic::Rect::IsWithinOrOnBorder(position);
 	}
 
 	void Rect::ToJson(Json& j) const

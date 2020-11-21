@@ -1,2 +1,4 @@
-[debug] {"centre":[0.0,0.0,0.0],"radius":20.0}
-[info] "this is base class"
+[info] origin = [11, 0, 0], end = [13, 0, 0]
+[trace] n = 100.0
+[trace] t1 = -0.5, t2 = -10.5
+[info] time = -0.5, intersection = [10, 0, 0], reflection = [7, 0, 0]

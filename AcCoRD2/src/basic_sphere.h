@@ -16,7 +16,11 @@ namespace accord::shape::basic
 
 		const double& GetRadius() const;
 
+		const double& GetRadius2() const;
+
 		double CalculateVolume() const;
+
+		bool IsWithinOrOnBorder(const Vec3d& position) const;
 		
 		void ToJson(Json& j) const;
 
@@ -26,10 +30,10 @@ namespace accord::shape::basic
 			return os << fmt::format("centre = {}, radius = {}",
 				sphere.GetCentre(), sphere.GetRadius());
 		}
-
 	private:
 		Vec3d centre;
 		double radius;
+		double radius2;
 	};
 
 	void to_json(Json& j, const Sphere& sphere);

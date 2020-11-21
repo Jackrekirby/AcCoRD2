@@ -28,12 +28,12 @@ namespace accord::shape::relation
 
 	bool Circle::IsOverlapping(const Rect& other) const
 	{
-		return (other.CalculateNearestPointOnBoundary(GetCentre()) - GetCentre()).Size() < GetRadius();
+		return IsWithinOrOnBorder(other.CalculateNearestPointOnBoundary(GetCentre()));
 	}
 
 	bool Circle::IsEnveloping(const Rect& other) const
 	{
-		return (other.CalculateFurthestCornerFromPoint(GetCentre()) - GetCentre()).Size() < GetRadius();
+		return IsWithinOrOnBorder(other.CalculateFurthestCornerFromPoint(GetCentre()));
 	}
 
 	bool Circle::IsEnvelopedBy(const Rect& other) const

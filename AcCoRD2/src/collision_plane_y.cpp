@@ -21,11 +21,11 @@ namespace accord::shape::collision
 
 	Vec3d PlaneY::CalculateIntersection(const Vec3d& origin, const Vec3d& end, double time) const
 	{
-		return { Lerp(origin.x, end.x, time), GetPosition(), Lerp(origin.z, end.z, time) };
+		return { Vec1d::Lerp(origin.x, end.x, time), GetPosition(), Vec1d::Lerp(origin.z, end.z, time) };
 	}
 
 	Vec3d PlaneY::CalculateReflection(const Vec3d& intersection, const Vec3d& end) const
 	{
-		return { end.x, MirrorPosition(end.y, intersection.y), end.z };
+		return { end.x, Vec1d::MirrorPosition(end.y, intersection.y), end.z };
 	}
 }
