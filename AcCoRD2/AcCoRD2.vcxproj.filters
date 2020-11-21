@@ -561,5 +561,8 @@
     <Filter Include="src\shapes\relation\shape">
       <UniqueIdentifier>{2ef6983a-a79d-42c6-9c7a-86ceef7dae75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\shapes\collision\sphere">
+      <UniqueIdentifier>{ac31e2bd-5ab5-4b26-942e-40de8c96b2f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
