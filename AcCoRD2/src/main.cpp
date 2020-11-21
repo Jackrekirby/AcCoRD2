@@ -8,6 +8,33 @@
 //#include "event_queue_test.h"
 #include "shape_test.h"
 
+class base
+{
+public:
+	int x;
+
+	base(int x) 
+		: x(x)
+	{
+
+	}
+};
+
+class derived : public base
+{
+public:
+	derived(int y)
+		: base(y)
+	{
+
+	}
+};
+
+void to_json(accord::Json& j, const base& b)
+{
+	j = "this is base class";
+}
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
@@ -23,7 +50,12 @@ int main()
 	//accord::OutputBinaryVectorTest();
 	//accord::WriteBinarySingles();
 	//accord::EventQueueTest();
-	accord::ShapeRelationTest();
+	//accord::ShapeRelationTest();
+	accord::Shape3DRelationTest();
+
+	accord::Json j = derived(7);
+
+	LOG_INFO(accord::JsonToPrettyString(j));
 
 	//accord::Json j = accord::shape::basic::Rect({ 0,0 }, { 10, 10 });
 

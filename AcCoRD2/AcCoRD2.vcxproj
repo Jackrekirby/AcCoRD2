@@ -27,6 +27,8 @@
     <ClCompile Include="src\generating_sphere.cpp" />
     <ClCompile Include="src\relation_rect_surface.cpp" />
     <ClCompile Include="src\relation_circle_surface.cpp" />
+    <ClCompile Include="src\relation_shape_3d.cpp" />
+    <ClCompile Include="src\relation_sphere.cpp" />
     <ClCompile Include="src\shape_test.cpp" />
     <ClCompile Include="src\collision_plane_factory.cpp" />
     <ClCompile Include="src\collision_surface_factory.cpp" />
@@ -150,6 +152,8 @@
     <ClInclude Include="src\relation_rect_surface.h" />
     <ClInclude Include="src\json_fwd_test.h" />
     <ClInclude Include="src\relation_circle_surface.h" />
+    <ClInclude Include="src\relation_sphere.h" />
+    <ClInclude Include="src\relation_shape_3d.h" />
     <ClInclude Include="src\shape_test.h" />
     <ClInclude Include="src\collision_plane_factory.h" />
     <ClInclude Include="src\collision_surface_factory.h" />

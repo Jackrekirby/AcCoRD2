@@ -36,6 +36,11 @@ namespace accord::shape::basic
 		return length;
 	}
 
+	Vec3d Box::CalculateCentre() const
+	{
+		return origin + 0.5 * length;
+	}
+
 	double Box::CalculateVolume() const
 	{
 		return length.Volume();

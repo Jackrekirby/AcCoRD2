@@ -19,7 +19,16 @@ namespace accord::shape::basic
 
 		const Vec3d& GetLength() const;
 
+		Vec3d CalculateCentre() const;
+
 		double CalculateVolume() const;
+
+		template<typename OStream>
+		friend OStream& operator<<(OStream& os, const Box& box)
+		{
+			return os << fmt::format("origin = {}, length = {}, end = {}", 
+				box.GetOrigin(), box.GetLength(), box.GetEnd());
+		}
 	private:
 		Vec3d origin;
 		Vec3d end;

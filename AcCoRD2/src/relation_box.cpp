@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "relation_box.h"
-#include "relation_box.h"
-//#include "basic_box.h"
+#include "relation_rect.h"
+#include "relation_sphere.h"
 #include "vec3b.h"
 
 namespace accord::shape::relation
@@ -39,6 +39,41 @@ namespace accord::shape::relation
 		return (GetOrigin() <= other.GetOrigin() && GetEnd() >= other.GetEnd()).All();
 	}
 
+	bool Box::IsEnvelopedBy(const Box& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
+	bool Box::IsOverlapping(const Sphere& other) const
+	{
+		return other.IsOverlapping(*this);
+	}
+
+	bool Box::IsEnveloping(const Sphere& other) const
+	{
+		return ((other.GetCentre() - CalculateCentre()).Abs() + other.GetRadius() < (GetLength() / 2)).All();
+	}
+
+	bool Box::IsEnvelopedBy(const Sphere& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
+	bool Box::IsOverlapping(const Shape3D& other) const
+	{
+		return other.IsOverlapping(*this);
+	}
+
+	bool Box::IsEnveloping(const Shape3D& other) const
+	{
+		return other.IsEnvelopedBy(*this);
+	}
+
+	bool Box::IsEnvelopedBy(const Shape3D& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
 	std::optional<Face> Box::IsPartiallyNeighbouring(const Box& other) const
 	{
 		for (auto& face : face_types)
@@ -57,6 +92,16 @@ namespace accord::shape::relation
 		return std::nullopt;
 	}
 
+	Vec3d Box::CalculateNearestPointOnBoundary(const Vec3d& position) const
+	{
+		return Vec3d::Max(GetOrigin(), Vec3d::Min(position, GetEnd()));
+	}
+
+	Vec3d Box::CalculateFurthestCornerFromPoint(const Vec3d& position) const
+	{
+		return (GetOrigin() + (position < CalculateCentre()) * GetLength());
+	}
+
 	// assumes there is overlap
 	Box Box::GenerateOverlapBox(const Box& other) const
 	{
@@ -70,8 +115,18 @@ namespace accord::shape::relation
 		j = static_cast<basic::Box>(*this);
 	}
 
+	const Box& Box::GetShape() const
+	{
+		return *this;
+	}
+
 	const std::enum_array<Face, RectSurface, 6>& Box::GetFaces() const
 	{
 		return faces;
+	}
+
+	void to_json(Json& j, const Box& shape)
+	{
+		shape.ToJson(j);
 	}
 }

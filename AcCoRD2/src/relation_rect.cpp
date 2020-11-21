@@ -78,4 +78,9 @@ namespace accord::shape::relation
 	{
 		j = static_cast<basic::Rect>(*this);
 	}
+
+	void to_json(Json& j, const Rect& shape)
+	{
+		shape.ToJson(j);
+	}
 }

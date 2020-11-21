@@ -14,10 +14,12 @@
 #include "generating_plane_factory.h"
 
 #include "relation_box.h"
-#include "relation_box.h"
+#include "relation_rect.h"
 #include "relation_circle.h"
 #include "relation_rect_surface.h"
 
+
+#include "relation_sphere.h"
 
 namespace accord
 {
@@ -124,6 +126,52 @@ namespace accord
 		relation::Box bx1({ 0, 0, 0 }, { 10, 10, 10 });
 		relation::Box bx2({ 4, 5, 6 }, { 10, 10, 10 });
 		LOG_DEBUG(JsonToPrettyString(bx1.GenerateOverlapBox(bx2)));
+
+
+
+
+
+
+	}
+
+
+	std::string IsFalse(bool b)
+	{
+		return b ? "WRONG" : "CORRECT";
+	}
+
+
+	void Shape3DRelationTest()
+	{
+		using namespace accord;
+		using namespace accord::shape;
+
+		relation::Sphere s1({ 0, 0, 0 }, 20);
+
+		relation::Box b1({ -5, -5, -5 }, {10, 10, 10});
+
+		relation::Shape3D& h1 = s1;
+		relation::Shape3D& h2 = b1;
+
+		//LOG_INFO(accord::JsonToPrettyString(j));
+
+		//LOG_INFO("sphere : {} \n box : {}",  ((Json)(h1)).dump(true), ((Json)(h2)).dump(true));
+		//assert(s1.IsEnveloping(b1) == false);
+
+
+		//LOG_INFO(s1.IsEnvelopedBy(b1));
+		//LOG_INFO(s1.IsOverlapping(b1));
+
+		Json j = h1;
+		LOG_DEBUG(j.dump(-1, ' '));
+
+
+		std::string a = fmt::format("hello {}", 5);
+
+		//basic::Box b2({ 1, 2, 3 }, { 4, 5, 6 });
+
+		//LOG_INFO(h1);
+
 
 	}
 }

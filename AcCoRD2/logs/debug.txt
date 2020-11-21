@@ -1,21 +1,2 @@
-[debug] true
-[debug] true
-[debug] false
-[debug] true
-[debug] false
-[debug] false
-[debug] true
-[debug] true
-[debug] true
-[debug] true
-[debug] false
-[debug] true
-[debug] true
-[debug] true
-[debug] false
-[debug] neighbouring face = negative z
-[debug] {
-    "origin": [ 4.0, 5.0, 6.0 ],
-    "length": [ 6.0, 5.0, 4.0 ],
-    "end": [ 10.0, 10.0, 10.0 ]
-}
+[debug] {"centre":[0.0,0.0,0.0],"radius":20.0}
+[info] "this is base class"

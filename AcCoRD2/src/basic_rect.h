@@ -24,6 +24,13 @@ namespace accord::shape::basic
 		
 		void ToJson(Json& j) const;
 
+		template<typename OStream>
+		friend OStream& operator<<(OStream& os, const Rect& rect)
+		{
+			return os << fmt::format("origin = {}, length = {}, end = {}",
+				rect.GetOrigin(), rect.GetLength(), rect.GetEnd());
+		}
+
 	private:
 		Vec2d origin;
 		Vec2d end;

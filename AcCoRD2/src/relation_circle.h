@@ -31,4 +31,6 @@ namespace accord::shape::relation
 
 		void ToJson(Json& j) const;
 	};
+
+	void to_json(Json& j, const Circle& shape);
 }

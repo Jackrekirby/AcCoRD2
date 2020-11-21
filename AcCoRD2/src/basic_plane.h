@@ -11,6 +11,13 @@ namespace accord::shape::basic
 		const Axis3D& GetAxis() const;
 
 		const double& GetPosition() const;
+
+		template<typename OStream>
+		friend OStream& operator<<(OStream& os, const AbstractPlane& plane)
+		{
+			return os << fmt::format("position = {}, axis = {}",
+				plane.GetPosition(), plane.GetAxis());
+		}
 	private:
 		double position;
 		Axis3D axis;

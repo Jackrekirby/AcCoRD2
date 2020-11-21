@@ -60,4 +60,9 @@ namespace accord::shape::relation
 	{
 		j = static_cast<basic::Circle>(*this);
 	}
+
+	void to_json(Json& j, const Circle& shape)
+	{
+		shape.ToJson(j);
+	}
 }

@@ -181,6 +181,12 @@
     <ClCompile Include="src\relation_rect_surface.cpp">
       <Filter>src\shapes\relation\surface</Filter>
     </ClCompile>
+    <ClCompile Include="src\relation_sphere.cpp">
+      <Filter>src\shapes\relation\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="src\relation_shape_3d.cpp">
+      <Filter>src\shapes\relation\shape</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -387,6 +393,12 @@
     <ClInclude Include="src\relation_rect_surface.h">
       <Filter>src\shapes\relation\surface</Filter>
     </ClInclude>
+    <ClInclude Include="src\relation_sphere.h">
+      <Filter>src\shapes\relation\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="src\relation_shape_3d.h">
+      <Filter>src\shapes\relation\shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -542,6 +554,12 @@
     </Filter>
     <Filter Include="src\shapes\relation\rect">
       <UniqueIdentifier>{2e870e9d-068f-4c12-a645-acf70c24dc4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\relation\sphere">
+      <UniqueIdentifier>{2ec1ccb4-4d93-468d-bfc1-5dd069823bbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\relation\shape">
+      <UniqueIdentifier>{2ef6983a-a79d-42c6-9c7a-86ceef7dae75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

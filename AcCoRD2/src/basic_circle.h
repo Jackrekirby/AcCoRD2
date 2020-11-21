@@ -20,6 +20,13 @@ namespace accord::shape::basic
 		
 		void ToJson(Json& j) const;
 
+		template<typename OStream>
+		friend OStream& operator<<(OStream& os, const Circle& circle)
+		{
+			return os << fmt::format("centre = {}, radius = {}",
+				circle.GetCentre(), circle.GetRadius());
+		}
+
 	private:
 		Vec2d centre;
 		double radius;
