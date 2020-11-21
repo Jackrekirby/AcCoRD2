@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="collision_sphere.cpp" />
     <ClCompile Include="src\axis_2d.cpp" />
     <ClCompile Include="src\basic_sphere.cpp" />
     <ClCompile Include="src\generating_circle.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collision_sphere.h" />
     <ClInclude Include="src\axis_2d.h" />
     <ClInclude Include="src\basic_sphere.h" />
     <ClInclude Include="src\generating_circle.h" />

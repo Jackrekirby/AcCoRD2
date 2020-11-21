@@ -21,4 +21,14 @@ namespace accord
 	{
 		return (2 * mirror_line - position);
 	}
+
+	double Square(double a)
+	{
+		return a * a;
+	}
+
+	double Cube(double a)
+	{
+		return a * a * a;
+	}
 }

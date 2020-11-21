@@ -10,5 +10,9 @@ namespace accord
 
 	// mirrored_position = (2 * mirror_line - position);
 	double MirrorPosition(double a, double mirror_line);
+
+	double Square(double a);
+
+	double Cube(double a);
 }
 

@@ -187,6 +187,9 @@
     <ClCompile Include="src\relation_shape_3d.cpp">
       <Filter>src\shapes\relation\shape</Filter>
     </ClCompile>
+    <ClCompile Include="collision_sphere.cpp">
+      <Filter>src\shapes\collision\sphere</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -398,6 +401,9 @@
     </ClInclude>
     <ClInclude Include="src\relation_shape_3d.h">
       <Filter>src\shapes\relation\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="collision_sphere.h">
+      <Filter>src\shapes\collision\sphere</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
