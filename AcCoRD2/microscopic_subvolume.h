@@ -3,6 +3,8 @@
 #include "vec3d.h"
 #include "relation_box.h"
 
+// Molecule Type ID MTID
+
 namespace accord::microscopic
 {
 	class Subvolume;
@@ -13,6 +15,16 @@ namespace accord::microscopic
 		void Add(Subvolume* subvolume)
 		{
 			subvolumes.emplace_back(subvolume);
+		}
+	
+		Subvolume& GetSubvolume(ID molecule_type)
+		{
+			return *subvolumes.at(molecule_type);
+		}
+
+		std::vector<Subvolume*>& GetSubvolumes()
+		{
+			return subvolumes;
 		}
 
 		std::vector<Subvolume*> subvolumes;
@@ -90,6 +102,17 @@ namespace accord::microscopic
 		const std::vector<TypedSubvolumes>& GetRelatives() const
 		{
 			return relations;
+		}
+
+		std::vector<TypedSubvolumes>& GetRelatives()
+		{
+			return relations;
+		}
+
+		// typed subvolume should be renamed subvolume type
+		TypedSubvolumes& GetRelative(ID molecule_type)
+		{
+			return relations.at(molecule_type);
 		}
 
 		// Add a subvolume of a different type which is owned by the same microscopic region, or add a subvolume 
