@@ -13,6 +13,8 @@ namespace accord::shape::collision
 
 		Collision3D(double time, Vec3d intersection, Vec3d reflection);
 
+		Collision3D() = default;
+
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const Collision3D& c)
 		{

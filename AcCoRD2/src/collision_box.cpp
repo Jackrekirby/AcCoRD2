@@ -29,7 +29,7 @@ namespace accord::shape::collision
 		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), end.GetPlane(axis) } };
 	}
 
-	std::optional<Collision3D> Box::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end)
+	std::optional<Collision3D> Box::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{
 		std::optional<Collision3D> collision;
 		collision = faces.at(Face::nx).CalculateCollisionDataWithNegativeFace(origin, end);
@@ -47,7 +47,7 @@ namespace accord::shape::collision
 		return collision;
 	}
 
-	std::optional<Collision3D> Box::CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end)
+	std::optional<Collision3D> Box::CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{
 		std::optional<Collision3D> collision;
 		collision = faces.at(Face::nx).CalculateCollisionDataWithPositiveFace(origin, end);

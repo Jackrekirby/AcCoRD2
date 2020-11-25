@@ -16,7 +16,7 @@ namespace accord
 
 		static int GeneratePoisson(double mean);
 
-		static double GenerateNormal(double mean, double std);
+		static double GenerateNormal(double mean = 0.0, double std = 1.0);
 
 		static double GenerateTriangular();
 

@@ -429,6 +429,15 @@
     <ClInclude Include="src\collision_circle.h">
       <Filter>src\shapes\collision\circle</Filter>
     </ClInclude>
+    <ClInclude Include="microscopic_subvolume.h">
+      <Filter>src\regimes\microscopic</Filter>
+    </ClInclude>
+    <ClInclude Include="microscopic_grid.h">
+      <Filter>src\regimes\microscopic</Filter>
+    </ClInclude>
+    <ClInclude Include="microscopic_region.h">
+      <Filter>src\regimes\microscopic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -596,6 +605,12 @@
     </Filter>
     <Filter Include="src\shapes\collision\circle">
       <UniqueIdentifier>{eae2942d-beb1-4ef4-bec7-a91f4612078e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes">
+      <UniqueIdentifier>{ff7e6a54-3c20-4bd4-8d56-57ee6384bac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\microscopic">
+      <UniqueIdentifier>{eeeee95d-52c9-4172-823e-c36656262369}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

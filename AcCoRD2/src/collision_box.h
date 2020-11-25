@@ -11,9 +11,9 @@ namespace accord::shape::collision
 	public:
 		Box(Vec3d origin, Vec3d length);
 
-		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end);
+		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
-		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end);
+		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
 		const std::enum_array<Face, RectSurface, 6>& GetFaces() const;
 

@@ -148,6 +148,9 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="microscopic_grid.h" />
+    <ClInclude Include="microscopic_region.h" />
+    <ClInclude Include="microscopic_subvolume.h" />
     <ClInclude Include="src\collision_circle.h" />
     <ClInclude Include="src\collision_2d.h" />
     <ClInclude Include="src\collision_circle_surface.h" />
