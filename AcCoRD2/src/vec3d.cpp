@@ -19,6 +19,42 @@ namespace accord
 
 	}
 
+	Vec3d Vec3d::GenerateExponential(double mean)
+	{
+		return {
+			Random::GenerateExponential(mean),
+			Random::GenerateExponential(mean),
+			Random::GenerateExponential(mean)
+		};
+	}
+
+	Vec3d Vec3d::GenerateNormal(double mean, double std)
+	{
+		return {
+			Random::GenerateNormal(mean, std),
+			Random::GenerateNormal(mean, std),
+			Random::GenerateNormal(mean, std)
+		};
+	}
+
+	Vec3d Vec3d::GenerateTriangular()
+	{
+		return {
+			Random::GenerateTriangular(),
+			Random::GenerateTriangular(),
+			Random::GenerateTriangular()
+		};
+	}
+
+	Vec3d Vec3d::GenerateUniform(double lower_bound, double upper_bound)
+	{
+		return {
+			Random::GenerateRealUniform(lower_bound, upper_bound),
+			Random::GenerateRealUniform(lower_bound, upper_bound),
+			Random::GenerateRealUniform(lower_bound, upper_bound)
+		};
+	}
+
 	Vec3d Vec3d::PolarToCartesian(double radius, double theta, double phi)
 	{
 		return 

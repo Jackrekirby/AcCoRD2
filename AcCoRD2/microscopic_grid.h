@@ -160,7 +160,7 @@ namespace accord::microscopic
 		}
 
 		// external neighbours (from a different region)
-		void AddNeighbour(Grid grid) // change to add relatives
+		void AddNeighbour(Grid& grid) // change to add relatives
 		{
 			for (auto& subvolume1 : subvolumes)
 			{

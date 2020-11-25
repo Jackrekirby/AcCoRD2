@@ -9,12 +9,13 @@ namespace accord::microscopic
 {
 	class Subvolume;
 
+	// typed reaction list
 	class TypedSubvolumes
 	{
 	public:
 		void Add(Subvolume* subvolume)
 		{
-			subvolumes.emplace_back(subvolume);
+			subvolumes.emplace_back(&subvolume);
 		}
 	
 		Subvolume& GetSubvolume(ID molecule_type)
@@ -40,9 +41,12 @@ namespace accord::microscopic
 		{
 
 		}
+
+		//GetPosition()
+		//SetPosition()
 	};
 
-	class RecentMolecule
+	class RecentMolecule // might as well inherit from normal
 	{
 	public:
 		Vec3d position;
@@ -53,6 +57,8 @@ namespace accord::microscopic
 		{
 
 		}
+
+		// GetTime()
 	};
 
 	class Subvolume
@@ -118,7 +124,7 @@ namespace accord::microscopic
 		// Add a subvolume of a different type which is owned by the same microscopic region, or add a subvolume 
 		// owned by a different microscopic region (same or different type).
 		// To save neighbour checks, only the subvolumes with the lower molecule id between neighbours for
-		// subvolumes of different types owned by the same microscopic region, need to know about the relationship.
+		// subvolumes of different types owned by the SAME microscopic region, need to know about the relationship.
 		// Must ensure bi-molecular reaction reactants are ordered lower molecule type id first.
 		void AddNeighbour(Subvolume subvolume)
 		{

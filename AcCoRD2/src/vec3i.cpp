@@ -18,6 +18,26 @@ namespace accord
 
 	}
 
+	Vec3i Vec3i::GeneratePoisson(double mean)
+	{
+		return
+		{
+			GeneratePoisson(mean),
+			GeneratePoisson(mean),
+			GeneratePoisson(mean)
+		};
+	}
+
+	Vec3i Vec3i::GenerateIntUniform(int lower_bound, int upper_bound)
+	{
+		return
+		{
+			GenerateIntUniform(lower_bound, upper_bound),
+			GenerateIntUniform(lower_bound, upper_bound),
+			GenerateIntUniform(lower_bound, upper_bound)
+		};
+	}
+
 	// returns the larger of x, y or z
 	int Vec3i::Max() const
 	{

@@ -28,6 +28,12 @@ namespace accord
 
 		Vec3i(const Vec3d& v);
 
+		static Vec3i GeneratePoisson(double mean);
+
+		static Vec3i GenerateIntUniform(int lower_bound, int upper_bound);
+
+
+
 		// returns the larger of x, y or z
 		int Max() const;
 

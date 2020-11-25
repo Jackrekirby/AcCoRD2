@@ -28,6 +28,15 @@ namespace accord
 
 		Vec3d(const Vec3i& v);
 
+		// consider renaming to RandomExponential()
+		static Vec3d GenerateExponential(double mean);
+
+		static Vec3d GenerateNormal(double mean = 0.0, double std = 1.0);
+
+		static Vec3d GenerateTriangular();
+
+		static Vec3d GenerateUniform(double lower_bound = 0.0, double upper_bound = 1.0);
+
 		static Vec3d PolarToCartesian(double radius, double theta, double phi);
 
 		double GetAxis(Axis3D axis) const;
