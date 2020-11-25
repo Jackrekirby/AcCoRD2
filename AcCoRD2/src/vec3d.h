@@ -6,6 +6,7 @@
 namespace accord
 {
 	struct Vec3b;
+	struct Vec3i;
 	template<typename U>
 	struct Vec3;
 
@@ -24,6 +25,8 @@ namespace accord
 		Vec3d(double x, double y, double z);
 
 		Vec3d() = default;
+
+		Vec3d(const Vec3i& v);
 
 		static Vec3d PolarToCartesian(double radius, double theta, double phi);
 
@@ -119,6 +122,7 @@ namespace accord
 		void operator /= (const Vec3d& v);
 
 
+		void EqualIf(const Vec3b& b, const Vec3d& v);
 
 		Vec3b operator < (const Vec3d& v) const;
 

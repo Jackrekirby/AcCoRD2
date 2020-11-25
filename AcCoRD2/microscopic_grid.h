@@ -2,6 +2,14 @@
 #include "pch.h"
 #include "microscopic_subvolume.h"
 #include "microscopic_region.h"
+#include "vec3i.h"
+#include "vec3b.h"
+
+// Questions
+// Do molecules get added to the closest subvolume for mesoscopic regions or are they allowed to continue moving
+// until they no longer collide with anything? (would allow molecules to skip meso regions and be placed in centre)
+
+// only regions with a slower timestep should check regions of faster time step. E.g. If(region.timestep < region2.timestep)
 
 namespace accord
 {
@@ -12,8 +20,14 @@ namespace accord
 		{
 			return time;
 		}
+
+		static double GetNumberOfMoleculeTypes()
+		{
+			return num_molecule_types;
+		}
 	private:
 		static double time;
+		static int num_molecule_types;
 	};
 }
 // change all structs to classes (easier forward declaration)
@@ -34,12 +48,12 @@ namespace accord::microscopic
 	// have to return new owner as current owner is currently iterating through molecules so needs to 
 	// know if molecule was deleted in order to update iterator.
 
-	class Relation
+	class Relation // High Priority Relation
 	{
 	public:
-		RegionShape& GetShape();
+		virtual RegionShape& GetShape() const = 0;
 
-		SurfaceType& GetSurfaceType();
+		virtual SurfaceType& GetSurfaceType() const = 0;
 
 		// each surface type can have its own pass molecule function so it can choose what to do with the molecule
 		std::optional<Vec3d> PassMolecule(const Vec3d& end, const shape::collision::Collision3D& collison, Grid* owner)
@@ -81,15 +95,97 @@ namespace accord::microscopic
 	class Grid
 	{
 	public:
+
+		// rename n_partitions
+		// pass grid pointer to region
+		Grid(Vec3d origin, Vec3d length, Vec3i partitions, double diffision_coefficient, Region* region)
+			: box(origin, length), partitions(partitions), diffision_coefficient(diffision_coefficient),
+			region(region)
+		{
+			subvolumes.reserve(partitions.Volume());
+			CreateSubvolumes();
+		}
+
+		void CreateSubvolumes()
+		{
+			Vec3i i;
+			for (i.z = 0; i.z < partitions.z; i.z++)
+			{
+				for (i.y = 0; i.y < partitions.y; i.y++)
+				{
+					for (i.x = 0; i.x < partitions.x; i.x++)
+					{
+						Vec3d subvolume_length = box.GetLength() / partitions;
+						subvolumes.emplace_back(box.GetOrigin() + i * subvolume_length, subvolume_length);
+					}
+				}
+			}
+		}
+
+		void AddSiblings()
+		{
+			Vec3i i;
+			for (i.z = 0; i.z < partitions.z; i.z++)
+			{
+				for (i.y = 0; i.y < partitions.y; i.y++)
+				{
+					for (i.x = 0; i.x < partitions.x; i.x++)
+					{
+						AddNeighbouringSibling(i);
+					}
+				}
+			}
+			
+		}
+
+		void AddNeighbouringSibling(const Vec3i& i)
+		{
+			auto subvolume = GetOptionalSubvolume(i);
+
+			Vec3i j;
+			for (j.z = -1; j.z <= 1; j.z++)
+			{
+				for (j.y = -1; j.y <= 1; j.y++)
+				{
+					for (j.x = -1; j.x <= 1; j.x++)
+					{
+						auto subvolume2 = GetOptionalSubvolume(i + j);
+						if (subvolume2.has_value())
+						{
+							subvolume.value().AddSibling(*subvolume2);
+						}
+					}
+				}
+			}
+		}
+
+		// external neighbours (from a different region)
+		void AddNeighbour(Grid grid) // change to add relatives
+		{
+			for (auto& subvolume1 : subvolumes)
+			{
+				auto& b1 = subvolume1.GetBoundingBox();
+				for (auto& subvolume2 : grid.GetSubvolumes())
+				{
+					auto& b2 = subvolume2.GetBoundingBox();
+					if (b1.IsOverlapping(b2) || b1.IsFullyNeighbouring(b2))
+					{
+						subvolume1.AddNeighbour(subvolume2);
+						subvolume2.AddNeighbour(subvolume1);
+					}
+				}
+			}
+		}
+
 		void AddNormalMolecule(NormalMolecule molecule)
 		{
-			Vec3d index = (molecule.position - box.GetOrigin()) / box.GetLength();
+			Vec3i index = Vec3d(partitions) * ((molecule.position - box.GetOrigin()) / box.GetLength());
 			GetSubvolume(index).AddNormalMolecule(molecule);
 		}
 
 		void AddRecentMolecule(RecentMolecule molecule)
 		{
-			Vec3d index = (molecule.position - box.GetOrigin()) / box.GetLength();
+			Vec3d index = Vec3d(partitions) * ((molecule.position - box.GetOrigin()) / box.GetLength());
 			GetSubvolume(index).AddRecentMolecule(molecule);
 		}
 
@@ -175,16 +271,28 @@ namespace accord::microscopic
 					{
 						owner = &relation;
 						// assumes you dont have mulitple valid low priority neighbours overlapping
+
+						// will have to change as mesoregions dont check molecule path? Or do they?
 						return relation.CheckMoleculePath(collision->intersection, end, owner);
 					}
 				}
 
 				for (auto& neighbour : neighbours)
 				{
+					// will no longer work due to meso regions
+					// meso neighbour no longer need to check molecule path
 					if (neighbour.AttemptPassMolecule(collision->intersection, owner))
 					{
 						return owner->CheckMoleculePath(collision->intersection, end, owner);
 					}
+
+					// meso solution
+					/* if(neighbour.IsMoleculeOnNeighbour())
+					*  then [position] = PassMolecule(intersection, end, owner)
+					* grid runs CheckMoleculePath()
+					* membrane finds the correct grid and it called checkpath; // will throw error if no grid found
+					* meso region just returns [position, owner = meso]
+					*/
 				}
 			}
 		}
@@ -192,10 +300,11 @@ namespace accord::microscopic
 		// dont change old position, create new one.
 		Vec3d DiffuseMolecule(const NormalMolecule& molecule)
 		{
-			return { molecule.position + std::sqrt(2 * diffision_coefficient * time_step) *
+			return { molecule.position + std::sqrt(2 * diffision_coefficient * region->GetTimeStep()) *
 				Vec3d(Random::GenerateNormal(), Random::GenerateNormal(), Random::GenerateNormal()) };
 		}
 
+		// will require envionment time to be updated before event is finished or do environment time + time step
 		Vec3d DiffuseMolecule(const RecentMolecule& molecule)
 		{
 			return { molecule.position +
@@ -208,9 +317,29 @@ namespace accord::microscopic
 			return *region;
 		}
 
-	private:
-		Subvolume& GetSubvolume(Vec3d index)
+		std::vector<Subvolume>& GetSubvolumes() // could have another const version
 		{
+			return subvolumes;
+		}
+
+	private:
+		// will always return a valid subvolume even if index is for a position outside of subvolume
+		Subvolume& GetSubvolume(Vec3i index)
+		{
+			// if any of the indicies along any axis are less than 0 (could be due to floating point error)
+			// then set the index of that axis to 0, else leave as is.
+			index *= (index < Vec3i(0, 0, 0));
+			// if index along any axis is equal to or greater than number of partitions set it to partitions - 1
+			index.EqualIf((index >= partitions), partitions - 1);
+
+			return subvolumes.at(index.x + index.y * partitions.x + index.z * partitions.x * partitions.y);
+		}
+
+		// if index is not valid null will be returned
+		std::optional<Subvolume&> GetOptionalSubvolume(const Vec3i& index)
+		{
+			if ((index < Vec3i(0, 0, 0)).Any()) return std::nullopt;
+			if ((index >= partitions).Any()) return std::nullopt;
 			return subvolumes.at(index.x + index.y * partitions.x + index.z * partitions.x * partitions.y);
 		}
 
@@ -220,9 +349,12 @@ namespace accord::microscopic
 
 		// need to specify direction of low and high relations
 		// neighbours regions/surfaces just need to check OnBoundary / On Surface
+
+		// neighbours and high low priority relations INCLUDE MESOREGIONS!!
 		std::vector<Neighbour> neighbours;
-		std::vector<Grid> low_priority_relations; // CHANGE to GRID
-		std::vector<Relation> high_priority_relations; // rename relation to relatives?
+		std::vector<Grid> low_priority_relations; // CHANGE to LowPriorityRelation
+		std::vector<Relation> high_priority_relations; // CHANGE to HighPriorityRelation
+		// rename relation to relatives?
 		// high priority relations can be non-owning or owning (check internal/external collision)
 		// low priority relations have to be grids (check is molecule inside border) (NOT SURFACES)
 		// neighbours relations have to be grids or membranes
@@ -235,11 +367,11 @@ namespace accord::microscopic
 		// 2. membrane relations will check IfMoleculeIsOnBorder() then for each of its grid relations check 
 		// IfMoleculeIsOnBorder() then run CheckMoleculePath()
 
-		double time_step;
-		double simulation_time;
+		double time_step; // move to region
+		double local_simulation_time; // move to region
 
 		double diffision_coefficient;
-		Vec3d partitions;
+		Vec3i partitions;
 		std::vector<Subvolume> subvolumes;
 		shape::relation::Box box; // the shape of a region can be a (relation and collision) box 
 		Region* region; // regions which owns this grid

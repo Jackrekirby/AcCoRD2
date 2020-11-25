@@ -5,6 +5,7 @@
 namespace accord
 {
 	struct Vec3b;
+	struct Vec3d;
 
 	template<typename U>
 	struct Vec3;
@@ -24,6 +25,8 @@ namespace accord
 		Vec3i(int x, int y, int z);
 
 		Vec3i() = default;
+
+		Vec3i(const Vec3d& v);
 
 		// returns the larger of x, y or z
 		int Max() const;
@@ -77,6 +80,12 @@ namespace accord
 
 		void operator *= (const Vec3i& v);
 
+		void Vec3i::operator *= (const Vec3b& v);
+
+		Vec3i operator * (const Vec3b& v) const;
+
+		friend Vec3i operator * (const Vec3b& b, const Vec3i& v);
+
 
 
 		Vec3i operator / (const Vec3i& v) const;
@@ -87,6 +96,7 @@ namespace accord
 
 		void operator /= (const Vec3i& v);
 		
+		void EqualIf(const Vec3b& b, const Vec3i& v);
 		
 		
 		Vec3i operator % (const Vec3i& v) const;

@@ -9,7 +9,13 @@ namespace accord::microscopic
 
 	class TypedSubvolumes
 	{
-		std::vector<Subvolume> subvolumes;
+	public:
+		void Add(Subvolume* subvolume)
+		{
+			subvolumes.emplace_back(subvolume);
+		}
+
+		std::vector<Subvolume*> subvolumes;
 	};
 
 	class NormalMolecule
@@ -41,35 +47,69 @@ namespace accord::microscopic
 	{
 	public:
 
-		Subvolume(shape::relation::Box box)
-			: box(box)
+		Subvolume(Vec3d origin, Vec3d length)
+			: box(origin, length)
 		{
 
 		}
 
-		std::vector<NormalMolecule>& AddNormalMolecule(NormalMolecule normal_molecule);
+		void AddNormalMolecule(NormalMolecule normal_molecule)
+		{
+			
+		}
 
-		std::vector<RecentMolecule>& AddRecentMolecule(RecentMolecule normal_molecule);
+		void AddRecentMolecule(RecentMolecule normal_molecule)
+		{
+			
+		}
 
-		std::vector<NormalMolecule>& GetNormalMolecules();
+		std::vector<NormalMolecule>& GetNormalMolecules()
+		{
+			return normal_molecules;
+		}
 
-		std::vector<RecentMolecule>& GetRecentMolecules();
+		std::vector<RecentMolecule>& GetRecentMolecules()
+		{
+			return recent_molecules;
+		}
 
 		// Bimolecular Reactions
 
 		// Add a subvolume of the same type which is owned by the same microscopic region
 		// Only one sibling needs to know about the relation so two subvolumes are only checked against eachother once
-		void AddSibling();
+		void AddSibling(Subvolume subvolume)
+		{
+			auto relatives = subvolume.GetRelatives();
+			// if subvolume does not contain this subvolume then add subvolume to this subvolume
+			if (std::find(relatives.begin(), relatives.end(), *this) == relatives.end())
+			{
+				relations.at(molecule_id).Add(&subvolume);
+			}
+		}
+
+		const std::vector<TypedSubvolumes>& GetRelatives() const
+		{
+			return relations;
+		}
 
 		// Add a subvolume of a different type which is owned by the same microscopic region, or add a subvolume 
 		// owned by a different microscopic region (same or different type).
 		// To save neighbour checks, only the subvolumes with the lower molecule id between neighbours for
 		// subvolumes of different types owned by the same microscopic region, need to know about the relationship.
 		// Must ensure bi-molecular reaction reactants are ordered lower molecule type id first.
-		void AddNeighbour();
+		void AddNeighbour(Subvolume subvolume)
+		{
+			relations.at(molecule_id).Add(&subvolume);
+		}
+
+		const shape::relation::Box& GetBoundingBox()
+		{
+			return box;
+		}
 	private:
 
 		shape::relation::Box box;
+		int molecule_id; // consider getting as pointer from grid. Could add private function GetMoleculeID()
 
 		std::vector<NormalMolecule> normal_molecules;
 		std::vector<RecentMolecule> recent_molecules;

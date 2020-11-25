@@ -2,12 +2,19 @@
 #include "vec3d.h"
 #include "vec3b.h"
 #include "vec3.h"
+#include "vec3i.h"
 
 
 namespace accord
 {
 	Vec3d::Vec3d(double x, double y, double z)
 		: x(x), y(y), z(z)
+	{
+
+	}
+
+	Vec3d::Vec3d(const Vec3i& v)
+		: x(v.x), y(v.y), z(v.z)
 	{
 
 	}
@@ -230,6 +237,13 @@ namespace accord
 		z /= v.z;
 	}
 
+
+	void Vec3d::EqualIf(const Vec3b& b, const Vec3d& v)
+	{
+		if (b.x) x = v.x;
+		if (b.y) y = v.y;
+		if (b.z) z = v.z;
+	}
 
 
 	Vec3b Vec3d::operator < (const Vec3d& v) const
