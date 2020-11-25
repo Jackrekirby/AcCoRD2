@@ -16,6 +16,9 @@ namespace accord
 		static double time;
 	};
 }
+// change all structs to classes (easier forward declaration)
+// must decide whether to use * of value()
+// can i not use has_value()?
 
 namespace accord::microscopic
 {
@@ -62,7 +65,9 @@ namespace accord::microscopic
 
 	class Neighbour
 	{
-		std::optional<Vec3d> PassMolecule(const Vec3d& intersection, const Vec3d& end, Grid* owner)
+	public:
+		// function will change the owner so if attempt is successful: owner.checkmoleculepath will be called
+		bool AttemptPassMolecule(const Vec3d& intersection, Grid* owner)
 		{
 			// if membrane
 			// IfMoleculeIsOnMembrane()
@@ -92,9 +97,43 @@ namespace accord::microscopic
 		{
 			for (auto& subvolume : subvolumes)
 			{
-				for (auto& molecule : subvolume.GetNormalMolecules())
+				// diffuse normal molecules
+				auto& molecules = subvolume.GetNormalMolecules();
+				for (auto molecule = molecules.begin(); molecule != molecules.end();)
 				{
+					Grid* owner = this;
+					std::optional<Vec3d> new_position = CheckMoleculePath(molecule->position, DiffuseMolecule(*molecule), owner);
 
+					if (new_position.has_value())
+					{
+						if (owner == this)
+						{
+							*molecule = new_position.value();
+							++molecule;
+						}
+						else
+						{
+							owner->AddNormalMolecule(new_position.value());
+							molecule = molecules.erase(molecule);
+						}
+					}
+					else
+					{
+						molecule = molecules.erase(molecule);
+					}	
+				}
+
+				// recent molecule list can be clear every time
+				// must add recent molecules to normal after normal has already been checked
+				for (auto& molecule : subvolume.GetRecentMolecules())
+				{
+					Grid* owner = this;
+					std::optional<Vec3d> new_position = CheckMoleculePath(molecule.position, DiffuseMolecule(molecule), owner);
+					
+					if (new_position.has_value())
+					{
+						owner->AddNormalMolecule(new_position.value());
+					}
 				}
 			}
 		}
@@ -135,32 +174,33 @@ namespace accord::microscopic
 					if (relation.GetRegion().GetRegionShape().IsMoleculeInsideBorder(collision->intersection))
 					{
 						owner = &relation;
-						relation.CheckMoleculePath(collision->intersection, end, owner);
+						// assumes you dont have mulitple valid low priority neighbours overlapping
+						return relation.CheckMoleculePath(collision->intersection, end, owner);
 					}
 				}
-			}
 
-			for (auto& neighbour : neighbours)
-			{
-
+				for (auto& neighbour : neighbours)
+				{
+					if (neighbour.AttemptPassMolecule(collision->intersection, owner))
+					{
+						return owner->CheckMoleculePath(collision->intersection, end, owner);
+					}
+				}
 			}
 		}
 
 		// dont change old position, create new one.
-		void DiffuseNormalMolecule(NormalMolecule& molecule)
+		Vec3d DiffuseMolecule(const NormalMolecule& molecule)
 		{
-			double magnitude = std::sqrt(2 * diffision_coefficient * time_step);
-			molecule.position.x += Random::GenerateNormal() * magnitude;
-			molecule.position.y += Random::GenerateNormal() * magnitude;
-			molecule.position.z += Random::GenerateNormal() * magnitude;
+			return { molecule.position + std::sqrt(2 * diffision_coefficient * time_step) *
+				Vec3d(Random::GenerateNormal(), Random::GenerateNormal(), Random::GenerateNormal()) };
 		}
 
-		void DiffuseRecentMolecule(RecentMolecule& molecule)
+		Vec3d DiffuseMolecule(const RecentMolecule& molecule)
 		{
-			double magnitude = std::sqrt(2 * diffision_coefficient * (Environment::GetTime() - molecule.time));
-			molecule.position.x += Random::GenerateNormal() * magnitude;
-			molecule.position.y += Random::GenerateNormal() * magnitude;
-			molecule.position.z += Random::GenerateNormal() * magnitude;
+			return { molecule.position +
+				std::sqrt(2 * diffision_coefficient * (Environment::GetTime() - molecule.time)) *
+				Vec3d(Random::GenerateNormal(), Random::GenerateNormal(), Random::GenerateNormal())};
 		}
 
 		Region& GetRegion()
