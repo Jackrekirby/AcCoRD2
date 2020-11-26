@@ -9,6 +9,7 @@
 // Do molecules get added to the closest subvolume for mesoscopic regions or are they allowed to continue moving
 // until they no longer collide with anything? (would allow molecules to skip meso regions and be placed in centre)
 
+// WRONG:
 // only regions with a slower timestep should check regions of faster time step. E.g. If(region.timestep < region2.timestep)
 
 namespace accord
@@ -77,6 +78,7 @@ namespace accord::microscopic
 		}
 	};
 
+	// make sure to place surfaces as a younger generation or just make sure surface neighbours are checked first
 	class Neighbour
 	{
 	public:
@@ -291,6 +293,7 @@ namespace accord::microscopic
 					*  then [position] = PassMolecule(intersection, end, owner)
 					* grid runs CheckMoleculePath()
 					* membrane finds the correct grid and it called checkpath; // will throw error if no grid found
+					* in relation setup surfaces must not have any unnamed neighbours
 					* meso region just returns [position, owner = meso]
 					*/
 				}
@@ -373,8 +376,8 @@ namespace accord::microscopic
 		double diffision_coefficient;
 		Vec3i partitions;
 		std::vector<Subvolume> subvolumes;
-		shape::relation::Box box; // the shape of a region can be a (relation and collision) box 
+		shape::relation::Box box; // the shape of a region can be a (relation and collision) box but the grid must always be a (relation) box
 		Region* region; // regions which owns this grid
-		// but the grid must always be a (relation) box
+		
 	};
 }

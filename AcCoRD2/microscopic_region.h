@@ -51,6 +51,7 @@ namespace accord::microscopic
 		// can foresee multiple inheritance problem
 		// make inheritance virtual ?
 		// construct shape::basic::box ?
+		// check basic box is not constructed twice
 		Box(Vec3d origin, Vec3d length)
 			: shape::relation::Box(origin, length), shape::collision::Box(origin, length)
 		{
@@ -122,6 +123,7 @@ namespace accord::microscopic
 		// grid neighbours are for diffusion
 		// subvolume neighbours are for bi-molecular reactions
 		// no need to add subvolume neighbours for neighbouring regions where timestep is smaller
+		// WRONG: if two regions excute at the same time (0.1 time step and 0.3 timestep will match every 3 steps) and priority the same execution order random
 		void AddNeighbours(ID molecule_a, ID molecule_b)
 		{
 			grids.at(molecule_a).AddNeighbour(grids.at(molecule_b));
@@ -197,6 +199,8 @@ namespace accord::microscopic
 			// THE ORDER OF EXECUTION IS UNKNOWN
 
 			// OR for each region which has the same reaction check if overlap and if they do add
+			// will not work as one reaction may be valid but another may not so will have to check if region has reaction ID
+			// Store are bool array [0, 0, 1, 1, 0, 1] so [bool] DoesRegionAllowReaction(ReactionID)
 		}
 
 		const double& GetTimeStep()

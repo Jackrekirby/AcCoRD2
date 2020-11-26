@@ -1,0 +1,24 @@
+clear all;
+clc;
+
+figure;
+
+flat = false;
+
+if(flat)
+    a = plotRect();
+    hold on;
+    b = plotCircle();
+    c = plotPath2D();
+    hold off;
+else
+    d = plotRectSurface();
+    hold on;
+    e = plotPath3D();
+    f = plotBox([0, 0, 0], [1, 1, 1]'faceColor', 'r');
+    hold off;
+end
+xlabel('x');
+ylabel('y');
+zlabel('z');
+axis equal;
