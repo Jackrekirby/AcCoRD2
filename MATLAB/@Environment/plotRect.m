@@ -1,10 +1,11 @@
-function [hRect] = plotRect(origin, length, args)
+function [hRect] = plotRect(obj, origin, length, args)
     arguments
+        obj
         origin (1, 2) double = [-0.5, -0.5];
         length (1, 2) double = [1, 1];
-        args.faceAlpha double = 0.5;
-        args.faceColor = 'b';
-        args.edgeColor = 'k';
+        args.faceAlpha double = obj.defaultFaceAlpha;
+        args.faceColor = obj.GetDefaultFaceColor();
+        args.edgeColor = obj.defaultLineColor;
     end
     
     max = origin + length;

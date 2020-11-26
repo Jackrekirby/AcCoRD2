@@ -1,11 +1,12 @@
-function [hRectSurface] = plotRectSurface(origin, length, args)
+function [hRectSurface] = plotRectSurface(obj, origin, length, args)
     % Plots a rectangle in 3D space
     arguments
+        obj
         origin (1, 3) double = [-0.5, -0.5, 0];
         length (1, 3) double {mustHaveExactlyTwoNonZeroLengths(length)} = [1, 1, 0];
-        args.faceAlpha double = 0.5;
-        args.faceColor = 'b';
-        args.edgeColor = 'k';
+        args.faceAlpha double = obj.defaultFaceAlpha;
+        args.faceColor = obj.GetDefaultFaceColor();
+        args.edgeColor = obj.defaultLineColor;
     end
     
     if(nnz(length) == 2) % SurfaceRect must recieve exactly 2 non zero lengths

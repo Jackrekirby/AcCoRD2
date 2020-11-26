@@ -1,11 +1,12 @@
-function [hCircle] = plotCircle(centre, radius, args)
+function [hCircle] = plotCircle(obj, centre, radius, args)
     arguments
+        obj
         centre (1, 2) double = [0, 0];
         radius (1, 1) double = 0.5;
-        args.resolution (1, 1) double = 30;
-        args.faceAlpha double = 0.5;
-        args.faceColor = 'b';
-        args.edgeColor = 'k';
+        args.resolution (1, 1) double = obj.defaultCircleResolution;
+        args.faceAlpha double = obj.defaultFaceAlpha;
+        args.faceColor = obj.GetDefaultFaceColor();
+        args.edgeColor = obj.defaultLineColor;
     end
 
     theta = linspace(0, 2*pi, args.resolution);
