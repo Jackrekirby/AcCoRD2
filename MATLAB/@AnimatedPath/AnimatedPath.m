@@ -1,15 +1,22 @@
 classdef AnimatedPath < handle
     properties
-        points
         nPoints
         duration
         index
         startTime
         currentTime
-        hAnimatedLine
-        hAnimatedMarkers
-        hStartPoint
-        hEndPoint
+        
+        hPathLine
+        hPathMarkers
+        hStartMarker
+        hEndMarker
+        hNonReflectedLine
+        hNonReflectedMarkers
+        
+        path
+        nonReflectedLine
+        nonReflectedMarkers
+        showNonReflectedPoints
     end
     
     methods
@@ -23,31 +30,48 @@ classdef AnimatedPath < handle
                  args.marker = 'o';
                  args.lineWidth = 1;
                  args.lineColor = 'k';
-                 args.pathColors (1, 3) cell = {'g', 'b', 'r'};
+                 args.pathColors (1, 4) cell = {'g', 'b', 'r', 'm'};
+                 args.showNonReflectedPoints = true;
              end
              
-             obj.points = points;
-             obj.nPoints = size(points, 1);
+             
              obj.startTime = args.startTime;
              obj.currentTime = 0;
              obj.duration = args.duration;
              obj.index = 1;
+             obj.showNonReflectedPoints = args.showNonReflectedPoints;
              
              holdState = ishold();
-             obj.hStartPoint = environment.plotPoints3D(points(1, :), 'color',  args.pathColors{1});
+             obj.hStartMarker = environment.plotPoints3D(points(1, :), 'color',  args.pathColors{1});
              hold on;
-             obj.hEndPoint = environment.plotPoints3D(points(end, :), 'color', args.pathColors{3});
+             obj.hEndMarker = environment.plotPoints3D(points(end, :), 'color', args.pathColors{3});
              
-             obj.hAnimatedLine = animatedline(points(1, 1), points(1, 2), points(1, 3), ...
+             if(obj.showNonReflectedPoints)
+                
+                obj.nonReflectedLine.x = [points(3:2:end-1, 1), points(2:2:end-1, 1)];
+                obj.nonReflectedLine.y = [points(3:2:end-1, 2), points(2:2:end-1, 2)];
+                obj.nonReflectedLine.z = [points(3:2:end-1, 3), points(2:2:end-1, 3)];
+                obj.nonReflectedMarkers = points(2:2:end-1, :);
+                
+                z = obj.nonReflectedLine.x .* 0;
+                
+                obj.hNonReflectedLine = plot3(z', z', z', 'Marker', 'none', 'LineStyle', '--', ...
+                'LineWidth', args.lineWidth, 'Color', args.lineColor);
+                obj.hNonReflectedMarkers = animatedline('Marker', args.marker, 'LineStyle', 'none', ...
+                'LineWidth', args.lineWidth, 'MarkerEdgeColor', args.pathColors{4});
+             end
+            
+             obj.path = points([1:2:end, end], :);
+             obj.hPathLine = animatedline(obj.path(1, 1), obj.path(1, 2), obj.path(1, 3), ...
              'Marker', 'none', 'LineStyle', args.lineStyle, ...
              'LineWidth', args.lineWidth, 'Color', args.lineColor);
-             obj.hAnimatedMarkers = animatedline( ...
-             'Marker', args.marker, 'LineStyle', 'none', ...
+             obj.hPathMarkers = animatedline('Marker', args.marker, 'LineStyle', 'none', ...
              'LineWidth', args.lineWidth, 'MarkerEdgeColor', args.pathColors{2});
-         
+             
+             obj.nPoints = size(obj.path, 1);
              if(~holdState) 
                 hold off;
-            end
+             end
         end
         
         function play(obj, pausesPerUpdate)
@@ -84,15 +108,29 @@ classdef AnimatedPath < handle
                 end
                 if(newIndex > obj.index)
                     i = (obj.index + 1):newIndex;
-                    p = obj.points(i, :);
-                    obj.hAnimatedLine.addpoints(p(:, 1), p(:, 2), p(:, 3));
+                    p = obj.path(i, :);
+                    obj.hPathLine.addpoints(p(:, 1), p(:, 2), p(:, 3));
                     if(obj.index + 1 ~= newIndex && newIndex == obj.nPoints)
                         i(end) = obj.nPoints - 1;
                     end
                     if(newIndex ~= 1 && i(end) ~= obj.nPoints)
-                        p = obj.points(i, :);
-                        obj.hAnimatedMarkers.addpoints(p(:, 1), p(:, 2), p(:, 3));
+                        p = obj.path(i, :);
+                        obj.hPathMarkers.addpoints(p(:, 1), p(:, 2), p(:, 3));
+                        p = obj.nonReflectedLine;
+                        aa = p
+                        ab = p.x
+                        ac = p.x(1, :)
+                        for j = i-1
+                            obj.hNonReflectedLine(j).XData = p.x(j, :);
+                            obj.hNonReflectedLine(j).YData = p.y(j, :);
+                            obj.hNonReflectedLine(j).ZData = p.z(j, :);
+                        end
+                        %obj.hNonReflectedLine.addpoints(p.x(i-1, :), p.y(i-1, :), p.z(i-1, :));
                     end
+                    
+             
+                    
+                    
                     obj.index = newIndex;
                     didUpdate = true;
                 else
