@@ -12,6 +12,8 @@ classdef Environment < handle
         defaultLineWidth
         defaultLineStyle
         defaultLineColor
+        defaultPathColors
+        defaultCollisionColors
         defaultPathStartColor
         defaultPathMiddleColor
         defaultPathEndColor
@@ -36,6 +38,8 @@ classdef Environment < handle
                 args.defaultLineColor = 'k'
                 args.defaultLineWidth = 1;
                 args.defaultLineStyle = '-';
+                args.defaultPathColors (1, 3) cell = {'g', 'b', 'r'};
+                args.defaultCollisionColors (1, 4) cell = {'g', 'b', 'r', 'm'};
                 args.defaultPathStartColor = 'g';
                 args.defaultPathMiddleColor = 'b';
                 args.defaultPathEndColor = 'r';
@@ -54,6 +58,8 @@ classdef Environment < handle
             obj.defaultLineWidth = args.defaultLineWidth;
             obj.defaultLineColor = args.defaultLineColor;
             obj.defaultLineStyle = args.defaultLineStyle;
+            obj.defaultPathColors = args.defaultPathColors;
+            obj.defaultCollisionColors = args.defaultCollisionColors;
             obj.defaultPathStartColor = args.defaultPathStartColor;
             obj.defaultPathMiddleColor = args.defaultPathMiddleColor;
             obj.defaultPathEndColor = args.defaultPathEndColor;
@@ -72,6 +78,7 @@ classdef Environment < handle
         [hBox] = plotBox(obj, origin, length, args)
         [hSphere] = plotSphere(obj, centre, radius, args)
         [hRectSurface] = plotRectSurface(obj, origin, length, args)
+        [hCircleSurface] = plotCircleSurface(obj, centre, radius, axis, args)
         [hCollision3D] = plotCollision3D(obj, origin, finish, intersection, reflection)
     end
     

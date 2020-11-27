@@ -1,0 +1,21 @@
+function [hCollision3D] = plotCollision3D(obj, origin, finish, intersection, reflection, args)
+    arguments
+        obj
+        points (:, 3) double = [-0.5, -0.5, -0.5; 0, 0, 0; 0.5, 0.5, 0.5];
+        args.lineWidth double = obj.defaultLineWidth;
+        args.lineColor = obj.defaultLineColor;
+        args.lineStyle = obj.defaultLineStyle;
+        args.collisionColors = obj.defaultCollisionColors;
+        args.showMarkers = obj.showPathMarkers;
+    end
+    holdState = ishold();
+    
+    hCollision3D.reflectedPath = obj.plotPath3D([origin; intersection; reflection], 'showMarkers', true);
+    hold on;
+    hCollision3D.endPath = obj.plotPath3D([intersection; finish], 'showMarkers', false, 'lineStyle', '--');
+    hCollision3D.endPoint = obj.plotPoints3D(finish, 'color', 'm');
+    
+    if(~holdState && args.showMarkers) 
+        hold off;
+    end
+end
