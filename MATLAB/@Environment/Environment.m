@@ -80,6 +80,8 @@ classdef Environment < handle
         [hRectSurface] = plotRectSurface(obj, origin, length, args)
         [hCircleSurface] = plotCircleSurface(obj, centre, radius, axis, args)
         [hCollision3D] = plotCollision3D(obj, origin, finish, intersection, reflection)
+        
+        plot(obj, jsonFilePath)
     end
     
     methods (Access = private)

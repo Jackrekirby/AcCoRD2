@@ -24,8 +24,8 @@ end
 
 function faceColor = GetDefaultBoxFaceColor(obj)
     if(obj.uniqueColorPerBoxFace)
-        faceColor = obj.GetDefaultFaceColor();
-    else
         faceColor = 'flat';
+    else
+        faceColor = obj.GetDefaultFaceColor();
     end
 end
