@@ -1,4 +1,38 @@
 %% Archive
+
+%% Draw Shapes Using Environment Class
+clear all;
+clc;
+
+figure;
+
+j = Environment('defaultFaceAlpha', 0.2, 'uniqueColorPerBoxFace', true, 'defaultColorMap', hsv(6), ...
+    'defaultPathColors', {'k', 'm', 'c'});
+flat = true;
+
+if(flat)
+    a = j.plotRect();
+    hold on;
+    b = j.plotCircle();
+    c = j.plotPath2D();
+    hold off;
+else
+    %d = e.plotRectSurface([-0.5, -0.5, -0.25], [1, 1, 0]);
+    hold on;
+    %f = e.plotPath3D();
+    %g = e.plotSphere();
+    h = j.plotBox();
+    %j = e.plotCircleSurface([-1, 0, 0], 0.5, 'x');
+    i = j.plotCollision3D([0, 0, 0], [0.5, 0.1, 0.25], [0, 0.2, 0.5], [1, 0.2, 0.5], 'colors', {'c', 'm', 'r', 'y'});
+    hold off;
+end
+xlabel('x');
+ylabel('y');
+zlabel('z');
+axis equal;
+view(45,30);
+
+%% Planning for Animated Paths
 clear all;
 clc;
 

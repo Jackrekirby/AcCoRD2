@@ -1,43 +1,25 @@
-%% MATLAB VISUALISATION TOOLS
+%% To Do List
 
-clear all;
-clc;
+% Ensure consistent style key value pairs (Word Case)           DONE
+% Add functions to class so they can share default args         DONE
+% Add collision plotting                                        DONE
+% Add json reading                                              DONE
+% Set default 3d view                                           DONE
+% Add animated paths (2D / 3D)                              (DONE, DONE)
+% Add circle surface                                            DONE
+% Add cylinders                                                 ....
+% Change path colour arguments to cell array                    DONE
+% Nested classes                                                ....
 
+% Consider reformatting surface inputs of form (plane, shape)   ....
+% Seperate animated path functions into seperate files          DONE
+% Consider seperating environment functions into 2d and 3d as   DONE
+% highlighting edges would be more useful for 2d while coloured
+% faces is more useful for 3d.
 
-h = animatedline;
-axis([0, 10, 0, 100]);
+% Track bug:
+% https://uk.mathworks.com/matlabcentral/answers/666553-linewidth-parameter-not-affecting-marker-thickness-of-animated-line
 
-x = [0:10];
-y = x .^ 2;
-
-for k = 1:length(x)
-    addpoints(h,x(k),y(k));
-    pause(1);
-    drawnow
-end
-
-% PlotEnvironment("jsonfilepath", animation_speed)
-
-% Functions
-
-% 2D Environments
-
-% [plot] = PlotRect
-% [plot] = PlotCircle
-% [plot] = PlotPoints(points, show connections)
-% AnimatePaths
-
-% 3D Environments
-
-% [plot] = PlotBox
-% [plot] = PlotSphere
-% [plot] = PlotRectSurface
-% [plot] = PlotCircleSurface
-
-% Plot 2D and 3D shapes onto different plot
-
-% Need to decide Json Format
-
-% [shapes] = ImportJson()
-
-% Type = Rect, Circle, Path2D
+% Consider removing path and collision as AnimatedPath makes them redundant
+% Points still needed for rendering molecules;
+% Using vargin is not longer recommended (find website reference)

@@ -1,4 +1,4 @@
-classdef AnimatedPath < handle
+classdef AnimatedPath2D < handle
     properties
         nPoints
         duration
@@ -20,9 +20,9 @@ classdef AnimatedPath < handle
     end
     
     methods (Access = public)
-        function obj = AnimatedPath(points, args)
+        function obj = AnimatedPath2D(points, args)
              arguments
-                 points (:, 3) double = [-0.5, -0.5, -0.5; 0, 0, 0; 0.5, 0.5, 0.5];
+                 points (:, 2) double;
                  args.startTime = 0;
                  args.duration = 0;
                  args.showNonReflectedPoints = true;

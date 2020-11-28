@@ -1,21 +1,22 @@
 %% To DO List
 
-% ensure consistent style key value pairs (Word Case)
+% Ensure consistent style key value pairs (Word Case)           DONE
 %   should class members be capitalised?
-% add functions to class so they can share default args         DONE
-% add collision plotting                                        DONE
-% add json reading
-% set default 3d view                                           DONE
-% add animated paths (2D / 3D)                               (X, DONE)
-% add circle surface                                            DONE
-% add cylinders
-% change path colour arguments to cell array                    DONE
-% nested classes                                                N/A
+% Add functions to class so they can share default args         DONE
+% Add collision plotting                                        DONE
+% Add json reading                                              DONE
+% Set default 3d view                                           DONE
+% Add animated paths (2D / 3D)                               (X, DONE)
+% Add circle surface                                            DONE
+% Add cylinders
+% Change path colour arguments to cell array                    DONE
+% Nested classes                                                N/A
 
-% consider reformatting surface inputs of form (plane, shape)
-% seperate animated path functions into seperate files
-% consider seperating environment functions into 2d as highlighting edges
-% would be more useful for 2d while coloured faces is more useful for 3d.
+% Consider reformatting surface inputs of form (plane, shape)
+% Seperate animated path functions into seperate files (2D/3D)
+% Consider seperating environment functions into 2d and 3d as   DONE
+% highlighting edges would be more useful for 2d while coloured
+% faces is more useful for 3d.
 
 % Track bug:
 % https://uk.mathworks.com/matlabcentral/answers/666553-linewidth-parameter-not-affecting-marker-thickness-of-animated-line
@@ -57,12 +58,12 @@ axis equal;
 view(45,30);
 
 
-%% Animated Path
+%% Animated Path 3D
 clear all;
 clc;
 
 p = [0, 0, 0; 1, 1, 0; 0.5, 0.5, 0; 3, 0.5, 0; 2, 0.5, 0; 2, 2, 0; 2, 1, 0; 4, 1, 0];
-a = AnimatedPath(p, 'startTime', 0, 'duration', 0, 'showNonReflectedPoints', true);
+a = AnimatedPath3D(p, 'startTime', 0, 'duration', 0, 'showNonReflectedPoints', true);
 
 view(3);
 r = 5;
@@ -72,80 +73,38 @@ xlim([-r, r]); zlim([-r, r]); ylim([-r, r]);
 
 a.play();
 
+%% Animated Path 2D
+clear all;
+clc;
+
+j = jsondecode(fileread('C:\dev\AcCoRD2\MATLAB\environment.json'));
+p = [0, 0; 1, 1; 0.5, 0; 3, 0.5; 2, 0.5; 2, 2; 2, 1; 4, 1];
+a = AnimatedPath2D(j.path2D1}, 'startTime', 0, 'duration', 0, 'showNonReflectedPoints', true);
+axis equal;
+r = [-1, 5];
+xlim(r); ylim(r);
+a.play();
 
 %% Json Reader
 
 clear all;
 clc;
+e = Environment('defaultFaceAlpha', 0.3, 'uniqueColorPerBoxFace', false, 'defaultColorMap', hsv(6));
+e.plot('C:\dev\AcCoRD2\MATLAB\environment.json');
 
-e = Environment('defaultFaceAlpha', 0.2, 'uniqueColorPerBoxFace', true, 'defaultColorMap', hsv(6));
+%% Shape3D
+clear all;
+clc;
 
-j = jsondecode(fileread('C:\dev\AcCoRD2\MATLAB\environment.json'));
+s = Shape3D();
+s.plot('C:\dev\AcCoRD2\MATLAB\environment.json');
 
+%% Shape2D
+clear all;
+clc;
 
-
-if(isfield(j.shapes, 'circle') || isfield(j.shapes, 'rect'))
-    figure; 
-    hold on;
-    disp("Drawing 2D Environment");
-    if(isfield(j.shapes, 'circle'))
-        for i = 1:size(j.shapes.circle, 2)
-            e.plotCircle(j.shapes.circle(i).centre, j.shapes.circle(i).radius);
-        end
-    end
-    if(isfield(j.shapes, 'rect'))
-        for i = 1:size(j.shapes.rect, 2)
-            e.plotRect(j.shapes.rect(i).origin, j.shapes.rect(i).length);
-        end
-    end
-    hold off;
-    SetPlot2D();
-end
-
-if(isfield(j.shapes, 'box') || isfield(j.shapes, 'sphere') || ...
-        isfield(j.shapes, 'rectSurface') || isfield(j.shapes, 'circleSurface'))
-    figure; 
-    hold on;
-    if(isfield(j.shapes, 'box'))
-        for i = 1:size(j.shapes.box, 2)
-            e.plotBox(j.shapes.box(i).origin, j.shapes.box(i).length);
-        end
-    end
-    if(isfield(j.shapes, 'sphere'))
-        for i = 1:size(j.shapes.sphere, 2)
-            e.plotSphere(j.shapes.sphere(i).centre, j.shapes.sphere(i).radius);
-        end
-    end
-    if(isfield(j.shapes, 'rectSurface'))
-        for i = 1:size(j.shapes.rectSurface, 2)
-            e.plotRectSurface(j.shapes.rectSurface(i).origin, j.shapes.rectSurface(i).length);
-        end
-    end
-    if(isfield(j.shapes, 'circleSurface'))
-        for i = 1:size(j.shapes.circleSurface, 2)
-            e.plotCircleSurface(j.shapes.circleSurface(i).centre, j.shapes.circleSurface(i).radius, j.shapes.circleSurface(i).axis);
-        end
-    end
-    hold off;
-    SetPlot3D();
-end
-
-%% Functions
-function SetPlot3D()
-    xlabel('x');
-    ylabel('y');
-    zlabel('z');
-    axis equal;
-    view(45,30);
-end
-
-function SetPlot2D()
-    xlabel('x');
-    ylabel('y');
-    axis equal;
-end
-
-
+s = Shape2D();
+s.plot('C:\dev\AcCoRD2\MATLAB\environment.json');
 
 
 
