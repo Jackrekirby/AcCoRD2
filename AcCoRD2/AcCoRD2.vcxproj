@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="microscopic_normal_molecule.cpp" />
+    <ClCompile Include="microscopic_recent_molecule.cpp" />
+    <ClCompile Include="microscopic_typed_subvolume.cpp" />
     <ClCompile Include="src\collision_circle.cpp" />
     <ClCompile Include="src\collision_2d.cpp" />
     <ClCompile Include="src\collision_circle_surface.cpp" />
@@ -149,8 +152,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="microscopic_grid.h" />
+    <ClInclude Include="microscopic_grid2.h" />
+    <ClInclude Include="microscopic_high_priority_relation.h" />
+    <ClInclude Include="microscopic_low_priority_relation.h" />
+    <ClInclude Include="microscopic_neighbour.h" />
+    <ClInclude Include="microscopic_normal_molecule.h" />
+    <ClInclude Include="microscopic_owner.h" />
+    <ClInclude Include="microscopic_recent_molecule.h" />
     <ClInclude Include="microscopic_region.h" />
+    <ClInclude Include="microscopic_region2.h" />
     <ClInclude Include="microscopic_subvolume.h" />
+    <ClInclude Include="microscopic_subvolume2.h" />
+    <ClInclude Include="microscopic_typed_subvolume.h" />
     <ClInclude Include="src\collision_circle.h" />
     <ClInclude Include="src\collision_2d.h" />
     <ClInclude Include="src\collision_circle_surface.h" />

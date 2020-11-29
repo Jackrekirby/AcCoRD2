@@ -86,7 +86,7 @@ namespace accord
 
 		void operator *= (const Vec3i& v);
 
-		void Vec3i::operator *= (const Vec3b& v);
+		void operator *= (const Vec3b& v);
 
 		Vec3i operator * (const Vec3b& v) const;
 

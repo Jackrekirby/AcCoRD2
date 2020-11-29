@@ -7,6 +7,7 @@
 // add Vec3d GenerateUniform(), GenerateNormal() ... 
 // reactions cannot be added until all relationships have been added
 // CORRECTION: reactions can be added as ids but subvolumes cannot calculate relations yet.
+// could just add all neighbours/relations to reaction check list. Dont need to check across surfaces anyway
 
 // e.g. CalculateSubvolumeRelatives()
 // RegionID

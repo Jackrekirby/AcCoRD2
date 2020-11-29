@@ -13,7 +13,7 @@ namespace accord
 	}
 
 	Vec3i::Vec3i(const Vec3d& v)
-		: x(v.x), y(v.y), z(v.z)
+		: x(static_cast<int>(v.x)), y(static_cast<int>(v.y)), z(static_cast<int>(v.z))
 	{
 
 	}
@@ -22,9 +22,9 @@ namespace accord
 	{
 		return
 		{
-			GeneratePoisson(mean),
-			GeneratePoisson(mean),
-			GeneratePoisson(mean)
+			Random::GeneratePoisson(mean),
+			Random::GeneratePoisson(mean),
+			Random::GeneratePoisson(mean)
 		};
 	}
 
@@ -32,9 +32,9 @@ namespace accord
 	{
 		return
 		{
-			GenerateIntUniform(lower_bound, upper_bound),
-			GenerateIntUniform(lower_bound, upper_bound),
-			GenerateIntUniform(lower_bound, upper_bound)
+			Random::GenerateIntUniform(lower_bound, upper_bound),
+			Random::GenerateIntUniform(lower_bound, upper_bound),
+			Random::GenerateIntUniform(lower_bound, upper_bound)
 		};
 	}
 
@@ -152,20 +152,19 @@ namespace accord
 
 	void Vec3i::operator *= (const Vec3b& v)
 	{
-		if (v.x) x = 0;
-		if (v.y) y = 0;
-		if (v.z) z = 0;
+		if (!v.x) x = 0;
+		if (!v.y) y = 0;
+		if (!v.z) z = 0;
 	}
 
-	// change to if statement like *=
 	Vec3i Vec3i::operator * (const Vec3b& v) const
 	{
-		return { x * static_cast<double>(v.x), y * static_cast<double>(v.y), z * static_cast<double>(v.z) };
+		return { x * static_cast<int>(v.x), y * static_cast<int>(v.y), z * static_cast<int>(v.z) };
 	}
 
 	Vec3i operator * (const Vec3b& b, const Vec3i& v)
 	{
-		return { static_cast<double>(b.x) * v.x, static_cast<double>(b.y) * v.y, static_cast<double>(b.z) * v.z };
+		return { static_cast<int>(b.x) * v.x, static_cast<int>(b.y) * v.y, static_cast<int>(b.z) * v.z };
 	}
 
 
