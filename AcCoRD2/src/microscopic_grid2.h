@@ -34,7 +34,7 @@ namespace accord::microscopic
 
 		const Vec3d& GetPosition() const;
 
-		Owner* const GetOwner() const;
+		Owner& const GetOwner() const;
 	private:
 		Vec3d position;
 		Owner* owner;
@@ -82,13 +82,16 @@ namespace accord::microscopic
 		// Local grids (excluding itself) only need a one way connection while external need a two way connection
 		// every cell needs to be checked for overlap due to different cell sizes.
 		void LinkLocalGrid(Grid2& grid);
+
+		MoleculeID GetMoleculeID();
 	private:
 		std::vector<Neighbour> neighbours; // can be grids, mesoregion or adsorbing surfaces
 		std::vector<LowPriorityRelation> low_priority_relation; // can be grids or mesoregions
 		std::vector<HighPriorityRelation> high_priority_relations; // cans be grids, mesoregions or surfaces
 
+		MoleculeID id;
 		Region2* region; // regions which owns this grid
-		Vec3i n_partitions;
+		Vec3i n_subvolumes;
 		shape::relation::Box box;
 		double diffision_coefficient;
 		std::vector<Subvolume> subvolumes;

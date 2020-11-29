@@ -19,9 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="microscopic_normal_molecule.cpp" />
-    <ClCompile Include="microscopic_recent_molecule.cpp" />
-    <ClCompile Include="microscopic_typed_subvolume.cpp" />
+    <ClCompile Include="microscopic_grid2.cpp" />
+    <ClCompile Include="microscopic_subvolume2.cpp" />
+    <ClCompile Include="microscopic_surface.cpp" />
+    <ClCompile Include="src\microscopic_first_order_reaction.cpp" />
+    <ClCompile Include="src\microscopic_normal_molecule.cpp" />
+    <ClCompile Include="src\microscopic_recent_molecule.cpp" />
+    <ClCompile Include="src\microscopic_second_order_reaction.cpp" />
+    <ClCompile Include="src\microscopic_typed_subvolume.cpp" />
     <ClCompile Include="src\collision_circle.cpp" />
     <ClCompile Include="src\collision_2d.cpp" />
     <ClCompile Include="src\collision_circle_surface.cpp" />
@@ -34,6 +39,7 @@
     <ClCompile Include="src\generating_circle_surface.cpp" />
     <ClCompile Include="src\generating_rect_surface.cpp" />
     <ClCompile Include="src\generating_sphere.cpp" />
+    <ClCompile Include="src\microscopic_zeroth_order_reaction.cpp" />
     <ClCompile Include="src\relation_rect_surface.cpp" />
     <ClCompile Include="src\relation_circle_surface.cpp" />
     <ClCompile Include="src\relation_shape_3d.cpp" />
@@ -151,19 +157,22 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="microscopic_grid.h" />
-    <ClInclude Include="microscopic_grid2.h" />
-    <ClInclude Include="microscopic_high_priority_relation.h" />
-    <ClInclude Include="microscopic_low_priority_relation.h" />
-    <ClInclude Include="microscopic_neighbour.h" />
-    <ClInclude Include="microscopic_normal_molecule.h" />
-    <ClInclude Include="microscopic_owner.h" />
-    <ClInclude Include="microscopic_recent_molecule.h" />
-    <ClInclude Include="microscopic_region.h" />
-    <ClInclude Include="microscopic_region2.h" />
-    <ClInclude Include="microscopic_subvolume.h" />
-    <ClInclude Include="microscopic_subvolume2.h" />
-    <ClInclude Include="microscopic_typed_subvolume.h" />
+    <ClInclude Include="microscopic_surface.h" />
+    <ClInclude Include="src\microscopic_first_order_reaction.h" />
+    <ClInclude Include="src\microscopic_grid.h" />
+    <ClInclude Include="src\microscopic_grid2.h" />
+    <ClInclude Include="src\microscopic_high_priority_relation.h" />
+    <ClInclude Include="src\microscopic_low_priority_relation.h" />
+    <ClInclude Include="src\microscopic_neighbour.h" />
+    <ClInclude Include="src\microscopic_normal_molecule.h" />
+    <ClInclude Include="src\microscopic_owner.h" />
+    <ClInclude Include="src\microscopic_recent_molecule.h" />
+    <ClInclude Include="src\microscopic_region.h" />
+    <ClInclude Include="src\microscopic_region2.h" />
+    <ClInclude Include="src\microscopic_second_order_reaction.h" />
+    <ClInclude Include="src\microscopic_subvolume.h" />
+    <ClInclude Include="src\microscopic_subvolume2.h" />
+    <ClInclude Include="src\microscopic_typed_subvolume.h" />
     <ClInclude Include="src\collision_circle.h" />
     <ClInclude Include="src\collision_2d.h" />
     <ClInclude Include="src\collision_circle_surface.h" />
@@ -176,6 +185,7 @@
     <ClInclude Include="src\generating_circle_surface.h" />
     <ClInclude Include="src\generating_rect_surface.h" />
     <ClInclude Include="src\generating_sphere.h" />
+    <ClInclude Include="src\microscopic_zeroth_order_reaction.h" />
     <ClInclude Include="src\relation_rect_surface.h" />
     <ClInclude Include="src\json_fwd_test.h" />
     <ClInclude Include="src\relation_circle_surface.h" />

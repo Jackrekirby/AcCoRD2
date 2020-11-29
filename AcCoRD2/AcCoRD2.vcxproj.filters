@@ -202,14 +202,32 @@
     <ClCompile Include="src\collision_circle.cpp">
       <Filter>src\shapes\collision\circle</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_typed_subvolume.cpp">
-      <Filter>src\regimes\microscopic\other</Filter>
+    <ClCompile Include="src\microscopic_first_order_reaction.cpp">
+      <Filter>src\regimes\microscopic\reactions</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_normal_molecule.cpp">
+    <ClCompile Include="src\microscopic_normal_molecule.cpp">
       <Filter>src\regimes\microscopic\molecule</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_recent_molecule.cpp">
+    <ClCompile Include="src\microscopic_recent_molecule.cpp">
       <Filter>src\regimes\microscopic\molecule</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_second_order_reaction.cpp">
+      <Filter>src\regimes\microscopic\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_zeroth_order_reaction.cpp">
+      <Filter>src\regimes\microscopic\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="microscopic_surface.cpp">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_typed_subvolume.cpp">
+      <Filter>src\regimes\microscopic\subvolume</Filter>
+    </ClCompile>
+    <ClCompile Include="microscopic_subvolume2.cpp">
+      <Filter>src\regimes\microscopic\subvolume</Filter>
+    </ClCompile>
+    <ClCompile Include="microscopic_grid2.cpp">
+      <Filter>src\regimes\microscopic\grid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -438,44 +456,56 @@
     <ClInclude Include="src\collision_circle.h">
       <Filter>src\shapes\collision\circle</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_neighbour.h">
+    <ClInclude Include="src\microscopic_first_order_reaction.h">
+      <Filter>src\regimes\microscopic\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_high_priority_relation.h">
       <Filter>src\regimes\microscopic\relations</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_low_priority_relation.h">
+    <ClInclude Include="src\microscopic_low_priority_relation.h">
       <Filter>src\regimes\microscopic\relations</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_high_priority_relation.h">
+    <ClInclude Include="src\microscopic_neighbour.h">
       <Filter>src\regimes\microscopic\relations</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_grid.h">
-      <Filter>src\regimes\microscopic\old</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_region.h">
-      <Filter>src\regimes\microscopic\old</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_subvolume.h">
-      <Filter>src\regimes\microscopic\old</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_grid2.h">
-      <Filter>src\regimes\microscopic\new</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_region2.h">
-      <Filter>src\regimes\microscopic\new</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_subvolume2.h">
-      <Filter>src\regimes\microscopic\new</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_typed_subvolume.h">
-      <Filter>src\regimes\microscopic\other</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_owner.h">
-      <Filter>src\regimes\microscopic\other</Filter>
-    </ClInclude>
-    <ClInclude Include="microscopic_normal_molecule.h">
+    <ClInclude Include="src\microscopic_normal_molecule.h">
       <Filter>src\regimes\microscopic\molecule</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_recent_molecule.h">
+    <ClInclude Include="src\microscopic_recent_molecule.h">
       <Filter>src\regimes\microscopic\molecule</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_second_order_reaction.h">
+      <Filter>src\regimes\microscopic\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_zeroth_order_reaction.h">
+      <Filter>src\regimes\microscopic\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="microscopic_surface.h">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_subvolume2.h">
+      <Filter>src\regimes\microscopic\subvolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_typed_subvolume.h">
+      <Filter>src\regimes\microscopic\subvolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_subvolume.h">
+      <Filter>src\regimes\microscopic\subvolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_region2.h">
+      <Filter>src\regimes\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_region.h">
+      <Filter>src\regimes\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_grid.h">
+      <Filter>src\regimes\microscopic\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_grid2.h">
+      <Filter>src\regimes\microscopic\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_owner.h">
+      <Filter>src\regimes\microscopic\relations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -654,17 +684,23 @@
     <Filter Include="src\regimes\microscopic\relations">
       <UniqueIdentifier>{f8c51a59-eb90-420f-a343-fa989b60bc9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\old">
-      <UniqueIdentifier>{6cdd3309-f033-4e4b-9b77-35e3ed17e0f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\regimes\microscopic\new">
-      <UniqueIdentifier>{8d55df4d-8bd0-41c5-aca6-87f8f1fe5c21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\regimes\microscopic\other">
-      <UniqueIdentifier>{57b3c43f-f658-440e-ae11-672f2cc40a97}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\regimes\microscopic\molecule">
       <UniqueIdentifier>{42549907-65c0-4ea6-b7b2-9bfa13cf6278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\microscopic\reactions">
+      <UniqueIdentifier>{0a1d4d86-7d17-4a52-9eda-14cb0a837272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\microscopic\grid">
+      <UniqueIdentifier>{956b3710-f765-49bd-927a-6f9a137bc4e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\microscopic\surface">
+      <UniqueIdentifier>{86b0885c-1409-4237-b18a-a6e92bd81029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\microscopic\region">
+      <UniqueIdentifier>{e0ffecf9-fdf4-454b-8e97-866d58b7ceab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\microscopic\subvolume">
+      <UniqueIdentifier>{f1f63f2d-6886-471d-af02-9759a7e9072f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -7,11 +7,6 @@ namespace accord::microscopic
 		subvolumes.emplace_back(&subvolume);
 	}
 
-	Subvolume2& TypedSubvolume::GetSubvolume(MoleculeID id)
-	{
-		return *(subvolumes.at(id));
-	}
-
 	std::vector<Subvolume2*>& TypedSubvolume::GetSubvolumes()
 	{
 		return subvolumes;

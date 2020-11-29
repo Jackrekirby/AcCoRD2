@@ -13,8 +13,8 @@ namespace accord::microscopic
 	class Grid2;
 
 	class SecondOrderReactions {};
-	class FirstOrderReactions {}; // could put std::vector<FirstOrderReactions> as using
-	class ZerothOrderReactions {};
+	class FirstOrderReaction {}; // could put std::vector<FirstOrderReactions> as using
+	class ZerothOrderReaction {};
 
 
 	class Region2 : public Event
@@ -44,7 +44,7 @@ namespace accord::microscopic
 		void AddReaction(MoleculeID reactant, const MoleculeIDs& products);
 
 		// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-		void AddReaction(MoleculeID reactant_a, MoleculeID rectant_b, const MoleculeIDs& products);
+		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products);
 
 		// returns event time + time_step
 		void GetNextEventTime();
@@ -60,6 +60,8 @@ namespace accord::microscopic
 	private:
 		Surface surface;
 		std::vector<Grid2> grids;
+		std::vector<ZerothOrderReaction> zeroth_order_reactions;
+		std::vector<FirstOrderReaction> first_order_reactions;
 		SecondOrderReactions second_order_reactions;
 		double time_step;
 

@@ -11,8 +11,6 @@ namespace accord::microscopic
 	public:
 		void Add(Subvolume2& subvolume);
 
-		Subvolume2& GetSubvolume(MoleculeID id);
-
 		std::vector<Subvolume2*>& GetSubvolumes();
 
 	private:
