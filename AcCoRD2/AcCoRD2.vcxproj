@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\microscopic_box_surface.cpp" />
+    <ClCompile Include="src\microscopic_box_surface_shape.cpp" />
     <ClCompile Include="src\microscopic_region2.cpp" />
     <ClCompile Include="src\molecule_destination.cpp" />
     <ClCompile Include="src\environment.cpp" />
@@ -160,6 +162,8 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\microscopic_box_surface.h" />
+    <ClInclude Include="src\microscopic_box_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface_shape.h" />
     <ClInclude Include="src\molecule_destination.h" />
     <ClInclude Include="src\environment.h" />

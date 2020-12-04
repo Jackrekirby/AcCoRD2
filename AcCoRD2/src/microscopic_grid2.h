@@ -36,7 +36,7 @@ namespace accord::microscopic
 	class Grid2 : public Owner, public Neighbour, public LowPriorityRelation, public HighPriorityRelation
 	{
 	public:
-		Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, Region2* region);
+		Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region2* region);
 
 		void AddMolecule(const Vec3d& position);
 

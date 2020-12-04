@@ -24,7 +24,7 @@ namespace accord::microscopic
 
 		Type GetType() const;
 
-		virtual SurfaceShape& GetShape() const = 0;
+		virtual SurfaceShape& GetShape() = 0;
 
 	private:
 		Type type;

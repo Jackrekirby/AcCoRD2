@@ -58,7 +58,7 @@ namespace accord::microscopic
 
 		// each region type will have its own surface shape which is why GetSurface is virtual
 		// may need const version of get surface
-		virtual Surface& GetSurface() = 0;
+		Surface& GetSurface();
 	private:
 		std::unique_ptr<Surface> surface;
 		std::vector<Grid2> grids;

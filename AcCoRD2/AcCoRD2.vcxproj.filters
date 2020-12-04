@@ -55,9 +55,6 @@
     <ClCompile Include="src\json_test.cpp">
       <Filter>src\tests</Filter>
     </ClCompile>
-    <ClCompile Include="src\event_queue_test.cpp">
-      <Filter>src\event</Filter>
-    </ClCompile>
     <ClCompile Include="src\collision_plane_1d.cpp">
       <Filter>src\shapes\collision\plane</Filter>
     </ClCompile>
@@ -238,6 +235,15 @@
     <ClCompile Include="src\microscopic_region2.cpp">
       <Filter>src\regimes\microscopic\region</Filter>
     </ClCompile>
+    <ClCompile Include="src\event_queue_test.cpp">
+      <Filter>src\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_box_surface_shape.cpp">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_box_surface.cpp">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -311,9 +317,6 @@
     </ClInclude>
     <ClInclude Include="src\json_test.h">
       <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event_queue_test.h">
-      <Filter>src\event</Filter>
     </ClInclude>
     <ClInclude Include="src\collision_plane_1d.h">
       <Filter>src\shapes\collision\plane</Filter>
@@ -514,6 +517,15 @@
       <Filter>src\regimes\microscopic\grid</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_surface_shape.h">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_queue_test.h">
+      <Filter>src\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_box_surface_shape.h">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_box_surface.h">
       <Filter>src\regimes\microscopic\surface</Filter>
     </ClInclude>
   </ItemGroup>

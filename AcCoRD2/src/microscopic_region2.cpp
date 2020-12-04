@@ -104,7 +104,7 @@ namespace accord::microscopic
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
 		{
 			grids.emplace_back(b.GetOrigin(), b.GetLength(), 
-				n_subvolumes_per_grid.at(i), diffision_coefficients.at(i), this);
+				n_subvolumes_per_grid.at(i), diffision_coefficients.at(i), i, this);
 		}
 	}
 
@@ -133,5 +133,10 @@ namespace accord::microscopic
 				GetGrid(id1).LinkGrid(region.GetGrid(id2));
 			}
 		}
+	}
+
+	Surface& Region2::GetSurface()
+	{
+		return *surface;
 	}
 }
