@@ -1,7 +1,14 @@
 #pragma once
 #include "microscopic_region2.h"
+#include "microscopic_subvolume2.h"
 #include "relation_box.h"
+#include "microscopic_recent_molecule.h"
+#include "microscopic_normal_molecule.h"
+#include "vec3d.h"
+#include "microscopic_owner.h"
 #include "vec3i.h"
+#include "microscopic_surface.h"
+
 
 // the global region must have a reflective or absorbing surface and by default should have 1 cell.
 // a surface of type non can be drawn as having no outline, just a face colour
@@ -26,21 +33,7 @@ namespace accord::microscopic
 	class HighPriorityRelation;
 	class LowPriorityRelation;
 
-	// required by relation and neighbour classes so must be outside grid
-	class MoleculeDestination
-	{
-	public:
-		MoleculeDestination(Vec3d position, Owner* owner);
-
-		const Vec3d& GetPosition() const;
-
-		Owner& const GetOwner() const;
-	private:
-		Vec3d position;
-		Owner* owner;
-	};
-
-	class Grid2
+	class Grid2 : public Owner
 	{
 	public:
 		Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, Region2* region);
@@ -63,16 +56,16 @@ namespace accord::microscopic
 		Region2& GetRegion();
 
 		// may need const version
-		std::vector<Subvolume>& GetSubvolumes();
+		std::vector<Subvolume2>& GetSubvolumes();
 
 		// could be private?
 		// may need const version
 		// will always return a valid subvolume even if index is for a position outside of subvolume
-		Subvolume& GetSubvolume(const Vec3i& index);
+		Subvolume2& GetSubvolume(Vec3i index);
 
 		// could be private?
 		// if index is not valid null will be returned
-		std::optional<Subvolume&> GetSubvolumeIfExists(const Vec3i& index);
+		std::optional<Subvolume2&> GetSubvolumeIfExists(const Vec3i& index);
 
 		// could be const if you are only linking local subvolumes and not vice versa
 		// would be more efficient to do both at same time. Would then require a check to see if regions are already
@@ -84,9 +77,10 @@ namespace accord::microscopic
 		void LinkLocalGrid(Grid2& grid);
 
 		MoleculeID GetMoleculeID();
+
 	private:
 		std::vector<Neighbour> neighbours; // can be grids, mesoregion or adsorbing surfaces
-		std::vector<LowPriorityRelation> low_priority_relation; // can be grids or mesoregions
+		std::vector<LowPriorityRelation> low_priority_relations; // can be grids or mesoregions
 		std::vector<HighPriorityRelation> high_priority_relations; // cans be grids, mesoregions or surfaces
 
 		MoleculeID id;
@@ -94,7 +88,7 @@ namespace accord::microscopic
 		Vec3i n_subvolumes;
 		shape::relation::Box box;
 		double diffision_coefficient;
-		std::vector<Subvolume> subvolumes;
+		std::vector<Subvolume2> subvolumes;
 		
 		// create subvolumes upon class construction
 		void CreateSubvolumes();

@@ -9,7 +9,7 @@ namespace accord::microscopic
 
 	}
 
-	double RecentMolecule::GetTime()
+	double RecentMolecule::GetTime() const
 	{
 		return time;
 	}

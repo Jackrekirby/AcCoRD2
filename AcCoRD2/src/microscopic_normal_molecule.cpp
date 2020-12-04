@@ -9,7 +9,7 @@ namespace accord::microscopic
 
 	}
 
-	const Vec3d& NormalMolecule::GetPosition()
+	const Vec3d& NormalMolecule::GetPosition() const
 	{
 		return position;
 	}

@@ -47,7 +47,10 @@ namespace accord::microscopic
 		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products);
 
 		// returns event time + time_step
-		void GetNextEventTime();
+		double GetNextEventTime();
+
+		// returns time_step
+		double GetTimeStep();
 
 		// may need to add const versions of GetGrid(s)
 		std::vector<Grid2>& GetGrids();

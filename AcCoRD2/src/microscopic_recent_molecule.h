@@ -8,7 +8,7 @@ namespace accord::microscopic
 	public:
 		RecentMolecule(Vec3d position, double time);
 
-		double GetTime();
+		double GetTime() const;
 	private:
 		double time;
 	};

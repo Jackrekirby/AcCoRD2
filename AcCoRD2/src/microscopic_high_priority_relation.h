@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "vec3d.h"
 #include "collision_3d.h"
+#include "microscopic_surface.h"
 
 // IDEA
 // HighPriorityRelations should require an additional surfaces
@@ -17,7 +18,7 @@
 
 namespace accord::microscopic
 {
-	class Surface;
+	//class Surface;
 	class MoleculeDestination;
 	class Grid2;
 

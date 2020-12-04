@@ -217,16 +217,22 @@
     <ClCompile Include="src\microscopic_zeroth_order_reaction.cpp">
       <Filter>src\regimes\microscopic\reactions</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_surface.cpp">
-      <Filter>src\regimes\microscopic\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\microscopic_typed_subvolume.cpp">
       <Filter>src\regimes\microscopic\subvolume</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_subvolume2.cpp">
+    <ClCompile Include="src\microscopic_subvolume2.cpp">
       <Filter>src\regimes\microscopic\subvolume</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_grid2.cpp">
+    <ClCompile Include="src\microscopic_surface.cpp">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_grid2.cpp">
+      <Filter>src\regimes\microscopic\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\environment.cpp">
+      <Filter>src\regimes\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="src\molecule_destination.cpp">
       <Filter>src\regimes\microscopic\grid</Filter>
     </ClCompile>
   </ItemGroup>
@@ -480,9 +486,6 @@
     <ClInclude Include="src\microscopic_zeroth_order_reaction.h">
       <Filter>src\regimes\microscopic\reactions</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_surface.h">
-      <Filter>src\regimes\microscopic\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\microscopic_subvolume2.h">
       <Filter>src\regimes\microscopic\subvolume</Filter>
     </ClInclude>
@@ -506,6 +509,15 @@
     </ClInclude>
     <ClInclude Include="src\microscopic_owner.h">
       <Filter>src\regimes\microscopic\relations</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_surface.h">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\environment.h">
+      <Filter>src\regimes\environment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\molecule_destination.h">
+      <Filter>src\regimes\microscopic\grid</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -701,6 +713,9 @@
     </Filter>
     <Filter Include="src\regimes\microscopic\subvolume">
       <UniqueIdentifier>{f1f63f2d-6886-471d-af02-9759a7e9072f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\regimes\environment">
+      <UniqueIdentifier>{45be9e45-5002-4669-9acc-a03c46f00f2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "microscopic_surface.h"
 
-namespace accord
+namespace accord::microscopic
 {
 	Surface::Surface(Type type)
 		: type(type)
