@@ -1,19 +1,20 @@
 #pragma once
-#include "microscopic_region2.h"
+#include "pch.h"
+
 #include "microscopic_subvolume2.h"
 #include "relation_box.h"
-#include "microscopic_recent_molecule.h"
-#include "microscopic_normal_molecule.h"
+
 #include "vec3d.h"
-#include "microscopic_owner.h"
 #include "vec3i.h"
-#include "microscopic_surface.h"
+
 #include "molecule_destination.h"
 
-#include "microscopic_neighbour.h"
-#include "microscopic_low_priority_relation.h"
-#include "microscopic_high_priority_relation.h"
+#include "microscopic_owner.h"
+#include "microscopic_surface.h"
 
+#include "microscopic_high_priority_relation.h"
+#include "microscopic_low_priority_relation.h"
+#include "microscopic_neighbour.h"
 
 // the global region must have a reflective or absorbing surface and by default should have 1 cell.
 // a surface of type non can be drawn as having no outline, just a face colour
@@ -30,10 +31,7 @@
 namespace accord::microscopic
 {
 	// an Owner is class which can own molecules, which includes Grid or Adsorbing Surfaces
-	class Owner;
-	class Subvolume {};
-	class NormalMolecule;
-	class RecentMolecule;
+	class Region2;
 
 	class Grid2 : public Owner, public Neighbour, public LowPriorityRelation, public HighPriorityRelation
 	{
@@ -67,7 +65,7 @@ namespace accord::microscopic
 
 		// could be private?
 		// if index is not valid null will be returned
-		std::optional<Subvolume2&> GetSubvolumeIfExists(const Vec3i& index);
+		Subvolume2* GetSubvolumeIfExists(const Vec3i& index);
 
 		// could be const if you are only linking local subvolumes and not vice versa
 		// would be more efficient to do both at same time. Would then require a check to see if regions are already

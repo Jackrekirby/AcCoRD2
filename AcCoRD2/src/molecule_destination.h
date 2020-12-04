@@ -1,9 +1,10 @@
 #pragma once
-#include "microscopic_owner.h"
 #include "vec3d.h"
 
 namespace accord::microscopic
 {
+	class Owner;
+
 	class MoleculeDestination
 	{
 	public:

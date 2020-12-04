@@ -1,13 +1,17 @@
 #include "pch.h"
 #include "microscopic_grid2.h"
+
 #include "environment.h"
+#include "microscopic_region2.h"
+
 #include "vec3b.h"
-#include "vec3d.h"
+
 #include "collision_3d.h"
-#include "microscopic_high_priority_relation.h"
-#include "microscopic_low_priority_relation.h"
-#include "microscopic_neighbour.h"
-#include "molecule_destination.h"
+
+#include "microscopic_normal_molecule.h"
+#include "microscopic_recent_molecule.h"
+#include "microscopic_surface_shape.h"
+
 
 namespace accord::microscopic
 {
@@ -81,6 +85,8 @@ namespace accord::microscopic
 
 	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end)
 	{
+		// need to add max reflections counter
+
 		HighPriorityRelation* closest_relation;
 		shape::collision::Collision3D closest_collision;
 		double shortest_time = 2; // collision time must be between 0 and 1
@@ -94,7 +100,7 @@ namespace accord::microscopic
 			}
 		}
 		// if the collision time changed there was a valid collision
-		if (shortest_time != 2)
+		if (closest_relation != nullptr)
 		{
 			return closest_relation->PassMolecule(end, closest_collision, this);
 		}
@@ -120,6 +126,8 @@ namespace accord::microscopic
 				}
 			}
 		}
+
+		return MoleculeDestination(end, this);
 	}
 
 	// dont change old position, create new one.
@@ -163,11 +171,11 @@ namespace accord::microscopic
 
 	// could be private?
 	// if index is not valid null will be returned
-	std::optional<Subvolume2&> Grid2::GetSubvolumeIfExists(const Vec3i& index)
+	Subvolume2* Grid2::GetSubvolumeIfExists(const Vec3i& index)
 	{
-		if ((index < Vec3i(0, 0, 0)).Any()) return std::nullopt;
-		if ((index >= n_subvolumes).Any()) return std::nullopt;
-		return subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
+		if ((index < Vec3i(0, 0, 0)).Any()) return nullptr;
+		if ((index >= n_subvolumes).Any()) return nullptr;
+		return &subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 	}
 
 	// could be const if you are only linking local subvolumes and not vice versa
@@ -222,7 +230,7 @@ namespace accord::microscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					Vec3d subvolume_length = box.GetLength() / n_subvolumes;
-					subvolumes.emplace_back(box.GetOrigin() + i * subvolume_length, subvolume_length);
+					subvolumes.emplace_back(box.GetOrigin() + i * subvolume_length, subvolume_length, this);
 				}
 			}
 		}
@@ -249,7 +257,7 @@ namespace accord::microscopic
 	{
 		// should always be passing a valid subvolume;
 		auto subvolume = GetSubvolumeIfExists(i);
-		if (!subvolume.has_value())
+		if (subvolume == nullptr)
 		{
 			LOG_CRITICAL("Index of subvolume is out of range. Index = [{}]", i);
 			throw std::exception();
@@ -263,9 +271,9 @@ namespace accord::microscopic
 				for (j.x = -1; j.x <= 1; j.x++)
 				{
 					auto subvolume2 = GetSubvolumeIfExists(i + j);
-					if (subvolume2.has_value())
+					if (subvolume2 != nullptr)
 					{
-						subvolume.value().LinkSibling(*subvolume2);
+						subvolume->LinkSibling(*subvolume2);
 					}
 				}
 			}

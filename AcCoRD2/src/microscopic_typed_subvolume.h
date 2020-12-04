@@ -4,6 +4,8 @@
 namespace accord::microscopic
 {
 	using MoleculeID = int;
+	using MoleculeIDs = std::vector<int>;
+
 	class Subvolume2;
 
 	class TypedSubvolume

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "microscopic_surface.h"
+#include "microscopic_surface_shape.h"
 
 namespace accord::microscopic
 {

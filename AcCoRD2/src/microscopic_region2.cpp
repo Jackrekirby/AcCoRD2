@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "microscopic_region2.h"
-#include "basic_box.h"
+
 #include "environment.h"
-#include "microscopic_grid2.h"
+
 #include "microscopic_neighbour.h"
 #include "microscopic_low_priority_relation.h"
 #include "microscopic_high_priority_relation.h"
+#include "microscopic_surface_shape.h"
 
 namespace accord::microscopic
 {

@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "vec3d.h"
 #include "event.h"
+#include "microscopic_grid2.h"
 #include "microscopic_surface.h"
 #include "microscopic_zeroth_order_reaction.h"
 #include "microscopic_first_order_reaction.h"
@@ -13,7 +14,6 @@ namespace accord::microscopic
 {
 	using MoleculeID = int;
 	using MoleculeIDs = std::vector<int>;
-	class Grid2;
 
 	class Region2 : public Event
 	{

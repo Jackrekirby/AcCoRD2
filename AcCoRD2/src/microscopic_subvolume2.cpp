@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "microscopic_subvolume2.h"
 #include "microscopic_typed_subvolume.h"
-#include "microscopic_grid2.h" // currently only used to get molecule_id
+#include "microscopic_grid2.h"
 
 namespace accord::microscopic
 {
@@ -18,7 +18,7 @@ namespace accord::microscopic
 
 	void Subvolume2::AddMolecule(const Vec3d& position, double time)
 	{
-		normal_molecules.emplace_back(position, time);
+		recent_molecules.emplace_back(position, time);
 	}
 
 	// unlikely to need const version
@@ -36,9 +36,9 @@ namespace accord::microscopic
 	// Only one sibling needs to know about the relation so two subvolumes are only checked against eachother once
 	void Subvolume2::LinkSibling(Subvolume2& subvolume)
 	{
-		auto relatives = subvolume.GetRelations();
+		auto& relatives = subvolume.GetRelation(GetMoleculeID()).GetSubvolumes();
 		// if subvolume does not contain this subvolume then add subvolume to this subvolume
-		if (std::find(relatives.begin(), relatives.end(), *this) == relatives.end())
+		if (std::find(relatives.begin(), relatives.end(), this) == relatives.end())
 		{
 			relations.at(GetMoleculeID()).Add(subvolume);
 		}

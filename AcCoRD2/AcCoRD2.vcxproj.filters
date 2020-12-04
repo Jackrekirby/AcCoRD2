@@ -513,6 +513,9 @@
     <ClInclude Include="src\molecule_destination.h">
       <Filter>src\regimes\microscopic\grid</Filter>
     </ClInclude>
+    <ClInclude Include="src\microscopic_surface_shape.h">
+      <Filter>src\regimes\microscopic\surface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">

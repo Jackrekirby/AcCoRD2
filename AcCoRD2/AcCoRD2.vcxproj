@@ -160,6 +160,7 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\microscopic_surface_shape.h" />
     <ClInclude Include="src\molecule_destination.h" />
     <ClInclude Include="src\environment.h" />
     <ClInclude Include="src\microscopic_surface.h" />

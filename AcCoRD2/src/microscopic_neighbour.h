@@ -1,7 +1,6 @@
 #pragma once
 #include "pch.h"
 #include "vec3d.h"
-#include "collision_3d.h"
 #include "microscopic_surface.h"
 
 namespace accord::microscopic
