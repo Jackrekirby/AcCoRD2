@@ -3,6 +3,7 @@
 #include "vec3d.h"
 #include "collision_3d.h"
 #include "microscopic_surface.h"
+#include "molecule_destination.h"
 
 // IDEA
 // HighPriorityRelations should require an additional surfaces
@@ -19,7 +20,6 @@
 namespace accord::microscopic
 {
 	//class Surface;
-	class MoleculeDestination;
 	class Grid2;
 
 	// A Grid owner is the object which currently owns a molecule during path checking.

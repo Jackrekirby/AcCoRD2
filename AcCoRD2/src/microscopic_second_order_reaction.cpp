@@ -1,5 +1,6 @@
-#include "microscopic_second_order_reaction.h"
 #include "pch.h"
+#include "microscopic_second_order_reaction.h"
+
 
 namespace accord::microscopic
 {
@@ -11,7 +12,7 @@ namespace accord::microscopic
 		}
 		else
 		{
-			one_reactant_reactions.emplace_back(reactant_a, reactant_b, products);
+			two_reactant_reactions.emplace_back(reactant_a, reactant_b, products);
 		}
 	}
 

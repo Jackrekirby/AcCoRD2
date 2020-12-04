@@ -3,6 +3,7 @@
 #include "vec3d.h"
 #include "collision_3d.h"
 #include "microscopic_surface.h"
+#include "molecule_destination.h"
 
 namespace accord::microscopic
 {

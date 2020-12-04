@@ -2,10 +2,14 @@
 #include "pch.h"
 #include "vec3d.h"
 #include "microscopic_surface.h"
+#include "molecule_destination.h"
 
+namespace accord::shape::collision
+{
+	class Collision3D;
+}
 namespace accord::microscopic
 {
-	class MoleculeDestination;
 	class Grid2;
 
 	class Neighbour // High Priority Relation

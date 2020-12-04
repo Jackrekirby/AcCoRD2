@@ -6,19 +6,7 @@
 //#include "vec_test.h"
 //#include "output_binary_test.h"
 //#include "event_queue_test.h"
-#include "shape_test.h"
-
-class base
-{
-public:
-	int x;
-
-	base(int x) 
-		: x(x)
-	{
-
-	}
-};
+//#include "shape_test.h"
 
 int main()
 {
@@ -37,7 +25,7 @@ int main()
 	//accord::EventQueueTest();
 	//accord::ShapeRelationTest();
 	//accord::Shape3DRelationTest();
-	accord::ShapeCollisionTest();
+	//accord::ShapeCollisionTest();
 
 	//accord::Json j = accord::shape::basic::Rect({ 0,0 }, { 10, 10 });
 

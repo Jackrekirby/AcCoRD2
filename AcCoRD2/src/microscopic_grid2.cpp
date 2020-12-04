@@ -87,7 +87,7 @@ namespace accord::microscopic
 	{
 		// need to add max reflections counter
 
-		HighPriorityRelation* closest_relation;
+		HighPriorityRelation* closest_relation = nullptr;
 		shape::collision::Collision3D closest_collision;
 		double shortest_time = 2; // collision time must be between 0 and 1
 		for (auto& relation : high_priority_relations)
