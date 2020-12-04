@@ -1,4 +1,6 @@
+#include "pch.h"
 #include "microscopic_typed_subvolume.h"
+#include "microscopic_subvolume.h"
 
 namespace accord::microscopic
 {

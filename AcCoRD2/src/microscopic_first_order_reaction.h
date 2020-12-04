@@ -8,6 +8,7 @@ namespace accord::microscopic
 
 	class FirstOrderReaction
 	{
+	public:
 		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products);
 	};
 }

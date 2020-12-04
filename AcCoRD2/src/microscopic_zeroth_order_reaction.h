@@ -8,6 +8,7 @@ namespace accord::microscopic
 
 	class ZerothOrderReaction
 	{
+	public:
 		ZerothOrderReaction(const MoleculeIDs& products);
 	};
 }

@@ -3,13 +3,14 @@
 #include "vec3d.h"
 #include "relation_box.h"
 #include "microscopic_region2.h"
+#include "microscopic_typed_subvolume.h"
 
 // Moving non owning, low priority surfaces is easy just not owning ones.
 
 namespace accord::microscopic
 {
 	// a subvolume storing a known type of subvolume
-	class TypedSubvolume;
+	//class TypedSubvolume;
 
 	class NormalMolecule;
 

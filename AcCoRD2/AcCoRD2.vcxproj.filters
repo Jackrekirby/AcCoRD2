@@ -235,6 +235,9 @@
     <ClCompile Include="src\molecule_destination.cpp">
       <Filter>src\regimes\microscopic\grid</Filter>
     </ClCompile>
+    <ClCompile Include="src\microscopic_region2.cpp">
+      <Filter>src\regimes\microscopic\region</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -492,17 +495,8 @@
     <ClInclude Include="src\microscopic_typed_subvolume.h">
       <Filter>src\regimes\microscopic\subvolume</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_subvolume.h">
-      <Filter>src\regimes\microscopic\subvolume</Filter>
-    </ClInclude>
     <ClInclude Include="src\microscopic_region2.h">
       <Filter>src\regimes\microscopic\region</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_region.h">
-      <Filter>src\regimes\microscopic\region</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_grid.h">
-      <Filter>src\regimes\microscopic\grid</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_grid2.h">
       <Filter>src\regimes\microscopic\grid</Filter>

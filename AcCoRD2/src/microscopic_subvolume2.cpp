@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "microscopic_subvolume2.h"
 #include "microscopic_typed_subvolume.h"
 #include "microscopic_grid2.h" // currently only used to get molecule_id

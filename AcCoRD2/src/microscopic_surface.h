@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "collision_3d.h"
+#include "basic_box.h"
 
 // may not need to get surface type as surface is virtual so function will call required surface
 // if each shape and type has its own class: BoxAbsorbingSurface, SphereReflectingSurface
@@ -21,6 +22,8 @@ namespace accord::microscopic
 		virtual bool IsMoleculeInsideBorder(const Vec3d& position) const = 0;
 
 		virtual bool IsMoleculeOnBorder(const Vec3d& position) const = 0;
+
+		virtual shape::basic::Box GenerateBoundingBox() const = 0;
 	};
 
 	class Surface

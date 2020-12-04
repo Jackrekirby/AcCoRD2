@@ -8,6 +8,11 @@
 #include "microscopic_owner.h"
 #include "vec3i.h"
 #include "microscopic_surface.h"
+#include "molecule_destination.h"
+
+#include "microscopic_neighbour.h"
+#include "microscopic_low_priority_relation.h"
+#include "microscopic_high_priority_relation.h"
 
 
 // the global region must have a reflective or absorbing surface and by default should have 1 cell.
@@ -29,11 +34,8 @@ namespace accord::microscopic
 	class Subvolume {};
 	class NormalMolecule;
 	class RecentMolecule;
-	class Neighbour;
-	class HighPriorityRelation;
-	class LowPriorityRelation;
 
-	class Grid2 : public Owner
+	class Grid2 : public Owner, public Neighbour, public LowPriorityRelation, public HighPriorityRelation
 	{
 	public:
 		Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, Region2* region);
@@ -78,10 +80,23 @@ namespace accord::microscopic
 
 		MoleculeID GetMoleculeID();
 
+		void AddNeighbour(Neighbour* relation);
+
+		void AddLowPriorityRelation(LowPriorityRelation* relation);
+
+		void AddHighPriorityRelation(HighPriorityRelation* relation);
+
+		// Inherited Class Functions
+
+		Surface& GetSurface();
+
+		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
+			const shape::collision::Collision3D& collison, Grid2* owner);
+
 	private:
-		std::vector<Neighbour> neighbours; // can be grids, mesoregion or adsorbing surfaces
-		std::vector<LowPriorityRelation> low_priority_relations; // can be grids or mesoregions
-		std::vector<HighPriorityRelation> high_priority_relations; // cans be grids, mesoregions or surfaces
+		std::vector<Neighbour*> neighbours; // can be grids, mesoregion or adsorbing surfaces
+		std::vector<LowPriorityRelation*> low_priority_relations; // can be grids or mesoregions
+		std::vector<HighPriorityRelation*> high_priority_relations; // cans be grids, mesoregions or surfaces
 
 		MoleculeID id;
 		Region2* region; // regions which owns this grid

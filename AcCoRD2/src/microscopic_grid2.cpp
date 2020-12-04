@@ -1,4 +1,4 @@
-#pragma once
+#include "pch.h"
 #include "microscopic_grid2.h"
 #include "environment.h"
 #include "vec3b.h"
@@ -86,10 +86,10 @@ namespace accord::microscopic
 		double shortest_time = 2; // collision time must be between 0 and 1
 		for (auto& relation : high_priority_relations)
 		{
-			auto collision = relation.GetSurface().GetShape().CalculateExternalCollisionData(origin, end);
+			auto collision = relation->GetSurface().GetShape().CalculateExternalCollisionData(origin, end);
 			if (collision.has_value() && collision->time < shortest_time)
 			{
-				closest_relation = &relation;
+				closest_relation = relation;
 				closest_collision = collision.value();
 			}
 		}
@@ -104,19 +104,19 @@ namespace accord::microscopic
 		{
 			for (auto& relation : low_priority_relations)
 			{
-				if (relation.GetSurface().GetShape().IsMoleculeInsideBorder(collision->intersection))
+				if (relation->GetSurface().GetShape().IsMoleculeInsideBorder(collision->intersection))
 				{
 					// assumes you dont have mulitple valid low priority neighbours overlapping
-					return relation.PassMolecule(end, collision.value(), this);
+					return relation->PassMolecule(end, collision.value(), this);
 				}
 			}
 
 			for (auto& neighbour : neighbours)
 			{
 				// neighbours must be sorted by youngest and neighbours of the same age must not overlap
-				if (neighbour.GetSurface().GetShape().IsMoleculeOnBorder(collision->intersection))
+				if (neighbour->GetSurface().GetShape().IsMoleculeOnBorder(collision->intersection))
 				{
-					return neighbour.PassMolecule(end, collision.value(), this);
+					return neighbour->PassMolecule(end, collision.value(), this);
 				}
 			}
 		}
@@ -196,6 +196,21 @@ namespace accord::microscopic
 		return id;
 	}
 
+	void Grid2::AddNeighbour(Neighbour* relation)
+	{
+		neighbours.emplace_back(relation);
+	}
+
+	void Grid2::AddLowPriorityRelation(LowPriorityRelation* relation)
+	{
+		low_priority_relations.emplace_back(relation);
+	}
+
+	void Grid2::AddHighPriorityRelation(HighPriorityRelation* relation)
+	{
+		high_priority_relations.emplace_back(relation);
+	}
+
 	// create subvolumes upon class construction
 	void Grid2::CreateSubvolumes()
 	{
@@ -255,5 +270,19 @@ namespace accord::microscopic
 				}
 			}
 		}
+	}
+
+	// Inherited Class Functions
+
+
+	Surface& Grid2::GetSurface()
+	{
+		return GetRegion().GetSurface();
+	}
+
+	std::optional<MoleculeDestination> Grid2::PassMolecule(const Vec3d& end,
+		const shape::collision::Collision3D& collison, Grid2* owner)
+	{
+		return std::nullopt;
 	}
 }

@@ -14,7 +14,7 @@ namespace accord::microscopic
 		return position;
 	}
 
-	Owner& const MoleculeDestination::GetOwner() const
+	Owner& MoleculeDestination::GetOwner() const
 	{
 		return *owner;
 	}

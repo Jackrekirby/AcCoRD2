@@ -9,11 +9,13 @@ namespace accord::microscopic
 
 	class OneReactantSecondOrderReaction
 	{
+	public:
 		OneReactantSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products);
 	};
 
 	class TwoReactantSecondOrderReaction
 	{
+	public:
 		TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, 
 			const MoleculeIDs& products);
 	};

@@ -11,7 +11,7 @@ namespace accord::microscopic
 
 		const Vec3d& GetPosition() const;
 
-		Owner& const GetOwner() const;
+		Owner& GetOwner() const;
 	private:
 		Vec3d position;
 		Owner* owner;
