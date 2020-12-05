@@ -16,12 +16,12 @@ namespace accord
 		event_queue->Add(this);
 	}
 
-	double Event::GetTime()
+	double Event::GetTime() const
 	{
 		return time;
 	}
 
-	int Event::GetPriority()
+	int Event::GetPriority() const
 	{
 		return priority;
 	}
@@ -51,5 +51,21 @@ namespace accord
 			return (priority > other.priority);
 		}
 		return (time < other.time);
+	}
+
+	std::string Event::ToString(Type type) {
+		switch (type)
+		{
+		case Type::microscopic_region:
+			return "microscopic region";
+		case Type::mesoscopic_region:
+			return "mesoscopic region";
+		case Type::active_actor:
+			return "active actor";
+		case Type::passive_actor:
+			return "passive actor";
+		}
+		LOG_CRITICAL("Unknown Event type");
+		throw std::exception();
 	}
 }

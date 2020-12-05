@@ -200,49 +200,49 @@
       <Filter>src\shapes\collision\circle</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_first_order_reaction.cpp">
-      <Filter>src\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_normal_molecule.cpp">
-      <Filter>src\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_recent_molecule.cpp">
-      <Filter>src\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_second_order_reaction.cpp">
-      <Filter>src\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_zeroth_order_reaction.cpp">
-      <Filter>src\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_typed_subvolume.cpp">
-      <Filter>src\regimes\microscopic\subvolume</Filter>
+      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_subvolume2.cpp">
-      <Filter>src\regimes\microscopic\subvolume</Filter>
+      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_surface.cpp">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_grid2.cpp">
-      <Filter>src\regimes\microscopic\grid</Filter>
+      <Filter>src\simulation\regimes\microscopic\grid</Filter>
     </ClCompile>
     <ClCompile Include="src\environment.cpp">
-      <Filter>src\regimes\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\molecule_destination.cpp">
-      <Filter>src\regimes\microscopic\grid</Filter>
+      <Filter>src\simulation\environment</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_region2.cpp">
-      <Filter>src\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
     </ClCompile>
     <ClCompile Include="src\event_queue_test.cpp">
       <Filter>src\tests</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_box_surface_shape.cpp">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_box_surface.cpp">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\molecule_destination.cpp">
+      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +320,6 @@
     </ClInclude>
     <ClInclude Include="src\collision_plane_1d.h">
       <Filter>src\shapes\collision\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enum_array.h">
-      <Filter>src\other</Filter>
     </ClInclude>
     <ClInclude Include="src\basic_circle.h">
       <Filter>src\shapes\basic\circle</Filter>
@@ -469,64 +466,70 @@
       <Filter>src\shapes\collision\circle</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_first_order_reaction.h">
-      <Filter>src\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_high_priority_relation.h">
-      <Filter>src\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_low_priority_relation.h">
-      <Filter>src\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_neighbour.h">
-      <Filter>src\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_normal_molecule.h">
-      <Filter>src\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_recent_molecule.h">
-      <Filter>src\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_second_order_reaction.h">
-      <Filter>src\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_zeroth_order_reaction.h">
-      <Filter>src\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_subvolume2.h">
-      <Filter>src\regimes\microscopic\subvolume</Filter>
+      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_typed_subvolume.h">
-      <Filter>src\regimes\microscopic\subvolume</Filter>
+      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_region2.h">
-      <Filter>src\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_grid2.h">
-      <Filter>src\regimes\microscopic\grid</Filter>
+      <Filter>src\simulation\regimes\microscopic\grid</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_owner.h">
-      <Filter>src\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_surface.h">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\environment.h">
-      <Filter>src\regimes\environment</Filter>
-    </ClInclude>
-    <ClInclude Include="src\molecule_destination.h">
-      <Filter>src\regimes\microscopic\grid</Filter>
+      <Filter>src\simulation\environment</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_surface_shape.h">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\event_queue_test.h">
       <Filter>src\tests</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_box_surface_shape.h">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_box_surface.h">
-      <Filter>src\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\molecule_destination.h">
+      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enum_array.h">
+      <Filter>src\other\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor.h">
+      <Filter>src\simulation\actors\passive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -696,35 +699,47 @@
     <Filter Include="src\shapes\collision\circle">
       <UniqueIdentifier>{eae2942d-beb1-4ef4-bec7-a91f4612078e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes">
+    <Filter Include="src\simulation">
       <UniqueIdentifier>{ff7e6a54-3c20-4bd4-8d56-57ee6384bac5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic">
+    <Filter Include="src\simulation\environment">
+      <UniqueIdentifier>{45be9e45-5002-4669-9acc-a03c46f00f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\other\containers">
+      <UniqueIdentifier>{7ccf8c18-8a6f-4de2-b071-39aa565600b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\actors">
+      <UniqueIdentifier>{1a152e55-46e0-4c08-a091-6b75e4eb4cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes">
+      <UniqueIdentifier>{b906f2bc-7c25-46c8-8411-076e5e3b6cb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\microscopic">
       <UniqueIdentifier>{eeeee95d-52c9-4172-823e-c36656262369}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\relations">
+    <Filter Include="src\simulation\regimes\microscopic\relations">
       <UniqueIdentifier>{f8c51a59-eb90-420f-a343-fa989b60bc9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\molecule">
+    <Filter Include="src\simulation\regimes\microscopic\molecule">
       <UniqueIdentifier>{42549907-65c0-4ea6-b7b2-9bfa13cf6278}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\reactions">
+    <Filter Include="src\simulation\regimes\microscopic\reactions">
       <UniqueIdentifier>{0a1d4d86-7d17-4a52-9eda-14cb0a837272}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\grid">
+    <Filter Include="src\simulation\regimes\microscopic\grid">
       <UniqueIdentifier>{956b3710-f765-49bd-927a-6f9a137bc4e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\surface">
+    <Filter Include="src\simulation\regimes\microscopic\surface">
       <UniqueIdentifier>{86b0885c-1409-4237-b18a-a6e92bd81029}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\region">
+    <Filter Include="src\simulation\regimes\microscopic\region">
       <UniqueIdentifier>{e0ffecf9-fdf4-454b-8e97-866d58b7ceab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\microscopic\subvolume">
+    <Filter Include="src\simulation\regimes\microscopic\subvolume">
       <UniqueIdentifier>{f1f63f2d-6886-471d-af02-9759a7e9072f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\regimes\environment">
-      <UniqueIdentifier>{45be9e45-5002-4669-9acc-a03c46f00f2f}</UniqueIdentifier>
+    <Filter Include="src\simulation\actors\passive">
+      <UniqueIdentifier>{e226d73e-94a2-431e-893b-d43fae654fbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

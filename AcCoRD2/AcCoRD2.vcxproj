@@ -162,6 +162,7 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\passive_actor.h" />
     <ClInclude Include="src\microscopic_box_surface.h" />
     <ClInclude Include="src\microscopic_box_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface_shape.h" />

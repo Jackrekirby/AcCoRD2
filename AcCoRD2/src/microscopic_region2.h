@@ -15,12 +15,18 @@ namespace accord::microscopic
 	using MoleculeID = int;
 	using MoleculeIDs = std::vector<int>;
 
+	using RegionID = int;
+	using RegionIDs = std::vector<int>;
+
 	class Region2 : public Event
 	{
 	public:
 		Region2(std::vector<double> diffision_coefficients,
 			std::vector<Vec3i> n_subvolumes, std::unique_ptr<Surface> surface,
-			double start_time, int priority, EventQueue* event_queue);
+			double start_time, double time_step, int priority, EventQueue* event_queue,
+			RegionID id);
+
+		void Run();
 
 		// add neighbour relationship between local and external grids of same molecule type.
 		void AddNeighbour(Region2& region, const MoleculeIDs& ids);
@@ -59,6 +65,10 @@ namespace accord::microscopic
 		// each region type will have its own surface shape which is why GetSurface is virtual
 		// may need const version of get surface
 		Surface& GetSurface();
+
+		RegionID GetID() const;
+
+		Type GetType() const;
 	private:
 		std::unique_ptr<Surface> surface;
 		std::vector<Grid2> grids;
@@ -68,6 +78,7 @@ namespace accord::microscopic
 		std::vector<FirstOrderReaction> first_order_reactions;
 		SecondOrderReactions second_order_reactions;
 		double time_step;
+		RegionID id;
 
 		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);
 

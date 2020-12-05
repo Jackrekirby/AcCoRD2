@@ -19,7 +19,7 @@ namespace accord::microscopic
 		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient),
 		region(region), id(id)
 	{
-
+		CreateSubvolumes();
 	}
 
 	void Grid2::AddMolecule(const Vec3d& position)

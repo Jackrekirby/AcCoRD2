@@ -12,10 +12,24 @@ namespace accord::microscopic
 {
 	Region2::Region2(std::vector<double> diffision_coefficients,
 		std::vector<Vec3i> n_subvolumes_per_grid, std::unique_ptr<Surface> surface,
-		double start_time, int priority, EventQueue* event_queue)
-		: surface(std::move(surface)), Event(start_time, priority, event_queue)
+		double start_time, double time_step, int priority, EventQueue* event_queue,
+		RegionID id)
+		: surface(std::move(surface)), Event(start_time, priority, event_queue),
+		time_step(time_step), id(id)
 	{
 		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid);
+	}
+
+	void Region2::Run()
+	{
+		// zeroth order reactions
+		// first order reactions
+		for (auto& grid : grids)
+		{
+			grid.DiffuseMolecules();
+		}
+		// second order reactions
+		UpdateTime(GetNextEventTime());
 	}
 
 	// add neighbour relationship between local and external grids of same molecule type.
@@ -138,5 +152,15 @@ namespace accord::microscopic
 	Surface& Region2::GetSurface()
 	{
 		return *surface;
+	}
+
+	RegionID Region2::GetID() const
+	{
+		return id;
+	}
+
+	Event::Type Region2::GetType() const
+	{
+		return Event::Type::microscopic_region;
 	}
 }
