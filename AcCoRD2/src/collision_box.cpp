@@ -15,18 +15,18 @@ namespace accord::shape::collision
 	{
 		return
 		{
-			GenerateFace(GetOrigin(), Axis3D::x, GetOrigin(), GetEnd()),
-			GenerateFace(GetOrigin(), Axis3D::y, GetOrigin(), GetEnd()),
-			GenerateFace(GetOrigin(), Axis3D::z, GetOrigin(), GetEnd()),
-			GenerateFace(GetEnd(), Axis3D::x, GetOrigin(), GetEnd()),
-			GenerateFace(GetEnd(), Axis3D::y, GetOrigin(), GetEnd()),
-			GenerateFace(GetEnd(), Axis3D::z, GetOrigin(), GetEnd())
+			GenerateFace(GetOrigin(), Axis3D::x, GetOrigin(), GetLength()),
+			GenerateFace(GetOrigin(), Axis3D::y, GetOrigin(), GetLength()),
+			GenerateFace(GetOrigin(), Axis3D::z, GetOrigin(), GetLength()),
+			GenerateFace(GetEnd(), Axis3D::x, GetOrigin(), GetLength()),
+			GenerateFace(GetEnd(), Axis3D::y, GetOrigin(), GetLength()),
+			GenerateFace(GetEnd(), Axis3D::z, GetOrigin(), GetLength())
 		};
 	}
 
-	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& end) const
+	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& length) const
 	{
-		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), end.GetPlane(axis) } };
+		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), length.GetPlane(axis) } };
 	}
 
 	std::optional<Collision3D> Box::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const

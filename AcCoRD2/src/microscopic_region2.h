@@ -69,6 +69,8 @@ namespace accord::microscopic
 		RegionID GetID() const;
 
 		Type GetType() const;
+
+		void NextRealisation();
 	private:
 		std::unique_ptr<Surface> surface;
 		std::vector<Grid2> grids;

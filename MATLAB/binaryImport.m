@@ -98,6 +98,7 @@ while(min(simulation.passiveActorTimes) ~= Inf)
     end
 end
 
+disp("Rendering Complete");
 
 %% Functions
 

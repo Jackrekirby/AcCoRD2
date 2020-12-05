@@ -15,6 +15,12 @@ namespace accord::microscopic
 		return shape::collision::Box::CalculateExternalCollisionData(origin, end);
 	}
 
+	std::optional<shape::collision::Collision3D>
+		BoxSurfaceShape::CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const
+	{
+		return shape::collision::Box::CalculateInternalCollisionData(origin, end);
+	}
+
 	bool BoxSurfaceShape::IsMoleculeInsideBorder(const Vec3d& position) const
 	{
 		return shape::basic::Box::IsWithinOrOnBorder(position);

@@ -18,6 +18,9 @@ namespace accord::microscopic
 		virtual std::optional<shape::collision::Collision3D>
 			CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const = 0;
 
+		virtual std::optional<shape::collision::Collision3D>
+			CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const = 0;
+
 		virtual bool IsMoleculeInsideBorder(const Vec3d& position) const = 0;
 
 		virtual bool IsMoleculeOnBorder(const Vec3d& position) const = 0;

@@ -16,16 +16,11 @@
 #include "microscopic_box_surface.h"
 #include "passive_actor.h"
 
-int main()
+void TestEnvironment()
 {
-	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
-
-	//set run time global Logger level
-	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
-
 	using namespace accord;
 
-	Environment::Init("D:/dev/my_simulation", 2, 10, 3, 2, 1);
+	Environment::Init("D:/dev/my_simulation", 1, 10, 3, 2, 1);
 	EventQueue event_queue(3);
 
 	// REGIONS
@@ -36,8 +31,8 @@ int main()
 	double time_step = 0.05;
 	int priority = 0;
 
-	std::unique_ptr<microscopic::Surface> surface = 
-		std::make_unique<microscopic::BoxSurface>(Vec3d( 0, 0, 0 ), Vec3d(10, 10, 10), 
+	std::unique_ptr<microscopic::Surface> surface =
+		std::make_unique<microscopic::BoxSurface>(Vec3d(-2, -2, -2), Vec3d(4, 4, 4),
 			microscopic::Surface::Type::None);
 
 	std::unique_ptr<microscopic::Surface> surface2 =
@@ -45,19 +40,30 @@ int main()
 			microscopic::Surface::Type::None);
 
 	Environment::microscopic_regions.emplace_back(
-		diffision_coefficients, n_subvolumes, std::move(surface), 
+		diffision_coefficients, n_subvolumes, std::move(surface),
 		start_time, time_step, priority, &event_queue, 0);
 	//Environment::microscopic_regions.emplace_back(
 	//	diffision_coefficients, n_subvolumes, std::move(surface2),
 	//	start_time, time_step, priority, &event_queue, 1);
 
-	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
-	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
-	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
-	Environment::microscopic_regions.at(0).AddMolecule(1, { 5, 5, 4 });
-	Environment::microscopic_regions.at(0).AddMolecule(1, { 5, 5, 4 });
-	Environment::microscopic_regions.at(0).AddMolecule(2, { 5, 5, 4 });
+	for (int i = 0; i < 50; i++)
+	{
+		Environment::microscopic_regions.at(0).AddMolecule(0, { 0, 0, 0 });
+	}
+	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
+	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
+	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
+	//Environment::microscopic_regions.at(0).AddMolecule(1, { 3, 3, 3 });
+	//Environment::microscopic_regions.at(0).AddMolecule(1, { 3, 3, 3 });
+	//Environment::microscopic_regions.at(0).AddMolecule(2, { 3, 3, 3 });
 
+
+	//auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { -7, 18, 9 });
+	//if (a.has_value())
+	//{
+	//	LOG_INFO(a->GetPosition());
+	//}
+	//return;
 	// ACTORS
 
 	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
@@ -67,11 +73,14 @@ int main()
 		if (Environment::GetRealisationNumber() > 0)
 		{
 			p.NextRealisation();
+			for (auto& region : Environment::microscopic_regions)
+			{
+				region.NextRealisation();
+			}
 		}
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
-			accord::Random::SetSeed();
 			auto& event = event_queue.Front();
 			Environment::SetTime(event.GetTime());
 			if (Environment::GetTime() > Environment::GetRunTime())
@@ -83,10 +92,25 @@ int main()
 			LOG_TRACE("Event:({})", event);
 			event.Run();
 		}
-		
 	} while (Environment::NextRealisation());
-	
 
+}
+
+int main()
+{
+	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
+
+	//set run time global Logger level
+	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
+
+	//using namespace accord;
+	
+	//shape::collision::Box b(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
+	//LOG_INFO(JsonToPrettyString(b));
+	//LOG_INFO(b.CalculateInternalCollisionData({ 0, 0, 0 }, { 9, 1, 0 }));
+	//LOG_INFO(b.CalculateInternalCollisionData({ 0, 0, 0 }, { -7, 18, 9 }));
+
+	TestEnvironment();
 	//accord::LoggerTest();
 	//accord::JsonTest();
 	//accord::RandomTest();

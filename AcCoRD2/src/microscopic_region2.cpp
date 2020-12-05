@@ -164,4 +164,17 @@ namespace accord::microscopic
 	{
 		return Event::Type::microscopic_region;
 	}
+
+	void Region2::NextRealisation()
+	{
+		UpdateTime(0);
+		for (auto& grid : grids)
+		{
+			for (auto& subvolume : grid.GetSubvolumes())
+			{
+				subvolume.GetNormalMolecules().clear();
+				subvolume.GetRecentMolecules().clear();
+			}
+		}
+	}
 }

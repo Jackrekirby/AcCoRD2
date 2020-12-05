@@ -105,7 +105,7 @@ namespace accord::microscopic
 			return closest_relation->PassMolecule(end, closest_collision, this);
 		}
 
-		auto collision = GetRegion().GetSurface().GetShape().CalculateExternalCollisionData(origin, end);
+		auto collision = GetRegion().GetSurface().GetShape().CalculateInternalCollisionData(origin, end);
 		if (collision.has_value())
 		{
 			for (auto& relation : low_priority_relations)
@@ -125,6 +125,10 @@ namespace accord::microscopic
 					return neighbour->PassMolecule(end, collision.value(), this);
 				}
 			}
+
+			// assume reflection at the moment but will depend on the type of surface
+			LOG_INFO("MOLECULE REFLECTED");
+			return CheckMoleculePath(collision->intersection, collision->reflection);
 		}
 
 		return MoleculeDestination(end, this);
