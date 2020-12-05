@@ -42,27 +42,34 @@ namespace accord
 
 			}
 
+			void Add(microscopic::Subvolume2* subvolume)
+			{
+				subvolumes.emplace_back(subvolume);
+			}
+
 			MoleculeID id;
 			std::vector<microscopic::Subvolume2*> subvolumes;
 		};
 	public:
 		PassiveActor(std::unique_ptr<PassiveActorShape> shape, MoleculeIDs molecule_ids,
 			double start_time, int priority, EventQueue* event_queue, double time_step, 
-			ActiveActorID id)
+			ActiveActorID id, bool record_positions, bool record_time)
 			: Event(start_time, priority, event_queue), shape(std::move(shape)), id(id),
-			time_step(time_step)
+			time_step(time_step), record_positions(record_positions), record_time(record_time),
+			molecule_ids(molecule_ids)
 		{
 			AddMicroscopicSubvolumesWhichAreInsideActor(molecule_ids);
 			CreateFiles();
 		}
 
-		PassiveActor(RegionIDs region_ids, MoleculeIDs molecules_ids,
+		PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
 			double start_time, int priority, EventQueue* event_queue, double time_step,
-			ActiveActorID id)
+			ActiveActorID id, bool record_positions, bool record_time)
 			: Event(start_time, priority, event_queue), shape(std::move(shape)), id(id),
-			time_step(time_step)
+			time_step(time_step), record_positions(record_positions), record_time(record_time),
+			molecule_ids(molecule_ids)
 		{
-			AddMicroscopicSubvolumes(molecules_ids, region_ids);
+			AddMicroscopicSubvolumes(molecule_ids, region_ids);
 			CreateFiles();
 		}
 
@@ -76,30 +83,66 @@ namespace accord
 			return id;
 		}
 
+		void NextRealisation()
+		{
+			for (auto& position_file : position_files)
+			{
+				position_file.Close();
+			}
+			for (auto& count_file : count_files)
+			{
+				count_file.Close();
+			}
+			time_file->Close();
+
+			position_files.clear();
+			count_files.clear();
+			time_file = nullptr;
+
+			CreateFiles();
+		}
+
 		void Run()
 		{
+			if (record_time) time_file->Write(GetTime());
 			ObserveEnvelopedMicroscopicSubvolumes();
 			ObservePartialMicroscopicSubvolumes();
 			UpdateTime(GetTime() + time_step);
 		}
 	private:
-		std::vector<accord::OutputBinaryVectors<Vec3d>> position_files;
+		std::vector<OutputBinaryVectors<Vec3d>> position_files;
+		std::vector<OutputBinarySingles<size_t>> count_files;
+		std::unique_ptr<OutputBinarySingles<double>> time_file;
+
 		std::vector<TypedSubvolumes> enveloped_subvolumes;
 		std::vector<TypedSubvolumes> partial_subvolumes;
 		std::unique_ptr<PassiveActorShape> shape;
 		ActiveActorID id;
 		double time_step;
 
+		MoleculeIDs molecule_ids;
+		bool record_positions;
+		bool record_time;
+
 		void CreateFiles()
 		{
 			int n = Environment::GetNumberOfMoleculeTypes();
 			position_files.reserve(n);
+
+			if (record_time)
+			{
+				time_file = std::make_unique<OutputBinarySingles<double>>(Environment::GetFilePath() + "p" + std::to_string(id) + "_t.bin");
+			}
+
 			std::string file_path = Environment::GetFilePath() + "p" +
 				std::to_string(id) + "_m";
-			for (int i = 0; i < n; i++)
+			for (auto& id : molecule_ids)
 			{
-				
-				position_files.emplace_back(file_path + std::to_string(i) + "_p.bin");
+				if (record_positions)
+				{
+					position_files.emplace_back(file_path + std::to_string(id) + "_p.bin");
+				}
+				count_files.emplace_back(file_path + std::to_string(id) + "_c.bin");
 			}
 		}
 
@@ -107,17 +150,19 @@ namespace accord
 		{
 			for (auto& id : molecule_ids)
 			{
+				enveloped_subvolumes.emplace_back(id);
+				partial_subvolumes.emplace_back(id);
 				for (auto& region : Environment::microscopic_regions)
 				{
 					for (auto& subvolume : region.GetGrid(id).GetSubvolumes())
 					{
 						if (shape->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
 						{
-							enveloped_subvolumes.emplace_back(&subvolume);
+							enveloped_subvolumes.back().Add(&subvolume);
 						}
 						else if (shape->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
 						{
-							partial_subvolumes.emplace_back(&subvolume);
+							partial_subvolumes.back().Add(&subvolume);
 						}
 						// otherwise subvolume is not inside actor so is ignored
 					}
@@ -129,12 +174,13 @@ namespace accord
 		{
 			for (auto& id : molecule_ids)
 			{
+				enveloped_subvolumes.emplace_back(id);
 				for (auto& region_id : region_ids)
 				{
 					auto& region = Environment::microscopic_regions.at(region_id);
 					for (auto& subvolume : region.GetGrid(id).GetSubvolumes())
 					{
-						enveloped_subvolumes.emplace_back(&subvolume);
+						enveloped_subvolumes.back().Add(&subvolume);
 					}
 				}
 			}
@@ -162,7 +208,8 @@ namespace accord
 				}
 				// write positions all of the same molecule type to file
 				position_files.at(id).Write(positions);
-				positions.empty();
+				count_files.at(id).Write(positions.size());
+				positions.clear();
 				id++;
 			}
 		}
@@ -197,7 +244,8 @@ namespace accord
 				}
 				// write positions all of the same molecule type to file
 				position_files.at(id).Write(positions);
-				positions.empty();
+				count_files.at(id).Write(positions.size());
+				positions.clear();
 				id++;
 			}
 		}

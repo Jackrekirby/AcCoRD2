@@ -127,6 +127,7 @@ namespace accord::microscopic
 	{
 		for (auto g1 = grids.begin(); g1 != grids.end(); ++g1)
 		{
+			// ignore unintended copy warning for g2 = g1
 			for (auto g2 = g1; g2 != grids.end(); ++g2)
 			{
 				g1->LinkGrid(*g2);

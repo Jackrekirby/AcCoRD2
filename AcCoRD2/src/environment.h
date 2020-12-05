@@ -25,6 +25,10 @@ namespace accord
 		static std::vector<microscopic::Region2> microscopic_regions;
 
 		static std::string GetFilePath();
+
+		static bool NextRealisation();
+
+		static void CreateDirectories();
 	private:
 		static double time;
 		static double run_time;
@@ -32,6 +36,6 @@ namespace accord
 		static std::string simulation_name;
 		static int num_realisations;
 		static int current_realisation;
-		static int seed;
+		static uint64_t seed;
 	};
 }

@@ -25,14 +25,14 @@ int main()
 
 	using namespace accord;
 
-	Environment::Init("my_simulation", 2, 5, 3, 2, 1);
+	Environment::Init("D:/dev/my_simulation", 2, 5, 3, 2, 1);
 	EventQueue event_queue(3);
 
 	// REGIONS
 
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(1, 1, 1), Vec3i(1, 1, 1), Vec3i(1, 1, 1) };
-	double start_time = 0;
+	double start_time = 1;
 	double time_step = 1;
 	int priority = 0;
 
@@ -46,27 +46,35 @@ int main()
 
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface), 
-		start_time, time_step, priority, &event_queue, 1);
-	Environment::microscopic_regions.emplace_back(
-		diffision_coefficients, n_subvolumes, std::move(surface2),
-		start_time, time_step, priority, &event_queue, 2);
+		start_time, time_step, priority, &event_queue, 0);
+	//Environment::microscopic_regions.emplace_back(
+	//	diffision_coefficients, n_subvolumes, std::move(surface2),
+	//	start_time, time_step, priority, &event_queue, 1);
 
 	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
 
 	// ACTORS
 
-	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.3, 1);
+	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 1, 0, true, true);
+	PassiveActor p2(RegionIDs({ 0 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.5, 1, true, true);
 
-	while (true)
-	{
-		accord::Random::SetSeed();
-		auto& event = event_queue.Front();
-		Environment::SetTime(event.GetTime());
-		if (Environment::GetTime() > Environment::GetRunTime()) break;
-		//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
-		LOG_INFO("Event:({})", event);
-		event.Run();
-	}
+	do {
+		if (Environment::GetRealisationNumber() > 0)
+		{
+			p.NextRealisation();
+		}
+		while (true)
+		{
+			accord::Random::SetSeed();
+			auto& event = event_queue.Front();
+			Environment::SetTime(event.GetTime());
+			if (Environment::GetTime() > Environment::GetRunTime()) break;
+			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
+			LOG_INFO("Event:({})", event);
+			event.Run();
+		}
+		
+	} while (Environment::NextRealisation());
 	
 
 	//accord::LoggerTest();
