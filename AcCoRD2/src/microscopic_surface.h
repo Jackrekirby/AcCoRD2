@@ -7,6 +7,13 @@
 // you must put a box surface on a box region but the surface can be of any type.
 
 // a region has its own internal surface and a surface per relationship type
+
+
+// NO LONGER NEED AS GRID CAN JUST CALL GET SURFACESHAPE
+// SURFACE TYPE NO LONGER NEEDED IN SURFACE, BUT AS RELATION ATTRIBUTES
+
+// THE SURFACE CLASS WILL BECOME SURFACES THAT ARE NO INHERITED BY REGIONS
+// SURFACE WILL INHERITED FROM RELATIONS TYPES
 namespace accord::microscopic
 {
 	class SurfaceShape;

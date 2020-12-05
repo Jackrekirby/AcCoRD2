@@ -85,6 +85,11 @@ namespace accord::microscopic
 
 	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end)
 	{
+		// for debugging
+		g_json["path3D"].emplace_back(origin);
+		g_json["path3D"].emplace_back(end);
+		
+
 		// need to add max reflections counter
 
 		HighPriorityRelation* closest_relation = nullptr;
@@ -102,7 +107,7 @@ namespace accord::microscopic
 		// if the collision time changed there was a valid collision
 		if (closest_relation != nullptr)
 		{
-			return closest_relation->PassMolecule(end, closest_collision, this);
+			return closest_relation->PassMoleculeToHighPriorityRelation(end, closest_collision, this);
 		}
 
 		auto collision = GetRegion().GetSurface().GetShape().CalculateInternalCollisionData(origin, end);
@@ -113,21 +118,29 @@ namespace accord::microscopic
 				if (relation->GetSurface().GetShape().IsMoleculeInsideBorder(collision->intersection))
 				{
 					// assumes you dont have mulitple valid low priority neighbours overlapping
-					return relation->PassMolecule(end, collision.value(), this);
+					return relation->PassMoleculeToLowPriorityRelation(end, collision.value(), this);
 				}
 			}
 
+			// would be good if u could get ids of neighbours
 			for (auto& neighbour : neighbours)
 			{
 				// neighbours must be sorted by youngest and neighbours of the same age must not overlap
 				if (neighbour->GetSurface().GetShape().IsMoleculeOnBorder(collision->intersection))
 				{
-					return neighbour->PassMolecule(end, collision.value(), this);
+					LOG_INFO("HIT NEIGHBOUR");
+					return neighbour->PassMoleculeToNeighbour(end, collision.value(), this);
 				}
 			}
 
 			// assume reflection at the moment but will depend on the type of surface
 			LOG_INFO("MOLECULE REFLECTED");
+
+			// dont need an internal surface relation
+			// just specific a simulation boundary region which has to be a low priority relation
+			// of all regions. Therefore a region does not need its own surface type
+			// the global region cannot have a membrane surface (can be done with simple json file check)
+			// disable collision checks on global region?
 			return CheckMoleculePath(collision->intersection, collision->reflection);
 		}
 
@@ -292,8 +305,34 @@ namespace accord::microscopic
 		return GetRegion().GetSurface();
 	}
 
-	std::optional<MoleculeDestination> Grid2::PassMolecule(const Vec3d& end,
-		const shape::collision::Collision3D& collison, Grid2* owner)
+	// the global surface must be absorbing or adsorbing
+	// KEEP INTERNAL SURFACE BUT SURFACE PER RELATION IS STILL REQUIRED
+	// CAN STILL GET RID OF SURFACE CAN HAVE GET BOUNDARY TYPE AND GET SHAPE
+	// internal surface must be reflective, absorbing or adsorbing
+
+	// collision spelt incorrectly
+	std::optional<MoleculeDestination> Grid2::PassMoleculeToNeighbour(const Vec3d& end, const shape::collision::Collision3D& collision, Grid2* owner)
+	{
+		//Absorping, Adsorbing, Membrane, Reflecting, None
+		switch (GetSurface().GetType())
+		{
+		case Surface::Type::None:
+			return CheckMoleculePath(collision.intersection, end);
+		case Surface::Type::Reflecting:
+			return owner->CheckMoleculePath(collision.intersection, collision.reflection);
+		default:
+			// must throw
+			break;
+		}
+		return std::nullopt;
+	}
+
+	std::optional<MoleculeDestination> Grid2::PassMoleculeToLowPriorityRelation(const Vec3d& end, const shape::collision::Collision3D& collision, Grid2* owner)
+	{
+		return std::nullopt;
+	}
+
+	std::optional<MoleculeDestination> Grid2::PassMoleculeToHighPriorityRelation(const Vec3d& end, const shape::collision::Collision3D& collision, Grid2* owner)
 	{
 		return std::nullopt;
 	}

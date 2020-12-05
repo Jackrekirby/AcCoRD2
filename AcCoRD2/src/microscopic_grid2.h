@@ -88,10 +88,21 @@ namespace accord::microscopic
 
 		Surface& GetSurface();
 
-		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
-			const shape::collision::Collision3D& collison, Grid2* owner);
+
+		// may be able to merge these pass functions
+		std::optional<MoleculeDestination> PassMoleculeToNeighbour(const Vec3d& end,
+			const shape::collision::Collision3D& collision, Grid2* owner);
+
+		std::optional<MoleculeDestination> PassMoleculeToLowPriorityRelation(const Vec3d& end,
+			const shape::collision::Collision3D& collision, Grid2* owner);
+
+		std::optional<MoleculeDestination> PassMoleculeToHighPriorityRelation(const Vec3d& end,
+			const shape::collision::Collision3D& collision, Grid2* owner);
 
 	private:
+		// need to change to NeighbourAndSurfaceType ...
+		// consider changing GetSurface to GetShape due to confusion of Surface.GetSurface
+		// also Surface.GetType() no longer required
 		std::vector<Neighbour*> neighbours; // can be grids, mesoregion or adsorbing surfaces
 		std::vector<LowPriorityRelation*> low_priority_relations; // can be grids or mesoregions
 		std::vector<HighPriorityRelation*> high_priority_relations; // cans be grids, mesoregions or surfaces

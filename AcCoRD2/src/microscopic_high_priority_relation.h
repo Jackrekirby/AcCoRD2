@@ -36,7 +36,7 @@ namespace accord::microscopic
 		// adsorbing surfaces return intersection position and itself as owner
 		// reflecting surfaces get current owner to call CheckMoleculePath() on reflected path
 		// a neighbour will take ownership and call CheckMoleculePath()
-		virtual std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
-			const shape::collision::Collision3D& collison, Grid2* owner) = 0;
+		virtual std::optional<MoleculeDestination> PassMoleculeToHighPriorityRelation(const Vec3d& end,
+			const shape::collision::Collision3D& collision, Grid2* owner) = 0;
 	};
 }

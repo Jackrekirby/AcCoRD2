@@ -36,20 +36,23 @@ void TestEnvironment()
 			microscopic::Surface::Type::None);
 
 	std::unique_ptr<microscopic::Surface> surface2 =
-		std::make_unique<microscopic::BoxSurface>(Vec3d(10, 0, 0), Vec3d(10, 10, 10),
+		std::make_unique<microscopic::BoxSurface>(Vec3d(2, -2, -2), Vec3d(4, 4, 4),
 			microscopic::Surface::Type::None);
 
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface),
 		start_time, time_step, priority, &event_queue, 0);
-	//Environment::microscopic_regions.emplace_back(
-	//	diffision_coefficients, n_subvolumes, std::move(surface2),
-	//	start_time, time_step, priority, &event_queue, 1);
+	Environment::microscopic_regions.emplace_back(
+		diffision_coefficients, n_subvolumes, std::move(surface2),
+		start_time, time_step, priority, &event_queue, 1);
 
 	for (int i = 0; i < 50; i++)
 	{
 		Environment::microscopic_regions.at(0).AddMolecule(0, { 0, 0, 0 });
 	}
+
+	// just pass ids and can get everything from environment
+	Environment::microscopic_regions.at(0).AddNeighbour(Environment::microscopic_regions.at(1), { 0, 1, 2 });
 	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
 	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
 	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
@@ -57,13 +60,23 @@ void TestEnvironment()
 	//Environment::microscopic_regions.at(0).AddMolecule(1, { 3, 3, 3 });
 	//Environment::microscopic_regions.at(0).AddMolecule(2, { 3, 3, 3 });
 
+	// test path of single molecule
+	if (true)
+	{
+		auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { 18, 7, 9 });
+		if (a.has_value())
+		{
+			//LOG_INFO(a->GetPosition());
+		}
 
-	//auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { -7, 18, 9 });
-	//if (a.has_value())
-	//{
-	//	LOG_INFO(a->GetPosition());
-	//}
-	//return;
+		g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-2, -2, -2), Vec3d(4, 4, 4)));
+		g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(2, -2, -2), Vec3d(4, 4, 4)));
+		std::ofstream ofile("C:/dev/AcCoRD2/MATLAB/path.json");
+		LOG_INFO(JsonToString(g_json));
+		ofile << JsonToString(g_json);
+		ofile.close();
+		return;
+	}
 	// ACTORS
 
 	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
@@ -101,7 +114,7 @@ int main()
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
 
 	//set run time global Logger level
-	accord::Logger::GetLogger()->set_level(spdlog::level::trace);
+	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
 	//using namespace accord;
 	

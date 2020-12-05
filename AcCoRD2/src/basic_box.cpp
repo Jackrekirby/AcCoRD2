@@ -59,7 +59,8 @@ namespace accord::shape::basic
 
 	bool Box::IsOnBorder(const Vec3d& position) const
 	{
-		return ((position == GetOrigin()) || (position == GetEnd())).All();
+		LOG_INFO("{} {} {}", position, GetOrigin(), GetEnd());
+		return (IsWithinOrOnBorder(position) && ((position == GetOrigin()) || (position == GetEnd())).Any());
 	}
 
 	void to_json(Json& j, const Box& box)

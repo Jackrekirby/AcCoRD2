@@ -25,9 +25,9 @@ namespace accord::shape::collision
 	{
 		if (time.has_value())
 		{
-			LOG_INFO("HIT PLANE");
+			//LOG_INFO("HIT PLANE");
 			auto intersection = GetPlane().CalculateIntersection(origin, end, time.value());
-			LOG_INFO("intersection = {}", intersection);
+			//LOG_INFO("intersection = {}", intersection);
 			if (GetShape().IsWithinOrOnBorder(intersection.GetPlane(GetPlane().GetAxis())))
 			{
 				auto reflection = GetPlane().CalculateReflection(intersection, end);

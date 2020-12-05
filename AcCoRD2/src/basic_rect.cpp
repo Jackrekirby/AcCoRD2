@@ -54,10 +54,6 @@ namespace accord::shape::basic
 
 	bool Rect::IsWithinOrOnBorder(const Vec2d& position) const
 	{
-		LOG_INFO(JsonToPrettyString(*this));
-		LOG_INFO("position = {}", position);
-		LOG_INFO((position >= GetOrigin()).All());
-		LOG_INFO((position <= GetEnd()).All());
 		return ((position >= GetOrigin()).All() && (position <= GetEnd()).All());
 	}
 

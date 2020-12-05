@@ -17,6 +17,11 @@
 % highlighting edges would be more useful for 2d while coloured
 % faces is more useful for 3d.
 
+% inconsistencies between animated line json importing and shape json
+% importing
+
+% switch size to length
+
 % Track bug:
 % https://uk.mathworks.com/matlabcentral/answers/666553-linewidth-parameter-not-affecting-marker-thickness-of-animated-line
 
