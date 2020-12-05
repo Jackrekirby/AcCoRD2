@@ -6,9 +6,10 @@ clc;
 
 % Select the simulation name, seed and realisation to visualise
 simulation = ReadSimFiles("D:\dev", "my_simulation", 1, 0);
+playBackSpeed = 0.5; % half real speed
 
 
-simulation.hFigure = figure('visible','off');
+simulation.hFigure = figure('visible','off', 'Name','Simulation Time:','NumberTitle','off');
 view(3);
 xlabel('x');
 ylabel('y');
@@ -28,7 +29,12 @@ for i = 1:size(simulation.passiveActor, 2)
         simulation.passiveActor(i).timeIndex = 1;
         simulation.passiveActorTimes(i) = ... 
             simulation.passiveActor(i).times(simulation.passiveActor(i).timeIndex);
-        simulation.passiveActor(i).hPlot = plot3(0, 0, 0, 'Marker', 'o');
+        %NEED a plot per molecule type
+        simulation.passiveActor(i).hPlot = ...
+            plot3(0, 0, 0, 'Marker', 'o', 'LineStyle', 'none');
+        simulation.passiveActor(i).hPlot.XData = [];
+        simulation.passiveActor(i).hPlot.YData = [];
+        simulation.passiveActor(i).hPlot.ZData = [];
     else
         simulation.passiveActor(i) = Inf;
     end
@@ -40,30 +46,40 @@ simulation.hFigure.Visible = 'on';
 simulation.time = min(simulation.passiveActorTimes);
 simulation.actorsToRender = [];
 disp("Beginning rendering");
+tic;
 while(min(simulation.passiveActorTimes) ~= Inf)
     [time, id] = min(simulation.passiveActorTimes);
     
-    if(time > simulation.time) 
-        fprintf("Render at time: " + simulation.time + 's, actors: \n');
-        disp(simulation.actorsToRender);
+    % if the next actor's time is ahead of the current simulation time then
+    % render all the actor observations from the current simulation time
+    % before going onto the next actor
+    if(time > simulation.time)
+        % display the simulation time in the window name
+        simulation.hFigure.Name = "Simulation Time: " + simulation.time;
+        %fprintf("Render at time: " + simulation.time + 's, actors: \n');
+        %disp(simulation.actorsToRender);
         
-        for i = 1:simulation.actorsToRender
+        for i = 1:size(simulation.actorsToRender, 2)
             actor_id = simulation.actorsToRender(i);
             for j = 1:size(simulation.passiveActor(actor_id).moleType, 2)
-                if()
-                positions = GetPositions(simulation.passiveActor(actor_id).moleType(j), ...
-                    simulation.passiveActor(actor_id).timeIndex - 1);
-                simulation.passiveActor(actor_id).hPlot.XData = positions(1, :);
-                simulation.passiveActor(actor_id).hPlot.YData = positions(2, :);
-                simulation.passiveActor(actor_id).hPlot.ZData = positions(3, :);
+                if(simulation.passiveActor(actor_id).moleType(j).count ~= 0)
+                    positions = GetPositions(simulation.passiveActor(actor_id).moleType(j), ...
+                        simulation.passiveActor(actor_id).timeIndex - 1);
+                    simulation.passiveActor(actor_id).hPlot.XData = positions(1, :);
+                    simulation.passiveActor(actor_id).hPlot.YData = positions(2, :);
+                    simulation.passiveActor(actor_id).hPlot.ZData = positions(3, :);
+                end
             end
         end
-        
-        
-        simulation.time = time;
+
         simulation.actorsToRender = [];
-        drawnow;
-        pause(0.5);
+        
+        % if real time is ahead of simulation time wait
+        while(simulation.time / playBackSpeed > toc)
+            pause(0.01 * ((simulation.time / playBackSpeed) - toc));
+        end
+        simulation.time = time;
+        drawnow limitrate;
     end
  
     simulation.actorsToRender = [simulation.actorsToRender, id];

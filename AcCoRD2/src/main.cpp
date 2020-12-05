@@ -25,15 +25,15 @@ int main()
 
 	using namespace accord;
 
-	Environment::Init("D:/dev/my_simulation", 2, 5, 3, 2, 1);
+	Environment::Init("D:/dev/my_simulation", 2, 10, 3, 2, 1);
 	EventQueue event_queue(3);
 
 	// REGIONS
 
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
-	std::vector<Vec3i> n_subvolumes = { Vec3i(1, 1, 1), Vec3i(1, 1, 1), Vec3i(1, 1, 1) };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(2, 2, 2), Vec3i(1, 1, 1), Vec3i(1, 1, 1) };
 	double start_time = 1;
-	double time_step = 1;
+	double time_step = 0.05;
 	int priority = 0;
 
 	std::unique_ptr<microscopic::Surface> surface = 
@@ -52,25 +52,35 @@ int main()
 	//	start_time, time_step, priority, &event_queue, 1);
 
 	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
+	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
+	Environment::microscopic_regions.at(0).AddMolecule(0, { 5, 5, 5 });
+	Environment::microscopic_regions.at(0).AddMolecule(1, { 5, 5, 4 });
+	Environment::microscopic_regions.at(0).AddMolecule(1, { 5, 5, 4 });
+	Environment::microscopic_regions.at(0).AddMolecule(2, { 5, 5, 4 });
 
 	// ACTORS
 
-	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 1, 0, true, true);
-	PassiveActor p2(RegionIDs({ 0 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.5, 1, true, true);
+	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+	PassiveActor p2(RegionIDs({ 0 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.3, 1, true, true);
 
 	do {
 		if (Environment::GetRealisationNumber() > 0)
 		{
 			p.NextRealisation();
 		}
+		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
 			accord::Random::SetSeed();
 			auto& event = event_queue.Front();
 			Environment::SetTime(event.GetTime());
-			if (Environment::GetTime() > Environment::GetRunTime()) break;
+			if (Environment::GetTime() > Environment::GetRunTime())
+			{
+				LOG_TRACE("The Next Event Outside Run Time : ({})", event);
+				break;
+			}
 			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
-			LOG_INFO("Event:({})", event);
+			LOG_TRACE("Event:({})", event);
 			event.Run();
 		}
 		
