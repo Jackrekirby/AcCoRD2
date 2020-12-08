@@ -7,17 +7,11 @@
 #include "microscopic_zeroth_order_reaction.h"
 #include "microscopic_first_order_reaction.h"
 #include "microscopic_second_order_reaction.h"
-
+#include "object_ids.h"
 // Surface(Shape3D shape, Enum surface_type) OR Surface : public shape, public absorbing (multiple inheritance)
 
 namespace accord::microscopic
 {
-	using MoleculeID = int;
-	using MoleculeIDs = std::vector<int>;
-
-	using RegionID = int;
-	using RegionIDs = std::vector<int>;
-
 	class Region2 : public Event
 	{
 	public:

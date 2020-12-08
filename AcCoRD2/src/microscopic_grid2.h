@@ -103,6 +103,14 @@ namespace accord::microscopic
 		// need to change to NeighbourAndSurfaceType ...
 		// consider changing GetSurface to GetShape due to confusion of Surface.GetSurface
 		// also Surface.GetType() no longer required
+
+		// surface direction will be the same for all relations
+		// need to know the direction of a surfaces for high priority relations
+		// high prioity = external collision check or either surface side
+		// as low priority or neighbour only is on border check required, no direction
+
+		// neighbour.checkcollision called external for regions and gets direction for surfaces
+
 		std::vector<Neighbour*> neighbours; // can be grids, mesoregion or adsorbing surfaces
 		std::vector<LowPriorityRelation*> low_priority_relations; // can be grids or mesoregions
 		std::vector<HighPriorityRelation*> high_priority_relations; // cans be grids, mesoregions or surfaces

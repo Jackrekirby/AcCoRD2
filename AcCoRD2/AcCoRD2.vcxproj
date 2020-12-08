@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="microscopic_relation.cpp" />
+    <ClCompile Include="src\passive_actor.cpp" />
     <ClCompile Include="src\microscopic_box_surface.cpp" />
     <ClCompile Include="src\microscopic_box_surface_shape.cpp" />
     <ClCompile Include="src\microscopic_region2.cpp" />
@@ -162,6 +164,8 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="microscopic_relation.h" />
+    <ClInclude Include="src\object_ids.h" />
     <ClInclude Include="src\passive_actor.h" />
     <ClInclude Include="src\microscopic_box_surface.h" />
     <ClInclude Include="src\microscopic_box_surface_shape.h" />

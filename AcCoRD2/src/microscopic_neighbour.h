@@ -18,6 +18,10 @@ namespace accord::microscopic
 		// requires is molecule on surface boundary and get surface type
 		virtual Surface& GetSurface() = 0;
 
+		// CheckCollision()
+		// GetShape()
+		// GetID()
+
 		// grids need to check if on boundary then pass ownership and continue path checking
 		// meso regions need to check on boundary and so stop path checking, return 
 		// a surface (NOT A PSEUDO ONE) needs to check if in area then respond accordingly.

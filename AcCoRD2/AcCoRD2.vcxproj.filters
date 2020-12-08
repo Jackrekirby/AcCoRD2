@@ -244,6 +244,12 @@
     <ClCompile Include="src\molecule_destination.cpp">
       <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClCompile>
+    <ClCompile Include="src\passive_actor.cpp">
+      <Filter>src\simulation\actors\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="microscopic_relation.cpp">
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -530,6 +536,12 @@
     </ClInclude>
     <ClInclude Include="src\passive_actor.h">
       <Filter>src\simulation\actors\passive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object_ids.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="microscopic_relation.h">
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,25 @@
+#pragma once
+#include "pch.h"
+
+namespace accord
+{
+	using MoleculeID = int;
+	using MoleculeIDs = std::vector<int>;
+
+	using EventID = int;
+	using EventIDs = std::vector<int>;
+
+	using RegionID = int;
+	using RegionIDs = std::vector<int>;
+
+	using ActiveActorID = int;
+	using ActiveActorIDs = std::vector<int>;
+
+	using PassiveActorID = int;
+	using PassiveActorIDs = std::vector<int>;
+
+	// grids are related to molecule id
+	// should subvolumes have an id?
+	// should microscopic and mesoscopic regions have their own id type?
+	// should non-owning surface have their own id?
+}
