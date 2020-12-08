@@ -41,7 +41,7 @@ void TestEnvironment()
 
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface_shape),
-		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 0);
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Absorbing, 0);
 
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface_shape2),
@@ -83,8 +83,8 @@ void TestEnvironment()
 	}
 	// ACTORS
 
-	PassiveActor p(RegionIDs({ 0, 1 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
-	PassiveActor p2(RegionIDs({ 0, 1 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.3, 1, true, true);
+	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+	PassiveActor p2(RegionIDs({ 1 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.3, 1, true, true);
 
 	do {
 		if (Environment::GetRealisationNumber() > 0)
@@ -115,7 +115,8 @@ void TestEnvironment()
 
 int main()
 {
-	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
+	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
+	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
 
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);

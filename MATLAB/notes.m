@@ -1,3 +1,12 @@
+%% Class Layout
+
+% Simulation - Imports binaries, renders/animated Molecules, plots graphs etc..
+%   requires shape to render regions
+% Shape - Draws 2d and 3d shapes, and can load from json file
+% PathPlotter - Renders/animated a single molecule path
+%   requires shape to render regions
+
+
 %% To Do List
 
 % Ensure consistent style key value pairs (Word Case)           DONE

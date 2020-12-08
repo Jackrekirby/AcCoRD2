@@ -6,14 +6,42 @@ clc;
 
 % Select the simulation name, seed and realisation to visualise
 simulation = ReadSimFiles("D:\dev", "my_simulation", 1, 0);
-playBackSpeed = 1; % half real speed
-for i = 1:length(simulation.passiveActor.moleType)
-    if(length(simulation.passiveActor.moleType(i)) > n_molecule_types)
-        n_molecule_types = length(simulation.passiveActor.moleType(i));
-    end
-end
+playBackSpeed = 0.2; % half real speed
+n_molecule_types = 3;
 molecule_colormap = hsv(n_molecule_types);
 
+
+
+%% Display Count
+
+figure;
+hold on;
+for i = 1:length(simulation.passiveActor)
+    for j = 1:length(simulation.passiveActor(i).moleType)
+        i
+        j
+        if(~isempty(simulation.passiveActor(i).moleType(j).count))
+            plot(simulation.passiveActor(i).times, ...
+                simulation.passiveActor(i).moleType(j).count, ...
+                'LineWidth', 2);
+        end
+    end
+end
+
+k = 1;
+for i = 1:length(simulation.passiveActor)
+    for j = 1:length(simulation.passiveActor(i).moleType)
+        legend_labels{k} = "passive actor " + num2str(i) ...
+             + "molecule type" + num2str(j);
+         k = k + 1;
+    end
+end
+legend(legend_labels);
+hold off;
+
+
+
+%%
 simulation.hFigure = figure('visible','off', 'Name','Simulation Time:','NumberTitle','off');
 s = Shape3D();
 s.plot('C:\dev\AcCoRD2\MATLAB\path.json');
@@ -26,6 +54,8 @@ axis equal;
 view(45,30);
 r = 10;
 xlim([-r, r]); zlim([-r, r]); ylim([-r, r]);
+
+
 
 fprintf('\n');
 disp("Ordering passive actors");
@@ -67,12 +97,12 @@ while(min(simulation.passiveActorTimes) ~= Inf)
         % display the simulation time in the window name
         simulation.hFigure.Name = "Simulation Time: " + simulation.time;
         %fprintf("Render at time: " + simulation.time + 's, actors: \n');
-        disp(simulation.actorsToRender);
+        %disp(simulation.actorsToRender);
         
-        for i = 1:length(simulation.actorsToRender)
+        for i = 1:size(simulation.actorsToRender, 2)
             actor_id = simulation.actorsToRender(i);
-            for j = 1:length(simulation.passiveActor(actor_id).moleType)
-                if(sum(simulation.passiveActor(actor_id).moleType(j).count) ~= 0)
+            for j = 1:size(simulation.passiveActor(actor_id).moleType, 2)
+                if(simulation.passiveActor(actor_id).moleType(j).count ~= 0)
                     positions = GetPositions(simulation.passiveActor(actor_id).moleType(j), ...
                         simulation.passiveActor(actor_id).timeIndex - 1);
                     simulation.passiveActor(actor_id).moleType(j).hPlot.XData = positions(1, :);
@@ -104,32 +134,6 @@ while(min(simulation.passiveActorTimes) ~= Inf)
 end
 
 disp("Rendering Complete");
-
-
-%% Display Count
-clc;
-figure;
-hold on;
-k = 1;
-for i = 1:length(simulation.passiveActor)
-    for j = 1:length(simulation.passiveActor(i).moleType)
-        if(~isempty(simulation.passiveActor(i).moleType(j).count) && ...
-                sum(simulation.passiveActor(i).moleType(j).count) ~= 0)
-            plot(simulation.passiveActor(i).times, ...
-                simulation.passiveActor(i).moleType(j).count, ...
-                'LineWidth', 2);
-            legend_labels{k} = "passive actor: " + num2str(i) ...
-             + ", molecule type: " + num2str(j);
-            k = k + 1;
-        end
-    end
-end
-
-title("Molecule Count per Passive Actor and Molecule Type");
-xlabel("time (s)"); ylabel("count");
-legend(legend_labels);
-hold off;
-
 
 %% Functions
 

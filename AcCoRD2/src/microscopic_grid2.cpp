@@ -130,14 +130,14 @@ namespace accord::microscopic
 				// neighbours must be sorted by youngest and neighbours of the same age must not overlap
 				if (relationship.GetRelative().GetShape().IsMoleculeOnBorder(collision->intersection))
 				{
-					LOG_INFO("HIT NEIGHBOUR");
+					//LOG_INFO("HIT NEIGHBOUR");
 					return relationship.GetRelative().PassMolecule(end, collision.value(), 
 						this, relationship.GetSurfaceType());
 				}
 			}
 
 			// assume reflection at the moment but will depend on the type of surface
-			LOG_INFO("MOLECULE REFLECTED");
+			//LOG_INFO("MOLECULE REFLECTED");
 			
 			// dont need an internal surface relative
 			// just specific a simulation boundary region which has to be a low priority relative

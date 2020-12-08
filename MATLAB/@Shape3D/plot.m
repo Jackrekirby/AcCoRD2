@@ -25,9 +25,10 @@ function hFigure = plot(obj, jsonFilePath)
         end
     end
     hold off;
-    xlabel('x');
-    ylabel('y');
-    zlabel('z');
-    axis equal;
-    view(45,30);
+%     hold off;
+%     xlabel('x');
+%     ylabel('y');
+%     zlabel('z');
+%     axis equal;
+%     view(45,30);
 end
