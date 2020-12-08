@@ -13,7 +13,7 @@ namespace accord::shape::collision
 
 	}
 
-	std::optional<Collision3D> Sphere::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end)
+	std::optional<Collision3D> Sphere::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{
 		// find the collision times of the line (formed by points origin and end) with the sphere
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
@@ -31,7 +31,7 @@ namespace accord::shape::collision
 		return Collision3D(*time, intersection, reflection);
 	}
 
-	std::optional<Collision3D> Sphere::CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end)
+	std::optional<Collision3D> Sphere::CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{
 		// find the collision times of the line (formed by points origin and end) with the sphere
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
@@ -55,7 +55,7 @@ namespace accord::shape::collision
 
 	}
 
-	std::optional<Sphere::CollisionTimes> Sphere::CalculateCollisionTime(const Vec3d& origin, const Vec3d& end)
+	std::optional<Sphere::CollisionTimes> Sphere::CalculateCollisionTime(const Vec3d& origin, const Vec3d& end) const
 	{
 		// see https://en.wikipedia.org/wiki/Line–sphere_intersection
 		// nabla operator = n
@@ -73,7 +73,7 @@ namespace accord::shape::collision
 		return CollisionTimes((-a + sqrt_n) / oe, (-a - sqrt_n) / oe);
 	}
 
-	std::optional<double> Sphere::SelectExternalCollisionTime(double t1, double t2)
+	std::optional<double> Sphere::SelectExternalCollisionTime(double t1, double t2) const
 	{
 		// Molecule in inside circle (which it shouldn't be, but can be a result of floating point error)
 		if (t1 * t2 < 0)
@@ -104,7 +104,7 @@ namespace accord::shape::collision
 		}
 	}
 
-	std::optional<double> Sphere::SelectInternalCollisionTime(double t1, double t2)
+	std::optional<double> Sphere::SelectInternalCollisionTime(double t1, double t2) const
 	{
 		if (t1 > t2)
 		{

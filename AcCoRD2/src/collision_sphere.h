@@ -9,9 +9,9 @@ namespace accord::shape::collision
 	public:
 		Sphere(Vec3d centre, double radius);
 
-		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end);
+		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
-		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end);
+		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
 	private:
 
@@ -22,11 +22,11 @@ namespace accord::shape::collision
 			CollisionTimes(double t1, double t2);
 		};
 
-		std::optional<CollisionTimes> CalculateCollisionTime(const Vec3d& origin, const Vec3d& end);
+		std::optional<CollisionTimes> CalculateCollisionTime(const Vec3d& origin, const Vec3d& end) const;
 
-		std::optional<double> SelectExternalCollisionTime(double t1, double t2);
+		std::optional<double> SelectExternalCollisionTime(double t1, double t2) const;
 
-		std::optional<double> SelectInternalCollisionTime(double t1, double t2);
+		std::optional<double> SelectInternalCollisionTime(double t1, double t2) const;
 	};
 
 	void to_json(Json& j, const Sphere& sphere);

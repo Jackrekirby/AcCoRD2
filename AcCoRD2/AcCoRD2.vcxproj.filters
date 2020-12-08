@@ -244,6 +244,9 @@
     <ClCompile Include="src\microscopic_relationship.cpp">
       <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClCompile>
+    <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -526,6 +529,9 @@
       <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_surface_type.h">
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_sphere_surface_shape.h">
       <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
   </ItemGroup>
