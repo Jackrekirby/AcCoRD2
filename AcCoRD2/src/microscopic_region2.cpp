@@ -11,11 +11,11 @@
 namespace accord::microscopic
 {
 	Region2::Region2(std::vector<double> diffision_coefficients,
-		std::vector<Vec3i> n_subvolumes_per_grid, std::unique_ptr<Surface> surface,
+		std::vector<Vec3i> n_subvolumes_per_grid, std::unique_ptr<SurfaceShape> surface_shape,
 		double start_time, double time_step, int priority, EventQueue* event_queue,
-		RegionID id)
-		: surface(std::move(surface)), Event(start_time, priority, event_queue),
-		time_step(time_step), id(id)
+		SurfaceType surface_type, RegionID id)
+		: surface_shape(std::move(surface_shape)), Event(start_time, priority, event_queue),
+		time_step(time_step), id(id), surface_type(surface_type)
 	{
 		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid);
 	}
@@ -34,27 +34,27 @@ namespace accord::microscopic
 
 	// add neighbour relationship between local and external grids of same molecule type.
 	// will need a seperate add neighbour for surfaces or pass neighbour directly into here
-	void Region2::AddNeighbour(Region2& region, const MoleculeIDs& ids)
+	void Region2::AddNeighbour(Region2& region, SurfaceType type, const MoleculeIDs& ids)
 	{
 		for (auto& id : ids)
 		{
-			GetGrid(id).AddNeighbour(static_cast<Neighbour*>(&region.GetGrid(id)));
+			GetGrid(id).AddNeighbour(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
 	}
 
-	void Region2::AddHighPriorityRelative(Region2& region, const MoleculeIDs& ids)
+	void Region2::AddHighPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids)
 	{
 		for (auto& id : ids)
 		{
-			GetGrid(id).AddHighPriorityRelation(static_cast<HighPriorityRelation*>(&region.GetGrid(id)));
+			GetGrid(id).AddHighPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
 	}
 
-	void Region2::AddLowPriorityRelative(Region2& region, const MoleculeIDs& ids)
+	void Region2::AddLowPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids)
 	{
 		for (auto& id : ids)
 		{
-			GetGrid(id).AddLowPriorityRelation(static_cast<LowPriorityRelation*>(&region.GetGrid(id)));
+			GetGrid(id).AddLowPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
 	}
 
@@ -114,7 +114,7 @@ namespace accord::microscopic
 
 	void Region2::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
 	{
-		shape::basic::Box b = surface->GetShape().GenerateBoundingBox();
+		shape::basic::Box b = GetShape().GenerateBoundingBox();
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
 		{
 			grids.emplace_back(b.GetOrigin(), b.GetLength(), 
@@ -150,11 +150,6 @@ namespace accord::microscopic
 		}
 	}
 
-	Surface& Region2::GetSurface()
-	{
-		return *surface;
-	}
-
 	RegionID Region2::GetID() const
 	{
 		return id;
@@ -163,6 +158,16 @@ namespace accord::microscopic
 	Event::Type Region2::GetType() const
 	{
 		return Event::Type::microscopic_region;
+	}
+
+	const SurfaceShape& Region2::GetShape() const
+	{
+		return *surface_shape;
+	}
+
+	SurfaceType Region2::GetSurfaceType() const
+	{
+		return surface_type;
 	}
 
 	void Region2::NextRealisation()

@@ -1,4 +1,1323 @@
-[info] [2, 0.777778, 1] [2, -2, -2] [6, 2, 2]
+[info] Realisation 0
+[info] [-2, -1.11965, -0.102526] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.537009, -0.781255] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.879732, 2, 0.111408] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.11391, -0.0668179] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.505036, -0.69336] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.337982, -1.01679] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.830567, 0.120938] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.726381, 2, -0.924504] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.726686, 2, -0.923889] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.370679, -0.658815, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.295491, 1.00426, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.596466, -0.0200669] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.216613, 1.04457, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.483795, -1.40585] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.58943, 1.72767, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.303578, 0.960852, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.740094, -1.25191, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.347738, 0.534733, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.07244, 0.90495] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-0.289029, 0.284572, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.320928, -1.01544] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.707917, -0.962131, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.832089, 2, 0.662194] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.4488, -0.809277] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.807642, 1.3672, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.774705, -1.82925] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.24731, -2, 0.15252] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.44627, 0.209449] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.843908, 1.21198, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.13764, 2, 0.292345] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.849022, 1.32812, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.44232, 2, -1.15399] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.71431, 0.0330312] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] [2, -0.0448206, 0.492126] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [2, -1.3963, 0.437854] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 1.64634, -1.41825] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.35293, -0.98052] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.19803, 1.09477, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.91929, -0.458555] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 1.35019, -0.959726] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.734, -1.19548, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.507453, -1.13992] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.1186, -2, 1.15396] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.70367, -0.464516, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.693956, -1.23094, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -0.648717, -0.0110942] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [1.02905, -2, 1.31557] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.436081, 2, -0.814321] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.953589, -2, 1.46461] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.60507, 0.439175] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.973, 2, -0.502757] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.438304, -2, -0.0305735] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.57332, 1.28591, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.813275, 2, -0.885029] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.216804, 0.696922] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.282866, -0.58045, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.97815, 2, -0.501607] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.220347, -2, -0.10292] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.05884, -1.19063, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.857045, 2, -0.758099] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.395632, 0.663308] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.743717, 0.54524, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.778095, -0.621627, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.64082, -0.741499] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.85475, 0.877906] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [2, -1.50837, 1.28485] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-0.861752, -0.630696, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.70486, -0.724433] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -0.617694, -0.18756] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [2, 1.15237, -1.84184] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [0.278645, -0.30252, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.344806, 0.156958] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.686201, 0.148224, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.554486, 1.23412] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.9297, 0.715469, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.566086, -1.89913] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0963152, -0.173039, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.143904, 0.285546] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0596222, -0.627091, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.693834, -0.236378, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.24884, -1.27658] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.563336, 1.18037] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.562934, -1.81252] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.249021, -0.192681, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.0859997, 0.426463] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.156557, -0.295242, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.750206, 1.18491] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.849294, -0.679572] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-1.4216, -0.526166, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.0732814, -0.324239, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.603702, 2, -0.95106] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.293806, 0.624703] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.118445, -0.553121, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.25908, 2, -1.16192] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.66791, 1.29626] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, -0.0903227, 0.849412] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.115059, 2, -1.91703] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.72823, -0.897316] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.50719, -2, 0.973888] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.72174, -0.858125] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.16765, -2, -0.609533] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.22307, -2, 0.0910232] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.78947, 0.76675] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.15819, 2, -0.817517] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.39946, 2, -0.826351] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.30875, 1.19017, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.72873, 0.998183, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.74916, -2, 0.751859] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.66028, 1.02246] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.40613, 2, -0.759911] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.74979, 0.616251] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-0.208159, -2, 1.0765] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.321792, 0.751171] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.182947, 1.21764, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.55249, -2, -0.49765] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.01193, -0.658205] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.28017, -2, -0.273355] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.421572, -2, -0.276511] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.179163, -1.78915] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.1665, -0.485895, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.61392, -0.276694] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [2, 1.26602, -0.939452] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [1.45871, 2, 0.204481] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.06521, -2, 0.6637] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.419993, -2, 1.26437] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.43905, 2, -1.07814] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.222418, -1.73337] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.573542, -0.429967, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.815721, 0.211729] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 0.92395, -1.54907] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.07362, -2, 0.689053] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.3033, 0.223131] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 0.215599, 1.36814] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.54384, 2, -1.15347] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.33098, 1.06988, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.36185, 1.69172, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.86123, -0.726062] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.87625, -1.27081] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.532043, 2, -1.16842] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.926529, -0.807357] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.194, -2, 1.3004] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.80518, 0.269937] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.78937, 2, 0.336055] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.61887, 0.539727, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.460246, 2, -1.10764] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.138903, -2, -0.1319] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.44881, -2, 1.80985] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.795481, -0.60173] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.57612, -2, -1.67994] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.266, -1.62787, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.58343, -2, 1.7751] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.0474476, -0.436823] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.30375, 2, -1.59199] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.87352, 2, -0.304342] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.205167, 2, 1.28912] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.44751, 0.610454] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 0.0467186, -0.403866] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.17888, 0.18226, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.08266, -0.891976] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-1.02191, 2, 0.154145] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.10624, -2, -1.87199] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.82866, -1.19281, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.38844, 1.90113] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.0956343, -0.0377081] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.12216, -2, -1.61104] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.53918, 2, 0.114853] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.182537, -0.851633] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 0.201333, -1.88238] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.241019, 2, 0.757421] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.4825, 2, 0.629335] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.171665, 0.526104] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.327076, 2, 0.718184] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.682086, -2, -1.48791] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.642454, -0.92946] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-1.25712, -2, 1.02834] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.264262, 0.452795] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.49294, 2, -0.840952] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.419688, -2, -1.39259] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.27085, -2, 0.988099] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.384481, -0.769798] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.17214, 0.818366, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.710945, 2, 0.920645] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.40767, 2, 0.726883] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.52721, 1.34359] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.666913, 0.563123, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.731405, 2, 0.869464] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.984566, 0.53904, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.85167, 2, 1.60835] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.28804, -2, 1.20854] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.59502, 2, 0.487125] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.574853, 0.562839, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.620814, 2, 0.686411] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.72272, 2, -0.958587] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.72394, 1.63362] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.60905, 2, 0.486496] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.63057, 0.604665] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.5025, 2, -1.10185] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.57873, 1.61204] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.471572, 2, 1.01258] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.62794, 0.898409] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.60146, 2, 1.28747] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.155117, 1.21504, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.24274, 0.220678] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.34412, 0.575206, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.462572, -2, 0.572263] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.471039, 2, 1.00519] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.56718, 2, 1.35122] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.161621, 1.28857, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.784567, -1.55892] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.69179, 2, -1.3393] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.41442, 0.462398] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [2, 1.93462, -1.54116] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-1.6247, 2, 0.409522] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.276184, 1.49601] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.20478, 0.57935, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.80033, 0.356657, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.1917, 2, -1.10314] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.660959, -1.72274] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.59631, 2, 0.273873] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.00332662, 1.14572] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.422828, -1.59187, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.622285, 2, 1.05305] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.84927, 2, 1.36697] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.918475, 0.221811, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.16932, 2, -1.14802] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.248693, 1.31607, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.694082, -1.74904] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.36897, 2, -0.452287] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.62258, 2, 1.14099] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.84587, -0.811072, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.593012, -1.02257] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.176104, -1.52621] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, 1.10908, 1.05971] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.621843, 2, 1.14154] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.740421, -1.35966] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.422545, 0.716695, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.966813, 2, -0.468523] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.935256, 0.940153] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.318684, 0.464948] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.62538, 2, 1.76535] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.195967, 2, 1.57194] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.13822, -2, 1.44706] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.929421, 1.9323, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.141097, 1.55436, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.280176, 2, 1.53014] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.212252, 1.33468, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.977564, 0.799361] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.39922, 2, 1.60327] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.20931, 0.106163, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.120187, 1.43328, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.813076, -1.45184] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.859763, -2, -0.287928] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0796718, 2, -0.0974269] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.191428, 1.15953, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.11711, 0.797606] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.910476, -2, 0.0159879] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.57159, 2, 1.33368] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.27767, -0.0337951, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.69754, -0.119362] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [0.334633, 1.78795, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.84078, -0.721106] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.105384, 2, 0.0984805] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.45017, 1.43453, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.122943, -0.525614, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.81056, -2, 0.315911] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.547396, -0.524513, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.24644, 2, 1.6728] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.2596, -1.52464, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.281736, -2, -0.420395] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.882318, 0.897826, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.08667, 2, 0.762209] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.412885, -0.488336, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.152863, 1.69011, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.859976, -1.20746, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.173939, -2, -0.286652] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.458591, 1.54879, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.674956, -1.18861, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.407628, -2, 0.262379] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.2234, 0.346236] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, -1.17196, 1.46879] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.955159, -0.438615, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -1.46913, 1.63051] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.14831, -2, 0.872307] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.09988, -0.445327, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.738163, 2, 1.47157] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0575429, -2, -0.0583052] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.69971, -0.131591] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.52201, 0.683355] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.18803, -2, 0.863313] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.66085, 2, 0.571981] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.78459, 2, 1.40684] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.00446973, -2, -0.0711184] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.4228, 1.38858] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.1161, 0.545382, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.778158, 2, 1.43788] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.43075, -2, 1.32393] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.36914, 2, 1.37855] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.96026, 2, 0.99737] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.97882, 1.02872] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] [-0.746216, 2, 1.60776] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.272792, -0.759431, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.00169, 2, -1.23634] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.55491, -2, -0.232417] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.7739, 0.589884] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.00277, 2, -1.25804] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [2, 1.61144, 1.31802] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-0.810071, -2, 1.69806] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.94312, 0.390725, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.49067, 1.50788] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.43013, 2, -1.51647] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.37132, 2, 1.53339] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.520346, -1.99025] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.566086, -2, 0.0765956] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.714734, -2, -1.33114] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.60459, 1.76341] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.91542, 1.50414, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.33853, 1.8035, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.406239, -2, -0.926733] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.23847, -2, 0.629017] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.99215, 1.19591, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.19854, 1.99762] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-1.46797, 2, -0.409939] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.8282, 1.72242, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.81506, 2, 1.81451] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.92938, -0.879129] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.92566, -2, -1.00692] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.246422, 0.220762, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.867288, -2, 0.835021] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.93209, -2, -1.11522] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.94542, -1.19266] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.02745, 2, 0.407634] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.337082, 0.250649, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.57607, 1.33509, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.695235, -2, -0.630176] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.466826, 2, 1.32104] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.939719, -2, 0.879122] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.58923, 1.41909, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.0880701, 0.231576, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.12538, 0.983003, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.311567, 2, 0.25445] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.08372, -2, -0.815374] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.70364, -2, -1.41163] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.52446, 1.19625] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -0.0602352, -1.34656] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [1.10567, 0.916777, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.66945, -1.5392] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.07112, -2, 0.980679] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.18625, 2, 0.750655] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.5525, 1.1639] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.341681, -0.0437832, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.529828, 2, 0.135268] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.214865, -2, 0.722242] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.76302, 0.959638] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.03145, -0.168294, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.42849, -1.4769] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.344414, 1.68146, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.85776, 0.685093] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.689208, 2, -0.0353339] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.60108, -0.937866] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.905132, -1.21601] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.291274, 2, -0.166052] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.68788, 1.18255] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-2, -1.67176, -0.908811] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0280952, 2, -1.59197] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.256485, 2, -0.383657] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.604765, -0.960839, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.55254, 2, 1.30407] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.39252, 0.340747, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.310612, 2, -0.583373] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.200901, -2, -0.709827] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.947583, -1.20615] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.0113771, 1.75618, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.626161, -0.969402, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.206543, -2, -0.731796] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0709249, 1.76924, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.19225, 2, 1.48091] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.483792, 1.74213, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -1.29181, 1.60357] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.0881, 2, 1.11568] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.720859, -2, 0.473871] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.4852, 2, 1.50893] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.882115, 1.99921, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.469634, 2, -0.685415] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.403618, 2, -1.62294] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.988771, -2, -0.306419] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.75285, 1.68734, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.60782, 1.95317, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.62604, -2, 0.88496] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.581136, 2, -1.7301] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.284019, -0.473284, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.69695, 2, 1.55215] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.1151, 2, 1.43211] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.70224, 1.91944] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.681526, 2, 1.60143] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.91617, 1.65063, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.899627, 2, -1.59103] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.699229, 2, 1.59293] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.80032, 1.6666, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.0232727, 1.11737, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.09893, 2, -1.39962] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.94982, 2, 1.71477] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.95336, 1.83937] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.74872, 2, 1.58447] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.31327, 0.657196, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.710381, 0.751528] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.9916, 2, 1.89617] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.86795, 1.99188] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.99053, 1.90074, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.96187, 2, 1.97542] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.66626, 1.3398] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.908653, 2, -1.8106] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.540297, 0.0605909, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.89239, 1.81773, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.170671, -2, -1.08767] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.673087, 1.57991, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.630362, -0.256421, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.52561, 2, 1.45642] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.782798, 1.31381, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.988199, 2, -1.98468] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.01795, 1.95746, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.111299, 0.850797] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.546341, -0.300504, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.26617, 1.47536, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.633108, 2, -0.581008] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.297985, -2, -0.893303] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.907608, 1.20793, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.00256, 1.37167] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.762728, 1.82154, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.661129, -0.458788, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.621387, 1.03725, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.982811, 0.711404, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.758831, 1.63199] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.01078, 0.200091] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.802133, 1.14198, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.43435, 1.72509, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.919407, 0.00466451] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.56377, -2, 1.92108] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.373687, 1.14388, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.1697, 0.796633] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.5234, 0.962448, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.879963, -0.0404092] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.41544, -2, 1.11901] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.07386, 0.499401] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.149235, -2, -0.21614] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.20018, -2, 1.01918] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.0667375, 2, 1.51817] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.700266, 2, -1.62984] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.48794, 1.11766] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.66074, 2, 1.44986] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.313357, 1.88175, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.25354, 1.55249, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.45368, 1.13153] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.998419, -2, 0.780764] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.510318, 1.93012, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.792514, 2, 1.83722] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.90039, 1.12111, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.99476, 0.903004] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.703233, -2, 1.02246] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.3698, 1.34402, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.29844, 2, 1.42337] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.61323, 1.35757, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.701432, -2, 1.40823] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.521931, 1.40717] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [-1.37637, 2, 1.61706] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.2526, 2, 1.76946] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.615931, -2, 1.16811] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.813724, -0.654424, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.2992, 2, 1.99586] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.30218, 1.99882, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.02752, 2, 1.71401] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.541374, -2, 1.03749] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.728731, -0.637778, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.29984, 1.99877, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.26447, 2, 1.99368] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.42498, 1.31317] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.03649, 2, 1.93334] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.38722, 1.08213] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.353945, -2, 1.5364] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.460985, 0.65368, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.48301, 2, 1.89328] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.00936, 2, -0.709282] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.4724, 1.0132] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.139584, 1.57628, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.313242, -2, 1.44823] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.16338, -1.43503, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.851719, 0.427776, -2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.0177796, 1.7158, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.50826, 0.67633] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.06238, 1.51265] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.36916, 1.4486, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.653814, 1.54136] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.197037, -2, 1.20963] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.65408, 1.46307] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.1, 1.44232] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.93907, 1.31469, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.32308, 1.1189, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.142117, -2, 0.955168] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [2, 0.794223, 1.91588] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] [0.262504, 2, -0.929261] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.97029, 1.10937, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.18376, 1.96057] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.9769, 1.11962, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.03216, 1.95232] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 0.325854, -0.209771] [2, -2, -2] [6, 2, 2]
 [info] HIT NEIGHBOUR
 [info] MOLECULE REFLECTED
 [info] MOLECULE REFLECTED
@@ -7,4 +1326,329 @@
 [info] MOLECULE REFLECTED
 [info] MOLECULE REFLECTED
 [info] MOLECULE REFLECTED
-[info] {"path3D":[[0.0,0.0,0.0],[18.0,7.0,9.0],[2.0,0.7777777777777777,1.0],[18.0,7.0,9.0],[4.0,1.5555555555555554,2.0],[18.0,7.0,-5.0],[5.142857142857143,2.0,1.4285714285714284],[18.0,-3.0,-5.0],[6.0,1.6666666666666667,1.0],[-6.0,-3.0,-5.0],[2.0,0.11111111111111116,-1.0],[10.0,-3.0,-5.0],[4.0,-0.6666666666666666,-2.0],[10.0,-3.0,1.0],[6.0,-1.4444444444444444,-1.0],[2.0,-3.0,1.0],[4.571428571428571,-2.0,-0.2857142857142857],[2.0,-1.0,1.0]],"shapes":{"box":[{"origin":[-2.0,-2.0,-2.0],"length":[4.0,4.0,4.0],"end":[2.0,2.0,2.0]},{"origin":[2.0,-2.0,-2.0],"length":[4.0,4.0,4.0],"end":[6.0,2.0,2.0]}]}}
+[info] MOLECULE REFLECTED
+[info] [-0.970643, 2, -0.104313] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.44464, 1.61843] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, 1.43316, -0.866658] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.144194, 0.823646] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.12494, -1.20724, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.533651, 1.43991] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.12167, -0.861224, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.714558, 2, -0.242554] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.2199, -0.993664, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.206468, -1.04072, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [0.130527, 1.70914, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.720551, -0.528294, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-0.80689, 0.148779, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.855694, -0.98456, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.235835, 1.23913] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.894589, -0.973497, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.0279897, 2, 1.35901] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.367699, 2, 1.4765] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.497164, 1.28979] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.327743, 2, 0.110982] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [0.816496, -2, 1.75343] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.218297, 2, 0.108475] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.0929466, 1.33581] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [2, -1.12762, -1.59136] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] [1.32195, -2, 1.78979] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.35093, 2, 0.236844] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.43156, -2, 1.82122] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.80062, 1.01149] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.211874, 0.983701] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.23555, -1.05955, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -0.278315, 1.36923] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [1.56697, -2, 1.92409] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [1.25167, -2, 1.45659] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.319186, 0.559139] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.12197, -1.27702, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.67841, 0.987857] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.56088, -2, 1.75531] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.39007, 0.801482] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.23706, 2, -0.625565] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 1.30532, 0.800725] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -1.78402, 1.93459] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.94867, -1.76946, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.8576, -1.67033, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.946115, 0.455374] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 0.195837, -0.798225] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, -1.5232, 1.7741] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [2, -0.165058, -0.210048] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] [-1.69154, -2, 1.89195] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.223425, -0.815525] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.69021, -2, 1.96104] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.73285, -1.52188, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-2, 1.35199, 0.777941] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.7219, -1.35298, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [2, -1.05112, -0.543678] [2, -2, -2] [6, 2, 2]
+[info] HIT NEIGHBOUR
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.718782, -1.2874] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.761361, -1.26137] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.242818, -1.20037, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.4145, -1.10647, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.00127, 0.692457, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.21092, 0.706746, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.59612, -1.07207, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, 0.897102, -1.02879] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-0.930629, -0.646741, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] [-1.36107, -0.281664, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.0666751, 1.38032] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-2, -0.416598, 1.74272] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] [-1.6955, -0.271138, 2] [2, -2, -2] [6, 2, 2]
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED
+[info] MOLECULE REFLECTED

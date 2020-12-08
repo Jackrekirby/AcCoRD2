@@ -9,6 +9,7 @@ namespace accord::microscopic
 	public:
 		virtual void AddMolecule(const Vec3d& position, double time) = 0;
 
+		// probably not required
 		virtual void AddMolecule(const Vec3d& position) = 0;
 	};
 }

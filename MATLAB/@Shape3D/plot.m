@@ -1,6 +1,6 @@
 function hFigure = plot(obj, jsonFilePath)
     j = jsondecode(fileread(jsonFilePath));
-    hFigure = figure; 
+    %hFigure = figure; 
     hold on;
     disp("Drawing 3D Environment");
     if(isfield(j.shapes, 'box'))

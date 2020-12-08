@@ -92,56 +92,60 @@ namespace accord::microscopic
 
 		// need to add max reflections counter
 
-		HighPriorityRelation* closest_relation = nullptr;
+		Relationship* closest_relationship = nullptr;
 		shape::collision::Collision3D closest_collision;
 		double shortest_time = 2; // collision time must be between 0 and 1
-		for (auto& relation : high_priority_relations)
+		for (auto& relationship : high_priority_relationships)
 		{
-			auto collision = relation->GetSurface().GetShape().CalculateExternalCollisionData(origin, end);
+			auto collision = relationship.GetRelative().GetShape().CalculateExternalCollisionData(origin, end);
 			if (collision.has_value() && collision->time < shortest_time)
 			{
-				closest_relation = relation;
+				closest_relationship = &relationship;
 				closest_collision = collision.value();
 			}
 		}
 		// if the collision time changed there was a valid collision
-		if (closest_relation != nullptr)
+		if (closest_relationship != nullptr)
 		{
-			return closest_relation->PassMoleculeToHighPriorityRelation(end, closest_collision, this);
+			return closest_relationship->GetRelative().PassMolecule(end, 
+				closest_collision, this, closest_relationship->GetSurfaceType());
 		}
 
-		auto collision = GetRegion().GetSurface().GetShape().CalculateInternalCollisionData(origin, end);
+		auto collision = GetRegion().GetShape().CalculateInternalCollisionData(origin, end);
 		if (collision.has_value())
 		{
-			for (auto& relation : low_priority_relations)
+			for (auto& relationship : low_priority_relationships)
 			{
-				if (relation->GetSurface().GetShape().IsMoleculeInsideBorder(collision->intersection))
+				if (relationship.GetRelative().GetShape().IsMoleculeInsideBorder(collision->intersection))
 				{
 					// assumes you dont have mulitple valid low priority neighbours overlapping
-					return relation->PassMoleculeToLowPriorityRelation(end, collision.value(), this);
+					return relationship.GetRelative().PassMolecule(end, collision.value(), 
+						this, relationship.GetSurfaceType());
 				}
 			}
 
 			// would be good if u could get ids of neighbours
-			for (auto& neighbour : neighbours)
+			for (auto& relationship : neighbour_relationships)
 			{
 				// neighbours must be sorted by youngest and neighbours of the same age must not overlap
-				if (neighbour->GetSurface().GetShape().IsMoleculeOnBorder(collision->intersection))
+				if (relationship.GetRelative().GetShape().IsMoleculeOnBorder(collision->intersection))
 				{
 					LOG_INFO("HIT NEIGHBOUR");
-					return neighbour->PassMoleculeToNeighbour(end, collision.value(), this);
+					return relationship.GetRelative().PassMolecule(end, collision.value(), 
+						this, relationship.GetSurfaceType());
 				}
 			}
 
 			// assume reflection at the moment but will depend on the type of surface
 			LOG_INFO("MOLECULE REFLECTED");
-
-			// dont need an internal surface relation
-			// just specific a simulation boundary region which has to be a low priority relation
+			
+			// dont need an internal surface relative
+			// just specific a simulation boundary region which has to be a low priority relative
 			// of all regions. Therefore a region does not need its own surface type
 			// the global region cannot have a membrane surface (can be done with simple json file check)
 			// disable collision checks on global region?
-			return CheckMoleculePath(collision->intersection, collision->reflection);
+			return PassMolecule(end, collision.value(), this, GetDefaultSurfaceType());
+			//return CheckMoleculePath(collision->intersection, collision->reflection);
 		}
 
 		return MoleculeDestination(end, this);
@@ -221,19 +225,19 @@ namespace accord::microscopic
 		return id;
 	}
 
-	void Grid2::AddNeighbour(Neighbour* relation)
+	void Grid2::AddNeighbour(Relative* relative, SurfaceType type)
 	{
-		neighbours.emplace_back(relation);
+		neighbour_relationships.emplace_back(relative, type);
 	}
 
-	void Grid2::AddLowPriorityRelation(LowPriorityRelation* relation)
+	void Grid2::AddLowPriorityRelative(Relative* relative, SurfaceType type)
 	{
-		low_priority_relations.emplace_back(relation);
+		low_priority_relationships.emplace_back(relative, type);
 	}
 
-	void Grid2::AddHighPriorityRelation(HighPriorityRelation* relation)
+	void Grid2::AddHighPriorityRelative(Relative* relative, SurfaceType type)
 	{
-		high_priority_relations.emplace_back(relation);
+		high_priority_relationships.emplace_back(relative, type);
 	}
 
 	// create subvolumes upon class construction
@@ -300,9 +304,15 @@ namespace accord::microscopic
 	// Inherited Class Functions
 
 
-	Surface& Grid2::GetSurface()
+	const SurfaceShape& Grid2::GetShape() const
 	{
-		return GetRegion().GetSurface();
+		return region->GetShape();
+	}
+
+	// may want a different default surface per molecule type
+	SurfaceType Grid2::GetDefaultSurfaceType() const
+	{
+		return region->GetSurfaceType();
 	}
 
 	// the global surface must be absorbing or adsorbing
@@ -311,29 +321,23 @@ namespace accord::microscopic
 	// internal surface must be reflective, absorbing or adsorbing
 
 	// collision spelt incorrectly
-	std::optional<MoleculeDestination> Grid2::PassMoleculeToNeighbour(const Vec3d& end, const shape::collision::Collision3D& collision, Grid2* owner)
+	std::optional<MoleculeDestination> Grid2::PassMolecule(const Vec3d& end, 
+		const shape::collision::Collision3D& collision, Grid2* owner,
+		SurfaceType surface_type)
 	{
 		//Absorping, Adsorbing, Membrane, Reflecting, None
-		switch (GetSurface().GetType())
+		switch (surface_type)
 		{
-		case Surface::Type::None:
+		case SurfaceType::None:
 			return CheckMoleculePath(collision.intersection, end);
-		case Surface::Type::Reflecting:
+		case SurfaceType::Reflecting:
 			return owner->CheckMoleculePath(collision.intersection, collision.reflection);
+		case SurfaceType::Absorbing:
+			return std::nullopt;
 		default:
 			// must throw
 			break;
 		}
-		return std::nullopt;
-	}
-
-	std::optional<MoleculeDestination> Grid2::PassMoleculeToLowPriorityRelation(const Vec3d& end, const shape::collision::Collision3D& collision, Grid2* owner)
-	{
-		return std::nullopt;
-	}
-
-	std::optional<MoleculeDestination> Grid2::PassMoleculeToHighPriorityRelation(const Vec3d& end, const shape::collision::Collision3D& collision, Grid2* owner)
-	{
 		return std::nullopt;
 	}
 }

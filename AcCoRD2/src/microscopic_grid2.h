@@ -12,9 +12,11 @@
 #include "microscopic_owner.h"
 #include "microscopic_surface.h"
 
-#include "microscopic_high_priority_relation.h"
-#include "microscopic_low_priority_relation.h"
-#include "microscopic_neighbour.h"
+#include "microscopic_relative.h"
+#include "microscopic_relationship.h"
+//#include "microscopic_high_priority_relative.h"
+//#include "microscopic_low_priority_relative.h"
+//#include "microscopic_neighbour.h"
 
 // the global region must have a reflective or absorbing surface and by default should have 1 cell.
 // a surface of type non can be drawn as having no outline, just a face colour
@@ -33,7 +35,7 @@ namespace accord::microscopic
 	// an Owner is class which can own molecules, which includes Grid or Adsorbing Surfaces
 	class Region2;
 
-	class Grid2 : public Owner, public Neighbour, public LowPriorityRelation, public HighPriorityRelation
+	class Grid2 : public Owner, public Relative
 	{
 	public:
 		Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region2* region);
@@ -78,42 +80,38 @@ namespace accord::microscopic
 
 		MoleculeID GetMoleculeID();
 
-		void AddNeighbour(Neighbour* relation);
+		void AddNeighbour(Relative* relative, SurfaceType type);
 
-		void AddLowPriorityRelation(LowPriorityRelation* relation);
+		void AddLowPriorityRelative(Relative* relative, SurfaceType type);
 
-		void AddHighPriorityRelation(HighPriorityRelation* relation);
+		void AddHighPriorityRelative(Relative* relative, SurfaceType type);
 
 		// Inherited Class Functions
 
-		Surface& GetSurface();
+		const SurfaceShape& GetShape() const;
 
+		SurfaceType GetDefaultSurfaceType() const;
 
 		// may be able to merge these pass functions
-		std::optional<MoleculeDestination> PassMoleculeToNeighbour(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner);
-
-		std::optional<MoleculeDestination> PassMoleculeToLowPriorityRelation(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner);
-
-		std::optional<MoleculeDestination> PassMoleculeToHighPriorityRelation(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner);
+		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
+			const shape::collision::Collision3D& collision, Grid2* owner,
+			SurfaceType surface_type);
 
 	private:
 		// need to change to NeighbourAndSurfaceType ...
 		// consider changing GetSurface to GetShape due to confusion of Surface.GetSurface
 		// also Surface.GetType() no longer required
 
-		// surface direction will be the same for all relations
-		// need to know the direction of a surfaces for high priority relations
+		// surface direction will be the same for all relatives
+		// need to know the direction of a surfaces for high priority relatives
 		// high prioity = external collision check or either surface side
 		// as low priority or neighbour only is on border check required, no direction
 
 		// neighbour.checkcollision called external for regions and gets direction for surfaces
 
-		std::vector<Neighbour*> neighbours; // can be grids, mesoregion or adsorbing surfaces
-		std::vector<LowPriorityRelation*> low_priority_relations; // can be grids or mesoregions
-		std::vector<HighPriorityRelation*> high_priority_relations; // cans be grids, mesoregions or surfaces
+		std::vector<Relationship> neighbour_relationships; // can be grids, mesoregion or adsorbing surfaces
+		std::vector<Relationship> low_priority_relationships; // can be grids or mesoregions
+		std::vector<Relationship> high_priority_relationships; // cans be grids, mesoregions or surfaces
 
 		MoleculeID id;
 		Region2* region; // regions which owns this grid

@@ -1,21 +1,13 @@
 #include "pch.h"
-#include "microscopic_relation.h"
-
-namespace accord::shape::collision
-{
-	class Collision3D;
-}
-namespace accord
-{
-	struct Vec3d;
-}
+#include "microscopic_relationship.h"
 
 namespace accord::microscopic
 {
 	class Grid2;
 	class SurfaceShape;
 
-	Relationship::Relationship(SurfaceType type, Relative* relative)
+	Relationship::Relationship(Relative* relative, SurfaceType type)
+		: relative(relative), type(type)
 	{
 
 	}

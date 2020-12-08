@@ -19,16 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="microscopic_relation.cpp" />
+    <ClCompile Include="src\microscopic_relationship.cpp" />
     <ClCompile Include="src\passive_actor.cpp" />
-    <ClCompile Include="src\microscopic_box_surface.cpp" />
     <ClCompile Include="src\microscopic_box_surface_shape.cpp" />
     <ClCompile Include="src\microscopic_region2.cpp" />
     <ClCompile Include="src\molecule_destination.cpp" />
     <ClCompile Include="src\environment.cpp" />
     <ClCompile Include="src\microscopic_grid2.cpp" />
     <ClCompile Include="src\microscopic_subvolume2.cpp" />
-    <ClCompile Include="src\microscopic_surface.cpp" />
     <ClCompile Include="src\microscopic_first_order_reaction.cpp" />
     <ClCompile Include="src\microscopic_normal_molecule.cpp" />
     <ClCompile Include="src\microscopic_recent_molecule.cpp" />
@@ -164,20 +162,17 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="microscopic_relation.h" />
+    <ClInclude Include="src\microscopic_surface_type.h" />
+    <ClInclude Include="src\microscopic_relationship.h" />
+    <ClInclude Include="src\microscopic_relative.h" />
     <ClInclude Include="src\object_ids.h" />
     <ClInclude Include="src\passive_actor.h" />
-    <ClInclude Include="src\microscopic_box_surface.h" />
     <ClInclude Include="src\microscopic_box_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface_shape.h" />
     <ClInclude Include="src\molecule_destination.h" />
     <ClInclude Include="src\environment.h" />
-    <ClInclude Include="src\microscopic_surface.h" />
     <ClInclude Include="src\microscopic_first_order_reaction.h" />
     <ClInclude Include="src\microscopic_grid2.h" />
-    <ClInclude Include="src\microscopic_high_priority_relation.h" />
-    <ClInclude Include="src\microscopic_low_priority_relation.h" />
-    <ClInclude Include="src\microscopic_neighbour.h" />
     <ClInclude Include="src\microscopic_normal_molecule.h" />
     <ClInclude Include="src\microscopic_owner.h" />
     <ClInclude Include="src\microscopic_recent_molecule.h" />

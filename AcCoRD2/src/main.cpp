@@ -12,16 +12,18 @@
 #include "environment.h"
 #include "event_queue.h"
 #include "event.h"
-#include "microscopic_surface.h"
-#include "microscopic_box_surface.h"
+//#include "microscopic_surface.h"
+//#include "microscopic_box_surface.h"
 #include "passive_actor.h"
+#include "microscopic_box_surface_shape.h"
+#include "microscopic_surface_shape.h"
 
 void TestEnvironment()
 {
 	using namespace accord;
 
 	Environment::Init("D:/dev/my_simulation", 1, 10, 3, 2, 1);
-	EventQueue event_queue(3);
+	EventQueue event_queue(5);
 
 	// REGIONS
 
@@ -31,20 +33,19 @@ void TestEnvironment()
 	double time_step = 0.05;
 	int priority = 0;
 
-	std::unique_ptr<microscopic::Surface> surface =
-		std::make_unique<microscopic::BoxSurface>(Vec3d(-2, -2, -2), Vec3d(4, 4, 4),
-			microscopic::Surface::Type::None);
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape =
+		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
 
-	std::unique_ptr<microscopic::Surface> surface2 =
-		std::make_unique<microscopic::BoxSurface>(Vec3d(2, -2, -2), Vec3d(4, 4, 4),
-			microscopic::Surface::Type::None);
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape2 =
+		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(2, -2, -2), Vec3d(4, 4, 4));
 
 	Environment::microscopic_regions.emplace_back(
-		diffision_coefficients, n_subvolumes, std::move(surface),
-		start_time, time_step, priority, &event_queue, 0);
+		diffision_coefficients, n_subvolumes, std::move(surface_shape),
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 0);
+
 	Environment::microscopic_regions.emplace_back(
-		diffision_coefficients, n_subvolumes, std::move(surface2),
-		start_time, time_step, priority, &event_queue, 1);
+		diffision_coefficients, n_subvolumes, std::move(surface_shape2),
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 1);
 
 	for (int i = 0; i < 50; i++)
 	{
@@ -52,7 +53,10 @@ void TestEnvironment()
 	}
 
 	// just pass ids and can get everything from environment
-	Environment::microscopic_regions.at(0).AddNeighbour(Environment::microscopic_regions.at(1), { 0, 1, 2 });
+	Environment::microscopic_regions.at(0).AddNeighbour(Environment::microscopic_regions.at(1), 
+		microscopic::SurfaceType::None, { 0, 1, 2 });
+	//Environment::microscopic_regions.at(1).AddNeighbour(Environment::microscopic_regions.at(0),
+	//	microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
 	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
 	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
 	//Environment::microscopic_regions.at(0).AddMolecule(0, { 3, 3, 3 });
@@ -61,9 +65,9 @@ void TestEnvironment()
 	//Environment::microscopic_regions.at(0).AddMolecule(2, { 3, 3, 3 });
 
 	// test path of single molecule
-	if (true)
+	if (false)
 	{
-		auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { 18, 7, 9 });
+		auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { 22, 7, 9 });
 		if (a.has_value())
 		{
 			//LOG_INFO(a->GetPosition());
@@ -79,8 +83,8 @@ void TestEnvironment()
 	}
 	// ACTORS
 
-	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
-	PassiveActor p2(RegionIDs({ 0 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.3, 1, true, true);
+	PassiveActor p(RegionIDs({ 0, 1 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+	PassiveActor p2(RegionIDs({ 0, 1 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.3, 1, true, true);
 
 	do {
 		if (Environment::GetRealisationNumber() > 0)

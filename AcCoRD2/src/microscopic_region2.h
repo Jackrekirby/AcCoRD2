@@ -3,11 +3,14 @@
 #include "vec3d.h"
 #include "event.h"
 #include "microscopic_grid2.h"
-#include "microscopic_surface.h"
+//#include "microscopic_surface.h"
 #include "microscopic_zeroth_order_reaction.h"
 #include "microscopic_first_order_reaction.h"
 #include "microscopic_second_order_reaction.h"
 #include "object_ids.h"
+#include "microscopic_relationship.h"
+#include "microscopic_surface_shape.h"
+#include "microscopic_surface_type.h"
 // Surface(Shape3D shape, Enum surface_type) OR Surface : public shape, public absorbing (multiple inheritance)
 
 namespace accord::microscopic
@@ -16,18 +19,18 @@ namespace accord::microscopic
 	{
 	public:
 		Region2(std::vector<double> diffision_coefficients,
-			std::vector<Vec3i> n_subvolumes, std::unique_ptr<Surface> surface,
+			std::vector<Vec3i> n_subvolumes, std::unique_ptr<SurfaceShape> surface_shape,
 			double start_time, double time_step, int priority, EventQueue* event_queue,
-			RegionID id);
+			SurfaceType surface_type, RegionID id);
 
 		void Run();
 
 		// add neighbour relationship between local and external grids of same molecule type.
-		void AddNeighbour(Region2& region, const MoleculeIDs& ids);
+		void AddNeighbour(Region2& region, SurfaceType type, const MoleculeIDs& ids);
 
-		void AddHighPriorityRelative(Region2& region, const MoleculeIDs& ids);
+		void AddHighPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids);
 
-		void AddLowPriorityRelative(Region2& region, const MoleculeIDs& ids);
+		void AddLowPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids);
 
 		// add a recent molecule
 		void AddMolecule(MoleculeID id, const Vec3d& position, double time);
@@ -58,15 +61,20 @@ namespace accord::microscopic
 
 		// each region type will have its own surface shape which is why GetSurface is virtual
 		// may need const version of get surface
-		Surface& GetSurface();
+
+		Event::Type GetType() const;
+
+		const SurfaceShape& GetShape() const;
+
+		SurfaceType GetSurfaceType() const;
 
 		RegionID GetID() const;
 
-		Type GetType() const;
-
 		void NextRealisation();
 	private:
-		std::unique_ptr<Surface> surface;
+		std::unique_ptr<SurfaceShape> surface_shape;
+		SurfaceType surface_type;
+
 		std::vector<Grid2> grids;
 		// reactions will need to be passed pointer to region
 		// e.g. zeroth order reaction needs to know the volume of the region

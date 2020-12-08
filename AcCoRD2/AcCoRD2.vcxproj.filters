@@ -220,9 +220,6 @@
     <ClCompile Include="src\microscopic_subvolume2.cpp">
       <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_surface.cpp">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\microscopic_grid2.cpp">
       <Filter>src\simulation\regimes\microscopic\grid</Filter>
     </ClCompile>
@@ -238,16 +235,13 @@
     <ClCompile Include="src\microscopic_box_surface_shape.cpp">
       <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_box_surface.cpp">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\molecule_destination.cpp">
       <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClCompile>
     <ClCompile Include="src\passive_actor.cpp">
       <Filter>src\simulation\actors\passive</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_relation.cpp">
+    <ClCompile Include="src\microscopic_relationship.cpp">
       <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClCompile>
   </ItemGroup>
@@ -474,15 +468,6 @@
     <ClInclude Include="src\microscopic_first_order_reaction.h">
       <Filter>src\simulation\regimes\microscopic\reactions</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_high_priority_relation.h">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_low_priority_relation.h">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_neighbour.h">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
-    </ClInclude>
     <ClInclude Include="src\microscopic_normal_molecule.h">
       <Filter>src\simulation\regimes\microscopic\molecule</Filter>
     </ClInclude>
@@ -510,9 +495,6 @@
     <ClInclude Include="src\microscopic_owner.h">
       <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_surface.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\environment.h">
       <Filter>src\simulation\environment</Filter>
     </ClInclude>
@@ -523,9 +505,6 @@
       <Filter>src\tests</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_box_surface_shape.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_box_surface.h">
       <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\molecule_destination.h">
@@ -540,8 +519,14 @@
     <ClInclude Include="src\object_ids.h">
       <Filter>src\event</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_relation.h">
+    <ClInclude Include="src\microscopic_relative.h">
       <Filter>src\simulation\regimes\microscopic\relations</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_relationship.h">
+      <Filter>src\simulation\regimes\microscopic\relations</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_surface_type.h">
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,12 +6,15 @@ clc;
 
 % Select the simulation name, seed and realisation to visualise
 simulation = ReadSimFiles("D:\dev", "my_simulation", 1, 0);
-playBackSpeed = 1; % half real speed
+playBackSpeed = 0.2; % half real speed
 n_molecule_types = 3;
 molecule_colormap = hsv(n_molecule_types);
 
 
 simulation.hFigure = figure('visible','off', 'Name','Simulation Time:','NumberTitle','off');
+s = Shape3D();
+s.plot('C:\dev\AcCoRD2\MATLAB\path.json');
+hold on;
 view(3);
 xlabel('x');
 ylabel('y');
@@ -20,7 +23,8 @@ axis equal;
 view(45,30);
 r = 10;
 xlim([-r, r]); zlim([-r, r]); ylim([-r, r]);
-hold on;
+
+
 
 fprintf('\n');
 disp("Ordering passive actors");

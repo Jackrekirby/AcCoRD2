@@ -18,8 +18,6 @@
     hBox = patch('Vertices', vertices, 'Faces', faces,...
       'FaceVertexCData', args.FaceColors, 'FaceColor', args.FaceColor, ...
       'EdgeColor', args.LineColor, 'FaceAlpha', args.FaceAlpha);
-
-    view(3);
 end
 
 function faceColor = getBoxFaceColor(obj)
