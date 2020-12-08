@@ -36,16 +36,31 @@ void TestEnvironment()
 	std::unique_ptr<microscopic::SurfaceShape> surface_shape =
 		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
 
+	//std::unique_ptr<microscopic::SurfaceShape> surface_shape2 =
+	//	std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(2, -2, -2), Vec3d(4, 4, 4));
+
+	//std::unique_ptr<microscopic::SurfaceShape> surface_shape2 =
+	//	std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-5, -5, -5), Vec3d(10, 10, 10));
+
 	std::unique_ptr<microscopic::SurfaceShape> surface_shape2 =
-		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(2, -2, -2), Vec3d(4, 4, 4));
+		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(1, -5, -5), Vec3d(4, 10, 10));
 
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface_shape),
-		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Absorbing, 0);
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 0);
 
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface_shape2),
 		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 1);
+
+	g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-2, -2, -2), Vec3d(4, 4, 4)));
+	//g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(2, -2, -2), Vec3d(4, 4, 4)));
+	//g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-5, -5, -5), Vec3d(10, 10, 10)));
+	g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(1, -5, -5), Vec3d(4, 10, 10)));
+	
+	std::ofstream ofile("D:/dev/my_simulation/regions.json");
+	ofile << JsonToString(g_json);
+	ofile.close();
 
 	for (int i = 0; i < 50; i++)
 	{
@@ -53,7 +68,7 @@ void TestEnvironment()
 	}
 
 	// just pass ids and can get everything from environment
-	Environment::microscopic_regions.at(0).AddNeighbour(Environment::microscopic_regions.at(1), 
+	Environment::microscopic_regions.at(0).AddHighPriorityRelative(Environment::microscopic_regions.at(1), 
 		microscopic::SurfaceType::None, { 0, 1, 2 });
 	//Environment::microscopic_regions.at(1).AddNeighbour(Environment::microscopic_regions.at(0),
 	//	microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
@@ -83,8 +98,8 @@ void TestEnvironment()
 	}
 	// ACTORS
 
-	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
-	PassiveActor p2(RegionIDs({ 1 }), MoleculeIDs({ 1 }), 0, -1, &event_queue, 0.3, 1, true, true);
+	PassiveActor p(RegionIDs({ 0 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+	PassiveActor p2(RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.2, 1, true, true);
 
 	do {
 		if (Environment::GetRealisationNumber() > 0)

@@ -55,16 +55,16 @@ classdef Simulation < handle
         end
         
         function plotRegions(obj, showFigure)
-            %regionDir = obj.Directory + "\" + obj.SimulationName + '\regions.json';
+            regionDir = obj.Directory + "\" + obj.SimulationName + '\regions.json';
             s = Shape3D();
-            s.plot('C:\dev\AcCoRD2\MATLAB\path.json');
+            s.plot(regionDir);
             if(showFigure)
                 obj.hFigure.Visible = 'on';
             end
         end
         
-        function plotMolecules(obj)
-            obj.initilisePassiveActorPlots();
+        function plotMolecules(obj, colorByActor)
+            obj.initilisePassiveActorPlots(colorByActor);
             
             simulationTime = 0;
             % list of indicies of all the actors to render in next update
@@ -141,16 +141,20 @@ classdef Simulation < handle
     
     
     methods (Access = private)
-        function initilisePassiveActorPlots(obj)
+        function initilisePassiveActorPlots(obj, colorByActor)
             % calculate the number of molecule types
-            nMoleculeTypes = 0;
-            for i = 1:length(obj.PassiveActor)
-                if(length(obj.PassiveActor(i).moleType) > nMoleculeTypes)
-                    nMoleculeTypes = length(obj.PassiveActor(i).moleType);
+            if(colorByActor)
+                moleculeColormap = hsv(length(obj.PassiveActor));
+            else
+                nMoleculeTypes = 0;
+                for i = 1:length(obj.PassiveActor)
+                    if(length(obj.PassiveActor(i).moleType) > nMoleculeTypes)
+                        nMoleculeTypes = length(obj.PassiveActor(i).moleType);
+                    end
                 end
+
+                moleculeColormap = hsv(nMoleculeTypes);
             end
-            
-            moleculeColormap = hsv(nMoleculeTypes);
             
             hold on;
             for i = 1:length(obj.PassiveActor)
@@ -163,9 +167,14 @@ classdef Simulation < handle
                         obj.PassiveActor(i).times(1);
                     
                     for j = 1:length(obj.PassiveActor(i).moleType)
+                        if(colorByActor)
+                            c = i;
+                        else
+                            c = j;
+                        end
                         obj.PassiveActor(i).moleType(j).hPlot = ...
                             plot3(0, 0, 0, 'Marker', 'o', 'LineStyle', 'none', ...
-                            'MarkerEdgeColor', moleculeColormap(j, :));
+                            'MarkerEdgeColor', moleculeColormap(c, :));
                         % clear plot marker data
                         obj.PassiveActor(i).moleType(j).hPlot.XData = [];
                         obj.PassiveActor(i).moleType(j).hPlot.YData = [];
@@ -244,6 +253,7 @@ classdef Simulation < handle
             fname_count = file_name;
             fileID_count = fopen(fname_count,'r');
             file = fread(fileID_count, 'double');
+            fclose(fileID_count);
         end
 
         function file = readCountBinary(file_name)
@@ -251,6 +261,7 @@ classdef Simulation < handle
             fileID_count = fopen(fname_count,'r');
             % uint64 for 64 bit and uint32 for 32 bit
             file = fread(fileID_count, 'uint64');
+            fclose(fileID_count);
         end
 
         function file = readPositionBinary(file_name)
@@ -263,6 +274,9 @@ classdef Simulation < handle
             % uint64 for 64 bit and uint32 for 32 bit
             file.count = fread(fileID_count, 'uint64');
 
+            fclose(fileID_count);
+            fclose(fileID_positions);
+            
             % calculate the cumulative count of molecules per time step
             % this is used to index the position vector
             total_count = 0;

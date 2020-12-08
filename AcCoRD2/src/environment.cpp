@@ -19,6 +19,9 @@ namespace accord
 
 		Random::SetSeed(seed);
 
+		std::filesystem::remove_all(simulation_name +
+			"/s" + std::to_string(Environment::seed));
+
 		Environment::CreateDirectories();
 	}
 
