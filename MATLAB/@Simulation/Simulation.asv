@@ -36,7 +36,7 @@ classdef Simulation < handle
                 % for each molecule type
                 for j = 1:length(obj.PassiveActor(i).moleType)
                     % if molecule type occurs in passive actor
-                    if(~isempty(obj.PassiveActor(i).moleType(j).position))
+                    if(~isempty(obj.PassiveActor(i).moleType(j).positions))
                         % plot molecule count against time
                         plot(obj.PassiveActor(i).times, ...
                             obj.PassiveActor(i).moleType(j).count, ...
@@ -63,8 +63,8 @@ classdef Simulation < handle
             end
         end
         
-        function plotMolecules(obj, args)
-            obj.initilisePassiveActorPlots();
+        function plotMolecules(obj, colorByActor)
+            obj.initilisePassiveActorPlots(colorByActor);
             
             simulationTime = 0;
             % list of indicies of all the actors to render in next update
@@ -156,21 +156,28 @@ classdef Simulation < handle
                 moleculeColormap = hsv(nMoleculeTypes);
             end
             
-            
             hold on;
             for i = 1:length(obj.PassiveActor)
                 % if passive actor time is not recorded than it cannot be visualised so
                 % is ignored by setting its next observation time to infinite
                 if(isfield(obj.PassiveActor(i), 'times'))
                     
+                    if(isempty(obj.PassiveActor(i).times))
+                        warning("No times found")
+                    end
                     obj.PassiveActor(i).timeIndex = 1;
                     obj.ObservationTimes(i) = ... 
                         obj.PassiveActor(i).times(1);
                     
                     for j = 1:length(obj.PassiveActor(i).moleType)
+                        if(colorByActor)
+                            c = i;
+                        else
+                            c = j;
+                        end
                         obj.PassiveActor(i).moleType(j).hPlot = ...
                             plot3(0, 0, 0, 'Marker', 'o', 'LineStyle', 'none', ...
-                            'MarkerEdgeColor', moleculeColormap(j, :));
+                            'MarkerEdgeColor', moleculeColormap(c, :));
                         % clear plot marker data
                         obj.PassiveActor(i).moleType(j).hPlot.XData = [];
                         obj.PassiveActor(i).moleType(j).hPlot.YData = [];

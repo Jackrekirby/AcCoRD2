@@ -20,6 +20,8 @@ namespace accord
 		void DecreasePriority(size_t index);
 
 		Event& Front();
+
+		std::vector<Event*> GetEvents();
 	private:
 		
 		// an unsorted vector which holds pointers to the events

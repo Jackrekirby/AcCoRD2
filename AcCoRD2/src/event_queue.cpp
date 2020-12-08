@@ -44,6 +44,11 @@ namespace accord
 		return *events.at(pm.front());
 	}
 
+	std::vector<Event*> EventQueue::GetEvents()
+	{
+		return events;
+	}
+
 	EventQueue::EventQueue(size_t capacity)
 	{
 		events.reserve(capacity);

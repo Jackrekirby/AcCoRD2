@@ -36,7 +36,7 @@ classdef Simulation < handle
                 % for each molecule type
                 for j = 1:length(obj.PassiveActor(i).moleType)
                     % if molecule type occurs in passive actor
-                    if(~isempty(obj.PassiveActor(i).moleType(j).position))
+                    if(~isempty(obj.PassiveActor(i).moleType(j).positions))
                         % plot molecule count against time
                         plot(obj.PassiveActor(i).times, ...
                             obj.PassiveActor(i).moleType(j).count, ...
@@ -161,7 +161,6 @@ classdef Simulation < handle
                 % if passive actor time is not recorded than it cannot be visualised so
                 % is ignored by setting its next observation time to infinite
                 if(isfield(obj.PassiveActor(i), 'times'))
-                    
                     obj.PassiveActor(i).timeIndex = 1;
                     obj.ObservationTimes(i) = ... 
                         obj.PassiveActor(i).times(1);
