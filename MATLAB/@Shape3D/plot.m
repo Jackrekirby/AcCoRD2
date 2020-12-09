@@ -1,34 +1,31 @@
-function hFigure = plot(obj, jsonFilePath)
-    j = jsondecode(fileread(jsonFilePath));
-    %hFigure = figure; 
+function hPlots = plot(obj, shapes)
+    j = 1;
+    hPlots = [];
     hold on;
-    disp("Drawing 3D Environment");
-    if(isfield(j.shapes, 'box'))
-        size(j.shapes.box, 2)
-        for i = 1:length(j.shapes.box)
-            obj.plotBox(j.shapes.box(i).origin, j.shapes.box(i).length);
+    if(isfield(shapes, 'box'))
+        for i = 1:length(shapes.box)
+            hPlots(j) = obj.plotBox(shapes.box(i).origin, shapes.box(i).length);
+            j = j + 1;
         end
     end
-    if(isfield(j.shapes, 'sphere'))
-        for i = 1:length(j.shapes.sphere)
-            obj.plotSphere(j.shapes.sphere(i).centre, j.shapes.sphere(i).radius);
+    if(isfield(shapes, 'sphere'))
+        for i = 1:length(shapes.sphere)
+            hPlots(j) = obj.plotSphere(shapes.sphere(i).centre, shapes.sphere(i).radius);
+            j = j + 1;
         end
     end
-    if(isfield(j.shapes, 'rectSurface'))
-        for i = 1:length(j.shapes.rectSurface)
-            obj.plotRectSurface(j.shapes.rectSurface(i).origin, j.shapes.rectSurface(i).length);
+    if(isfield(shapes, 'rectSurface'))
+        for i = 1:length(shapes.rectSurface)
+            hPlots(j) = obj.plotRectSurface(shapes.rectSurface(i).origin, shapes.rectSurface(i).length);
+            j = j + 1;
         end
     end
-    if(isfield(j.shapes, 'circleSurface'))
-        for i = 1:length(j.shapes.circleSurface)
-            obj.plotCircleSurface(j.shapes.circleSurface(i).centre, j.shapes.circleSurface(i).radius, j.shapes.circleSurface(i).axis);
+    if(isfield(shapes, 'circleSurface'))
+        for i = 1:length(shapes.circleSurface)
+            hPlots(j) = obj.plotCircleSurface(shapes.circleSurface(i).centre, ...
+                shapes.circleSurface(i).radius, a.shapes.circleSurface(i).axis);
+            j = j + 1;
         end
     end
     hold off;
-%     hold off;
-%     xlabel('x');
-%     ylabel('y');
-%     zlabel('z');
-%     axis equal;
-%     view(45,30);
 end

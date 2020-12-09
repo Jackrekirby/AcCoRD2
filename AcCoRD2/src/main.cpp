@@ -4,6 +4,7 @@
 // add cylinders
 // add clip function
 // add wrap function
+// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
 
 //#include "logger_test.h"
 //#include "json_test.h"
@@ -12,6 +13,7 @@
 //#include "output_binary_test.h"
 #include "event_queue_test.h"
 //#include "shape_test.h"
+
 
 #include "microscopic_region2.h"
 #include "environment.h"
@@ -88,9 +90,10 @@ void TestEnvironment()
 	ofile << JsonToString(g_json);
 	ofile.close();
 
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 25; i++)
 	{
 		Environment::microscopic_regions.at(1).AddMolecule(0, { 0, 0, 0 });
+		Environment::microscopic_regions.at(1).AddMolecule(1, { 0, 0, 0 });
 	}
 
 	// just pass ids and can get everything from environment
@@ -142,9 +145,10 @@ void TestEnvironment()
 				region.NextRealisation();
 			}
 
-			for (int i = 0; i < 50; i++)
+			for (int i = 0; i < 25; i++)
 			{
 				Environment::microscopic_regions.at(1).AddMolecule(0, { 0, 0, 0 });
+				Environment::microscopic_regions.at(1).AddMolecule(1, { 0, 0, 0 });
 			}
 		}
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());

@@ -54,7 +54,7 @@ classdef Shape3D < handle
         hSphere = plotSphere(obj, centre, radius, args)
         hCircleSurface = plotCircleSurface(obj, centre, radius, axis, args)
         hRectSurface = plotRectSurface(obj, origin, length, args)
-        hFigure = plot(obj, jsonFilePath)
+        hPlots = plot(obj, shapes)
     end
     
     methods (Access = private)
