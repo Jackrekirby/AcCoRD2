@@ -35,9 +35,12 @@ void TestEnvironment()
 
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(2, 2, 2), Vec3i(1, 1, 1), Vec3i(1, 1, 1) };
-	double start_time = 1;
+	double start_time = 0;
 	double time_step = 0.05;
 	int priority = 0;
+
+	//std::unique_ptr<microscopic::SurfaceShape> surface_shape =
+	//	std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-1, -1, -1), Vec3d(2, 2, 2));
 
 	std::unique_ptr<microscopic::SurfaceShape> surface_shape =
 		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(1.5, -0.5, -0.5), Vec3d(4, 1, 1));

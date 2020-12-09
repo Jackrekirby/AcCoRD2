@@ -1,9 +1,19 @@
-[21:46:10.048] [info] AcCoRD2 Binary To Json Conversion Tool
-[21:46:10.050] [info] Searching directory <D:\dev\binaries> for binary files
-[21:46:10.053] [info] Found 4 file(s) to convert
-[21:46:10.054] [info] List of converted file(s):
-[21:46:10.055] [info] _b.bin
-[21:46:10.057] [info] _c.bin
-[21:46:10.060] [info] _p.bin
-[21:46:10.064] [info] _t.bin
-[21:46:10.064] [info] All file(s) converted
+[13:32:47.808] [info] AcCoRD2 Binary To Json Conversion Tool
+[13:32:47.810] [info] Searching directory <D:\dev\my_simulation> for binary files
+[13:32:47.825] [info] Found 14 file(s) to convert
+[13:32:47.825] [info] List of converted file(s):
+[13:32:47.831] [info] s1\r0\p0_m0_c.bin
+[13:32:47.837] [info] s1\r0\p0_m0_p.bin
+[13:32:47.841] [info] s1\r0\p0_m1_c.bin
+[13:32:47.844] [info] s1\r0\p0_m1_p.bin
+[13:32:47.849] [info] s1\r0\p0_m2_c.bin
+[13:32:47.852] [info] s1\r0\p0_m2_p.bin
+[13:32:47.856] [info] s1\r0\p0_t.bin
+[13:32:47.861] [info] s1\r0\p1_m0_c.bin
+[13:32:47.958] [info] s1\r0\p1_m0_p.bin
+[13:32:47.961] [info] s1\r0\p1_m1_c.bin
+[13:32:47.964] [info] s1\r0\p1_m1_p.bin
+[13:32:47.966] [info] s1\r0\p1_m2_c.bin
+[13:32:47.969] [info] s1\r0\p1_m2_p.bin
+[13:32:47.974] [info] s1\r0\p1_t.bin
+[13:32:47.974] [info] All file(s) converted

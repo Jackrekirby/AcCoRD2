@@ -55,15 +55,21 @@ function s = ImportSimulationFiles(directory, simulationName, seeds, realisation
     end
     
     for iSeed = 1:length(seeds)
-        s.seeds(iSeed).seed = seeds(iSeed);
+        s.seeds(iSeed).no = seeds(iSeed);
         for iRealisation = 1:length(realisationsPerSeed(iSeed))
-            s.seeds(iSeed).realisations(iRealisation).realisation = realisationsPerSeed{iSeed};
+            s.seeds(iSeed).realisations(iRealisation).no = realisationsPerSeed{iSeed};
         end
     end
     
-    for iSeed = 1:length(seeds)
-        for iRealisation = 1:length(realisationsPerSeed(iSeed))
+    for iSeed = 1:length(s.seeds)
+        seedDir = simulationDir + '\s' + s.seeds(iSeed).no
+        for iRealisation = 1:length(s.seeds(iSeed).realisations.no)
+            realisationDir = seedDir + '\r' + ...
+                 s.seeds(iSeed).realisations.no(iRealisation);
+             
+            realisationDir
             
+            s = readBinaryFiles(s, realisationDir)
         end
     end
 end
@@ -76,7 +82,7 @@ function suffixes = GetSuffixesFromFolderNames(directory, folderPrefix)
     files = files([files.isdir]);
     for iFiles = 1 : length(files)
         % if folder prefix is 's' then folder is a seed folder
-        if(files(iFiles).name(length(folderPrefix)) == folderPrefix)
+        if(startsWith(files(iFiles).name, folderPrefix))
             nSuffixes = nSuffixes + 1;
             % get the seed number
             suffixes(nSuffixes) = str2double(files(iFiles).name(2:end));
@@ -84,13 +90,7 @@ function suffixes = GetSuffixesFromFolderNames(directory, folderPrefix)
     end
 end
 
-function passiveActor = readBinaryFiles(directory, simulation_name, seed, realisation)
-    % Create the directory path to the realisation
-    realisationDir = directory + "\" + simulation_name + "\s" + seed + "\r" + realisation;
-    if ~exist(realisationDir, 'dir')
-        error(realisationDir + " is not a valid folder path");
-    end
-    disp("Reading: " + realisationDir);
+function s = readBinaryFiles(s, realisationDir)
     % Find all the files and folders in the visualisation directory
     files = dir(realisationDir);
     % For each file
@@ -115,7 +115,7 @@ function passiveActor = readBinaryFiles(directory, simulation_name, seed, realis
                 if(timeOrmole == 't')
                     % read the observation time file
                     disp("passive actor(" + actorID + ").times");
-                    passiveActor(actorID + 1).times = ...
+                    s.passiveActor(actorID + 1).times = ...
                     Simulation.readTimeBinary(files(i).folder + "\" + files(i).name);
                 elseif(timeOrmole == 'm')
                     % the third part of the file name says if the file is

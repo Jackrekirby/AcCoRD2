@@ -1,6 +1,9 @@
 clear all;
 clc;
 
+a = SimImport2("D:\dev", "my_simulation")
+
+%%
 s = ImportSimulationFiles("D:\dev", "my_simulation");
 
 %% Functions
@@ -65,7 +68,11 @@ function s = ImportSimulationFiles(directory, simulationName, seeds, realisation
         seedDir = simulationDir + '\s' + s.seeds(iSeed).no
         for iRealisation = 1:length(s.seeds(iSeed).realisations.no)
             realisationDir = seedDir + '\r' + ...
-                 s.seeds(iSeed).realisations.no(iRealisation)
+                 s.seeds(iSeed).realisations.no(iRealisation);
+             
+            realisationDir
+            
+            s = readBinaryFiles(s, realisationDir)
         end
     end
 end
@@ -86,13 +93,7 @@ function suffixes = GetSuffixesFromFolderNames(directory, folderPrefix)
     end
 end
 
-function passiveActor = readBinaryFiles(directory, simulation_name, seed, realisation)
-    % Create the directory path to the realisation
-    realisationDir = directory + "\" + simulation_name + "\s" + seed + "\r" + realisation;
-    if ~exist(realisationDir, 'dir')
-        error(realisationDir + " is not a valid folder path");
-    end
-    disp("Reading: " + realisationDir);
+function s = readBinaryFiles(s, realisationDir)
     % Find all the files and folders in the visualisation directory
     files = dir(realisationDir);
     % For each file
@@ -117,7 +118,7 @@ function passiveActor = readBinaryFiles(directory, simulation_name, seed, realis
                 if(timeOrmole == 't')
                     % read the observation time file
                     disp("passive actor(" + actorID + ").times");
-                    passiveActor(actorID + 1).times = ...
+                    s.passiveActor(actorID + 1).times = ...
                     Simulation.readTimeBinary(files(i).folder + "\" + files(i).name);
                 elseif(timeOrmole == 'm')
                     % the third part of the file name says if the file is

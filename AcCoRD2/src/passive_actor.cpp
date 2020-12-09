@@ -157,16 +157,22 @@ namespace accord
 			{
 				for (auto& molecule : subvolume->GetNormalMolecules())
 				{
+					//LOG_ERROR(molecule.GetPosition());
 					positions.emplace_back(molecule.GetPosition());
 				}
 
 				for (auto& molecule : subvolume->GetRecentMolecules())
 				{
+					//LOG_WARN(molecule.GetPosition());
 					positions.emplace_back(molecule.GetPosition());
 				}
 			}
 			// write positions all of the same molecule type to file
-			position_files.at(id).Write(positions);
+			if (positions.size() != 0)
+			{
+				
+				position_files.at(id).Write(positions);
+			}
 			count_files.at(id).Write(positions.size());
 			positions.clear();
 			id++;

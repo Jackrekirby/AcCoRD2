@@ -10,13 +10,16 @@ namespace accord
 	Vec3d::Vec3d(double x, double y, double z)
 		: x(x), y(y), z(z)
 	{
-
+		if (isnan(x))
+		{
+			throw std::exception();
+		}
 	}
 
 	Vec3d::Vec3d(const Vec3i& v)
 		: x(v.x), y(v.y), z(v.z)
 	{
-
+		
 	}
 
 	Vec3d Vec3d::FromScalar(double s)

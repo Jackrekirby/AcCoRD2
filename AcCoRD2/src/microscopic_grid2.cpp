@@ -46,6 +46,7 @@ namespace accord::microscopic
 				std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule));
 				if (md.has_value())
 				{
+					//LOG_CRITICAL(md->GetPosition());
 					// if the owner is the same molecule remains a normal molecule
 					if (&(md->GetOwner()) == &static_cast<Owner&>(*this))
 					{
@@ -59,27 +60,36 @@ namespace accord::microscopic
 				}
 			}
 
+			std::vector<RecentMolecule> recent_molecules;
 			for (auto& molecule : subvolume.GetRecentMolecules())
 			{
-				std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule));
-				if (md.has_value())
+				if (molecule.GetTime() < Environment::GetTime())
 				{
-					// if the owner is the same molecule remains a normal molecule
-					if (&(md->GetOwner()) == &static_cast<Owner&>(*this))
+					std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule));
+					if (md.has_value())
 					{
-						normal_molecules.emplace_back(md->GetPosition());
+						// if the owner is the same molecule remains a normal molecule
+						if (&(md->GetOwner()) == &static_cast<Owner&>(*this))
+						{
+							normal_molecules.emplace_back(md->GetPosition());
+						}
+						// if the owner is the another grid, meso region or adsorbing surface add as recent molecule
+						else
+						{
+							md->GetOwner().AddMolecule(md->GetPosition(), GetRegion().GetNextEventTime());
+						}
 					}
-					// if the owner is the another grid, meso region or adsorbing surface add as recent molecule
-					else
-					{
-						md->GetOwner().AddMolecule(md->GetPosition(), GetRegion().GetNextEventTime());
-					}
+				}
+				else
+				{
+					// keep recent molecules who are still ahead of environment time
+					recent_molecules.emplace_back(molecule);
 				}
 			}
 
 			// replace normal list with new list and clear the recent molecules as all recent molecules are now normal
 			subvolume.GetNormalMolecules() = normal_molecules;
-			subvolume.GetRecentMolecules().clear();
+			subvolume.GetRecentMolecules() = recent_molecules;
 		}		
 	}
 
@@ -162,6 +172,7 @@ namespace accord::microscopic
 	// will require envionment time to be updated before event is finished or do environment time + time step
 	Vec3d Grid2::DiffuseMolecule(const RecentMolecule& molecule)
 	{
+		// will produce nan is molecule time > environment time
 		return { molecule.GetPosition() +
 			std::sqrt(2 * diffision_coefficient * (Environment::GetTime() - molecule.GetTime())) *
 			Vec3d::GenerateNormal() };

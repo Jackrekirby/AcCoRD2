@@ -19,6 +19,7 @@ namespace accord
 
 		Random::SetSeed(seed);
 
+		// will fail if files are open
 		std::filesystem::remove_all(simulation_name +
 			"/s" + std::to_string(Environment::seed));
 

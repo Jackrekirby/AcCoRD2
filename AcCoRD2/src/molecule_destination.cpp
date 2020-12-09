@@ -7,7 +7,11 @@ namespace accord::microscopic
 	MoleculeDestination::MoleculeDestination(Vec3d position, Owner* owner)
 		: position(position), owner(owner)
 	{
-
+		if (isnan(position.x))
+		{
+			LOG_CRITICAL(position);
+			throw std::exception();
+		}
 	}
 
 	const Vec3d& MoleculeDestination::GetPosition() const
