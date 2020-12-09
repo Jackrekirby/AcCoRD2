@@ -82,6 +82,7 @@ namespace accord::microscopic
 		std::vector<FirstOrderReaction> first_order_reactions;
 		SecondOrderReactions second_order_reactions;
 		double time_step;
+		double start_time;
 		RegionID id;
 
 		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);

@@ -10,6 +10,11 @@ namespace accord
 
     }
 
+    Vec3b Vec3b::FromScalar(bool s)
+    {
+        return Vec3b(s, s, s);
+    }
+
     bool Vec3b::All() const
     {
         return (x && y && z);

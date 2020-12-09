@@ -25,7 +25,7 @@ classdef Shape3D < handle
                 args.BoxFaceColours = hsv(6);
                 args.ColorPerBoxFace = false;
                 args.CircleResolution = 8;
-                args.SphereResolution = 8;
+                args.SphereResolution = 4;
                 args.LineWidth = 1;
                 args.LineStyle = '-';
                 args.LineColor = 'random'

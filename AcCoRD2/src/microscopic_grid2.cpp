@@ -187,7 +187,6 @@ namespace accord::microscopic
 		// if index is below or above index range limit it to within range
 		index *= (index > Vec3i(0, 0, 0));
 		index.EqualIf((index >= n_subvolumes), n_subvolumes - 1);
-		LOG_INFO(index);
 		return subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 	}
 

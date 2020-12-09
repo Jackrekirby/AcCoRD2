@@ -20,6 +20,8 @@ namespace accord
 
         Vec3b() = default;
 
+        static Vec3b FromScalar(bool s);
+
         bool All() const;
 
         Vec3b operator && (const Vec3b& v) const;

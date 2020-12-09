@@ -2,6 +2,8 @@
 // add vector operation - (scalar)
 // change circle collision to const
 // add cylinders
+// add clip function
+// add wrap function
 
 //#include "logger_test.h"
 //#include "json_test.h"
@@ -26,7 +28,7 @@ void TestEnvironment()
 {
 	using namespace accord;
 
-	Environment::Init("D:/dev/my_simulation", 1, 10, 3, 2, 1);
+	Environment::Init("D:/dev/my_simulation", 5, 10, 3, 2, 1);
 	EventQueue event_queue(6);
 
 	// REGIONS
@@ -38,7 +40,7 @@ void TestEnvironment()
 	int priority = 0;
 
 	std::unique_ptr<microscopic::SurfaceShape> surface_shape =
-		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(4, -2, -2), Vec3d(4, 4, 4));
+		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(1.5, -0.5, -0.5), Vec3d(4, 1, 1));
 
 	//std::unique_ptr<microscopic::SurfaceShape> surface_shape =
 	//	std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
@@ -56,7 +58,7 @@ void TestEnvironment()
 	//	std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(1, -2, -2), Vec3d(1, 4, 4));
 
 	std::unique_ptr<microscopic::SurfaceShape> surface_shape2 =
-		std::make_unique<microscopic::SphereSurfaceShape>(Vec3d(0, 0, 0), 5);
+		std::make_unique<microscopic::SphereSurfaceShape>(Vec3d(0, 0, 0), 2);
 
 	// MUST RESERVE NUMBER OF REGIONS OTHERWISE EVENT IS ADDED MULTIPLE TIMES TO QUEUE
 	Environment::microscopic_regions.reserve(2);
@@ -72,8 +74,8 @@ void TestEnvironment()
 	//	diffision_coefficients, n_subvolumes, std::move(surface_shape3),
 	//	start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 2);
 
-	g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(4, -2, -2), Vec3d(4, 4, 4)));
-	g_json["shapes"]["sphere"].emplace_back(shape::basic::Sphere(Vec3d(0, 0, 0), 5));
+	g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(1.5, -0.5, -0.5), Vec3d(4, 1, 1)));
+	g_json["shapes"]["sphere"].emplace_back(shape::basic::Sphere(Vec3d(0, 0, 0), 2));
 	//g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(2, -2, -2), Vec3d(4, 4, 4)));
 	//g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-5, -5, -5), Vec3d(10, 10, 10)));
 	//g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-5, -5, -5), Vec3d(10, 10, 10)));
@@ -85,11 +87,11 @@ void TestEnvironment()
 
 	for (int i = 0; i < 50; i++)
 	{
-		Environment::microscopic_regions.at(0).AddMolecule(0, { 0, 0, 0 });
+		Environment::microscopic_regions.at(1).AddMolecule(0, { 0, 0, 0 });
 	}
 
 	// just pass ids and can get everything from environment
-	Environment::microscopic_regions.at(0).AddLowPriorityRelative(Environment::microscopic_regions.at(1), 
+	Environment::microscopic_regions.at(1).AddLowPriorityRelative(Environment::microscopic_regions.at(0), 
 		microscopic::SurfaceType::None, { 0, 1, 2 });
 	//Environment::microscopic_regions.at(1).AddLowPriorityRelative(Environment::microscopic_regions.at(0),
 		//microscopic::SurfaceType::None, { 0, 1, 2 });
@@ -131,9 +133,15 @@ void TestEnvironment()
 		if (Environment::GetRealisationNumber() > 0)
 		{
 			p.NextRealisation();
+			p2.NextRealisation();
 			for (auto& region : Environment::microscopic_regions)
 			{
 				region.NextRealisation();
+			}
+
+			for (int i = 0; i < 50; i++)
+			{
+				Environment::microscopic_regions.at(1).AddMolecule(0, { 0, 0, 0 });
 			}
 		}
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());

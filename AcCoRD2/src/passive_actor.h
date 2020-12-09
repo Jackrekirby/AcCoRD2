@@ -66,10 +66,12 @@ namespace accord
 		std::unique_ptr<PassiveActorShape> shape;
 		ActiveActorID id;
 		double time_step;
+		double start_time;
 
 		MoleculeIDs molecule_ids;
 		bool record_positions;
 		bool record_time;
+
 
 		void CreateFiles();
 

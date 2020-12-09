@@ -27,7 +27,7 @@ namespace accord
 		ActiveActorID id, bool record_positions, bool record_time)
 		: Event(start_time, priority, event_queue), shape(std::move(shape)), id(id),
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
-		molecule_ids(molecule_ids)
+		molecule_ids(molecule_ids), start_time(start_time)
 	{
 		AddMicroscopicSubvolumesWhichAreInsideActor(molecule_ids);
 		CreateFiles();
@@ -38,7 +38,7 @@ namespace accord
 		ActiveActorID id, bool record_positions, bool record_time)
 		: Event(start_time, priority, event_queue), shape(std::move(shape)), id(id),
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
-		molecule_ids(molecule_ids)
+		molecule_ids(molecule_ids), start_time(start_time)
 	{
 		AddMicroscopicSubvolumes(molecule_ids, region_ids);
 		CreateFiles();
@@ -71,6 +71,8 @@ namespace accord
 		time_file = nullptr;
 
 		CreateFiles();
+
+		UpdateTime(start_time);
 	}
 
 	void PassiveActor::Run()

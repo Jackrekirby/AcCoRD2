@@ -18,6 +18,11 @@ namespace accord
 
 	}
 
+	Vec3i Vec3i::FromScalar(int s)
+	{
+		return Vec3i(s, s, s);
+	}
+
 	Vec3i Vec3i::GeneratePoisson(double mean)
 	{
 		return
@@ -221,6 +226,12 @@ namespace accord
 		if (b.x) x = v.x;
 		if (b.y) y = v.y;
 		if (b.z) z = v.z;
+	}
+
+	void Vec3i::Wrap(const Vec3i& lower_bound, const Vec3i& upper_bound)
+	{
+		EqualIf(*this < lower_bound, lower_bound);
+		EqualIf(*this > upper_bound, upper_bound);
 	}
 
 	Vec3b Vec3i::operator < (const Vec3i& v) const

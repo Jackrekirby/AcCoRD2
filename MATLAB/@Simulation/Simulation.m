@@ -191,6 +191,9 @@ classdef Simulation < handle
         function passiveActor = readBinaryFiles(directory, simulation_name, seed, realisation)
             % Create the directory path to the realisation
             realisationDir = directory + "\" + simulation_name + "\s" + seed + "\r" + realisation;
+            if ~exist(realisationDir, 'dir')
+                error(realisationDir + " is not a valid folder path");
+            end
             disp("Reading: " + realisationDir);
             % Find all the files and folders in the visualisation directory
             files = dir(realisationDir);

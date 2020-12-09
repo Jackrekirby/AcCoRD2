@@ -35,6 +35,6 @@ namespace accord::microscopic
 	shape::basic::Box SphereSurfaceShape::GenerateBoundingBox() const
 	{
 		auto& r = GetRadius();
-		return { GetCentre() - Vec3d(r, r, r), Vec3d(2 * r, 2 * r, 2 * r) };
+		return { GetCentre() - r, Vec3d(2 * r, 2 * r, 2 * r) };
 	}
 }

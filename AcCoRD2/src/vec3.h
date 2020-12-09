@@ -32,6 +32,11 @@ namespace accord
 			y = static_cast<T>(v.z);
 		}
 
+		static Vec3 FromScalar(T s)
+		{
+			return { s, s, s };
+		}
+
 		Vec3 operator + (const Vec3& v) const
 		{
 			return { x + v.x, y + v.y, z + v.z };

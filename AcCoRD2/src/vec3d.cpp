@@ -19,6 +19,11 @@ namespace accord
 
 	}
 
+	Vec3d Vec3d::FromScalar(double s)
+	{
+		return Vec3d(s, s, s);
+	}
+
 	Vec3d Vec3d::GenerateExponential(double mean)
 	{
 		return {
@@ -279,6 +284,12 @@ namespace accord
 		if (b.x) x = v.x;
 		if (b.y) y = v.y;
 		if (b.z) z = v.z;
+	}
+
+	void Vec3d::Wrap(const Vec3d& lower_bound, const Vec3d& upper_bound)
+	{
+		EqualIf(*this < lower_bound, lower_bound);
+		EqualIf(*this > upper_bound, upper_bound);
 	}
 
 

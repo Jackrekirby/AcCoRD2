@@ -15,7 +15,7 @@ namespace accord::microscopic
 		double start_time, double time_step, int priority, EventQueue* event_queue,
 		SurfaceType surface_type, RegionID id)
 		: surface_shape(std::move(surface_shape)), Event(start_time, priority, event_queue),
-		time_step(time_step), id(id), surface_type(surface_type)
+		time_step(time_step), id(id), surface_type(surface_type), start_time(start_time)
 	{
 		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid);
 	}
@@ -172,7 +172,7 @@ namespace accord::microscopic
 
 	void Region2::NextRealisation()
 	{
-		UpdateTime(0);
+		UpdateTime(start_time);
 		for (auto& grid : grids)
 		{
 			for (auto& subvolume : grid.GetSubvolumes())

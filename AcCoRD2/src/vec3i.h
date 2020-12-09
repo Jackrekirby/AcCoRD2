@@ -28,6 +28,8 @@ namespace accord
 
 		Vec3i(const Vec3d& v);
 
+		static Vec3i FromScalar(int s);
+
 		static Vec3i GeneratePoisson(double mean);
 
 		static Vec3i GenerateIntUniform(int lower_bound, int upper_bound);
@@ -104,6 +106,8 @@ namespace accord
 		
 		void EqualIf(const Vec3b& b, const Vec3i& v);
 		
+		void Wrap(const Vec3i& lower_bound, const Vec3i& upper_bound);
+
 		
 		Vec3i operator % (const Vec3i& v) const;
 

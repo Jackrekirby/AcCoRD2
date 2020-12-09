@@ -28,6 +28,8 @@ namespace accord
 
 		Vec3d(const Vec3i& v);
 
+		static Vec3d FromScalar(double s);
+
 		// consider renaming to RandomExponential()
 		static Vec3d GenerateExponential(double mean);
 
@@ -132,6 +134,8 @@ namespace accord
 
 
 		void EqualIf(const Vec3b& b, const Vec3d& v);
+
+		void Wrap(const Vec3d& lower_bound, const Vec3d& upper_bound);
 
 		Vec3b operator < (const Vec3d& v) const;
 
