@@ -16,7 +16,7 @@ namespace accord::shape::collision
 		return basic::Circle::IsWithinOrOnBorder(position);
 	}
 
-	std::optional<Collision2D> Circle::CalculateExternalCollisionData(const Vec2d& origin, const Vec2d& end)
+	std::optional<Collision2D> Circle::CalculateExternalCollisionData(const Vec2d& origin, const Vec2d& end) const
 	{
 		// find the collision times of the line (formed by points origin and end) with the sphere
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
@@ -34,7 +34,7 @@ namespace accord::shape::collision
 		return Collision2D(*time, intersection, reflection);
 	}
 
-	std::optional<Collision2D> Circle::CalculateInternalCollisionData(const Vec2d& origin, const Vec2d& end)
+	std::optional<Collision2D> Circle::CalculateInternalCollisionData(const Vec2d& origin, const Vec2d& end) const
 	{
 		// find the collision times of the line (formed by points origin and end) with the sphere
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
@@ -58,7 +58,7 @@ namespace accord::shape::collision
 
 	}
 
-	std::optional<Circle::CollisionTimes> Circle::CalculateCollisionTime(const Vec2d& origin, const Vec2d& end)
+	std::optional<Circle::CollisionTimes> Circle::CalculateCollisionTime(const Vec2d& origin, const Vec2d& end) const
 	{
 		Vec2d direction = end - origin;
 		Vec2d relative_origin = origin - GetCentre();
@@ -77,7 +77,7 @@ namespace accord::shape::collision
 		return CollisionTimes(q / a, c / q);
 	}
 
-	std::optional<double> Circle::SelectExternalCollisionTime(double t1, double t2)
+	std::optional<double> Circle::SelectExternalCollisionTime(double t1, double t2) const
 	{
 		// Molecule in inside circle (which it shouldn't be, but can be a result of floating point error)
 		if (t1 * t2 < 0)
@@ -108,7 +108,7 @@ namespace accord::shape::collision
 		}
 	}
 
-	std::optional<double> Circle::SelectInternalCollisionTime(double t1, double t2)
+	std::optional<double> Circle::SelectInternalCollisionTime(double t1, double t2) const
 	{
 		if (t1 > t2)
 		{

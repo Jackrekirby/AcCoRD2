@@ -1,5 +1,1 @@
-[info] main.cpp:161 TestEnvironment() Realisation 0
-[info] main.cpp:161 TestEnvironment() Realisation 1
-[info] main.cpp:161 TestEnvironment() Realisation 2
-[info] main.cpp:161 TestEnvironment() Realisation 3
-[info] main.cpp:161 TestEnvironment() Realisation 4
+[info] main.cpp:211 main() time = 0.1, intersection = [5, 0, 0], reflection = [-40, 0, 0]

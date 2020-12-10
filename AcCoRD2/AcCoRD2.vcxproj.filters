@@ -247,6 +247,9 @@
     <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
       <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClCompile>
+    <ClCompile Include="src\basic_cylinder.cpp">
+      <Filter>src\shapes\basic\cylinder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -534,6 +537,12 @@
     <ClInclude Include="src\microscopic_sphere_surface_shape.h">
       <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
+    <ClInclude Include="src\collision_cylinder.h">
+      <Filter>src\shapes\collision\cylinder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic_cylinder.h">
+      <Filter>src\shapes\basic\cylinder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -743,6 +752,12 @@
     </Filter>
     <Filter Include="src\simulation\actors\passive">
       <UniqueIdentifier>{e226d73e-94a2-431e-893b-d43fae654fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\cylinder">
+      <UniqueIdentifier>{f0ed210c-14a4-4655-8854-807c2e2ca54a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\collision\cylinder">
+      <UniqueIdentifier>{6c9a2afd-84cd-40cd-83ac-b95cd34fa424}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

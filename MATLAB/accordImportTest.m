@@ -2,6 +2,7 @@
 % add number of shapes to sim.regions so hsv(nshapes) can be given to
 % shape3D so colour of region matches plotted line colour
 % animated line?
+% add import regions info message
 
 %% Import Simulation Data
 clear all;
@@ -14,7 +15,7 @@ clc;
 % figureLimits, playBackSpeed, colorByActor, shape3D)
 
 shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
-r = Accord.animateRealisation(sim, 1, 1, 10, 1, false, shape3d);
+r = Accord.animateRealisation(sim, 1, 1, 7, 0.2, true, shape3d);
 
 %% Display Regions
 clc;

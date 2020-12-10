@@ -19,12 +19,36 @@ namespace accord
 	Vec3d::Vec3d(const Vec3i& v)
 		: x(v.x), y(v.y), z(v.z)
 	{
-		
+
 	}
 
 	Vec3d Vec3d::FromScalar(double s)
 	{
 		return Vec3d(s, s, s);
+	}
+
+	Vec3d::Vec3d(double longitudinal, const Vec2d& transverse, Axis3D axis)
+	{
+		switch (axis)
+		{
+		case Axis3D::x:
+			x = longitudinal;
+			y = transverse.x;
+			z = transverse.y;
+			return;
+		case Axis3D::y:
+			x = transverse.x;
+			y = longitudinal;
+			z = transverse.y;
+			return;
+		case Axis3D::z:
+			x = transverse.x;
+			y = transverse.y;
+			z = longitudinal;
+			return;
+		}
+		LOG_CRITICAL("Unknown Axis3D type");
+		throw std::exception();
 	}
 
 	Vec3d Vec3d::GenerateExponential(double mean)
