@@ -6,6 +6,13 @@
 // add wrap function
 // NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
 
+// WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR
+// AT THE SAME TIME?
+// ANSWER: Recent molecules were being added to the next event time rather than the current one
+// Confusion lies in that a region time is updated before the molecule are.
+// i.e. region updates its next event time from 1s to 2s. Then at 2s the event from 1 to 2 occur. 
+// At the end of the update all molecules should have caught up to 2s.
+
 //#include "logger_test.h"
 //#include "json_test.h"
 //#include "random_test.h"

@@ -10,6 +10,9 @@ sim = Accord.importFiles("D:\dev", "my_simulation", [], [], true);
 
 %% Animate Realisation
 clc;
+% animateRealisation(simulation, seed, realisation, ...
+% figureLimits, playBackSpeed, colorByActor, shape3D)
+
 shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
 r = Accord.animateRealisation(sim, 1, 1, 10, 1, false, shape3d);
 
@@ -25,7 +28,7 @@ figure;
 Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
 
 
-%% Force Figures To Close
+%% Force all Figures and Files To Close 
 close all force
 fclose('all') 
 

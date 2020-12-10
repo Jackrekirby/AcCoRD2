@@ -76,7 +76,9 @@ namespace accord::microscopic
 						// if the owner is the another grid, meso region or adsorbing surface add as recent molecule
 						else
 						{
-							md->GetOwner().AddMolecule(md->GetPosition(), GetRegion().GetNextEventTime());
+							// Environment::GetTime() = region->GetTime()
+							md->GetOwner().AddMolecule(md->GetPosition(), region->GetTime());
+							//md->GetOwner().AddMolecule(md->GetPosition(), GetRegion().GetNextEventTime();
 						}
 					}
 				}
@@ -172,9 +174,10 @@ namespace accord::microscopic
 	// will require envionment time to be updated before event is finished or do environment time + time step
 	Vec3d Grid2::DiffuseMolecule(const RecentMolecule& molecule)
 	{
-		// will produce nan is molecule time > environment time
+		// will produce nan is molecule time > environment/region time
+		// for regions with the same start time and time step delta time should = 0.
 		return { molecule.GetPosition() +
-			std::sqrt(2 * diffision_coefficient * (Environment::GetTime() - molecule.GetTime())) *
+			std::sqrt(2 * diffision_coefficient * (region->GetTime() - molecule.GetTime())) *
 			Vec3d::GenerateNormal() };
 	}
 
