@@ -313,12 +313,11 @@ namespace accord
 		if (b.z) z = v.z;
 	}
 
-	void Vec3d::Wrap(const Vec3d& lower_bound, const Vec3d& upper_bound)
+	void Vec3d::Clip(const Vec3d& lower_bound, const Vec3d& upper_bound)
 	{
 		EqualIf(*this < lower_bound, lower_bound);
 		EqualIf(*this > upper_bound, upper_bound);
 	}
-
 
 	Vec3b Vec3d::operator < (const Vec3d& v) const
 	{

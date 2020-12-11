@@ -4,10 +4,10 @@
 
 namespace accord::shape::relation
 {
-	class RectSurface : public Surface
+	class CircleSurface : public Surface
 	{
 	public:
-		RectSurface(Plane3D plane, Circle circle);
+		CircleSurface(Plane3D plane, Circle circle);
 
 		const Circle& GetShape() const;
 	private:

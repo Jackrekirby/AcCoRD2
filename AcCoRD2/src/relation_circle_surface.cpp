@@ -3,13 +3,13 @@
 
 namespace accord::shape::relation
 {
-	RectSurface::RectSurface(Plane3D plane, Circle circle)
+	CircleSurface::CircleSurface(Plane3D plane, Circle circle)
 		: Surface(plane), circle(circle)
 	{
 
 	}
 
-	const Circle& RectSurface::GetShape() const
+	const Circle& CircleSurface::GetShape() const
 	{
 		return circle;
 	}

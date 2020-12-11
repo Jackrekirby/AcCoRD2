@@ -3,6 +3,7 @@
 #include "relation_rect.h"
 #include "relation_sphere.h"
 #include "vec3b.h"
+#include "axis_3d.h"
 
 namespace accord::shape::relation
 {
@@ -102,6 +103,11 @@ namespace accord::shape::relation
 		return (GetOrigin() + (position < CalculateCentre()) * GetLength());
 	}
 
+	std::unique_ptr<SurfaceShape> Box::FlattenInAxis(Axis3D axis) const
+	{
+		return std::make_unique<Rect>(GetOrigin().GetPlane(axis), GetLength().GetPlane(axis));
+	}
+
 	// assumes there is overlap
 	Box Box::GenerateOverlapBox(const Box& other) const
 	{
@@ -123,6 +129,11 @@ namespace accord::shape::relation
 	const std::enum_array<Face, RectSurface, 6>& Box::GetFaces() const
 	{
 		return faces;
+	}
+
+	const RectSurface& Box::GetFace(Face face) const
+	{
+		return faces.at(face);
 	}
 
 	void to_json(Json& j, const Box& shape)

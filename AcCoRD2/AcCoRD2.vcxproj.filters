@@ -250,6 +250,12 @@
     <ClCompile Include="src\basic_cylinder.cpp">
       <Filter>src\shapes\basic\cylinder</Filter>
     </ClCompile>
+    <ClCompile Include="src\relation_cylinder.cpp">
+      <Filter>src\shapes\relation\cylinder</Filter>
+    </ClCompile>
+    <ClCompile Include="generating_cylinder.cpp">
+      <Filter>src\shapes\generating\cylinder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -543,6 +549,12 @@
     <ClInclude Include="src\basic_cylinder.h">
       <Filter>src\shapes\basic\cylinder</Filter>
     </ClInclude>
+    <ClInclude Include="src\relation_cylinder.h">
+      <Filter>src\shapes\relation\cylinder</Filter>
+    </ClInclude>
+    <ClInclude Include="generating_cylinder.h">
+      <Filter>src\shapes\generating\cylinder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -758,6 +770,12 @@
     </Filter>
     <Filter Include="src\shapes\collision\cylinder">
       <UniqueIdentifier>{6c9a2afd-84cd-40cd-83ac-b95cd34fa424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\relation\cylinder">
+      <UniqueIdentifier>{85560ee7-109a-4d17-8fa6-44dcac6426f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\generating\cylinder">
+      <UniqueIdentifier>{4b68a228-1fcc-4c67-867d-6a03a504c714}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

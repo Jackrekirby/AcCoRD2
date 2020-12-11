@@ -30,6 +30,8 @@ namespace accord
 
 		Vec3d(double longitudinal, const Vec2d& transverse, Axis3D axis);
 
+		// this is chosen over Vec3d(double s) to avoid implicit construction of vec3d
+		// change to explicit Vec3d(double s)
 		static Vec3d FromScalar(double s);
 
 		// consider renaming to RandomExponential()
@@ -137,7 +139,7 @@ namespace accord
 
 		void EqualIf(const Vec3b& b, const Vec3d& v);
 
-		void Wrap(const Vec3d& lower_bound, const Vec3d& upper_bound);
+		void Clip(const Vec3d& lower_bound, const Vec3d& upper_bound);
 
 		Vec3b operator < (const Vec3d& v) const;
 

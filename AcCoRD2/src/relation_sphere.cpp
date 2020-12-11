@@ -2,6 +2,7 @@
 #include "relation_sphere.h"
 #include "vec3b.h"
 #include "relation_box.h"
+#include "relation_circle.h"
 
 namespace accord::shape::relation
 {
@@ -24,6 +25,11 @@ namespace accord::shape::relation
 	bool Sphere::IsEnvelopedBy(const Shape3D& other) const
 	{
 		return other.IsEnveloping(*this);
+	}
+
+	std::unique_ptr<SurfaceShape> Sphere::FlattenInAxis(Axis3D axis) const
+	{
+		return std::make_unique<Circle>(GetCentre().GetPlane(axis), GetRadius());
 	}
 
 	bool Sphere::IsOverlapping(const Box& other) const

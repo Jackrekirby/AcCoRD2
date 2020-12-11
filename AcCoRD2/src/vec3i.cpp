@@ -228,7 +228,7 @@ namespace accord
 		if (b.z) z = v.z;
 	}
 
-	void Vec3i::Wrap(const Vec3i& lower_bound, const Vec3i& upper_bound)
+	void Vec3i::Clip(const Vec3i& lower_bound, const Vec3i& upper_bound)
 	{
 		EqualIf(*this < lower_bound, lower_bound);
 		EqualIf(*this > upper_bound, upper_bound);

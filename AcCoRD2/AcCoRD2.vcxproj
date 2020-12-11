@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="generating_cylinder.cpp" />
+    <ClCompile Include="src\relation_cylinder.cpp" />
     <ClCompile Include="src\basic_cylinder.cpp" />
     <ClCompile Include="src\microscopic_relationship.cpp" />
     <ClCompile Include="src\microscopic_sphere_surface_shape.cpp" />
@@ -164,6 +166,8 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="generating_cylinder.h" />
+    <ClInclude Include="src\relation_cylinder.h" />
     <ClInclude Include="src\basic_cylinder.h" />
     <ClInclude Include="src\collision_cylinder.h" />
     <ClInclude Include="src\microscopic_sphere_surface_shape.h" />

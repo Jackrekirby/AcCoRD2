@@ -1,6 +1,7 @@
 #pragma once
 #include "basic_sphere.h"
 #include "relation_shape_3d.h"
+#include "relation_surface_shape.h"
 
 namespace accord::shape::relation
 {
@@ -28,6 +29,8 @@ namespace accord::shape::relation
 		bool IsEnveloping(const Shape3D& other) const;
 
 		bool IsEnvelopedBy(const Shape3D& other) const;
+
+		std::unique_ptr<SurfaceShape> FlattenInAxis(Axis3D axis) const;
 
 		const Sphere& GetShape() const;
 

@@ -40,11 +40,15 @@ namespace accord::shape::relation
 
 		Vec3d CalculateFurthestCornerFromPoint(const Vec3d& position) const;
 
+		std::unique_ptr<SurfaceShape> FlattenInAxis(Axis3D axis) const;
+
 		void ToJson(Json& j) const;
 
 		const Box& GetShape() const;
 
 		const std::enum_array<Face, RectSurface, 6>& GetFaces() const;
+
+		const RectSurface& GetFace(Face face) const;
 	private:
 		std::enum_array<Face, RectSurface, 6> faces;
 

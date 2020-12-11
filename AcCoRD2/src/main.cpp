@@ -1,10 +1,30 @@
 #include "pch.h"
 // add vector operation - (scalar)
-// change circle collision to const
+// change circle collision to const DONE
 // add cylinders
-// add clip function
-// add wrap function
+// add clip function // wrap was clip
+// add wrap function // not require atm
+// add inrange function // too many variants (inclusive, exclusive, return double, return vec3d)
 // NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
+
+// consider adding generate bounding box and rect to all shapes
+// consider multiple constructors for shapes so you can generate shapes using other shapes
+// consider converting planes into single non-virtual class
+// consider converting cylinder into class per axis
+// rename relation surface shape to shape 2d
+// consider using flatten relation method for box and spheres
+// consider passing objects into constructor via const reference to avoid including headers in headers
+// ensure consistent to ToJson to_json
+// check json works
+// make it easier to save region shapes in region.json. E.g. environment.saveRegions
+// could use factory to build regions so regions dont have to be publically available in environment
+// ensure consistency between vec2 and vec3
+// add in range function for vec
+// json / spdlog should print faces of 3d shapes
+// add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
+// is neighbouring functions should return boolean
+// only is partially neighbouring function of boxes needs to calculate area
+// add as seperate function. e.g. CalculateAreaBetweenNeighbouringBoxes()
 
 // WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR
 // AT THE SAME TIME?
@@ -14,7 +34,7 @@
 // At the end of the update all molecules should have caught up to 2s.
 
 // cant add passive actors to vector
-// cyclinders
+// cylinders
 // surfaces
 // reactions
 // surface type per grid
@@ -192,6 +212,7 @@ void TestEnvironment()
 }
 
 #include "collision_cylinder.h"
+#include "relation_cylinder.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
@@ -210,6 +231,16 @@ int main()
 	auto collision = c.CalculateInternalCollisionData(origin, end);
 	LOG_INFO(collision);
 
+	relation::Cylinder rc({ 0, 0, 0 }, 2, 5, Axis3D::x);
+
+	Json j;
+	rc.FlattenInAxis(Axis3D::x)->ToJson(j[0]);
+	rc.FlattenInAxis(Axis3D::y)->ToJson(j[1]);
+	rc.FlattenInAxis(Axis3D::z)->ToJson(j[2]);
+	LOG_INFO(JsonToPrettyString(j));
+
+	LOG_INFO(rc.GenerateBoundingBox());
+	LOG_INFO(rc.IsEnvelopedBy({ {-5, -5, -5}, {11, 10, 10} }));
 	//shape::collision::Box b(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
 	//LOG_INFO(JsonToPrettyString(b));
 	//LOG_INFO(b.CalculateInternalCollisionData({ 0, 0, 0 }, { 9, 1, 0 }));
