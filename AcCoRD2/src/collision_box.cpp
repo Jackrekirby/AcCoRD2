@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "collision_box.h"
 #include "collision_rect_surface.h"
-#include "collision_plane_factory.h"
 
 namespace accord::shape::collision
 {
@@ -26,7 +25,7 @@ namespace accord::shape::collision
 
 	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& length) const
 	{
-		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), length.GetPlane(axis) } };
+		return { {position.GetAxis(axis), axis}, { origin.GetPlane(axis), length.GetPlane(axis) } };
 	}
 
 	std::optional<Collision3D> Box::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const

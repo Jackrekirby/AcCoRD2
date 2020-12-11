@@ -19,7 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="generating_cylinder.cpp" />
+    <ClCompile Include="src\collision_cylinder.cpp" />
+    <ClCompile Include="src\collision_plane.cpp" />
+    <ClCompile Include="src\generating_cylinder.cpp" />
+    <ClCompile Include="src\generating_plane.cpp" />
     <ClCompile Include="src\relation_cylinder.cpp" />
     <ClCompile Include="src\basic_cylinder.cpp" />
     <ClCompile Include="src\microscopic_relationship.cpp" />
@@ -54,8 +57,6 @@
     <ClCompile Include="src\relation_shape_3d.cpp" />
     <ClCompile Include="src\relation_sphere.cpp" />
     <ClCompile Include="src\shape_test.cpp" />
-    <ClCompile Include="src\collision_plane_factory.cpp" />
-    <ClCompile Include="src\generating_plane_factory.cpp" />
     <ClCompile Include="src\generating_box.cpp" />
     <ClCompile Include="src\basic_rect.cpp" />
     <ClCompile Include="src\basic_box.cpp" />
@@ -76,10 +77,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\basic_plane.cpp" />
-    <ClCompile Include="src\abstract_generating_plane.cpp" />
-    <ClCompile Include="src\generating_plane_x.cpp" />
-    <ClCompile Include="src\generating_plane_y.cpp" />
-    <ClCompile Include="src\generating_plane_z.cpp" />
     <ClCompile Include="src\generating_surface.cpp" />
     <ClCompile Include="src\generating_surface_shape.cpp" />
     <ClCompile Include="src\generating_rect.cpp" />
@@ -108,12 +105,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\abstract_collision_plane.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="src\collision_rect.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -122,30 +113,6 @@
     </ClCompile>
     <ClCompile Include="src\collision_box.cpp" />
     <ClCompile Include="src\collision_3d.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_1d.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_x.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_y.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_z.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -166,7 +133,9 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="generating_cylinder.h" />
+    <ClInclude Include="src\collision_plane.h" />
+    <ClInclude Include="src\generating_cylinder.h" />
+    <ClInclude Include="src\generating_plane.h" />
     <ClInclude Include="src\relation_cylinder.h" />
     <ClInclude Include="src\basic_cylinder.h" />
     <ClInclude Include="src\collision_cylinder.h" />
@@ -208,8 +177,6 @@
     <ClInclude Include="src\relation_sphere.h" />
     <ClInclude Include="src\relation_shape_3d.h" />
     <ClInclude Include="src\shape_test.h" />
-    <ClInclude Include="src\collision_plane_factory.h" />
-    <ClInclude Include="src\generating_plane_factory.h" />
     <ClInclude Include="src\generating_box.h" />
     <ClInclude Include="lib\pcg\pcg_extras.hpp" />
     <ClInclude Include="lib\pcg\pcg_random.hpp" />
@@ -222,10 +189,6 @@
     <ClInclude Include="src\axis_3d.h" />
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\basic_plane.h" />
-    <ClInclude Include="src\abstract_generating_plane.h" />
-    <ClInclude Include="src\generating_plane_x.h" />
-    <ClInclude Include="src\generating_plane_y.h" />
-    <ClInclude Include="src\generating_plane_z.h" />
     <ClInclude Include="src\generating_surface.h" />
     <ClInclude Include="src\generating_surface_shape.h" />
     <ClInclude Include="src\generating_rect.h" />
@@ -249,14 +212,9 @@
     <ClInclude Include="src\output_binary_vectors.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\random.h" />
-    <ClInclude Include="src\abstract_collision_plane.h" />
     <ClInclude Include="src\collision_rect.h" />
     <ClInclude Include="src\collision_box.h" />
     <ClInclude Include="src\collision_3d.h" />
-    <ClInclude Include="src\collision_plane_1d.h" />
-    <ClInclude Include="src\collision_plane_x.h" />
-    <ClInclude Include="src\collision_plane_y.h" />
-    <ClInclude Include="src\collision_plane_z.h" />
     <ClInclude Include="src\collision_surface.h" />
     <ClInclude Include="src\collision_surface_shape.h" />
     <ClInclude Include="src\event_queue_test.h" />

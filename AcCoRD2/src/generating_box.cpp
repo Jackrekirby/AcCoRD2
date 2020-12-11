@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "generating_box.h"
 //#include "generating_surface_factory.h"
-#include "generating_plane_factory.h"
+#include "generating_plane.h"
 
 namespace accord::shape::generating
 {
@@ -26,7 +26,7 @@ namespace accord::shape::generating
 
 	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& length) const
 	{
-		return { CreatePlane(position.GetAxis(axis), axis), { origin.GetPlane(axis), length.GetPlane(axis) } };
+		return { {position.GetAxis(axis), axis}, { origin.GetPlane(axis), length.GetPlane(axis) } };
 	}
 
 	Vec3d Box::GeneratePointOnSurface() const

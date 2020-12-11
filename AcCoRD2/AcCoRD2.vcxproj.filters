@@ -55,9 +55,6 @@
     <ClCompile Include="src\json_test.cpp">
       <Filter>src\tests</Filter>
     </ClCompile>
-    <ClCompile Include="src\collision_plane_1d.cpp">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClCompile>
     <ClCompile Include="src\basic_circle.cpp">
       <Filter>src\shapes\basic\circle</Filter>
     </ClCompile>
@@ -88,21 +85,6 @@
     <ClCompile Include="src\generating_surface.cpp">
       <Filter>src\shapes\generating\surface</Filter>
     </ClCompile>
-    <ClCompile Include="src\generating_plane_z.cpp">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\generating_plane_y.cpp">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\generating_plane_x.cpp">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\generating_plane_factory.cpp">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\abstract_generating_plane.cpp">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClCompile>
     <ClCompile Include="src\generating_box.cpp">
       <Filter>src\shapes\generating\box</Filter>
     </ClCompile>
@@ -117,21 +99,6 @@
     </ClCompile>
     <ClCompile Include="src\collision_surface_shape.cpp">
       <Filter>src\shapes\collision\surface</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_z.cpp">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_y.cpp">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_x.cpp">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\collision_plane_factory.cpp">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\abstract_collision_plane.cpp">
-      <Filter>src\shapes\collision\plane</Filter>
     </ClCompile>
     <ClCompile Include="src\collision_box.cpp">
       <Filter>src\shapes\collision\box</Filter>
@@ -253,8 +220,17 @@
     <ClCompile Include="src\relation_cylinder.cpp">
       <Filter>src\shapes\relation\cylinder</Filter>
     </ClCompile>
-    <ClCompile Include="generating_cylinder.cpp">
+    <ClCompile Include="src\generating_plane.cpp">
+      <Filter>src\shapes\generating\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="src\generating_cylinder.cpp">
       <Filter>src\shapes\generating\cylinder</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_plane.cpp">
+      <Filter>src\shapes\collision\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision_cylinder.cpp">
+      <Filter>src\shapes\collision\cylinder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -330,9 +306,6 @@
     <ClInclude Include="src\json_test.h">
       <Filter>src\tests</Filter>
     </ClInclude>
-    <ClInclude Include="src\collision_plane_1d.h">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClInclude>
     <ClInclude Include="src\basic_circle.h">
       <Filter>src\shapes\basic\circle</Filter>
     </ClInclude>
@@ -366,21 +339,6 @@
     <ClInclude Include="src\generating_surface.h">
       <Filter>src\shapes\generating\surface</Filter>
     </ClInclude>
-    <ClInclude Include="src\generating_plane_z.h">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\generating_plane_y.h">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\generating_plane_x.h">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\generating_plane_factory.h">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\abstract_generating_plane.h">
-      <Filter>src\shapes\generating\plane</Filter>
-    </ClInclude>
     <ClInclude Include="src\generating_box.h">
       <Filter>src\shapes\generating\box</Filter>
     </ClInclude>
@@ -395,21 +353,6 @@
     </ClInclude>
     <ClInclude Include="src\collision_surface_shape.h">
       <Filter>src\shapes\collision\surface</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collision_plane_z.h">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collision_plane_y.h">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collision_plane_x.h">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collision_plane_factory.h">
-      <Filter>src\shapes\collision\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\abstract_collision_plane.h">
-      <Filter>src\shapes\collision\plane</Filter>
     </ClInclude>
     <ClInclude Include="src\collision_box.h">
       <Filter>src\shapes\collision\box</Filter>
@@ -552,8 +495,14 @@
     <ClInclude Include="src\relation_cylinder.h">
       <Filter>src\shapes\relation\cylinder</Filter>
     </ClInclude>
-    <ClInclude Include="generating_cylinder.h">
+    <ClInclude Include="src\generating_plane.h">
+      <Filter>src\shapes\generating\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="src\generating_cylinder.h">
       <Filter>src\shapes\generating\cylinder</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collision_plane.h">
+      <Filter>src\shapes\collision\plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

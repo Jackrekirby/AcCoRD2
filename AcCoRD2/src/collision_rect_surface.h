@@ -7,7 +7,7 @@ namespace accord::shape::collision
 	class RectSurface : public Surface
 	{
 	public:
-		RectSurface(std::unique_ptr<AbstractPlane> plane, Rect rect);
+		RectSurface(Plane plane, Rect rect);
 
 		const Rect& GetShape() const;
 	private:

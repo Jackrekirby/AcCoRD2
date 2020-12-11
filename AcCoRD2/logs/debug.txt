@@ -1,5 +1,5 @@
-[info] main.cpp:226 main() time = 0.1, intersection = [5, 0, 0], reflection = [-40, 0, 0]
-[info] main.cpp:234 main() [ {
+[info] main.cpp:232 main() time = 0.1, intersection = [5, 0, 0], reflection = [-40, 0, 0]
+[info] main.cpp:240 main() [ {
         "centre": [ 0.0, 0.0 ],
         "radius": 2.0
     }, {
@@ -11,5 +11,5 @@
         "length": [ 5.0, 4.0 ],
         "end": [ 5.0, 2.0 ]
     } ]
-[info] main.cpp:236 main() origin = [0, -2, -2], length = [5, 4, 4], end = [5, 2, 2]
-[info] main.cpp:237 main() true
+[info] main.cpp:242 main() origin = [0, -2, -2], length = [5, 4, 4], end = [5, 2, 2]
+[info] main.cpp:243 main() true

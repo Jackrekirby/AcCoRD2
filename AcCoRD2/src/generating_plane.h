@@ -7,11 +7,11 @@ namespace accord::shape::generating
 	class Plane : public basic::Plane
 	{
 	public:
-		Plane(double position, Axis3D axis);
+		Plane(double position, const Axis3D& axis);
 
-		virtual Vec3d PlacePointOnPlane(const Vec2d& position) const;
+		Vec3d PlacePointOnPlane(const Vec2d& position) const;
 
-		virtual Vec3d GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const;
+		Vec3d GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const;
 	};
 
 	void to_json(Json& j, const Plane& plane);

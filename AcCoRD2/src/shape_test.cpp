@@ -3,23 +3,21 @@
 
 #include "collision_surface.h"
 #include "collision_rect.h"
-#include "collision_plane_x.h"
+#include "collision_plane.h"
 #include "collision_3d.h"
 #include "collision_box.h"
 #include "collision_sphere.h"
 
-#include "generating_plane_z.h"
+#include "generating_plane.h"
 #include "generating_surface.h"
 #include "generating_rect.h"
 #include "generating_box.h"
-#include "generating_plane_factory.h"
 
 #include "relation_box.h"
 #include "relation_rect.h"
 #include "relation_circle.h"
 #include "relation_rect_surface.h"
-
-
+#include "relation_plane.h"
 #include "relation_sphere.h"
 
 namespace accord
@@ -63,7 +61,7 @@ namespace accord
 
 		Random::SetSeed();
 
-		auto a = generating::CreatePlane(5, Axis3D::x);
+		generating::Plane a(5, Axis3D::x);
 
 
 		generating::Box b1({ 0, 0, 0 }, { 10, 10, 10 });

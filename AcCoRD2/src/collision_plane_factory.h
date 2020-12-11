@@ -3,5 +3,5 @@
 
 namespace accord::shape::collision
 {
-	std::unique_ptr<AbstractPlane> CreatePlane(double position, Axis3D axis);
+	std::unique_ptr<Plane> CreatePlane(double position, Axis3D axis);
 }

@@ -1,14 +1,14 @@
 #include "pch.h"
 #include "generating_cylinder.h"
 #include "constants.h"
-#include "generating_plane_factory.h"
+#include "generating_plane.h"
 
 namespace accord::shape::generating
 {
 	Cylinder::Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis)
 		: basic::Cylinder(base_centre, radius, length, axis),
-		base_face(CreatePlane(GetBase(), axis), { GetCircleCentre(), radius }),
-		top_face(CreatePlane(GetTop(), axis), { GetCircleCentre(), radius }),
+		base_face({ GetBase(), axis }, { GetCircleCentre(), radius }),
+		top_face({ GetTop(), axis }, { GetCircleCentre(), radius }),
 		tube(GetCircleCentre(), radius)
 	{
 

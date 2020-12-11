@@ -3,8 +3,8 @@
 
 namespace accord::shape::generating
 {
-	CircleSurface::CircleSurface(std::unique_ptr<AbstractPlane> plane, Circle circle)
-		: Surface(std::move(plane)), circle(circle)
+	CircleSurface::CircleSurface(Plane plane, Circle circle)
+		: Surface(plane), circle(circle)
 	{
 
 	}

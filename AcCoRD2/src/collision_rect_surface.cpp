@@ -3,8 +3,8 @@
 
 namespace accord::shape::collision
 {
-	RectSurface::RectSurface(std::unique_ptr<AbstractPlane> plane, Rect rect)
-		: Surface(std::move(plane)), rect(rect)
+	RectSurface::RectSurface(Plane plane, Rect rect)
+		: Surface(plane), rect(rect)
 	{
 
 	}

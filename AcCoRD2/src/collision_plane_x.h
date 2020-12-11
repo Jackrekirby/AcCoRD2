@@ -3,7 +3,7 @@
 
 namespace accord::shape::collision
 {
-	class PlaneX : public AbstractPlane
+	class PlaneX : public Plane
 	{
 	public:
 		PlaneX(double x);

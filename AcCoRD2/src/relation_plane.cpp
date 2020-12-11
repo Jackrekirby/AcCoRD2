@@ -4,7 +4,7 @@
 namespace accord::shape::relation
 {
 	Plane3D::Plane3D(double position, Axis3D axis)
-		: basic::AbstractPlane(position, axis)
+		: basic::Plane(position, axis)
 	{
 
 	}
@@ -16,6 +16,6 @@ namespace accord::shape::relation
 
 	void to_json(Json& j, const Plane3D& plane)
 	{
-		j = static_cast<basic::AbstractPlane>(plane);
+		j = static_cast<basic::Plane>(plane);
 	}
 }

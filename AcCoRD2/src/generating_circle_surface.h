@@ -7,7 +7,7 @@ namespace accord::shape::generating
 	class CircleSurface : public Surface
 	{
 	public:
-		CircleSurface(std::unique_ptr<AbstractPlane> plane, Circle circle);
+		CircleSurface(Plane plane, Circle circle);
 
 		const Circle& GetShape() const;
 	private:

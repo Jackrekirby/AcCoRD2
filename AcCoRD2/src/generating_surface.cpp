@@ -4,20 +4,20 @@
 namespace accord::shape::generating
 {
 
-	Surface::Surface(std::unique_ptr<AbstractPlane> plane)
-		: plane(std::move(plane))
+	Surface::Surface(Plane plane)
+		: plane(plane)
 	{
 
 	}
 
 	Vec3d Surface::GeneratePointOnSurface() const
 	{
-		return plane->PlacePointOnPlane(GetShape().GeneratePointInArea());
+		return plane.PlacePointOnPlane(GetShape().GeneratePointInArea());
 	}
 
-	const AbstractPlane& Surface::GetPlane() const
+	const Plane Surface::GetPlane() const
 	{
-		return *plane;
+		return plane;
 	}
 
 	void to_json(Json& j, const Surface& surface)

@@ -3,7 +3,7 @@
 
 namespace accord::shape::generating
 {
-	class PlaneZ : public generating::AbstractPlane
+	class PlaneZ : public generating::Plane
 	{
 	public:
 		PlaneZ(double z);

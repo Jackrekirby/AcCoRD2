@@ -3,17 +3,17 @@
 
 namespace accord::shape::basic
 {
-	class AbstractPlane
+	class Plane
 	{
 	public:
-		AbstractPlane(double position, Axis3D axis);
+		Plane(double position, Axis3D axis);
 
 		const Axis3D& GetAxis() const;
 
 		const double& GetPosition() const;
 
 		template<typename OStream>
-		friend OStream& operator<<(OStream& os, const AbstractPlane& plane)
+		friend OStream& operator<<(OStream& os, const Plane& plane)
 		{
 			return os << fmt::format("position = {}, axis = {}",
 				plane.GetPosition(), plane.GetAxis());
@@ -23,5 +23,5 @@ namespace accord::shape::basic
 		Axis3D axis;
 	};
 
-	void to_json(Json& j, const AbstractPlane& plane);
+	void to_json(Json& j, const Plane& plane);
 }

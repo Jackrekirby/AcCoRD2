@@ -3,7 +3,7 @@
 
 namespace accord::shape::relation
 {
-	class Plane3D : public basic::AbstractPlane
+	class Plane3D : public basic::Plane
 	{
 	public:
 		Plane3D(double position, Axis3D axis);

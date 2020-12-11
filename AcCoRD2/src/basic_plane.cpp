@@ -3,23 +3,23 @@
 
 namespace accord::shape::basic
 {
-	AbstractPlane::AbstractPlane(double position, Axis3D axis)
+	Plane::Plane(double position, Axis3D axis)
 		: position(position), axis(axis)
 	{
 
 	}
 
-	const  Axis3D& AbstractPlane::GetAxis() const
+	const  Axis3D& Plane::GetAxis() const
 	{
 		return axis;
 	}
 
-	const double& AbstractPlane::GetPosition() const
+	const double& Plane::GetPosition() const
 	{
 		return position;
 	}
 
-	void to_json(Json& j, const AbstractPlane& plane)
+	void to_json(Json& j, const Plane& plane)
 	{
 		j["position"] = plane.GetPosition();
 		j["axis"] = EnumToString(plane.GetAxis());
