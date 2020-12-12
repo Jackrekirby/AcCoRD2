@@ -1,61 +1,63 @@
 #include "pch.h"
-// add vector operation - (scalar)
-// change circle collision to const DONE
+
+// DONE
 // add cylinders
+// change circle collision to const
+// consider converting planes into single non-virtual class
+
+// CANCELLED
 // add clip function // wrap was clip
 // add wrap function // not require atm
 // add inrange function // too many variants (inclusive, exclusive, return double, return vec3d)
-// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
+// consider converting cylinder into class per axis
+// consider using flatten relation method for box and spheres (Flattening does not work on spheres)
 
+// IN PROGRESS
+// add vector operation - (scalar)
+
+// TO DO (IMPORTANT)
+// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
 // consider adding generate bounding box and rect to all shapes
 // consider multiple constructors for shapes so you can generate shapes using other shapes
-// consider converting planes into single non-virtual class
-// consider converting cylinder into class per axis
+// add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
+// is neighbouring functions should return boolean
+// only is partially neighbouring function of boxes needs to calculate area
+// add as seperate function. e.g. CalculateAreaBetweenNeighbouringBoxes()
+
+// TO DO (distant future)
+// surfaces
+// reactions
+// surface type per grid
+// regions per shape to avoid unique pointer
+
+// TO DO (Not as important)
 // rename relation surface shape to shape 2d
-// consider using flatten relation method for box and spheres
 // consider passing objects into constructor via const reference to avoid including headers in headers
 // ensure consistent to ToJson to_json
 // check json works
 // make it easier to save region shapes in region.json. E.g. environment.saveRegions
 // could use factory to build regions so regions dont have to be publically available in environment
 // ensure consistency between vec2 and vec3
-// add in range function for vec
 // json / spdlog should print faces of 3d shapes
-// add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
-// is neighbouring functions should return boolean
-// only is partially neighbouring function of boxes needs to calculate area
-// add as seperate function. e.g. CalculateAreaBetweenNeighbouringBoxes()
 
-// WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR
+// BUGS
+// 1. WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR
 // AT THE SAME TIME?
 // ANSWER: Recent molecules were being added to the next event time rather than the current one
 // Confusion lies in that a region time is updated before the molecule are.
 // i.e. region updates its next event time from 1s to 2s. Then at 2s the event from 1 to 2 occur. 
 // At the end of the update all molecules should have caught up to 2s.
+// 2. Cant add passive actors to vector
 
-// cant add passive actors to vector
-// cylinders
-// surfaces
-// reactions
-// surface type per grid
-// regions per shape to avoid unique pointer
+// RESEARCH
 // custom destructor
+// modules
 
-//#include "logger_test.h"
-//#include "json_test.h"
-//#include "random_test.h"
-//#include "vec_test.h"
-//#include "output_binary_test.h"
 #include "event_queue_test.h"
-//#include "shape_test.h"
-
-
 #include "microscopic_region2.h"
 #include "environment.h"
 #include "event_queue.h"
 #include "event.h"
-//#include "microscopic_surface.h"
-//#include "microscopic_box_surface.h"
 #include "passive_actor.h"
 #include "microscopic_box_surface_shape.h"
 #include "microscopic_surface_shape.h"
