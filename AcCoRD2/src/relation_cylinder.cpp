@@ -17,23 +17,62 @@ namespace accord::shape::relation
 
 	}
 
-	double Cylinder::CalculateNearestPointAlongAxis(const Vec3d& position, const Axis3D& axis) const
+	Vec3d Cylinder::CalculateNearestPoint(const Vec3d& position) const
 	{
-		if (axis == GetAxis())
+		double longitudinal = Vec1d::Max(GetBase(), Vec1d::Min(position.GetAxis(GetAxis()), GetTop()));
+
+		Vec2d transverse = Vec2d::Max(GetBaseCentre().GetPlane(GetAxis()) - GetRadius(),
+			Vec2d::Min(position.GetPlane(GetAxis()), GetBaseCentre().GetPlane(GetAxis()) + GetRadius()));
+
+		if (transverse.Size2() < GetRadius2())
 		{
-			return Vec1d::Max(GetBase(), Vec1d::Min(position.GetAxis(axis), GetTop()));
+			return { longitudinal, transverse, GetAxis() };
 		}
 		else
 		{
-			// must get the angle between the cylinder and sphere for axis to generate height in cylinder
-			// which you need to get a cross section of the rectangle
-			return Vec1d::Max(GetBaseCentre().GetAxis(axis) - GetRadius(),
-				Vec1d::Min(position.GetAxis(GetAxis()), GetBaseCentre().GetAxis(axis) + GetRadius()));
+			return { longitudinal,
+			GetCircleCentre() + (transverse - GetCircleCentre()).Normalise() * GetRadius(),
+			GetAxis()
+			};
 		}
+
 		
 	}
 
+	Vec3d Cylinder::CalculateFurthestPoint(const Vec3d& position) const
+	{
+		// find if the base or top of cylinder is furthest away from the position
+		double longitudinal = GetBase() + GetLength() * 
+			(Vec1d::Square(position.GetAxis(GetAxis()) - GetBase()) <
+					Vec1d::Square(position.GetAxis(GetAxis()) - GetTop()));
+
+		Vec2d transverse = Vec2d::Max(GetBaseCentre().GetPlane(GetAxis()) - GetRadius(),
+			Vec2d::Min(position.GetPlane(GetAxis()), GetBaseCentre().GetPlane(GetAxis()) + GetRadius()));
+
+		if (transverse.Size2() == 0) transverse.x = GetRadius();
+
+		return { longitudinal,
+			GetCircleCentre() - (transverse - GetCircleCentre()).Normalise() * GetRadius(),
+			GetAxis()
+		};
+	}
+
 	bool Cylinder::IsOverlapping(const Shape3D& other) const
+	{
+		return other.IsOverlapping(*this);
+	}
+
+	bool Cylinder::IsEnveloping(const Shape3D& other) const
+	{
+		return other.IsEnvelopedBy(*this);
+	}
+
+	bool Cylinder::IsEnvelopedBy(const Shape3D& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
+	bool Cylinder::IsOverlapping(const Cylinder& other) const
 	{
 		return (
 			FlattenInAxis(Axis3D::x).IsOverlapping(other.FlattenInAxis(Axis3D::x)) &&
@@ -42,7 +81,7 @@ namespace accord::shape::relation
 			);
 	}
 
-	bool Cylinder::IsEnveloping(const Shape3D& other) const
+	bool Cylinder::IsEnveloping(const Cylinder& other) const
 	{
 		return (
 			FlattenInAxis(Axis3D::x).IsEnveloping(other.FlattenInAxis(Axis3D::x)) &&
@@ -51,7 +90,7 @@ namespace accord::shape::relation
 			);
 	}
 
-	bool Cylinder::IsEnvelopedBy(const Shape3D& other) const
+	bool Cylinder::IsEnvelopedBy(const Cylinder& other) const
 	{
 		return (
 			FlattenInAxis(Axis3D::x).IsEnvelopedBy(other.FlattenInAxis(Axis3D::x)) &&
@@ -62,32 +101,48 @@ namespace accord::shape::relation
 
 	bool Cylinder::IsOverlapping(const Box& other) const
 	{
-		return IsOverlapping(static_cast<const Shape3D&>(other));
+		return (
+			FlattenInAxis(Axis3D::x).IsOverlapping(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsOverlapping(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsOverlapping(other.FlattenInAxis(Axis3D::z))
+			);
 	}
 
 	bool Cylinder::IsEnveloping(const Box& other) const
 	{
-		return IsEnveloping(static_cast<const Shape3D&>(other));
+		return (
+			FlattenInAxis(Axis3D::x).IsEnveloping(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsEnveloping(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsEnveloping(other.FlattenInAxis(Axis3D::z))
+		);
 	}
 
 	bool Cylinder::IsEnvelopedBy(const Box& other) const
 	{
-		return IsEnvelopedBy(static_cast<const Shape3D&>(other));
+		return (
+			FlattenInAxis(Axis3D::x).IsEnvelopedBy(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsEnvelopedBy(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsEnvelopedBy(other.FlattenInAxis(Axis3D::z))
+			);
 	}
 
 	bool Cylinder::IsOverlapping(const Sphere& other) const
 	{
-		return IsOverlapping(static_cast<const Shape3D&>(other));
+		return other.IsWithinOrOnBorder(CalculateNearestPoint(other.GetCentre()));
 	}
 
 	bool Cylinder::IsEnveloping(const Sphere& other) const
 	{
-		return IsEnveloping(static_cast<const Shape3D&>(other));
+		return (
+			FlattenInAxis(Axis3D::x).IsEnveloping(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsEnveloping(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsEnveloping(other.FlattenInAxis(Axis3D::z))
+		);
 	}
 
 	bool Cylinder::IsEnvelopedBy(const Sphere& other) const
 	{
-		return IsOverlapping(static_cast<const Shape3D&>(other));
+		return other.IsWithinOrOnBorder(CalculateFurthestPoint(other.GetCentre()));
 	}
 
 	const SurfaceShape& Cylinder::IsPartiallyNeighbouring(const Box& other) const

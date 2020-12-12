@@ -213,6 +213,7 @@ void TestEnvironment()
 
 #include "collision_cylinder.h"
 #include "relation_cylinder.h"
+#include "relation_sphere.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
@@ -224,23 +225,36 @@ int main()
 
 	using namespace accord;
 	using namespace accord::shape;
+	if (false)
+	{
+		collision::Cylinder c({ -5, 0, 0 }, 5, 10, Axis3D::x);
+		Vec3d origin(0, 0, 0);
+		Vec3d end(50, 0, 0);
+		auto collision = c.CalculateInternalCollisionData(origin, end);
+		LOG_INFO(collision);
 
-	collision::Cylinder c({ -5, 0, 0 }, 5, 10, Axis3D::x);
-	Vec3d origin(0, 0, 0);
-	Vec3d end(50, 0, 0); 
-	auto collision = c.CalculateInternalCollisionData(origin, end);
-	LOG_INFO(collision);
+		relation::Cylinder rc({ 0, 0, 0 }, 2, 5, Axis3D::x);
 
-	relation::Cylinder rc({ 0, 0, 0 }, 2, 5, Axis3D::x);
+		Json j;
+		rc.FlattenInAxis(Axis3D::x).ToJson(j[0]);
+		rc.FlattenInAxis(Axis3D::y).ToJson(j[1]);
+		rc.FlattenInAxis(Axis3D::z).ToJson(j[2]);
+		LOG_INFO(JsonToPrettyString(j));
 
-	Json j;
-	rc.FlattenInAxis(Axis3D::x).ToJson(j[0]);
-	rc.FlattenInAxis(Axis3D::y).ToJson(j[1]);
-	rc.FlattenInAxis(Axis3D::z).ToJson(j[2]);
-	LOG_INFO(JsonToPrettyString(j));
+		LOG_INFO(rc.GenerateBoundingBox());
+		LOG_INFO(rc.IsEnvelopedBy({ {-5, -5, -5}, {11, 10, 10} }));
+	}
 
-	LOG_INFO(rc.GenerateBoundingBox());
-	LOG_INFO(rc.IsEnvelopedBy({ {-5, -5, -5}, {11, 10, 10} }));
+
+
+	relation::Cylinder cylinder({ 0, -0.7, 0 }, 0.7, 2, Axis3D::y);
+
+	relation::Sphere sphere({ 0, 0, 0 }, 0.5);
+
+	LOG_INFO(cylinder.IsEnvelopedBy(sphere));
+	LOG_INFO(cylinder.IsOverlapping(sphere));
+	LOG_INFO(cylinder.IsEnveloping(sphere));
+
 	//shape::collision::Box b(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
 	//LOG_INFO(JsonToPrettyString(b));
 	//LOG_INFO(b.CalculateInternalCollisionData({ 0, 0, 0 }, { 9, 1, 0 }));

@@ -5,6 +5,9 @@
 
 namespace accord::shape::relation
 {
+	class Sphere;
+	class Cylinder;
+
 	class Box : public basic::Box, public Shape3D
 	{
 	public:
@@ -16,13 +19,17 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Box& other) const;
 
-
 		bool IsOverlapping(const Sphere& other) const;
 
 		bool IsEnveloping(const Sphere& other) const;
 
 		bool IsEnvelopedBy(const Sphere& other) const;
 
+		bool IsOverlapping(const Cylinder& other) const;
+
+		bool IsEnveloping(const Cylinder& other) const;
+
+		bool IsEnvelopedBy(const Cylinder& other) const;
 
 		bool IsOverlapping(const Shape3D& other) const;
 

@@ -4,6 +4,7 @@
 #include "relation_box.h"
 #include "relation_circle.h"
 #include "axis_3d.h"
+#include "relation_cylinder.h"
 
 namespace accord::shape::relation
 {
@@ -45,6 +46,21 @@ namespace accord::shape::relation
 	}
 
 	bool Sphere::IsEnvelopedBy(const Box& other) const
+	{
+		return other.IsEnveloping(*this);
+	}
+
+	bool Sphere::IsOverlapping(const Cylinder& other) const
+	{
+		return other.IsOverlapping(*this);
+	}
+
+	bool Sphere::IsEnveloping(const Cylinder& other) const
+	{
+		return other.IsEnvelopedBy(*this);
+	}
+
+	bool Sphere::IsEnvelopedBy(const Cylinder& other) const
 	{
 		return other.IsEnveloping(*this);
 	}

@@ -27,7 +27,9 @@ namespace accord::shape::relation
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
 
-		double CalculateNearestPointAlongAxis(const Vec3d& position, const Axis3D& axis) const;
+		Vec3d CalculateNearestPoint(const Vec3d& position) const;
+
+		Vec3d CalculateFurthestPoint(const Vec3d& position) const;
 
 		bool IsOverlapping(const Shape3D& other) const;
 
@@ -41,6 +43,11 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Box& other) const;
 
+		bool IsOverlapping(const Cylinder& other) const;
+
+		bool IsEnveloping(const Cylinder& other) const;
+
+		bool IsEnvelopedBy(const Cylinder& other) const;
 
 		bool IsOverlapping(const Sphere& other) const;
 

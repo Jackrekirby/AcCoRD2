@@ -125,24 +125,6 @@ classdef Accord
             ylabel("count");
             legend(legendSubset, legendLabels);
         end
-        
-        %% animateRealisation && displayRegions
-        function hFigure = initialiseFigure(limits, visible)
-            arguments
-                limits = 10;
-                visible = 'off'
-            end
-            hFigure = figure('visible',visible, 'Name', ...
-                'Simulation Time:','NumberTitle','off');
-            plot3(0, 0, 0, 'Marker', 'none');
-            xlabel('x');
-            ylabel('y');
-            zlabel('z');
-            axis equal;
-            view(45,30);
-            a = [-limits, limits];
-            xlim(a); zlim(a); ylim(a);
-        end
     end
     
     methods (Access = private, Static)
@@ -391,6 +373,8 @@ classdef Accord
         function positions= getPositions(file, index)
             positions = file.p(file.i(index)+1:file.i(index+1), :);
         end
+        
+        
         
         %% displayRegions
         function hPlots = plotRegions(simulation, shape3D)
