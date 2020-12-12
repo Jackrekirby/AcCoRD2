@@ -117,6 +117,11 @@ namespace accord::shape::collision
 		return std::nullopt;
 	}
 
+	void Sphere::ToJson(Json& j) const
+	{
+		j = *this;
+	}
+
 	void to_json(Json& j, const Sphere& sphere)
 	{
 		j = static_cast<basic::Sphere>(sphere);

@@ -1,4 +1,3 @@
-#pragma once
 #include "collision_surface.h"
 
 namespace accord::shape::collision

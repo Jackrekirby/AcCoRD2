@@ -3,13 +3,13 @@
 
 namespace accord::shape::relation
 {
-	class Plane3D : public basic::Plane
+	class Plane : public basic::Plane
 	{
 	public:
-		Plane3D(double position, Axis3D axis);
+		Plane(double position, Axis3D axis);
 
-		bool IsNeighbouring(const Plane3D& other) const;
+		bool IsNeighbouring(const Plane& other) const;
 	};
 
-	void to_json(Json& j, const Plane3D& plane);
+	void to_json(Json& j, const Plane& plane);
 }

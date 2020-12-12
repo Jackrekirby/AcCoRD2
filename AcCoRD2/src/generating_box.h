@@ -1,10 +1,11 @@
 #pragma once
 #include "basic_box.h"
 #include "generating_rect_surface.h"
+#include "generating_shape_3d.h"
 
 namespace accord::shape::generating
 {
-	class Box : public basic::Box
+	class Box : public basic::Box, public Shape3D
 	{
 	public:
 		Box(Vec3d origin, Vec3d length);

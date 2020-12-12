@@ -107,22 +107,22 @@ namespace accord::shape::relation
 		return other.IsEnveloping(*this);
 	}
 
-	std::optional<Face> Box::IsPartiallyNeighbouring(const Box& other) const
+	bool Box::IsPartiallyNeighbouring(const Box& other) const
 	{
 		for (auto& face : face_types)
 		{
-			if (faces.at(face).IsPartiallyNeighbouring(other.faces.at(GetOppositeFace(face)))) return face;
+			if (faces.at(face).IsPartiallyNeighbouring(other.faces.at(GetOppositeFace(face)))) return true;
 		}
-		return std::nullopt;
+		return false;
 	}
 
-	std::optional<Face> Box::IsFullyNeighbouring(const Box& other) const
+	bool Box::IsFullyNeighbouring(const Box& other) const
 	{
 		for (auto& face : face_types)
 		{
-			if (faces.at(face).IsFullyNeighbouring(other.faces.at(GetOppositeFace(face)))) return face;
+			if (faces.at(face).IsFullyNeighbouring(other.faces.at(GetOppositeFace(face)))) return true;
 		}
-		return std::nullopt;
+		return false;
 	}
 
 	Vec3d Box::CalculateNearestPointOnBoundary(const Vec3d& position) const

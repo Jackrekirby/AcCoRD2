@@ -1,10 +1,10 @@
 #pragma once
 #include "basic_rect.h"
-#include "generating_surface_shape.h"
+#include "generating_shape_2d.h"
 
 namespace accord::shape::generating
 {
-	class Rect : public basic::Rect, public SurfaceShape
+	class Rect : public basic::Rect, public Shape2D
 	{
 	public:
 		Rect(Vec2d origin, Vec2d length);

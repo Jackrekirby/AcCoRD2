@@ -3,7 +3,7 @@
 
 namespace accord::shape::relation
 {
-	RectSurface::RectSurface(Plane3D plane, Rect box)
+	RectSurface::RectSurface(Plane plane, Rect box)
 		: Surface(plane), box(box)
 	{
 

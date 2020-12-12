@@ -70,4 +70,14 @@ namespace accord::shape::collision
 		if (collision3D.has_value()) { LOG_DEBUG("top"); }
 		return collision3D;
 	}
+
+	void Cylinder::ToJson(Json& j) const
+	{
+		j = *this;
+	}
+
+	void to_json(Json& j, const Cylinder& cylinder)
+	{
+		j = static_cast<basic::Cylinder>(cylinder);
+	}
 }

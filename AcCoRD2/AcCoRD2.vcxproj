@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\collision_shape_3d.cpp" />
+    <ClCompile Include="src\generating_shape_3d.cpp" />
     <ClCompile Include="src\collision_cylinder.cpp" />
     <ClCompile Include="src\collision_plane.cpp" />
     <ClCompile Include="src\generating_cylinder.cpp" />
@@ -78,13 +80,13 @@
     </ClCompile>
     <ClCompile Include="src\basic_plane.cpp" />
     <ClCompile Include="src\generating_surface.cpp" />
-    <ClCompile Include="src\generating_surface_shape.cpp" />
+    <ClCompile Include="src\generating_shape_2d.cpp" />
     <ClCompile Include="src\generating_rect.cpp" />
     <ClCompile Include="src\relation_rect.cpp" />
     <ClCompile Include="src\relation_circle.cpp" />
     <ClCompile Include="src\relation_plane.cpp" />
     <ClCompile Include="src\relation_surface.cpp" />
-    <ClCompile Include="src\relation_surface_shape.cpp" />
+    <ClCompile Include="src\relation_shape_2d.cpp" />
     <ClCompile Include="src\relation_box.cpp" />
     <ClCompile Include="src\vec1d.cpp" />
     <ClCompile Include="src\vec2b.cpp" />
@@ -124,7 +126,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\collision_surface_shape.cpp" />
+    <ClCompile Include="src\collision_shape_2d.cpp" />
     <ClCompile Include="src\event_queue_test.cpp" />
     <ClCompile Include="src\json_test.cpp" />
     <ClCompile Include="src\logger_test.cpp" />
@@ -133,6 +135,8 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\collision_shape_3d.h" />
+    <ClInclude Include="src\generating_shape_3d.h" />
     <ClInclude Include="src\collision_plane.h" />
     <ClInclude Include="src\generating_cylinder.h" />
     <ClInclude Include="src\generating_plane.h" />
@@ -190,13 +194,13 @@
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\basic_plane.h" />
     <ClInclude Include="src\generating_surface.h" />
-    <ClInclude Include="src\generating_surface_shape.h" />
+    <ClInclude Include="src\generating_shape_2d.h" />
     <ClInclude Include="src\generating_rect.h" />
     <ClInclude Include="src\relation_rect.h" />
     <ClInclude Include="src\relation_circle.h" />
     <ClInclude Include="src\relation_plane.h" />
     <ClInclude Include="src\relation_surface.h" />
-    <ClInclude Include="src\relation_surface_shape.h" />
+    <ClInclude Include="src\relation_shape_2d.h" />
     <ClInclude Include="src\enum_array.h" />
     <ClInclude Include="src\relation_box.h" />
     <ClInclude Include="src\vec1d.h" />
@@ -216,7 +220,7 @@
     <ClInclude Include="src\collision_box.h" />
     <ClInclude Include="src\collision_3d.h" />
     <ClInclude Include="src\collision_surface.h" />
-    <ClInclude Include="src\collision_surface_shape.h" />
+    <ClInclude Include="src\collision_shape_2d.h" />
     <ClInclude Include="src\event_queue_test.h" />
     <ClInclude Include="src\json_test.h" />
     <ClInclude Include="src\logger_test.h" />

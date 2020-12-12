@@ -3,10 +3,11 @@
 #include "basic_cylinder.h"
 #include "generating_circle.h"
 #include "generating_circle_surface.h"
+#include "generating_shape_3d.h"
 
 namespace accord::shape::generating
 {
-	class Cylinder : public basic::Cylinder
+	class Cylinder : public basic::Cylinder, public Shape3D
 	{
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);

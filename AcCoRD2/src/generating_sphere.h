@@ -1,10 +1,10 @@
 #pragma once
 #include "basic_sphere.h"
-#include "generating_surface_shape.h"
+#include "generating_shape_3d.h"
 
 namespace accord::shape::generating
 {
-	class Sphere : public basic::Sphere, public SurfaceShape
+	class Sphere : public basic::Sphere, public Shape3D
 	{
 	public:
 		Sphere(Vec3d centre, double radius);

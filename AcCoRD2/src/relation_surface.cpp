@@ -4,7 +4,7 @@
 namespace accord::shape::relation
 {
 
-	Surface::Surface(Plane3D plane)
+	Surface::Surface(Plane plane)
 		: plane(plane)
 	{
 
@@ -20,7 +20,7 @@ namespace accord::shape::relation
 		return (GetPlane().IsNeighbouring(other.GetPlane()) && GetShape().IsEnveloping(other.GetShape()));
 	}
 
-	const Plane3D& Surface::GetPlane() const
+	const Plane& Surface::GetPlane() const
 	{
 		return plane;
 	}

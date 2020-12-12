@@ -1,7 +1,7 @@
 #pragma once
 #include "collision_3d.h"
 #include "collision_plane.h"
-#include "collision_surface_shape.h"
+#include "collision_shape_2d.h"
 
 namespace accord::shape::collision
 {
@@ -19,7 +19,7 @@ namespace accord::shape::collision
 	
 		const Plane& GetPlane() const;
 
-		virtual const SurfaceShape& GetShape() const = 0;
+		virtual const Shape2D& GetShape() const = 0;
 	private:
 		Plane plane;
 	};

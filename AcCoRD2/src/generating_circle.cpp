@@ -5,7 +5,7 @@
 namespace accord::shape::generating
 {
 	Circle::Circle(Vec2d centre, double radius)
-		: basic::Circle(centre, radius), SurfaceShape()
+		: basic::Circle(centre, radius), Shape2D()
 	{
 
 	}

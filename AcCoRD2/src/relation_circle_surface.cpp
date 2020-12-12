@@ -3,7 +3,7 @@
 
 namespace accord::shape::relation
 {
-	CircleSurface::CircleSurface(Plane3D plane, Circle circle)
+	CircleSurface::CircleSurface(Plane plane, Circle circle)
 		: Surface(plane), circle(circle)
 	{
 

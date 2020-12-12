@@ -1,12 +1,12 @@
 #pragma once
-//#include "vec3d.h"
 #include "basic_box.h"
 #include "collision_surface.h"
 #include "collision_rect_surface.h"
+#include "collision_shape_3d.h"
 
 namespace accord::shape::collision
 {
-	class Box : public basic::Box
+	class Box : public basic::Box, public Shape3D
 	{
 	public:
 		Box(Vec3d origin, Vec3d length);

@@ -3,15 +3,15 @@
 
 namespace accord::shape::generating
 {
-	class SurfaceShape
+	class Shape2D
 	{
 	public:
-		SurfaceShape() = default;
+		Shape2D() = default;
 
 		virtual Vec2d GeneratePointInArea() const = 0;
 
 		virtual void ToJson(Json& j) const = 0;
 	};
 
-	void to_json(Json& j, const SurfaceShape& surface_shape);
+	void to_json(Json& j, const Shape2D& shape);
 }

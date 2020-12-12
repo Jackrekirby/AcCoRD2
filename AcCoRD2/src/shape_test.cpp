@@ -86,9 +86,9 @@ namespace accord
 		relation::Circle c3({ 5, 5 }, 5.01 * std::sqrt(2));
 		relation::Circle c4({ -5, 5 }, 1);
 
-		relation::SurfaceShape& s1 = b1;
-		relation::SurfaceShape& s2 = b2;
-		relation::SurfaceShape& s3 = b3;
+		relation::Shape2D& s1 = b1;
+		relation::Shape2D& s2 = b2;
+		relation::Shape2D& s3 = b3;
 
 
 		LOG_DEBUG(c1.IsOverlapping(b1)); // true
@@ -113,10 +113,10 @@ namespace accord
 
 		relation::Box box3d2({ 10, 2, 0 }, { 10, 10, 10 });
 
-		auto face = box3d1.IsPartiallyNeighbouring(box3d2);
-		if (face.has_value())
+		bool face = box3d1.IsPartiallyNeighbouring(box3d2);
+		if (face)
 		{
-			LOG_DEBUG("neighbouring face = {}", face.value());
+			LOG_DEBUG("neighbouring face");
 		}
 		else
 		{

@@ -3,18 +3,18 @@
 
 namespace accord::shape::relation
 {
-	Plane3D::Plane3D(double position, Axis3D axis)
+	Plane::Plane(double position, Axis3D axis)
 		: basic::Plane(position, axis)
 	{
 
 	}
 
-	bool Plane3D::IsNeighbouring(const Plane3D& other) const
+	bool Plane::IsNeighbouring(const Plane& other) const
 	{
 		return (GetPosition() == other.GetPosition() && GetAxis() == GetAxis());
 	}
 
-	void to_json(Json& j, const Plane3D& plane)
+	void to_json(Json& j, const Plane& plane)
 	{
 		j = static_cast<basic::Plane>(plane);
 	}

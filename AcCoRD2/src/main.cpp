@@ -39,6 +39,7 @@
 // could use factory to build regions so regions dont have to be publically available in environment
 // ensure consistency between vec2 and vec3
 // json / spdlog should print faces of 3d shapes
+// check cpp files dont have #pragma once
 
 // BUGS
 // 1. WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR

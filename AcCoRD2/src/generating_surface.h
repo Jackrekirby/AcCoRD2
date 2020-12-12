@@ -2,7 +2,7 @@
 #include "pch.h"
 #include "vec3d.h"
 #include "generating_plane.h"
-#include "generating_surface_shape.h"
+#include "generating_shape_2d.h"
 
 namespace accord::shape::generating
 {
@@ -15,11 +15,11 @@ namespace accord::shape::generating
 
 		const Plane GetPlane() const;
 
-		virtual const SurfaceShape& GetShape() const = 0;
+		virtual const Shape2D& GetShape() const = 0;
 
 	private:
 		Plane plane;
 	};
 
-	void to_json(Json& j, const SurfaceShape& surface_shape);
+	void to_json(Json& j, const Shape2D& surface_shape);
 }

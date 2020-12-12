@@ -7,7 +7,7 @@ namespace accord::shape::relation
 	class RectSurface : public Surface
 	{
 	public:
-		RectSurface(Plane3D plane, Rect box);
+		RectSurface(Plane plane, Rect box);
 
 		const Rect& GetShape() const;
 	private:

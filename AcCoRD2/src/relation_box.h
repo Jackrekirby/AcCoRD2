@@ -37,9 +37,9 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Shape3D& other) const;
 
-		std::optional<Face> IsPartiallyNeighbouring(const Box& other) const;
+		bool IsPartiallyNeighbouring(const Box& other) const;
 
-		std::optional<Face> IsFullyNeighbouring(const Box& other) const;
+		bool IsFullyNeighbouring(const Box& other) const;
 
 		// requires is partially neighbouring to have been returned true.
 		double CalculateAreaBetweenNeighbouringBoxes(const Box& other) const;

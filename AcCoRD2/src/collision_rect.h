@@ -1,10 +1,10 @@
 #pragma once
 #include "basic_rect.h"
-#include "collision_surface_shape.h"
+#include "collision_shape_2d.h"
 
 namespace accord::shape::collision
 {
-	class Rect : public basic::Rect, public SurfaceShape
+	class Rect : public basic::Rect, public Shape2D
 	{
 	public:
 		Rect(Vec2d origin, Vec2d length);

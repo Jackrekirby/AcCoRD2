@@ -8,7 +8,7 @@ namespace accord::shape::relation
 {
 	class Box;
 	class Sphere;
-	class SurfaceShape;
+	class Shape2D;
 	class Cylinder;
 
 	class Shape3D
@@ -40,7 +40,7 @@ namespace accord::shape::relation
 
 		virtual bool IsEnvelopedBy(const Shape3D& other) const = 0;
 
-		virtual const SurfaceShape& FlattenInAxis(const Axis3D& axis) const = 0;
+		virtual const Shape2D& FlattenInAxis(const Axis3D& axis) const = 0;
 
 		virtual void ToJson(Json& j) const = 0;
 

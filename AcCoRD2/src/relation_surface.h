@@ -1,25 +1,25 @@
 #pragma once
 #include "relation_plane.h"
-#include "relation_surface_shape.h"
+#include "relation_shape_2d.h"
 
 namespace accord::shape::relation
 {
 	class Surface
 	{
 	public:
-		Surface(Plane3D plane);
+		Surface(Plane plane);
 
 		bool IsPartiallyNeighbouring(const Surface& other) const;
 
 		bool IsFullyNeighbouring(const Surface& other) const;
 
-		const Plane3D& GetPlane() const;
+		const Plane& GetPlane() const;
 
-		virtual const SurfaceShape& GetShape() const = 0;
+		virtual const Shape2D& GetShape() const = 0;
 
 	private:
-		Plane3D plane;
+		Plane plane;
 	};
 
-	void to_json(Json& j, const SurfaceShape& surface_shape);
+	void to_json(Json& j, const Shape2D& surface_shape);
 }

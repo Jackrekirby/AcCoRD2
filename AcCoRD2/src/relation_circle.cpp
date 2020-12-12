@@ -11,17 +11,17 @@ namespace accord::shape::relation
 
 	}
 
-	bool Circle::IsOverlapping(const SurfaceShape& other) const
+	bool Circle::IsOverlapping(const Shape2D& other) const
 	{
 		return other.IsOverlapping(*this);
 	}
 
-	bool Circle::IsEnveloping(const SurfaceShape& other) const
+	bool Circle::IsEnveloping(const Shape2D& other) const
 	{
 		return other.IsEnvelopedBy(*this);
 	}
 
-	bool Circle::IsEnvelopedBy(const SurfaceShape& other) const
+	bool Circle::IsEnvelopedBy(const Shape2D& other) const
 	{
 		return other.IsEnveloping(*this);
 	}

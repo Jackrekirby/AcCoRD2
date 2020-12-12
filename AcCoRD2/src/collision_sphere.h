@@ -1,10 +1,11 @@
 #pragma once
 #include "collision_3d.h"
 #include "basic_sphere.h"
+#include "collision_shape_3d.h"
 
 namespace accord::shape::collision
 {
-	class Sphere : public basic::Sphere
+	class Sphere : public basic::Sphere, public Shape3D
 	{
 	public:
 		Sphere(Vec3d centre, double radius);
@@ -13,6 +14,7 @@ namespace accord::shape::collision
 
 		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
+		void ToJson(Json& j) const;
 	private:
 
 		struct CollisionTimes

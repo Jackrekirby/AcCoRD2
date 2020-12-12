@@ -1,11 +1,11 @@
 #pragma once
 #include "collision_2d.h"
 #include "basic_circle.h"
-#include "collision_surface_shape.h"
+#include "collision_shape_2d.h"
 
 namespace accord::shape::collision
 {
-	class Circle : public basic::Circle, public SurfaceShape
+	class Circle : public basic::Circle, public Shape2D
 	{
 	public:
 		Circle(Vec2d centre, double radius);

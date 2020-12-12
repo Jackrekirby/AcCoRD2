@@ -145,94 +145,56 @@ namespace accord::shape::relation
 		return other.IsWithinOrOnBorder(CalculateFurthestPoint(other.GetCentre()));
 	}
 
-	const SurfaceShape& Cylinder::IsPartiallyNeighbouring(const Box& other) const
+	bool Cylinder::IsPartiallyNeighbouring(const Box& other) const
 	{
 		switch (GetAxis())
 		{
 		case Axis3D::x:
-			if (base_face.IsPartiallyNeighbouring(other.GetFace(Face::nx)))
-			{
-				return other.GetFace(Face::nx).GetShape();
-			}
-			if (top_face.IsPartiallyNeighbouring(other.GetFace(Face::px)))
-			{
-				return other.GetFace(Face::px).GetShape();
-			}
+			if (base_face.IsPartiallyNeighbouring(other.GetFace(Face::nx))) return true;
+			return top_face.IsPartiallyNeighbouring(other.GetFace(Face::px));
 		case Axis3D::y:
-			if (base_face.IsPartiallyNeighbouring(other.GetFace(Face::ny)))
-			{
-				return other.GetFace(Face::ny).GetShape();
-			}
-			if (top_face.IsPartiallyNeighbouring(other.GetFace(Face::py)))
-			{
-				return other.GetFace(Face::py).GetShape();
-			}
+			if (base_face.IsPartiallyNeighbouring(other.GetFace(Face::ny))) return true;
+			return top_face.IsPartiallyNeighbouring(other.GetFace(Face::py));
 		case Axis3D::z:
-			if (base_face.IsPartiallyNeighbouring(other.GetFace(Face::nz)))
-			{
-				return other.GetFace(Face::nz).GetShape();
-			}
-			if (top_face.IsPartiallyNeighbouring(other.GetFace(Face::pz)))
-			{
-				return other.GetFace(Face::pz).GetShape();
-			}
+			if (base_face.IsPartiallyNeighbouring(other.GetFace(Face::nz))) return true;
+			return top_face.IsPartiallyNeighbouring(other.GetFace(Face::pz));
 		}
 		LOG_CRITICAL("Unknown Axis3D type");
 		throw std::exception();
 	}
 
-	const SurfaceShape& Cylinder::IsFullyNeighbouring(const Box& other) const
+	bool Cylinder::IsFullyNeighbouring(const Box& other) const
 	{
 		switch (GetAxis())
 		{
 		case Axis3D::x:
-			if (base_face.IsFullyNeighbouring(other.GetFace(Face::nx)))
-			{
-				return other.GetFace(Face::nx).GetShape();
-			}
-			if (top_face.IsFullyNeighbouring(other.GetFace(Face::px)))
-			{
-				return other.GetFace(Face::px).GetShape();
-			}
+			if (base_face.IsFullyNeighbouring(other.GetFace(Face::nx))) return true;
+			return top_face.IsFullyNeighbouring(other.GetFace(Face::px));
 		case Axis3D::y:
-			if (base_face.IsFullyNeighbouring(other.GetFace(Face::ny)))
-			{
-				return other.GetFace(Face::ny).GetShape();
-			}
-			if (top_face.IsFullyNeighbouring(other.GetFace(Face::py)))
-			{
-				return other.GetFace(Face::py).GetShape();
-			}
+			if (base_face.IsFullyNeighbouring(other.GetFace(Face::ny))) return true;
+			return top_face.IsFullyNeighbouring(other.GetFace(Face::py));
 		case Axis3D::z:
-			if (base_face.IsFullyNeighbouring(other.GetFace(Face::nz)))
-			{
-				return other.GetFace(Face::nz).GetShape();
-			}
-			if (top_face.IsFullyNeighbouring(other.GetFace(Face::pz)))
-			{
-				return other.GetFace(Face::pz).GetShape();
-			}
+			if (base_face.IsFullyNeighbouring(other.GetFace(Face::nz))) return true;
+			return top_face.IsFullyNeighbouring(other.GetFace(Face::pz));
 		}
 		LOG_CRITICAL("Unknown Axis3D type");
 		throw std::exception();
 	}
 
-	const SurfaceShape& Cylinder::IsPartiallyNeighbouring(const Cylinder& other) const
+	bool Cylinder::IsPartiallyNeighbouring(const Cylinder& other) const
 	{
-		if (base_face.IsPartiallyNeighbouring(other.top_face)) return other.top_face.GetShape();
-		if (top_face.IsPartiallyNeighbouring(other.top_face)) return other.base_face.GetShape();
-		return other.base_face.GetShape(); // WRONG
+		if (base_face.IsPartiallyNeighbouring(other.top_face)) return true;
+		return top_face.IsPartiallyNeighbouring(other.top_face);
 	}
 
-	// not required
-	const SurfaceShape& Cylinder::IsFullyNeighbouring(const Cylinder& other) const
+	// unused
+	bool Cylinder::IsFullyNeighbouring(const Cylinder& other) const
 	{
-		if (base_face.IsFullyNeighbouring(other.top_face)) return other.top_face.GetShape();
-		if (top_face.IsFullyNeighbouring(other.top_face)) return other.base_face.GetShape();
-		return other.base_face.GetShape(); // WRONG
+		if (base_face.IsFullyNeighbouring(other.top_face)) return true;
+		return top_face.IsFullyNeighbouring(other.top_face);
 	}
 
-	const SurfaceShape& Cylinder::FlattenInAxis(const Axis3D& axis) const
+	const Shape2D& Cylinder::FlattenInAxis(const Axis3D& axis) const
 	{
 		if (axis == GetAxis())
 		{

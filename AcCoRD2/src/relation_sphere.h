@@ -1,7 +1,7 @@
 #pragma once
 #include "basic_sphere.h"
 #include "relation_shape_3d.h"
-#include "relation_surface_shape.h"
+#include "generating_shape_2d.h"
 #include "relation_circle.h"
 
 namespace accord::shape::relation

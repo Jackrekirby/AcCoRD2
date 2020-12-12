@@ -3,7 +3,7 @@
 namespace accord::shape::collision
 {
 	Rect::Rect(Vec2d origin, Vec2d length)
-		: basic::Rect(origin, length), SurfaceShape()
+		: basic::Rect(origin, length), Shape2D()
 	{
 
 	}

@@ -55,20 +55,20 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Sphere& other) const;
 
-		const SurfaceShape& IsPartiallyNeighbouring(const Box& other) const;
+		bool IsPartiallyNeighbouring(const Box& other) const;
 		
-		const SurfaceShape& IsFullyNeighbouring(const Box& other) const;
+		bool IsFullyNeighbouring(const Box& other) const;
 
 		// needed for micro-micro and meso-meso relation checking
 		// meso-meso requires calculating overlap area as well (what shape calculated overlap area?)
 		// meso only requires box overlap checking
 		// therefore relation surface only requires is partially neighbouring
-		const SurfaceShape& IsPartiallyNeighbouring(const Cylinder& other) const;
+		bool IsPartiallyNeighbouring(const Cylinder& other) const;
 
 		// needed for 
-		const SurfaceShape& IsFullyNeighbouring(const Cylinder& other) const;
+		bool IsFullyNeighbouring(const Cylinder& other) const;
 
-		const SurfaceShape& FlattenInAxis(const Axis3D& axis) const;
+		const Shape2D& FlattenInAxis(const Axis3D& axis) const;
 
 		Box GenerateBoundingBox() const;
 
