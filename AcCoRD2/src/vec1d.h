@@ -14,5 +14,9 @@ namespace accord::Vec1d
 	double Square(double a);
 
 	double Cube(double a);
+
+	double Min(double a, double b);
+
+	double Max(double a, double b);
 }
 

@@ -1,5 +1,8 @@
 #pragma once
-#include "axis_3d.h"
+namespace accord
+{
+	enum class Axis3D;
+}
 
 namespace accord::shape::relation
 {
@@ -30,7 +33,7 @@ namespace accord::shape::relation
 
 		virtual bool IsEnvelopedBy(const Shape3D& other) const = 0;
 
-		virtual std::unique_ptr<SurfaceShape> FlattenInAxis(Axis3D axis) const = 0;
+		virtual const SurfaceShape& FlattenInAxis(const Axis3D& axis) const = 0;
 
 		virtual void ToJson(Json& j) const = 0;
 

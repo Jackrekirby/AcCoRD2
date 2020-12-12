@@ -20,7 +20,15 @@ namespace accord
 
         Vec3b() = default;
 
+        // May want GetAxis() GetPlane
+
+        // convert to explicit
         static Vec3b FromScalar(bool s);
+
+        // returns the axis which is true. Requires exactly 1 axis to be true or will throw exception;
+        Axis3D FindAxis() const;
+
+        int Sum() const;
 
         bool All() const;
 

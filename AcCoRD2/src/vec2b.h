@@ -20,6 +20,11 @@ namespace accord
 
         Vec2b() = default;
 
+        // returns the axis which is true. Requires exactly 1 axis to be true or will throw exception;
+        Axis2D FindAxis() const;
+
+        int Sum() const;
+
         bool All() const;
 
         Vec2b operator && (const Vec2b& v) const;

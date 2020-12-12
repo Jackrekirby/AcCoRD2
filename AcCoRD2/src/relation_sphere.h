@@ -2,6 +2,7 @@
 #include "basic_sphere.h"
 #include "relation_shape_3d.h"
 #include "relation_surface_shape.h"
+#include "relation_circle.h"
 
 namespace accord::shape::relation
 {
@@ -30,11 +31,17 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Shape3D& other) const;
 
-		std::unique_ptr<SurfaceShape> FlattenInAxis(Axis3D axis) const;
+		const Circle& FlattenInAxis(const Axis3D& axis) const;
 
 		const Sphere& GetShape() const;
 
 		void ToJson(Json& j) const;
+	private:
+		std::enum_array<Axis3D, Circle, 3> projected_shapes;
+
+		Circle GenerateProjectedShape(const Axis3D& axis) const;
+
+		std::enum_array<Axis3D, Circle, 3> GenerateProjectedShapes() const;
 	};
 
 	void to_json(Json& j, const Sphere& shape);

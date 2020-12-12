@@ -33,7 +33,7 @@ namespace accord::shape::relation
 
 		Vec2d CalculateFurthestCornerFromPoint(const Vec2d& position) const;
 
-		Rect GenerateOverlapBox(const Rect& other) const;
+		Rect GenerateOverlapRect(const Rect& other) const;
 
 		void ToJson(Json& j) const;
 	};

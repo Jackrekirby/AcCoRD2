@@ -67,7 +67,7 @@ namespace accord::shape::relation
 	}
 
 	// assumes there is overlap
-	Rect Rect::GenerateOverlapBox(const Rect& other) const
+	Rect Rect::GenerateOverlapRect(const Rect& other) const
 	{
 		Vec2d origin = Vec2d::Max(GetOrigin(), other.GetOrigin());
 		Vec2d end = Vec2d::Min(GetEnd(), other.GetEnd());

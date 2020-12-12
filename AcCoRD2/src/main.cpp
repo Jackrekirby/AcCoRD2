@@ -234,9 +234,9 @@ int main()
 	relation::Cylinder rc({ 0, 0, 0 }, 2, 5, Axis3D::x);
 
 	Json j;
-	rc.FlattenInAxis(Axis3D::x)->ToJson(j[0]);
-	rc.FlattenInAxis(Axis3D::y)->ToJson(j[1]);
-	rc.FlattenInAxis(Axis3D::z)->ToJson(j[2]);
+	rc.FlattenInAxis(Axis3D::x).ToJson(j[0]);
+	rc.FlattenInAxis(Axis3D::y).ToJson(j[1]);
+	rc.FlattenInAxis(Axis3D::z).ToJson(j[2]);
 	LOG_INFO(JsonToPrettyString(j));
 
 	LOG_INFO(rc.GenerateBoundingBox());

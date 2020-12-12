@@ -15,6 +15,27 @@ namespace accord
         return Vec3b(s, s, s);
     }
 
+    Axis3D Vec3b::FindAxis() const
+    {
+        if (Sum() != 0)
+        {
+            LOG_CRITICAL("FindAxis() requires exactly 1 axis to be true. {}", *this);
+            throw std::exception();
+        }
+
+        if (x) return Axis3D::x;
+        if (y) return Axis3D::y;
+        if (z) return Axis3D::z;
+
+        LOG_CRITICAL("One axis must be true. Sum() function behaved not as intended. {}, {}", *this, Sum());
+        throw std::exception();
+    }
+
+    int Vec3b::Sum() const
+    {
+        return (x + y + z);
+    }
+
     bool Vec3b::All() const
     {
         return (x && y && z);

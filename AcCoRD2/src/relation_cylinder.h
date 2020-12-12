@@ -2,7 +2,12 @@
 #include "basic_cylinder.h"
 #include "relation_circle_surface.h"
 #include "relation_shape_3d.h"
+#include "relation_rect.h"
 #include "axis_3d.h"
+
+// relation checks with flatten won't work for spheres
+// must get the position of the cylinder closest to the centre of the sphere per axis,
+// then generate the circle of the sphere at the closest point to the centre,
 
 // could pre calculate flattened shapes, which would allow passing references instead of unique pointers
 // should do if spheres and boxes end up using same flatenning code
@@ -21,6 +26,8 @@ namespace accord::shape::relation
 	{
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
+
+		double CalculateNearestPointAlongAxis(const Vec3d& position, const Axis3D& axis) const;
 
 		bool IsOverlapping(const Shape3D& other) const;
 
@@ -54,7 +61,7 @@ namespace accord::shape::relation
 		// needed for 
 		const SurfaceShape& IsFullyNeighbouring(const Cylinder& other) const;
 
-		std::unique_ptr<SurfaceShape> FlattenInAxis(Axis3D axis) const;
+		const SurfaceShape& FlattenInAxis(const Axis3D& axis) const;
 
 		Box GenerateBoundingBox() const;
 
@@ -63,6 +70,10 @@ namespace accord::shape::relation
 		const Cylinder& GetShape() const;
 
 	private:
+		Circle projected_face;
+		// projected sides x and y refer to when longitudanal axis of cylinder is along z
+		Rect projected_side_x;
+		Rect projected_side_y;
 		CircleSurface base_face;
 		CircleSurface top_face;
 	};

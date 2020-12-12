@@ -2,41 +2,61 @@
 #include "relation_cylinder.h"
 #include "relation_box.h"
 #include "relation_sphere.h"
+#include "vec1d.h"
 
 namespace accord::shape::relation
 {
 	Cylinder::Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis)
 		: basic::Cylinder(base_centre, radius, length, axis),
 		base_face({ GetBase(), axis }, { GetCircleCentre(), radius }),
-		top_face({ GetTop(), axis }, { GetCircleCentre(), radius })
+		top_face({ GetTop(), axis }, { GetCircleCentre(), radius }),
+		projected_face({ GetCircleCentre(), radius }),
+		projected_side_x(GenerateBoundingBox().FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
+		projected_side_y(GenerateBoundingBox().FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
 	{
 
+	}
+
+	double Cylinder::CalculateNearestPointAlongAxis(const Vec3d& position, const Axis3D& axis) const
+	{
+		if (axis == GetAxis())
+		{
+			return Vec1d::Max(GetBase(), Vec1d::Min(position.GetAxis(axis), GetTop()));
+		}
+		else
+		{
+			// must get the angle between the cylinder and sphere for axis to generate height in cylinder
+			// which you need to get a cross section of the rectangle
+			return Vec1d::Max(GetBaseCentre().GetAxis(axis) - GetRadius(),
+				Vec1d::Min(position.GetAxis(GetAxis()), GetBaseCentre().GetAxis(axis) + GetRadius()));
+		}
+		
 	}
 
 	bool Cylinder::IsOverlapping(const Shape3D& other) const
 	{
 		return (
-			FlattenInAxis(Axis3D::x)->IsOverlapping(*other.FlattenInAxis(Axis3D::x)) &&
-			FlattenInAxis(Axis3D::y)->IsOverlapping(*other.FlattenInAxis(Axis3D::y)) &&
-			FlattenInAxis(Axis3D::z)->IsOverlapping(*other.FlattenInAxis(Axis3D::z))
+			FlattenInAxis(Axis3D::x).IsOverlapping(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsOverlapping(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsOverlapping(other.FlattenInAxis(Axis3D::z))
 			);
 	}
 
 	bool Cylinder::IsEnveloping(const Shape3D& other) const
 	{
 		return (
-			FlattenInAxis(Axis3D::x)->IsEnveloping(*other.FlattenInAxis(Axis3D::x)) &&
-			FlattenInAxis(Axis3D::y)->IsEnveloping(*other.FlattenInAxis(Axis3D::y)) &&
-			FlattenInAxis(Axis3D::z)->IsEnveloping(*other.FlattenInAxis(Axis3D::z))
+			FlattenInAxis(Axis3D::x).IsEnveloping(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsEnveloping(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsEnveloping(other.FlattenInAxis(Axis3D::z))
 			);
 	}
 
 	bool Cylinder::IsEnvelopedBy(const Shape3D& other) const
 	{
 		return (
-			FlattenInAxis(Axis3D::x)->IsEnvelopedBy(*other.FlattenInAxis(Axis3D::x)) &&
-			FlattenInAxis(Axis3D::y)->IsEnvelopedBy(*other.FlattenInAxis(Axis3D::y)) &&
-			FlattenInAxis(Axis3D::z)->IsEnvelopedBy(*other.FlattenInAxis(Axis3D::z))
+			FlattenInAxis(Axis3D::x).IsEnvelopedBy(other.FlattenInAxis(Axis3D::x)) &&
+			FlattenInAxis(Axis3D::y).IsEnvelopedBy(other.FlattenInAxis(Axis3D::y)) &&
+			FlattenInAxis(Axis3D::z).IsEnvelopedBy(other.FlattenInAxis(Axis3D::z))
 			);
 	}
 
@@ -157,15 +177,23 @@ namespace accord::shape::relation
 		return other.base_face.GetShape(); // WRONG
 	}
 
-	std::unique_ptr<SurfaceShape> Cylinder::FlattenInAxis(Axis3D axis) const
+	const SurfaceShape& Cylinder::FlattenInAxis(const Axis3D& axis) const
 	{
 		if (axis == GetAxis())
 		{
-			return std::make_unique<Circle>(GetCircleCentre(), GetRadius());
+			return projected_face;
 		}
 		else
 		{
-			return GenerateBoundingBox().FlattenInAxis(axis);
+			std::array<Axis3D, 2> axes = GetOtherAxes(axis);
+			if (axis == axes.at(0))
+			{
+				return projected_side_x;
+			}
+			else // if (axis == axes.at(1))
+			{
+				return projected_side_y;
+			}
 		}
 	}
 

@@ -34,13 +34,16 @@ namespace accord::shape::relation
 
 		std::optional<Face> IsFullyNeighbouring(const Box& other) const;
 
+		// requires is partially neighbouring to have been returned true.
+		double CalculateAreaBetweenNeighbouringBoxes(const Box& other) const;
+
 		Box GenerateOverlapBox(const Box& other) const;
 
 		Vec3d CalculateNearestPointOnBoundary(const Vec3d& position) const;
 
 		Vec3d CalculateFurthestCornerFromPoint(const Vec3d& position) const;
 
-		std::unique_ptr<SurfaceShape> FlattenInAxis(Axis3D axis) const;
+		const Rect& FlattenInAxis(const Axis3D& axis) const;
 
 		void ToJson(Json& j) const;
 
@@ -50,7 +53,13 @@ namespace accord::shape::relation
 
 		const RectSurface& GetFace(Face face) const;
 	private:
+		std::enum_array<Axis3D, Rect, 3> projected_shapes;
+
 		std::enum_array<Face, RectSurface, 6> faces;
+
+		Rect GenerateProjectedShape(const Axis3D& axis) const;
+
+		std::enum_array<Axis3D, Rect, 3> GenerateProjectedShapes() const;
 
 		std::enum_array<Face, RectSurface, 6> GenerateFaces();
 

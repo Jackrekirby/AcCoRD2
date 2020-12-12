@@ -3,13 +3,15 @@
 #include "vec3b.h"
 #include "relation_box.h"
 #include "relation_circle.h"
+#include "axis_3d.h"
 
 namespace accord::shape::relation
 {
 	Sphere::Sphere(Vec3d centre, double radius)
-		: basic::Sphere(centre, radius)
+		: basic::Sphere(centre, radius),
+		projected_shapes(GenerateProjectedShapes())
 	{
-
+		Circle c(GetCentre().GetPlane(Axis3D::x), radius);
 	}
 
 	bool Sphere::IsOverlapping(const Shape3D& other) const
@@ -27,9 +29,9 @@ namespace accord::shape::relation
 		return other.IsEnveloping(*this);
 	}
 
-	std::unique_ptr<SurfaceShape> Sphere::FlattenInAxis(Axis3D axis) const
+	const Circle& Sphere::FlattenInAxis(const Axis3D& axis) const
 	{
-		return std::make_unique<Circle>(GetCentre().GetPlane(axis), GetRadius());
+		return projected_shapes.at(axis);
 	}
 
 	bool Sphere::IsOverlapping(const Box& other) const
@@ -70,6 +72,21 @@ namespace accord::shape::relation
 	void Sphere::ToJson(Json& j) const
 	{
 		j = static_cast<basic::Sphere>(*this);
+	}
+
+	Circle Sphere::GenerateProjectedShape(const Axis3D& axis) const
+	{
+		return {GetCentre().GetPlane(axis), GetRadius()};
+	}
+
+	std::enum_array<Axis3D, Circle, 3> Sphere::GenerateProjectedShapes() const
+	{
+		return
+		{
+			GenerateProjectedShape(Axis3D::x),
+			GenerateProjectedShape(Axis3D::y),
+			GenerateProjectedShape(Axis3D::z)
+		};
 	}
 
 	void to_json(Json& j, const Sphere& shape)

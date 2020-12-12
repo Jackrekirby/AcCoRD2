@@ -31,4 +31,14 @@ namespace accord::Vec1d
 	{
 		return a * a * a;
 	}
+
+	double Vec1d::Min(double a, double b)
+	{
+		return { (a < b) ? a : b };
+	}
+
+	double Vec1d::Max(double a, double b)
+	{
+		return { (a > b) ? a : b };
+	}
 }

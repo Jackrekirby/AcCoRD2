@@ -10,6 +10,8 @@ namespace accord
 
 	std::string EnumToString(Axis3D axis);
 
+	std::array<Axis3D, 2> GetOtherAxes(Axis3D axis);
+
 	void to_json(Json& j, Axis3D axis);
 
 	template<typename OStream>

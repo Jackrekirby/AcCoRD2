@@ -8,7 +8,8 @@
 namespace accord::shape::relation
 {
 	Box::Box(Vec3d origin, Vec3d length)
-		: basic::Box(origin, length), faces(GenerateFaces())
+		: basic::Box(origin, length), faces(GenerateFaces()),
+		projected_shapes(GenerateProjectedShapes())
 	{
 		
 	}
@@ -23,6 +24,21 @@ namespace accord::shape::relation
 			GenerateFace(GetEnd(), Axis3D::y, GetOrigin(), GetLength()),
 			GenerateFace(GetEnd(), Axis3D::z, GetOrigin(), GetLength())
 		};
+	}
+
+	std::enum_array<Axis3D, Rect, 3> Box::GenerateProjectedShapes() const
+	{
+		return
+		{
+			GenerateProjectedShape(Axis3D::x),
+			GenerateProjectedShape(Axis3D::y),
+			GenerateProjectedShape(Axis3D::z)
+		};
+	}
+
+	Rect Box::GenerateProjectedShape(const Axis3D& axis) const
+	{
+		return { GetOrigin().GetPlane(axis), GetLength().GetPlane(axis) };
 	}
 
 	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& length)
@@ -103,9 +119,15 @@ namespace accord::shape::relation
 		return (GetOrigin() + (position < CalculateCentre()) * GetLength());
 	}
 
-	std::unique_ptr<SurfaceShape> Box::FlattenInAxis(Axis3D axis) const
+	const Rect& Box::FlattenInAxis(const Axis3D& axis) const
 	{
-		return std::make_unique<Rect>(GetOrigin().GetPlane(axis), GetLength().GetPlane(axis));
+		return projected_shapes.at(axis);
+	}
+
+	double Box::CalculateAreaBetweenNeighbouringBoxes(const Box& other) const
+	{
+		Axis3D axis = ((GetOrigin() == other.GetEnd()) || (GetOrigin() == other.GetEnd())).FindAxis();
+		return FlattenInAxis(axis).GenerateOverlapRect(other.FlattenInAxis(axis)).CalculateArea();
 	}
 
 	// assumes there is overlap
