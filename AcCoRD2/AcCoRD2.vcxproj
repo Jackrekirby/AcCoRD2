@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\basic_shape.cpp" />
     <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp" />
     <ClCompile Include="src\collision_shape_3d.cpp" />
     <ClCompile Include="src\generating_shape_3d.cpp" />
@@ -136,6 +137,8 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\basic_shape_3d.h" />
+    <ClInclude Include="src\basic_shape.h" />
     <ClInclude Include="src\microscopic_cylinder_surface_shape.h" />
     <ClInclude Include="src\collision_shape_3d.h" />
     <ClInclude Include="src\generating_shape_3d.h" />

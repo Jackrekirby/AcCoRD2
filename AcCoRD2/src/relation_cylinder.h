@@ -31,11 +31,11 @@ namespace accord::shape::relation
 
 		Vec3d CalculateFurthestPoint(const Vec3d& position) const;
 
-		bool IsOverlapping(const Shape3D& other) const;
+		bool IsOverlapping(const relation::Shape3D& other) const;
 
-		bool IsEnveloping(const Shape3D& other) const;
+		bool IsEnveloping(const relation::Shape3D& other) const;
 
-		bool IsEnvelopedBy(const Shape3D& other) const;
+		bool IsEnvelopedBy(const relation::Shape3D& other) const;
 
 		bool IsOverlapping(const Box& other) const;
 
@@ -69,8 +69,6 @@ namespace accord::shape::relation
 		bool IsFullyNeighbouring(const Cylinder& other) const;
 
 		const Shape2D& FlattenInAxis(const Axis3D& axis) const;
-
-		Box GenerateBoundingBox() const;
 
 		void ToJson(Json& j) const;
 

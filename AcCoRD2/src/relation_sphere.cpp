@@ -15,17 +15,17 @@ namespace accord::shape::relation
 		Circle c(GetCentre().GetPlane(Axis3D::x), radius);
 	}
 
-	bool Sphere::IsOverlapping(const Shape3D& other) const
+	bool Sphere::IsOverlapping(const relation::Shape3D& other) const
 	{
 		return other.IsOverlapping(*this);
 	}
 
-	bool Sphere::IsEnveloping(const Shape3D& other) const
+	bool Sphere::IsEnveloping(const relation::Shape3D& other) const
 	{
 		return other.IsEnvelopedBy(*this);
 	}
 
-	bool Sphere::IsEnvelopedBy(const Shape3D& other) const
+	bool Sphere::IsEnvelopedBy(const relation::Shape3D& other) const
 	{
 		return other.IsEnveloping(*this);
 	}

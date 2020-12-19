@@ -1,13 +1,14 @@
 #pragma once
 #include "vec3d.h"
 #include "box_faces.h"
+#include "basic_shape_3d.h"
 
 namespace accord::shape::basic
 {
 	class Cylinder;
 	class Sphere;
 
-	class Box
+	class Box : public Shape3D
 	{
 	public:
 		Box(Vec3d origin, Vec3d length);
@@ -15,6 +16,8 @@ namespace accord::shape::basic
 		Box(const Cylinder& cylinder);
 
 		Box(const Sphere& sphere);
+
+		Box GenerateBoundingBox() const;
 
 		void Move(const Vec3d& origin);
 
@@ -35,6 +38,8 @@ namespace accord::shape::basic
 		bool IsWithinOrOnBorder(const Vec3d& position) const;
 
 		bool IsOnBorder(const Vec3d& position) const;
+
+		void ToJson(Json& j) const;
 
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const Box& box)

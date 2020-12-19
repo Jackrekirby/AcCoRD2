@@ -2,13 +2,17 @@
 #include "vec3d.h"
 #include "vec2d.h"
 #include "axis_3d.h"
+#include "basic_shape_3d.h"
+#include "basic_box.h"
 
 namespace accord::shape::basic
 {
-	class Cylinder
+	class Cylinder : public Shape3D
 	{
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
+
+		Box GenerateBoundingBox() const;
 
 		void Move(Vec3d base_centre);
 

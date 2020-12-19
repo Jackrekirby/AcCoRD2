@@ -31,8 +31,8 @@ namespace accord::microscopic
 		return shape::basic::Box::IsOnBorder(position);
 	}
 
-	shape::basic::Box BoxSurfaceShape::GenerateBoundingBox() const
+	const shape::basic::Box& BoxSurfaceShape::GetBasicShape() const
 	{
-		return { GetOrigin(), GetLength() };
+		return static_cast<const shape::basic::Box&>(*this);
 	}
 }

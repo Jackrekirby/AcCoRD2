@@ -19,8 +19,14 @@ namespace accord::shape::basic
 		return position;
 	}
 
+	void Plane::ToJson(Json& j) const
+	{
+		j = *this;
+	}
+
 	void to_json(Json& j, const Plane& plane)
 	{
+		j["type"] = "plane";
 		j["position"] = plane.GetPosition();
 		j["axis"] = EnumToString(plane.GetAxis());
 	}

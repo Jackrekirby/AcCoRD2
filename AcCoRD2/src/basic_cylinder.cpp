@@ -12,6 +12,11 @@ namespace accord::shape::basic
 
 	}
 
+	Box Cylinder::GenerateBoundingBox() const
+	{
+		return *this;
+	}
+
 	void Cylinder::Move(Vec3d base_centre)
 	{
 		this->base_centre = base_centre;
@@ -108,6 +113,7 @@ namespace accord::shape::basic
 
 	void to_json(Json& j, const Cylinder& cylinder)
 	{
+		j["type"] = "cylinder";
 		j["base_centre"] = cylinder.GetBaseCentre();
 		j["radius"] = cylinder.GetRadius();
 		j["length"] = cylinder.GetLength();

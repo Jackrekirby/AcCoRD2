@@ -32,9 +32,8 @@ namespace accord::microscopic
 		throw std::exception();
 	}
 
-	shape::basic::Box SphereSurfaceShape::GenerateBoundingBox() const
+	const shape::basic::Sphere& SphereSurfaceShape::GetBasicShape() const
 	{
-		auto& r = GetRadius();
-		return { GetCentre() - r, Vec3d(2 * r, 2 * r, 2 * r) };
+		return static_cast<const shape::basic::Sphere&>(*this);
 	}
 }

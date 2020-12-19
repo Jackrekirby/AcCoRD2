@@ -98,17 +98,17 @@ namespace accord::shape::relation
 		return other.IsEnveloping(*this);
 	}
 
-	bool Box::IsOverlapping(const Shape3D& other) const
+	bool Box::IsOverlapping(const relation::Shape3D& other) const
 	{
 		return other.IsOverlapping(*this);
 	}
 
-	bool Box::IsEnveloping(const Shape3D& other) const
+	bool Box::IsEnveloping(const relation::Shape3D& other) const
 	{
 		return other.IsEnvelopedBy(*this);
 	}
 
-	bool Box::IsEnvelopedBy(const Shape3D& other) const
+	bool Box::IsEnvelopedBy(const relation::Shape3D& other) const
 	{
 		return other.IsEnveloping(*this);
 	}

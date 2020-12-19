@@ -1,9 +1,10 @@
 #pragma once
 #include "vec2d.h"
+#include "basic_shape.h"
 
 namespace accord::shape::basic
 {
-	class Circle
+	class Circle : public Shape
 	{
 	public:
 		Circle(Vec2d centre, double radius);

@@ -80,14 +80,9 @@ void TestEnvironment2()
 	EventQueue event_queue(6);
 
 	//SHAPES
-	g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-2, -2, -2), Vec3d(4, 4, 4)));
-	g_json["shapes"]["cylinder"].emplace_back(shape::basic::Cylinder(Vec3d(2, 0, 0), 2, 6, Axis3D::x));
-	g_json["shapes"]["cylinder"].emplace_back(shape::basic::Cylinder(Vec3d(4, -6, 0), 1.5, 6, Axis3D::y));
-
-	std::ofstream ofile(sim_dir + "/regions.json");
-	ofile << JsonToString(g_json);
-	ofile.close();
-
+	//g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-2, -2, -2), Vec3d(4, 4, 4)));
+	//g_json["shapes"]["cylinder"].emplace_back(shape::basic::Cylinder(Vec3d(2, 0, 0), 2, 6, Axis3D::x));
+	//g_json["shapes"]["cylinder"].emplace_back(shape::basic::Cylinder(Vec3d(4, -6, 0), 1.5, 6, Axis3D::y));
 	// REGIONS
 
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
@@ -117,6 +112,14 @@ void TestEnvironment2()
 	Environment::microscopic_regions.emplace_back(
 		diffision_coefficients, n_subvolumes, std::move(surface_shape3),
 		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 2);
+
+	for (auto& regions : Environment::microscopic_regions)
+	{
+		g_json["shapes"].emplace_back(regions.GetShape().GetBasicShape());
+	}
+	std::ofstream ofile(sim_dir + "/regions.json");
+	ofile << JsonToString(g_json);
+	ofile.close();
 
 	// MOLECULES
 	for (int i = 0; i < 15; i++)
@@ -370,7 +373,7 @@ void TestCylinder()
 	LOG_INFO(cylinder.IsEnveloping(sphere));
 }
 
-
+#include "basic_shape_3d.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
@@ -381,6 +384,10 @@ int main()
 
 	TestEnvironment2();
 
+	accord::shape::basic::Box s({ 0, 0, 0 }, { 0, 0, 0 });
+	accord::shape::basic::Shape3D& a = s;
+	a.GenerateBoundingBox();
+	
 
 	//using namespace accord;
 	//using namespace accord::shape;

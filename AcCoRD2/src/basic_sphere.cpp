@@ -10,6 +10,11 @@ namespace accord::shape::basic
 
 	}
 
+	Box Sphere::GenerateBoundingBox() const
+	{
+		return *this;
+	}
+
 	void Sphere::Move(const Vec3d& centre)
 	{
 		this->centre = centre;
@@ -53,6 +58,7 @@ namespace accord::shape::basic
 
 	void to_json(Json& j, const Sphere& sphere)
 	{
+		j["type"] = "sphere";
 		j["centre"] = sphere.GetCentre();
 		j["radius"] = sphere.GetRadius();
 	}

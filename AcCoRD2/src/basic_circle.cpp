@@ -53,6 +53,7 @@ namespace accord::shape::basic
 
 	void to_json(Json& j, const Circle& circle)
 	{
+		j["type"] = "circle";
 		j["centre"] = circle.GetCentre();
 		j["radius"] = circle.GetRadius();
 	}

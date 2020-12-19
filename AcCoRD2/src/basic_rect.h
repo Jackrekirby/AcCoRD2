@@ -1,9 +1,10 @@
 #pragma once
 #include "vec2d.h"
+#include "basic_shape.h"
 
 namespace accord::shape::basic
 {
-	class Rect
+	class Rect : public Shape
 	{
 	public:
 		Rect(Vec2d origin, Vec2d length);

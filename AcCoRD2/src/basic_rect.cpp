@@ -69,6 +69,7 @@ namespace accord::shape::basic
 
 	void to_json(Json& j, const Rect& rect)
 	{
+		j["type"] = "rect";
 		j["origin"] = rect.GetOrigin();
 		j["length"] = rect.GetLength();
 		j["end"] = rect.GetEnd();

@@ -26,6 +26,11 @@ namespace accord::shape::basic
 
 	}
 
+	Box Box::GenerateBoundingBox() const
+	{
+		return *this;
+	}
+
 	void Box::Move(const Vec3d& origin)
 	{
 		this->origin = origin;
@@ -63,6 +68,11 @@ namespace accord::shape::basic
 		return length.Volume();
 	}
 
+	void Box::ToJson(Json& j) const
+	{
+		j = *this;
+	}
+
 	bool Box::IsWithinBorder(const Vec3d& position) const
 	{
 		return ((position > GetOrigin()).All() && (position < GetEnd()).All());
@@ -81,6 +91,7 @@ namespace accord::shape::basic
 
 	void to_json(Json& j, const Box& box)
 	{
+		j["type"] = "box";
 		j["origin"] = box.GetOrigin();
 		j["length"] = box.GetLength();
 		j["end"] = box.GetEnd();

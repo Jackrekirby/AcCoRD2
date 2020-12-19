@@ -33,11 +33,11 @@ namespace accord::shape::relation
 
 		bool IsEnvelopedBy(const Cylinder& other) const;
 
-		bool IsOverlapping(const Shape3D& other) const;
+		bool IsOverlapping(const relation::Shape3D& other) const;
 
-		bool IsEnveloping(const Shape3D& other) const;
+		bool IsEnveloping(const relation::Shape3D& other) const;
 
-		bool IsEnvelopedBy(const Shape3D& other) const;
+		bool IsEnvelopedBy(const relation::Shape3D& other) const;
 
 		bool IsPartiallyNeighbouring(const Box& other) const;
 

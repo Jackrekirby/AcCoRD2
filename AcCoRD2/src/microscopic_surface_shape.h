@@ -3,6 +3,7 @@
 #include "collision_3d.h"
 #include "basic_box.h"
 #include "collision_shape_3d.h"
+#include "basic_shape.h"
 
 namespace accord
 {
@@ -26,6 +27,6 @@ namespace accord::microscopic
 
 		virtual bool IsMoleculeOnBorder(const Vec3d& position) const = 0;
 
-		virtual shape::basic::Box GenerateBoundingBox() const = 0;
+		virtual const shape::basic::Shape3D& GetBasicShape() const = 0;
 	};
 }

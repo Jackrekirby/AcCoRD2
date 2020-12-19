@@ -1,9 +1,10 @@
 #pragma once
 #include "axis_3d.h"
+#include "basic_shape.h"
 
 namespace accord::shape::basic
 {
-	class Plane
+	class Plane : public Shape
 	{
 	public:
 		Plane(double position, Axis3D axis);
@@ -11,6 +12,8 @@ namespace accord::shape::basic
 		const Axis3D& GetAxis() const;
 
 		const double& GetPosition() const;
+
+		void ToJson(Json& j) const;
 
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const Plane& plane)

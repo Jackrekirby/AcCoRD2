@@ -114,7 +114,7 @@ namespace accord::microscopic
 
 	void Region2::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
 	{
-		shape::basic::Box b = GetShape().GenerateBoundingBox();
+		shape::basic::Box b = GetShape().GetBasicShape().GenerateBoundingBox();
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
 		{
 			grids.emplace_back(b.GetOrigin(), b.GetLength(), 

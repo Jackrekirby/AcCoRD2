@@ -1,12 +1,16 @@
 #pragma once
 #include "vec3d.h"
+#include "basic_shape_3d.h"
+#include "basic_box.h"
 
 namespace accord::shape::basic
 {
-	class Sphere
+	class Sphere : public Shape3D
 	{
 	public:
 		Sphere(Vec3d centre, double radius);
+
+		Box GenerateBoundingBox() const;
 
 		void Move(const Vec3d& centre);
 

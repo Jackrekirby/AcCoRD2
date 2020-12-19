@@ -31,10 +31,8 @@ namespace accord::microscopic
 		return Cylinder::IsOnFace(position);
 	}
 
-	shape::basic::Box CylinderSurfaceShape::GenerateBoundingBox() const
+	const shape::basic::Cylinder& CylinderSurfaceShape::GetBasicShape() const
 	{
-		Vec3d origin(GetBase(), GetCircleCentre() - GetRadius(), GetAxis());
-		Vec3d length(GetLength(), { 2 * GetRadius(), 2 * GetRadius() }, GetAxis());
-		return { origin, length };
+		return static_cast<const shape::basic::Cylinder&>(*this);
 	}
 }

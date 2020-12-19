@@ -11,8 +11,8 @@ namespace accord::shape::relation
 		base_face({ GetBase(), axis }, { GetCircleCentre(), radius }),
 		top_face({ GetTop(), axis }, { GetCircleCentre(), radius }),
 		projected_face({ GetCircleCentre(), radius }),
-		projected_side_x(GenerateBoundingBox().FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
-		projected_side_y(GenerateBoundingBox().FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
+		projected_side_x(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
+		projected_side_y(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
 	{
 
 	}
@@ -57,17 +57,17 @@ namespace accord::shape::relation
 		};
 	}
 
-	bool Cylinder::IsOverlapping(const Shape3D& other) const
+	bool Cylinder::IsOverlapping(const relation::Shape3D& other) const
 	{
 		return other.IsOverlapping(*this);
 	}
 
-	bool Cylinder::IsEnveloping(const Shape3D& other) const
+	bool Cylinder::IsEnveloping(const relation::Shape3D& other) const
 	{
 		return other.IsEnvelopedBy(*this);
 	}
 
-	bool Cylinder::IsEnvelopedBy(const Shape3D& other) const
+	bool Cylinder::IsEnvelopedBy(const relation::Shape3D& other) const
 	{
 		return other.IsEnveloping(*this);
 	}
@@ -212,13 +212,6 @@ namespace accord::shape::relation
 				return projected_side_y;
 			}
 		}
-	}
-
-	Box Cylinder::GenerateBoundingBox() const
-	{
-		Vec3d origin(GetBase(), GetCircleCentre() - GetRadius(), GetAxis());
-		Vec3d length(GetLength(), { 2 * GetRadius(), 2 * GetRadius() }, GetAxis());
-		return { origin, length };
 	}
 
 	void Cylinder::ToJson(Json& j) const
