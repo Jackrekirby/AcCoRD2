@@ -7,26 +7,15 @@ namespace accord
 	class PassiveActorBoxShape : public PassiveActorShape, shape::relation::Box
 	{
 	public:
-		PassiveActorBoxShape(shape::basic::Box box)
-			: Box(box)
-		{
+		PassiveActorBoxShape(shape::basic::Box box);
 
-		}
+		bool IsMoleculeInsideBorder(const Vec3d& position) const;
 
-		bool IsMoleculeInsideBorder(const Vec3d& position) const
-		{
-			return IsMoleculeInsideBorder(position);
-		}
+		bool IsSubvolumeInsideBorder(const shape::relation::Box& box) const;
 
-		bool IsSubvolumeInsideBorder(const shape::relation::Box& box) const
-		{
-			return IsEnveloping(box);
-		}
+		bool IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const;
 
-		bool IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const
-		{
-			return IsOverlapping(box);
-		}
+		void ToJson(Json& j) const;
 	};
 
 	class BoxPassiveActor : public PassiveActor

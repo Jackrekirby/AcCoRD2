@@ -8,7 +8,11 @@ function hPlots = plot(obj, shapes)
     iRectSurface = 0;
     iCircleSurface = 0;
     for iShape = 1:length(shapes)
-        shape = shapes{iShape};
+        if(length(shapes) == 1)
+            shape = shapes;
+        else
+            shape = shapes{iShape};
+        end
         type = shape.type;
         if(type == "box")
             iBox = iBox + 1;

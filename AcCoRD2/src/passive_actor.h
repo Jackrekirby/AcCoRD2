@@ -23,7 +23,11 @@ namespace accord
 		virtual bool IsSubvolumeInsideBorder(const shape::relation::Box& box) const = 0;
 
 		virtual bool IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const = 0;
+
+		virtual void ToJson(Json& j) const = 0;
 	};
+
+	void to_json(Json& j, const PassiveActorShape& shape);
 
 	// make passive actor base class with derived classes of different shapes so the shape
 	// does not have to be a unique pointer

@@ -228,4 +228,8 @@ namespace accord
 			id++;
 		}
 	}
+	void to_json(Json& j, const PassiveActorShape& shape)
+	{
+		shape.ToJson(j);
+	}
 }

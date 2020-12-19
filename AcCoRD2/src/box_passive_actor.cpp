@@ -3,6 +3,33 @@
 
 namespace accord
 {
+
+	PassiveActorBoxShape::PassiveActorBoxShape(shape::basic::Box box)
+		: Box(box)
+	{
+
+	}
+
+	bool PassiveActorBoxShape::IsMoleculeInsideBorder(const Vec3d& position) const
+	{
+		return IsWithinBorder(position);
+	}
+
+	bool PassiveActorBoxShape::IsSubvolumeInsideBorder(const shape::relation::Box& box) const
+	{
+		return IsEnveloping(box);
+	}
+
+	bool PassiveActorBoxShape::IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const
+	{
+		return IsOverlapping(box);
+	}
+
+	void PassiveActorBoxShape::ToJson(Json& j) const
+	{
+		j = static_cast<shape::basic::Box>(*this);
+	}
+
 	BoxPassiveActor::BoxPassiveActor(shape::relation::Box box, MoleculeIDs molecule_ids, double start_time,
 		int priority, EventQueue* event_queue, double time_step, ActiveActorID id, bool record_positions, bool record_time)
 		: PassiveActor(molecule_ids, start_time, priority, event_queue, time_step, id, record_positions,

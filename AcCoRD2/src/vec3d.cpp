@@ -22,6 +22,12 @@ namespace accord
 
 	}
 
+	Vec3d::Vec3d(double s)
+		: x(s), y(s), z(s)
+	{
+
+	}
+
 	Vec3d Vec3d::FromScalar(double s)
 	{
 		return Vec3d(s, s, s);

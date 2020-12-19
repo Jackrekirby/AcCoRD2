@@ -28,10 +28,10 @@ namespace accord
 
 		Vec3d(const Vec3i& v);
 
-		Vec3d(double longitudinal, const Vec2d& transverse, Axis3D axis);
+		explicit Vec3d(double s);
 
-		// this is chosen over Vec3d(double s) to avoid implicit construction of vec3d
-		// change to explicit Vec3d(double s)
+		Vec3d(double longitudinal, const Vec2d& transverse, Axis3D axis);
+		
 		static Vec3d FromScalar(double s);
 
 		// consider renaming to RandomExponential()

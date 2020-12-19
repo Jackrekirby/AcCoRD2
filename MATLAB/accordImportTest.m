@@ -10,21 +10,21 @@ clc;
 sim = Accord.importFiles("D:\dev", "my_simulation3", [], [], true);
 %% Watch Animation Live
 clc;
-shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
+shape3d = Shape3D('FaceAlpha', 0);
 r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
-r = Accord.playAnimateRealisation(r, 0.1);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;
-shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
+shape3d = Shape3D('FaceAlpha', 0);
 r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
 %%
 r.hFigure.WindowState = 'maximized';
 %%
 r = Accord.saveAnimateRealisation(r, 1, "D:\dev\videos\sim3.mp4");
-%% Display Regions
+%% Display Regions & Actors
 clc;
-Accord.displayRegions(sim, 10);
+Accord.displayShapes(sim, 10);
 
 %% Plot Count
 clc;

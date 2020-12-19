@@ -49,8 +49,13 @@
 // Confusion lies in that a region time is updated before the molecule are.
 // i.e. region updates its next event time from 1s to 2s. Then at 2s the event from 1 to 2 occur. 
 // At the end of the update all molecules should have caught up to 2s.
-// 2. Cant add passive actors to vector
+// 2. Passive Actors cannot be placed into vector as the vector cannot deconstruct.
+// FIXED 19/12/20
 // 3. Why are molecules reflecting too many times when a cylinder spans across another cylinder?
+// Not error but a result of region walls being too close together.
+// Capped number of interactions before molecule is placed at last intersection
+// 4. Found bug where positions were only being written every other observation for shaped passive actors?
+// FIXED 19/12/20
 
 // RESEARCH
 // custom destructor
@@ -107,13 +112,14 @@ void TestEnvironment2()
 		cylinder2, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
 		&event_queue, microscopic::SurfaceType::Reflecting, 2));
 
+	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
 	{
-		g_json["shapes"].emplace_back(regions->GetShape().GetBasicShape());
+		json_regions["shapes"].emplace_back(regions->GetShape().GetBasicShape());
 	}
-	std::ofstream ofile(sim_dir + "/regions.json");
-	ofile << JsonToString(g_json);
-	ofile.close();
+	std::ofstream region_file(sim_dir + "/regions.json");
+	region_file << JsonToString(json_regions);
+	region_file.close();
 
 	// PLACE MOLECULES
 	for (int i = 0; i < 15; i++)
@@ -135,19 +141,31 @@ void TestEnvironment2()
 
 	// CREATE ACTORS
 	std::vector<std::unique_ptr<PassiveActor>> passive_actors;
-	passive_actors.reserve(1);
-	if (true)
+	passive_actors.reserve(2);
+	passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
+		RegionIDs({ 0, 1, 2 }), 
+		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
+	passive_actors.emplace_back(std::make_unique<BoxPassiveActor>(
+		shape::basic::Box(Vec3d(4, -2, -2), Vec3d(2, 4, 4)),
+		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true));
+
+	Json json_actors;
+	Json shapeless_actor;
+	shapeless_actor["type"] = "none";
+	for (auto& passive_actor : passive_actors)
 	{
-		passive_actors.emplace_back(std::make_unique<BoxPassiveActor>(
-			shape::basic::Box(Vec3d(-20, -20, -20), Vec3d(40, 40, 40)), 
-			MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
+		if (passive_actor->GetShape() == nullptr)
+		{
+			json_actors["shapes"].emplace_back(shapeless_actor);
+		}
+		else
+		{
+			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
+		}
 	}
-	else
-	{
-		passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
-			RegionIDs({ 0, 1, 2 }), 
-			MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
-	}
+	std::ofstream actors_file(sim_dir + "/actors.json");
+	actors_file << JsonToString(json_actors);
+	actors_file.close();
 	//passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
 	//	RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true));
 	//passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
@@ -395,6 +413,11 @@ int main()
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
 	TestEnvironment2();
+
+
+	//accord::Vec3d a('a');
+	//accord::Vec3d b = 9 * accord::Vec3d(1, 2, 3);
+	//LOG_INFO(b);
 
 
 	//using namespace accord;

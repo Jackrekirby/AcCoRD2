@@ -30,7 +30,6 @@ classdef Accord
             r.hFigure = Accord.initialiseFigure(figureLimits, 'on');
             r = Accord.initiliseMoleculePlots(r, colorByActor);
             r.hRegions = Accord.plotRegions(simulation, shape3D);
-            r.hActors = Accord.plotActors(simulation, shape3D);
         end
         
         function r = playAnimateRealisation(r, playBackSpeed)
@@ -50,17 +49,17 @@ classdef Accord
             r = Accord.saveMolecules(r, playBackSpeed, path);
         end
         
-        function hShapes = displayShapes(simulation, figureLimits, shape3D)
+        function hRegions = displayRegions(simulation, figureLimits, shape3D)
             arguments
                 simulation
                 figureLimits = 10;
                 shape3D = Shape3D();
             end
             
-            hShapes.hFigure = Accord.initialiseFigure(figureLimits);
-            hShapes.hRegions = Accord.plotRegions(simulation, shape3D);
-            hShapes.hActors = Accord.plotActors(simulation, shape3D);
-            hShapes.hFigure.Visible = 'on';
+            hRegions.hFigure = Accord.initialiseFigure(figureLimits);
+            hRegions.hPlots = Accord.plotRegions(simulation, shape3D);
+            hRegions.hPlots = Accord.plotActors(simulation, shape3D);
+            hRegions.hFigure.Visible = 'on';
         end
         
         function p = plotCountForMoleculeType(sim, moleculeType, ...
