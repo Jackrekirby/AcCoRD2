@@ -26,7 +26,7 @@ classdef Accord
                 shape3D = Shape3D;
             end
             r = simulation.s(seed).r(realisation);
-            r.hFigure = Accord.initialiseFigure(figureLimits);
+            r.hFigure = Accord.initialiseFigure(figureLimits, 'on');
             r = Accord.initiliseMoleculePlots(r, colorByActor);
             r.hRegions = Accord.plotRegions(simulation, shape3D);
         end
@@ -347,8 +347,6 @@ classdef Accord
             % list of indicies of all the actors to render in next update
             actorsToRender = [];
             
-            r.hFigure.Visible = 'on';
-            
             tic;
             % keep rendering until all observations have been rendered
             while(min(r.observationTimes) ~= Inf)
@@ -431,8 +429,6 @@ classdef Accord
             % list of indicies of all the actors to render in next update
             actorsToRender = [];
             
-            r.hFigure.Visible = 'on';
-            
             % TO DO: preallocate frames by calculating number of unique times
             frames(1) = getframe(gcf);
             frameNo = 1;
@@ -468,7 +464,6 @@ classdef Accord
                 % before going onto the next actor
                 if(observationTime > simulationTime)
                     if(frameNo > saveEveryNFrame)
-                        possibleFrames
                         frameNo = frameNo - saveEveryNFrame;
                         % display the simulation time in the window name
                         r.hFigure.Name = "Simulation Time: " + simulationTime;

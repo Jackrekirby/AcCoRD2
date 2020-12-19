@@ -31,14 +31,18 @@ sim = Accord.importFiles("D:\dev", "my_simulation3", [], [], true);
 clc;
 shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
 r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
+%%
 r.hFigure.WindowState = 'maximized';
+%%
 r = Accord.playAnimateRealisation(r, 2);
 %% Save Animation as Video
 clc;
 shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
 r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
-%r.hFigure.WindowState = 'maximized';
-r = Accord.saveAnimateRealisation(r, 5, "D:\dev\videos\sim3.mp4");
+%%
+r.hFigure.WindowState = 'maximized';
+%%
+r = Accord.saveAnimateRealisation(r, 1, "D:\dev\videos\sim3.mp4");
 %% Display Regions
 clc;
 Accord.displayRegions(sim, 10);
