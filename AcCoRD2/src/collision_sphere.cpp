@@ -13,6 +13,11 @@ namespace accord::shape::collision
 
 	}
 
+	Sphere::Sphere(basic::Sphere sphere)
+		: basic::Sphere(sphere)
+	{
+	}
+
 	std::optional<Collision3D> Sphere::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{
 		// find the collision times of the line (formed by points origin and end) with the sphere

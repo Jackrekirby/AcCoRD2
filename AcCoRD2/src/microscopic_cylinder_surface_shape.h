@@ -15,6 +15,8 @@ namespace accord::microscopic
 	public:
 		CylinderSurfaceShape(Vec3d base_centre, double radius, double length, Axis3D axis);
 
+		CylinderSurfaceShape(shape::basic::Cylinder cylinder);
+
 		std::optional<shape::collision::Collision3D>
 			CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 

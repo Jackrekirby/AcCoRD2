@@ -9,6 +9,11 @@ namespace accord::microscopic
 
 	}
 
+	SphereSurfaceShape::SphereSurfaceShape(shape::basic::Sphere sphere)
+		: shape::collision::Sphere(sphere)
+	{
+	}
+
 	std::optional<shape::collision::Collision3D>
 		SphereSurfaceShape::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{

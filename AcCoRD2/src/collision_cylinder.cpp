@@ -15,6 +15,14 @@ namespace accord::shape::collision
 
 	}
 
+	Cylinder::Cylinder(basic::Cylinder cylinder)
+		: basic::Cylinder(cylinder),
+		circle(GetCircleCentre(), cylinder.GetRadius()),
+		base_face({ GetBase(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() }),
+		top_face({ GetTop(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() })
+	{
+	}
+
 	std::optional<Collision3D> Cylinder::CalculateExternalCollisionData
 		(const Vec3d& origin, const Vec3d& end) const
 	{

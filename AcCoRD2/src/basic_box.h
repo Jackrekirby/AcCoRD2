@@ -49,8 +49,8 @@ namespace accord::shape::basic
 		}
 	private:
 		Vec3d origin;
-		Vec3d end;
 		Vec3d length;
+		Vec3d end;
 	};
 
 	void to_json(Json& j, const Box& box);

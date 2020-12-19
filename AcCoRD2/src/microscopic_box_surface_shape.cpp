@@ -9,6 +9,12 @@ namespace accord::microscopic
 
 	}
 
+	BoxSurfaceShape::BoxSurfaceShape(shape::basic::Box box)
+		: shape::collision::Box(box)
+	{
+
+	}
+
 	std::optional<shape::collision::Collision3D>
 		BoxSurfaceShape::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{

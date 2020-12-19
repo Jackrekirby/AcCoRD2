@@ -15,13 +15,15 @@ namespace accord::shape::basic
 
 	Box::Box(const Cylinder& cylinder)
 		: origin(cylinder.GetBase(), cylinder.GetCircleCentre() - cylinder.GetRadius(), cylinder.GetAxis()),
-		length(cylinder.GetLength(), { 2 * cylinder.GetRadius(), 2 * cylinder.GetRadius() }, cylinder.GetAxis())
+		length(cylinder.GetLength(), { 2 * cylinder.GetRadius(), 2 * cylinder.GetRadius() }, cylinder.GetAxis()),
+		end(origin + length)
 	{
 	}
 
 	Box::Box(const Sphere& sphere)
 		: origin(sphere.GetCentre() - sphere.GetRadius()),
-		length(Vec3d::FromScalar(sphere.GetRadius() * 2))
+		length(Vec3d::FromScalar(sphere.GetRadius() * 2)),
+		end(origin + length)
 	{
 
 	}

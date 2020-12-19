@@ -56,6 +56,16 @@ namespace accord
 		return current_realisation;
 	}
 
+	microscopic::Region2& Environment::GetRegion(RegionID id)
+	{
+		return *microscopic_regions.at(id);
+	}
+
+	std::vector<std::unique_ptr<microscopic::Region2>>& Environment::GetRegions()
+	{
+		return microscopic_regions;
+	}
+
 	std::string Environment::GetFilePath()
 	{
 		return Environment::GetSimulationName() +
@@ -88,7 +98,7 @@ namespace accord
 		std::filesystem::create_directories(GetFilePath());
 	}
 
-	std::vector<microscopic::Region2> Environment::microscopic_regions;
+	std::vector<std::unique_ptr<microscopic::Region2>> Environment::microscopic_regions;
 	double Environment::run_time = 0;
 	double Environment::time = 0;
 	int Environment::num_molecule_types = 0;

@@ -17,6 +17,8 @@ namespace accord::shape::collision
 	public:
 		Cylinder(const Vec3d& base_centre, double radius, double length, const Axis3D& axis);
 
+		Cylinder(basic::Cylinder cylinder);
+
 		std::optional<Collision3D> CalculateExternalCollisionData
 		(const Vec3d& origin, const Vec3d& end) const;
 

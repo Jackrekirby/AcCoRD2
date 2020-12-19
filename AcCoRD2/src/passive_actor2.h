@@ -14,21 +14,7 @@ namespace accord::microscopic
 
 namespace accord
 {
-	// move to seperate header
-	class PassiveActorShape
-	{
-	public:
-		virtual bool IsMoleculeInsideBorder(const Vec3d& position) const = 0;
-
-		virtual bool IsSubvolumeInsideBorder(const shape::relation::Box& box) const = 0;
-
-		virtual bool IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const = 0;
-	};
-
-	// make passive actor base class with derived classes of different shapes so the shape
-	// does not have to be a unique pointer
-
-	class PassiveActor : public Event
+	class PassiveActor2 : public Event
 	{
 		class TypedSubvolumes
 		{
@@ -41,11 +27,7 @@ namespace accord
 			std::vector<microscopic::Subvolume2*> subvolumes;
 		};
 	public:
-		PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
-			double start_time, int priority, EventQueue* event_queue, double time_step,
-			ActiveActorID id, bool record_positions, bool record_time);
-
-		PassiveActor(MoleculeIDs molecule_ids,
+		PassiveActor2(RegionIDs region_ids, MoleculeIDs molecule_ids,
 			double start_time, int priority, EventQueue* event_queue, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
@@ -56,31 +38,24 @@ namespace accord
 		void NextRealisation();
 
 		void Run();
-
-		virtual const PassiveActorShape* const GetShape() const = 0;
 	private:
 		std::vector<OutputBinaryVectors<Vec3d>> position_files;
 		std::vector<OutputBinarySingles<size_t>> count_files;
 		std::vector<OutputBinarySingles<double>> time_files;
-
 		std::vector<TypedSubvolumes> enveloped_subvolumes;
-		std::vector<TypedSubvolumes> partial_subvolumes;
+
+		MoleculeIDs molecule_ids;
 		ActiveActorID id;
 		double time_step;
 		double start_time;
-
-		MoleculeIDs molecule_ids;
 		bool record_positions;
 		bool record_time;
 
 		void CreateFiles();
 
-		void AddMicroscopicSubvolumesWhichAreInsideActor(MoleculeIDs molecule_ids);
-
 		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, RegionIDs region_ids);
 
 		void ObserveEnvelopedMicroscopicSubvolumes();
 
-		void ObservePartialMicroscopicSubvolumes();
 	};
 }

@@ -11,13 +11,13 @@
 namespace accord::microscopic
 {
 	Region2::Region2(std::vector<double> diffision_coefficients,
-		std::vector<Vec3i> n_subvolumes_per_grid, std::unique_ptr<SurfaceShape> surface_shape,
+		std::vector<Vec3i> n_subvolumes_per_grid,
 		double start_time, double time_step, int priority, EventQueue* event_queue,
 		SurfaceType surface_type, RegionID id)
-		: surface_shape(std::move(surface_shape)), Event(start_time, priority, event_queue),
+		: Event(start_time, priority, event_queue),
 		time_step(time_step), id(id), surface_type(surface_type), start_time(start_time)
 	{
-		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid);
+		
 	}
 
 	void Region2::Run()
@@ -122,7 +122,6 @@ namespace accord::microscopic
 		}
 	}
 
-	
 	void Region2::LinkGrids()
 	{
 		for (auto g1 = grids.begin(); g1 != grids.end(); ++g1)
@@ -158,11 +157,6 @@ namespace accord::microscopic
 	Event::Type Region2::GetType() const
 	{
 		return Event::Type::microscopic_region;
-	}
-
-	const SurfaceShape& Region2::GetShape() const
-	{
-		return *surface_shape;
 	}
 
 	SurfaceType Region2::GetSurfaceType() const

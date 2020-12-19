@@ -11,7 +11,7 @@ namespace accord::shape::collision
 	}
 
 	Box::Box(basic::Box box)
-		: basic::Box(box.GetOrigin(), box.GetLength()), faces(GenerateFaces())
+		: basic::Box(box), faces(GenerateFaces())
 	{
 	}
 

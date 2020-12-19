@@ -244,6 +244,21 @@
     <ClCompile Include="src\basic_shape.cpp">
       <Filter>src\shapes\basic\shape</Filter>
     </ClCompile>
+    <ClCompile Include="src\microscopic_box_region.cpp">
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_sphere_region.cpp">
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_cylinder_region.cpp">
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shapeless_passive_actor.cpp">
+      <Filter>src\simulation\actors\passive</Filter>
+    </ClCompile>
+    <ClCompile Include="src\box_passive_actor.cpp">
+      <Filter>src\simulation\actors\passive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -530,6 +545,21 @@
     </ClInclude>
     <ClInclude Include="src\basic_shape_3d.h">
       <Filter>src\shapes\basic\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_box_region.h">
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_sphere_region.h">
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_cylinder_region.h">
+      <Filter>src\simulation\regimes\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shapeless_passive_actor.h">
+      <Filter>src\simulation\actors\passive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\box_passive_actor.h">
+      <Filter>src\simulation\actors\passive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

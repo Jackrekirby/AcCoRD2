@@ -328,8 +328,6 @@ namespace accord::microscopic
 	}
 
 	// Inherited Class Functions
-
-
 	const SurfaceShape& Grid2::GetShape() const
 	{
 		return region->GetShape();

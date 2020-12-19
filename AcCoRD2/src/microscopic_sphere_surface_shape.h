@@ -15,6 +15,8 @@ namespace accord::microscopic
 	public:
 		SphereSurfaceShape(Vec3d centre, double radius);
 
+		SphereSurfaceShape(shape::basic::Sphere sphere);
+
 		std::optional<shape::collision::Collision3D>
 			CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 

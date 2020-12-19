@@ -1,3 +1,0 @@
-[info] main.cpp:168 TestEnvironment2() Realisation 0
-[info] main.cpp:168 TestEnvironment2() Realisation 1
-[info] main.cpp:183 TestEnvironment2() Cleaning Up

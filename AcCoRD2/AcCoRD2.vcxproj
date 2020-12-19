@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\box_passive_actor.cpp" />
+    <ClCompile Include="src\shapeless_passive_actor.cpp" />
+    <ClCompile Include="src\microscopic_box_region.cpp" />
     <ClCompile Include="src\basic_shape.cpp" />
+    <ClCompile Include="src\microscopic_cylinder_region.cpp" />
     <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp" />
     <ClCompile Include="src\collision_shape_3d.cpp" />
     <ClCompile Include="src\generating_shape_3d.cpp" />
@@ -27,6 +31,7 @@
     <ClCompile Include="src\collision_plane.cpp" />
     <ClCompile Include="src\generating_cylinder.cpp" />
     <ClCompile Include="src\generating_plane.cpp" />
+    <ClCompile Include="src\microscopic_sphere_region.cpp" />
     <ClCompile Include="src\relation_cylinder.cpp" />
     <ClCompile Include="src\basic_cylinder.cpp" />
     <ClCompile Include="src\microscopic_relationship.cpp" />
@@ -137,14 +142,19 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\box_passive_actor.h" />
+    <ClInclude Include="src\shapeless_passive_actor.h" />
+    <ClInclude Include="src\microscopic_box_region.h" />
     <ClInclude Include="src\basic_shape_3d.h" />
     <ClInclude Include="src\basic_shape.h" />
+    <ClInclude Include="src\microscopic_cylinder_region.h" />
     <ClInclude Include="src\microscopic_cylinder_surface_shape.h" />
     <ClInclude Include="src\collision_shape_3d.h" />
     <ClInclude Include="src\generating_shape_3d.h" />
     <ClInclude Include="src\collision_plane.h" />
     <ClInclude Include="src\generating_cylinder.h" />
     <ClInclude Include="src\generating_plane.h" />
+    <ClInclude Include="src\microscopic_sphere_region.h" />
     <ClInclude Include="src\relation_cylinder.h" />
     <ClInclude Include="src\basic_cylinder.h" />
     <ClInclude Include="src\collision_cylinder.h" />

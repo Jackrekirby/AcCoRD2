@@ -19,7 +19,7 @@ namespace accord::microscopic
 	{
 	public:
 		Region2(std::vector<double> diffision_coefficients,
-			std::vector<Vec3i> n_subvolumes, std::unique_ptr<SurfaceShape> surface_shape,
+			std::vector<Vec3i> n_subvolumes,
 			double start_time, double time_step, int priority, EventQueue* event_queue,
 			SurfaceType surface_type, RegionID id);
 
@@ -64,7 +64,7 @@ namespace accord::microscopic
 
 		Event::Type GetType() const;
 
-		const SurfaceShape& GetShape() const;
+		virtual const SurfaceShape& GetShape() const = 0;
 
 		SurfaceType GetSurfaceType() const;
 
@@ -72,7 +72,7 @@ namespace accord::microscopic
 
 		void NextRealisation();
 	private:
-		std::unique_ptr<SurfaceShape> surface_shape;
+		//std::unique_ptr<SurfaceShape> surface_shape;
 		SurfaceType surface_type;
 
 		std::vector<Grid2> grids;
@@ -85,8 +85,6 @@ namespace accord::microscopic
 		double start_time;
 		RegionID id;
 
-		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);
-
 		// links local grids to eachother for bi-molecular reactions
 		void LinkGrids();
 
@@ -95,5 +93,8 @@ namespace accord::microscopic
 		// may wish to sperate function into neighbour, high priority and low priority linking for speed
 		// (no need to check for overlap between subvolumes between neighbouring regions)
 		void LinkGrids(Region2& region, const MoleculeIDs& ids);
+
+	protected:
+		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);
 	};
 }

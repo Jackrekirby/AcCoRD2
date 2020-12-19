@@ -10,6 +10,8 @@ namespace accord::shape::collision
 	public:
 		Sphere(Vec3d centre, double radius);
 
+		Sphere(basic::Sphere sphere);
+
 		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
 		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
