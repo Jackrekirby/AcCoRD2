@@ -4,6 +4,10 @@
 // add cylinders
 // change circle collision to const
 // consider converting planes into single non-virtual class
+// is neighbouring functions should return boolean
+// only is partially neighbouring function of boxes needs to calculate area
+// add as seperate function. e.g. CalculateAreaBetweenNeighbouringBoxes()
+// rename relation surface shape to shape 2d
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -14,15 +18,13 @@
 
 // IN PROGRESS
 // add vector operation - (scalar)
-
-// TO DO (IMPORTANT)
-// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
 // consider adding generate bounding box and rect to all shapes
 // consider multiple constructors for shapes so you can generate shapes using other shapes
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
-// is neighbouring functions should return boolean
-// only is partially neighbouring function of boxes needs to calculate area
-// add as seperate function. e.g. CalculateAreaBetweenNeighbouringBoxes()
+
+// TO DO (IMPORTANT)
+// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
+// may need to seperate microscopic surface shape from microscopic region shapes as regions cannot be typical surfaces?
 
 // TO DO (distant future)
 // surfaces
@@ -31,7 +33,6 @@
 // regions per shape to avoid unique pointer
 
 // TO DO (Not as important)
-// rename relation surface shape to shape 2d
 // consider passing objects into constructor via const reference to avoid including headers in headers
 // ensure consistent to ToJson to_json
 // check json works
@@ -49,6 +50,7 @@
 // i.e. region updates its next event time from 1s to 2s. Then at 2s the event from 1 to 2 occur. 
 // At the end of the update all molecules should have caught up to 2s.
 // 2. Cant add passive actors to vector
+// 3. Why are molecules reflecting too many times when a cylinder spans across another cylinder?
 
 // RESEARCH
 // custom destructor
@@ -63,6 +65,117 @@
 #include "microscopic_box_surface_shape.h"
 #include "microscopic_surface_shape.h"
 #include "microscopic_sphere_surface_shape.h"
+#include "microscopic_cylinder_surface_shape.h"
+#include "collision_cylinder.h"
+#include "relation_cylinder.h"
+#include "relation_sphere.h"
+
+void TestEnvironment2()
+{
+	using namespace accord;
+
+	// SIMULATION
+	std::string sim_dir = "D:/dev/my_simulation3";
+	Environment::Init(sim_dir, 2, 10, 3, 2, 1);
+	EventQueue event_queue(6);
+
+	//SHAPES
+	g_json["shapes"]["box"].emplace_back(shape::basic::Box(Vec3d(-2, -2, -2), Vec3d(4, 4, 4)));
+	g_json["shapes"]["cylinder"].emplace_back(shape::basic::Cylinder(Vec3d(2, 0, 0), 2, 6, Axis3D::x));
+	g_json["shapes"]["cylinder"].emplace_back(shape::basic::Cylinder(Vec3d(4, -6, 0), 1.5, 6, Axis3D::y));
+
+	std::ofstream ofile(sim_dir + "/regions.json");
+	ofile << JsonToString(g_json);
+	ofile.close();
+
+	// REGIONS
+
+	std::vector<double> diffision_coefficients = { 1, 2, 3 };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(2, 2, 2), Vec3i(1, 1, 1), Vec3i(1, 1, 1) };
+	double start_time = 0;
+	double time_step = 0.05;
+	int priority = 0;
+
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape1 =
+		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
+
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape2 =
+		std::make_unique<microscopic::CylinderSurfaceShape>(Vec3d(2, 0, 0), 2, 6, Axis3D::x);
+
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape3 =
+		std::make_unique<microscopic::CylinderSurfaceShape>(Vec3d(4, -6, 0), 1.5, 6, Axis3D::y);
+
+	Environment::microscopic_regions.reserve(3);
+	Environment::microscopic_regions.emplace_back(
+		diffision_coefficients, n_subvolumes, std::move(surface_shape1),
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 0);
+	
+	Environment::microscopic_regions.emplace_back(
+		diffision_coefficients, n_subvolumes, std::move(surface_shape2),
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 1);
+
+	Environment::microscopic_regions.emplace_back(
+		diffision_coefficients, n_subvolumes, std::move(surface_shape3),
+		start_time, time_step, priority, &event_queue, microscopic::SurfaceType::Reflecting, 2);
+
+	// MOLECULES
+	for (int i = 0; i < 15; i++)
+	{
+		Environment::microscopic_regions.at(0).AddMolecule(0, { 0, 0, 0 });
+		Environment::microscopic_regions.at(0).AddMolecule(1, { 0, 0, 0 });
+		Environment::microscopic_regions.at(0).AddMolecule(2, { 0, 0, 0 });
+	}
+
+	Environment::microscopic_regions.at(0).AddNeighbour(Environment::microscopic_regions.at(1), 
+		microscopic::SurfaceType::None, { 0, 1, 2 });
+	Environment::microscopic_regions.at(1).AddNeighbour(Environment::microscopic_regions.at(0),
+		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
+	Environment::microscopic_regions.at(1).AddLowPriorityRelative(Environment::microscopic_regions.at(2),
+		microscopic::SurfaceType::None, { 0, 1, 2 });
+	Environment::microscopic_regions.at(2).AddHighPriorityRelative(Environment::microscopic_regions.at(1),
+		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
+
+	// ACTORS
+	PassiveActor p1(RegionIDs({ 0 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+	PassiveActor p2(RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true);
+	PassiveActor p3(RegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true);
+
+	do {
+		if (Environment::GetRealisationNumber() > 0)
+		{
+			p1.NextRealisation();
+			p2.NextRealisation();
+			p3.NextRealisation();
+
+			for (auto& region : Environment::microscopic_regions)
+			{
+				region.NextRealisation();
+			}
+
+			for (int i = 0; i < 15; i++)
+			{
+				Environment::microscopic_regions.at(0).AddMolecule(0, { 0, 0, 0 });
+				Environment::microscopic_regions.at(0).AddMolecule(1, { 0, 0, 0 });
+				Environment::microscopic_regions.at(0).AddMolecule(2, { 0, 0, 0 });
+			}
+		}
+		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+		while (true)
+		{
+			auto& event = event_queue.Front();
+			Environment::SetTime(event.GetTime());
+			if (Environment::GetTime() > Environment::GetRunTime())
+			{
+				//LOG_INFO("The Next Event Outside Run Time : ({})", event);
+				break;
+			}
+			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
+			//LOG_INFO("Event:({})", event);
+			event.Run();
+		}
+	} while (Environment::NextRealisation());
+	LOG_INFO("Cleaning Up");
+}
 
 void TestEnvironment()
 {
@@ -95,6 +208,13 @@ void TestEnvironment()
 
 	std::unique_ptr<microscopic::SurfaceShape> surface_shape5 =
 		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-7, -7, -7), Vec3d(14, 14, 14));
+
+	// sim 3
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape6 =
+		std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(-4, -4, -4), Vec3d(8, 8, 8));
+
+	std::unique_ptr<microscopic::SurfaceShape> surface_shape7 =
+		std::make_unique<microscopic::CylinderSurfaceShape>(Vec3d(7, 0, 0), 6, 3, Axis3D::x);
 
 
 	// MUST RESERVE NUMBER OF REGIONS OTHERWISE EVENT IS ADDED MULTIPLE TIMES TO QUEUE
@@ -157,7 +277,7 @@ void TestEnvironment()
 	// test path of single molecule
 	if (false)
 	{
-		auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { 22, 7, 9 });
+		auto a = Environment::microscopic_regions.at(0).GetGrid(0).CheckMoleculePath({ 0, 0, 0 }, { 22, 7, 9 }, 100);
 		if (a.has_value())
 		{
 			//LOG_INFO(a->GetPosition());
@@ -212,20 +332,11 @@ void TestEnvironment()
 			event.Run();
 		}
 	} while (Environment::NextRealisation());
+	LOG_INFO("Cleaning Up");
 }
 
-#include "collision_cylinder.h"
-#include "relation_cylinder.h"
-#include "relation_sphere.h"
-int main()
+void TestCylinder()
 {
-	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
-	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
-
-	//set run time global Logger level
-	accord::Logger::GetLogger()->set_level(spdlog::level::info);
-
-
 	using namespace accord;
 	using namespace accord::shape;
 	if (false)
@@ -257,6 +368,24 @@ int main()
 	LOG_INFO(cylinder.IsEnvelopedBy(sphere));
 	LOG_INFO(cylinder.IsOverlapping(sphere));
 	LOG_INFO(cylinder.IsEnveloping(sphere));
+}
+
+
+int main()
+{
+	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
+	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
+
+	//set run time global Logger level
+	accord::Logger::GetLogger()->set_level(spdlog::level::info);
+
+	TestEnvironment2();
+
+
+	//using namespace accord;
+	//using namespace accord::shape;
+	//collision::Cylinder c({ 0, 0, 0 }, 1, 5, Axis3D::x);
+	//LOG_INFO(c.IsOnFace({ 4, 0.5, 0.2 }));
 
 	//shape::collision::Box b(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
 	//LOG_INFO(JsonToPrettyString(b));

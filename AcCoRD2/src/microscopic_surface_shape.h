@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "collision_3d.h"
 #include "basic_box.h"
+#include "collision_shape_3d.h"
 
 namespace accord
 {

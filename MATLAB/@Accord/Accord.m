@@ -15,14 +15,13 @@ classdef Accord
             simulation.regions = Accord.importRegionShapes(simulationDir);
         end
         
-        function r = animateRealisation(simulation, seed, realisation, ...
-                figureLimits, playBackSpeed, colorByActor, shape3D)
+        function r = initAnimateRealisation(simulation, seed, realisation, ...
+                figureLimits, colorByActor, shape3D)
             arguments
                 simulation
                 seed = 1;
                 realisation = 1;
                 figureLimits = 10;
-                playBackSpeed = 1;
                 colorByActor = true;
                 shape3D = Shape3D;
             end
@@ -30,7 +29,23 @@ classdef Accord
             r.hFigure = Accord.initialiseFigure(figureLimits);
             r = Accord.initiliseMoleculePlots(r, colorByActor);
             r.hRegions = Accord.plotRegions(simulation, shape3D);
+        end
+        
+        function r = playAnimateRealisation(r, playBackSpeed)
+            arguments
+                r
+                playBackSpeed = 1;
+            end
             r = Accord.plotMolecules(r, playBackSpeed);
+        end
+        
+         function r = saveAnimateRealisation(r, playBackSpeed, path)
+            arguments
+                r
+                playBackSpeed = 1;
+                path = 'simulation_video.mp4';
+            end
+            r = Accord.saveMolecules(r, playBackSpeed, path);
         end
         
         function hRegions = displayRegions(simulation, figureLimits, shape3D)
@@ -331,49 +346,164 @@ classdef Accord
             simulationTime = 0;
             % list of indicies of all the actors to render in next update
             actorsToRender = [];
+            
             r.hFigure.Visible = 'on';
+            
             tic;
             % keep rendering until all observations have been rendered
             while(min(r.observationTimes) ~= Inf)
-                [observationTime, observationID] = min(r.observationTimes);
+                % if simulation is behind real time then skip frames
+                if(simulationTime / playBackSpeed < toc)
+                    while(simulationTime / playBackSpeed < toc)
+                        [observationTime, observationID] = min(r.observationTimes);
+                        % Skip all the observations at a single time, before
+                        % rechecking if simulation time is ahead of real time
+                        while(observationTime == simulationTime)
+                            r.p(observationID).timeIndex = r.p(observationID).timeIndex + 1;
+                            if(r.p(observationID).timeIndex > size(r.p(observationID).t, 1) )
+                                r.observationTimes(observationID) = Inf;
+                            else
+                                r.observationTimes(observationID) = ... 
+                                    r.p(observationID).t(r.p(observationID).timeIndex);
+                            end
+                            [observationTime, observationID] = min(r.observationTimes);
+                        end
+                        simulationTime = observationTime;
+                    end
+                else
+                    [observationTime, observationID] = min(r.observationTimes);
+                    % if the next actor's time is ahead of the current simulation time then
+                    % render all the actor observations from the current simulation time
+                    % before going onto the next actor
+                    if(observationTime > simulationTime)
+                        % display the simulation time in the window name
+                        r.hFigure.Name = "Simulation Time: " + simulationTime;
 
+                        for i = 1:length(actorsToRender)
+                            actor_id = actorsToRender(i);
+                            for iM = 1:length(r.p(actor_id).m)
+                                % only attempt to update plot if passive actor
+                                % includes the molecule type
+                                if(~isempty(r.p(actor_id).m(iM).p))
+                                    positions = Accord.getPositions(r.p(actor_id).m(iM), ...
+                                        r.p(actor_id).timeIndex - 1);
+                                    r.p(actor_id).m(iM).hPlot.XData = positions(:, 1);
+                                    r.p(actor_id).m(iM).hPlot.YData = positions(:, 2);
+                                    r.p(actor_id).m(iM).hPlot.ZData = positions(:, 3);
+                                end
+                            end
+                        end
+
+                        % now figure is about to be updated actorsToRender can
+                        % be emptied
+                        actorsToRender = [];
+
+                        % if real time is ahead of simulation time wait
+                       
+                        while(simulationTime / playBackSpeed > toc)
+                            pause(0.01 * ((simulationTime / playBackSpeed) - toc));
+                        end
+                     
+                        simulationTime = observationTime;
+
+                        drawnow limitrate;
+                    end
+
+                    actorsToRender = [actorsToRender, observationID];
+
+                    % update actors next observation time or set to Inf is no
+                    % observations left
+                    r.p(observationID).timeIndex = r.p(observationID).timeIndex + 1;
+                    if(r.p(observationID).timeIndex > size(r.p(observationID).t, 1) )
+                        r.observationTimes(observationID) = Inf;
+                    else
+                        r.observationTimes(observationID) = ... 
+                            r.p(observationID).t(r.p(observationID).timeIndex);
+                    end
+                end
+            end
+            
+            r.hFigure.Name = "Simulation Complete";
+        end
+        
+        function r = saveMolecules(r, playBackSpeed, savePath)
+            simulationTime = 0;
+            % list of indicies of all the actors to render in next update
+            actorsToRender = [];
+            
+            r.hFigure.Visible = 'on';
+            
+            % TO DO: preallocate frames by calculating number of unique times
+            frames(1) = getframe(gcf);
+            frameNo = 1;
+            possibleFrames = 1;
+            iFrame = 1;
+            tic;
+            
+            % Work out the number of frames
+            lastObservationTime = 0;
+            for iObserver = 1:length(r.p)
+                allObservationTimes = [r.p(iObserver).t, r.p(iObserver).t];
+                if(lastObservationTime < r.p(iObserver).t(end))
+                    lastObservationTime = r.p(iObserver).t(end);
+                end
+            end
+            % If the calculated frame rate > 30 then skip frames to get
+            % frame rate <= 30
+            nFrames = length(unique(allObservationTimes));
+            frameRate = 1 / ((lastObservationTime / playBackSpeed) / nFrames);
+            saveEveryNFrame = 1;
+            if(frameRate > 30)
+                saveEveryNFrame = frameRate / 30
+                newFrameRate = frameRate / saveEveryNFrame;
+                disp("Frame Rate Capped From: " + frameRate + ", to: " + newFrameRate);
+                frameRate = newFrameRate;
+            end
+            
+            % keep rendering until all observations have been rendered
+            while(min(r.observationTimes) ~= Inf)
+                [observationTime, observationID] = min(r.observationTimes);
                 % if the next actor's time is ahead of the current simulation time then
                 % render all the actor observations from the current simulation time
                 % before going onto the next actor
-                
                 if(observationTime > simulationTime)
-                    % display the simulation time in the window name
-                    r.hFigure.Name = "Simulation Time: " + simulationTime;
+                    if(frameNo > saveEveryNFrame)
+                        possibleFrames
+                        frameNo = frameNo - saveEveryNFrame;
+                        % display the simulation time in the window name
+                        r.hFigure.Name = "Simulation Time: " + simulationTime;
 
-                    for i = 1:length(actorsToRender)
-                        actor_id = actorsToRender(i);
-                        for iM = 1:length(r.p(actor_id).m)
-                            % only attempt to update plot if passive actor
-                            % includes the molecule type
-                            if(~isempty(r.p(actor_id).m(iM).p))
-                                positions = Accord.getPositions(r.p(actor_id).m(iM), ...
-                                    r.p(actor_id).timeIndex - 1);
-                                r.p(actor_id).m(iM).hPlot.XData = positions(:, 1);
-                                r.p(actor_id).m(iM).hPlot.YData = positions(:, 2);
-                                r.p(actor_id).m(iM).hPlot.ZData = positions(:, 3);
+                        for i = 1:length(actorsToRender)
+                            actor_id = actorsToRender(i);
+                            for iM = 1:length(r.p(actor_id).m)
+                                % only attempt to update plot if passive actor
+                                % includes the molecule type
+                                if(~isempty(r.p(actor_id).m(iM).p))
+                                    positions = Accord.getPositions(r.p(actor_id).m(iM), ...
+                                        r.p(actor_id).timeIndex - 1);
+                                    r.p(actor_id).m(iM).hPlot.XData = positions(:, 1);
+                                    r.p(actor_id).m(iM).hPlot.YData = positions(:, 2);
+                                    r.p(actor_id).m(iM).hPlot.ZData = positions(:, 3);
+                                end
                             end
                         end
-                    end
 
-                    % now figure is about to be updated actorsToRender can
-                    % be emptied
-                    actorsToRender = [];
+                        % now figure is about to be updated actorsToRender can
+                        % be emptied
+                        actorsToRender = [];
 
-                    % if real time is ahead of simulation time wait
-                    while(simulationTime / playBackSpeed > toc)
-                        pause(0.01 * ((simulationTime / playBackSpeed) - toc));
+                        simulationTime = observationTime;
+
+                        drawnow;
+                        frames(iFrame) = getframe(gcf);
+                        iFrame = iFrame + 1;
                     end
-                    
-                    simulationTime = observationTime;
-                    drawnow limitrate;
+                    frameNo = frameNo + 1;
+                    possibleFrames = possibleFrames + 1;
                 end
 
                 actorsToRender = [actorsToRender, observationID];
+
                 % update actors next observation time or set to Inf is no
                 % observations left
                 r.p(observationID).timeIndex = r.p(observationID).timeIndex + 1;
@@ -384,8 +514,22 @@ classdef Accord
                         r.p(observationID).t(r.p(observationID).timeIndex);
                 end
             end
-
-            r.hFigure.Name = "Simulation Time: " + simulationTime + " (Complete)";
+            
+            r.hFigure.Name = "Simulation Complete. Saving Video...";
+            % create the video writer
+            writerObj = VideoWriter(savePath, 'MPEG-4');
+            % set the seconds per image
+            writerObj.FrameRate = frameRate;
+            % open the video writer
+            open(writerObj);
+            % write the frames to the video
+            for i = 1:length(frames)
+                % convert the image to a frame
+                writeVideo(writerObj, frames(i));
+            end
+            % close the writer object
+            close(writerObj);
+            r.hFigure.Name = "Simulation Complete. Video Saved.";
         end
         
         function positions= getPositions(file, index)

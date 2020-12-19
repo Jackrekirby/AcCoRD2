@@ -26,6 +26,6 @@ namespace accord::microscopic
 		// remove const SurfaceType&
 		virtual std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
 			const shape::collision::Collision3D& collision, Grid2* owner, 
-			 SurfaceType surface_type) = 0;
+			 SurfaceType surface_type, int cycles) = 0;
 	};
 }

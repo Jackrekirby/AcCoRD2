@@ -9,6 +9,11 @@
 % CountPlotter - plots mlecule counts (per seed, per realisation, per observer, per molecule type)
 % s#r#p#m#
 
+
+% May want to seperate animateRealisation into initialise and run so user
+% can edit figure before it runs.
+% Allow animation to skip frames if it is running behind
+
 %% To Do List
 
 % Ensure consistent style key value pairs (Word Case)           DONE

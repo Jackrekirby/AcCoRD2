@@ -46,7 +46,7 @@ namespace accord::microscopic
 
 		void DiffuseMolecules();
 
-		std::optional<MoleculeDestination> CheckMoleculePath(const Vec3d& origin, const Vec3d& end);
+		std::optional<MoleculeDestination> CheckMoleculePath(const Vec3d& origin, const Vec3d& end, int cycles);
 
 		// dont change old position, create new one.
 		Vec3d DiffuseMolecule(const NormalMolecule& molecule);
@@ -95,7 +95,7 @@ namespace accord::microscopic
 		// may be able to merge these pass functions
 		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
 			const shape::collision::Collision3D& collision, Grid2* owner,
-			SurfaceType surface_type);
+			SurfaceType surface_type, int cycles);
 
 	private:
 		// need to change to NeighbourAndSurfaceType ...

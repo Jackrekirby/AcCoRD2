@@ -15,6 +15,12 @@ namespace accord::shape::relation
 		
 	}
 
+	Box::Box(basic::Box box)
+		: basic::Box(box.GetOrigin(), box.GetLength()), faces(GenerateFaces()),
+		projected_shapes(GenerateProjectedShapes())
+	{
+	}
+
 	std::enum_array<Face, RectSurface, 6> Box::GenerateFaces()
 	{
 		return {

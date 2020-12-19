@@ -13,6 +13,8 @@ namespace accord::shape::relation
 	public:
 		Box(Vec3d origin, Vec3d length);
 
+		Box(basic::Box box);
+
 		bool IsOverlapping(const Box& other) const;
 
 		bool IsEnveloping(const Box& other) const;

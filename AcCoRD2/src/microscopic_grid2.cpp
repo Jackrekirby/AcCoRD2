@@ -36,6 +36,7 @@ namespace accord::microscopic
 
 	void Grid2::DiffuseMolecules()
 	{
+		int max_cycles = 20;
 		for (auto& subvolume : subvolumes)
 		{
 			// normal molecule list is completed replaced each event instead of deleting molecules which move
@@ -43,7 +44,7 @@ namespace accord::microscopic
 			std::vector<NormalMolecule> normal_molecules;
 			for (auto& molecule : subvolume.GetNormalMolecules())
 			{
-				std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule));
+				std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule), max_cycles);
 				if (md.has_value())
 				{
 					//LOG_CRITICAL(md->GetPosition());
@@ -65,7 +66,7 @@ namespace accord::microscopic
 			{
 				if (molecule.GetTime() < Environment::GetTime())
 				{
-					std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule));
+					std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule), max_cycles);
 					if (md.has_value())
 					{
 						// if the owner is the same molecule remains a normal molecule
@@ -95,72 +96,83 @@ namespace accord::microscopic
 		}		
 	}
 
-	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end)
+	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end, int cycles)
 	{
-		// for debugging
-		g_json["path3D"].emplace_back(origin);
-		g_json["path3D"].emplace_back(end);
-		
-
-		// need to add max reflections counter
-
-		Relationship* closest_relationship = nullptr;
-		shape::collision::Collision3D closest_collision;
-		double shortest_time = 2; // collision time must be between 0 and 1
-		for (auto& relationship : high_priority_relationships)
+		if (cycles > 0)
 		{
-			auto collision = relationship.GetRelative().GetShape().CalculateExternalCollisionData(origin, end);
-			if (collision.has_value() && collision->time < shortest_time)
+			cycles--;
+			// for debugging
+			g_json["path3D"].emplace_back(origin);
+			g_json["path3D"].emplace_back(end);
+
+
+			// need to add max reflections counter
+
+			Relationship* closest_relationship = nullptr;
+			shape::collision::Collision3D closest_collision;
+			double shortest_time = 2; // collision time must be between 0 and 1
+			for (auto& relationship : high_priority_relationships)
 			{
-				closest_relationship = &relationship;
-				closest_collision = collision.value();
-			}
-		}
-		// if the collision time changed there was a valid collision
-		if (closest_relationship != nullptr)
-		{
-			return closest_relationship->GetRelative().PassMolecule(end, 
-				closest_collision, this, closest_relationship->GetSurfaceType());
-		}
-
-		auto collision = GetRegion().GetShape().CalculateInternalCollisionData(origin, end);
-		if (collision.has_value())
-		{
-			for (auto& relationship : low_priority_relationships)
-			{
-				if (relationship.GetRelative().GetShape().IsMoleculeInsideBorder(collision->intersection))
+				auto collision = relationship.GetRelative().GetShape().CalculateExternalCollisionData(origin, end);
+				if (collision.has_value() && collision->time < shortest_time)
 				{
-					// assumes you dont have mulitple valid low priority neighbours overlapping
-					return relationship.GetRelative().PassMolecule(end, collision.value(), 
-						this, relationship.GetSurfaceType());
+					closest_relationship = &relationship;
+					closest_collision = collision.value();
 				}
 			}
-
-			// would be good if u could get ids of neighbours
-			for (auto& relationship : neighbour_relationships)
+			// if the collision time changed there was a valid collision
+			if (closest_relationship != nullptr)
 			{
-				// neighbours must be sorted by youngest and neighbours of the same age must not overlap
-				if (relationship.GetRelative().GetShape().IsMoleculeOnBorder(collision->intersection))
-				{
-					//LOG_INFO("HIT NEIGHBOUR");
-					return relationship.GetRelative().PassMolecule(end, collision.value(), 
-						this, relationship.GetSurfaceType());
-				}
+				return closest_relationship->GetRelative().PassMolecule(end,
+					closest_collision, this, closest_relationship->GetSurfaceType(), cycles);
 			}
 
-			// assume reflection at the moment but will depend on the type of surface
-			//LOG_INFO("MOLECULE REFLECTED");
-			
-			// dont need an internal surface relative
-			// just specific a simulation boundary region which has to be a low priority relative
-			// of all regions. Therefore a region does not need its own surface type
-			// the global region cannot have a membrane surface (can be done with simple json file check)
-			// disable collision checks on global region?
-			return PassMolecule(end, collision.value(), this, GetDefaultSurfaceType());
-			//return CheckMoleculePath(collision->intersection, collision->reflection);
-		}
+			auto collision = GetRegion().GetShape().CalculateInternalCollisionData(origin, end);
+			if (collision.has_value())
+			{
+				for (auto& relationship : low_priority_relationships)
+				{
+					if (relationship.GetRelative().GetShape().IsMoleculeInsideBorder(collision->intersection))
+					{
+						// assumes you dont have mulitple valid low priority neighbours overlapping
+						return relationship.GetRelative().PassMolecule(end, collision.value(),
+							this, relationship.GetSurfaceType(), cycles);
+					}
+				}
 
-		return MoleculeDestination(end, this);
+				// would be good if u could get ids of neighbours
+				for (auto& relationship : neighbour_relationships)
+				{
+					// neighbours must be sorted by youngest and neighbours of the same age must not overlap
+					if (relationship.GetRelative().GetShape().IsMoleculeOnBorder(collision->intersection))
+					{
+						//LOG_INFO("HIT NEIGHBOUR");
+						return relationship.GetRelative().PassMolecule(end, collision.value(),
+							this, relationship.GetSurfaceType(), cycles);
+					}
+				}
+
+				// assume reflection at the moment but will depend on the type of surface
+				//LOG_INFO("MOLECULE REFLECTED");
+
+				// dont need an internal surface relative
+				// just specific a simulation boundary region which has to be a low priority relative
+				// of all regions. Therefore a region does not need its own surface type
+				// the global region cannot have a membrane surface (can be done with simple json file check)
+				// disable collision checks on global region?
+				return PassMolecule(end, collision.value(), this, GetDefaultSurfaceType(), cycles);
+				//return CheckMoleculePath(collision->intersection, collision->reflection);
+			}
+			g_json.clear();
+			return MoleculeDestination(end, this);
+		}
+		else 
+		{
+			LOG_ERROR("molecule hit maxiumum interaction cycles");
+			LOG_ERROR(JsonToPrettyString(g_json["path3D"]));
+			g_json.clear();
+			return MoleculeDestination(origin, this);
+		}
 	}
 
 	// dont change old position, create new one.
@@ -337,15 +349,15 @@ namespace accord::microscopic
 	// collision spelt incorrectly
 	std::optional<MoleculeDestination> Grid2::PassMolecule(const Vec3d& end, 
 		const shape::collision::Collision3D& collision, Grid2* owner,
-		SurfaceType surface_type)
+		SurfaceType surface_type, int cycles)
 	{
 		//Absorping, Adsorbing, Membrane, Reflecting, None
 		switch (surface_type)
 		{
 		case SurfaceType::None:
-			return CheckMoleculePath(collision.intersection, end);
+			return CheckMoleculePath(collision.intersection, end, cycles);
 		case SurfaceType::Reflecting:
-			return owner->CheckMoleculePath(collision.intersection, collision.reflection);
+			return owner->CheckMoleculePath(collision.intersection, collision.reflection, cycles);
 		case SurfaceType::Absorbing:
 			return std::nullopt;
 		default:

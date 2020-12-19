@@ -238,6 +238,9 @@
     <ClCompile Include="src\collision_shape_3d.cpp">
       <Filter>src\shapes\collision\shape</Filter>
     </ClCompile>
+    <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp">
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -515,6 +518,9 @@
     </ClInclude>
     <ClInclude Include="src\collision_shape_3d.h">
       <Filter>src\shapes\collision\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_cylinder_surface_shape.h">
+      <Filter>src\simulation\regimes\microscopic\surface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

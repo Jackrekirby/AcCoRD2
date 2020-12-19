@@ -11,6 +11,11 @@ namespace accord::shape::generating
 
 	}
 
+	Box::Box(basic::Box box)
+		: basic::Box(box.GetOrigin(), box.GetLength()), faces(GenerateFaces())
+	{
+	}
+
 	std::enum_array<Face, RectSurface, 6> Box::GenerateFaces() const
 	{
 		return

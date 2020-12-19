@@ -4,10 +4,17 @@
 
 namespace accord::shape::basic
 {
+	class Cylinder;
+	class Sphere;
+
 	class Box
 	{
 	public:
 		Box(Vec3d origin, Vec3d length);
+
+		Box(const Cylinder& cylinder);
+
+		Box(const Sphere& sphere);
 
 		void Move(const Vec3d& origin);
 

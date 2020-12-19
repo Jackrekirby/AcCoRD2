@@ -111,5 +111,6 @@ namespace accord::shape::basic
 		j["base_centre"] = cylinder.GetBaseCentre();
 		j["radius"] = cylinder.GetRadius();
 		j["length"] = cylinder.GetLength();
+		j["axis"] = EnumToString(cylinder.GetAxis());
 	}
 }

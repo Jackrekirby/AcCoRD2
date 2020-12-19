@@ -1,11 +1,27 @@
 #include "pch.h"
 #include "basic_box.h"
 #include "vec3b.h"
+#include "vec2d.h"
+#include "basic_cylinder.h"
+#include "basic_sphere.h"
 
 namespace accord::shape::basic
 {
 	Box::Box(Vec3d origin, Vec3d length)
 		: origin(origin), length(length), end(origin + length)
+	{
+
+	}
+
+	Box::Box(const Cylinder& cylinder)
+		: origin(cylinder.GetBase(), cylinder.GetCircleCentre() - cylinder.GetRadius(), cylinder.GetAxis()),
+		length(cylinder.GetLength(), { 2 * cylinder.GetRadius(), 2 * cylinder.GetRadius() }, cylinder.GetAxis())
+	{
+	}
+
+	Box::Box(const Sphere& sphere)
+		: origin(sphere.GetCentre() - sphere.GetRadius()),
+		length(Vec3d::FromScalar(sphere.GetRadius() * 2))
 	{
 
 	}

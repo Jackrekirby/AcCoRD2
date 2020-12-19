@@ -10,6 +10,8 @@ namespace accord::shape::generating
 	public:
 		Box(Vec3d origin, Vec3d length);
 
+		Box(basic::Box box);
+
 		Vec3d GeneratePointOnSurface() const;
 
 		Vec3d GeneratePointInVolume() const;

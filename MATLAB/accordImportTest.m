@@ -25,16 +25,20 @@ grid minor;
 %% Import Simulation Data
 clear all;
 clc;
-sim = Accord.importFiles("D:\dev", "my_simulation", [], [], true);
+sim = Accord.importFiles("D:\dev", "my_simulation3", [], [], true);
 
-%% Animate Realisation
+%% Watch Animation Live
 clc;
-% animateRealisation(simulation, seed, realisation, ...
-% figureLimits, playBackSpeed, colorByActor, shape3D)
-
 shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
-r = Accord.animateRealisation(sim, 1, 1, 7, 0.2, true, shape3d);
-
+r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
+r.hFigure.WindowState = 'maximized';
+r = Accord.playAnimateRealisation(r, 2);
+%% Save Animation as Video
+clc;
+shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
+r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
+%r.hFigure.WindowState = 'maximized';
+r = Accord.saveAnimateRealisation(r, 5, "D:\dev\videos\sim3.mp4");
 %% Display Regions
 clc;
 Accord.displayRegions(sim, 10);
