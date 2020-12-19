@@ -8,13 +8,11 @@
 clear all;
 clc;
 sim = Accord.importFiles("D:\dev", "my_simulation3", [], [], true);
-
-
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('FaceAlpha', 0, 'LineColor', 'k');
 r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 0.1);
 
 %% Save Animation as Video
 clc;

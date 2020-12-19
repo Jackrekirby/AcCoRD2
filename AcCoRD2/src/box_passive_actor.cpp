@@ -8,7 +8,8 @@ namespace accord
 		: PassiveActor(molecule_ids, start_time, priority, event_queue, time_step, id, record_positions,
 		record_time), box(box)
 	{
-
+		AddMicroscopicSubvolumesWhichAreInsideActor(molecule_ids);
+		CreateFiles();
 	}
 
 	const PassiveActorBoxShape* const BoxPassiveActor::GetShape() const

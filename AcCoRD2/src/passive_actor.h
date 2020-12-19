@@ -73,14 +73,15 @@ namespace accord
 		bool record_positions;
 		bool record_time;
 
+		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, RegionIDs region_ids);
+
+		void ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts);
+
+		void ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts);
+
+	protected:
 		void CreateFiles();
 
 		void AddMicroscopicSubvolumesWhichAreInsideActor(MoleculeIDs molecule_ids);
-
-		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, RegionIDs region_ids);
-
-		void ObserveEnvelopedMicroscopicSubvolumes();
-
-		void ObservePartialMicroscopicSubvolumes();
 	};
 }

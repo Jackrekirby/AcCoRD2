@@ -29,8 +29,7 @@ namespace accord
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
-		AddMicroscopicSubvolumesWhichAreInsideActor(molecule_ids);
-		CreateFiles();
+		
 	}
 
 	PassiveActor::PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
@@ -81,8 +80,15 @@ namespace accord
 	void PassiveActor::Run()
 	{
 		if (record_time) time_files.begin()->Write(GetTime());
-		ObserveEnvelopedMicroscopicSubvolumes();
-		ObservePartialMicroscopicSubvolumes();
+		std::vector<size_t> counts(Environment::GetNumberOfMoleculeTypes(), 0);
+		ObserveEnvelopedMicroscopicSubvolumes(counts);
+		ObservePartialMicroscopicSubvolumes(counts);
+		MoleculeID id = 0;
+		for (auto& count : counts)
+		{
+			count_files.at(id).Write(count);
+			id++;
+		}
 		UpdateTime(GetTime() + time_step);
 	}
 
@@ -113,17 +119,20 @@ namespace accord
 		for (auto& id : molecule_ids)
 		{
 			enveloped_subvolumes.emplace_back(id);
-			partial_subvolumes.emplace_back(id);+++++++++++++++++++
+			partial_subvolumes.emplace_back(id);
 			for (auto& region : Environment::GetRegions())
 			{
+				LOG_INFO(region->GetID());
 				for (auto& subvolume : region->GetGrid(id).GetSubvolumes())
 				{
 					if (GetShape()->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
 					{
+						LOG_INFO("enveloped");
 						enveloped_subvolumes.back().Add(&subvolume);
 					}
 					else if (GetShape()->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
 					{
+						LOG_INFO("partial");
 						partial_subvolumes.back().Add(&subvolume);
 					}
 					// otherwise subvolume is not inside actor so is ignored
@@ -148,7 +157,7 @@ namespace accord
 		}
 	}
 
-	void PassiveActor::ObserveEnvelopedMicroscopicSubvolumes()
+	void PassiveActor::ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts)
 	{
 		MoleculeID id = 0;
 		// get all enveloped subvolumes of a given type
@@ -173,16 +182,15 @@ namespace accord
 			// write positions all of the same molecule type to file
 			if (positions.size() != 0)
 			{
-				
 				position_files.at(id).Write(positions);
 			}
-			count_files.at(id).Write(positions.size());
+			counts.at(id) += positions.size();
 			positions.clear();
 			id++;
 		}
 	}
 
-	void PassiveActor::ObservePartialMicroscopicSubvolumes()
+	void PassiveActor::ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts)
 	{
 		MoleculeID id = 0;
 		// get all partial subvolumes of a given type
@@ -211,8 +219,11 @@ namespace accord
 				}
 			}
 			// write positions all of the same molecule type to file
-			position_files.at(id).Write(positions);
-			count_files.at(id).Write(positions.size());
+			if (positions.size() != 0)
+			{
+				position_files.at(id).Write(positions);
+			}
+			counts.at(id) += positions.size();
 			positions.clear();
 			id++;
 		}

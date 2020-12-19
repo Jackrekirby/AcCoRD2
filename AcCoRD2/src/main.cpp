@@ -83,10 +83,9 @@ void TestEnvironment2()
 	// SIMULATION
 	std::string sim_dir = "D:/dev/my_simulation3";
 	Environment::Init(sim_dir, 2, 10, 3, 2, 1);
-	EventQueue event_queue(6);
+	EventQueue event_queue(7);
 
-	// Shapes
-
+	// CREATE REGIONS
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(2, 2, 2), Vec3i(1, 1, 1), Vec3i(1, 1, 1) };
 	double start_time = 0;
@@ -116,7 +115,7 @@ void TestEnvironment2()
 	ofile << JsonToString(g_json);
 	ofile.close();
 
-	// MOLECULES
+	// PLACE MOLECULES
 	for (int i = 0; i < 15; i++)
 	{
 		Environment::GetRegion(0).AddMolecule(0, { 0, 0, 0 });
@@ -124,6 +123,7 @@ void TestEnvironment2()
 		Environment::GetRegion(0).AddMolecule(2, { 0, 0, 0 });
 	}
 
+	// DEFINE REGION RELATIONSHIPS
 	Environment::GetRegion(0).AddNeighbour(Environment::GetRegion(1),
 		microscopic::SurfaceType::None, { 0, 1, 2 });
 	Environment::GetRegion(1).AddNeighbour(Environment::GetRegion(0),
@@ -133,37 +133,38 @@ void TestEnvironment2()
 	Environment::GetRegion(2).AddHighPriorityRelative(Environment::GetRegion(1),
 		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
 
-	// ACTORS
-	shape::basic::Box box1(Vec3d(-20, -20, -20), Vec3d(40, 40, 40));
-	BoxPassiveActor bpa(box1, MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+	// CREATE ACTORS
+	std::vector<std::unique_ptr<PassiveActor>> passive_actors;
+	passive_actors.reserve(1);
+	if (true)
+	{
+		passive_actors.emplace_back(std::make_unique<BoxPassiveActor>(
+			shape::basic::Box(Vec3d(-20, -20, -20), Vec3d(40, 40, 40)), 
+			MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
+	}
+	else
+	{
+		passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
+			RegionIDs({ 0, 1, 2 }), 
+			MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
+	}
+	//passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
+	//	RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true));
+	//passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
+	//	RegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true));
 
-
-	std::vector<ShapelessPassiveActor> passive_actors;
-	passive_actors.reserve(3);
-	passive_actors.emplace_back(RegionIDs({ 0 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
-	passive_actors.emplace_back(RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true);
-	passive_actors.emplace_back(RegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true);
-	//PassiveActor p1(RegionIDs({ 0 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
-	//PassiveActor p2(RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true);
-	//PassiveActor p3(RegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true);
-
+	// BEGIN SIMULATION LOOP
 	do {
 		if (Environment::GetRealisationNumber() > 0)
 		{
 			for (auto& passive_actor : passive_actors)
 			{
-				passive_actor.NextRealisation();
+				passive_actor->NextRealisation();
 			}
-			bpa.NextRealisation();
-			/*p1.NextRealisation();
-			p2.NextRealisation();
-			p3.NextRealisation();*/
-
 			for (auto& region : Environment::GetRegions())
 			{
 				region->NextRealisation();
 			}
-
 			for (int i = 0; i < 15; i++)
 			{
 				Environment::GetRegion(0).AddMolecule(0, { 0, 0, 0 });
