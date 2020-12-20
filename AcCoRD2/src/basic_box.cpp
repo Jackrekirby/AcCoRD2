@@ -22,7 +22,7 @@ namespace accord::shape::basic
 
 	Box::Box(const Sphere& sphere)
 		: origin(sphere.GetCentre() - sphere.GetRadius()),
-		length(Vec3d::FromScalar(sphere.GetRadius() * 2)),
+		length(sphere.GetRadius() * 2),
 		end(origin + length)
 	{
 

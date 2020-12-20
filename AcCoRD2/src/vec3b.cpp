@@ -10,9 +10,10 @@ namespace accord
 
     }
 
-    Vec3b Vec3b::FromScalar(bool s)
+    Vec3b::Vec3b(bool s)
+        : x(s), y(s), z(s)
     {
-        return Vec3b(s, s, s);
+
     }
 
     Axis3D Vec3b::FindAxis() const

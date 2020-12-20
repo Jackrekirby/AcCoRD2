@@ -28,11 +28,6 @@ namespace accord
 
 	}
 
-	Vec3d Vec3d::FromScalar(double s)
-	{
-		return Vec3d(s, s, s);
-	}
-
 	Vec3d::Vec3d(double longitudinal, const Vec2d& transverse, Axis3D axis)
 	{
 		switch (axis)

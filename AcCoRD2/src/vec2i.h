@@ -24,6 +24,8 @@ namespace accord
 
 		Vec2i(int x, int y);
 
+		explicit Vec2i(int s);
+
 		Vec2i() = default;
 
 		// returns the larger of x or y

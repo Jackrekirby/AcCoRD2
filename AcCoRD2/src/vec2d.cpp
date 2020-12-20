@@ -11,6 +11,12 @@ namespace accord
 
 	}
 
+	Vec2d::Vec2d(double s)
+		: x(s), y(s)
+	{
+
+	}
+
 	Vec2d Vec2d::PolarToCartesian(double radius, double theta)
 	{
 		return { radius * std::cos(theta), radius * std::sin(theta) };

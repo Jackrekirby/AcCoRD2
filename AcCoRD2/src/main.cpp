@@ -1,5 +1,7 @@
 #include "pch.h"
 
+// KANBAN CHART =====================================================================================================================================
+
 // DONE
 // add cylinders
 // change circle collision to const
@@ -8,6 +10,13 @@
 // only is partially neighbouring function of boxes needs to calculate area
 // add as seperate function. e.g. CalculateAreaBetweenNeighbouringBoxes()
 // rename relation surface shape to shape 2d
+// add vector operation - (scalar)
+// may need to seperate microscopic surface shape from microscopic region shapes as regions cannot be typical surfaces?
+// --- currently microscopic surface shape is only for region shapes. However as regions must now be constructed using
+// --- derived classes passing an invalid surface shape to a region is no longer possible.
+// --- i.e. all regions shapes are surface shapes but not all surface shapes are regions shapes.
+// make it easier to save region shapes in region.json. E.g. environment.saveRegions
+// regions per shape to avoid unique pointer
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -15,32 +24,29 @@
 // add inrange function // too many variants (inclusive, exclusive, return double, return vec3d)
 // consider converting cylinder into class per axis
 // consider using flatten relation method for box and spheres (Flattening does not work on spheres)
+// could use factory to build regions so regions dont have to be publically available in environment (factory no longer needed due to derived class)
 
 // IN PROGRESS
-// add vector operation - (scalar)
 // consider adding generate bounding box and rect to all shapes
 // consider multiple constructors for shapes so you can generate shapes using other shapes
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
-// TO DO (IMPORTANT)
-// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
-// may need to seperate microscopic surface shape from microscopic region shapes as regions cannot be typical surfaces?
+// TO DO (Imminent)
+// surface type per grid
 
-// TO DO (distant future)
+// TO DO (Large Tasks)
 // surfaces
 // reactions
-// surface type per grid
-// regions per shape to avoid unique pointer
 
-// TO DO (Not as important)
+// TO DO (Not Imminent)
 // consider passing objects into constructor via const reference to avoid including headers in headers
 // ensure consistent to ToJson to_json
 // check json works
-// make it easier to save region shapes in region.json. E.g. environment.saveRegions
-// could use factory to build regions so regions dont have to be publically available in environment
 // ensure consistency between vec2 and vec3
 // json / spdlog should print faces of 3d shapes
 // check cpp files dont have #pragma once
+// NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
+// find location where i have repeated a scalar to construct a vec and use new scalar constructor
 
 // BUGS
 // 1. WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR
@@ -60,6 +66,8 @@
 // RESEARCH
 // custom destructor
 // modules
+
+// KANBAN CHART =====================================================================================================================================
 
 #include "event_queue_test.h"
 #include "microscopic_region2.h"
@@ -166,10 +174,6 @@ void TestEnvironment2()
 	std::ofstream actors_file(sim_dir + "/actors.json");
 	actors_file << JsonToString(json_actors);
 	actors_file.close();
-	//passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
-	//	RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true));
-	//passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
-	//	RegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true));
 
 	// BEGIN SIMULATION LOOP
 	do {
@@ -406,29 +410,14 @@ void TestCylinder()
 #include "passive_actor2.h"
 int main()
 {
-	accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
-	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");
+	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
+	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
+	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");       
 
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
 	TestEnvironment2();
-
-
-	//accord::Vec3d a('a');
-	//accord::Vec3d b = 9 * accord::Vec3d(1, 2, 3);
-	//LOG_INFO(b);
-
-
-	//using namespace accord;
-	//using namespace accord::shape;
-	//collision::Cylinder c({ 0, 0, 0 }, 1, 5, Axis3D::x);
-	//LOG_INFO(c.IsOnFace({ 4, 0.5, 0.2 }));
-
-	//shape::collision::Box b(Vec3d(-2, -2, -2), Vec3d(4, 4, 4));
-	//LOG_INFO(JsonToPrettyString(b));
-	//LOG_INFO(b.CalculateInternalCollisionData({ 0, 0, 0 }, { 9, 1, 0 }));
-	//LOG_INFO(b.CalculateInternalCollisionData({ 0, 0, 0 }, { -7, 18, 9 }));
 
 	//TestEnvironment();
 	//accord::LoggerTest();
@@ -442,8 +431,4 @@ int main()
 	//accord::ShapeRelationTest();
 	//accord::Shape3DRelationTest();
 	//accord::ShapeCollisionTest();
-
-	//accord::Json j = accord::shape::basic::Rect({ 0,0 }, { 10, 10 });
-
-	//rename tests to Test...() or put in namespace test
 }

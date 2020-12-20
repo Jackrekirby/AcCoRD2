@@ -22,6 +22,12 @@ namespace accord
 
 		}
 
+		explicit Vec3(T s)
+			: x(s), y(s), z(s)
+		{
+
+		}
+
 		Vec3() = default;
 
 		template<typename U>
@@ -30,11 +36,6 @@ namespace accord
 			x = static_cast<T>(v.x);
 			y = static_cast<T>(v.y);
 			y = static_cast<T>(v.z);
-		}
-
-		static Vec3 FromScalar(T s)
-		{
-			return { s, s, s };
 		}
 
 		Vec3 operator + (const Vec3& v) const

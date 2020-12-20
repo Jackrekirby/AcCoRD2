@@ -18,9 +18,9 @@ namespace accord
 
 	}
 
-	Vec3i Vec3i::FromScalar(int s)
+	Vec3i::Vec3i(int s)
+		: x(s), y(s), z(s)
 	{
-		return Vec3i(s, s, s);
 	}
 
 	Vec3i Vec3i::GeneratePoisson(double mean)

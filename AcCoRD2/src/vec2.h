@@ -25,6 +25,12 @@ namespace accord
 
 		}
 
+		explicit Vec2(T s)
+			: x(s), y(s)
+		{
+
+		}
+
 		Vec2() = default;
 
 		template<typename U>

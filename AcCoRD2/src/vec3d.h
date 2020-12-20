@@ -31,8 +31,6 @@ namespace accord
 		explicit Vec3d(double s);
 
 		Vec3d(double longitudinal, const Vec2d& transverse, Axis3D axis);
-		
-		static Vec3d FromScalar(double s);
 
 		// consider renaming to RandomExponential()
 		static Vec3d GenerateExponential(double mean);

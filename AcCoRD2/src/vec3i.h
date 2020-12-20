@@ -28,7 +28,7 @@ namespace accord
 
 		Vec3i(const Vec3d& v);
 
-		static Vec3i FromScalar(int s);
+		explicit Vec3i(int s);
 
 		static Vec3i GeneratePoisson(double mean);
 

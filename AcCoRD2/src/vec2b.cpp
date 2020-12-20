@@ -10,6 +10,12 @@ namespace accord
 
     }
 
+    Vec2b::Vec2b(bool s)
+        : x(s), y(s)
+    {
+
+    }
+
     Axis2D Vec2b::FindAxis() const
     {
         if (Sum() != 0)

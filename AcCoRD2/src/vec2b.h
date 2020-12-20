@@ -18,6 +18,8 @@ namespace accord
 
         Vec2b(bool x, bool y);
 
+        explicit Vec2b(bool s);
+
         Vec2b() = default;
 
         // returns the axis which is true. Requires exactly 1 axis to be true or will throw exception;

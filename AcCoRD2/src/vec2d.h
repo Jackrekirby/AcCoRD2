@@ -24,6 +24,8 @@ namespace accord
 
 		Vec2d(double x, double y);
 
+		explicit Vec2d(double s);
+
 		Vec2d() = default;
 
 		static Vec2d PolarToCartesian(double radius, double theta);

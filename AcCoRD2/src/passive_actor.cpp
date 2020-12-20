@@ -122,17 +122,17 @@ namespace accord
 			partial_subvolumes.emplace_back(id);
 			for (auto& region : Environment::GetRegions())
 			{
-				LOG_INFO(region->GetID());
+				//LOG_INFO(region->GetID());
 				for (auto& subvolume : region->GetGrid(id).GetSubvolumes())
 				{
 					if (GetShape()->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
 					{
-						LOG_INFO("enveloped");
+						//LOG_INFO("enveloped");
 						enveloped_subvolumes.back().Add(&subvolume);
 					}
 					else if (GetShape()->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
 					{
-						LOG_INFO("partial");
+						//LOG_INFO("partial");
 						partial_subvolumes.back().Add(&subvolume);
 					}
 					// otherwise subvolume is not inside actor so is ignored
