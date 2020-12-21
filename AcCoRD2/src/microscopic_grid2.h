@@ -44,6 +44,12 @@ namespace accord::microscopic
 
 		void AddMolecule(const Vec3d& position, double time);
 
+		// Add normal molecule at random position
+		void AddMolecule();
+
+		// Add recent molecule at random position
+		void AddMolecule(double time);
+
 		void DiffuseMolecules();
 
 		std::optional<MoleculeDestination> CheckMoleculePath(const Vec3d& origin, const Vec3d& end, int cycles);

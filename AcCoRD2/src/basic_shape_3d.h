@@ -10,5 +10,7 @@ namespace accord::shape::basic
 	{
 	public:
 		virtual Box GenerateBoundingBox() const = 0;
+
+		virtual double CalculateVolume() const = 0;
 	};
 }

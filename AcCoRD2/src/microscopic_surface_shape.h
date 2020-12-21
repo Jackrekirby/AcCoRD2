@@ -28,5 +28,7 @@ namespace accord::microscopic
 		virtual bool IsMoleculeOnBorder(const Vec3d& position) const = 0;
 
 		virtual const shape::basic::Shape3D& GetBasicShape() const = 0;
+
+		virtual Vec3d GenerateMolecule() const = 0;
 	};
 }

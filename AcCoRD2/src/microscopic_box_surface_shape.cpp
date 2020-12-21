@@ -4,13 +4,17 @@
 namespace accord::microscopic
 {
 	BoxSurfaceShape::BoxSurfaceShape(Vec3d origin, Vec3d length)
-		: shape::collision::Box(origin, length)
+		: shape::collision::Box(origin, length),
+		shape::generating::Box(origin, length),
+		shape::basic::Box(origin, length)
 	{
 
 	}
 
 	BoxSurfaceShape::BoxSurfaceShape(shape::basic::Box box)
-		: shape::collision::Box(box)
+		: shape::collision::Box(box),
+		shape::generating::Box(box),
+		shape::basic::Box(box)
 	{
 
 	}
@@ -40,5 +44,15 @@ namespace accord::microscopic
 	const shape::basic::Box& BoxSurfaceShape::GetBasicShape() const
 	{
 		return static_cast<const shape::basic::Box&>(*this);
+	}
+
+	void BoxSurfaceShape::ToJson(Json& j) const
+	{
+		j = GetBasicShape();
+	}
+
+	Vec3d BoxSurfaceShape::GenerateMolecule() const
+	{
+		return shape::generating::Box::GeneratePointInVolume();
 	}
 }

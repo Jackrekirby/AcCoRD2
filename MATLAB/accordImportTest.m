@@ -1,17 +1,21 @@
 %% To Do
-% add number of shapes to sim.regions so hsv(nshapes) can be given to
+% 1. Add number of shapes to sim.regions so hsv(nshapes) can be given to
 % shape3D so colour of region matches plotted line colour
 % animated line?
-% add import regions info message
+% 2. add import regions info message
+% 3. Pass two shape objects to realisation so regions and actors can be drawn
+% with different styles.
+% Investigate available colour maps so regions and actors can look unique.
 
 %% Import Simulation Data
 clear all;
 clc;
-sim = Accord.importFiles("D:\dev", "my_simulation3", [], [], true);
+sim = Accord.importFiles("D:\dev", "my_simulation4", [], [], false);
+disp("done");
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('FaceAlpha', 0);
-r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
+r = Accord.initAnimateRealisation(sim, 1, 1, 1, true, shape3d);
 r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video

@@ -1,5 +1,6 @@
 #pragma once
 #include "microscopic_region2.h"
+#include "passive_actor.h"
 
 namespace accord
 {
@@ -26,6 +27,8 @@ namespace accord
 
 		static std::vector<std::unique_ptr<microscopic::Region2>>& GetRegions();
 
+		static std::vector<std::unique_ptr<PassiveActor>>& GetPassiveActors();
+
 		static std::string GetFilePath();
 
 		static bool NextRealisation();
@@ -41,5 +44,7 @@ namespace accord
 		static uint64_t seed;
 
 		static std::vector<std::unique_ptr<microscopic::Region2>> microscopic_regions;
+
+		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "collision_cylinder.h"
+#include "generating_cylinder.h"
 #include "microscopic_surface_shape.h"
 
 namespace accord
@@ -10,7 +11,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class CylinderSurfaceShape : public SurfaceShape, public shape::collision::Cylinder
+	class CylinderSurfaceShape : public SurfaceShape, public shape::collision::Cylinder, public shape::generating::Cylinder
 	{
 	public:
 		CylinderSurfaceShape(Vec3d base_centre, double radius, double length, Axis3D axis);
@@ -28,5 +29,9 @@ namespace accord::microscopic
 		bool IsMoleculeOnBorder(const Vec3d& position) const;
 
 		const shape::basic::Cylinder& GetBasicShape() const;
+
+		void ToJson(Json& j) const;
+
+		Vec3d GenerateMolecule() const;
 	};
 }

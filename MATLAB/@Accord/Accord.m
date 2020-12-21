@@ -9,11 +9,17 @@ classdef Accord
                 realisations = [];
                 trackImporting = true;
             end
-            simulationDir = Accord.isSimulationDirValid(directory, simulationName);
+            if(trackImporting)
+                disp("Importing Files:")
+            end
+            simulationDir = Accord.isSimulationDirValid(directory, simulationName);           
             simulation = Accord.findEachRealisationFolder(simulationDir, ...
                 seeds, realisations, trackImporting);
-            simulation.regions = Accord.importRegionShapes(simulationDir);
-            simulation.actors = Accord.importActorShapes(simulationDir);
+            simulation.regions = Accord.importRegionShapes(simulationDir, trackImporting);
+            simulation.actors = Accord.importActorShapes(simulationDir, trackImporting);
+            if(trackImporting)
+                disp("Import Complete")
+            end
         end
         
         function r = initAnimateRealisation(simulation, seed, realisation, ...
@@ -183,9 +189,6 @@ classdef Accord
             % simulation_name/seed_no/realisation_no/binaries
             % go through each subfolder of simulation folder to import
             % files
-            if(t)
-                disp("Importing Files:")
-            end
             sf = dir(simulationDir);
             sf = sf([sf.isdir]);
             for iSf = 1:length(sf)
@@ -214,9 +217,6 @@ classdef Accord
                         end
                     end
                 end
-            end
-            if(t)
-                disp("Import Complete")
             end
         end
         
@@ -296,12 +296,18 @@ classdef Accord
             end
         end
         
-        function regions = importRegionShapes(simulationDir)
+        function regions = importRegionShapes(simulationDir, trackImporting)
             regions = jsondecode(fileread(simulationDir + "\regions.json"));
+            if(trackImporting)
+                disp(simulationDir + "\regions.json");
+            end
         end
         
-        function regions = importActorShapes(simulationDir)
+        function regions = importActorShapes(simulationDir, trackImporting)
             regions = jsondecode(fileread(simulationDir + "\actors.json"));
+            if(trackImporting)
+                disp(simulationDir + "\actors.json");
+            end
         end
         
         %% animateRealisation

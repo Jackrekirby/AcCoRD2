@@ -66,6 +66,11 @@ namespace accord
 		return microscopic_regions;
 	}
 
+	std::vector<std::unique_ptr<PassiveActor>>& Environment::GetPassiveActors()
+	{
+		return passive_actors;
+	}
+
 	std::string Environment::GetFilePath()
 	{
 		return Environment::GetSimulationName() +
@@ -99,6 +104,7 @@ namespace accord
 	}
 
 	std::vector<std::unique_ptr<microscopic::Region2>> Environment::microscopic_regions;
+	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
 	double Environment::run_time = 0;
 	double Environment::time = 0;
 	int Environment::num_molecule_types = 0;

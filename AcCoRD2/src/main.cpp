@@ -1,5 +1,17 @@
 #include "pch.h"
 
+// Questions
+// Can zero reaction molecules be placed inside a child region?
+// Does the volume used to calculaet the next reaciton time include that of children as well?
+// I assume reactions in a region only start occuring at a regions start time?
+// if a molecule is generated and is inside a hgih prioprity region should have flag which specifies if molecule placement should fail
+
+// Investigate
+// If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
+// how to stop two basic shapes being generated when microscopic surface shapes inherit from generating and collision shapes (virtual inheritance)
+// if the reaction rate is for example 1 is that 1 molecule produced per second or all products per second?
+// when molecules are added to regions each high priority neighbour should be checked to see if molecules can be added to them.
+
 // KANBAN CHART =====================================================================================================================================
 
 // DONE
@@ -17,6 +29,7 @@
 // --- i.e. all regions shapes are surface shapes but not all surface shapes are regions shapes.
 // make it easier to save region shapes in region.json. E.g. environment.saveRegions
 // regions per shape to avoid unique pointer
+// add zeroth order reactions for microscopic regions
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -32,7 +45,11 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// make all shapes have virtual inheritance of basic shapes
 // surface type per grid
+// update test envrionments to new format (consider switch statement?)
+// instead of saving no shapes for shapeless regions save all the regions which the observer links to. Will require reformatting.
+// Reformat actor json to allow for multiple shapes per actor.
 
 // TO DO (Large Tasks)
 // surfaces
@@ -88,6 +105,96 @@
 #include "microscopic_box_region.h"
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
+
+void TestSimpleEnvironment()
+{
+	using namespace accord;
+
+	// SIMULATION
+	std::string sim_dir = "D:/dev/my_simulation4";
+	Environment::Init(sim_dir, 100, 5, 3, 2, 1);
+	EventQueue event_queue(7);
+
+	// CREATE REGIONS
+	std::vector<double> diffision_coefficients = { 1, 2, 3 };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(2), Vec3i(1), Vec3i(1) };
+	double start_time = 0;
+	double time_step = 0.05;
+	int priority = 0;
+
+	shape::basic::Box box(Vec3d(-0.5), Vec3d(1));
+
+	Environment::GetRegions().reserve(1);
+	Environment::GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
+		box, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+		&event_queue, microscopic::SurfaceType::Reflecting, 0));
+
+	Environment::GetRegion(0).AddReaction({ 1 }, 1);
+
+	Json json_regions;
+	for (auto& regions : Environment::GetRegions())
+	{
+		json_regions["shapes"].emplace_back(regions->GetShape().GetBasicShape());
+	}
+	std::ofstream region_file(sim_dir + "/regions.json");
+	region_file << JsonToString(json_regions);
+	region_file.close();
+
+	// CREATE ACTORS
+	Environment::GetPassiveActors().reserve(1);
+	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
+		RegionIDs({ 0 }),
+		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
+
+	Json json_actors;
+	Json shapeless_actor;
+	shapeless_actor["type"] = "none";
+	for (auto& passive_actor : Environment::GetPassiveActors())
+	{
+		if (passive_actor->GetShape() == nullptr)
+		{
+			json_actors["shapes"].emplace_back(shapeless_actor);
+		}
+		else
+		{
+			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
+		}
+	}
+	std::ofstream actors_file(sim_dir + "/actors.json");
+	actors_file << JsonToString(json_actors);
+	actors_file.close();
+
+	// BEGIN SIMULATION LOOP
+	do {
+		if (Environment::GetRealisationNumber() > 0)
+		{
+			for (auto& passive_actor : Environment::GetPassiveActors())
+			{
+				passive_actor->NextRealisation();
+			}
+			for (auto& region : Environment::GetRegions())
+			{
+				region->NextRealisation();
+			}
+		}
+		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+		while (true)
+		{
+			auto& event = event_queue.Front();
+			Environment::SetTime(event.GetTime());
+			if (Environment::GetTime() > Environment::GetRunTime())
+			{
+				//LOG_INFO("The Next Event Outside Run Time : ({})", event);
+				break;
+			}
+			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
+			//LOG_INFO("Event:({})", event);
+			event.Run();
+		}
+	} while (Environment::NextRealisation());
+
+	LOG_INFO("Cleaning Up");
+}
 
 void TestEnvironment2()
 {
@@ -148,19 +255,18 @@ void TestEnvironment2()
 		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
 
 	// CREATE ACTORS
-	std::vector<std::unique_ptr<PassiveActor>> passive_actors;
-	passive_actors.reserve(2);
-	passive_actors.emplace_back(std::make_unique<ShapelessPassiveActor>(
-		RegionIDs({ 0, 1, 2 }), 
+	Environment::GetPassiveActors().reserve(2);
+	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
+		RegionIDs({ 0, 1, 2 }),
 		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
-	passive_actors.emplace_back(std::make_unique<BoxPassiveActor>(
+	Environment::GetPassiveActors().emplace_back(std::make_unique<BoxPassiveActor>(
 		shape::basic::Box(Vec3d(4, -2, -2), Vec3d(2, 4, 4)),
 		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true));
 
 	Json json_actors;
 	Json shapeless_actor;
 	shapeless_actor["type"] = "none";
-	for (auto& passive_actor : passive_actors)
+	for (auto& passive_actor : Environment::GetPassiveActors())
 	{
 		if (passive_actor->GetShape() == nullptr)
 		{
@@ -179,7 +285,7 @@ void TestEnvironment2()
 	do {
 		if (Environment::GetRealisationNumber() > 0)
 		{
-			for (auto& passive_actor : passive_actors)
+			for (auto& passive_actor : Environment::GetPassiveActors())
 			{
 				passive_actor->NextRealisation();
 			}
@@ -417,8 +523,8 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	TestEnvironment2();
-
+	//TestEnvironment2();
+	TestSimpleEnvironment();
 	//TestEnvironment();
 	//accord::LoggerTest();
 	//accord::JsonTest();

@@ -23,12 +23,20 @@ namespace accord::microscopic
 	void Region2::Run()
 	{
 		// zeroth order reactions
+		for (auto& reaction : zeroth_order_reactions)
+		{
+			reaction.Run();
+		}
 		// first order reactions
+
+		//diffuse molecules
 		for (auto& grid : grids)
 		{
 			grid.DiffuseMolecules();
 		}
 		// second order reactions
+
+		//update reaction time
 		UpdateTime(GetNextEventTime());
 	}
 
@@ -70,11 +78,21 @@ namespace accord::microscopic
 		GetGrid(id).AddMolecule(position);
 	}
 
+	void Region2::AddMolecule(MoleculeID id, double time)
+	{
+		GetGrid(id).AddMolecule(time);
+	}
+
+	void Region2::AddMolecule(MoleculeID id)
+	{
+		GetGrid(id).AddMolecule();
+	}
+
 	// reaction classes can always internally get and pass a Grid to the reaction class constructor.
 	// Zeroth Order Reaction
-	void Region2::AddReaction(const MoleculeIDs& products)
+	void Region2::AddReaction(const MoleculeIDs& products, double reaction_rate)
 	{
-		zeroth_order_reactions.emplace_back(products);
+		zeroth_order_reactions.emplace_back(products, reaction_rate, this);
 	}
 
 	// First Order Reaction
@@ -90,15 +108,20 @@ namespace accord::microscopic
 	}
 
 	// returns event time + time_step
-	double Region2::GetNextEventTime()
+	double Region2::GetNextEventTime() const
 	{
 		return GetTime() + GetTimeStep();
 	}
 
 	// returns time_step
-	double Region2::GetTimeStep()
+	double Region2::GetTimeStep() const
 	{
 		return time_step;
+	}
+
+	double Region2::GetStartTime() const
+	{
+		return start_time;
 	}
 
 	// may need to add const versions of GetGrid(s)
@@ -173,6 +196,10 @@ namespace accord::microscopic
 			{
 				subvolume.GetNormalMolecules().clear();
 				subvolume.GetRecentMolecules().clear();
+			}
+			for (auto& reaction : zeroth_order_reactions)
+			{
+				reaction.NextRealisation();
 			}
 		}
 	}

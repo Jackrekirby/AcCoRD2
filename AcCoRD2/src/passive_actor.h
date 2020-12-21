@@ -31,6 +31,7 @@ namespace accord
 
 	// make passive actor base class with derived classes of different shapes so the shape
 	// does not have to be a unique pointer
+	// will eventually need to add mesoscopic::subvolume to typed subvolumes
 
 	class PassiveActor : public Event
 	{

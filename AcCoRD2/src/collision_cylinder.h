@@ -12,7 +12,7 @@ namespace accord
 
 namespace accord::shape::collision
 {
-	class Cylinder : public basic::Cylinder, public Shape3D
+	class Cylinder : virtual public basic::Cylinder, public Shape3D
 	{
 	public:
 		Cylinder(const Vec3d& base_centre, double radius, double length, const Axis3D& axis);

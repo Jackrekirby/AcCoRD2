@@ -34,6 +34,16 @@ namespace accord::microscopic
 		GetSubvolume(index).AddMolecule(position, time);
 	}
 
+	void Grid2::AddMolecule()
+	{
+		AddMolecule(region->GetShape().GenerateMolecule());
+	}
+
+	void Grid2::AddMolecule(double time)
+	{
+		AddMolecule(region->GetShape().GenerateMolecule(), time);
+	}
+
 	void Grid2::DiffuseMolecules()
 	{
 		int max_cycles = 20;

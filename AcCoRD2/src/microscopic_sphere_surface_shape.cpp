@@ -4,13 +4,17 @@
 namespace accord::microscopic
 {
 	SphereSurfaceShape::SphereSurfaceShape(Vec3d centre, double radius)
-		: shape::collision::Sphere(centre, radius)
+		: shape::collision::Sphere(centre, radius),
+		shape::generating::Sphere(centre, radius),
+		shape::basic::Sphere(centre, radius)
 	{
 
 	}
 
 	SphereSurfaceShape::SphereSurfaceShape(shape::basic::Sphere sphere)
-		: shape::collision::Sphere(sphere)
+		: shape::collision::Sphere(sphere),
+		shape::generating::Sphere(sphere),
+		shape::basic::Sphere(sphere)
 	{
 	}
 
@@ -40,5 +44,15 @@ namespace accord::microscopic
 	const shape::basic::Sphere& SphereSurfaceShape::GetBasicShape() const
 	{
 		return static_cast<const shape::basic::Sphere&>(*this);
+	}
+
+	void SphereSurfaceShape::ToJson(Json& j) const
+	{
+		j = GetBasicShape();
+	}
+
+	Vec3d SphereSurfaceShape::GenerateMolecule() const
+	{
+		return shape::generating::Sphere::GeneratePointInVolume();
 	}
 }

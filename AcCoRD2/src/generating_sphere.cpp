@@ -5,7 +5,13 @@
 namespace accord::shape::generating
 {
 	Sphere::Sphere(Vec3d centre, double radius)
-		: basic::Sphere(centre, radius), Shape3D()
+		: basic::Sphere(centre, radius), generating::Shape3D()
+	{
+
+	}
+
+	Sphere::Sphere(basic::Sphere sphere)
+		: basic::Sphere(sphere), generating::Shape3D()
 	{
 
 	}

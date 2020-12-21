@@ -14,6 +14,14 @@ namespace accord::shape::generating
 
 	}
 
+	Cylinder::Cylinder(basic::Cylinder cylinder)
+		: basic::Cylinder(cylinder),
+		tube(GetCircleCentre(), cylinder.GetRadius()),
+		base_face({ GetBase(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() }),
+		top_face({ GetTop(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() })
+	{
+	}
+
 	Vec3d Cylinder::GeneratePointOnSurface() const
 	{
 		// r = curved surface area to flat surface area ratio

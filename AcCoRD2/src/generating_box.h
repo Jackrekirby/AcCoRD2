@@ -5,7 +5,7 @@
 
 namespace accord::shape::generating
 {
-	class Box : public basic::Box, public Shape3D
+	class Box : virtual public basic::Box, public Shape3D
 	{
 	public:
 		Box(Vec3d origin, Vec3d length);

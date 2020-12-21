@@ -4,10 +4,12 @@
 
 namespace accord::shape::generating
 {
-	class Sphere : public basic::Sphere, public Shape3D
+	class Sphere : virtual public basic::Sphere, public Shape3D
 	{
 	public:
 		Sphere(Vec3d centre, double radius);
+
+		Sphere(basic::Sphere sphere);
 
 		Vec3d GeneratePointInVolume() const;
 

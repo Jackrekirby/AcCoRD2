@@ -38,9 +38,15 @@ namespace accord::microscopic
 		// add a normal molecule
 		void AddMolecule(MoleculeID id, const Vec3d& position);
 
+		// add a recent molecule with a random position
+		void AddMolecule(MoleculeID id, double time);
+
+		// add a normal molecule with a random position
+		void AddMolecule(MoleculeID id);
+
 		// reaction classes can always internally get and pass a Grid to the reaction class constructor.
 		// Zeroth Order Reaction
-		void AddReaction(const MoleculeIDs& products);
+		void AddReaction(const MoleculeIDs& products, double reaction_rate);
 
 		// First Order Reaction
 		void AddReaction(MoleculeID reactant, const MoleculeIDs& products);
@@ -49,10 +55,12 @@ namespace accord::microscopic
 		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products);
 
 		// returns event time + time_step
-		double GetNextEventTime();
+		double GetNextEventTime() const;
 
 		// returns time_step
-		double GetTimeStep();
+		double GetTimeStep() const;
+
+		double GetStartTime() const;
 
 		// may need to add const versions of GetGrid(s)
 		std::vector<Grid2>& GetGrids();
