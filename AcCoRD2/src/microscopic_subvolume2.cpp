@@ -75,6 +75,21 @@ namespace accord::microscopic
 		return *grid;
 	}
 
+	void Subvolume2::ResetReactionList(double time)
+	{
+		if (time > last_second_order_reaction_time)
+		{
+			last_second_order_reaction_time = time;
+			has_reacted.clear();
+			has_reacted.reserve(normal_molecules.size());
+		}
+	}
+
+	std::vector<bool> Subvolume2::GetHasReactedList()
+	{
+		return has_reacted;
+	}
+
 	MoleculeID Subvolume2::GetMoleculeID()
 	{
 		return GetGrid().GetMoleculeID();

@@ -7,6 +7,7 @@
 // if a molecule is generated and is inside a hgih prioprity region should have flag which specifies if molecule placement should fail
 // If the molecule can participate in multiple non-surface first order reactions, then the probability of reaction c occurring is[15, Eq. (14)].
 // Is this for reactions within the same region, or all regions?
+// can a reaction have multiple products of the same molecule type
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -47,6 +48,7 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// ability to add multiple of a type of reactant
 // Need to remove unnecessary headers by pointing to seperate variables instead of 
 // rename GetTime() to GetEventTime()
 // make all shapes have virtual inheritance of basic shapes
@@ -126,7 +128,7 @@ void TestSimpleEnvironment()
 
 	// Create Reactions
 	ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
-	//ReactionManager::AddZerothReaction({ 2 }, 1, { 0 });
+	ReactionManager::AddZerothReaction({ 0 }, 1, { 0 });
 	ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
 	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
 
@@ -160,11 +162,6 @@ void TestSimpleEnvironment()
 			Environment::GetRegion(region).AddReaction(reaction.GetReactant(), reaction.GetProducts(),
 				reaction.GetRate(), reaction.GetTotalRate());
 		}
-	}
-
-	for (int i = 0; i < 1; i++)
-	{
-		Environment::GetRegion(0).AddMolecule(0, { 0, 0, 0 });
 	}
 
 	Json json_regions;
@@ -211,10 +208,6 @@ void TestSimpleEnvironment()
 			for (auto& region : Environment::GetRegions())
 			{
 				region->NextRealisation();
-			}
-			for (int i = 0; i < 1; i++)
-			{
-				Environment::GetRegion(0).AddMolecule(0, { 0, 0, 0 });
 			}
 		}
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());

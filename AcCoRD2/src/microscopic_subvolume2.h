@@ -47,6 +47,10 @@ namespace accord::microscopic
 
 		Grid2& GetGrid();
 
+		void ResetReactionList(double time);
+
+		std::vector<bool> GetHasReactedList();
+
 	private:
 		Grid2* grid; // the grid which owns this subvolume
 		shape::relation::Box box;
@@ -57,5 +61,10 @@ namespace accord::microscopic
 		// siblings first as which siblings are added they must check the other sibling does not already have it as
 		// a relation.
 		std::vector<TypedSubvolume> relations;
+
+		// if the last second order reaction time is less than the current time then refresh second order reaction has reacted list.
+		double last_second_order_reaction_time;
+		// only for normal molecules
+		std::vector<bool> has_reacted;
 	};
 }
