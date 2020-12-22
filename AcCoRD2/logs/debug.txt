@@ -1,4 +1,4 @@
-[17:34:59.975] [info] microscopic_first_order_reaction.cpp:13 accord::microscopic::FirstOrderReaction::FirstOrderReaction() reaction probability = 0.048770575499285984
-[17:34:59.982] [info] main.cpp:220 TestSimpleEnvironment() Realisation 0
-[17:34:59.996] [info] microscopic_first_order_reaction.cpp:44 accord::microscopic::FirstOrderReaction::CalculateReactionTime() local time = 2.25, min_reaction_time = 0.951229424500714
-[17:35:00.055] [info] main.cpp:236 TestSimpleEnvironment() Cleaning Up
+[19:32:18.991] [info] microscopic_first_order_reaction.cpp:13 accord::microscopic::FirstOrderReaction::FirstOrderReaction() reaction probability = 0.048770575499285984
+[19:32:19.010] [info] main.cpp:220 TestSimpleEnvironment() Realisation 0
+[19:32:19.055] [info] microscopic_first_order_reaction.cpp:44 accord::microscopic::FirstOrderReaction::CalculateReactionTime() local time = 2.25, min_reaction_time = 0.951229424500714
+[19:32:19.117] [info] main.cpp:236 TestSimpleEnvironment() Cleaning Up

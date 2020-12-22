@@ -19,6 +19,7 @@ namespace accord::microscopic
 		Region2* region;
 		double reaction_probability;
 		double min_reaction_time;
+		double total_reaction_rate;
 		double time;
 		Grid2* reaction_grid;
 		std::vector<Grid2*> product_grids;

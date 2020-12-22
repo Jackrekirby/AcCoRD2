@@ -7,7 +7,7 @@ namespace accord::microscopic
 {
 	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region2* region)
 		: region(region), reaction_probability(CalculateReactionProbability(reaction_rate, total_reaction_rate, region->GetTimeStep())),
-		min_reaction_time(CalculateMinimumReactionTime(total_reaction_rate, region->GetTimeStep())),
+		min_reaction_time(CalculateMinimumReactionTime(total_reaction_rate, region->GetTimeStep())), total_reaction_rate(total_reaction_rate),
 		product_grids(GetProductGrids(products)), reaction_grid(&(region->GetGrid(reactant)))
 	{
 		LOG_INFO("reaction probability = {}", reaction_probability);
@@ -42,7 +42,10 @@ namespace accord::microscopic
 	double FirstOrderReaction::CalculateReactionTime()
 	{
 		LOG_INFO("local time = {}, min_reaction_time = {}", region->GetLocalTime(), min_reaction_time);
-		return (region->GetLocalTime() + Random::GenerateRealUniform(min_reaction_time, 1));
+		return (
+			region->GetLocalTime() +
+			(-std::log(Random::GenerateRealUniform(min_reaction_time, 1)) / total_reaction_rate)
+			);
 	}
 
 	void FirstOrderReaction::CreateProductMolecules(const Vec3d& position, double reaction_time)
