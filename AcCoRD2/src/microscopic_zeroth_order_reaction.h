@@ -4,11 +4,10 @@
 
 namespace accord::microscopic
 {
-	using MoleculeID = int;
-	using MoleculeIDs = std::vector<int>;
 	class Grid2;
 	class Region2;
 
+	// in future will need to make base reaction class with derived VolumeReaction and SurfaceReaction
 	class ZerothOrderReaction
 	{
 	public:

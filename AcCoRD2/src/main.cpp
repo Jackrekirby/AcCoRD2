@@ -5,6 +5,8 @@
 // Does the volume used to calculaet the next reaciton time include that of children as well?
 // I assume reactions in a region only start occuring at a regions start time?
 // if a molecule is generated and is inside a hgih prioprity region should have flag which specifies if molecule placement should fail
+// If the molecule can participate in multiple non-surface first order reactions, then the probability of reaction c occurring is[15, Eq. (14)].
+// Is this for reactions within the same region, or all regions?
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -45,17 +47,23 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// Need to remove unnecessary headers by pointing to seperate variables instead of 
+// rename GetTime() to GetEventTime()
 // make all shapes have virtual inheritance of basic shapes
 // surface type per grid
 // update test envrionments to new format (consider switch statement?)
 // instead of saving no shapes for shapeless regions save all the regions which the observer links to. Will require reformatting.
 // Reformat actor json to allow for multiple shapes per actor.
+// Make base reaction class with derived VolumeReaction and SurfaceReaction
+// consider redoing reactions with reaction manager as all regions import reactions from it
 
 // TO DO (Large Tasks)
 // surfaces
 // reactions
 
 // TO DO (Not Imminent)
+// add error checking for ids
+// make functions more descriptive (GetRegions and GetRegionIDs)
 // consider passing objects into constructor via const reference to avoid including headers in headers
 // ensure consistent to ToJson to_json
 // check json works
@@ -105,6 +113,7 @@
 #include "microscopic_box_region.h"
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
+#include "reaction_manager.h"
 
 void TestSimpleEnvironment()
 {
@@ -112,8 +121,14 @@ void TestSimpleEnvironment()
 
 	// SIMULATION
 	std::string sim_dir = "D:/dev/my_simulation4";
-	Environment::Init(sim_dir, 100, 5, 3, 2, 1);
+	Environment::Init(sim_dir, 1, 10, 3, 2, 1);
 	EventQueue event_queue(7);
+
+	// Create Reactions
+	ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
+	//ReactionManager::AddZerothReaction({ 2 }, 1, { 0 });
+	ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
+	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
 
 	// CREATE REGIONS
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
@@ -129,7 +144,28 @@ void TestSimpleEnvironment()
 		box, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
 		&event_queue, microscopic::SurfaceType::Reflecting, 0));
 
-	Environment::GetRegion(0).AddReaction({ 1 }, 1);
+	// Add Reactions to Each Region
+	for (auto& reaction : ReactionManager::GetZerothOrderReactions())
+	{
+		for (auto& region : reaction.GetRegions())
+		{
+			Environment::GetRegion(region).AddReaction(reaction.GetProducts(), reaction.GetRate());
+		}
+	}
+
+	for (auto& reaction : ReactionManager::GetFirstOrderReactions())
+	{
+		for (auto& region : reaction.GetRegions())
+		{
+			Environment::GetRegion(region).AddReaction(reaction.GetReactant(), reaction.GetProducts(),
+				reaction.GetRate(), reaction.GetTotalRate());
+		}
+	}
+
+	for (int i = 0; i < 1; i++)
+	{
+		Environment::GetRegion(0).AddMolecule(0, { 0, 0, 0 });
+	}
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -176,12 +212,16 @@ void TestSimpleEnvironment()
 			{
 				region->NextRealisation();
 			}
+			for (int i = 0; i < 1; i++)
+			{
+				Environment::GetRegion(0).AddMolecule(0, { 0, 0, 0 });
+			}
 		}
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
 			auto& event = event_queue.Front();
-			Environment::SetTime(event.GetTime());
+			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())
 			{
 				//LOG_INFO("The Next Event Outside Run Time : ({})", event);
@@ -304,7 +344,7 @@ void TestEnvironment2()
 		while (true)
 		{
 			auto& event = event_queue.Front();
-			Environment::SetTime(event.GetTime());
+			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())
 			{
 				//LOG_INFO("The Next Event Outside Run Time : ({})", event);

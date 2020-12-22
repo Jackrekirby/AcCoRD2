@@ -9,7 +9,7 @@ namespace accord::microscopic
 		: region(region), reaction_coefficient(CalculateReactionCoefficient(reaction_rate)),
 		time(CalculateStartTime()), product_grids(GetProductGrids(products))
 	{
-		LOG_INFO(reaction_coefficient);
+
 	}
 
 	void ZerothOrderReaction::NextRealisation()
@@ -19,7 +19,7 @@ namespace accord::microscopic
 
 	void ZerothOrderReaction::Run()
 	{
-		while (time < region->GetTime())
+		while (time < region->GetEventTime())
 		{
 			//LOG_ERROR("Time = {}", time);
 			CreateProductMolecules();

@@ -16,7 +16,7 @@ namespace accord
 		event_queue->Add(this);
 	}
 
-	double Event::GetTime() const
+	double Event::GetEventTime() const
 	{
 		return time;
 	}

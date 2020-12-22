@@ -74,7 +74,7 @@ namespace accord::microscopic
 			std::vector<RecentMolecule> recent_molecules;
 			for (auto& molecule : subvolume.GetRecentMolecules())
 			{
-				if (molecule.GetTime() < Environment::GetTime())
+				if (molecule.GetTime() < region->GetEventTime())
 				{
 					std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule), max_cycles);
 					if (md.has_value())
@@ -88,7 +88,7 @@ namespace accord::microscopic
 						else
 						{
 							// Environment::GetTime() = region->GetTime()
-							md->GetOwner().AddMolecule(md->GetPosition(), region->GetTime());
+							md->GetOwner().AddMolecule(md->GetPosition(), region->GetEventTime());
 							//md->GetOwner().AddMolecule(md->GetPosition(), GetRegion().GetNextEventTime();
 						}
 					}
@@ -199,7 +199,7 @@ namespace accord::microscopic
 		// will produce nan is molecule time > environment/region time
 		// for regions with the same start time and time step delta time should = 0.
 		return { molecule.GetPosition() +
-			std::sqrt(2 * diffision_coefficient * (region->GetTime() - molecule.GetTime())) *
+			std::sqrt(2 * diffision_coefficient * (region->GetEventTime() - molecule.GetTime())) *
 			Vec3d::GenerateNormal() };
 	}
 

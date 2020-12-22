@@ -79,7 +79,7 @@ namespace accord
 
 	void PassiveActor::Run()
 	{
-		if (record_time) time_files.begin()->Write(GetTime());
+		if (record_time) time_files.begin()->Write(GetEventTime());
 		std::vector<size_t> counts(Environment::GetNumberOfMoleculeTypes(), 0);
 		ObserveEnvelopedMicroscopicSubvolumes(counts);
 		ObservePartialMicroscopicSubvolumes(counts);
@@ -89,7 +89,7 @@ namespace accord
 			count_files.at(id).Write(count);
 			id++;
 		}
-		UpdateTime(GetTime() + time_step);
+		UpdateTime(GetEventTime() + time_step);
 	}
 
 	void PassiveActor::CreateFiles()

@@ -17,7 +17,7 @@ namespace accord
 
 		void UpdateTime(double new_time);
 
-		double GetTime() const;
+		double GetEventTime() const;
 
 		int GetPriority() const;
 
@@ -44,7 +44,7 @@ namespace accord
 		friend OStream& operator << (OStream& os, const Event& event)
 		{
 			return os << fmt::format("Type:{}, ID:{}, Time:{}", 
-				event.GetType(), event.GetID(), event.GetTime());
+				event.GetType(), event.GetID(), event.GetEventTime());
 		}
 	private:
 		double time;

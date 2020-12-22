@@ -49,18 +49,21 @@ namespace accord::microscopic
 		void AddReaction(const MoleculeIDs& products, double reaction_rate);
 
 		// First Order Reaction
-		void AddReaction(MoleculeID reactant, const MoleculeIDs& products);
+		void AddReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate);
 
 		// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
 		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products);
 
-		// returns event time + time_step
+		// returns environment time + time_step
 		double GetNextEventTime() const;
 
 		// returns time_step
 		double GetTimeStep() const;
 
 		double GetStartTime() const;
+
+		// is 1 time step behind the current environment time
+		double GetLocalTime() const;
 
 		// may need to add const versions of GetGrid(s)
 		std::vector<Grid2>& GetGrids();
@@ -91,6 +94,7 @@ namespace accord::microscopic
 		SecondOrderReactions second_order_reactions;
 		double time_step;
 		double start_time;
+		double local_time;
 		RegionID id;
 
 		// links local grids to eachother for bi-molecular reactions

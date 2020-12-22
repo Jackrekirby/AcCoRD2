@@ -6,6 +6,8 @@
 % 3. Pass two shape objects to realisation so regions and actors can be drawn
 % with different styles.
 % Investigate available colour maps so regions and actors can look unique.
+% 4. Consider removing maxAveraged for count plotting
+% 5. Consider added plotCount(moleculeType, passiveActor)
 
 %% Import Simulation Data
 clear all;
@@ -15,7 +17,7 @@ disp("done");
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('FaceAlpha', 0);
-r = Accord.initAnimateRealisation(sim, 1, 1, 1, true, shape3d);
+r = Accord.initAnimateRealisation(sim, 1, 1, 1, false, shape3d);
 r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video

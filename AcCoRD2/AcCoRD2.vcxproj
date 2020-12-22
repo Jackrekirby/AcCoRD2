@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\reaction_manager.cpp" />
     <ClCompile Include="src\box_passive_actor.cpp" />
     <ClCompile Include="src\shapeless_passive_actor.cpp" />
     <ClCompile Include="src\microscopic_box_region.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="src\vec_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\reaction_manager.h" />
     <ClInclude Include="src\box_passive_actor.h" />
     <ClInclude Include="src\shapeless_passive_actor.h" />
     <ClInclude Include="src\microscopic_box_region.h" />

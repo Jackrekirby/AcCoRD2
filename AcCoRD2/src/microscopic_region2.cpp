@@ -14,8 +14,9 @@ namespace accord::microscopic
 		std::vector<Vec3i> n_subvolumes_per_grid,
 		double start_time, double time_step, int priority, EventQueue* event_queue,
 		SurfaceType surface_type, RegionID id)
-		: Event(start_time, priority, event_queue),
-		time_step(time_step), id(id), surface_type(surface_type), start_time(start_time)
+		: Event(start_time + time_step, priority, event_queue),
+		time_step(time_step), id(id), surface_type(surface_type), start_time(start_time),
+		local_time(start_time)
 	{
 		
 	}
@@ -28,7 +29,10 @@ namespace accord::microscopic
 			reaction.Run();
 		}
 		// first order reactions
-
+		for (auto& reaction : first_order_reactions)
+		{
+			reaction.Run();
+		}
 		//diffuse molecules
 		for (auto& grid : grids)
 		{
@@ -37,6 +41,10 @@ namespace accord::microscopic
 		// second order reactions
 
 		//update reaction time
+
+		// update region time
+		local_time = Environment::GetTime();
+		// set time of next event
 		UpdateTime(GetNextEventTime());
 	}
 
@@ -96,9 +104,9 @@ namespace accord::microscopic
 	}
 
 	// First Order Reaction
-	void Region2::AddReaction(MoleculeID reactant, const MoleculeIDs& products)
+	void Region2::AddReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
 	{
-		first_order_reactions.emplace_back(reactant, products);
+		first_order_reactions.emplace_back(reactant, products, reaction_rate, total_reaction_rate, this);
 	}
 
 	// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
@@ -110,7 +118,7 @@ namespace accord::microscopic
 	// returns event time + time_step
 	double Region2::GetNextEventTime() const
 	{
-		return GetTime() + GetTimeStep();
+		return GetEventTime() + GetTimeStep();
 	}
 
 	// returns time_step
@@ -122,6 +130,11 @@ namespace accord::microscopic
 	double Region2::GetStartTime() const
 	{
 		return start_time;
+	}
+
+	double Region2::GetLocalTime() const
+	{
+		return local_time;
 	}
 
 	// may need to add const versions of GetGrid(s)
