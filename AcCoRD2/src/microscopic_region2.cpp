@@ -38,12 +38,15 @@ namespace accord::microscopic
 		{
 			grid.DiffuseMolecules();
 		}
-		// second order reactions
-
-		//update reaction time
 
 		// update region time
 		local_time = Environment::GetTime();
+
+		// second order reactions
+		// is a second order reactions class necessary as could just have one and two reactants types stored directly
+		// or should zeroth and first order reactions be put into a class? e.g. to pass similar variables?
+		second_order_reactions.Run(local_time);
+
 		// set time of next event
 		UpdateTime(GetNextEventTime());
 	}
@@ -110,9 +113,10 @@ namespace accord::microscopic
 	}
 
 	// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-	void Region2::AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products)
+	void Region2::AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, 
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius)
 	{
-		second_order_reactions.AddReaction(reactant_a, reactant_b, products);
+		second_order_reactions.AddReaction(reactant_a, reactant_b, products, binding_radius, unbinding_radius, this);
 	}
 
 	// returns event time + time_step
@@ -150,6 +154,8 @@ namespace accord::microscopic
 
 	void Region2::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
 	{
+		LOG_INFO("generating grid");
+		grids.reserve(Environment::GetNumberOfMoleculeTypes());
 		shape::basic::Box b = GetShape().GetBasicShape().GenerateBoundingBox();
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
 		{
@@ -165,6 +171,7 @@ namespace accord::microscopic
 			// ignore unintended copy warning for g2 = g1
 			for (auto g2 = g1; g2 != grids.end(); ++g2)
 			{
+				LOG_INFO("Linking {} to {}", g1->GetMoleculeID(), g2->GetMoleculeID());
 				g1->LinkGrid(*g2);
 			}
 		}

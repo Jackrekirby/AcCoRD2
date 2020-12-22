@@ -4,10 +4,15 @@
 
 namespace accord::microscopic
 {
-	Subvolume2::Subvolume2(Vec3d origin, Vec3d length, Grid2* grid)
-		: box(origin, length)
+	Subvolume2::Subvolume2(Vec3d origin, Vec3d length, Grid2* grid, int n_molecule_types)
+		: box(origin, length), grid(grid)
 	{
-
+		LOG_INFO("grid id = {}", grid->GetMoleculeID());
+		relations.reserve(n_molecule_types);
+		for (int i = 0; i < n_molecule_types; i++)
+		{
+			relations.emplace_back();
+		}
 	}
 
 	void Subvolume2::AddMolecule(const Vec3d& position)
@@ -73,21 +78,6 @@ namespace accord::microscopic
 	Grid2& Subvolume2::GetGrid()
 	{
 		return *grid;
-	}
-
-	void Subvolume2::ResetReactionList(double time)
-	{
-		if (time > last_second_order_reaction_time)
-		{
-			last_second_order_reaction_time = time;
-			has_reacted.clear();
-			has_reacted.reserve(normal_molecules.size());
-		}
-	}
-
-	std::vector<bool> Subvolume2::GetHasReactedList()
-	{
-		return has_reacted;
 	}
 
 	MoleculeID Subvolume2::GetMoleculeID()

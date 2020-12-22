@@ -52,7 +52,8 @@ namespace accord::microscopic
 		void AddReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate);
 
 		// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products);
+		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products,
+			double binding_radius, double unbinding_radius);
 
 		// returns environment time + time_step
 		double GetNextEventTime() const;
@@ -97,9 +98,6 @@ namespace accord::microscopic
 		double local_time;
 		RegionID id;
 
-		// links local grids to eachother for bi-molecular reactions
-		void LinkGrids();
-
 		// link local grids to external grids between each molecule type for bi-molecular reactions.
 		// called by add relationship functions.
 		// may wish to sperate function into neighbour, high priority and low priority linking for speed
@@ -108,5 +106,8 @@ namespace accord::microscopic
 
 	protected:
 		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);
+
+		// links local grids to eachother for bi-molecular reactions
+		void LinkGrids();
 	};
 }

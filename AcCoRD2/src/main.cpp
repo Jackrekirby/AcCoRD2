@@ -48,6 +48,8 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// avoid requiring other types, instead pass arguments with run function. A child should be unaware of its parent as much as possible
+// add function vector<Grid*> GetProductsGrids(vector ids)
 // ability to add multiple of a type of reactant
 // Need to remove unnecessary headers by pointing to seperate variables instead of 
 // rename GetTime() to GetEventTime()
@@ -127,14 +129,14 @@ void TestSimpleEnvironment()
 	EventQueue event_queue(7);
 
 	// Create Reactions
-	ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
-	ReactionManager::AddZerothReaction({ 0 }, 1, { 0 });
-	ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
+	//ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
+	//ReactionManager::AddZerothReaction({ 0 }, 1, { 0 });
+	//ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
 	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
 
 	// CREATE REGIONS
 	std::vector<double> diffision_coefficients = { 1, 2, 3 };
-	std::vector<Vec3i> n_subvolumes = { Vec3i(2), Vec3i(1), Vec3i(1) };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(2), Vec3i(2), Vec3i(2) };
 	double start_time = 0;
 	double time_step = 0.05;
 	int priority = 0;
@@ -163,6 +165,8 @@ void TestSimpleEnvironment()
 				reaction.GetRate(), reaction.GetTotalRate());
 		}
 	}
+
+	Environment::GetRegion(0).AddReaction(0, 1, { 2 }, 1, 1);
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())

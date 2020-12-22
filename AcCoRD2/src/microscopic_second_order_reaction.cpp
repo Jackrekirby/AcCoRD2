@@ -1,10 +1,13 @@
 #include "pch.h"
 #include "microscopic_second_order_reaction.h"
+#include "microscopic_region2.h"
+#include "microscopic_subvolume2.h"
 
 
 namespace accord::microscopic
 {
-	void SecondOrderReactions::AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products)
+	void SecondOrderReactions::AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products, 
+		double binding_radius, double unbinding_radius, Region2* region)
 	{
 		if (reactant_a == reactant_b)
 		{
@@ -12,7 +15,20 @@ namespace accord::microscopic
 		}
 		else
 		{
-			two_reactant_reactions.emplace_back(reactant_a, reactant_b, products);
+			two_reactant_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, region);
+		}
+	}
+
+	void SecondOrderReactions::Run(double current_time)
+	{
+		for (auto& reaction : one_reactant_reactions)
+		{
+			reaction.Run(current_time);
+		}
+
+		for (auto& reaction : two_reactant_reactions)
+		{
+			reaction.Run(current_time);
 		}
 	}
 
@@ -22,152 +38,104 @@ namespace accord::microscopic
 
 	}
 
-	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction
-	(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products)
+	void OneReactantSecondOrderReaction::Run(double current_time)
+	{
+	}
+
+	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region)
+		: reactant_a(reactant_a), reactant_b(reactant_b), product_grids(GetProductGrids(products, region)),
+		binding_radius(binding_radius), unbinding_radius(unbinding_radius), reactant_a_grid(&(region->GetGrid(reactant_a)))
 	{
 
 	}
 
-
-	// avoid nested for loops!
-	// need to make sure subsequence second order reactions do not react with same molecules
-	// OneTypeSecondOrderReaction
-	// TwoTypeSecondOrderReaction
-	class SecondOrderReaction
+	void TwoReactantSecondOrderReaction::Run(double current_time)
 	{
-	public:
-		// also have option for single reactant
-		SecondOrderReaction(ID reactant_a, ID rectant_b, std::vector<Grid> products, Region* region)
-			: reactant_a(reactant_a), rectant_b(rectant_b), products(products), region(region)
-		{
+		CalculateReactions(current_time);
+	}
 
+	std::vector<Grid2*> TwoReactantSecondOrderReaction::GetProductGrids(const MoleculeIDs& products, Region2* region)
+	{
+		std::vector<Grid2*> product_grids;
+		for (auto product : products)
+		{
+			product_grids.emplace_back(&(region->GetGrid(product)));
 		}
+		return product_grids;
+	}
 
-
-		void CalculateReactions()
+	void TwoReactantSecondOrderReaction::CalculateReactions(double current_time)
+	{
+		for (auto& subvolume_a : reactant_a_grid->GetSubvolumes())
 		{
-			Grid& grid_a = region->GetGrid(reactant_a);
-			for (auto& subvolume_a : grid_a.GetSubvolumes())
+			for (auto& subvolume_b : subvolume_a.GetRelation(reactant_b).GetSubvolumes())
 			{
-				// switch for GetRelativesOfType()
-				for (auto& subvolume_b : subvolume_a.GetRelative(rectant_b).GetSubvolumes())
-				{
-					CompareMolecules(subvolume_a, *subvolume_b);
-				}
+				CompareMoleculesInSubvolumes(subvolume_a, *subvolume_b, current_time);
 			}
 		}
+	}
 
-		// for single subvolume molecule comparisons
-		void CompareMolecules(Subvolume& s)
+	void TwoReactantSecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume2& s1, Subvolume2& s2, double current_time)
+	{
+		std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
+		std::vector<bool> has_reacted2(s2.GetNormalMolecules().size(), false);
+		int n_reactions = 0;
+		int i1 = 0, i2 = 0;
+		for (auto& m1 : s1.GetNormalMolecules())
 		{
-			auto& molecules = s.GetNormalMolecules();
-			auto begin = molecules.begin();
-			auto end = molecules.end();
-			int i = 1;
-			for (auto molecule_a = begin; molecule_a != end; ++molecule_a)
+			for (auto& m2 : s2.GetNormalMolecules())
 			{
-				for (auto molecule_b = begin + i; molecule_a != end; ++molecule_a)
+				if (!has_reacted2.at(i2))
 				{
-					if (CompareMolecules(*molecule_a, *molecule_b))
+					if (AttemptToReactMolecules(m1, m2, current_time))
 					{
-						//reacted_list(reactant_a ID)
-						// manager.at(reactant id).at(position_id) = true;
-						// MarkMoleculeAsReacted()
-					}
-				}
-				i++;
-			}
-		}
-
-
-
-
-		// react molecules
-		bool CompareMolecules(NormalMolecule& m1, NormalMolecule& m2)
-		{
-			// check if they react return true
-			// if within radius
-			// Grid grid_a.checkPath(m1.position, m2.position, bool& HITSURFACEFLAG)
-			// if surface hit then return std::nullopt
-			// if end = m2.position
-		}
-
-		// shoudl be called compare subvolumes
-		void CompareMolecules(Subvolume& s1, Subvolume& s2)
-		{
-			//reacted list 1, 2
-			std::vector<bool> reacted_molecules_a(s1.GetNormalMolecules().size());
-			std::vector<bool> reacted_molecules_b(s1.GetNormalMolecules().size());
-			int n_reactions = 0;
-
-			// need to store list of which molecules have reacted
-			// at end molecules which have not reacted can be copied across to new normal molecules list
-
-			// no need to get recent molecules as recent list has been cleared by this point
-			int ia = 0, ib = 0;
-			for (auto& molecule_a : s1.GetNormalMolecules())
-			{
-				for (auto& molecule_b : s2.GetNormalMolecules())
-				{
-					// change position to GetPosition()
-					// if molecule b has already reacted then skip to next molecule b.
-					if (reacted_molecules_b.at(ib)) continue;
-					if ((molecule_a.position - molecule_b.position).Size() < binding_radius)
-					{
-						// delete m1 and m2
-						// create products
-						// is it faster to just create a new vector (copy elements you want to keep)? YES
-
-						for (auto& product : products)
-						{
-							// GetGrid(type)
-							// path checking required
-							region->GetGrids().at(product).AddNormalMolecule(Vec3d(0, 0, 0));
-						}
-
-						reacted_molecules_a.at(ia) = true;
-						reacted_molecules_b.at(ib) = true;
+						has_reacted1.at(i1) = true;
+						has_reacted2.at(i2) = true;
 						n_reactions++;
-						// once molecule a has reacted skip to next molecule a;
 						break;
 					}
-					ib++;
 				}
-				ib = 0;
-				ia++;
+				i2++;
 			}
-
-
-			std::vector<NormalMolecule> new_normal_molecules_a, new_normal_molecules_b;
-			new_normal_molecules_a.reserve(s1.GetNormalMolecules().size() - n_reactions);
-			new_normal_molecules_b.reserve(s2.GetNormalMolecules().size() - n_reactions);
-
-			int ia = 0, ib = 0;
-			for (auto& molecule_a : s1.GetNormalMolecules())
-			{
-				if (reacted_molecules_a.at(ia)) new_normal_molecules_a.emplace_back(molecule_a);
-				ia++;
-			}
-
-			for (auto& molecule_b : s2.GetNormalMolecules())
-			{
-				if (reacted_molecules_b.at(ib)) new_normal_molecules_b.emplace_back(molecule_b);
-				ib++;
-			}
-
-			s1.GetNormalMolecules() = new_normal_molecules_a;
-			s2.GetNormalMolecules() = new_normal_molecules_b;
+			i2 = 0;
+			i1++;
 		}
-	private:
-		double binding_radius;
-		double unbinding_radius; // is this required for all reactions?
-		std::vector<ID> products;
-		Region* region;
-		ID reactant_a;
-		ID rectant_b;
-	};
-}
 
+		// keep the normal molecules per subvolume which did not react
+		std::vector<NormalMolecule> ms1, ms2;
+		ms1.reserve(s1.GetNormalMolecules().size() - n_reactions);
+		ms2.reserve(s2.GetNormalMolecules().size() - n_reactions);
+		int i = 0;
+		for (auto& m1 : s1.GetNormalMolecules())
+		{
+			if (has_reacted1.at(i)) ms1.emplace_back(m1);
+			i++;
+		}
+		i = 0;
+		for (auto& m2 : s2.GetNormalMolecules())
+		{
+			if (has_reacted2.at(i)) ms2.emplace_back(m2);
+			i++;
+		}
+		s1.GetNormalMolecules() = ms1;
+		s2.GetNormalMolecules() = ms2;
+	}
+
+	bool TwoReactantSecondOrderReaction::AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2, double current_time)
+	{
+		if ((m1.GetPosition() - m2.GetPosition()).Size() < binding_radius)
+		{
+			for (auto& product_grid : product_grids)
+			{
+				Vec3d midpoint = m1.GetPosition() + 0.5 * (m2.GetPosition() - m1.GetPosition());
+				product_grid->AddMolecule(midpoint, current_time);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
 
 

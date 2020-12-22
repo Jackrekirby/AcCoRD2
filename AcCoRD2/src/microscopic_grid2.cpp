@@ -19,6 +19,7 @@ namespace accord::microscopic
 		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient),
 		region(region), id(id)
 	{
+		LOG_INFO("id = {}", id);
 		CreateSubvolumes();
 	}
 
@@ -240,10 +241,13 @@ namespace accord::microscopic
 	// neighbours. Grid is of same molecule type
 	void Grid2::LinkGrid(Grid2& grid)
 	{
+		LOG_INFO("Linking {} to {}", GetMoleculeID(), grid.GetMoleculeID());
 		for (auto& s1 : subvolumes)
 		{
 			for (auto& s2 : grid.subvolumes)
 			{
+				LOG_INFO("{}, {}", s1.GetMoleculeID(), s2.GetMoleculeID());
+				LOG_INFO(grid.GetMoleculeID());
 				s1.Link(s2);
 			}
 		}
@@ -279,6 +283,7 @@ namespace accord::microscopic
 	// create subvolumes upon class construction
 	void Grid2::CreateSubvolumes()
 	{
+		subvolumes.reserve(n_subvolumes.Volume());
 		Vec3i i;
 		for (i.z = 0; i.z < n_subvolumes.z; i.z++)
 		{
@@ -287,7 +292,7 @@ namespace accord::microscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					Vec3d subvolume_length = box.GetLength() / n_subvolumes;
-					subvolumes.emplace_back(box.GetOrigin() + i * subvolume_length, subvolume_length, this);
+					subvolumes.emplace_back(box.GetOrigin() + i * subvolume_length, subvolume_length, this, Environment::GetNumberOfMoleculeTypes());
 				}
 			}
 		}

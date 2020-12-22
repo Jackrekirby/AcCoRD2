@@ -10,7 +10,9 @@ namespace accord::microscopic
 		: Region2(diffision_coefficients, n_subvolumes_per_grid, start_time, time_step, 
 			priority, event_queue, surface_type, id), surface_shape(box)
 	{
+		// could move into FinishRegionConstruction()
 		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid);
+		LinkGrids();
 	}
 
 	const BoxSurfaceShape& BoxRegion::GetShape() const
