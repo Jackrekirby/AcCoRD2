@@ -350,10 +350,14 @@ namespace accord::microscopic
 			{
 				for (j.x = -1; j.x <= 1; j.x++)
 				{
-					auto subvolume2 = GetSubvolumeIfExists(i + j);
-					if (subvolume2 != nullptr)
+					// dont link a subvolume to itself
+					if (!(j == Vec3i(0)).All())
 					{
-						subvolume->LinkSibling(*subvolume2);
+						auto subvolume2 = GetSubvolumeIfExists(i + j);
+						if (subvolume2 != nullptr)
+						{
+							subvolume->LinkSibling(*subvolume2);
+						}
 					}
 				}
 			}

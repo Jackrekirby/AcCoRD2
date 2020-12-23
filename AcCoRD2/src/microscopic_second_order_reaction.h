@@ -16,6 +16,15 @@ namespace accord::microscopic
 		OneReactantSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products);
 
 		void Run(double current_time);
+	private:
+		Grid2* reactant_grid;
+		MoleculeID reactant;
+		MoleculeIDs products;
+		double binding_radius;
+		double unbinding_radius;
+		void CalculateReactions(double current_time);
+
+		void CompareMoleculesInSubvolume(Subvolume2& s1, double current_time);
 	};
 
 	class TwoReactantSecondOrderReaction
@@ -26,7 +35,6 @@ namespace accord::microscopic
 
 		void Run(double current_time);
 	private:
-		Region2* region;
 		Grid2* reactant_a_grid;
 		MoleculeID reactant_a;
 		MoleculeID reactant_b;
@@ -42,6 +50,9 @@ namespace accord::microscopic
 			Subvolume2& s1, Subvolume2& s2, double current_time);
 	};
 
+	// need to add base SecondOrderReactionClass
+	// SecondOrderReactions class not necessary, move work into regions
+	// rename add reactions into seperate types so can overload them
 	class SecondOrderReactions
 	{
 	public:

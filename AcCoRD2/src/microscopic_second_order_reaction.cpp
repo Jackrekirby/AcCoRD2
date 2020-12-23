@@ -66,6 +66,58 @@ namespace accord::microscopic
 		}
 	}
 
+	void OneReactantSecondOrderReaction::CalculateReactions(double current_time)
+	{
+		for (auto& subvolume_a : reactant_grid->GetSubvolumes())
+		{
+			for (auto& subvolume_b : subvolume_a.GetRelation(reactant).GetSubvolumes())
+			{
+				CompareMoleculesInSubvolumes(subvolume_a, *subvolume_b, current_time);
+			}
+			CompareMoleculesInSubvolumes(subvolume_a, current_time);
+		}
+	}
+
+	void OneReactantSecondOrderReaction::CompareMoleculesInSubvolume(Subvolume2& s, double current_time)
+	{
+		std::vector<bool> has_reacted(s.GetNormalMolecules().size(), false);
+		int n_reactions = 0;
+		int i1 = 0, i2 = 0;
+		auto& molecules = s.GetNormalMolecules();
+		auto m_end = molecules.begin();
+		for (auto m1 = molecules.begin(); m1 != m_end; ++m1)
+		{
+			if (!has_reacted.at(i1)) continue;
+			for (auto m2 = m1 + 1; m2 != m_end; ++m2)
+			{
+				if (!has_reacted.at(i2))
+				{
+					if (AttemptToReactMolecules(m1, m2, s, s, current_time))
+					{
+						has_reacted.at(i1) = true;
+						has_reacted.at(i2) = true;
+						n_reactions++;
+						break;
+					}
+				}
+				i2++;
+			}
+			i2 = 0;
+			i1++;
+		}
+
+		// keep the normal molecules per subvolume which did not react
+		std::vector<NormalMolecule> nm;
+		nm.reserve(s.GetNormalMolecules().size() - n_reactions);
+		int i = 0;
+		for (auto& m : s.GetNormalMolecules())
+		{
+			if (!has_reacted.at(i)) nm.emplace_back(m);
+			i++;
+		}
+		s.GetNormalMolecules() = nm;
+	}
+
 	void TwoReactantSecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume2& s1, Subvolume2& s2, double current_time)
 	{
 		std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
@@ -115,6 +167,7 @@ namespace accord::microscopic
 		
 	}
 
+	// just because 2 molecule types may be the same it does not mean they will have the same diffusion coefficient
 	bool TwoReactantSecondOrderReaction::AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2,
 		Subvolume2& s1, Subvolume2& s2, double current_time)
 	{

@@ -50,6 +50,9 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// need to find where i use iterator loop and set iterator to another. It may be it& = it and may need to be it = it + 1.
+// add != vec checks
+// add scalar boolean checks for vector
 // add error checking for ids (and other times when creating vectors)
 // avoid requiring other types, instead pass arguments with run function. A child should be unaware of its parent as much as possible
 // add function vector<Grid*> GetProductsGrids(vector ids)
@@ -69,6 +72,8 @@
 // reactions
 
 // TO DO (Not Imminent)
+// MAY be able to make second order reactions more efficient by seperating links between internal and external subvolumes
+// check whether reactions can be defined in non ascending order
 // make functions more descriptive (GetRegions and GetRegionIDs)
 // consider passing objects into constructor via const reference to avoid including headers in headers
 // ensure consistent to ToJson to_json
