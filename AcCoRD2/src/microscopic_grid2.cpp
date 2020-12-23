@@ -239,55 +239,6 @@ namespace accord::microscopic
 		return &subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 	}
 
-	void Grid2::LinkGrids()
-	{
-		for (auto& relationship : neighbour_relationships)
-		{
-			if (relationship.GetSurfaceType() == SurfaceType::None) continue;
-			auto& relative = relationship.GetRelative();
-			
-			bool foundRelative = false;
-			for (auto& relationship2 : relative.GetNeighbourRelationships())
-			{
-				if ((&relative == &relationship2.GetRelative()) &&
-					(relationship2.GetSurfaceType() == SurfaceType::None))
-				{
-					foundRelative = true;
-					continue;
-				}
-			}
-			if (foundRelative) continue;
-			for (auto& relationship2 : relative.GetLowPriorityRelationships())
-			{
-				if (&relative == &relationship2.GetRelative())
-				{
-					if (relationship2.GetSurfaceType() == SurfaceType::None)
-					{
-						
-					}
-					foundRelative = true;
-					continue;
-				}
-			}
-			if (foundRelative) continue;
-			for (auto& relationship2 : relative.GetHighPriorityRelationships())
-			{
-				if ((&relative == &relationship2.GetRelative()) &&
-					(relationship2.GetSurfaceType() == SurfaceType::None))
-				{
-					foundRelative = true;
-					continue;
-				}
-			}
-			if (!foundRelative)
-			{
-				// would be good if relatives had log function so they could say
-				// which type of relative they are and their id.
-				LOG_WARN("Relattionship defined in one direction but not the other");
-			}
-		}
-	}
-
 	// could be const if you are only linking local subvolumes and not vice versa
 	// would be more efficient to do both at same time. Would then require a check to see if regions are already
 	// neighbours. Grid is of same molecule type

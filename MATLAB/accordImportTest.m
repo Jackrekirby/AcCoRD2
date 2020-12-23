@@ -17,13 +17,13 @@ disp("done");
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('FaceAlpha', 0);
-r = Accord.initAnimateRealisation(sim, 1, 1, 1, false, shape3d);
-r = Accord.playAnimateRealisation(r, 0.1);
+r = Accord.initAnimateRealisation(sim, 1, 1, 1, true, shape3d);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;
 shape3d = Shape3D('FaceAlpha', 0);
-r = Accord.initAnimateRealisation(sim, 1, 1, 7, true, shape3d);
+r = Accord.initAnimateRealisation(sim, 1, 1, 7, false, shape3d);
 %%
 r.hFigure.WindowState = 'maximized';
 %%
@@ -35,7 +35,8 @@ Accord.displayShapes(sim, 10);
 %% Plot Count
 clc;
 figure;
-Accord.plotCountForMoleculeType(sim, 3, Inf, Inf);
+Accord.plotCountForMoleculeType(sim, 1, Inf, Inf);
+%%
 figure;
 Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
 

@@ -75,9 +75,6 @@ namespace accord::microscopic
 		// if index is not valid null will be returned
 		Subvolume2* GetSubvolumeIfExists(const Vec3i& index);
 
-
-		void LinkGrids();
-
 		// could be const if you are only linking local subvolumes and not vice versa
 		// would be more efficient to do both at same time. Would then require a check to see if regions are already
 		// neighbours. Grid is of same molecule type

@@ -46,6 +46,17 @@ namespace accord
 		return num_molecule_types;
 	}
 
+	MoleculeIDs Environment::GetMoleculeIDs()
+	{
+		MoleculeIDs ids;
+		ids.reserve(num_molecule_types);
+		for (int i = 0; i < num_molecule_types; i++)
+		{
+			ids.emplace_back(i);
+		}
+		return ids;
+	}
+
 	std::string Environment::GetSimulationName()
 	{
 		return simulation_name;
@@ -101,6 +112,98 @@ namespace accord
 	void Environment::CreateDirectories()
 	{
 		std::filesystem::create_directories(GetFilePath());
+	}
+
+	
+	// the only type of relationship which does not need to be defined is a neighbour and none
+	// if region a has a reflective surface and b is the neighbour
+	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+		RelationshipPriority priority, 
+		SurfaceType ab_surface, SurfaceType ba_surface)
+	{
+		switch (priority)
+		{
+		case RelationshipPriority::A:
+			GetRegion(region_a).AddLowPriorityRelative(GetRegion(region_b), ab_surface, GetMoleculeIDs());
+			GetRegion(region_b).AddHighPriorityRelative(GetRegion(region_a), ba_surface, GetMoleculeIDs());
+			break;
+		case RelationshipPriority::B:
+			GetRegion(region_a).AddHighPriorityRelative(GetRegion(region_b), ab_surface, GetMoleculeIDs());
+			GetRegion(region_b).AddLowPriorityRelative(GetRegion(region_a), ba_surface, GetMoleculeIDs());
+			break;
+		case RelationshipPriority::None:
+			GetRegion(region_a).AddNeighbour(GetRegion(region_b), ab_surface, GetMoleculeIDs());
+			GetRegion(region_b).AddNeighbour(GetRegion(region_a), ba_surface, GetMoleculeIDs());
+			break;
+		default:
+			LOG_CRITICAL("Unknown RelationshipPriority type");
+			throw std::exception();
+		}
+		
+	}
+
+	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+		RelationshipPriority priority, microscopic::SurfaceType surface)
+	{
+		DefineRelationship(region_a, region_b, priority, surface, surface);
+	}
+
+	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+		RelationshipPriority priority,
+		SurfaceTypes ab_surfaces, SurfaceTypes ba_surfaces)
+	{
+		int i = 0;
+		switch (priority)
+		{
+		case RelationshipPriority::A:
+			for (auto& ab_surface : ab_surfaces)
+			{
+				GetRegion(region_a).AddLowPriorityRelative(GetRegion(region_b), ab_surface, { i });
+				i++;
+			}
+			i = 0;
+			for (auto& ba_surface : ba_surfaces)
+			{
+				GetRegion(region_b).AddHighPriorityRelative(GetRegion(region_a), ba_surface, { i });
+				i++;
+			}
+			break;
+		case RelationshipPriority::B:
+			for (auto& ab_surface : ab_surfaces)
+			{
+				GetRegion(region_a).AddHighPriorityRelative(GetRegion(region_b), ab_surface, { i });
+				i++;
+			}
+			i = 0;
+			for (auto& ba_surface : ba_surfaces)
+			{
+				GetRegion(region_b).AddLowPriorityRelative(GetRegion(region_a), ba_surface, { i });
+				i++;
+			}
+			break;
+		case RelationshipPriority::None:
+			for (auto& ab_surface : ab_surfaces)
+			{
+				GetRegion(region_a).AddNeighbour(GetRegion(region_b), ab_surface, { i });
+				i++;
+			}
+			i = 0;
+			for (auto& ba_surface : ba_surfaces)
+			{
+				GetRegion(region_b).AddNeighbour(GetRegion(region_a), ba_surface, { i });
+				i++;
+			}
+			break;
+		default:
+			LOG_CRITICAL("Unknown RelationshipPriority type");
+			throw std::exception();
+		}
+	}
+
+	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+		RelationshipPriority priority, SurfaceTypes surfaces)
+	{
+		DefineRelationship(region_a, region_b, priority, surfaces, surfaces);
 	}
 
 	std::vector<std::unique_ptr<microscopic::Region2>> Environment::microscopic_regions;

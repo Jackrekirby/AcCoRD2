@@ -137,7 +137,7 @@ void TestSimpleEnvironment()
 	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
 
 	// CREATE REGIONS
-	std::vector<double> diffision_coefficients = { 0.1, 0.1, 0.1, 0.1 };
+	std::vector<double> diffision_coefficients = { 0.001, 0.001, 0.001, 0.001 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(3), Vec3i(2), Vec3i(1), Vec3i(1) };
 	double start_time = 0;
 	double time_step = 0.05;
@@ -172,16 +172,16 @@ void TestSimpleEnvironment()
 		}
 	}
 
-	Environment::GetRegion(0).AddReaction(0, 1, { 2 }, 0.5, 1);
-	Environment::GetRegion(1).AddReaction(0, 1, { 2 }, 0.5, 1);
+	//Environment::GetRegion(0).AddReaction(0, 1, { 2 }, 1, 1);
+	//Environment::GetRegion(1).AddReaction(0, 1, { 2 }, 1, 1);
 	//Environment::GetRegion(0).AddReaction(2, 3, { 0, 1 }, 0.1, 1);
 
 	// Define Relationships
 	// all molecule types should be added to each region
 	Environment::GetRegion(0).AddNeighbour(Environment::GetRegion(1),
-		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
+		microscopic::SurfaceType::None, { 0, 1, 2 });
 	Environment::GetRegion(1).AddNeighbour(Environment::GetRegion(0),
-		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
+		microscopic::SurfaceType::None, { 0, 1, 2 });
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -195,7 +195,10 @@ void TestSimpleEnvironment()
 	// CREATE ACTORS
 	Environment::GetPassiveActors().reserve(2);
 	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
-		RegionIDs({ 0, 1 }),
+		RegionIDs({ 0 }),
+		MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, static_cast<int>(Environment::GetPassiveActors().size()), true, true));
+	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
+		RegionIDs({ 1 }),
 		MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, static_cast<int>(Environment::GetPassiveActors().size()), true, true));
 
 	Json json_actors;
@@ -218,7 +221,7 @@ void TestSimpleEnvironment()
 
 	for (int i = 0; i < 1; i++)
 	{
-		Environment::GetRegion(0).AddMolecule(0, { -0.1, 0, 0 });
+		Environment::GetRegion(0).AddMolecule(0, { -0.3, 0, 0 });
 		Environment::GetRegion(1).AddMolecule(1, { 0.1, 0, 0 });
 	}
 

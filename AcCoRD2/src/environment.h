@@ -34,6 +34,29 @@ namespace accord
 		static bool NextRealisation();
 
 		static void CreateDirectories();
+
+		enum class RelationshipPriority
+		{
+			A, B, None
+		};
+
+		static MoleculeIDs GetMoleculeIDs();
+
+		typedef microscopic::SurfaceType SurfaceType;
+		static void DefineRelationship(RegionID region_a, RegionID region_b,
+			RelationshipPriority priority,
+			microscopic::SurfaceType ab_surface, microscopic::SurfaceType ba_surface);
+
+		static void DefineRelationship(RegionID region_a, RegionID region_b,
+			RelationshipPriority priority, microscopic::SurfaceType surface);
+
+		typedef std::vector<microscopic::SurfaceType> SurfaceTypes;
+		static void DefineRelationship(RegionID region_a, RegionID region_b,
+			RelationshipPriority priority,
+			SurfaceTypes ab_surfaces, SurfaceTypes ba_surfaces);
+
+		static void DefineRelationship(RegionID region_a, RegionID region_b,
+			RelationshipPriority priority, SurfaceTypes surfaces);
 	private:
 		static double time;
 		static double run_time;

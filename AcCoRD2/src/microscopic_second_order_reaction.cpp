@@ -134,7 +134,7 @@ namespace accord::microscopic
 			double d2 = s1.GetGrid().GetDiffusionCoeffient();
 			Vec3d reaction_site = m1.GetPosition() + (d1 / (d1 + d2)) * (m2.GetPosition() - m1.GetPosition());
 
-			LOG_INFO("molecules are close enough to react");
+			LOG_INFO("molecules are close enough to react,  {}", reaction_site);
 			// if the reaction site is directly on the border then the molecules never cross the border
 			// allowing molecules to diffuse across a surface which is not none
 			auto p1 = s1.GetGrid().CheckMoleculePath(m1.GetPosition(), reaction_site, 20, true);
