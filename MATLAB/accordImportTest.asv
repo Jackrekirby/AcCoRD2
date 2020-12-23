@@ -38,8 +38,8 @@ Accord.displayShapes(sim, 10);
 clc;
 figure;
 subplot(3, 1, 1);
-% passive actor, molecule type
-Accord.plotCount(sim, 1, 3, Inf, Inf);
+%
+Accord.plotCount(sim, 2, 3, Inf, Inf);
 subplot(3, 1, 2);
 Accord.plotCountForMoleculeType(sim, 3, Inf, Inf);
 subplot(3, 1, 3);

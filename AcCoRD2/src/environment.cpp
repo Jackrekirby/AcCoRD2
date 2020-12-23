@@ -139,7 +139,12 @@ namespace accord
 			LOG_CRITICAL("Unknown RelationshipPriority type");
 			throw std::exception();
 		}
-		
+
+		if (ab_surface == SurfaceType::None && ba_surface == SurfaceType::None)
+		{
+			GetRegion(region_a).LinkGrids(GetRegion(region_b), GetMoleculeIDs());
+			GetRegion(region_a).LinkGrids(GetRegion(region_b), GetMoleculeIDs());
+		}
 	}
 
 	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
@@ -197,6 +202,15 @@ namespace accord
 		default:
 			LOG_CRITICAL("Unknown RelationshipPriority type");
 			throw std::exception();
+		}
+
+		for (int i = 0; i < num_molecule_types; i++)
+		{
+			if (ab_surfaces.at(i) == SurfaceType::None && ba_surfaces.at(i) == SurfaceType::None)
+			{
+				GetRegion(region_a).LinkGrids(GetRegion(region_b), {i});
+				GetRegion(region_a).LinkGrids(GetRegion(region_b), {i});
+			}
 		}
 	}
 

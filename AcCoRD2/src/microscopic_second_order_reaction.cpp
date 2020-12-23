@@ -45,7 +45,7 @@ namespace accord::microscopic
 
 	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region)
-		: reactant_a(reactant_a), reactant_b(reactant_b), product_grids(GetProductGrids(products, region)),
+		: reactant_a(reactant_a), reactant_b(reactant_b), products(products),
 		binding_radius(binding_radius), unbinding_radius(unbinding_radius), reactant_a_grid(&(region->GetGrid(reactant_a)))
 	{
 	}
@@ -53,16 +53,6 @@ namespace accord::microscopic
 	void TwoReactantSecondOrderReaction::Run(double current_time)
 	{
 		CalculateReactions(current_time);
-	}
-
-	std::vector<Grid2*> TwoReactantSecondOrderReaction::GetProductGrids(const MoleculeIDs& products, Region2* region)
-	{
-		std::vector<Grid2*> product_grids;
-		for (auto product : products)
-		{
-			product_grids.emplace_back(&(region->GetGrid(product)));
-		}
-		return product_grids;
 	}
 
 	void TwoReactantSecondOrderReaction::CalculateReactions(double current_time)
@@ -131,10 +121,10 @@ namespace accord::microscopic
 		if ((m1.GetPosition() - m2.GetPosition()).Size() < binding_radius)
 		{
 			double d1 = s1.GetGrid().GetDiffusionCoeffient();
-			double d2 = s1.GetGrid().GetDiffusionCoeffient();
+			double d2 = s2.GetGrid().GetDiffusionCoeffient();
 			Vec3d reaction_site = m1.GetPosition() + (d1 / (d1 + d2)) * (m2.GetPosition() - m1.GetPosition());
 
-			LOG_INFO("molecules are close enough to react,  {}", reaction_site);
+			LOG_INFO("molecules are close enough to react,  {}, {}, {}, {}", m1.GetPosition(), m2.GetPosition(), reaction_site, (d1 / (d1 + d2)));
 			// if the reaction site is directly on the border then the molecules never cross the border
 			// allowing molecules to diffuse across a surface which is not none
 			auto p1 = s1.GetGrid().CheckMoleculePath(m1.GetPosition(), reaction_site, 20, true);
@@ -145,9 +135,9 @@ namespace accord::microscopic
 				if (p2.has_value() && (p2.value().GetPosition() == reaction_site).All())
 				{
 					LOG_INFO("molecules reacted");
-					for (auto& product_grid : product_grids)
+					for (auto product : products)
 					{
-						p1->GetOwner().AddMolecule(reaction_site, current_time);
+						dynamic_cast<Grid2&>(p1->GetOwner()).GetRegion().AddMolecule(product, reaction_site, current_time);
 					}
 					return true;
 				}

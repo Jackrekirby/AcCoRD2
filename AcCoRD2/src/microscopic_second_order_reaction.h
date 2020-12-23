@@ -30,11 +30,9 @@ namespace accord::microscopic
 		Grid2* reactant_a_grid;
 		MoleculeID reactant_a;
 		MoleculeID reactant_b;
-		std::vector<Grid2*> product_grids;
+		MoleculeIDs products;
 		double binding_radius;
 		double unbinding_radius;
-
-		std::vector<Grid2*> GetProductGrids(const MoleculeIDs& products, Region2* region);
 
 		void CalculateReactions(double current_time);
 

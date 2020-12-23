@@ -83,6 +83,8 @@ namespace accord::microscopic
 		RegionID GetID() const;
 
 		void NextRealisation();
+
+		void LinkGrids(Region2& region, const MoleculeIDs& ids);
 	private:
 		//std::unique_ptr<SurfaceShape> surface_shape;
 		SurfaceType surface_type;
@@ -102,7 +104,7 @@ namespace accord::microscopic
 		// called by add relationship functions.
 		// may wish to sperate function into neighbour, high priority and low priority linking for speed
 		// (no need to check for overlap between subvolumes between neighbouring regions)
-		void LinkGrids(Region2& region, const MoleculeIDs& ids);
+		
 
 	protected:
 		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);

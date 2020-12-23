@@ -1,6 +1,5 @@
-[13:32:28.437] [info] microscopic_region2.cpp:196 accord::microscopic::Region2::LinkGrids()  0 1 
-[13:32:28.450] [info] main.cpp:241 TestSimpleEnvironment() Realisation 0
-[13:32:28.456] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules are close enough to react,  [0.00400683, 0.00683796, 0.00492261]
-[13:32:28.457] [info] microscopic_second_order_reaction.cpp:143 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecule path 1
-[13:32:28.458] [info] microscopic_second_order_reaction.cpp:147 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules reacted
-[13:32:29.919] [info] main.cpp:257 TestSimpleEnvironment() Cleaning Up
+[17:37:43.847] [info] main.cpp:238 TestSimpleEnvironment() Realisation 0
+[17:37:44.299] [info] microscopic_second_order_reaction.cpp:127 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules are close enough to react,  [-0.340615, -0.0674706, 0.067432], [-0.00367313, 0.112128, -0.10286], [-0.172144, 0.0223288, -0.0177143], 0.5
+[17:37:44.299] [info] microscopic_second_order_reaction.cpp:133 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecule path 1
+[17:37:44.299] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules reacted
+[17:37:44.865] [info] main.cpp:254 TestSimpleEnvironment() Cleaning Up

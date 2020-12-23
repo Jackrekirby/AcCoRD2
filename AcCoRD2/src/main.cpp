@@ -125,18 +125,12 @@ void TestSimpleEnvironment()
 {
 	using namespace accord;
 
-	// SIMULATION
+	// SIMULATION ============================================================================================================
 	std::string sim_dir = "D:/dev/my_simulation4";
 	Environment::Init(sim_dir, 1, 10, 4, 2, 1);
 	EventQueue event_queue(7);
 
-	// Create Reactions
-	//ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
-	//ReactionManager::AddZerothReaction({ 0 }, 1, { 0 });
-	//ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
-	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
-
-	// CREATE REGIONS
+	// CREATE REGIONS ========================================================================================================
 	std::vector<double> diffision_coefficients = { 0.001, 0.001, 0.001, 0.001 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(3), Vec3i(2), Vec3i(1), Vec3i(1) };
 	double start_time = 0;
@@ -153,6 +147,12 @@ void TestSimpleEnvironment()
 	Environment::GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
 		box2, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
 		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
+
+	// Create Reactions ======================================================================================================
+	//ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
+	//ReactionManager::AddZerothReaction({ 0 }, 1, { 0 });
+	//ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
+	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
 
 	// Add Reactions to Each Region
 	for (auto& reaction : ReactionManager::GetZerothOrderReactions())
@@ -172,16 +172,13 @@ void TestSimpleEnvironment()
 		}
 	}
 
-	Environment::GetRegion(0).AddReaction(0, 1, { 2 }, 1, 1);
-	Environment::GetRegion(1).AddReaction(0, 1, { 2 }, 1, 1);
+	Environment::GetRegion(0).AddReaction(0, 1, { 2, 3 }, 1, 1);
+	Environment::GetRegion(1).AddReaction(0, 1, { 2, 3 }, 1, 1);
 	//Environment::GetRegion(0).AddReaction(2, 3, { 0, 1 }, 0.1, 1);
 
-	// Define Relationships
-	// all molecule types should be added to each region
-	Environment::GetRegion(0).AddNeighbour(Environment::GetRegion(1),
-		microscopic::SurfaceType::None, { 0, 1, 2 });
-	Environment::GetRegion(1).AddNeighbour(Environment::GetRegion(0),
-		microscopic::SurfaceType::Reflecting, { 0, 1, 2 });
+	// DEFINE RELATIONSHIPS ======================================================================================================
+	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
+		microscopic::SurfaceType::Reflecting, microscopic::SurfaceType::None);
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -192,7 +189,7 @@ void TestSimpleEnvironment()
 	region_file << JsonToString(json_regions);
 	region_file.close();
 
-	// CREATE ACTORS
+	// CREATE ACTORS =============================================================================================================
 	Environment::GetPassiveActors().reserve(2);
 	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
 		RegionIDs({ 0 }),
@@ -221,7 +218,7 @@ void TestSimpleEnvironment()
 
 	for (int i = 0; i < 1; i++)
 	{
-		Environment::GetRegion(0).AddMolecule(0, { -0.1, 0, 0 });
+		Environment::GetRegion(0).AddMolecule(0, { -0.5, 0, 0 });
 		Environment::GetRegion(1).AddMolecule(1, { 0.1, 0, 0 });
 	}
 

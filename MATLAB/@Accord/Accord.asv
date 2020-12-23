@@ -75,7 +75,7 @@ classdef Accord
                 sim
                 moleculeType = 1;
                 maxAveraged = Inf;
-                realisation = Inf;
+                realisation = 1;
             end
             
             p = Accord.putCountsIntoMatrix(sim, maxAveraged);
@@ -110,14 +110,13 @@ classdef Accord
             legend(legendSubset, legendLabels);
         end
         
-        function p = plotCount(sim, passiveActor, moleculeType, ...
+        function p = plotCountForM(sim, moleculeType, ...
             maxAveraged, realisation)
             arguments
                 sim
-                passiveActor = 1;
                 moleculeType = 1;
                 maxAveraged = Inf;
-                realisation = Inf;
+                realisation = 1;
             end
             
             p = Accord.putCountsIntoMatrix(sim, maxAveraged);
@@ -125,26 +124,31 @@ classdef Accord
             nP = length(p);
             colors = hsv(nP);
             iM = moleculeType;
-            iP = passiveActor;
-            % plot mean of all realisations
-            hPlot = plot(sim.s(1).r(1).p(iP).t, mean(p(iP).m(iM).c, 2), ...
-                'Color', colors(iP, :));
-            if(realisation == Inf)
-                % plot all realisations individually
-                plot(sim.s(1).r(1).p(iP).t, p(iP).m(iM).c(:, :), ...
-                'Color', colors(iP, :), 'LineStyle', ':');
-            elseif(isempty(realisation))
-                % plot no realisations
-            else
-                % plot given realisation
-                plot(sim.s(1).r(1).p(iP).t, p(iP).m(iM).c(:, realisation),...
-                'Color', colors(iP, :), 'LineStyle', ':');
+            legendLabels{nP} = "";
+            legendSubset(nP) = 0;
+            for iP = 1:nP
+                % plot mean of all realisations
+                hPlot = plot(sim.s(1).r(1).p(iP).t, mean(p(iP).m(iM).c, 2), ...
+                    'Color', colors(iP, :));
+                legendLabels{iP} = num2str(iP);
+                legendSubset(iP) = hPlot;
+                if(realisation == Inf)
+                    % plot all realisations individually
+                    plot(sim.s(1).r(1).p(iP).t, p(iP).m(iM).c(:, :), ...
+                    'Color', colors(iP, :), 'LineStyle', ':');
+                elseif(isempty(realisation))
+                    % plot no realisations
+                else
+                    % plot given realisation
+                    plot(sim.s(1).r(1).p(iP).t, p(iP).m(iM).c(:, realisation),...
+                    'Color', colors(iP, :), 'LineStyle', ':');
+                end
             end
             hold off;
-            title("Molecule Count of Molecule Type " + moleculeType + ...
-                ", for Passive Actor " + passiveActor);
+            title("Molecule Count of Molecule Type " + moleculeType + ", Per Passive Actor");
             xlabel("time (s)");
             ylabel("count");
+            legend(legendSubset, legendLabels);
         end
         
         function p = plotCountForPassiveActor(sim, passiveActor, ...
@@ -153,7 +157,7 @@ classdef Accord
                 sim
                 passiveActor = 1;
                 maxAveraged = Inf;
-                realisation = Inf;
+                realisation = 1;
             end
             
             p = Accord.putCountsIntoMatrix(sim, maxAveraged);
