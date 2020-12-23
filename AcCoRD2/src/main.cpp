@@ -72,6 +72,8 @@
 // reactions
 
 // TO DO (Not Imminent)
+// consider adding limited_vectors which are vectors where only certain ints upto a given value are allowed.
+// consider adding fixed_vectors which are vectors which have fixed max capacity.
 // MAY be able to make second order reactions more efficient by seperating links between internal and external subvolumes
 // check whether reactions can be defined in non ascending order
 // make functions more descriptive (GetRegions and GetRegionIDs)
@@ -132,14 +134,14 @@ void TestSimpleEnvironment()
 
 	// SIMULATION ============================================================================================================
 	std::string sim_dir = "D:/dev/my_simulation4";
-	Environment::Init(sim_dir, 1, 10, 4, 2, 1);
+	Environment::Init(sim_dir, 1, 100, 4, 2, 1);
 	EventQueue event_queue(7);
 
 	// CREATE REGIONS ========================================================================================================
-	std::vector<double> diffision_coefficients = { 0.001, 0.001, 0.001, 0.001 };
-	std::vector<Vec3i> n_subvolumes = { Vec3i(3), Vec3i(2), Vec3i(1), Vec3i(1) };
+	std::vector<double> diffision_coefficients = { 0.01, 0.01, 0.01, 0.01 };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(1), Vec3i(1), Vec3i(1), Vec3i(1) };
 	double start_time = 0;
-	double time_step = 0.05;
+	double time_step = 2;
 	int priority = 0;
 
 	shape::basic::Box box1(Vec3d(-1, -0.5, -0.5), Vec3d(1));
@@ -154,17 +156,19 @@ void TestSimpleEnvironment()
 		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
 
 	// Create Reactions ======================================================================================================
-	//ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
-	//ReactionManager::AddZerothReaction({ 0 }, 1, { 0 });
-	//ReactionManager::AddFirstReaction(0, { 1 }, 1, { 0 });
-	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
+	ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
+	ReactionManager::AddZerothOrderReaction({ 0 }, 1, { 0 });
+	ReactionManager::AddZerothOrderReaction({ 1 }, 1, { 1 });
+	//ReactionManager::AddFirstOrderReaction(0, { 1 }, 1, { 0 });
+	//ReactionManager::AddFirstOrderReaction(0, { 2 }, 5, { 0 });
+	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.2, 1, {0, 1});
 
 	// Add Reactions to Each Region
 	for (auto& reaction : ReactionManager::GetZerothOrderReactions())
 	{
 		for (auto& region : reaction.GetRegions())
 		{
-			Environment::GetRegion(region).AddReaction(reaction.GetProducts(), reaction.GetRate());
+			Environment::GetRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
 		}
 	}
 
@@ -172,14 +176,27 @@ void TestSimpleEnvironment()
 	{
 		for (auto& region : reaction.GetRegions())
 		{
-			Environment::GetRegion(region).AddReaction(reaction.GetReactant(), reaction.GetProducts(),
+			Environment::GetRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
 				reaction.GetRate(), reaction.GetTotalRate());
 		}
 	}
 
-	Environment::GetRegion(0).AddReaction(0, 0, { 2, 3 }, 0.1, 1);
-	Environment::GetRegion(0).AddReaction(0, 0, { 2, 3 }, 1.1, 1);
-	//Environment::GetRegion(0).AddReaction(2, 3, { 0, 1 }, 0.1, 1);
+	for (auto& reaction : ReactionManager::GetSecondOrderReactions())
+	{
+		for (auto& region : reaction.GetRegions())
+		{
+			if (reaction.GetReactantA() == reaction.GetReactantB())
+			{
+				Environment::GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetProducts(),
+					reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
+			}
+			else
+			{
+				Environment::GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(),
+					reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
+			}
+		}
+	}
 
 	// DEFINE RELATIONSHIPS ======================================================================================================
 	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
@@ -221,11 +238,11 @@ void TestSimpleEnvironment()
 	actors_file << JsonToString(json_actors);
 	actors_file.close();
 
-	for (int i = 0; i < 1; i++)
-	{
-		Environment::GetRegion(0).AddMolecule(0, { -0.5, 0, 0 });
-		Environment::GetRegion(1).AddMolecule(0, { 0.1, 0, 0 });
-	}
+	//for (int i = 0; i < 1; i++)
+	//{
+	//	Environment::GetRegion(0).AddMolecule(0, { -0.5, 0, 0 });
+	//	Environment::GetRegion(1).AddMolecule(0, { 0.1, 0, 0 });
+	//}
 
 	// BEGIN SIMULATION LOOP
 	do {

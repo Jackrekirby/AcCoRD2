@@ -7,32 +7,6 @@
 
 namespace accord::microscopic
 {
-	void SecondOrderReactions::AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products, 
-		double binding_radius, double unbinding_radius, Region2* region)
-	{
-		if (reactant_a == reactant_b)
-		{
-			one_reactant_reactions.emplace_back(reactant_a, products, binding_radius, unbinding_radius, region);
-		}
-		else
-		{
-			two_reactant_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, region);
-		}
-	}
-
-	void SecondOrderReactions::Run(double current_time)
-	{
-		for (auto& reaction : one_reactant_reactions)
-		{
-			reaction.CalculateReactions(current_time);
-		}
-
-		for (auto& reaction : two_reactant_reactions)
-		{
-			reaction.CalculateReactions(current_time);
-		}
-	}
-
 	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region)
 		: reactant_a(reactant_a), reactant_b(reactant_b), SecondOrderReaction(products, binding_radius, unbinding_radius), 
@@ -83,10 +57,10 @@ namespace accord::microscopic
 		auto m_end = molecules.end();
 		for (auto m1 = molecules.begin(); m1 != m_end; ++m1)
 		{
-			if (!has_reacted.at(i1)) continue;
+			if (has_reacted.at(i1)) continue;
 			for (auto m2 = m1 + 1; m2 != m_end; ++m2)
 			{
-				LOG_INFO("checking molecule in molecule");
+				//LOG_INFO("checking molecule in molecule");
 				if (!has_reacted.at(i2))
 				{
 					if (AttemptToReactMolecules(*m1, *m2, s, s, current_time))
@@ -134,7 +108,7 @@ namespace accord::microscopic
 		{
 			for (auto& m2 : s2.GetNormalMolecules())
 			{
-				LOG_INFO("checking molecules");
+				//LOG_INFO("checking molecules");
 				//LOG_INFO("comparing molecules");
 				if (!has_reacted2.at(i2))
 				{
@@ -185,17 +159,17 @@ namespace accord::microscopic
 			double d2 = s2.GetGrid().GetDiffusionCoeffient();
 			Vec3d reaction_site = m1.GetPosition() + (d1 / (d1 + d2)) * (m2.GetPosition() - m1.GetPosition());
 
-			LOG_INFO("molecules are close enough to react,  {}, {}, {}, {}", m1.GetPosition(), m2.GetPosition(), reaction_site, (d1 / (d1 + d2)));
+			//LOG_INFO("molecules are close enough to react,  {}, {}, {}, {}", m1.GetPosition(), m2.GetPosition(), reaction_site, (d1 / (d1 + d2)));
 			// if the reaction site is directly on the border then the molecules never cross the border
 			// allowing molecules to diffuse across a surface which is not none
 			auto p1 = s1.GetGrid().CheckMoleculePath(m1.GetPosition(), reaction_site, 20, true);
 			if (p1.has_value() && (p1.value().GetPosition() == reaction_site).All())
 			{
-				LOG_INFO("molecule path 1");
+				//LOG_INFO("molecule path 1");
 				auto p2 = s2.GetGrid().CheckMoleculePath(m2.GetPosition(), reaction_site, 20, true);
 				if (p2.has_value() && (p2.value().GetPosition() == reaction_site).All())
 				{
-					LOG_INFO("molecules reacted");
+					//LOG_INFO("molecules reacted");
 					for (auto product : products)
 					{
 						dynamic_cast<Grid2&>(p1->GetOwner()).GetRegion().AddMolecule(product, reaction_site, current_time);

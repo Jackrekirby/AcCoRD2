@@ -42,6 +42,34 @@ namespace accord
 		RegionIDs regions;
 	};
 
+	class SecondOrderReaction
+	{
+	public:
+		SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products, 
+			double binding_radius, double unbinding_radius, const RegionIDs& regions);
+
+		MoleculeID GetReactantA() const;
+
+		MoleculeID GetReactantB() const;
+
+		const MoleculeIDs& GetProducts() const;
+
+		double GetBindingRadius() const;
+
+		double GetUnBindingRadius() const;
+
+		const RegionIDs& GetRegions() const;
+
+	private:
+		MoleculeID reactant_a;
+		MoleculeID reactant_b;
+		MoleculeIDs products;
+		double binding_radius;
+		double unbinding_radius;
+		RegionIDs regions;
+	};
+
+
 	// in the future need to change RegionIDs to MicroscopicRegionIDs and MesoscopicRegionIDs
 	class ReactionManager
 	{
@@ -49,23 +77,32 @@ namespace accord
 		static void Init(int num_of_molecule_types);
 
 		// Zeroth Order Reaction
-		static void AddZerothReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions);
+		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions);
 
 		// First Order Reaction
-		static void AddFirstReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions);
+		static void AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions);
+
+		static void AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions);
+
+		static void AddSecondOrderReaction(MoleculeID reactant_a,
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions);
 
 		static double GetSumOfRates(MoleculeID reactant);
 
-		static const ZerothOrderReaction& GetZerothOrderReaction(RegionID id);
+		static const ZerothOrderReaction& GetZerothOrderReaction(ReactionID id);
 
-		static const FirstOrderReaction& GetFirstOrderReaction(RegionID id);
+		static const FirstOrderReaction& GetFirstOrderReaction(ReactionID id);
 
 		static const std::vector<ZerothOrderReaction>& GetZerothOrderReactions();
 
 		static const std::vector<FirstOrderReaction>& GetFirstOrderReactions();
+
+		static const std::vector<SecondOrderReaction>& GetSecondOrderReactions();
 	private:
 		static std::vector<ZerothOrderReaction> zeroth_order_reactions;
 		static std::vector<FirstOrderReaction> first_order_reactions;
 		static std::vector<double> first_order_reaction_rates_per_molecule_type;
+		static std::vector<SecondOrderReaction> second_order_reactions;
 	};
 }

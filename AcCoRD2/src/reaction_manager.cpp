@@ -24,6 +24,9 @@ namespace accord
 		return regions;
 	}
 
+
+
+
 	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
 		: reactant(reactant), products(products), reaction_rate(reaction_rate), regions(regions)
 	{
@@ -57,6 +60,47 @@ namespace accord
 
 
 
+
+	SecondOrderReaction::SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions)
+		: reactant_a(reactant_a), reactant_b(reactant_b), products(products), binding_radius(binding_radius),
+		unbinding_radius(unbinding_radius), regions(regions)
+	{
+	}
+
+	MoleculeID SecondOrderReaction::GetReactantA() const
+	{
+		return reactant_a;
+	}
+
+	MoleculeID SecondOrderReaction::GetReactantB() const
+	{
+		return reactant_b;
+	}
+
+	const MoleculeIDs& SecondOrderReaction::GetProducts() const
+	{
+		return products;
+	}
+
+	double SecondOrderReaction::GetBindingRadius() const
+	{
+		return binding_radius;
+	}
+
+	double SecondOrderReaction::GetUnBindingRadius() const
+	{
+		return unbinding_radius;
+	}
+
+	const RegionIDs& SecondOrderReaction::GetRegions() const
+	{
+		return regions;
+	}
+
+
+
+
 	void ReactionManager::Init(int num_of_molecule_types)
 	{
 		first_order_reaction_rates_per_molecule_type.reserve(num_of_molecule_types);
@@ -67,16 +111,28 @@ namespace accord
 	}
 
 	// Zeroth Order Reaction
-	void ReactionManager::AddZerothReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
+	void ReactionManager::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
 	{
 		zeroth_order_reactions.emplace_back(products, reaction_rate, regions);
 	}
 
 	// First Order Reaction
-	void ReactionManager::AddFirstReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
+	void ReactionManager::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, regions);
 		first_order_reaction_rates_per_molecule_type.at(reactant) += reaction_rate;
+	}
+
+	void ReactionManager::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions)
+	{
+		second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, regions);
+	}
+
+	void ReactionManager::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
+		double binding_radius, double unbinding_radius, const RegionIDs& regions)
+	{
+		second_order_reactions.emplace_back(reactant, reactant, products, binding_radius, unbinding_radius, regions);
 	}
 
 	double ReactionManager::GetSumOfRates(MoleculeID reactant)
@@ -84,12 +140,12 @@ namespace accord
 		return first_order_reaction_rates_per_molecule_type.at(reactant);
 	}
 
-	const ZerothOrderReaction& ReactionManager::GetZerothOrderReaction(RegionID id)
+	const ZerothOrderReaction& ReactionManager::GetZerothOrderReaction(ReactionID id)
 	{
 		return zeroth_order_reactions.at(id);
 	}
 
-	const FirstOrderReaction& ReactionManager::GetFirstOrderReaction(RegionID id)
+	const FirstOrderReaction& ReactionManager::GetFirstOrderReaction(ReactionID id)
 	{
 		return first_order_reactions.at(id);
 	}
@@ -104,8 +160,13 @@ namespace accord
 		return first_order_reactions;
 	}
 
+	const std::vector<SecondOrderReaction>& ReactionManager::GetSecondOrderReactions()
+	{
+		return second_order_reactions;
+	}
+
 	std::vector<ZerothOrderReaction> ReactionManager::zeroth_order_reactions;
 	std::vector<FirstOrderReaction> ReactionManager::first_order_reactions;
 	std::vector<double> ReactionManager::first_order_reaction_rates_per_molecule_type;
-
+	std::vector<SecondOrderReaction> ReactionManager::second_order_reactions;
 }

@@ -45,7 +45,15 @@ namespace accord::microscopic
 		// second order reactions
 		// is a second order reactions class necessary as could just have one and two reactants types stored directly
 		// or should zeroth and first order reactions be put into a class? e.g. to pass similar variables?
-		second_order_reactions.Run(local_time);
+		for (auto& reaction : one_reactant_second_order_reactions)
+		{
+			reaction.CalculateReactions(local_time);
+		}
+
+		for (auto& reaction : two_reactant_second_order_reactions)
+		{
+			reaction.CalculateReactions(local_time);
+		}
 
 		// set time of next event
 		UpdateTime(GetNextEventTime());
@@ -101,22 +109,28 @@ namespace accord::microscopic
 
 	// reaction classes can always internally get and pass a Grid to the reaction class constructor.
 	// Zeroth Order Reaction
-	void Region2::AddReaction(const MoleculeIDs& products, double reaction_rate)
+	void Region2::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
 	{
 		zeroth_order_reactions.emplace_back(products, reaction_rate, this);
 	}
 
 	// First Order Reaction
-	void Region2::AddReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
+	void Region2::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, total_reaction_rate, this);
 	}
 
 	// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-	void Region2::AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, 
+	void Region2::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius)
 	{
-		second_order_reactions.AddReaction(reactant_a, reactant_b, products, binding_radius, unbinding_radius, this);
+		two_reactant_second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, this);
+	}
+
+	void Region2::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
+		double binding_radius, double unbinding_radius)
+	{
+		one_reactant_second_order_reactions.emplace_back(reactant, products, binding_radius, unbinding_radius, this);
 	}
 
 	// returns event time + time_step

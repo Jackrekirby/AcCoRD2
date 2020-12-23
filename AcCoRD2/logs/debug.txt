@@ -1,7 +1,68 @@
-[20:16:01.462] [info] main.cpp:243 TestSimpleEnvironment() Realisation 0
-[20:16:01.473] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() checking molecules
-[20:16:01.474] [info] microscopic_second_order_reaction.cpp:188 accord::microscopic::SecondOrderReaction::AttemptToReactMolecules() molecules are close enough to react,  [-0.499459, 0.00941916, -0.00273304], [0.107472, 0.00425677, 0.0125783], [-0.195993, 0.00683796, 0.00492261], 0.5
-[20:16:01.474] [info] microscopic_second_order_reaction.cpp:194 accord::microscopic::SecondOrderReaction::AttemptToReactMolecules() molecule path 1
-[20:16:01.475] [info] microscopic_second_order_reaction.cpp:198 accord::microscopic::SecondOrderReaction::AttemptToReactMolecules() molecules reacted
-[20:16:01.475] [info] microscopic_second_order_reaction.cpp:143 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
-[20:16:06.726] [info] main.cpp:259 TestSimpleEnvironment() Cleaning Up
+[21:45:20.123] [info] main.cpp:260 TestSimpleEnvironment() Realisation 0
+[21:45:20.145] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.147] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.151] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.193] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.238] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.244] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.250] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.260] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.260] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.262] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.277] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.278] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.296] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.315] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.328] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.328] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.380] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.381] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.409] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.419] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.431] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.432] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.487] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.490] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.506] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.517] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.518] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.553] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.585] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.627] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.628] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.670] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.681] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.693] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.693] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.704] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.746] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.748] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.769] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.789] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.836] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.865] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.899] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.932] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.953] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.972] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:20.992] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.009] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.011] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.012] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.027] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.042] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.054] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.088] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.089] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.107] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.108] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.122] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.124] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.125] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.147] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.148] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.148] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.149] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.162] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.182] [info] microscopic_second_order_reaction.cpp:117 accord::microscopic::SecondOrderReaction::CompareMoleculesInSubvolumes() molecule reacted in different subvolume
+[21:45:21.203] [info] main.cpp:276 TestSimpleEnvironment() Cleaning Up

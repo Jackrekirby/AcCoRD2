@@ -12,6 +12,9 @@ namespace accord
 	using RegionID = int;
 	using RegionIDs = std::vector<int>;
 
+	using ReactionID = int;
+	using ReactionIDs = std::vector<int>;
+
 	using ActiveActorID = int;
 	using ActiveActorIDs = std::vector<int>;
 

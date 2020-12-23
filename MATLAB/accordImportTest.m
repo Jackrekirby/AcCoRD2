@@ -20,7 +20,7 @@ shape3d = Shape3D('FaceAlpha', 0.01, 'LineColorMap', hsv(length(sim.regions.shap
 'FaceColorMap', hsv(length(sim.regions.shapes)));
 % color by actor
 r = Accord.initAnimateRealisation(sim, 1, 1, 1, false, shape3d);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 10);
 
 %% Save Animation as Video
 clc;
@@ -39,7 +39,7 @@ clc;
 figure;
 subplot(3, 1, 1);
 % passive actor, molecule type
-Accord.plotCount(sim, 1, 3, Inf, Inf);
+Accord.plotCount(sim, 1, 2, Inf, Inf);
 subplot(3, 1, 2);
 Accord.plotCountForMoleculeType(sim, 3, Inf, Inf);
 subplot(3, 1, 3);

@@ -54,20 +54,4 @@ namespace accord::microscopic
 		MoleculeID reactant_a;
 		MoleculeID reactant_b;
 	};
-
-	// need to add base SecondOrderReactionClass
-	// SecondOrderReactions class not necessary, move work into regions
-	// rename add reactions into seperate types so can overload them
-	class SecondOrderReactions
-	{
-	public:
-		void AddReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products,
-			double binding_radius, double unbinding_radius, Region2* region);
-
-		void Run(double current_time);
-	private:
-		std::vector<OneReactantSecondOrderReaction> one_reactant_reactions;
-		std::vector<TwoReactantSecondOrderReaction> two_reactant_reactions;
-
-	};
 }
