@@ -10,44 +10,49 @@ namespace accord::microscopic
 	class Subvolume2;
 	class NormalMolecule;
 
-	class OneReactantSecondOrderReaction
+
+	class SecondOrderReaction
 	{
 	public:
-		OneReactantSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products);
+		SecondOrderReaction(const MoleculeIDs& products, double binding_radius, double unbinding_radius);
 
-		void Run(double current_time);
-	private:
-		Grid2* reactant_grid;
-		MoleculeID reactant;
+		virtual void CalculateReactions(double current_time) = 0;
+	protected:
 		MoleculeIDs products;
 		double binding_radius;
 		double unbinding_radius;
-		void CalculateReactions(double current_time);
-
-		void CompareMoleculesInSubvolume(Subvolume2& s1, double current_time);
-	};
-
-	class TwoReactantSecondOrderReaction
-	{
-	public:
-		TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region);
-
-		void Run(double current_time);
-	private:
-		Grid2* reactant_a_grid;
-		MoleculeID reactant_a;
-		MoleculeID reactant_b;
-		MoleculeIDs products;
-		double binding_radius;
-		double unbinding_radius;
-
-		void CalculateReactions(double current_time);
 
 		void CompareMoleculesInSubvolumes(Subvolume2& s1, Subvolume2& s2, double current_time);
 
 		bool AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2,
 			Subvolume2& s1, Subvolume2& s2, double current_time);
+	};
+
+	class OneReactantSecondOrderReaction : public SecondOrderReaction
+	{
+	public:
+		OneReactantSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products, 
+			double binding_radius, double unbinding_radius, Region2* region);
+
+		void CalculateReactions(double current_time);
+	private:
+		Grid2* reactant_grid;
+		MoleculeID reactant;
+		
+		void CompareMoleculesInSubvolume(Subvolume2& s1, double current_time);
+	};
+
+	class TwoReactantSecondOrderReaction : public SecondOrderReaction
+	{
+	public:
+		TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region);
+
+		void CalculateReactions(double current_time);
+	private:
+		Grid2* reactant_a_grid;
+		MoleculeID reactant_a;
+		MoleculeID reactant_b;
 	};
 
 	// need to add base SecondOrderReactionClass

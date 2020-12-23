@@ -40,6 +40,7 @@ namespace accord::microscopic
 	// Only one sibling needs to know about the relation so two subvolumes are only checked against eachother once
 	void Subvolume2::LinkSibling(Subvolume2& subvolume)
 	{
+		//if (&subvolume == this) LOG_ERROR("attempt to add same subvolume");
 		auto& relatives = subvolume.GetRelation(GetMoleculeID()).GetSubvolumes();
 		// if subvolume does not contain this subvolume then add subvolume to this subvolume
 		if (std::find(relatives.begin(), relatives.end(), this) == relatives.end())
@@ -51,6 +52,7 @@ namespace accord::microscopic
 	// link a subvolume not owned by the same grid
 	void Subvolume2::Link(Subvolume2& subvolume)
 	{
+		//if (&subvolume == this) LOG_ERROR("attempt to add same subvolume");
 		GetRelation(subvolume.GetMoleculeID()).Add(subvolume);
 	}
 

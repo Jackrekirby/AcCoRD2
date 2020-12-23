@@ -177,13 +177,13 @@ void TestSimpleEnvironment()
 		}
 	}
 
-	Environment::GetRegion(0).AddReaction(0, 1, { 2, 3 }, 1, 1);
-	Environment::GetRegion(1).AddReaction(0, 1, { 2, 3 }, 1, 1);
+	Environment::GetRegion(0).AddReaction(0, 0, { 2, 3 }, 0.1, 1);
+	Environment::GetRegion(0).AddReaction(0, 0, { 2, 3 }, 1.1, 1);
 	//Environment::GetRegion(0).AddReaction(2, 3, { 0, 1 }, 0.1, 1);
 
 	// DEFINE RELATIONSHIPS ======================================================================================================
 	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
-		microscopic::SurfaceType::Reflecting, microscopic::SurfaceType::None);
+		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -224,7 +224,7 @@ void TestSimpleEnvironment()
 	for (int i = 0; i < 1; i++)
 	{
 		Environment::GetRegion(0).AddMolecule(0, { -0.5, 0, 0 });
-		Environment::GetRegion(1).AddMolecule(1, { 0.1, 0, 0 });
+		Environment::GetRegion(1).AddMolecule(0, { 0.1, 0, 0 });
 	}
 
 	// BEGIN SIMULATION LOOP

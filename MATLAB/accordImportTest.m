@@ -43,7 +43,7 @@ Accord.plotCount(sim, 1, 3, Inf, Inf);
 subplot(3, 1, 2);
 Accord.plotCountForMoleculeType(sim, 3, Inf, Inf);
 subplot(3, 1, 3);
-Accord.plotCountForPassiveActor(sim, 2, Inf, Inf);
+Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
 
 
 %% Force all Figures and Files To Close 

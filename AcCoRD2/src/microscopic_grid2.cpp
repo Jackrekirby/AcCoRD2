@@ -21,6 +21,7 @@ namespace accord::microscopic
 	{
 		//LOG_INFO("id = {}", id);
 		CreateSubvolumes();
+		LinkSiblingSubvolumes();
 	}
 
 	void Grid2::AddMolecule(const Vec3d& position)
@@ -353,7 +354,9 @@ namespace accord::microscopic
 					// dont link a subvolume to itself
 					if (!(j == Vec3i(0)).All())
 					{
+						//LOG_INFO("Linking sibling subvolumes");
 						auto subvolume2 = GetSubvolumeIfExists(i + j);
+						//if (subvolume == subvolume2) LOG_INFO("THE SAME");
 						if (subvolume2 != nullptr)
 						{
 							subvolume->LinkSibling(*subvolume2);

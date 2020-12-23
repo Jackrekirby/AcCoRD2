@@ -169,7 +169,7 @@ namespace accord::microscopic
 		for (auto g1 = grids.begin(); g1 != grids.end(); ++g1)
 		{
 			// ignore unintended copy warning for g2 = g1
-			for (auto g2 = g1; g2 != grids.end(); ++g2)
+			for (auto g2 = g1 + 1; g2 != grids.end(); ++g2)
 			{
 				//LOG_INFO("Linking {} to {}", g1->GetMoleculeID(), g2->GetMoleculeID());
 				g1->LinkGrid(*g2);
@@ -181,7 +181,7 @@ namespace accord::microscopic
 	// they are called by relationship functions
 	void Region2::LinkGrids(Region2& region, const MoleculeIDs& ids)
 	{
-		LOG_INFO(" {} {} ", GetID(), region.GetID());
+		//LOG_INFO(" {} {} ", GetID(), region.GetID());
 		// link each molecule type to every other molecule type
 		// could be more efficient by only linking molecule types where a reaction can occur between them
 		for (auto& id1 : ids)
