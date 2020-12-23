@@ -52,7 +52,7 @@ namespace accord::microscopic
 
 		void DiffuseMolecules();
 
-		std::optional<MoleculeDestination> CheckMoleculePath(const Vec3d& origin, const Vec3d& end, int cycles);
+		std::optional<MoleculeDestination> CheckMoleculePath(const Vec3d& origin, const Vec3d& end, int cycles, bool allowObstructions = true);
 
 		// dont change old position, create new one.
 		Vec3d DiffuseMolecule(const NormalMolecule& molecule);
@@ -75,6 +75,9 @@ namespace accord::microscopic
 		// if index is not valid null will be returned
 		Subvolume2* GetSubvolumeIfExists(const Vec3i& index);
 
+
+		void LinkGrids();
+
 		// could be const if you are only linking local subvolumes and not vice versa
 		// would be more efficient to do both at same time. Would then require a check to see if regions are already
 		// neighbours. Grid is of same molecule type
@@ -92,16 +95,25 @@ namespace accord::microscopic
 
 		void AddHighPriorityRelative(Relative* relative, SurfaceType type);
 
+
+		std::vector<Relationship>& GetNeighbourRelationships();
+
+		std::vector<Relationship>& GetLowPriorityRelationships();
+
+		std::vector<Relationship>& GetHighPriorityRelationships();
+
 		// Inherited Class Functions
 
 		const SurfaceShape& GetShape() const;
 
 		SurfaceType GetDefaultSurfaceType() const;
 
+		double GetDiffusionCoeffient() const;
+
 		// may be able to merge these pass functions
 		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
 			const shape::collision::Collision3D& collision, Grid2* owner,
-			SurfaceType surface_type, int cycles);
+			SurfaceType surface_type, int cycles, bool allowObstructions);
 
 	private:
 		// need to change to NeighbourAndSurfaceType ...

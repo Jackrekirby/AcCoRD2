@@ -18,7 +18,7 @@ disp("done");
 clc;
 shape3d = Shape3D('FaceAlpha', 0);
 r = Accord.initAnimateRealisation(sim, 1, 1, 1, false, shape3d);
-r = Accord.playAnimateRealisation(r, 0.5);
+r = Accord.playAnimateRealisation(r, 0.1);
 
 %% Save Animation as Video
 clc;
@@ -35,7 +35,7 @@ Accord.displayShapes(sim, 10);
 %% Plot Count
 clc;
 figure;
-Accord.plotCountForMoleculeType(sim, 1, Inf, Inf);
+Accord.plotCountForMoleculeType(sim, 3, Inf, Inf);
 figure;
 Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
 

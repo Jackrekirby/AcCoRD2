@@ -1,22 +1,2 @@
-[00:17:41.465] [info] microscopic_second_order_reaction.cpp:66 accord::microscopic::TwoReactantSecondOrderReaction::GetProductGrids() product = 2
-[00:17:41.467] [info] microscopic_second_order_reaction.cpp:66 accord::microscopic::TwoReactantSecondOrderReaction::GetProductGrids() product = 3
-[00:17:41.467] [info] microscopic_second_order_reaction.cpp:52 accord::microscopic::TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction() product2 = 2
-[00:17:41.468] [info] microscopic_second_order_reaction.cpp:52 accord::microscopic::TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction() product2 = 3
-[00:17:41.468] [info] microscopic_second_order_reaction.cpp:66 accord::microscopic::TwoReactantSecondOrderReaction::GetProductGrids() product = 0
-[00:17:41.468] [info] microscopic_second_order_reaction.cpp:66 accord::microscopic::TwoReactantSecondOrderReaction::GetProductGrids() product = 1
-[00:17:41.469] [info] microscopic_second_order_reaction.cpp:52 accord::microscopic::TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction() product2 = 0
-[00:17:41.469] [info] microscopic_second_order_reaction.cpp:52 accord::microscopic::TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction() product2 = 1
-[00:17:41.478] [info] main.cpp:226 TestSimpleEnvironment() Realisation 0
-[00:17:41.846] [info] microscopic_second_order_reaction.cpp:134 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules reacted
-[00:17:41.846] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 2
-[00:17:41.847] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 3
-[00:17:42.755] [info] microscopic_second_order_reaction.cpp:134 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules reacted
-[00:17:42.773] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 0
-[00:17:42.774] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 1
-[00:17:43.267] [info] microscopic_second_order_reaction.cpp:134 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules reacted
-[00:17:43.268] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 2
-[00:17:43.269] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 3
-[00:17:43.763] [info] microscopic_second_order_reaction.cpp:134 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() molecules reacted
-[00:17:43.764] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 0
-[00:17:43.765] [info] microscopic_second_order_reaction.cpp:137 accord::microscopic::TwoReactantSecondOrderReaction::AttemptToReactMolecules() product3 = 1
-[00:17:44.060] [info] main.cpp:242 TestSimpleEnvironment() Cleaning Up
+[10:48:57.817] [info] main.cpp:237 TestSimpleEnvironment() Realisation 0
+[10:48:58.811] [info] main.cpp:253 TestSimpleEnvironment() Cleaning Up

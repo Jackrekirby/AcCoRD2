@@ -59,6 +59,10 @@ namespace accord::microscopic
 		{
 			GetGrid(id).AddNeighbour(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
+		if (surface_type == SurfaceType::None)
+		{
+			LinkGrids(region, ids);
+		}
 	}
 
 	void Region2::AddHighPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids)
@@ -67,6 +71,10 @@ namespace accord::microscopic
 		{
 			GetGrid(id).AddHighPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
+		if (surface_type == SurfaceType::None)
+		{
+			LinkGrids(region, ids);
+		}
 	}
 
 	void Region2::AddLowPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids)
@@ -74,6 +82,10 @@ namespace accord::microscopic
 		for (auto& id : ids)
 		{
 			GetGrid(id).AddLowPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
+		}
+		if (surface_type == SurfaceType::None)
+		{
+			LinkGrids(region, ids);
 		}
 	}
 

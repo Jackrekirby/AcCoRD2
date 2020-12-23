@@ -40,7 +40,8 @@ namespace accord::microscopic
 
 		void CompareMoleculesInSubvolumes(Subvolume2& s1, Subvolume2& s2, double current_time);
 
-		bool AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2, double current_time);
+		bool AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2,
+			Subvolume2& s1, Subvolume2& s2, double current_time);
 	};
 
 	class SecondOrderReactions

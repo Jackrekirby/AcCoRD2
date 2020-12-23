@@ -14,6 +14,7 @@ namespace accord
 namespace accord::microscopic
 {
 	class SurfaceShape;
+	class Relationship;
 	class Grid2;
 
 	class Relative
@@ -26,6 +27,12 @@ namespace accord::microscopic
 		// remove const SurfaceType&
 		virtual std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
 			const shape::collision::Collision3D& collision, Grid2* owner, 
-			 SurfaceType surface_type, int cycles) = 0;
+			 SurfaceType surface_type, int cycles, bool allowObstructions) = 0;
+
+		virtual std::vector<Relationship>& GetNeighbourRelationships() = 0;
+
+		virtual std::vector<Relationship>& GetLowPriorityRelationships() = 0;
+
+		virtual std::vector<Relationship>& GetHighPriorityRelationships() = 0;
 	};
 }

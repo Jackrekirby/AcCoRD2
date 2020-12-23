@@ -107,7 +107,8 @@ namespace accord::microscopic
 		}		
 	}
 
-	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end, int cycles)
+	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end, 
+		int cycles, bool allowObstructions)
 	{
 		if (cycles > 0)
 		{
@@ -135,7 +136,8 @@ namespace accord::microscopic
 			if (closest_relationship != nullptr)
 			{
 				return closest_relationship->GetRelative().PassMolecule(end,
-					closest_collision, this, closest_relationship->GetSurfaceType(), cycles);
+					closest_collision, this, closest_relationship->GetSurfaceType(), cycles,
+					allowObstructions);
 			}
 
 			auto collision = GetRegion().GetShape().CalculateInternalCollisionData(origin, end);
@@ -147,7 +149,7 @@ namespace accord::microscopic
 					{
 						// assumes you dont have mulitple valid low priority neighbours overlapping
 						return relationship.GetRelative().PassMolecule(end, collision.value(),
-							this, relationship.GetSurfaceType(), cycles);
+							this, relationship.GetSurfaceType(), cycles, allowObstructions);
 					}
 				}
 
@@ -159,7 +161,7 @@ namespace accord::microscopic
 					{
 						//LOG_INFO("HIT NEIGHBOUR");
 						return relationship.GetRelative().PassMolecule(end, collision.value(),
-							this, relationship.GetSurfaceType(), cycles);
+							this, relationship.GetSurfaceType(), cycles, allowObstructions);
 					}
 				}
 
@@ -171,7 +173,8 @@ namespace accord::microscopic
 				// of all regions. Therefore a region does not need its own surface type
 				// the global region cannot have a membrane surface (can be done with simple json file check)
 				// disable collision checks on global region?
-				return PassMolecule(end, collision.value(), this, GetDefaultSurfaceType(), cycles);
+				return PassMolecule(end, collision.value(), this, GetDefaultSurfaceType(), cycles,
+					allowObstructions);
 				//return CheckMoleculePath(collision->intersection, collision->reflection);
 			}
 			g_json.clear();
@@ -236,6 +239,55 @@ namespace accord::microscopic
 		return &subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 	}
 
+	void Grid2::LinkGrids()
+	{
+		for (auto& relationship : neighbour_relationships)
+		{
+			if (relationship.GetSurfaceType() == SurfaceType::None) continue;
+			auto& relative = relationship.GetRelative();
+			
+			bool foundRelative = false;
+			for (auto& relationship2 : relative.GetNeighbourRelationships())
+			{
+				if ((&relative == &relationship2.GetRelative()) &&
+					(relationship2.GetSurfaceType() == SurfaceType::None))
+				{
+					foundRelative = true;
+					continue;
+				}
+			}
+			if (foundRelative) continue;
+			for (auto& relationship2 : relative.GetLowPriorityRelationships())
+			{
+				if (&relative == &relationship2.GetRelative())
+				{
+					if (relationship2.GetSurfaceType() == SurfaceType::None)
+					{
+						
+					}
+					foundRelative = true;
+					continue;
+				}
+			}
+			if (foundRelative) continue;
+			for (auto& relationship2 : relative.GetHighPriorityRelationships())
+			{
+				if ((&relative == &relationship2.GetRelative()) &&
+					(relationship2.GetSurfaceType() == SurfaceType::None))
+				{
+					foundRelative = true;
+					continue;
+				}
+			}
+			if (!foundRelative)
+			{
+				// would be good if relatives had log function so they could say
+				// which type of relative they are and their id.
+				LOG_WARN("Relattionship defined in one direction but not the other");
+			}
+		}
+	}
+
 	// could be const if you are only linking local subvolumes and not vice versa
 	// would be more efficient to do both at same time. Would then require a check to see if regions are already
 	// neighbours. Grid is of same molecule type
@@ -278,6 +330,21 @@ namespace accord::microscopic
 	void Grid2::AddHighPriorityRelative(Relative* relative, SurfaceType type)
 	{
 		high_priority_relationships.emplace_back(relative, type);
+	}
+
+	std::vector<Relationship>& Grid2::GetNeighbourRelationships()
+	{
+		return neighbour_relationships;
+	}
+
+	std::vector<Relationship>& Grid2::GetLowPriorityRelationships()
+	{
+		return low_priority_relationships;
+	}
+
+	std::vector<Relationship>& Grid2::GetHighPriorityRelationships()
+	{
+		return high_priority_relationships;
 	}
 
 	// create subvolumes upon class construction
@@ -354,6 +421,11 @@ namespace accord::microscopic
 		return region->GetSurfaceType();
 	}
 
+	double Grid2::GetDiffusionCoeffient() const
+	{
+		return diffision_coefficient;
+	}
+
 	// the global surface must be absorbing or adsorbing
 	// KEEP INTERNAL SURFACE BUT SURFACE PER RELATION IS STILL REQUIRED
 	// CAN STILL GET RID OF SURFACE CAN HAVE GET BOUNDARY TYPE AND GET SHAPE
@@ -362,7 +434,7 @@ namespace accord::microscopic
 	// collision spelt incorrectly
 	std::optional<MoleculeDestination> Grid2::PassMolecule(const Vec3d& end, 
 		const shape::collision::Collision3D& collision, Grid2* owner,
-		SurfaceType surface_type, int cycles)
+		SurfaceType surface_type, int cycles, bool allowObstructions)
 	{
 		//Absorping, Adsorbing, Membrane, Reflecting, None
 		switch (surface_type)
@@ -370,6 +442,7 @@ namespace accord::microscopic
 		case SurfaceType::None:
 			return CheckMoleculePath(collision.intersection, end, cycles);
 		case SurfaceType::Reflecting:
+			if (!allowObstructions) return std::nullopt;
 			return owner->CheckMoleculePath(collision.intersection, collision.reflection, cycles);
 		case SurfaceType::Absorbing:
 			return std::nullopt;

@@ -8,9 +8,9 @@ function hPlots = plot(obj, shapes)
     iRectSurface = 0;
     iCircleSurface = 0;
     for iShape = 1:length(shapes)
-        if(length(shapes) == 1)
-            shape = shapes;
-        else
+        if(isa(shapes,'struct'))
+            shape = shapes(iShape);
+        else % if(isa(shapes,'cell'))
             shape = shapes{iShape};
         end
         type = shape.type;
