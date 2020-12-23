@@ -59,7 +59,7 @@ namespace accord::microscopic
 		{
 			GetGrid(id).AddNeighbour(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
-		if (surface_type == SurfaceType::None)
+		if (type == SurfaceType::None)
 		{
 			LinkGrids(region, ids);
 		}
@@ -71,7 +71,7 @@ namespace accord::microscopic
 		{
 			GetGrid(id).AddHighPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
-		if (surface_type == SurfaceType::None)
+		if (type == SurfaceType::None)
 		{
 			LinkGrids(region, ids);
 		}
@@ -83,7 +83,7 @@ namespace accord::microscopic
 		{
 			GetGrid(id).AddLowPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
 		}
-		if (surface_type == SurfaceType::None)
+		if (type == SurfaceType::None)
 		{
 			LinkGrids(region, ids);
 		}
@@ -193,6 +193,7 @@ namespace accord::microscopic
 	// they are called by relationship functions
 	void Region2::LinkGrids(Region2& region, const MoleculeIDs& ids)
 	{
+		LOG_INFO(" {} {} ", GetID(), region.GetID());
 		// link each molecule type to every other molecule type
 		// could be more efficient by only linking molecule types where a reaction can occur between them
 		for (auto& id1 : ids)
