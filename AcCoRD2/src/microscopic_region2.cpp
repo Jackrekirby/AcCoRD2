@@ -154,7 +154,7 @@ namespace accord::microscopic
 
 	void Region2::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
 	{
-		LOG_INFO("generating grid");
+		//LOG_INFO("generating grid");
 		grids.reserve(Environment::GetNumberOfMoleculeTypes());
 		shape::basic::Box b = GetShape().GetBasicShape().GenerateBoundingBox();
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
@@ -171,7 +171,7 @@ namespace accord::microscopic
 			// ignore unintended copy warning for g2 = g1
 			for (auto g2 = g1; g2 != grids.end(); ++g2)
 			{
-				LOG_INFO("Linking {} to {}", g1->GetMoleculeID(), g2->GetMoleculeID());
+				//LOG_INFO("Linking {} to {}", g1->GetMoleculeID(), g2->GetMoleculeID());
 				g1->LinkGrid(*g2);
 			}
 		}

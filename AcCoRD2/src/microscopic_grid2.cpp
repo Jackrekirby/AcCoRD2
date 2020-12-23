@@ -19,7 +19,7 @@ namespace accord::microscopic
 		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient),
 		region(region), id(id)
 	{
-		LOG_INFO("id = {}", id);
+		//LOG_INFO("id = {}", id);
 		CreateSubvolumes();
 	}
 
@@ -241,13 +241,13 @@ namespace accord::microscopic
 	// neighbours. Grid is of same molecule type
 	void Grid2::LinkGrid(Grid2& grid)
 	{
-		LOG_INFO("Linking {} to {}", GetMoleculeID(), grid.GetMoleculeID());
+		//LOG_INFO("Linking {} to {}", GetMoleculeID(), grid.GetMoleculeID());
 		for (auto& s1 : subvolumes)
 		{
 			for (auto& s2 : grid.subvolumes)
 			{
-				LOG_INFO("{}, {}", s1.GetMoleculeID(), s2.GetMoleculeID());
-				LOG_INFO(grid.GetMoleculeID());
+				//LOG_INFO("{}, {}", s1.GetMoleculeID(), s2.GetMoleculeID());
+				//LOG_INFO(grid.GetMoleculeID());
 				s1.Link(s2);
 			}
 		}

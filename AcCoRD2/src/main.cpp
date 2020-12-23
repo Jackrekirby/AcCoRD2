@@ -7,7 +7,7 @@
 // if a molecule is generated and is inside a hgih prioprity region should have flag which specifies if molecule placement should fail
 // If the molecule can participate in multiple non-surface first order reactions, then the probability of reaction c occurring is[15, Eq. (14)].
 // Is this for reactions within the same region, or all regions?
-// can a reaction have multiple products of the same molecule type
+// can a reaction have multiple products of the same molecule type and what format is it?
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -15,6 +15,8 @@
 // if the reaction rate is for example 1 is that 1 molecule produced per second or all products per second?
 // when molecules are added to regions each high priority neighbour should be checked to see if molecules can be added to them.
 
+// Learning Plan
+// Learnt the importance of reserving as allowing a vector to resize invalidates pointers.
 // KANBAN CHART =====================================================================================================================================
 
 // DONE
@@ -48,6 +50,7 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// add error checking for ids (and other times when creating vectors)
 // avoid requiring other types, instead pass arguments with run function. A child should be unaware of its parent as much as possible
 // add function vector<Grid*> GetProductsGrids(vector ids)
 // ability to add multiple of a type of reactant
@@ -66,7 +69,6 @@
 // reactions
 
 // TO DO (Not Imminent)
-// add error checking for ids
 // make functions more descriptive (GetRegions and GetRegionIDs)
 // consider passing objects into constructor via const reference to avoid including headers in headers
 // ensure consistent to ToJson to_json
@@ -125,7 +127,7 @@ void TestSimpleEnvironment()
 
 	// SIMULATION
 	std::string sim_dir = "D:/dev/my_simulation4";
-	Environment::Init(sim_dir, 1, 10, 3, 2, 1);
+	Environment::Init(sim_dir, 1, 10, 4, 2, 1);
 	EventQueue event_queue(7);
 
 	// Create Reactions
@@ -135,10 +137,10 @@ void TestSimpleEnvironment()
 	//ReactionManager::AddFirstReaction(0, { 2 }, 5, { 0 });
 
 	// CREATE REGIONS
-	std::vector<double> diffision_coefficients = { 1, 2, 3 };
-	std::vector<Vec3i> n_subvolumes = { Vec3i(2), Vec3i(2), Vec3i(2) };
+	std::vector<double> diffision_coefficients = { 1, 2, 3, 4 };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(3), Vec3i(2), Vec3i(1), Vec3i(1) };
 	double start_time = 0;
-	double time_step = 0.05;
+	double time_step = 0.01;
 	int priority = 0;
 
 	shape::basic::Box box(Vec3d(-0.5), Vec3d(1));
@@ -166,7 +168,8 @@ void TestSimpleEnvironment()
 		}
 	}
 
-	Environment::GetRegion(0).AddReaction(0, 1, { 2 }, 1, 1);
+	Environment::GetRegion(0).AddReaction(0, 1, { 2, 3 }, 0.1, 1);
+	Environment::GetRegion(0).AddReaction(2, 3, { 0, 1 }, 0.1, 1);
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -181,7 +184,7 @@ void TestSimpleEnvironment()
 	Environment::GetPassiveActors().reserve(1);
 	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
 		RegionIDs({ 0 }),
-		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
+		MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, 0.05, 0, true, true));
 
 	Json json_actors;
 	Json shapeless_actor;
@@ -200,6 +203,12 @@ void TestSimpleEnvironment()
 	std::ofstream actors_file(sim_dir + "/actors.json");
 	actors_file << JsonToString(json_actors);
 	actors_file.close();
+
+	for (int i = 0; i < 1; i++)
+	{
+		Environment::GetRegion(0).AddMolecule(0, { -0.4, 0, 0 });
+		Environment::GetRegion(0).AddMolecule(1, { 0.4, 0, 0 });
+	}
 
 	// BEGIN SIMULATION LOOP
 	do {

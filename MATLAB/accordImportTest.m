@@ -18,7 +18,7 @@ disp("done");
 clc;
 shape3d = Shape3D('FaceAlpha', 0);
 r = Accord.initAnimateRealisation(sim, 1, 1, 1, false, shape3d);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 0.5);
 
 %% Save Animation as Video
 clc;

@@ -7,7 +7,7 @@ namespace accord::microscopic
 	Subvolume2::Subvolume2(Vec3d origin, Vec3d length, Grid2* grid, int n_molecule_types)
 		: box(origin, length), grid(grid)
 	{
-		LOG_INFO("grid id = {}", grid->GetMoleculeID());
+		//LOG_INFO("grid id = {}", grid->GetMoleculeID());
 		relations.reserve(n_molecule_types);
 		for (int i = 0; i < n_molecule_types; i++)
 		{
