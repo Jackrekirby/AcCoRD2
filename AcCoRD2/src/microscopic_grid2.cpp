@@ -115,8 +115,8 @@ namespace accord::microscopic
 		{
 			cycles--;
 			// for debugging
-			g_json["path3D"].emplace_back(origin);
-			g_json["path3D"].emplace_back(end);
+			//g_json["path3D"].emplace_back(origin);
+			//g_json["path3D"].emplace_back(end);
 
 
 			// need to add max reflections counter
@@ -178,14 +178,14 @@ namespace accord::microscopic
 					allowObstructions);
 				//return CheckMoleculePath(collision->intersection, collision->reflection);
 			}
-			g_json.clear();
+			//g_json.clear();
 			return MoleculeDestination(end, this);
 		}
 		else 
 		{
 			LOG_ERROR("molecule hit maxiumum interaction cycles");
-			LOG_ERROR(JsonToPrettyString(g_json["path3D"]));
-			g_json.clear();
+			//LOG_ERROR(JsonToPrettyString(g_json["path3D"]));
+			//g_json.clear();
 			return MoleculeDestination(origin, this);
 		}
 	}

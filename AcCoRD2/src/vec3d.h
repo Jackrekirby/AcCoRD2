@@ -43,6 +43,10 @@ namespace accord
 
 		static Vec3d PolarToCartesian(double radius, double theta, double phi);
 
+		static Vec3d GenerateRandomPolar();
+
+		static Vec3d GenerateRandomPolar(double radius);
+
 		double GetAxis(Axis3D axis) const;
 
 		Vec2d GetPlane(Axis3D axis) const;

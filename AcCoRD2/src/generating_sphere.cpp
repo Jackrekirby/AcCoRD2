@@ -18,24 +18,12 @@ namespace accord::shape::generating
 
 	Vec3d Sphere::GeneratePointInVolume() const
 	{
-		// centre + (random radius, random angle)
-		return (
-			GetCentre() + Vec3d::PolarToCartesian(
-			std::cbrt(Random::GenerateRealUniform(0, GetRadius())),
-			Random::GenerateRealUniform(0, 3 * PI),
-			std::acos(Random::GenerateRealUniform(-1, 1)))
-		);
+		return (GetCentre() + Vec3d::GenerateRandomPolar() * GetRadius());
 	}
 
 	Vec3d Sphere::GeneratePointOnSurface() const
 	{
-		// centre + (radius, random angle)
-		return (
-			GetCentre() + Vec3d::PolarToCartesian(
-			GetRadius(),
-			Random::GenerateRealUniform(0, 3 * PI),
-			std::acos(Random::GenerateRealUniform(-1, 1)))
-		);
+		return (GetCentre() + Vec3d::GenerateRandomPolar(GetRadius()));
 	}
 
 	void Sphere::ToJson(Json& j) const

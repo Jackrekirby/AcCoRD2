@@ -8,6 +8,7 @@
 // If the molecule can participate in multiple non-surface first order reactions, then the probability of reaction c occurring is[15, Eq. (14)].
 // Is this for reactions within the same region, or all regions?
 // can a reaction have multiple products of the same molecule type and what format is it?
+// couldnt products be placed outside the region if unbind radius is huge?
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -72,6 +73,9 @@
 // reactions
 
 // TO DO (Not Imminent)
+// add default cycles for check molecule path
+// rename grid, subvolume and region 2 to _
+// could break environment class up into RelationShipManager
 // consider adding limited_vectors which are vectors where only certain ints upto a given value are allowed.
 // consider adding fixed_vectors which are vectors which have fixed max capacity.
 // MAY be able to make second order reactions more efficient by seperating links between internal and external subvolumes
@@ -127,6 +131,8 @@
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
 #include "reaction_manager.h"
+#include "basic_shape_3d.h"
+#include "passive_actor2.h"
 
 void TestSimpleEnvironment()
 {
@@ -134,14 +140,15 @@ void TestSimpleEnvironment()
 
 	// SIMULATION ============================================================================================================
 	std::string sim_dir = "D:/dev/my_simulation4";
-	Environment::Init(sim_dir, 1, 100, 4, 2, 1);
+	Environment::Init(sim_dir, 1, 30, 4, 2, 1);
+	//Random::GetGenerator().advance(2);
 	EventQueue event_queue(7);
 
 	// CREATE REGIONS ========================================================================================================
 	std::vector<double> diffision_coefficients = { 0.01, 0.01, 0.01, 0.01 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(1), Vec3i(1), Vec3i(1), Vec3i(1) };
 	double start_time = 0;
-	double time_step = 2;
+	double time_step = 0.01;
 	int priority = 0;
 
 	shape::basic::Box box1(Vec3d(-1, -0.5, -0.5), Vec3d(1));
@@ -156,48 +163,13 @@ void TestSimpleEnvironment()
 		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
 
 	// Create Reactions ======================================================================================================
-	ReactionManager::Init(Environment::GetNumberOfMoleculeTypes());
 	ReactionManager::AddZerothOrderReaction({ 0 }, 1, { 0 });
 	ReactionManager::AddZerothOrderReaction({ 1 }, 1, { 1 });
 	//ReactionManager::AddFirstOrderReaction(0, { 1 }, 1, { 0 });
 	//ReactionManager::AddFirstOrderReaction(0, { 2 }, 5, { 0 });
-	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.2, 1, {0, 1});
+	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.2, 0.4, {0, 1});
 
-	// Add Reactions to Each Region
-	for (auto& reaction : ReactionManager::GetZerothOrderReactions())
-	{
-		for (auto& region : reaction.GetRegions())
-		{
-			Environment::GetRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
-		}
-	}
-
-	for (auto& reaction : ReactionManager::GetFirstOrderReactions())
-	{
-		for (auto& region : reaction.GetRegions())
-		{
-			Environment::GetRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
-				reaction.GetRate(), reaction.GetTotalRate());
-		}
-	}
-
-	for (auto& reaction : ReactionManager::GetSecondOrderReactions())
-	{
-		for (auto& region : reaction.GetRegions())
-		{
-			if (reaction.GetReactantA() == reaction.GetReactantB())
-			{
-				Environment::GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetProducts(),
-					reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
-			}
-			else
-			{
-				Environment::GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(),
-					reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
-			}
-		}
-	}
-
+	Environment::LinkReactionsToRegions();
 	// DEFINE RELATIONSHIPS ======================================================================================================
 	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
 		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
@@ -240,8 +212,10 @@ void TestSimpleEnvironment()
 
 	//for (int i = 0; i < 1; i++)
 	//{
-	//	Environment::GetRegion(0).AddMolecule(0, { -0.5, 0, 0 });
-	//	Environment::GetRegion(1).AddMolecule(0, { 0.1, 0, 0 });
+	//	Environment::GetRegion(0).AddMolecule(0, { -0.4, 0, 0.1 });
+	//	Environment::GetRegion(1).AddMolecule(1, { 0.4, 0, -0.1 });
+	//	Environment::GetRegion(0).AddMolecule(2, { -0.4, 0, 0.1 });
+	//	Environment::GetRegion(1).AddMolecule(3, { 0.4, 0, -0.1 });
 	//}
 
 	// BEGIN SIMULATION LOOP
@@ -592,8 +566,7 @@ void TestCylinder()
 	LOG_INFO(cylinder.IsEnveloping(sphere));
 }
 
-#include "basic_shape_3d.h"
-#include "passive_actor2.h"
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");

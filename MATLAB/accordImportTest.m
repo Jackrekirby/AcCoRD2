@@ -12,15 +12,16 @@
 %% Import Simulation Data
 clear all;
 clc;
+tic;
 sim = Accord.importFiles("D:\dev", "my_simulation4", [], [], false);
-disp("done");
+toc
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('FaceAlpha', 0.01, 'LineColorMap', hsv(length(sim.regions.shapes)), ...
 'FaceColorMap', hsv(length(sim.regions.shapes)));
 % color by actor
 r = Accord.initAnimateRealisation(sim, 1, 1, 1, false, shape3d);
-r = Accord.playAnimateRealisation(r, 10);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;

@@ -3,7 +3,7 @@
 #include "vec3b.h"
 #include "vec3.h"
 #include "vec3i.h"
-
+#include "constants.h"
 
 namespace accord
 {
@@ -87,6 +87,25 @@ namespace accord
 			Random::GenerateRealUniform(lower_bound, upper_bound)
 		};
 	}
+
+	Vec3d Vec3d::GenerateRandomPolar()
+	{
+		return { PolarToCartesian(
+			std::cbrt(Random::GenerateRealUniform()),
+			Random::GenerateRealUniform(0, 3 * PI),
+			std::acos(Random::GenerateRealUniform(-1, 1)))
+		};
+	}
+
+	Vec3d Vec3d::GenerateRandomPolar(double radius)
+	{
+		return { PolarToCartesian(
+			radius,
+			Random::GenerateRealUniform(0, 3 * PI),
+			std::acos(Random::GenerateRealUniform(-1, 1)))
+		};
+	}
+
 
 	Vec3d Vec3d::PolarToCartesian(double radius, double theta, double phi)
 	{

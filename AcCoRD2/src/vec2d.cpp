@@ -2,6 +2,7 @@
 
 #include "vec2d.h"
 #include "vec2b.h"
+#include "constants.h"
 
 namespace accord
 {
@@ -20,6 +21,19 @@ namespace accord
 	Vec2d Vec2d::PolarToCartesian(double radius, double theta)
 	{
 		return { radius * std::cos(theta), radius * std::sin(theta) };
+	}
+
+	Vec2d Vec2d::GenerateRandomPolar()
+	{
+		return PolarToCartesian(
+			std::sqrt(Random::GenerateRealUniform()),
+			Random::GenerateRealUniform(0, 2 * PI));
+	}
+
+	Vec2d Vec2d::GenerateRandomPolar(double radius)
+	{
+		return Vec2d::PolarToCartesian(
+			radius, Random::GenerateRealUniform(0, 2 * PI));
 	}
 
 	// calculates the absolute value of each axis

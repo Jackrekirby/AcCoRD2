@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "environment.h"
 #include <filesystem>
+#include "reaction_manager.h"
 
 namespace accord
 {
@@ -24,6 +25,8 @@ namespace accord
 			"/s" + std::to_string(Environment::seed));
 
 		Environment::CreateDirectories();
+
+		ReactionManager::Init(num_molecule_types);
 	}
 
 	void Environment::SetTime(double time)
@@ -55,6 +58,43 @@ namespace accord
 			ids.emplace_back(i);
 		}
 		return ids;
+	}
+
+	void Environment::LinkReactionsToRegions()
+	{
+		for (auto& reaction : ReactionManager::GetZerothOrderReactions())
+		{
+			for (auto& region : reaction.GetRegions())
+			{
+				GetRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
+			}
+		}
+
+		for (auto& reaction : ReactionManager::GetFirstOrderReactions())
+		{
+			for (auto& region : reaction.GetRegions())
+			{
+				GetRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
+					reaction.GetRate(), reaction.GetTotalRate());
+			}
+		}
+
+		for (auto& reaction : ReactionManager::GetSecondOrderReactions())
+		{
+			for (auto& region : reaction.GetRegions())
+			{
+				if (reaction.GetReactantA() == reaction.GetReactantB())
+				{
+					GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetProducts(),
+						reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
+				}
+				else
+				{
+					GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(),
+						reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
+				}
+			}
+		}
 	}
 
 	std::string Environment::GetSimulationName()

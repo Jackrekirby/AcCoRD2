@@ -42,6 +42,8 @@ namespace accord
 
 		static MoleculeIDs GetMoleculeIDs();
 
+		static void LinkReactionsToRegions();
+
 		typedef microscopic::SurfaceType SurfaceType;
 		static void DefineRelationship(RegionID region_a, RegionID region_b,
 			RelationshipPriority priority,

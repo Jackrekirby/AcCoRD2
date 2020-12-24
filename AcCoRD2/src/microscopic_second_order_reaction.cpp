@@ -65,7 +65,7 @@ namespace accord::microscopic
 				{
 					if (AttemptToReactMolecules(*m1, *m2, s, s, current_time))
 					{
-						LOG_INFO("molecule reacted in same subvolume");
+						//LOG_INFO("molecule reacted in same subvolume");
 						has_reacted.at(i1) = true;
 						has_reacted.at(i2) = true;
 						n_reactions++;
@@ -114,7 +114,7 @@ namespace accord::microscopic
 				{
 					if (AttemptToReactMolecules(m1, m2, s1, s2, current_time))
 					{
-						LOG_INFO("molecule reacted in different subvolume");
+						//LOG_INFO("molecule reacted in different subvolume");
 						has_reacted1.at(i1) = true;
 						has_reacted2.at(i2) = true;
 						n_reactions++;
@@ -157,7 +157,8 @@ namespace accord::microscopic
 		{
 			double d1 = s1.GetGrid().GetDiffusionCoeffient();
 			double d2 = s2.GetGrid().GetDiffusionCoeffient();
-			Vec3d reaction_site = m1.GetPosition() + (d1 / (d1 + d2)) * (m2.GetPosition() - m1.GetPosition());
+			double diffusion_coefficient = (d1 / (d1 + d2));
+			Vec3d reaction_site = m1.GetPosition() + diffusion_coefficient * (m2.GetPosition() - m1.GetPosition());
 
 			//LOG_INFO("molecules are close enough to react,  {}, {}, {}, {}", m1.GetPosition(), m2.GetPosition(), reaction_site, (d1 / (d1 + d2)));
 			// if the reaction site is directly on the border then the molecules never cross the border
@@ -169,11 +170,45 @@ namespace accord::microscopic
 				auto p2 = s2.GetGrid().CheckMoleculePath(m2.GetPosition(), reaction_site, 20, true);
 				if (p2.has_value() && (p2.value().GetPosition() == reaction_site).All())
 				{
+					Region2& reaction_region = dynamic_cast<Grid2&>(p1->GetOwner()).GetRegion();
 					//LOG_INFO("molecules reacted");
-					for (auto product : products)
+					if (products.size() == 1)
 					{
-						dynamic_cast<Grid2&>(p1->GetOwner()).GetRegion().AddMolecule(product, reaction_site, current_time);
+						reaction_region.AddMolecule(products.front(), reaction_site, current_time);
 					}
+					else if(products.size() == 2)
+					{
+						
+						double relative_unbinding_radius = unbinding_radius * diffusion_coefficient;
+						Vec3d offset = (m1.GetPosition() - reaction_site).Normalise() * relative_unbinding_radius;
+						Vec3d product_a_site = reaction_site + offset;
+						Vec3d product_b_site = reaction_site - offset;
+						auto product_a_destination = reaction_region.GetGrid(products.at(0)).CheckMoleculePath(reaction_site, product_a_site, 20);
+						if (product_a_destination.has_value())
+						{
+							product_a_destination->GetOwner().AddMolecule(product_a_destination->GetPosition(), current_time);
+						}
+						auto product_b_destination = reaction_region.GetGrid(products.at(1)).CheckMoleculePath(reaction_site, product_b_site, 20);
+						if (product_b_destination.has_value())
+						{
+							product_b_destination->GetOwner().AddMolecule(product_b_destination->GetPosition(), current_time);
+						}
+					}
+					else if (products.size() > 2)
+					{
+						double relative_unbinding_radius = unbinding_radius * diffusion_coefficient;
+						for (auto& product : products)
+						{
+							Vec3d product_site = reaction_site + relative_unbinding_radius * Vec3d::GenerateRandomPolar();
+
+							auto product_destination = reaction_region.GetGrid(product).CheckMoleculePath(reaction_site, product_site, 20);
+							if (product_destination.has_value())
+							{
+								product_destination->GetOwner().AddMolecule(product_destination->GetPosition(), current_time);
+							}
+						}
+					} // else products.size() == 0
+					
 					return true;
 				}
 			}

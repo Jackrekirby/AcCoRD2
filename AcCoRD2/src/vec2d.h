@@ -30,6 +30,12 @@ namespace accord
 
 		static Vec2d PolarToCartesian(double radius, double theta);
 
+		// Generates a vector with a random direction and random magnitude of maximum 1
+		static Vec2d GenerateRandomPolar();
+
+		// Generates a vector with a random direction and given magnitude
+		static Vec2d GenerateRandomPolar(double radius);
+
 		// calculates the absolute value of each axis
 		Vec2d Abs() const;
 

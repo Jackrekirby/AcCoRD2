@@ -12,20 +12,12 @@ namespace accord::shape::generating
 
 	Vec2d Circle::GeneratePointInArea() const
 	{
-		// centre + (random radius, random angle)
-		return GetCentre() + Vec2d::PolarToCartesian(
-			std::sqrt(Random::GenerateRealUniform(0, GetRadius())),
-			Random::GenerateRealUniform(0, 2 * PI)
-		);
+		return (GetCentre() + Vec2d::GenerateRandomPolar() * GetRadius());
 	}
 
 	Vec2d Circle::GeneratePointOnSurface() const
 	{
-		// centre + (radius, random angle)
-		return GetCentre() + Vec2d::PolarToCartesian(
-			GetRadius(),
-			Random::GenerateRealUniform(0, 2 * PI)
-		);
+		return (GetCentre() + Vec2d::GenerateRandomPolar(GetRadius()));
 	}
 
 	void Circle::ToJson(Json& j) const
