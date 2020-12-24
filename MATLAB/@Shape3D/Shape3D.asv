@@ -21,8 +21,8 @@ classdef Shape3D < handle
     methods (Access = public)
         function obj = Shape3D(args)
             arguments
-                args.FaceAlpha = 0.05;
-                args.EdgeAlpha = 0.1;
+                args.FaceAlpha = 0.1;
+                args.EdgeAlpha = 0.3;
                 args.FaceColor = 'random';
                 args.BoxFaceColours = hsv(6);
                 args.ColorPerBoxFace = false;
@@ -38,7 +38,7 @@ classdef Shape3D < handle
             end
             
             obj.FaceAlpha = args.FaceAlpha;
-            obj.EdgeAlpha = args.EdgeAlpha;
+            obj.EdgeAlpha = args.FaceAlpha;
             obj.FaceColor = args.FaceColor;
             obj.BoxFaceColors = args.BoxFaceColours;
             obj.ColorPerBoxFace = args.ColorPerBoxFace;

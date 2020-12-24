@@ -262,6 +262,15 @@
     <ClCompile Include="src\reaction_manager.cpp">
       <Filter>src\simulation\reactions</Filter>
     </ClCompile>
+    <ClCompile Include="src\zeroth_order_reaction.cpp">
+      <Filter>src\simulation\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\second_order_reaction.cpp">
+      <Filter>src\simulation\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\first_order_reaction.cpp">
+      <Filter>src\simulation\reactions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -565,6 +574,15 @@
       <Filter>src\simulation\actors\passive</Filter>
     </ClInclude>
     <ClInclude Include="src\reaction_manager.h">
+      <Filter>src\simulation\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\zeroth_order_reaction.h">
+      <Filter>src\simulation\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\second_order_reaction.h">
+      <Filter>src\simulation\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\first_order_reaction.h">
       <Filter>src\simulation\reactions</Filter>
     </ClInclude>
   </ItemGroup>

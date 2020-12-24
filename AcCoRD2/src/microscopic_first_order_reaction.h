@@ -5,24 +5,24 @@
 
 namespace accord::microscopic
 {
-	class Grid2;
-	class Region2;
+	class Grid;
+	class Region;
 
 	// in future will need to make base reaction class with derived VolumeReaction and SurfaceReaction
 	class FirstOrderReaction
 	{
 	public:
-		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region2* region);
+		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region);
 
 		void Run();
 	private:
-		Region2* region;
+		Region* region;
 		double reaction_probability;
 		double min_reaction_time;
 		double total_reaction_rate;
 		double time;
-		Grid2* reaction_grid;
-		std::vector<Grid2*> product_grids;
+		Grid* reaction_grid;
+		std::vector<Grid*> product_grids;
 
 		double CalculateMinimumReactionTime(double total_reaction_rate, double region_time_step);
 
@@ -32,7 +32,7 @@ namespace accord::microscopic
 
 		double CalculateReactionProbability(double reaction_rate, double total_reaction_rate, double region_time_step);
 
-		std::vector<Grid2*> GetProductGrids(const MoleculeIDs& products);
+		std::vector<Grid*> GetProductGrids(const MoleculeIDs& products);
 
 	};
 }

@@ -5,7 +5,7 @@
 
 namespace accord::microscopic
 {
-	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region2* region)
+	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region)
 		: region(region), reaction_probability(CalculateReactionProbability(reaction_rate, total_reaction_rate, region->GetTimeStep())),
 		min_reaction_time(CalculateMinimumReactionTime(total_reaction_rate, region->GetTimeStep())), total_reaction_rate(total_reaction_rate),
 		product_grids(GetProductGrids(products)), reaction_grid(&(region->GetGrid(reactant)))
@@ -59,9 +59,9 @@ namespace accord::microscopic
 		return ((reaction_rate / total_reaction_rate) * (1 - std::exp(-region_time_step * total_reaction_rate)));
 	}
 
-	std::vector<Grid2*> FirstOrderReaction::GetProductGrids(const MoleculeIDs& products)
+	std::vector<Grid*> FirstOrderReaction::GetProductGrids(const MoleculeIDs& products)
 	{
-		std::vector<Grid2*> product_grids;
+		std::vector<Grid*> product_grids;
 		for (auto product : products)
 		{
 			product_grids.emplace_back(&(region->GetGrid(product)));

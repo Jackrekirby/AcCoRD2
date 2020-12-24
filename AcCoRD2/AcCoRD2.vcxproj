@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\first_order_reaction.cpp" />
+    <ClCompile Include="src\second_order_reaction.cpp" />
     <ClCompile Include="src\reaction_manager.cpp" />
     <ClCompile Include="src\box_passive_actor.cpp" />
     <ClCompile Include="src\shapeless_passive_actor.cpp" />
@@ -141,8 +143,11 @@
     <ClCompile Include="src\output_binary_test.cpp" />
     <ClCompile Include="src\random_test.cpp" />
     <ClCompile Include="src\vec_test.cpp" />
+    <ClCompile Include="src\zeroth_order_reaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\first_order_reaction.h" />
+    <ClInclude Include="src\second_order_reaction.h" />
     <ClInclude Include="src\reaction_manager.h" />
     <ClInclude Include="src\box_passive_actor.h" />
     <ClInclude Include="src\shapeless_passive_actor.h" />
@@ -244,6 +249,7 @@
     <ClInclude Include="src\output_binary_test.h" />
     <ClInclude Include="src\random_test.h" />
     <ClInclude Include="src\vec_test.h" />
+    <ClInclude Include="src\zeroth_order_reaction.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-APACHE.txt" />

@@ -10,7 +10,7 @@ namespace accord::shape::collision
 }
 namespace accord::microscopic
 {
-	class Grid2;
+	class Grid;
 
 	class Neighbour // High Priority Relation
 	{
@@ -26,6 +26,6 @@ namespace accord::microscopic
 		// meso regions need to check on boundary and so stop path checking, return 
 		// a surface (NOT A PSEUDO ONE) needs to check if in area then respond accordingly.
 		virtual std::optional<MoleculeDestination> PassMoleculeToNeighbour(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner) = 0;
+			const shape::collision::Collision3D& collision, Grid* owner) = 0;
 	};
 }

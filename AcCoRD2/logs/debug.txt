@@ -1,2 +1,2 @@
-[00:16:50.807] [info] main.cpp:234 TestSimpleEnvironment() Realisation 0
-[00:16:53.103] [info] main.cpp:250 TestSimpleEnvironment() Cleaning Up
+[11:53:02.324] [info] main.cpp:249 TestSimpleEnvironment() Realisation 0
+[11:53:03.041] [info] main.cpp:265 TestSimpleEnvironment() Cleaning Up

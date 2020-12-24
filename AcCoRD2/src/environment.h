@@ -23,9 +23,9 @@ namespace accord
 
 		static int GetRealisationNumber();
 
-		static microscopic::Region2& GetRegion(RegionID id);
+		static microscopic::Region& GetRegion(RegionID id);
 
-		static std::vector<std::unique_ptr<microscopic::Region2>>& GetRegions();
+		static std::vector<std::unique_ptr<microscopic::Region>>& GetRegions();
 
 		static std::vector<std::unique_ptr<PassiveActor>>& GetPassiveActors();
 
@@ -68,7 +68,7 @@ namespace accord
 		static int current_realisation;
 		static uint64_t seed;
 
-		static std::vector<std::unique_ptr<microscopic::Region2>> microscopic_regions;
+		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
 
 		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;
 	};

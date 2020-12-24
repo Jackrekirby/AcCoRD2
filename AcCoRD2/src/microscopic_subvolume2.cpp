@@ -4,7 +4,7 @@
 
 namespace accord::microscopic
 {
-	Subvolume2::Subvolume2(Vec3d origin, Vec3d length, Grid2* grid, int n_molecule_types)
+	Subvolume::Subvolume(Vec3d origin, Vec3d length, Grid* grid, int n_molecule_types)
 		: box(origin, length), grid(grid)
 	{
 		//LOG_INFO("grid id = {}", grid->GetMoleculeID());
@@ -15,30 +15,30 @@ namespace accord::microscopic
 		}
 	}
 
-	void Subvolume2::AddMolecule(const Vec3d& position)
+	void Subvolume::AddMolecule(const Vec3d& position)
 	{
 		normal_molecules.emplace_back(position);
 	}
 
-	void Subvolume2::AddMolecule(const Vec3d& position, double time)
+	void Subvolume::AddMolecule(const Vec3d& position, double time)
 	{
 		recent_molecules.emplace_back(position, time);
 	}
 
 	// unlikely to need const version
-	std::vector<NormalMolecule>& Subvolume2::GetNormalMolecules()
+	std::vector<NormalMolecule>& Subvolume::GetNormalMolecules()
 	{
 		return normal_molecules;
 	}
 
-	std::vector<RecentMolecule>& Subvolume2::GetRecentMolecules()
+	std::vector<RecentMolecule>& Subvolume::GetRecentMolecules()
 	{
 		return recent_molecules;
 	}
 
 	// link a subvolume owned by the same grid
 	// Only one sibling needs to know about the relation so two subvolumes are only checked against eachother once
-	void Subvolume2::LinkSibling(Subvolume2& subvolume)
+	void Subvolume::LinkSibling(Subvolume& subvolume)
 	{
 		//if (&subvolume == this) LOG_ERROR("attempt to add same subvolume");
 		auto& relatives = subvolume.GetRelation(GetMoleculeID()).GetSubvolumes();
@@ -50,39 +50,39 @@ namespace accord::microscopic
 	}
 
 	// link a subvolume not owned by the same grid
-	void Subvolume2::Link(Subvolume2& subvolume)
+	void Subvolume::Link(Subvolume& subvolume)
 	{
 		//if (&subvolume == this) LOG_ERROR("attempt to add same subvolume");
 		GetRelation(subvolume.GetMoleculeID()).Add(subvolume);
 	}
 
-	const std::vector<TypedSubvolume>& Subvolume2::GetRelations() const
+	const std::vector<TypedSubvolume>& Subvolume::GetRelations() const
 	{
 		return relations;
 	}
 
-	std::vector<TypedSubvolume>& Subvolume2::GetRelations()
+	std::vector<TypedSubvolume>& Subvolume::GetRelations()
 	{
 		return relations;
 	}
 
 	// may need const version
-	TypedSubvolume& Subvolume2::GetRelation(MoleculeID id)
+	TypedSubvolume& Subvolume::GetRelation(MoleculeID id)
 	{
 		return relations.at(id);
 	}
 
-	const shape::relation::Box& Subvolume2::GetBoundingBox()
+	const shape::relation::Box& Subvolume::GetBoundingBox()
 	{
 		return box;
 	}
 
-	Grid2& Subvolume2::GetGrid()
+	Grid& Subvolume::GetGrid()
 	{
 		return *grid;
 	}
 
-	MoleculeID Subvolume2::GetMoleculeID()
+	MoleculeID Subvolume::GetMoleculeID()
 	{
 		return GetGrid().GetMoleculeID();
 	}

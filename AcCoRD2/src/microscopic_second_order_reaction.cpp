@@ -8,7 +8,7 @@
 namespace accord::microscopic
 {
 	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region)
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region)
 		: reactant_a(reactant_a), reactant_b(reactant_b), SecondOrderReaction(products, binding_radius, unbinding_radius), 
 		reactant_a_grid(&(region->GetGrid(reactant_a)))
 	{
@@ -28,7 +28,7 @@ namespace accord::microscopic
 
 
 	OneReactantSecondOrderReaction::OneReactantSecondOrderReaction(MoleculeID reactant,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region2* region)
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region)
 		: reactant(reactant), SecondOrderReaction(products, binding_radius, unbinding_radius),
 		reactant_grid(&(region->GetGrid(reactant)))
 	{
@@ -47,7 +47,7 @@ namespace accord::microscopic
 		}
 	}
 
-	void OneReactantSecondOrderReaction::CompareMoleculesInSubvolume(Subvolume2& s, double current_time)
+	void OneReactantSecondOrderReaction::CompareMoleculesInSubvolume(Subvolume& s, double current_time)
 	{
 		//LOG_INFO("CompareMoleculesInSubvolume");
 		std::vector<bool> has_reacted(s.GetNormalMolecules().size(), false);
@@ -97,7 +97,7 @@ namespace accord::microscopic
 
 	}
 
-	void SecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume2& s1, Subvolume2& s2, double current_time)
+	void SecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume& s1, Subvolume& s2, double current_time)
 	{
 		//if (&s1 == &s2) LOG_INFO("SAME SUBVOLUMES");
 		std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
@@ -151,7 +151,7 @@ namespace accord::microscopic
 
 	// just because 2 molecule types may be the same it does not mean they will have the same diffusion coefficient
 	bool SecondOrderReaction::AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2,
-		Subvolume2& s1, Subvolume2& s2, double current_time)
+		Subvolume& s1, Subvolume& s2, double current_time)
 	{
 		if ((m1.GetPosition() - m2.GetPosition()).Size() < binding_radius)
 		{
@@ -170,7 +170,7 @@ namespace accord::microscopic
 				auto p2 = s2.GetGrid().CheckMoleculePath(m2.GetPosition(), reaction_site, 20, true);
 				if (p2.has_value() && (p2.value().GetPosition() == reaction_site).All())
 				{
-					Region2& reaction_region = dynamic_cast<Grid2&>(p1->GetOwner()).GetRegion();
+					Region& reaction_region = dynamic_cast<Grid&>(p1->GetOwner()).GetRegion();
 					//LOG_INFO("molecules reacted");
 					if (products.size() == 1)
 					{

@@ -5,7 +5,7 @@
 
 namespace accord::microscopic
 {
-	class CylinderRegion : public Region2
+	class CylinderRegion : public Region
 	{
 	public:
 		CylinderRegion(shape::basic::Cylinder Cylinder, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,

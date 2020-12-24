@@ -5,7 +5,7 @@
 
 namespace accord::microscopic
 {
-	class SphereRegion : public Region2
+	class SphereRegion : public Region
 	{
 	public:
 		SphereRegion(shape::basic::Sphere sphere, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,

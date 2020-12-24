@@ -15,10 +15,10 @@
 
 namespace accord::microscopic
 {
-	class Region2 : public Event
+	class Region : public Event
 	{
 	public:
-		Region2(std::vector<double> diffision_coefficients,
+		Region(std::vector<double> diffision_coefficients,
 			std::vector<Vec3i> n_subvolumes,
 			double start_time, double time_step, int priority, EventQueue* event_queue,
 			SurfaceType surface_type, RegionID id);
@@ -26,11 +26,11 @@ namespace accord::microscopic
 		void Run();
 
 		// add neighbour relationship between local and external grids of same molecule type.
-		void AddNeighbour(Region2& region, SurfaceType type, const MoleculeIDs& ids);
+		void AddNeighbour(Region& region, SurfaceType type, const MoleculeIDs& ids);
 
-		void AddHighPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids);
+		void AddHighPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids);
 
-		void AddLowPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids);
+		void AddLowPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids);
 
 		// add a recent molecule
 		void AddMolecule(MoleculeID id, const Vec3d& position, double time);
@@ -70,9 +70,9 @@ namespace accord::microscopic
 		double GetLocalTime() const;
 
 		// may need to add const versions of GetGrid(s)
-		std::vector<Grid2>& GetGrids();
+		std::vector<Grid>& GetGrids();
 
-		Grid2& GetGrid(MoleculeID id);
+		Grid& GetGrid(MoleculeID id);
 
 		// each region type will have its own surface shape which is why GetSurface is virtual
 		// may need const version of get surface
@@ -87,12 +87,12 @@ namespace accord::microscopic
 
 		void NextRealisation();
 
-		void LinkGrids(Region2& region, const MoleculeIDs& ids);
+		void LinkGrids(Region& region, const MoleculeIDs& ids);
 	private:
 		//std::unique_ptr<SurfaceShape> surface_shape;
 		SurfaceType surface_type;
 
-		std::vector<Grid2> grids;
+		std::vector<Grid> grids;
 		// reactions will need to be passed pointer to region
 		// e.g. zeroth order reaction needs to know the volume of the region
 		std::vector<ZerothOrderReaction> zeroth_order_reactions;

@@ -4,12 +4,12 @@
 
 namespace accord::microscopic
 {
-	void TypedSubvolume::Add(Subvolume2& subvolume)
+	void TypedSubvolume::Add(Subvolume& subvolume)
 	{
 		subvolumes.emplace_back(&subvolume);
 	}
 
-	std::vector<Subvolume2*>& TypedSubvolume::GetSubvolumes()
+	std::vector<Subvolume*>& TypedSubvolume::GetSubvolumes()
 	{
 		return subvolumes;
 	}

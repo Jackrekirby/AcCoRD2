@@ -5,7 +5,7 @@
 
 namespace accord::microscopic
 {
-	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, Region2* region)
+	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, Region* region)
 		: region(region), reaction_coefficient(CalculateReactionCoefficient(reaction_rate)),
 		time(CalculateStartTime()), product_grids(GetProductGrids(products))
 	{
@@ -50,9 +50,9 @@ namespace accord::microscopic
 		return (-1 / (reaction_rate * region->GetShape().GetBasicShape().CalculateVolume()));
 	}
 
-	std::vector<Grid2*> ZerothOrderReaction::GetProductGrids(const MoleculeIDs& products)
+	std::vector<Grid*> ZerothOrderReaction::GetProductGrids(const MoleculeIDs& products)
 	{
-		std::vector<Grid2*> product_grids;
+		std::vector<Grid*> product_grids;
 		for (auto product : products)
 		{
 			product_grids.emplace_back(&(region->GetGrid(product)));

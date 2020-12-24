@@ -20,7 +20,7 @@
 namespace accord::microscopic
 {
 	//class Surface;
-	class Grid2;
+	class Grid;
 
 	// A Grid owner is the object which currently owns a molecule during path checking.
 	// A Owner owner is the object which will own the molecule at the end of diffusion.
@@ -37,6 +37,6 @@ namespace accord::microscopic
 		// reflecting surfaces get current owner to call CheckMoleculePath() on reflected path
 		// a neighbour will take ownership and call CheckMoleculePath()
 		virtual std::optional<MoleculeDestination> PassMoleculeToHighPriorityRelation(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner) = 0;
+			const shape::collision::Collision3D& collision, Grid* owner) = 0;
 	};
 }

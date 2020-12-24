@@ -17,7 +17,7 @@ namespace accord
 
 	}
 
-	void PassiveActor::TypedSubvolumes::Add(microscopic::Subvolume2* subvolume)
+	void PassiveActor::TypedSubvolumes::Add(microscopic::Subvolume* subvolume)
 	{
 		subvolumes.emplace_back(subvolume);
 	}

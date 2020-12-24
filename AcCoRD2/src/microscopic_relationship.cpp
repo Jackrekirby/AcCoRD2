@@ -3,7 +3,7 @@
 
 namespace accord::microscopic
 {
-	class Grid2;
+	class Grid;
 	class SurfaceShape;
 
 	Relationship::Relationship(Relative* relative, SurfaceType type)

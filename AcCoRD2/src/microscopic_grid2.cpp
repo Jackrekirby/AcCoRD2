@@ -15,7 +15,7 @@
 
 namespace accord::microscopic
 {
-	Grid2::Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region2* region)
+	Grid::Grid(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region* region)
 		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient),
 		region(region), id(id)
 	{
@@ -24,29 +24,29 @@ namespace accord::microscopic
 		LinkSiblingSubvolumes();
 	}
 
-	void Grid2::AddMolecule(const Vec3d& position)
+	void Grid::AddMolecule(const Vec3d& position)
 	{
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(position);
 	}
 
-	void Grid2::AddMolecule(const Vec3d& position, double time)
+	void Grid::AddMolecule(const Vec3d& position, double time)
 	{
 		Vec3d index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(position, time);
 	}
 
-	void Grid2::AddMolecule()
+	void Grid::AddMolecule()
 	{
 		AddMolecule(region->GetShape().GenerateMolecule());
 	}
 
-	void Grid2::AddMolecule(double time)
+	void Grid::AddMolecule(double time)
 	{
 		AddMolecule(region->GetShape().GenerateMolecule(), time);
 	}
 
-	void Grid2::DiffuseMolecules()
+	void Grid::DiffuseMolecules()
 	{
 		int max_cycles = 20;
 		for (auto& subvolume : subvolumes)
@@ -108,7 +108,7 @@ namespace accord::microscopic
 		}		
 	}
 
-	std::optional<MoleculeDestination> Grid2::CheckMoleculePath(const Vec3d& origin, const Vec3d& end, 
+	std::optional<MoleculeDestination> Grid::CheckMoleculePath(const Vec3d& origin, const Vec3d& end, 
 		int cycles, bool allowObstructions)
 	{
 		if (cycles > 0)
@@ -191,7 +191,7 @@ namespace accord::microscopic
 	}
 
 	// dont change old position, create new one.
-	Vec3d Grid2::DiffuseMolecule(const NormalMolecule& molecule)
+	Vec3d Grid::DiffuseMolecule(const NormalMolecule& molecule)
 	{
 		return { molecule.GetPosition() + 
 			std::sqrt(2 * diffision_coefficient * GetRegion().GetTimeStep()) *
@@ -199,7 +199,7 @@ namespace accord::microscopic
 	}
 
 	// will require envionment time to be updated before event is finished or do environment time + time step
-	Vec3d Grid2::DiffuseMolecule(const RecentMolecule& molecule)
+	Vec3d Grid::DiffuseMolecule(const RecentMolecule& molecule)
 	{
 		// will produce nan is molecule time > environment/region time
 		// for regions with the same start time and time step delta time should = 0.
@@ -209,13 +209,13 @@ namespace accord::microscopic
 	}
 
 	// may need const version
-	Region2& Grid2::GetRegion()
+	Region& Grid::GetRegion()
 	{
 		return *region;
 	}
 
 	// may need const version
-	std::vector<Subvolume2>& Grid2::GetSubvolumes()
+	std::vector<Subvolume>& Grid::GetSubvolumes()
 	{
 		return subvolumes;
 	}
@@ -223,7 +223,7 @@ namespace accord::microscopic
 	// could be private?
 	// may need const version
 	// will always return a valid subvolume even if index is for a position outside of subvolume
-	Subvolume2& Grid2::GetSubvolume(Vec3i index)
+	Subvolume& Grid::GetSubvolume(Vec3i index)
 	{
 		// if index is below or above index range limit it to within range
 		index *= (index > Vec3i(0, 0, 0));
@@ -233,7 +233,7 @@ namespace accord::microscopic
 
 	// could be private?
 	// if index is not valid null will be returned
-	Subvolume2* Grid2::GetSubvolumeIfExists(const Vec3i& index)
+	Subvolume* Grid::GetSubvolumeIfExists(const Vec3i& index)
 	{
 		if ((index < Vec3i(0, 0, 0)).Any()) return nullptr;
 		if ((index >= n_subvolumes).Any()) return nullptr;
@@ -243,7 +243,7 @@ namespace accord::microscopic
 	// could be const if you are only linking local subvolumes and not vice versa
 	// would be more efficient to do both at same time. Would then require a check to see if regions are already
 	// neighbours. Grid is of same molecule type
-	void Grid2::LinkGrid(Grid2& grid)
+	void Grid::LinkGrid(Grid& grid)
 	{
 		//LOG_INFO("Linking {} to {}", GetMoleculeID(), grid.GetMoleculeID());
 		for (auto& s1 : subvolumes)
@@ -259,48 +259,48 @@ namespace accord::microscopic
 
 	// Local grids (excluding itself) only need a one way connection while external need a two way connection
 	// every cell needs to be checked for overlap due to different cell sizes.
-	void Grid2::LinkLocalGrid(Grid2& grid)
+	void Grid::LinkLocalGrid(Grid& grid)
 	{
 		// UNECCESSARY? Let region control local grid linking and just call link grid
 	}
 
-	MoleculeID Grid2::GetMoleculeID()
+	MoleculeID Grid::GetMoleculeID()
 	{
 		return id;
 	}
 
-	void Grid2::AddNeighbour(Relative* relative, SurfaceType type)
+	void Grid::AddNeighbour(Relative* relative, SurfaceType type)
 	{
 		neighbour_relationships.emplace_back(relative, type);
 	}
 
-	void Grid2::AddLowPriorityRelative(Relative* relative, SurfaceType type)
+	void Grid::AddLowPriorityRelative(Relative* relative, SurfaceType type)
 	{
 		low_priority_relationships.emplace_back(relative, type);
 	}
 
-	void Grid2::AddHighPriorityRelative(Relative* relative, SurfaceType type)
+	void Grid::AddHighPriorityRelative(Relative* relative, SurfaceType type)
 	{
 		high_priority_relationships.emplace_back(relative, type);
 	}
 
-	std::vector<Relationship>& Grid2::GetNeighbourRelationships()
+	std::vector<Relationship>& Grid::GetNeighbourRelationships()
 	{
 		return neighbour_relationships;
 	}
 
-	std::vector<Relationship>& Grid2::GetLowPriorityRelationships()
+	std::vector<Relationship>& Grid::GetLowPriorityRelationships()
 	{
 		return low_priority_relationships;
 	}
 
-	std::vector<Relationship>& Grid2::GetHighPriorityRelationships()
+	std::vector<Relationship>& Grid::GetHighPriorityRelationships()
 	{
 		return high_priority_relationships;
 	}
 
 	// create subvolumes upon class construction
-	void Grid2::CreateSubvolumes()
+	void Grid::CreateSubvolumes()
 	{
 		subvolumes.reserve(n_subvolumes.Volume());
 		Vec3i i;
@@ -318,7 +318,7 @@ namespace accord::microscopic
 	}
 
 	// go through each subvolume of the same molecule type
-	void Grid2::LinkSiblingSubvolumes()
+	void Grid::LinkSiblingSubvolumes()
 	{
 		Vec3i i;
 		for (i.z = 0; i.z < n_subvolumes.z; i.z++)
@@ -334,7 +334,7 @@ namespace accord::microscopic
 	}
 
 	// for a given cell check the 26 cells surrounding it and link them if they are not already linked
-	void Grid2::LinkSiblingSubvolumes(const Vec3i& i)
+	void Grid::LinkSiblingSubvolumes(const Vec3i& i)
 	{
 		// should always be passing a valid subvolume;
 		auto subvolume = GetSubvolumeIfExists(i);
@@ -368,18 +368,18 @@ namespace accord::microscopic
 	}
 
 	// Inherited Class Functions
-	const SurfaceShape& Grid2::GetShape() const
+	const SurfaceShape& Grid::GetShape() const
 	{
 		return region->GetShape();
 	}
 
 	// may want a different default surface per molecule type
-	SurfaceType Grid2::GetDefaultSurfaceType() const
+	SurfaceType Grid::GetDefaultSurfaceType() const
 	{
 		return region->GetSurfaceType();
 	}
 
-	double Grid2::GetDiffusionCoeffient() const
+	double Grid::GetDiffusionCoeffient() const
 	{
 		return diffision_coefficient;
 	}
@@ -390,8 +390,8 @@ namespace accord::microscopic
 	// internal surface must be reflective, absorbing or adsorbing
 
 	// collision spelt incorrectly
-	std::optional<MoleculeDestination> Grid2::PassMolecule(const Vec3d& end, 
-		const shape::collision::Collision3D& collision, Grid2* owner,
+	std::optional<MoleculeDestination> Grid::PassMolecule(const Vec3d& end, 
+		const shape::collision::Collision3D& collision, Grid* owner,
 		SurfaceType surface_type, int cycles, bool allowObstructions)
 	{
 		//Absorping, Adsorbing, Membrane, Reflecting, None

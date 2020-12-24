@@ -5,7 +5,7 @@
 
 namespace accord::microscopic
 {
-	class BoxRegion : public Region2
+	class BoxRegion : public Region
 	{
 	public:
 		BoxRegion(shape::basic::Box box, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,

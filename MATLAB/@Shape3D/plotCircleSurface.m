@@ -6,6 +6,7 @@ function hCircleSurface = plotCircleSurface(obj, centre, radius, axis, args)
         axis (1, 1) char {mustBeXYZ(axis)} = 'z';
         args.Resolution (1, 1) double = obj.CircleResolution;
         args.FaceAlpha double = obj.FaceAlpha;
+        args.EdgeAlpha double = obj.EdgeAlpha;
         args.FaceColor = obj.getFaceColor();
         args.LineColor = obj.getLineColor();
     end
@@ -26,7 +27,7 @@ function hCircleSurface = plotCircleSurface(obj, centre, radius, axis, args)
     end
     hCircleSurface = fill3(x, y, z, args.FaceColor, ...
         'FaceAlpha', args.FaceAlpha, ...
-        'EdgeColor', args.LineColor);
+        'EdgeColor', args.LineColor, 'EdgeAlpha', args.EdgeAlpha);
 end
 
 function mustBeXYZ(axis)

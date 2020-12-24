@@ -33,12 +33,12 @@
 namespace accord::microscopic
 {
 	// an Owner is class which can own molecules, which includes Grid or Adsorbing Surfaces
-	class Region2;
+	class Region;
 
-	class Grid2 : public Owner, public Relative
+	class Grid : public Owner, public Relative
 	{
 	public:
-		Grid2(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region2* region);
+		Grid(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region* region);
 
 		void AddMolecule(const Vec3d& position);
 
@@ -61,28 +61,28 @@ namespace accord::microscopic
 		Vec3d DiffuseMolecule(const RecentMolecule& molecule);
 
 		// may need const version
-		Region2& GetRegion();
+		Region& GetRegion();
 
 		// may need const version
-		std::vector<Subvolume2>& GetSubvolumes();
+		std::vector<Subvolume>& GetSubvolumes();
 
 		// could be private?
 		// may need const version
 		// will always return a valid subvolume even if index is for a position outside of subvolume
-		Subvolume2& GetSubvolume(Vec3i index);
+		Subvolume& GetSubvolume(Vec3i index);
 
 		// could be private?
 		// if index is not valid null will be returned
-		Subvolume2* GetSubvolumeIfExists(const Vec3i& index);
+		Subvolume* GetSubvolumeIfExists(const Vec3i& index);
 
 		// could be const if you are only linking local subvolumes and not vice versa
 		// would be more efficient to do both at same time. Would then require a check to see if regions are already
 		// neighbours. Grid is of same molecule type
-		void LinkGrid(Grid2& grid);
+		void LinkGrid(Grid& grid);
 
 		// Local grids (excluding itself) only need a one way connection while external need a two way connection
 		// every cell needs to be checked for overlap due to different cell sizes.
-		void LinkLocalGrid(Grid2& grid);
+		void LinkLocalGrid(Grid& grid);
 
 		MoleculeID GetMoleculeID();
 
@@ -109,7 +109,7 @@ namespace accord::microscopic
 
 		// may be able to merge these pass functions
 		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner,
+			const shape::collision::Collision3D& collision, Grid* owner,
 			SurfaceType surface_type, int cycles, bool allowObstructions);
 
 	private:
@@ -129,11 +129,11 @@ namespace accord::microscopic
 		std::vector<Relationship> high_priority_relationships; // cans be grids, mesoregions or surfaces
 
 		MoleculeID id;
-		Region2* region; // regions which owns this grid
+		Region* region; // regions which owns this grid
 		Vec3i n_subvolumes;
 		shape::relation::Box box;
 		double diffision_coefficient;
-		std::vector<Subvolume2> subvolumes;
+		std::vector<Subvolume> subvolumes;
 		
 		// create subvolumes upon class construction
 		void CreateSubvolumes();

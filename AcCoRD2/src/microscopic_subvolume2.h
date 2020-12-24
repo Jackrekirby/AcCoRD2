@@ -10,13 +10,13 @@
 
 namespace accord::microscopic
 {
-	class Grid2;
+	class Grid;
 
-	class Subvolume2
+	class Subvolume
 	{
 	public:
 
-		Subvolume2(Vec3d origin, Vec3d length, Grid2* grid, int n_molecule_types);
+		Subvolume(Vec3d origin, Vec3d length, Grid* grid, int n_molecule_types);
 
 		void AddMolecule(const Vec3d& position);
 
@@ -29,10 +29,10 @@ namespace accord::microscopic
 
 		// link a subvolume owned by the same grid (thus same molecule id)
 		// Only one sibling needs to know about the relation so two subvolumes are only checked against eachother once
-		void LinkSibling(Subvolume2& subvolume);
+		void LinkSibling(Subvolume& subvolume);
 
 		// link a subvolume not owned by the same grid (thus molecule id needs to be provided)
-		void Link(Subvolume2& subvolume);
+		void Link(Subvolume& subvolume);
 
 		const std::vector<TypedSubvolume>& GetRelations() const;
 
@@ -45,10 +45,10 @@ namespace accord::microscopic
 
 		MoleculeID GetMoleculeID();
 
-		Grid2& GetGrid();
+		Grid& GetGrid();
 
 	private:
-		Grid2* grid; // the grid which owns this subvolume
+		Grid* grid; // the grid which owns this subvolume
 		shape::relation::Box box;
 		std::vector<NormalMolecule> normal_molecules;
 		std::vector<RecentMolecule> recent_molecules;

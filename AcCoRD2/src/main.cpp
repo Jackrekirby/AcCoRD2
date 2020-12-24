@@ -142,36 +142,52 @@ void TestSimpleEnvironment()
 	std::string sim_dir = "D:/dev/my_simulation4";
 	Environment::Init(sim_dir, 1, 30, 4, 2, 1);
 	//Random::GetGenerator().advance(2);
-	EventQueue event_queue(7);
+	EventQueue event_queue(10);
 
 	// CREATE REGIONS ========================================================================================================
-	std::vector<double> diffision_coefficients = { 0.01, 0.01, 0.01, 0.01 };
+	std::vector<double> diffision_coefficients = { 0.1, 0.1, 0.1, 0.1 };
 	std::vector<Vec3i> n_subvolumes = { Vec3i(1), Vec3i(1), Vec3i(1), Vec3i(1) };
 	double start_time = 0;
-	double time_step = 0.01;
+	double time_step = 0.05;
 	int priority = 0;
 
-	shape::basic::Box box1(Vec3d(-1, -0.5, -0.5), Vec3d(1));
-	shape::basic::Box box2(Vec3d(0, -0.5, -0.5), Vec3d(1));
+	shape::basic::Box box1(Vec3d(-3.5, -0.5, -0.5), Vec3d(1));
+	shape::basic::Box box2(Vec3d(-2.5, -0.5, -0.5), Vec3d(1));
+	shape::basic::Cylinder cylinder1(Vec3d(1.5, 0, 0), 0.5, 1, Axis3D::x);
+	shape::basic::Cylinder cylinder2(Vec3d(2.5, 0, 0), 0.5, 1, Axis3D::x);
+	shape::basic::Sphere sphere1(Vec3d(0, 0, 0), 2);
 
-	Environment::GetRegions().reserve(2);
+	Environment::GetRegions().reserve(5);
 	Environment::GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
 		box1, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
 		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
 	Environment::GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
 		box2, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
 		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
+	Environment::GetRegions().emplace_back(std::make_unique<microscopic::SphereRegion>(
+		sphere1, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
+	Environment::GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
+		cylinder1, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
+	Environment::GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
+		cylinder2, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+		&event_queue, microscopic::SurfaceType::Reflecting, static_cast<int>(Environment::GetRegions().size())));
 
 	// Create Reactions ======================================================================================================
 	ReactionManager::AddZerothOrderReaction({ 0 }, 1, { 0 });
-	ReactionManager::AddZerothOrderReaction({ 1 }, 1, { 1 });
-	//ReactionManager::AddFirstOrderReaction(0, { 1 }, 1, { 0 });
-	//ReactionManager::AddFirstOrderReaction(0, { 2 }, 5, { 0 });
-	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.2, 0.4, {0, 1});
+	ReactionManager::AddZerothOrderReaction({ 1 }, 1, { 4 });
+	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.5, 0.5, {2});
 
 	Environment::LinkReactionsToRegions();
 	// DEFINE RELATIONSHIPS ======================================================================================================
 	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
+		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+	Environment::DefineRelationship(1, 2, Environment::RelationshipPriority::B,
+		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+	Environment::DefineRelationship(2, 3, Environment::RelationshipPriority::A,
+		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+	Environment::DefineRelationship(3, 4, Environment::RelationshipPriority::None,
 		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
 
 	Json json_regions;
@@ -184,13 +200,12 @@ void TestSimpleEnvironment()
 	region_file.close();
 
 	// CREATE ACTORS =============================================================================================================
-	Environment::GetPassiveActors().reserve(2);
-	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
-		RegionIDs({ 0 }),
-		MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, static_cast<int>(Environment::GetPassiveActors().size()), true, true));
-	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
-		RegionIDs({ 1 }),
-		MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, static_cast<int>(Environment::GetPassiveActors().size()), true, true));
+	Environment::GetPassiveActors().reserve(Environment::GetRegions().size());
+	for (int i = 0; i < Environment::GetRegions().size(); i++)
+	{
+		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>( RegionIDs({ i }),
+			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, static_cast<int>(Environment::GetPassiveActors().size()), true, true));
+	}
 
 	Json json_actors;
 	Json shapeless_actor;

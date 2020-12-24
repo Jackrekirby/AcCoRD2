@@ -8,7 +8,7 @@
 namespace accord::microscopic
 {
 	class MoleculeDestination;
-	class Grid2;
+	class Grid;
 
 	class LowPriorityRelation // High Priority Relation
 	{
@@ -19,6 +19,6 @@ namespace accord::microscopic
 		// grids need to check if inside then pass ownership and continue path checking
 		// meso regions need to check if inside and so stop path checking, return 
 		virtual std::optional<MoleculeDestination> PassMoleculeToLowPriorityRelation(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid2* owner) = 0;
+			const shape::collision::Collision3D& collision, Grid* owner) = 0;
 	};
 }

@@ -23,21 +23,21 @@ classdef Accord
         end
         
         function r = initAnimateRealisation(simulation, seed, realisation, ...
-                figureLimits, colorByActor, solidMolecules, moleculeSize, shape3D)
+                figureLimits, colorByActor, hollowMolecules, moleculeSize, shape3D)
             arguments
                 simulation
                 seed = 1;
                 realisation = 1;
                 figureLimits = 10;
                 colorByActor = true;
-                solidMolecules = true;
-                moleculeSize = 10;
+                hollowMolecules = false;
+                moleculeSize = 2;
                 shape3D = Shape3D;
             end
             r = simulation.s(seed).r(realisation);
             r.hFigure = Accord.initialiseFigure(figureLimits, 'on');
             r = Accord.initiliseMoleculePlots(r, colorByActor, ...
-                solidMolecules, moleculeSize);
+                hollowMolecules, moleculeSize);
             r.hRegions = Accord.plotRegions(simulation, shape3D);
             r.hActors = Accord.plotActors(simulation, shape3D);
         end
@@ -352,7 +352,7 @@ classdef Accord
         
         %% animateRealisation
         function r = initiliseMoleculePlots(r, colorByActor, ...
-                solidMolecules, moleculeSize)
+                hollowMolecules, moleculeSize)
             
             if(colorByActor)
                 colors = hsv(length(r.p));
@@ -364,7 +364,7 @@ classdef Accord
                         nMoleculeTypes = length(r.p(iP).m);
                     end
                 end
-                colors = hsv(nMoleculeTypes);
+                colors = [hsv(nMoleculeTypes), zeros(nMoleculeTypes, 1)];
             end
 
             hold on;
@@ -383,11 +383,10 @@ classdef Accord
                             iColor = iM;
                         end
                         r.p(iP).m(iM).hPlot = ...
-                            scatter3(0, 0, 0, 'Marker', 'o', ...
+                            scat3(0, 0, 0, 'Marker', 'o', 'LineStyle', 'none', ...
                             'MarkerEdgeColor', colors(iColor, :), ...
                             'MarkerFaceColor', colors(iColor, :),...
-                            'SizeData', moleculeSize, ...
-                            'MarkerFaceAlpha', solidMolecules);
+                            'MarkerSize', moleculeSize);
                         % clear plot marker data
                         r.p(iP).m(iM).hPlot.XData = [];
                         r.p(iP).m(iM).hPlot.YData = [];

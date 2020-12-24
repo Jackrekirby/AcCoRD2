@@ -3,100 +3,16 @@
 
 namespace accord
 {
-	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
-		: products(products), reaction_rate(reaction_rate), regions(regions)
-	{
-
-	}
-
-	const MoleculeIDs& ZerothOrderReaction::GetProducts() const
-	{
-		return products;
-	}
-
-	double ZerothOrderReaction::GetRate() const
-	{
-		return reaction_rate;
-	}
-
-	const RegionIDs& ZerothOrderReaction::GetRegions() const
-	{
-		return regions;
-	}
 
 
 
 
-	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
-		: reactant(reactant), products(products), reaction_rate(reaction_rate), regions(regions)
-	{
-
-	}
-
-	MoleculeID FirstOrderReaction::GetReactant() const
-	{
-		return reactant;
-	}
-
-	const MoleculeIDs& FirstOrderReaction::GetProducts() const
-	{
-		return products;
-	}
-
-	double FirstOrderReaction::GetRate() const
-	{
-		return reaction_rate;
-	}
-
-	double FirstOrderReaction::GetTotalRate() const
-	{
-		return ReactionManager::GetSumOfRates(reactant);
-	}
-
-	const RegionIDs& FirstOrderReaction::GetRegions() const
-	{
-		return regions;
-	}
 
 
 
 
-	SecondOrderReaction::SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions)
-		: reactant_a(reactant_a), reactant_b(reactant_b), products(products), binding_radius(binding_radius),
-		unbinding_radius(unbinding_radius), regions(regions)
-	{
-	}
 
-	MoleculeID SecondOrderReaction::GetReactantA() const
-	{
-		return reactant_a;
-	}
 
-	MoleculeID SecondOrderReaction::GetReactantB() const
-	{
-		return reactant_b;
-	}
-
-	const MoleculeIDs& SecondOrderReaction::GetProducts() const
-	{
-		return products;
-	}
-
-	double SecondOrderReaction::GetBindingRadius() const
-	{
-		return binding_radius;
-	}
-
-	double SecondOrderReaction::GetUnBindingRadius() const
-	{
-		return unbinding_radius;
-	}
-
-	const RegionIDs& SecondOrderReaction::GetRegions() const
-	{
-		return regions;
-	}
 
 
 
@@ -148,6 +64,11 @@ namespace accord
 	const FirstOrderReaction& ReactionManager::GetFirstOrderReaction(ReactionID id)
 	{
 		return first_order_reactions.at(id);
+	}
+
+	const SecondOrderReaction& ReactionManager::GetSecondOrderReaction(ReactionID id)
+	{
+		return second_order_reactions.at(id);
 	}
 
 	const std::vector<ZerothOrderReaction>& ReactionManager::GetZerothOrderReactions()

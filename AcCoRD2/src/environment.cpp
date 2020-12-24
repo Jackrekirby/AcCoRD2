@@ -107,12 +107,12 @@ namespace accord
 		return current_realisation;
 	}
 
-	microscopic::Region2& Environment::GetRegion(RegionID id)
+	microscopic::Region& Environment::GetRegion(RegionID id)
 	{
 		return *microscopic_regions.at(id);
 	}
 
-	std::vector<std::unique_ptr<microscopic::Region2>>& Environment::GetRegions()
+	std::vector<std::unique_ptr<microscopic::Region>>& Environment::GetRegions()
 	{
 		return microscopic_regions;
 	}
@@ -260,7 +260,7 @@ namespace accord
 		DefineRelationship(region_a, region_b, priority, surfaces, surfaces);
 	}
 
-	std::vector<std::unique_ptr<microscopic::Region2>> Environment::microscopic_regions;
+	std::vector<std::unique_ptr<microscopic::Region>> Environment::microscopic_regions;
 	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
 	double Environment::run_time = 0;
 	double Environment::time = 0;

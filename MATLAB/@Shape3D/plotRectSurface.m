@@ -4,6 +4,7 @@ function [hRectSurface] = plotRectSurface(obj, origin, length, args)
         origin (1, 3) double = [-0.5, -0.5, 0];
         length (1, 3) double {mustHaveExactlyTwoNonZeroLengths(length)} = [1, 1, 0];
         args.FaceAlpha double = obj.FaceAlpha;
+        args.EdgeAlpha double = obj.EdgeAlpha;
         args.FaceColor = obj.getFaceColor();
         args.LineColor = obj.getLineColor();
     end
@@ -24,7 +25,8 @@ function [hRectSurface] = plotRectSurface(obj, origin, length, args)
         p(zi, :) = origin(zi) * ones(1, 4);
 
         hRectSurface = patch(p(1, :), p(2, :), p(3, :), args.FaceColor, ...
-        'EdgeColor', args.LineColor, 'FaceAlpha', args.FaceAlpha);
+        'EdgeColor', args.LineColor, 'FaceAlpha', args.FaceAlpha, ...
+        'EdgeAlpha', args.EdgeAlpha);
         view(3);
     end
 end

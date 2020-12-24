@@ -9,7 +9,7 @@
 
 namespace accord::microscopic
 {
-	class Subvolume2;
+	class Subvolume;
 }
 
 namespace accord
@@ -40,10 +40,10 @@ namespace accord
 		public:
 			TypedSubvolumes(MoleculeID id);
 
-			void Add(microscopic::Subvolume2* subvolume);
+			void Add(microscopic::Subvolume* subvolume);
 
 			MoleculeID id;
-			std::vector<microscopic::Subvolume2*> subvolumes;
+			std::vector<microscopic::Subvolume*> subvolumes;
 		};
 	public:
 		PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,

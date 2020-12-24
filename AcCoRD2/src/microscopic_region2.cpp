@@ -10,7 +10,7 @@
 
 namespace accord::microscopic
 {
-	Region2::Region2(std::vector<double> diffision_coefficients,
+	Region::Region(std::vector<double> diffision_coefficients,
 		std::vector<Vec3i> n_subvolumes_per_grid,
 		double start_time, double time_step, int priority, EventQueue* event_queue,
 		SurfaceType surface_type, RegionID id)
@@ -21,7 +21,7 @@ namespace accord::microscopic
 		
 	}
 
-	void Region2::Run()
+	void Region::Run()
 	{
 		// zeroth order reactions
 		for (auto& reaction : zeroth_order_reactions)
@@ -61,7 +61,7 @@ namespace accord::microscopic
 
 	// add neighbour relationship between local and external grids of same molecule type.
 	// will need a seperate add neighbour for surfaces or pass neighbour directly into here
-	void Region2::AddNeighbour(Region2& region, SurfaceType type, const MoleculeIDs& ids)
+	void Region::AddNeighbour(Region& region, SurfaceType type, const MoleculeIDs& ids)
 	{
 		for (auto& id : ids)
 		{
@@ -69,7 +69,7 @@ namespace accord::microscopic
 		}
 	}
 
-	void Region2::AddHighPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids)
+	void Region::AddHighPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids)
 	{
 		for (auto& id : ids)
 		{
@@ -77,7 +77,7 @@ namespace accord::microscopic
 		}
 	}
 
-	void Region2::AddLowPriorityRelative(Region2& region, SurfaceType type, const MoleculeIDs& ids)
+	void Region::AddLowPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids)
 	{
 		for (auto& id : ids)
 		{
@@ -86,87 +86,87 @@ namespace accord::microscopic
 	}
 
 	// add a recent molecule
-	void Region2::AddMolecule(MoleculeID id, const Vec3d& position, double time)
+	void Region::AddMolecule(MoleculeID id, const Vec3d& position, double time)
 	{
 		GetGrid(id).AddMolecule(position, time);
 	}
 
 	// add a normal molecule
-	void Region2::AddMolecule(MoleculeID id, const Vec3d& position)
+	void Region::AddMolecule(MoleculeID id, const Vec3d& position)
 	{
 		GetGrid(id).AddMolecule(position);
 	}
 
-	void Region2::AddMolecule(MoleculeID id, double time)
+	void Region::AddMolecule(MoleculeID id, double time)
 	{
 		GetGrid(id).AddMolecule(time);
 	}
 
-	void Region2::AddMolecule(MoleculeID id)
+	void Region::AddMolecule(MoleculeID id)
 	{
 		GetGrid(id).AddMolecule();
 	}
 
 	// reaction classes can always internally get and pass a Grid to the reaction class constructor.
 	// Zeroth Order Reaction
-	void Region2::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
+	void Region::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
 	{
 		zeroth_order_reactions.emplace_back(products, reaction_rate, this);
 	}
 
 	// First Order Reaction
-	void Region2::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
+	void Region::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, total_reaction_rate, this);
 	}
 
 	// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-	void Region2::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+	void Region::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius)
 	{
 		two_reactant_second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, this);
 	}
 
-	void Region2::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
+	void Region::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
 		double binding_radius, double unbinding_radius)
 	{
 		one_reactant_second_order_reactions.emplace_back(reactant, products, binding_radius, unbinding_radius, this);
 	}
 
 	// returns event time + time_step
-	double Region2::GetNextEventTime() const
+	double Region::GetNextEventTime() const
 	{
 		return GetEventTime() + GetTimeStep();
 	}
 
 	// returns time_step
-	double Region2::GetTimeStep() const
+	double Region::GetTimeStep() const
 	{
 		return time_step;
 	}
 
-	double Region2::GetStartTime() const
+	double Region::GetStartTime() const
 	{
 		return start_time;
 	}
 
-	double Region2::GetLocalTime() const
+	double Region::GetLocalTime() const
 	{
 		return local_time;
 	}
 
 	// may need to add const versions of GetGrid(s)
-	std::vector<Grid2>& Region2::GetGrids()
+	std::vector<Grid>& Region::GetGrids()
 	{
 		return grids;
 	}
 
-	Grid2& Region2::GetGrid(MoleculeID id)
+	Grid& Region::GetGrid(MoleculeID id)
 	{
 		return grids.at(id);
 	}
 
-	void Region2::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
+	void Region::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
 	{
 		//LOG_INFO("generating grid");
 		grids.reserve(Environment::GetNumberOfMoleculeTypes());
@@ -178,7 +178,7 @@ namespace accord::microscopic
 		}
 	}
 
-	void Region2::LinkGrids()
+	void Region::LinkGrids()
 	{
 		for (auto g1 = grids.begin(); g1 != grids.end(); ++g1)
 		{
@@ -193,7 +193,7 @@ namespace accord::microscopic
 
 	// where is grid overlap being checked (in the link functions or prior?)
 	// they are called by relationship functions
-	void Region2::LinkGrids(Region2& region, const MoleculeIDs& ids)
+	void Region::LinkGrids(Region& region, const MoleculeIDs& ids)
 	{
 		//LOG_INFO(" {} {} ", GetID(), region.GetID());
 		// link each molecule type to every other molecule type
@@ -207,22 +207,22 @@ namespace accord::microscopic
 		}
 	}
 
-	RegionID Region2::GetID() const
+	RegionID Region::GetID() const
 	{
 		return id;
 	}
 
-	Event::Type Region2::GetType() const
+	Event::Type Region::GetType() const
 	{
 		return Event::Type::microscopic_region;
 	}
 
-	SurfaceType Region2::GetSurfaceType() const
+	SurfaceType Region::GetSurfaceType() const
 	{
 		return surface_type;
 	}
 
-	void Region2::NextRealisation()
+	void Region::NextRealisation()
 	{
 		UpdateTime(start_time);
 		for (auto& grid : grids)
