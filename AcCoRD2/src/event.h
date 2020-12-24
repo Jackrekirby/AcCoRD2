@@ -15,6 +15,7 @@ namespace accord
 
 		Event(double start_time, int priority, EventQueue* event_queue);
 
+		// should rename UpdateEventTime
 		void UpdateTime(double new_time);
 
 		double GetEventTime() const;

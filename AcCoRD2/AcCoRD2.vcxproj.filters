@@ -585,6 +585,9 @@
     <ClInclude Include="src\first_order_reaction.h">
       <Filter>src\simulation\reactions</Filter>
     </ClInclude>
+    <ClInclude Include="src\active_actor.h">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -818,6 +821,9 @@
     </Filter>
     <Filter Include="src\simulation\reactions">
       <UniqueIdentifier>{ba032fae-1b9f-4513-80df-7bdc0b4ab2bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\actors\actor">
+      <UniqueIdentifier>{cd66ce18-8945-44ac-a2e6-5a89cf0982f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

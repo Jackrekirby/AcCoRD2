@@ -1,2 +1,6 @@
-[12:30:14.867] [info] main.cpp:243 TestSimpleEnvironment() Realisation 0
-[12:30:15.545] [info] main.cpp:259 TestSimpleEnvironment() Cleaning Up
+[21:43:27.853] [info] active_actor.h:79 accord::ActiveActor::GenerateRandomBits() bit = 1, symbol = 2
+[21:43:27.854] [info] active_actor.h:79 accord::ActiveActor::GenerateRandomBits() bit = 0, symbol = 2
+[21:43:27.855] [info] active_actor.h:63 accord::ActiveActor::GetSymbolFromBitSequence() bit = 1, modulation strength = 2
+[21:43:27.855] [info] active_actor.h:63 accord::ActiveActor::GetSymbolFromBitSequence() bit = 0, modulation strength = 2
+[21:43:27.855] [info] active_actor.h:63 accord::ActiveActor::GetSymbolFromBitSequence() bit = 1, modulation strength = 2
+[21:43:27.856] [info] active_actor.h:63 accord::ActiveActor::GetSymbolFromBitSequence() bit = 1, modulation strength = 3

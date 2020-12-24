@@ -146,6 +146,7 @@
     <ClCompile Include="src\zeroth_order_reaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\active_actor.h" />
     <ClInclude Include="src\first_order_reaction.h" />
     <ClInclude Include="src\second_order_reaction.h" />
     <ClInclude Include="src\reaction_manager.h" />

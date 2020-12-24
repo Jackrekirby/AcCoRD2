@@ -9,6 +9,7 @@
 // Is this for reactions within the same region, or all regions?
 // can a reaction have multiple products of the same molecule type and what format is it?
 // couldnt products be placed outside the region if unbind radius is huge?
+// Can a point active actor with random release time be a point source because release time calcualtion includes volume of actor
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -18,6 +19,7 @@
 
 // Learning Plan
 // Learnt the importance of reserving as allowing a vector to resize invalidates pointers.
+// Learnt how to use visual studio performance profiler
 // KANBAN CHART =====================================================================================================================================
 
 // DONE
@@ -36,6 +38,10 @@
 // make it easier to save region shapes in region.json. E.g. environment.saveRegions
 // regions per shape to avoid unique pointer
 // add zeroth order reactions for microscopic regions
+// rename grid, subvolume and region 2 to _
+// need to find where i use iterator loop and set iterator to another. It may be it& = it and may need to be it = it + 1. (LINK GRIDS?)
+// make all shapes have virtual inheritance of basic shapes
+// consider redoing reactions with reaction manager as all regions import reactions from it
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -44,6 +50,7 @@
 // consider converting cylinder into class per axis
 // consider using flatten relation method for box and spheres (Flattening does not work on spheres)
 // could use factory to build regions so regions dont have to be publically available in environment (factory no longer needed due to derived class)
+// update test envrionments to new format (consider switch statement?) (format keep changing)
 
 // IN PROGRESS
 // consider adding generate bounding box and rect to all shapes
@@ -51,7 +58,6 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
-// need to find where i use iterator loop and set iterator to another. It may be it& = it and may need to be it = it + 1.
 // add != vec checks
 // add scalar boolean checks for vector
 // add error checking for ids (and other times when creating vectors)
@@ -60,21 +66,18 @@
 // ability to add multiple of a type of reactant
 // Need to remove unnecessary headers by pointing to seperate variables instead of 
 // rename GetTime() to GetEventTime()
-// make all shapes have virtual inheritance of basic shapes
 // surface type per grid
-// update test envrionments to new format (consider switch statement?)
 // instead of saving no shapes for shapeless regions save all the regions which the observer links to. Will require reformatting.
 // Reformat actor json to allow for multiple shapes per actor.
 // Make base reaction class with derived VolumeReaction and SurfaceReaction
-// consider redoing reactions with reaction manager as all regions import reactions from it
 
 // TO DO (Large Tasks)
-// surfaces
+// surfaces - reaction surfaces (first order), membranes, adsorpsion, absorption 
+// active actors
 // reactions
 
 // TO DO (Not Imminent)
 // add default cycles for check molecule path
-// rename grid, subvolume and region 2 to _
 // could break environment class up into RelationShipManager
 // consider adding limited_vectors which are vectors where only certain ints upto a given value are allowed.
 // consider adding fixed_vectors which are vectors which have fixed max capacity.
@@ -574,6 +577,29 @@ void TestCylinder()
 	LOG_INFO(cylinder.IsEnveloping(sphere));
 }
 
+
+#include "active_actor.h"
+void ActiveActorTest()
+{
+	using namespace accord;
+	double action_interval = 1;
+	double release_interval = 0.1;
+	int n_modulation_bits = 2;
+	double slot_interval = 0.01;
+	double start_time = 1;
+	int priority = 0;
+	double bit_probability = 0.7;
+	std::vector<int> bit_sequence = {1, 0, 1, 1};
+	EventQueue event_queue(1);
+	std::string file_path = "D:/dev/my_simulation4/s1/r0/a0_b.bin";
+	ActiveActor a(action_interval, release_interval, slot_interval, n_modulation_bits,
+		bit_probability, bit_sequence, start_time, priority, &event_queue, file_path);
+
+	a.GenerateRandomBits();
+	a.GetSymbolFromBitSequence();
+	a.GetSymbolFromBitSequence();
+}
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -583,8 +609,11 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
+	//TestSimpleEnvironment();
+	ActiveActorTest();
+
 	//TestEnvironment2();
-	TestSimpleEnvironment();
+	
 	//TestEnvironment();
 	//accord::LoggerTest();
 	//accord::JsonTest();

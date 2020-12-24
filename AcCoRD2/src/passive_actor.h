@@ -70,6 +70,7 @@ namespace accord
 
 		std::vector<TypedSubvolumes> enveloped_subvolumes;
 		std::vector<TypedSubvolumes> partial_subvolumes;
+		// SHOULD BE PASSIVE ACTOR ID
 		ActiveActorID id;
 		double time_step;
 		double start_time;
