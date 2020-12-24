@@ -8,6 +8,7 @@
 % Investigate available colour maps so regions and actors can look unique.
 % 4. Consider removing maxAveraged for count plotting
 % 5. Consider added plotCount(moleculeType, passiveActor)
+% 6. If frame rate of live animation > 30 then limit
 
 %% Import Simulation Data
 clear all;
@@ -21,8 +22,7 @@ shape3d = Shape3D('LineColorMap', hsv(length(sim.regions.shapes)), ...
 'FaceColorMap', hsv(length(sim.regions.shapes)));
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
 r = Accord.initAnimateRealisation(sim, 1, 1, 3.5, false, true, 15, shape3d);
-%%
-r = Accord.playAnimateRealisation(r, 2);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;

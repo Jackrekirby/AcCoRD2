@@ -3,20 +3,26 @@
 #include <filesystem>
 #include "reaction_manager.h"
 
+#include "microscopic_box_region.h"
+#include "microscopic_cylinder_region.h"
+#include "microscopic_sphere_region.h"
+
 namespace accord
 {
 	void Environment::Init(std::string simulation_name, int num_realisations, 
 		double run_time, int num_molecule_types, int num_microscopic_regions,
-		uint64_t seed)
+		int num_passive_actors, uint64_t seed, EventQueue* event_queue)
 	{
 		Environment::time = 0;
 		Environment::run_time = run_time;
 		Environment::num_molecule_types = num_molecule_types;
 		Environment::microscopic_regions.reserve(num_microscopic_regions);
+		Environment::passive_actors.reserve(num_passive_actors);
 		Environment::simulation_name = simulation_name;
 		Environment::num_realisations = num_realisations;
 		Environment::current_realisation = 0;
 		Environment::seed = seed;
+		Environment::event_queue = event_queue;
 
 		Random::SetSeed(seed);
 
@@ -97,6 +103,33 @@ namespace accord
 		}
 	}
 
+	void Environment::AddRegion(shape::basic::Box box, SurfaceType surface_type, 
+		std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
+		double start_time, double time_step, int priority)
+	{
+		GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
+			box, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+			event_queue, surface_type, static_cast<int>(GetRegions().size())));
+	}
+
+	void Environment::AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type, 
+		std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
+		double start_time, double time_step, int priority)
+	{
+		GetRegions().emplace_back(std::make_unique<microscopic::SphereRegion>(
+			sphere, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+			event_queue, surface_type, static_cast<int>(Environment::GetRegions().size())));
+	}
+
+	void Environment::AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type, 
+		std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
+		double start_time, double time_step, int priority)
+	{
+		GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
+			cylinder, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+			event_queue, surface_type, static_cast<int>(Environment::GetRegions().size())));
+	}
+
 	std::string Environment::GetSimulationName()
 	{
 		return simulation_name;
@@ -154,7 +187,6 @@ namespace accord
 		std::filesystem::create_directories(GetFilePath());
 	}
 
-	
 	// the only type of relationship which does not need to be defined is a neighbour and none
 	// if region a has a reflective surface and b is the neighbour
 	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
@@ -269,4 +301,5 @@ namespace accord
 	int Environment::num_realisations = 1;
 	int Environment::current_realisation = 0;
 	uint64_t Environment::seed = 1;
+	EventQueue* Environment::event_queue;
 }

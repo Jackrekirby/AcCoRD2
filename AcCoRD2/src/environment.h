@@ -9,7 +9,7 @@ namespace accord
 	public:
 		static void Init(std::string simulation_name, int num_realisations,
 			double run_time, int num_molecule_types, int num_microscopic_regions,
-			uint64_t seed);
+			int num_passive_actors, uint64_t seed, EventQueue* event_queue);
 
 		static void SetTime(double time);
 
@@ -45,6 +45,18 @@ namespace accord
 		static void LinkReactionsToRegions();
 
 		typedef microscopic::SurfaceType SurfaceType;
+		static void AddRegion(shape::basic::Box box, SurfaceType surface_type, 
+			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
+			double start_time, double time_step, int priority);
+
+		static void AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type,
+			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
+			double start_time, double time_step, int priority);
+
+		static void AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type,
+			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
+			double start_time, double time_step, int priority);
+		
 		static void DefineRelationship(RegionID region_a, RegionID region_b,
 			RelationshipPriority priority,
 			microscopic::SurfaceType ab_surface, microscopic::SurfaceType ba_surface);
@@ -67,6 +79,7 @@ namespace accord
 		static int num_realisations;
 		static int current_realisation;
 		static uint64_t seed;
+		static EventQueue* event_queue;
 
 		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
 
