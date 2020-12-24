@@ -10,12 +10,21 @@
 // can a reaction have multiple products of the same molecule type and what format is it?
 // couldnt products be placed outside the region if unbind radius is huge?
 // Can a point active actor with random release time be a point source because release time calcualtion includes volume of actor
+// for active active with random release times it says only 1 molecule is released per release time, does that mean then only one molecule type can be
+// released from an active actor at once?
+// If an active actor is defined over multiple regions is a region randomly selected to place a molecule in based on it volume, and does the volume
+// ignore that removed by child regions?
+// can an active actor record its release times? (currently only passive)
+// active actors with a random release time do not have a bit sequence?
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
 // how to stop two basic shapes being generated when microscopic surface shapes inherit from generating and collision shapes (virtual inheritance)
 // if the reaction rate is for example 1 is that 1 molecule produced per second or all products per second?
 // when molecules are added to regions each high priority neighbour should be checked to see if molecules can be added to them.
+// Alot of relation checking could be done outside the class by an external class which simply returns a vector of regions which match.
+// E.g. Regions* = RelationFinder.GetRegionsWhichOverlap(shape). Then ActiveActor.AddRegions(Regions*)
+// E.g. RelationFinder.IsRelationShipValid(region_a, region_b, relationship)
 
 // Learning Plan
 // Learnt the importance of reserving as allowing a vector to resize invalidates pointers.
@@ -58,6 +67,8 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// add generation checking to regions so youngest regions can be sorted first for collision checking 
+// --- (important for surfaces ! surfaces should always be checked first and assume surfaces wont be within surface)
 // add != vec checks
 // add scalar boolean checks for vector
 // add error checking for ids (and other times when creating vectors)
