@@ -51,6 +51,10 @@ namespace accord::microscopic
 		int max_cycles = 20;
 		for (auto& subvolume : subvolumes)
 		{
+			// cannot add normal molecules back into subvolume or would result in loop until molecules are outisde of subvolume.
+			// molecules are being repeatedly diffused as if a molecule diffuses into a subvolume which has not yet been computed
+			// then a molecule is going to diffuse twice
+
 			// normal molecule list is completed replaced each event instead of deleting molecules which move
 			// to a new owner
 			std::vector<NormalMolecule> normal_molecules;
@@ -65,7 +69,7 @@ namespace accord::microscopic
 					{
 						normal_molecules.emplace_back(md->GetPosition());
 					}
-					// if the owner is the another grid, meso region or adsorbing surface add as recent molecule
+					// if the owner is another grid, meso region or adsorbing surface add as recent molecule
 					else
 					{
 						md->GetOwner().AddMolecule(md->GetPosition(), GetRegion().GetNextEventTime());
