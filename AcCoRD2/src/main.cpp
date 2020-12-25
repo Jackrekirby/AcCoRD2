@@ -589,27 +589,27 @@ void TestCylinder()
 }
 
 
-#include "active_actor.h"
-void ActiveActorTest()
-{
-	using namespace accord;
-	double action_interval = 1;
-	double release_interval = 0.1;
-	int n_modulation_bits = 2;
-	double slot_interval = 0.01;
-	double start_time = 1;
-	int priority = 0;
-	double bit_probability = 0.7;
-	std::vector<int> bit_sequence = {1, 0, 1, 1};
-	EventQueue event_queue(1);
-	std::string file_path = "D:/dev/my_simulation4/s1/r0/a0_b.bin";
-	ActiveActor a(action_interval, release_interval, slot_interval, n_modulation_bits,
-		bit_probability, bit_sequence, start_time, priority, &event_queue, file_path);
-
-	a.GenerateRandomBits();
-	a.GetSymbolFromBitSequence();
-	a.GetSymbolFromBitSequence();
-}
+//#include "active_actor.h"
+//void ActiveActorTest()
+//{
+//	using namespace accord;
+//	double action_interval = 1;
+//	double release_interval = 0.1;
+//	int n_modulation_bits = 2;
+//	double slot_interval = 0.01;
+//	double start_time = 1;
+//	int priority = 0;
+//	double bit_probability = 0.7;
+//	std::vector<int> bit_sequence = {1, 0, 1, 1};
+//	EventQueue event_queue(1);
+//	std::string file_path = "D:/dev/my_simulation4/s1/r0/a0_b.bin";
+//	ActiveActor a(action_interval, release_interval, slot_interval, n_modulation_bits,
+//		bit_probability, bit_sequence, start_time, priority, &event_queue, file_path);
+//
+//	a.GenerateRandomBits();
+//	a.GetSymbolFromBitSequence();
+//	a.GetSymbolFromBitSequence();
+//}
 
 int main()
 {
@@ -620,8 +620,8 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	//TestSimpleEnvironment();
-	ActiveActorTest();
+	TestSimpleEnvironment();
+	//ActiveActorTest();
 
 	//TestEnvironment2();
 	

@@ -31,6 +31,11 @@ namespace accord::microscopic
 		return normal_molecules;
 	}
 
+	std::vector<NormalMolecule>& Subvolume::GetNormalDiffusionMolecules()
+	{
+		return normal_diffusion_molecules;
+	}
+
 	std::vector<RecentMolecule>& Subvolume::GetRecentMolecules()
 	{
 		return recent_molecules;

@@ -25,6 +25,8 @@ namespace accord::microscopic
 		// unlikely to need const version
 		std::vector<NormalMolecule>& GetNormalMolecules();
 
+		std::vector<NormalMolecule>& GetNormalDiffusionMolecules();
+
 		std::vector<RecentMolecule>& GetRecentMolecules();
 
 		// link a subvolume owned by the same grid (thus same molecule id)
@@ -52,6 +54,9 @@ namespace accord::microscopic
 		shape::relation::Box box;
 		std::vector<NormalMolecule> normal_molecules;
 		std::vector<RecentMolecule> recent_molecules;
+
+		// temporary normal molecules which is written to during diffusion
+		std::vector<NormalMolecule> normal_diffusion_molecules;
 
 		// Sibling subvolumes can go into same relation vector as neighbours but to reduce computation time check
 		// siblings first as which siblings are added they must check the other sibling does not already have it as

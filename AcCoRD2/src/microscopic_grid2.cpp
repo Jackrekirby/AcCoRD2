@@ -57,7 +57,8 @@ namespace accord::microscopic
 
 			// normal molecule list is completed replaced each event instead of deleting molecules which move
 			// to a new owner
-			std::vector<NormalMolecule> normal_molecules;
+			std::vector<NormalMolecule>& normal_molecules = subvolume.GetNormalDiffusionMolecules();
+			normal_molecules.clear();
 			for (auto& molecule : subvolume.GetNormalMolecules())
 			{
 				std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule), max_cycles);
@@ -106,10 +107,16 @@ namespace accord::microscopic
 				}
 			}
 
-			// replace normal list with new list and clear the recent molecules as all recent molecules are now normal
-			subvolume.GetNormalMolecules() = normal_molecules;
+			//clear the recent molecules as all recent molecules are now normal
+			
 			subvolume.GetRecentMolecules() = recent_molecules;
 		}		
+
+		//  replace normal list with new list
+		for (auto& subvolume : subvolumes)
+		{
+			subvolume.GetNormalMolecules() = subvolume.GetNormalDiffusionMolecules();
+		}
 	}
 
 	std::optional<MoleculeDestination> Grid::CheckMoleculePath(const Vec3d& origin, const Vec3d& end, 
