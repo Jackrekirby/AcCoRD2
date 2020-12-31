@@ -25,6 +25,8 @@ namespace accord
 
 		static microscopic::Region& GetRegion(RegionID id);
 
+		static std::vector<microscopic::Region*> GetRegions(RegionIDs ids);
+
 		static std::vector<std::unique_ptr<microscopic::Region>>& GetRegions();
 
 		static std::vector<std::unique_ptr<PassiveActor>>& GetPassiveActors();

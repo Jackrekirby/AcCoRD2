@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\active_actor_shape.cpp" />
+    <ClCompile Include="src\active_actor_random_bits.cpp" />
+    <ClCompile Include="src\active_actor_random_time.cpp" />
+    <ClCompile Include="src\active_actor2.cpp" />
+    <ClCompile Include="src\active_actor_non_random.cpp" />
     <ClCompile Include="src\first_order_reaction.cpp" />
     <ClCompile Include="src\second_order_reaction.cpp" />
     <ClCompile Include="src\reaction_manager.cpp" />
@@ -146,6 +151,12 @@
     <ClCompile Include="src\zeroth_order_reaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\active_actor_shape.h" />
+    <ClInclude Include="src\active_actor2.h" />
+    <ClInclude Include="src\active_actor_non_random.h" />
+    <ClInclude Include="src\active_actor_random_bits.h" />
+    <ClInclude Include="src\active_actor_random_time.h" />
+    <ClInclude Include="src\active_actor.h" />
     <ClInclude Include="src\first_order_reaction.h" />
     <ClInclude Include="src\second_order_reaction.h" />
     <ClInclude Include="src\reaction_manager.h" />

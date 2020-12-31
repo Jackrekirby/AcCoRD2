@@ -148,6 +148,120 @@
 #include "basic_shape_3d.h"
 #include "passive_actor2.h"
 
+#include "active_actor_shape.h"
+#include "active_actor_random_time.h"
+#include "active_actor_non_random.h"
+#include "active_actor_random_bits.h"
+
+void TestSimpleEnvironment2()
+{
+	using namespace accord;
+
+	// SIMULATION ============================================================================================================
+	std::string sim_dir = "D:/dev/my_simulation5";
+	EventQueue event_queue(3);
+	Environment::Init(sim_dir, 1, 1, 4, 1, 1, 1, &event_queue);
+	//Random::GetGenerator().advance(2);
+
+	// CREATE REGIONS ========================================================================================================
+	std::vector<double> diffision_coefficients = { 0.1, 0.1, 0.1, 0.1 };
+	std::vector<Vec3i> n_subvolumes = { Vec3i(1), Vec3i(1), Vec3i(1), Vec3i(1) };
+	double start_time = 0, time_step = 0.05;
+	int priority = 0;
+
+	shape::basic::Box box1(Vec3d(-1), Vec3d(2));
+
+	Environment::AddRegion(box1, microscopic::SurfaceType::Reflecting,
+		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
+
+	// CREATE ACTIVE ACTORS =======================
+	//double action_interval = Environment::GetRunTime() / 10;
+	//double release_interval = action_interval / 2;
+	//int modulation_strength = 10;
+	//MoleculeIDs release_molecules = { 1 };
+	//ActiveActorRandomTime active_actor(action_interval, release_interval, release_molecules, 
+	//	modulation_strength, Environment::GetRegions({ 0 }), std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)), 
+	//	start_time, 0, &event_queue, 0);
+
+	// add check environment run time / action interval == length bits / n_modulation_bits (unless max events set)
+	double action_interval = Environment::GetRunTime() / 5;
+	double release_interval = action_interval / 2;
+	double slot_interval = release_interval / 1;
+	int modulation_strength = 10;
+	int n_modulation_bits = 1;
+	MoleculeIDs release_molecules = { 1 };
+	ActiveActorNonRandom active_actor(action_interval, release_interval, slot_interval, 
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin", release_molecules,
+		modulation_strength, Environment::GetRegions({ 0 }), std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
+		start_time, 0, &event_queue, 0);
+
+	Json json_regions;
+	for (auto& regions : Environment::GetRegions())
+	{
+		json_regions["shapes"].emplace_back(regions->GetShape().GetBasicShape());
+	}
+	std::ofstream region_file(sim_dir + "/regions.json");
+	region_file << JsonToString(json_regions);
+	region_file.close();
+
+	// CREATE ACTORS =============================================================================================================
+	Environment::GetPassiveActors().reserve(Environment::GetRegions().size());
+	for (int i = 0; i < Environment::GetRegions().size(); i++)
+	{
+		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(RegionIDs({ i }),
+			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step,
+			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
+	}
+
+	Json json_actors, shapeless_actor;
+	shapeless_actor["type"] = "none";
+	for (auto& passive_actor : Environment::GetPassiveActors())
+	{
+		if (passive_actor->GetShape() == nullptr)
+		{
+			json_actors["shapes"].emplace_back(shapeless_actor);
+		}
+		else
+		{
+			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
+		}
+	}
+	std::ofstream actors_file(sim_dir + "/actors.json");
+	actors_file << JsonToString(json_actors);
+	actors_file.close();
+
+	// BEGIN SIMULATION LOOP ======================================================================================================
+	do {
+		if (Environment::GetRealisationNumber() > 0)
+		{
+			for (auto& passive_actor : Environment::GetPassiveActors())
+			{
+				passive_actor->NextRealisation();
+			}
+			for (auto& region : Environment::GetRegions())
+			{
+				region->NextRealisation();
+			}
+		}
+		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+		while (true)
+		{
+			auto& event = event_queue.Front();
+			Environment::SetTime(event.GetEventTime());
+			if (Environment::GetTime() > Environment::GetRunTime())
+			{
+				//LOG_INFO("The Next Event Outside Run Time : ({})", event);
+				break;
+			}
+			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
+			//LOG_INFO("Event:({})", event);
+			event.Run();
+		}
+	} while (Environment::NextRealisation());
+
+	LOG_INFO("Cleaning Up");
+}
+
 void TestSimpleEnvironment()
 {
 	using namespace accord;
@@ -588,7 +702,6 @@ void TestCylinder()
 	LOG_INFO(cylinder.IsEnveloping(sphere));
 }
 
-
 //#include "active_actor.h"
 //void ActiveActorTest()
 //{
@@ -620,7 +733,7 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	TestSimpleEnvironment();
+	TestSimpleEnvironment2();
 	//ActiveActorTest();
 
 	//TestEnvironment2();

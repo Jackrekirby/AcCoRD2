@@ -145,6 +145,16 @@ namespace accord
 		return *microscopic_regions.at(id);
 	}
 
+	std::vector<microscopic::Region*> Environment::GetRegions(RegionIDs ids)
+	{
+		std::vector<microscopic::Region*> regions_ptrs;
+		for (auto id : ids)
+		{
+			regions_ptrs.push_back(microscopic_regions.at(id).get());
+		}
+		return regions_ptrs;
+	}
+
 	std::vector<std::unique_ptr<microscopic::Region>>& Environment::GetRegions()
 	{
 		return microscopic_regions;

@@ -1,2 +1,12 @@
-[11:22:11.518] [info] main.cpp:256 TestSimpleEnvironment() Realisation 0
-[11:22:12.349] [info] main.cpp:272 TestSimpleEnvironment() Cleaning Up
+[23:20:09.632] [info] active_actor_non_random.cpp:15 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 0.2, release = 0.1, slot = 0.1
+[23:20:09.642] [info] main.cpp:246 TestSimpleEnvironment2() Realisation 0
+[23:20:09.642] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.0, last_action_time = 0.0, elapsed_time = 0.1, delta = 0.0
+[23:20:09.643] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.2, last_action_time = 0.2, elapsed_time = 0.1, delta = 0.0
+[23:20:09.650] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.4, last_action_time = 0.4, elapsed_time = 0.1, delta = 0.0
+[23:20:09.956] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.5, last_action_time = 0.4, elapsed_time = 0.1, delta = 0.09999999999999998
+[23:20:09.958] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.6000000000000001, last_action_time = 0.6000000000000001, elapsed_time = 0.1, delta = 0.0
+[23:20:09.959] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.7000000000000001, last_action_time = 0.6000000000000001, elapsed_time = 0.1, delta = 0.09999999999999998
+[23:20:09.961] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.8, last_action_time = 0.8, elapsed_time = 0.1, delta = 0.0
+[23:20:09.962] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 0.9, last_action_time = 0.8, elapsed_time = 0.1, delta = 0.09999999999999998
+[23:20:09.965] [info] active_actor2.cpp:55 accord::ActiveActor2::SetNextReleaseTime() local time = 1.0, last_action_time = 1.0, elapsed_time = 0.1, delta = 0.0
+[23:20:09.966] [info] main.cpp:262 TestSimpleEnvironment2() Cleaning Up

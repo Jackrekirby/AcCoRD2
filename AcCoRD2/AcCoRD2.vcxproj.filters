@@ -271,6 +271,21 @@
     <ClCompile Include="src\first_order_reaction.cpp">
       <Filter>src\simulation\reactions</Filter>
     </ClCompile>
+    <ClCompile Include="src\active_actor2.cpp">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_non_random.cpp">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_shape.cpp">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_random_time.cpp">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_random_bits.cpp">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -584,6 +599,24 @@
     </ClInclude>
     <ClInclude Include="src\first_order_reaction.h">
       <Filter>src\simulation\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor.h">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor2.h">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_random_time.h">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_random_bits.h">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_non_random.h">
+      <Filter>src\simulation\actors\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_shape.h">
+      <Filter>src\simulation\actors\actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
