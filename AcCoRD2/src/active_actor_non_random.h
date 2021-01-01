@@ -17,6 +17,8 @@ namespace accord
 
 		void GenerateSymbol();
 
+		bool SetNextReleaseTime();
+
 	private:
 		int symbol;
 		int symbol_index;
@@ -24,7 +26,7 @@ namespace accord
 		int n_modulation_bits;
 		std::vector<int> bit_sequence;
 
-		double n_releases_per_interval;
-		double release_index;
+		int n_releases_per_interval;
+		int release_index;
 	};
 }

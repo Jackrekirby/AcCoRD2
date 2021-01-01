@@ -187,13 +187,13 @@ void TestSimpleEnvironment2()
 	double action_interval = Environment::GetRunTime() / 5;
 	double release_interval = action_interval / 2;
 	double slot_interval = release_interval / 1;
-	int modulation_strength = 10;
-	int n_modulation_bits = 1;
+	int modulation_strength = 1;
+	int n_modulation_bits = 2;
 	MoleculeIDs release_molecules = { 1 };
 	ActiveActorNonRandom active_actor(action_interval, release_interval, slot_interval, 
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin", release_molecules,
+		{ 0, 1, 1, 0, 1, 1, 0, 0, 0, 1}, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin", release_molecules,
 		modulation_strength, Environment::GetRegions({ 0 }), std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
-		start_time, 0, &event_queue, 0);
+		start_time, 5, &event_queue, 0);
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())

@@ -32,16 +32,15 @@ namespace accord
 		bool SetNextReleaseTime(double elapsed_time);
 
 	private:
-		double local_time;
-		double action_interval;
-		double last_action_time;
-		double release_interval;
-
 		std::vector<microscopic::Region*> regions; // will need to change to generic region in the future
 		std::unique_ptr<ActiveActorShape> shape;
 		MoleculeIDs release_molecules;
 		ActiveActorID id;
 	protected:
+		double action_interval;
+		double last_action_time;
+		double release_interval;
+		double local_time;
 		int modulation_strength;
 	};
 }
