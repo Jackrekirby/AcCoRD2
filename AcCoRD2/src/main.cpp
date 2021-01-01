@@ -16,6 +16,7 @@
 // ignore that removed by child regions?
 // can an active actor record its release times? (currently only passive)
 // active actors with a random release time do not have a bit sequence?
+// how did u implement the number of event actions. Do you always set max actions by doing simulation_length / time_step
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -184,15 +185,28 @@ void TestSimpleEnvironment2()
 	//	start_time, 0, &event_queue, 0);
 
 	// add check environment run time / action interval == length bits / n_modulation_bits (unless max events set)
+	//double action_interval = Environment::GetRunTime() / 5;
+	//double release_interval = action_interval / 2;
+	//double slot_interval = release_interval / 1;
+	//int modulation_strength = 1;
+	//int n_modulation_bits = 2;
+	//MoleculeIDs release_molecules = { 1 };
+	//ActiveActorNonRandom active_actor(action_interval, release_interval, slot_interval, 
+	//	{ 0, 1, 1, 0, 1, 1, 0, 0, 0, 1}, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin", release_molecules,
+	//	modulation_strength, Environment::GetRegions({ 0 }), std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
+	//	start_time, 5, &event_queue, 0);
+
 	double action_interval = Environment::GetRunTime() / 5;
 	double release_interval = action_interval / 2;
 	double slot_interval = release_interval / 1;
 	int modulation_strength = 1;
-	int n_modulation_bits = 2;
-	MoleculeIDs release_molecules = { 1 };
-	ActiveActorNonRandom active_actor(action_interval, release_interval, slot_interval, 
-		{ 0, 1, 1, 0, 1, 1, 0, 0, 0, 1}, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin", release_molecules,
-		modulation_strength, Environment::GetRegions({ 0 }), std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
+	int n_modulation_bits = 1;
+	double bit_probability = 0.5;
+	MoleculeIDs release_molecules = { 1, 2 };
+	ActiveActorRandomBits active_actor(action_interval, release_interval, slot_interval,
+		bit_probability, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin",
+		release_molecules, modulation_strength, Environment::GetRegions({ 0 }),
+		std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
 		start_time, 5, &event_queue, 0);
 
 	Json json_regions;

@@ -1,24 +1,8 @@
-[00:12:23.208] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 0.2, release = 0.1, slot = 0.1
-[00:12:23.219] [info] main.cpp:246 TestSimpleEnvironment2() Realisation 0
-[00:12:23.220] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 0, symbol = 0
-[00:12:23.220] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[00:12:23.220] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[00:12:23.221] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 1
-[00:12:23.221] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 2
-[00:12:23.222] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 0, symbol = 2
-[00:12:23.222] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 2
-[00:12:23.225] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 2
-[00:12:23.230] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 2
-[00:12:23.230] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 3
-[00:12:23.230] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 4
-[00:12:23.231] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 3
-[00:12:23.232] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 0, symbol = 0
-[00:12:23.232] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 0, symbol = 0
-[00:12:23.232] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 6
-[00:12:23.232] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 0
-[00:12:23.233] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 0, symbol = 0
-[00:12:23.233] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[00:12:23.234] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 8
-[00:12:23.234] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 1
-[00:12:23.235] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
-[00:12:23.235] [info] main.cpp:262 TestSimpleEnvironment2() Cleaning Up
+[20:43:21.226] [info] main.cpp:260 TestSimpleEnvironment2() Realisation 0
+[20:43:21.228] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
+[20:43:21.229] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
+[20:43:21.230] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
+[20:43:21.230] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
+[20:43:21.231] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
+[20:43:21.232] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
+[20:43:21.232] [info] main.cpp:276 TestSimpleEnvironment2() Cleaning Up

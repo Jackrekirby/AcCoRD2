@@ -10,18 +10,34 @@ namespace accord
 		double start_time, int priority, EventQueue* event_queue, ActiveActorID id)
 		: ActiveActor2(action_interval, release_interval, release_molecules, modulation_strength, regions, std::move(shape),
 			start_time, priority, event_queue, id), bit_probability(bit_probability), n_modulation_bits(n_modulation_bits),
-		symbol_file(file_path)
+		symbol_file(file_path), n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(release_index)
 	{
 		
 	}
 
 	void ActiveActorRandomBits::Run()
 	{
-		ReleaseMolecules(symbol * modulation_strength);
-		if (SetNextReleaseTime(slot_interval))
+		if (release_index == 0)
 		{
 			GenerateSymbol();
 		}
+
+		if (release_index < n_releases_per_interval)
+		{
+			LOG_INFO("Releasing Molecule {}", symbol * modulation_strength);
+			ReleaseMolecules(symbol * modulation_strength);
+			release_index++;
+			local_time += slot_interval;
+		}
+		else
+		{
+			//LOG_INFO("wait until next action interval", local_time);
+			last_action_time += action_interval;
+			local_time = last_action_time;
+			release_index = 0;
+		}
+
+		UpdateTime(local_time);
 	};
 
 	void ActiveActorRandomBits::GenerateSymbol()

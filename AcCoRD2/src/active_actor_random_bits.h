@@ -23,5 +23,8 @@ namespace accord
 		int n_modulation_bits;
 		double bit_probability;
 		OutputBinaryVectors<int> symbol_file;
+
+		int n_releases_per_interval;
+		int release_index;
 	};
 }

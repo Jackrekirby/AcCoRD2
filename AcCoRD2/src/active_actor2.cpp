@@ -3,6 +3,7 @@
 #include "microscopic_region2.h"
 #include "vec3d.h"
 
+// need to add check so a shape checks all regions it can place molecules in
 namespace accord
 {
 	ActiveActor2::ActiveActor2(double action_interval, double release_interval, MoleculeIDs release_molecules,
