@@ -1,8 +1,1 @@
-[20:43:21.226] [info] main.cpp:260 TestSimpleEnvironment2() Realisation 0
-[20:43:21.228] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
-[20:43:21.229] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
-[20:43:21.230] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
-[20:43:21.230] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
-[20:43:21.231] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
-[20:43:21.232] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
-[20:43:21.232] [info] main.cpp:276 TestSimpleEnvironment2() Cleaning Up
+[23:44:18.227] [info] event2.cpp:28 accord::Event2::Run() Event at 3.0

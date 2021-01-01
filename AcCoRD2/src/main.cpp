@@ -17,6 +17,7 @@
 // can an active actor record its release times? (currently only passive)
 // active actors with a random release time do not have a bit sequence?
 // how did u implement the number of event actions. Do you always set max actions by doing simulation_length / time_step
+// for an active actor which is a surface do you use the area instead of the volume to calaculate the release_coefficient for a random time active actor
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -68,6 +69,7 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (Imminent)
+// add set event time past simulation time.
 // add generation checking to regions so youngest regions can be sorted first for collision checking 
 // --- (important for surfaces ! surfaces should always be checked first and assume surfaces wont be within surface)
 // add != vec checks
@@ -89,6 +91,7 @@
 // reactions
 
 // TO DO (Not Imminent)
+// add surface and shape3d relation checking (isneighbouring, isenvelopedby)
 // add default cycles for check molecule path
 // could break environment class up into RelationShipManager
 // consider adding limited_vectors which are vectors where only certain ints upto a given value are allowed.
@@ -738,6 +741,24 @@ void TestCylinder()
 //	a.GetSymbolFromBitSequence();
 //}
 
+#include "event_queue2.h"
+#include "event2.h"
+void Event2Test()
+{
+	using namespace accord;
+	EventQueue2<Event2> q(10);
+	std::vector<Event2> events;
+	events.emplace_back(5);
+	events.emplace_back(3);
+	
+	for (auto& event : events)
+	{
+		event.AddToQueue(q);
+	}
+
+	q.Front().Run();
+}
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -746,8 +767,8 @@ int main()
 
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
-
-	TestSimpleEnvironment2();
+	Event2Test();
+	//TestSimpleEnvironment2();
 	//ActiveActorTest();
 
 	//TestEnvironment2();

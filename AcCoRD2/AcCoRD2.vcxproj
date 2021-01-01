@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\event2.cpp" />
     <ClCompile Include="src\active_actor_shape.cpp" />
     <ClCompile Include="src\active_actor_random_bits.cpp" />
     <ClCompile Include="src\active_actor_random_time.cpp" />
@@ -151,6 +152,9 @@
     <ClCompile Include="src\zeroth_order_reaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\event2.h" />
+    <ClInclude Include="src\event_queue2.h" />
+    <ClInclude Include="src\mesoscopic_layer.h" />
     <ClInclude Include="src\active_actor_shape.h" />
     <ClInclude Include="src\active_actor2.h" />
     <ClInclude Include="src\active_actor_non_random.h" />

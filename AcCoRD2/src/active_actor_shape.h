@@ -12,6 +12,13 @@ namespace accord
 		virtual double CalculateVolume() = 0;
 	};
 
+	//ActiveActorSphere
+	//ActiveActorSphereSurface
+	//ActiveActorCylinder
+	//ActiveActorCylinderSurface
+	//ActiveActorRectSurface
+	//ActiveActorCircleSurface
+	//ActiveActorBoxSurface
 	class ActiveActorBox : public ActiveActorShape, public shape::generating::Box
 	{
 	public:

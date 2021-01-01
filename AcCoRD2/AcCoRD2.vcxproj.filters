@@ -286,6 +286,9 @@
     <ClCompile Include="src\active_actor_random_bits.cpp">
       <Filter>src\simulation\actors\actor</Filter>
     </ClCompile>
+    <ClCompile Include="src\event2.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -618,6 +621,15 @@
     <ClInclude Include="src\active_actor_shape.h">
       <Filter>src\simulation\actors\actor</Filter>
     </ClInclude>
+    <ClInclude Include="src\mesoscopic_layer.h">
+      <Filter>src\simulation\regimes\mesoscopic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_queue2.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event2.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -854,6 +866,9 @@
     </Filter>
     <Filter Include="src\simulation\actors\actor">
       <UniqueIdentifier>{cd66ce18-8945-44ac-a2e6-5a89cf0982f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic">
+      <UniqueIdentifier>{5203291a-a566-456d-b128-cd671b64dcf4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
