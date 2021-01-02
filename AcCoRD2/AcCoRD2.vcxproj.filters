@@ -289,6 +289,9 @@
     <ClCompile Include="src\event2.cpp">
       <Filter>src\event</Filter>
     </ClCompile>
+    <ClCompile Include="src\simulation_event.cpp">
+      <Filter>src\event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -628,6 +631,9 @@
       <Filter>src\event</Filter>
     </ClInclude>
     <ClInclude Include="src\event2.h">
+      <Filter>src\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\simulation_event.h">
       <Filter>src\event</Filter>
     </ClInclude>
   </ItemGroup>

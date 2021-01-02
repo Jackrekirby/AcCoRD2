@@ -1,1 +1,4 @@
-[23:44:18.227] [info] event2.cpp:28 accord::Event2::Run() Event at 3.0
+[00:27:52.603] [info] simulation_event.cpp:20 accord::SimulationEvent::OccursBefore() time = 3.0, vs 5.0
+[00:27:52.606] [info] main.cpp:803 Event2Test() Type:microscopic region, ID:69, Time:3.0
+[00:27:52.606] [info] simulation_event.cpp:20 accord::SimulationEvent::OccursBefore() time = 7.0, vs 5.0
+[00:27:52.606] [info] main.cpp:805 Event2Test() Type:microscopic region, ID:69, Time:5.0

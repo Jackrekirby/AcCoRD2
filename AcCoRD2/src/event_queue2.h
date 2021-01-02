@@ -3,7 +3,8 @@
 
 namespace accord
 {
-	template<class Event3>
+	// T is the event class
+	template<class T>
 	class EventQueue2
 	{
 	public:
@@ -19,7 +20,7 @@ namespace accord
 			return events.size();
 		}
 
-		void Add(Event3* event)
+		void Add(T* event)
 		{
 			size_t size = GetSize();
 			if (size < events.capacity())
@@ -38,6 +39,20 @@ namespace accord
 			}
 		}
 
+		void UpdateEventTime(size_t queue_index, double new_time)
+		{
+			if (new_time > GetEvent(queue_index).GetEventTime())
+			{
+				GetEvent(queue_index).SetEventTime(new_time);
+				DecreasePriority(queue_index);
+			}
+			else
+			{
+				GetEvent(queue_index).SetEventTime(new_time);
+				IncreasePriority(queue_index);
+			}
+		}
+
 		void IncreasePriority(size_t index)
 		{
 			Swim(im.at(index));
@@ -48,12 +63,12 @@ namespace accord
 			Sink(im.at(index));
 		}
 
-		Event3& Front()
+		T& Front()
 		{
 			return GetEvent(pm.front());
 		}
 
-		Event3& GetEvent(size_t index)
+		T& GetEvent(size_t index)
 		{
 			return *(events.at(index));
 		}

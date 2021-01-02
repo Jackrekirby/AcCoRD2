@@ -5,24 +5,30 @@ namespace accord
 {
 	class Event2
 	{
-		friend EventQueue2<Event2>;
 	public:
 		using EventID = int;
 
 		Event2(double start_time = 0);
 
-		void AddToQueue(EventQueue2<Event2>& event_queue);
-
-		void UpdateEventTime(double new_time);
+		void SetQueueIndex(size_t queue_index);
 
 		double GetEventTime() const;
 
-		void Run();
-	private:
+		void SetEventTime(double time);
+
+		// must be overridden
+		virtual void Run() = 0;
+
+		// can be overridden
+		virtual bool OccursBefore(const Event2& other);
+
+		template<typename OStream>
+		friend OStream& operator << (OStream& os, const Event2& event)
+		{
+			return os << fmt::format("Time = {}", event.GetEventTime());
+		}
+	protected:
 		double time;
 		size_t queue_index;
-		EventQueue2<Event2>* event_queue;
-
-		bool OccursBefore(const Event2& other);
 	};
 }

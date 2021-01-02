@@ -5,17 +5,14 @@
 namespace accord
 {
 	Event2::Event2(double start_time)
-		: time(start_time), event_queue(nullptr),
-		queue_index(0)
+		: time(start_time), queue_index(0)
 	{
 		
 	}
 
-	void Event2::AddToQueue(EventQueue2<Event2>& event_queue)
+	void Event2::SetQueueIndex(size_t queue_index)
 	{
-		queue_index = event_queue.GetSize();
-		this->event_queue = &event_queue;
-		event_queue.Add(this);
+		this->queue_index = queue_index;
 	}
 
 	double Event2::GetEventTime() const
@@ -23,23 +20,9 @@ namespace accord
 		return time;
 	}
 
-	void Event2::Run()
+	void Event2::SetEventTime(double time)
 	{
-		LOG_INFO("Event at {}", time);
-	}
-
-	void Event2::UpdateEventTime(double new_time)
-	{
-		if (new_time > time)
-		{
-			time = new_time;
-			event_queue->DecreasePriority(queue_index);
-		}
-		else
-		{
-			time = new_time;
-			event_queue->IncreasePriority(queue_index);
-		}
+		this->time = time;
 	}
 
 	bool Event2::OccursBefore(const Event2& other)
