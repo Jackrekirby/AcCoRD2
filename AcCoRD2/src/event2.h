@@ -1,5 +1,8 @@
 #pragma once
-#include "event_queue2.h"
+
+// while it would be semantically nicer for the user to update the event time in the class instead of to the queue
+// as the queue is templatised you cannot pass a derived type of a base class (event) into a templatised class.
+// e.g. EventQueue2<&Event2> != EventQueue2<&DerivedClassOfEvent2> 
 
 namespace accord
 {
@@ -15,6 +18,8 @@ namespace accord
 		double GetEventTime() const;
 
 		void SetEventTime(double time);
+
+		void UpdateEventTime(double delta_time);
 
 		// must be overridden
 		virtual void Run() = 0;

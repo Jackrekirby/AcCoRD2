@@ -10,6 +10,16 @@ namespace accord
 	public:
 		EventQueue2(size_t capacity)
 		{
+			Reserve(capacity);
+		}
+
+		EventQueue2()
+		{
+
+		}
+
+		void Reserve(size_t capacity)
+		{
 			events.reserve(capacity);
 			pm.reserve(capacity);
 			im.reserve(capacity);
@@ -39,7 +49,21 @@ namespace accord
 			}
 		}
 
-		void UpdateEventTime(size_t queue_index, double new_time)
+		void UpdateEventTime(size_t queue_index, double delta_time)
+		{
+			if (delta_time > 0)
+			{
+				GetEvent(queue_index).UpdateEventTime(delta_time);
+				DecreasePriority(queue_index);
+			}
+			else
+			{
+				GetEvent(queue_index).UpdateEventTime(delta_time);
+				IncreasePriority(queue_index);
+			}
+		}
+
+		void SetEventTime(size_t queue_index, double new_time)
 		{
 			if (new_time > GetEvent(queue_index).GetEventTime())
 			{

@@ -18,6 +18,8 @@
 // active actors with a random release time do not have a bit sequence?
 // how did u implement the number of event actions. Do you always set max actions by doing simulation_length / time_step
 // for an active actor which is a surface do you use the area instead of the volume to calaculate the release_coefficient for a random time active actor
+// When you update diffusion propensities do you return the delta?
+// When you go through possible reactions you can store them in a tree like structure to reduce searches further.
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -53,6 +55,8 @@
 // need to find where i use iterator loop and set iterator to another. It may be it& = it and may need to be it = it + 1. (LINK GRIDS?)
 // make all shapes have virtual inheritance of basic shapes
 // consider redoing reactions with reaction manager as all regions import reactions from it
+// do you store a list of objects to be updated when a molecule count is updated?
+// can i talk about what makes the original code < ..
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -67,6 +71,15 @@
 // consider adding generate bounding box and rect to all shapes
 // consider multiple constructors for shapes so you can generate shapes using other shapes
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
+
+// TO DO (next)
+// split meso classes
+// rename events to reactions
+// abstract event queue
+// ensure consistent reaction_factor reaction_coefficient_naming
+// add subvolume neighbour check
+// add subvolume removal / overlap check
+// add meso-micro transition
 
 // TO DO (Imminent)
 // add set event time past simulation time.
@@ -790,7 +803,8 @@ namespace accord
 void Event2Test()
 {
 	using namespace accord;
-	EventQueue2<TestSimulationEvent> q(10);
+	EventQueue2<TestSimulationEvent> q;
+	q.Reserve(10);
 	std::vector<TestSimulationEvent> events;
 	events.emplace_back(5, 1);
 	events.emplace_back(3, 0);

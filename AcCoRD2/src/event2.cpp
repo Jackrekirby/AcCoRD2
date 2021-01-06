@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "event2.h"
-#include "event_queue2.h"
 
 namespace accord
 {
@@ -20,9 +19,15 @@ namespace accord
 		return time;
 	}
 
+	// should make this private and a friend function for the queue
 	void Event2::SetEventTime(double time)
 	{
 		this->time = time;
+	}
+
+	void Event2::UpdateEventTime(double delta_time)
+	{
+		this->time += delta_time;
 	}
 
 	bool Event2::OccursBefore(const Event2& other)
