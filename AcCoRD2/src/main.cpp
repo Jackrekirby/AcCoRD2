@@ -20,6 +20,9 @@
 // for an active actor which is a surface do you use the area instead of the volume to calaculate the release_coefficient for a random time active actor
 // When you update diffusion propensities do you return the delta?
 // When you go through possible reactions you can store them in a tree like structure to reduce searches further.
+// did you use a math vec struct?
+// do you store a list of objects to be updated when a molecule count is updated?
+// can i talk about what makes the original code < ..
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -55,8 +58,8 @@
 // need to find where i use iterator loop and set iterator to another. It may be it& = it and may need to be it = it + 1. (LINK GRIDS?)
 // make all shapes have virtual inheritance of basic shapes
 // consider redoing reactions with reaction manager as all regions import reactions from it
-// do you store a list of objects to be updated when a molecule count is updated?
-// can i talk about what makes the original code < ..
+// split meso classes
+// ensure consistent reaction_factor reaction_coefficient_naming
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -66,6 +69,7 @@
 // consider using flatten relation method for box and spheres (Flattening does not work on spheres)
 // could use factory to build regions so regions dont have to be publically available in environment (factory no longer needed due to derived class)
 // update test envrionments to new format (consider switch statement?) (format keep changing)
+// abstract event queue (not easily possible, offers much more flexibility without abstraction)
 
 // IN PROGRESS
 // consider adding generate bounding box and rect to all shapes
@@ -73,15 +77,13 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (next)
-// split meso classes
 // rename events to reactions
-// abstract event queue
-// ensure consistent reaction_factor reaction_coefficient_naming
+
+
+// TO DO (Imminent)
 // add subvolume neighbour check
 // add subvolume removal / overlap check
 // add meso-micro transition
-
-// TO DO (Imminent)
 // add set event time past simulation time.
 // add generation checking to regions so youngest regions can be sorted first for collision checking 
 // --- (important for surfaces ! surfaces should always be checked first and assume surfaces wont be within surface)
@@ -169,6 +171,8 @@
 #include "active_actor_random_time.h"
 #include "active_actor_non_random.h"
 #include "active_actor_random_bits.h"
+
+#include "mesoscopic_region.h"
 
 void TestSimpleEnvironment2()
 {
@@ -732,92 +736,15 @@ void TestCylinder()
 	LOG_INFO(cylinder.IsEnveloping(sphere));
 }
 
-//#include "active_actor.h"
-//void ActiveActorTest()
-//{
-//	using namespace accord;
-//	double action_interval = 1;
-//	double release_interval = 0.1;
-//	int n_modulation_bits = 2;
-//	double slot_interval = 0.01;
-//	double start_time = 1;
-//	int priority = 0;
-//	double bit_probability = 0.7;
-//	std::vector<int> bit_sequence = {1, 0, 1, 1};
-//	EventQueue event_queue(1);
-//	std::string file_path = "D:/dev/my_simulation4/s1/r0/a0_b.bin";
-//	ActiveActor a(action_interval, release_interval, slot_interval, n_modulation_bits,
-//		bit_probability, bit_sequence, start_time, priority, &event_queue, file_path);
-//
-//	a.GenerateRandomBits();
-//	a.GetSymbolFromBitSequence();
-//	a.GetSymbolFromBitSequence();
-//}
 
-#include "event_queue2.h"
-#include "event2.h"
-#include "simulation_event.h"
 
-namespace accord
-{
-	class TestSimulationEvent : public SimulationEvent
-	{
-	public:
-		TestSimulationEvent(double start_time, int priority = 0)
-			: SimulationEvent(start_time, priority)
-		{
-
-		}
-
-		void Add(EventQueue2<TestSimulationEvent>& event_queue)
-		{
-			SetQueueIndex(event_queue.GetSize());
-			event_queue.Add(this);
-			this->queue = &event_queue;
-		}
-
-		void UpdateEventTime(double new_time)
-		{
-			queue->UpdateEventTime(queue_index, new_time);
-		}
-
-		void Run()
-		{
-			LOG_INFO("this is my time = {}", GetEventTime());
-		}
-
-		Type GetType() const
-		{
-			return Type::microscopic_region;
-		}
-
-		EventID GetID() const
-		{
-			return 69;
-		}
-	private:
-		EventQueue2<TestSimulationEvent>* queue;
-	};
-}
-
-void Event2Test()
+void TestMesoscopic()
 {
 	using namespace accord;
-	EventQueue2<TestSimulationEvent> q;
-	q.Reserve(10);
-	std::vector<TestSimulationEvent> events;
-	events.emplace_back(5, 1);
-	events.emplace_back(3, 0);
-	
-	for (auto& event : events)
-	{
-		event.Add(q);
-	}
-
-	LOG_INFO(q.Front());
-	q.Front().UpdateEventTime(7);
-	LOG_INFO(q.Front());
+	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 3, 4), {1, 2, 3});
+	region.AddSubvolumesToQueue();
 }
+
 
 int main()
 {
@@ -827,7 +754,10 @@ int main()
 
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
-	Event2Test();
+
+	TestMesoscopic();
+
+	//Event2Test();
 	//TestSimpleEnvironment2();
 	//ActiveActorTest();
 

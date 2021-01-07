@@ -286,11 +286,38 @@
     <ClCompile Include="src\active_actor_random_bits.cpp">
       <Filter>src\simulation\actors\actor</Filter>
     </ClCompile>
-    <ClCompile Include="src\event2.cpp">
-      <Filter>src\event</Filter>
+    <ClCompile Include="src\propensity_object.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\propensity objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\simulation_event.cpp">
-      <Filter>src\event</Filter>
+    <ClCompile Include="src\mesoscopic_zeroth_order_reaction.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_subvolume.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\subvolume</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_second_order_reaction.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_region.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_layer_neighbour_relationship.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_layer.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_first_order_reaction.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\subvolume_queue.cpp">
+      <Filter>src\simulation\regimes\mesoscopic\queue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event5.cpp">
+      <Filter>src\simulation\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event_queue5.cpp">
+      <Filter>src\simulation\event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,9 +331,6 @@
       <Filter>lib\pcg</Filter>
     </ClInclude>
     <ClInclude Include="src\event.h">
-      <Filter>src\event</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event_queue.h">
       <Filter>src\event</Filter>
     </ClInclude>
     <ClInclude Include="src\output_binary_singles.h">
@@ -522,9 +546,6 @@
     <ClInclude Include="src\passive_actor.h">
       <Filter>src\simulation\actors\passive</Filter>
     </ClInclude>
-    <ClInclude Include="src\object_ids.h">
-      <Filter>src\event</Filter>
-    </ClInclude>
     <ClInclude Include="src\microscopic_relative.h">
       <Filter>src\simulation\regimes\microscopic\relations</Filter>
     </ClInclude>
@@ -625,15 +646,42 @@
       <Filter>src\simulation\actors\actor</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_layer.h">
-      <Filter>src\simulation\regimes\mesoscopic</Filter>
+      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
     </ClInclude>
-    <ClInclude Include="src\event_queue2.h">
-      <Filter>src\event</Filter>
+    <ClInclude Include="src\propensity_object.h">
+      <Filter>src\simulation\regimes\mesoscopic\propensity objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\event2.h">
-      <Filter>src\event</Filter>
+    <ClInclude Include="src\mesoscopic_zeroth_order_reaction.h">
+      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
     </ClInclude>
-    <ClInclude Include="src\simulation_event.h">
+    <ClInclude Include="src\mesoscopic_subvolume.h">
+      <Filter>src\simulation\regimes\mesoscopic\subvolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesoscopic_second_order_reaction.h">
+      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesoscopic_region.h">
+      <Filter>src\simulation\regimes\mesoscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesoscopic_layer_neighbour_relationship.h">
+      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesoscopic_first_order_reaction.h">
+      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\subvolume_queue.h">
+      <Filter>src\simulation\regimes\mesoscopic\queue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event5.h">
+      <Filter>src\simulation\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_queue5.h">
+      <Filter>src\simulation\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object_ids.h">
+      <Filter>src\other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_queue.h">
       <Filter>src\event</Filter>
     </ClInclude>
   </ItemGroup>
@@ -875,6 +923,27 @@
     </Filter>
     <Filter Include="src\simulation\regimes\mesoscopic">
       <UniqueIdentifier>{5203291a-a566-456d-b128-cd671b64dcf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic\reactions">
+      <UniqueIdentifier>{9a6ca616-a6ac-4375-a967-6b524f127d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic\region">
+      <UniqueIdentifier>{5a1b7f3b-8c86-4129-8e10-7d4aa14b493f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic\layer">
+      <UniqueIdentifier>{fed54dae-94dd-4d42-acc6-a9b965cf4308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic\subvolume">
+      <UniqueIdentifier>{d4f0674d-95b9-4697-b377-018d870654b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic\propensity objects">
+      <UniqueIdentifier>{a6e46ffc-8a43-44eb-a46b-ec8430e83ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\regimes\mesoscopic\queue">
+      <UniqueIdentifier>{ca1c5e32-88e7-4dad-af95-9d923bc0855c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\event">
+      <UniqueIdentifier>{7a0579bc-d34e-4f97-a5f7-e12f6aeee686}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

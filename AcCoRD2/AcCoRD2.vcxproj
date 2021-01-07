@@ -19,8 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\simulation_event.cpp" />
-    <ClCompile Include="src\event2.cpp" />
+    <ClCompile Include="src\event5.cpp" />
+    <ClCompile Include="src\event_queue5.cpp" />
+    <ClCompile Include="src\mesoscopic_layer_neighbour_relationship.cpp" />
+    <ClCompile Include="src\mesoscopic_first_order_reaction.cpp" />
+    <ClCompile Include="src\mesoscopic_layer.cpp" />
+    <ClCompile Include="src\mesoscopic_region.cpp" />
+    <ClCompile Include="src\mesoscopic_second_order_reaction.cpp" />
+    <ClCompile Include="src\mesoscopic_subvolume.cpp" />
+    <ClCompile Include="src\mesoscopic_zeroth_order_reaction.cpp" />
+    <ClCompile Include="src\propensity_object.cpp" />
     <ClCompile Include="src\active_actor_shape.cpp" />
     <ClCompile Include="src\active_actor_random_bits.cpp" />
     <ClCompile Include="src\active_actor_random_time.cpp" />
@@ -151,11 +159,19 @@
     <ClCompile Include="src\random_test.cpp" />
     <ClCompile Include="src\vec_test.cpp" />
     <ClCompile Include="src\zeroth_order_reaction.cpp" />
+    <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\simulation_event.h" />
-    <ClInclude Include="src\event2.h" />
-    <ClInclude Include="src\event_queue2.h" />
+    <ClInclude Include="src\event5.h" />
+    <ClInclude Include="src\event_queue.h" />
+    <ClInclude Include="src\event_queue5.h" />
+    <ClInclude Include="src\mesoscopic_first_order_reaction.h" />
+    <ClInclude Include="src\mesoscopic_layer_neighbour_relationship.h" />
+    <ClInclude Include="src\mesoscopic_region.h" />
+    <ClInclude Include="src\mesoscopic_second_order_reaction.h" />
+    <ClInclude Include="src\mesoscopic_subvolume.h" />
+    <ClInclude Include="src\mesoscopic_zeroth_order_reaction.h" />
+    <ClInclude Include="src\propensity_object.h" />
     <ClInclude Include="src\mesoscopic_layer.h" />
     <ClInclude Include="src\active_actor_shape.h" />
     <ClInclude Include="src\active_actor2.h" />
@@ -228,7 +244,6 @@
     <ClInclude Include="src\basic_box.h" />
     <ClInclude Include="src\basic_circle.h" />
     <ClInclude Include="src\event.h" />
-    <ClInclude Include="src\event_queue.h" />
     <ClInclude Include="src\axis_3d.h" />
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\basic_plane.h" />
@@ -267,6 +282,7 @@
     <ClInclude Include="src\random_test.h" />
     <ClInclude Include="src\vec_test.h" />
     <ClInclude Include="src\zeroth_order_reaction.h" />
+    <ClInclude Include="src\subvolume_queue.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-APACHE.txt" />
