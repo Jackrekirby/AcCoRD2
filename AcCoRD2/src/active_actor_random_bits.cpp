@@ -7,9 +7,9 @@ namespace accord
 		double bit_probability, int n_modulation_bits, std::string file_path,
 		MoleculeIDs release_molecules, int modulation_strength, std::vector<microscopic::Region*> regions,
 		std::unique_ptr<ActiveActorShape> shape,
-		double start_time, int priority, EventQueue* event_queue, ActiveActorID id)
+		double start_time, int priority, ActiveActorID id)
 		: ActiveActor2(action_interval, release_interval, release_molecules, modulation_strength, regions, std::move(shape),
-			start_time, priority, event_queue, id), bit_probability(bit_probability), n_modulation_bits(n_modulation_bits),
+			start_time, priority, id), bit_probability(bit_probability), n_modulation_bits(n_modulation_bits),
 		symbol_file(file_path), n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(release_index)
 	{
 		
@@ -37,7 +37,7 @@ namespace accord
 			release_index = 0;
 		}
 
-		UpdateTime(local_time);
+		SetEventTime(local_time);
 	};
 
 	void ActiveActorRandomBits::GenerateSymbol()

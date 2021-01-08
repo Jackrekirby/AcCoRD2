@@ -8,15 +8,15 @@ namespace accord
 {
 	ActiveActor2::ActiveActor2(double action_interval, double release_interval, MoleculeIDs release_molecules,
 		int modulation_strength, std::vector<microscopic::Region*> regions, std::unique_ptr<ActiveActorShape> shape,
-		double start_time, int priority, EventQueue* event_queue, ActiveActorID id)
+		double start_time, int priority, ActiveActorID id)
 		: action_interval(action_interval), release_interval(release_interval), release_molecules(release_molecules),
-		modulation_strength(modulation_strength), regions(regions), Event(start_time, priority, event_queue), id(id),
+		modulation_strength(modulation_strength), regions(regions), Event5(start_time, priority), id(id),
 		shape(std::move(shape)), local_time(start_time), last_action_time(start_time)
 	{
 		
 	}
 
-	Event::Type ActiveActor2::GetType() const
+	Event5::Type ActiveActor2::GetType() const
 	{
 		return Type::active_actor;
 	}
@@ -59,7 +59,7 @@ namespace accord
 		{
 			//LOG_INFO("time still within release time {}", local_time);
 			// time still within release interval
-			UpdateTime(local_time);
+			SetEventTime(local_time);
 			return false;
 		}
 		else // local_time - last_action_time >= release_interval
@@ -68,7 +68,7 @@ namespace accord
 			//LOG_INFO("wait until next action interval", local_time);
 			last_action_time += action_interval;
 			local_time = last_action_time;
-			UpdateTime(local_time);
+			SetEventTime(local_time);
 			return true;
 		}
 	}

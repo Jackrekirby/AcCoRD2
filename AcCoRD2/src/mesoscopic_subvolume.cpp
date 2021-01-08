@@ -24,7 +24,7 @@ namespace accord::mesoscopic
 		SelectEvent();
 		UpdatePropensities();
 		// update next event time
-		UpdateEventTime(CalculateTimeToNextReaction());
+		UpdateTime(CalculateTimeToNextReaction());
 	}
 
 	void Subvolume::SelectEvent()

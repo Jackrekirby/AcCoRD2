@@ -11,13 +11,14 @@ namespace accord
 {
 	void Environment::Init(std::string simulation_name, int num_realisations, 
 		double run_time, int num_molecule_types, int num_microscopic_regions,
-		int num_passive_actors, uint64_t seed, EventQueue* event_queue)
+		int num_passive_actors, int num_active_actors, uint64_t seed, EventQueue5* event_queue)
 	{
 		Environment::time = 0;
 		Environment::run_time = run_time;
 		Environment::num_molecule_types = num_molecule_types;
 		Environment::microscopic_regions.reserve(num_microscopic_regions);
 		Environment::passive_actors.reserve(num_passive_actors);
+		Environment::active_actors.reserve(num_active_actors);
 		Environment::simulation_name = simulation_name;
 		Environment::num_realisations = num_realisations;
 		Environment::current_realisation = 0;
@@ -109,7 +110,7 @@ namespace accord
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
 			box, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
-			event_queue, surface_type, static_cast<int>(GetRegions().size())));
+			surface_type, static_cast<int>(GetRegions().size())));
 	}
 
 	void Environment::AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type, 
@@ -118,7 +119,7 @@ namespace accord
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::SphereRegion>(
 			sphere, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
-			event_queue, surface_type, static_cast<int>(Environment::GetRegions().size())));
+			surface_type, static_cast<int>(Environment::GetRegions().size())));
 	}
 
 	void Environment::AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type, 
@@ -127,7 +128,7 @@ namespace accord
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
 			cylinder, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
-			event_queue, surface_type, static_cast<int>(Environment::GetRegions().size())));
+			surface_type, static_cast<int>(Environment::GetRegions().size())));
 	}
 
 	std::string Environment::GetSimulationName()
@@ -165,12 +166,16 @@ namespace accord
 		return passive_actors;
 	}
 
+	std::vector<std::unique_ptr<ActiveActor2>>& Environment::GetActiveActors()
+	{
+		return active_actors;
+	}
+
 	std::string Environment::GetFilePath()
 	{
 		return Environment::GetSimulationName() +
 			"/s" + std::to_string(Environment::seed) +
-			"/r" + std::to_string(Environment::current_realisation) +
-			"/";
+			"/r" + std::to_string(Environment::current_realisation) + "/";
 	}
 
 	// returns true if there is another relisation
@@ -195,6 +200,11 @@ namespace accord
 	void Environment::CreateDirectories()
 	{
 		std::filesystem::create_directories(GetFilePath());
+	}
+
+	EventQueue5& Environment::GetEventQueue()
+	{
+		return *event_queue;
 	}
 
 	// the only type of relationship which does not need to be defined is a neighbour and none
@@ -304,6 +314,7 @@ namespace accord
 
 	std::vector<std::unique_ptr<microscopic::Region>> Environment::microscopic_regions;
 	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
+	std::vector<std::unique_ptr<ActiveActor2>> Environment::active_actors;
 	double Environment::run_time = 0;
 	double Environment::time = 0;
 	int Environment::num_molecule_types = 0;
@@ -311,5 +322,5 @@ namespace accord
 	int Environment::num_realisations = 1;
 	int Environment::current_realisation = 0;
 	uint64_t Environment::seed = 1;
-	EventQueue* Environment::event_queue;
+	EventQueue5* Environment::event_queue;
 }

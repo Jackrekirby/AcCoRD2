@@ -147,8 +147,8 @@
 #include "event_queue_test.h"
 #include "microscopic_region2.h"
 #include "environment.h"
-#include "event_queue.h"
-#include "event.h"
+#include "event_queue5.h"
+#include "event5.h"
 #include "passive_actor.h"
 #include "shapeless_passive_actor.h"
 #include "box_passive_actor.h"
@@ -180,8 +180,8 @@ void TestSimpleEnvironment2()
 
 	// SIMULATION ============================================================================================================
 	std::string sim_dir = "D:/dev/my_simulation5";
-	EventQueue event_queue(3);
-	Environment::Init(sim_dir, 1, 1, 4, 1, 1, 1, &event_queue);
+	EventQueue5 event_queue(3);
+	Environment::Init(sim_dir, 1, 1, 4, 1, 1, 0, 1, &event_queue);
 	//Random::GetGenerator().advance(2);
 
 	// CREATE REGIONS ========================================================================================================
@@ -223,11 +223,12 @@ void TestSimpleEnvironment2()
 	int n_modulation_bits = 1;
 	double bit_probability = 0.5;
 	MoleculeIDs release_molecules = { 1, 2 };
-	ActiveActorRandomBits active_actor(action_interval, release_interval, slot_interval,
+	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
+		action_interval, release_interval, slot_interval,
 		bit_probability, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin",
 		release_molecules, modulation_strength, Environment::GetRegions({ 0 }),
 		std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
-		start_time, 5, &event_queue, 0);
+		start_time, 5, 0));
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -243,7 +244,7 @@ void TestSimpleEnvironment2()
 	for (int i = 0; i < Environment::GetRegions().size(); i++)
 	{
 		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(RegionIDs({ i }),
-			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step,
+			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, time_step,
 			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
 	}
 
@@ -263,6 +264,22 @@ void TestSimpleEnvironment2()
 	std::ofstream actors_file(sim_dir + "/actors.json");
 	actors_file << JsonToString(json_actors);
 	actors_file.close();
+
+	// Add Events to Event Queue
+	for (auto& region : Environment::GetRegions())
+	{
+		Environment::GetEventQueue().Add(region.get());
+	}
+
+	for (auto& actor : Environment::GetPassiveActors())
+	{
+		Environment::GetEventQueue().Add(actor.get());
+	}
+
+	for (auto& actor : Environment::GetActiveActors())
+	{
+		Environment::GetEventQueue().Add(actor.get());
+	}
 
 	// BEGIN SIMULATION LOOP ======================================================================================================
 	do {
@@ -288,7 +305,7 @@ void TestSimpleEnvironment2()
 				break;
 			}
 			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
-			//LOG_INFO("Event:({})", event);
+			LOG_INFO("Event:({})", event);
 			event.Run();
 		}
 	} while (Environment::NextRealisation());
@@ -296,129 +313,129 @@ void TestSimpleEnvironment2()
 	LOG_INFO("Cleaning Up");
 }
 
-void TestSimpleEnvironment()
-{
-	using namespace accord;
-
-	// SIMULATION ============================================================================================================
-	std::string sim_dir = "D:/dev/my_simulation4";
-	EventQueue event_queue(10);
-	Environment::Init(sim_dir, 1, 30, 4, 5, 5, 1, &event_queue);
-	//Random::GetGenerator().advance(2);
-
-	// CREATE REGIONS ========================================================================================================
-	std::vector<double> diffision_coefficients = { 0.1, 0.1, 0.1, 0.1 };
-	std::vector<Vec3i> n_subvolumes = { Vec3i(1), Vec3i(1), Vec3i(1), Vec3i(1) };
-	double start_time = 0, time_step = 0.05;
-	int priority = 0;
-
-	shape::basic::Box box1(Vec3d(-3.5, -0.5, -0.5), Vec3d(1));
-	shape::basic::Box box2(Vec3d(-2.5, -0.5, -0.5), Vec3d(1));
-	shape::basic::Cylinder cylinder1(Vec3d(1.5, 0, 0), 0.5, 1, Axis3D::x);
-	shape::basic::Cylinder cylinder2(Vec3d(2.5, 0, 0), 0.5, 1, Axis3D::x);
-	shape::basic::Sphere sphere1(Vec3d(0, 0, 0), 2);
-
-	Environment::AddRegion(box1, microscopic::SurfaceType::Reflecting,
-		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
-	Environment::AddRegion(box2, microscopic::SurfaceType::Reflecting,
-		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
-	Environment::AddRegion(sphere1, microscopic::SurfaceType::Reflecting,
-		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
-	Environment::AddRegion(cylinder1, microscopic::SurfaceType::Reflecting,
-		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
-	Environment::AddRegion(cylinder2, microscopic::SurfaceType::Reflecting,
-		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
-
-	// Create Reactions ======================================================================================================
-	ReactionManager::AddZerothOrderReaction({ 0 }, 1, { 0 });
-	ReactionManager::AddZerothOrderReaction({ 1 }, 1, { 4 });
-	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.5, 0.5, {2});
-
-	Environment::LinkReactionsToRegions();
-	// DEFINE RELATIONSHIPS ======================================================================================================
-	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
-		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
-	Environment::DefineRelationship(1, 2, Environment::RelationshipPriority::B,
-		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
-	Environment::DefineRelationship(2, 3, Environment::RelationshipPriority::A,
-		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
-	Environment::DefineRelationship(3, 4, Environment::RelationshipPriority::None,
-		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
-
-	Json json_regions;
-	for (auto& regions : Environment::GetRegions())
-	{
-		json_regions["shapes"].emplace_back(regions->GetShape().GetBasicShape());
-	}
-	std::ofstream region_file(sim_dir + "/regions.json");
-	region_file << JsonToString(json_regions);
-	region_file.close();
-
-	// CREATE ACTORS =============================================================================================================
-	Environment::GetPassiveActors().reserve(Environment::GetRegions().size());
-	for (int i = 0; i < Environment::GetRegions().size(); i++)
-	{
-		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>( RegionIDs({ i }),
-			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, 
-			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
-	}
-
-	Json json_actors, shapeless_actor;
-	shapeless_actor["type"] = "none";
-	for (auto& passive_actor : Environment::GetPassiveActors())
-	{
-		if (passive_actor->GetShape() == nullptr)
-		{
-			json_actors["shapes"].emplace_back(shapeless_actor);
-		}
-		else
-		{
-			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
-		}
-	}
-	std::ofstream actors_file(sim_dir + "/actors.json");
-	actors_file << JsonToString(json_actors);
-	actors_file.close();
-
-	//for (int i = 0; i < 1; i++)
-	//{
-	//	Environment::GetRegion(0).AddMolecule(0, { -0.4, 0, 0.1 });
-	//	Environment::GetRegion(1).AddMolecule(1, { 0.4, 0, -0.1 });
-	//	Environment::GetRegion(0).AddMolecule(2, { -0.4, 0, 0.1 });
-	//	Environment::GetRegion(1).AddMolecule(3, { 0.4, 0, -0.1 });
-	//}
-
-	// BEGIN SIMULATION LOOP ======================================================================================================
-	do {
-		if (Environment::GetRealisationNumber() > 0)
-		{
-			for (auto& passive_actor : Environment::GetPassiveActors())
-			{
-				passive_actor->NextRealisation();
-			}
-			for (auto& region : Environment::GetRegions())
-			{
-				region->NextRealisation();
-			}
-		}
-		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
-		while (true)
-		{
-			auto& event = event_queue.Front();
-			Environment::SetTime(event.GetEventTime());
-			if (Environment::GetTime() > Environment::GetRunTime())
-			{
-				//LOG_INFO("The Next Event Outside Run Time : ({})", event);
-				break;
-			}
-			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
-			//LOG_INFO("Event:({})", event);
-			event.Run();
-		}
-	} while (Environment::NextRealisation());
-
-	LOG_INFO("Cleaning Up");
-}
+//void TestSimpleEnvironment()
+//{
+//	using namespace accord;
+//
+//	// SIMULATION ============================================================================================================
+//	std::string sim_dir = "D:/dev/my_simulation4";
+//	EventQueue5 event_queue(10);
+//	Environment::Init(sim_dir, 1, 30, 4, 5, 5, 1, &event_queue);
+//	//Random::GetGenerator().advance(2);
+//
+//	// CREATE REGIONS ========================================================================================================
+//	std::vector<double> diffision_coefficients = { 0.1, 0.1, 0.1, 0.1 };
+//	std::vector<Vec3i> n_subvolumes = { Vec3i(1), Vec3i(1), Vec3i(1), Vec3i(1) };
+//	double start_time = 0, time_step = 0.05;
+//	int priority = 0;
+//
+//	shape::basic::Box box1(Vec3d(-3.5, -0.5, -0.5), Vec3d(1));
+//	shape::basic::Box box2(Vec3d(-2.5, -0.5, -0.5), Vec3d(1));
+//	shape::basic::Cylinder cylinder1(Vec3d(1.5, 0, 0), 0.5, 1, Axis3D::x);
+//	shape::basic::Cylinder cylinder2(Vec3d(2.5, 0, 0), 0.5, 1, Axis3D::x);
+//	shape::basic::Sphere sphere1(Vec3d(0, 0, 0), 2);
+//
+//	Environment::AddRegion(box1, microscopic::SurfaceType::Reflecting,
+//		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
+//	Environment::AddRegion(box2, microscopic::SurfaceType::Reflecting,
+//		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
+//	Environment::AddRegion(sphere1, microscopic::SurfaceType::Reflecting,
+//		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
+//	Environment::AddRegion(cylinder1, microscopic::SurfaceType::Reflecting,
+//		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
+//	Environment::AddRegion(cylinder2, microscopic::SurfaceType::Reflecting,
+//		diffision_coefficients, n_subvolumes, start_time, time_step, priority);
+//
+//	// Create Reactions ======================================================================================================
+//	ReactionManager::AddZerothOrderReaction({ 0 }, 1, { 0 });
+//	ReactionManager::AddZerothOrderReaction({ 1 }, 1, { 4 });
+//	ReactionManager::AddSecondOrderReaction(0, 1, { 2, 3 }, 0.5, 0.5, {2});
+//
+//	Environment::LinkReactionsToRegions();
+//	// DEFINE RELATIONSHIPS ======================================================================================================
+//	Environment::DefineRelationship(0, 1, Environment::RelationshipPriority::None,
+//		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+//	Environment::DefineRelationship(1, 2, Environment::RelationshipPriority::B,
+//		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+//	Environment::DefineRelationship(2, 3, Environment::RelationshipPriority::A,
+//		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+//	Environment::DefineRelationship(3, 4, Environment::RelationshipPriority::None,
+//		microscopic::SurfaceType::None, microscopic::SurfaceType::None);
+//
+//	Json json_regions;
+//	for (auto& regions : Environment::GetRegions())
+//	{
+//		json_regions["shapes"].emplace_back(regions->GetShape().GetBasicShape());
+//	}
+//	std::ofstream region_file(sim_dir + "/regions.json");
+//	region_file << JsonToString(json_regions);
+//	region_file.close();
+//
+//	// CREATE ACTORS =============================================================================================================
+//	Environment::GetPassiveActors().reserve(Environment::GetRegions().size());
+//	for (int i = 0; i < Environment::GetRegions().size(); i++)
+//	{
+//		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>( RegionIDs({ i }),
+//			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, 
+//			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
+//	}
+//
+//	Json json_actors, shapeless_actor;
+//	shapeless_actor["type"] = "none";
+//	for (auto& passive_actor : Environment::GetPassiveActors())
+//	{
+//		if (passive_actor->GetShape() == nullptr)
+//		{
+//			json_actors["shapes"].emplace_back(shapeless_actor);
+//		}
+//		else
+//		{
+//			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
+//		}
+//	}
+//	std::ofstream actors_file(sim_dir + "/actors.json");
+//	actors_file << JsonToString(json_actors);
+//	actors_file.close();
+//
+//	//for (int i = 0; i < 1; i++)
+//	//{
+//	//	Environment::GetRegion(0).AddMolecule(0, { -0.4, 0, 0.1 });
+//	//	Environment::GetRegion(1).AddMolecule(1, { 0.4, 0, -0.1 });
+//	//	Environment::GetRegion(0).AddMolecule(2, { -0.4, 0, 0.1 });
+//	//	Environment::GetRegion(1).AddMolecule(3, { 0.4, 0, -0.1 });
+//	//}
+//
+//	// BEGIN SIMULATION LOOP ======================================================================================================
+//	do {
+//		if (Environment::GetRealisationNumber() > 0)
+//		{
+//			for (auto& passive_actor : Environment::GetPassiveActors())
+//			{
+//				passive_actor->NextRealisation();
+//			}
+//			for (auto& region : Environment::GetRegions())
+//			{
+//				region->NextRealisation();
+//			}
+//		}
+//		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+//		while (true)
+//		{
+//			auto& event = event_queue.Front();
+//			Environment::SetTime(event.GetEventTime());
+//			if (Environment::GetTime() > Environment::GetRunTime())
+//			{
+//				//LOG_INFO("The Next Event Outside Run Time : ({})", event);
+//				break;
+//			}
+//			//LOG_INFO("Time = {}, EventID = {}, EventType = {}", Environment::GetTime(), event.GetID(), event.GetType());
+//			//LOG_INFO("Event:({})", event);
+//			event.Run();
+//		}
+//	} while (Environment::NextRealisation());
+//
+//	LOG_INFO("Cleaning Up");
+//}
 
 //void TestEnvironment2()
 //{
@@ -755,10 +772,10 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	TestMesoscopic();
+	//TestMesoscopic();
 
 	//Event2Test();
-	//TestSimpleEnvironment2();
+	TestSimpleEnvironment2();
 	//ActiveActorTest();
 
 	//TestEnvironment2();

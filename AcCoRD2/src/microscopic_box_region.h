@@ -9,7 +9,7 @@ namespace accord::microscopic
 	{
 	public:
 		BoxRegion(shape::basic::Box box, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
-			double start_time, double time_step, int priority, EventQueue* event_queue,
+			double start_time, double time_step, int priority,
 			SurfaceType surface_type, RegionID id);
 
 		const BoxSurfaceShape& GetShape() const;

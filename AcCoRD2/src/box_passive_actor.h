@@ -22,7 +22,7 @@ namespace accord
 	{
 	public:
 		BoxPassiveActor(shape::relation::Box box, MoleculeIDs molecule_ids,
-			double start_time, int priority, EventQueue* event_queue, double time_step,
+			double start_time, int priority, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
 		const PassiveActorBoxShape* const GetShape() const;

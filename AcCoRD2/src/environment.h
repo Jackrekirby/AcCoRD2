@@ -1,6 +1,7 @@
 #pragma once
 #include "microscopic_region2.h"
 #include "passive_actor.h"
+#include "active_actor2.h"
 
 namespace accord
 {
@@ -9,7 +10,7 @@ namespace accord
 	public:
 		static void Init(std::string simulation_name, int num_realisations,
 			double run_time, int num_molecule_types, int num_microscopic_regions,
-			int num_passive_actors, uint64_t seed, EventQueue* event_queue);
+			int num_passive_actors, int num_active_actors, uint64_t seed, EventQueue5* event_queue);
 
 		static void SetTime(double time);
 
@@ -31,11 +32,15 @@ namespace accord
 
 		static std::vector<std::unique_ptr<PassiveActor>>& GetPassiveActors();
 
+		static std::vector<std::unique_ptr<ActiveActor2>>& GetActiveActors();
+
 		static std::string GetFilePath();
 
 		static bool NextRealisation();
 
 		static void CreateDirectories();
+
+		static EventQueue5& GetEventQueue();
 
 		enum class RelationshipPriority
 		{
@@ -81,9 +86,10 @@ namespace accord
 		static int num_realisations;
 		static int current_realisation;
 		static uint64_t seed;
-		static EventQueue* event_queue;
+		static EventQueue5* event_queue;
 
 		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
+		static std::vector<std::unique_ptr<ActiveActor2>> active_actors;
 
 		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;
 	};

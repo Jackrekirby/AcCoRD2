@@ -8,10 +8,10 @@ namespace accord
 	{
 	public:
 		ActiveActorNonRandom(double action_interval, double release_interval, double slot_interval,
-			std::vector<int> bit_sequence, double n_modulation_bits, std::string file_path,
+			std::vector<int> bit_sequence, int n_modulation_bits, std::string file_path,
 			MoleculeIDs release_molecules, int modulation_strength, std::vector<microscopic::Region*> regions,
 			std::unique_ptr<ActiveActorShape> shape,
-			double start_time, int priority, EventQueue* event_queue, ActiveActorID id);
+			double start_time, int priority, ActiveActorID id);
 
 		void Run();
 

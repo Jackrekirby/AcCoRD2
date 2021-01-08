@@ -5,13 +5,13 @@
 namespace accord
 {
 	ActiveActorNonRandom::ActiveActorNonRandom(double action_interval, double release_interval, double slot_interval,
-		std::vector<int> bit_sequence, double n_modulation_bits, std::string file_path,
+		std::vector<int> bit_sequence, int n_modulation_bits, std::string file_path,
 		MoleculeIDs release_molecules, int modulation_strength, std::vector<microscopic::Region*> regions,
 		std::unique_ptr<ActiveActorShape> shape,
-		double start_time, int priority, EventQueue* event_queue, ActiveActorID id)
+		double start_time, int priority, ActiveActorID id)
 		: ActiveActor2(action_interval, release_interval, release_molecules, modulation_strength, regions, std::move(shape),
-			start_time, priority, event_queue, id), n_modulation_bits(n_modulation_bits), bit_sequence(bit_sequence),
-			slot_interval(slot_interval), symbol(0), symbol_index(0), 
+			start_time, priority, id), n_modulation_bits(n_modulation_bits), bit_sequence(bit_sequence),
+			slot_interval(slot_interval), symbol(0), symbol_index(0),
 			n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(release_index)
 	{
 		LOG_INFO("action = {}, release = {}, slot = {}", action_interval, release_interval, slot_interval);
@@ -29,7 +29,7 @@ namespace accord
 				LOG_INFO("no more symbols");
 				// if there are no more bits left that set its next event to after the end of the simulation
 				// could add max number of event executions
-				UpdateTime(Environment::GetRunTime() + 1);
+				SetEventTime(Environment::GetRunTime() + 1);
 				return;
 			}
 			else
@@ -52,7 +52,7 @@ namespace accord
 			local_time = last_action_time;
 			release_index = 0;
 		}
-		UpdateTime(local_time);
+		SetEventTime(local_time);
 	};
 
 	void ActiveActorNonRandom::GenerateSymbol()

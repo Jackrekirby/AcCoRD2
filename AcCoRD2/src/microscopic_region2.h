@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "vec3d.h"
-#include "event.h"
+#include "event5.h"
 #include "microscopic_grid2.h"
 //#include "microscopic_surface.h"
 #include "microscopic_zeroth_order_reaction.h"
@@ -15,12 +15,12 @@
 
 namespace accord::microscopic
 {
-	class Region : public Event
+	class Region : public Event5
 	{
 	public:
 		Region(std::vector<double> diffision_coefficients,
 			std::vector<Vec3i> n_subvolumes,
-			double start_time, double time_step, int priority, EventQueue* event_queue,
+			double start_time, double time_step, int priority,
 			SurfaceType surface_type, RegionID id);
 
 		void Run();
@@ -77,7 +77,7 @@ namespace accord::microscopic
 		// each region type will have its own surface shape which is why GetSurface is virtual
 		// may need const version of get surface
 
-		Event::Type GetType() const;
+		Event5::Type GetType() const;
 
 		virtual const SurfaceShape& GetShape() const = 0;
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "event.h"
+#include "event5.h"
 #include "output_binary_vectors.h"
 #include "output_binary_singles.h"
 #include "object_ids.h"
@@ -33,7 +33,7 @@ namespace accord
 	// does not have to be a unique pointer
 	// will eventually need to add mesoscopic::subvolume to typed subvolumes
 
-	class PassiveActor : public Event
+	class PassiveActor : public Event5
 	{
 		class TypedSubvolumes
 		{
@@ -47,11 +47,11 @@ namespace accord
 		};
 	public:
 		PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
-			double start_time, int priority, EventQueue* event_queue, double time_step,
+			double start_time, int priority, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
 		PassiveActor(MoleculeIDs molecule_ids,
-			double start_time, int priority, EventQueue* event_queue, double time_step,
+			double start_time, int priority, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
 		Type GetType() const;

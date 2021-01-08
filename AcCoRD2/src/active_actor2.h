@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "event.h"
+#include "event5.h"
 #include "object_ids.h"
 #include "active_actor_shape.h"
 
@@ -11,12 +11,12 @@ namespace accord
 		class Region;
 	}
 
-	class ActiveActor2 : public Event
+	class ActiveActor2 : public Event5
 	{
 	public:
 		ActiveActor2(double action_interval, double release_interval, MoleculeIDs release_molecules,
 			int modulation_strength, std::vector<microscopic::Region*> regions, std::unique_ptr<ActiveActorShape> shape,
-			double start_time, int priority, EventQueue* event_queue, ActiveActorID id);
+			double start_time, int priority, ActiveActorID id);
 
 		virtual void Run() = 0;
 

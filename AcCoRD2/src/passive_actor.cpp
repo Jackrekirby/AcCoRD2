@@ -23,9 +23,9 @@ namespace accord
 	}
 
 	PassiveActor::PassiveActor(MoleculeIDs molecule_ids,
-		double start_time, int priority, EventQueue* event_queue, double time_step,
+		double start_time, int priority, double time_step,
 		ActiveActorID id, bool record_positions, bool record_time)
-		: Event(start_time, priority, event_queue), id(id),
+		: Event5(start_time, priority), id(id),
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
@@ -33,9 +33,9 @@ namespace accord
 	}
 
 	PassiveActor::PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
-		double start_time, int priority, EventQueue* event_queue, double time_step,
+		double start_time, int priority, double time_step,
 		ActiveActorID id, bool record_positions, bool record_time)
-		: Event(start_time, priority, event_queue), id(id),
+		: Event5(start_time, priority), id(id),
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
@@ -43,9 +43,9 @@ namespace accord
 		CreateFiles();
 	}
 
-	Event::Type PassiveActor::GetType() const
+	Event5::Type PassiveActor::GetType() const
 	{
-		return Event::Type::passive_actor;
+		return Event5::Type::passive_actor;
 	}
 
 	ActiveActorID PassiveActor::GetID() const
@@ -74,7 +74,7 @@ namespace accord
 
 		CreateFiles();
 
-		UpdateTime(start_time);
+		SetEventTime(start_time);
 	}
 
 	void PassiveActor::Run()
@@ -89,7 +89,7 @@ namespace accord
 			count_files.at(id).Write(count);
 			id++;
 		}
-		UpdateTime(GetEventTime() + time_step);
+		UpdateEventTime(time_step);
 	}
 
 	void PassiveActor::CreateFiles()

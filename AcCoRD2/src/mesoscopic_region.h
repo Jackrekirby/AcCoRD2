@@ -44,8 +44,7 @@ namespace accord::mesoscopic
 		// returns the required dimensions of the replacement region to ensure correct neighbouring (avoid floating point error)
 		shape::basic::Box RemoveInterior(const Vec3i& origin_subvolume, const Vec3i& n_subvolumes)
 		{
-			return { box.GetOrigin() + box.GetLength() * origin_subvolume, 
-				box.GetOrigin() + box.GetLength() * (origin_subvolume + n_subvolumes) };
+			return { box.GetOrigin() + (box.GetLength() / Vec3d(origin_subvolume)), box.GetLength() / Vec3d(n_subvolumes) };
 		}
 	private:
 		SubvolumeQueue subvolume_queue;
