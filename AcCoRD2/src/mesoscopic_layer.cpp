@@ -7,7 +7,8 @@
 namespace accord::mesoscopic
 {
 	Layer::Layer(double diffusion_coefficient, LinkedPropensityObjects* linked_propensities)
-		: diffusion_coefficient(diffusion_coefficient), linked_propensities(linked_propensities)
+		: diffusion_coefficient(diffusion_coefficient), linked_propensities(linked_propensities),
+		molecule_count(0), diffusion_propensity(0)
 	{
 
 	}

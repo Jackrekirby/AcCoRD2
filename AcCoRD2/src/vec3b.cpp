@@ -18,7 +18,7 @@ namespace accord
 
     Axis3D Vec3b::FindAxis() const
     {
-        if (Sum() != 0)
+        if (Sum() != 1)
         {
             LOG_CRITICAL("FindAxis() requires exactly 1 axis to be true. {}", *this);
             throw std::exception();

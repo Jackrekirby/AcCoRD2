@@ -8,9 +8,23 @@ namespace accord::mesoscopic
 {
 
 	Subvolume::Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients)
-		: box(origin, Vec3d(length))
+		: box(origin, Vec3d(length)), reaction_propensity(0), queue(nullptr), queue_index(0), time(0)
 	{
+		CreateLayers(diffusion_coefficients);
+	}
 
+	void Subvolume::CreateLayers(std::vector<double> diffusion_coefficients)
+	{
+		linked_propensity_objects.reserve(diffusion_coefficients.size());
+		layers.reserve(diffusion_coefficients.size());
+		size_t i = 0;
+		for (auto& diffusion_coefficient : diffusion_coefficients)
+		{
+			linked_propensity_objects.emplace_back();
+			linked_propensity_objects.back().RequiresUpdate();
+			layers.emplace_back(diffusion_coefficient, &linked_propensity_objects.at(i));
+			i++;
+		}
 	}
 
 	void Subvolume::AddMolecule(MoleculeID molecule_id)
@@ -20,6 +34,7 @@ namespace accord::mesoscopic
 
 	void Subvolume::Run()
 	{
+		LOG_INFO("subvolume event");
 		// change event to reaction
 		SelectEvent();
 		UpdatePropensities();
@@ -67,6 +82,7 @@ namespace accord::mesoscopic
 	// add IfNeighbourAdd()
 	void Subvolume::AddNeighbour(Subvolume& subvolume)
 	{
+		LOG_INFO("add neighbour");
 		double diffusion_factor = CalculateDiffusionFactor(subvolume);
 		MoleculeID i = 0;
 		for (auto& layer : layers)
@@ -114,7 +130,7 @@ namespace accord::mesoscopic
 
 	void Subvolume::AddLinkToPropensityObject(MoleculeID id, PropensityObject* object)
 	{
-		linked_propensity_objects.at(id)->Add(object);
+		linked_propensity_objects.at(id).Add(object);
 	}
 
 	void Subvolume::AddLinkToPropensityObjects(MoleculeIDs ids, PropensityObject* object)
@@ -130,8 +146,19 @@ namespace accord::mesoscopic
 		// only updates the propensity of objects which are affected by a change in molecule count
 		for (auto& linked_propensity_object : linked_propensity_objects)
 		{
-			reaction_propensity += linked_propensity_object->UpdatePropensities();
+			reaction_propensity += linked_propensity_object.UpdatePropensities();
 		}
+	}
+
+	void Subvolume::UpdatePropensitiesAndTime(double current_time)
+	{
+		// only updates the propensity of objects which are affected by a change in molecule count
+		double old_propensity = reaction_propensity;
+		for (auto& linked_propensity_object : linked_propensity_objects)
+		{
+			reaction_propensity += linked_propensity_object.UpdatePropensities();
+		}
+		UpdateTime(current_time + (old_propensity / reaction_propensity) * (time - current_time));
 	}
 
 	double Subvolume::CalculateTimeToNextReaction()
@@ -172,6 +199,16 @@ namespace accord::mesoscopic
 			return (Random::GenerateRealUniform() > 0.5);
 		}
 		return (time < other.time);
+	}
+
+	void Subvolume::MarkForDeletion()
+	{
+		time = -1;
+	}
+
+	bool Subvolume::IsMarkedForDeletion()
+	{
+		return (time == -1);
 	}
 
 	double Subvolume::CalculateDiffusionFactor(const Subvolume& neighbour)

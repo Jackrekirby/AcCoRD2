@@ -1,59 +1,234 @@
-[21:10:10.757] [info] main.cpp:297 TestSimpleEnvironment2() Realisation 0
-[21:10:10.760] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.0)
-[21:10:10.761] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
-[21:10:10.761] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.0)
-[21:10:10.762] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.0)
-[21:10:10.762] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.05)
-[21:10:10.762] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.05)
-[21:10:10.763] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.1)
-[21:10:10.763] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.1)
-[21:10:10.764] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.15000000000000002)
-[21:10:10.764] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.15000000000000002)
-[21:10:10.765] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.2)
-[21:10:10.765] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
-[21:10:10.767] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.2)
-[21:10:10.767] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.2)
-[21:10:10.768] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.2)
-[21:10:10.768] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.25)
-[21:10:10.768] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.25)
-[21:10:10.769] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.3)
-[21:10:10.772] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.3)
-[21:10:10.772] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.35)
-[21:10:10.773] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.35)
-[21:10:10.773] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.39999999999999997)
-[21:10:10.773] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.39999999999999997)
-[21:10:10.774] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.4)
-[21:10:10.774] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
-[21:10:10.774] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.4)
-[21:10:10.775] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.44999999999999996)
-[21:10:10.775] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.44999999999999996)
-[21:10:10.776] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.49999999999999994)
-[21:10:10.777] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.49999999999999994)
-[21:10:10.777] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.5499999999999999)
-[21:10:10.778] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.5499999999999999)
-[21:10:10.779] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.6)
-[21:10:10.779] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.6)
-[21:10:10.785] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.6000000000000001)
-[21:10:10.785] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
-[21:10:10.786] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.6000000000000001)
-[21:10:10.787] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.65)
-[21:10:10.788] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.65)
-[21:10:10.788] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.7000000000000001)
-[21:10:10.789] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.7000000000000001)
-[21:10:10.790] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.7500000000000001)
-[21:10:10.790] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.7500000000000001)
-[21:10:10.791] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.8)
-[21:10:10.792] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 0
-[21:10:10.793] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:0.8)
-[21:10:10.796] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.8000000000000002)
-[21:10:10.796] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.8000000000000002)
-[21:10:10.797] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.8500000000000002)
-[21:10:10.799] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.8500000000000002)
-[21:10:10.800] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.9000000000000002)
-[21:10:10.801] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.9000000000000002)
-[21:10:10.802] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:microscopic region, ID:0, Time:0.9500000000000003)
-[21:10:10.803] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:passive actor, ID:0, Time:0.9500000000000003)
-[21:10:10.803] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:1.0)
-[21:10:10.804] [info] active_actor_random_bits.cpp:27 accord::ActiveActorRandomBits::Run() Releasing Molecule 1
-[21:10:10.806] [info] main.cpp:308 TestSimpleEnvironment2() Event:(Type:active actor, ID:0, Time:1.0)
-[21:10:10.807] [info] main.cpp:313 TestSimpleEnvironment2() Cleaning Up
+[23:34:56.425] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 0, 0]
+[23:34:56.427] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.428] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1], neighbouring = origin = [1, 0, 0], length = [1, 1, 1], end = [2, 1, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.428] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.429] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1], neighbouring = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.429] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.430] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1], neighbouring = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.430] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 0, 0]
+[23:34:56.431] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.431] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 0], length = [1, 1, 1], end = [2, 1, 1], neighbouring = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1], [1, 0, 0], [1, 0, 0]
+[23:34:56.432] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.432] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 0], length = [1, 1, 1], end = [2, 1, 1], neighbouring = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.433] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.433] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 0], length = [1, 1, 1], end = [2, 1, 1], neighbouring = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.434] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 1, 0]
+[23:34:56.434] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.435] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], neighbouring = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.435] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.436] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], neighbouring = origin = [0, 2, 0], length = [1, 1, 1], end = [1, 3, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.436] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.437] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], neighbouring = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1], [0, 1, 0], [0, 1, 0]
+[23:34:56.437] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.438] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], neighbouring = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.438] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 1, 0]
+[23:34:56.439] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.439] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], neighbouring = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], [1, 0, 0], [1, 0, 0]
+[23:34:56.440] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.440] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], neighbouring = origin = [1, 2, 0], length = [1, 1, 1], end = [2, 3, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.441] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.441] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], neighbouring = origin = [1, 0, 0], length = [1, 1, 1], end = [2, 1, 1], [0, 1, 0], [0, 1, 0]
+[23:34:56.442] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.445] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], neighbouring = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.445] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 2, 0]
+[23:34:56.445] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.446] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 0], length = [1, 1, 1], end = [1, 3, 1], neighbouring = origin = [1, 2, 0], length = [1, 1, 1], end = [2, 3, 1], [0, 0, 0], [0, 0, 0]
+[23:34:56.446] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.447] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 0], length = [1, 1, 1], end = [1, 3, 1], neighbouring = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], [0, 1, 0], [0, 1, 0]
+[23:34:56.447] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.448] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 0], length = [1, 1, 1], end = [1, 3, 1], neighbouring = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.448] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 2, 0]
+[23:34:56.449] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.449] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 0], length = [1, 1, 1], end = [2, 3, 1], neighbouring = origin = [0, 2, 0], length = [1, 1, 1], end = [1, 3, 1], [1, 0, 0], [1, 0, 0]
+[23:34:56.450] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.450] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 0], length = [1, 1, 1], end = [2, 3, 1], neighbouring = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], [0, 1, 0], [0, 1, 0]
+[23:34:56.451] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.451] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 0], length = [1, 1, 1], end = [2, 3, 1], neighbouring = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.452] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 0, 1]
+[23:34:56.452] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.454] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], neighbouring = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.454] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.455] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], neighbouring = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.456] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.457] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], neighbouring = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.458] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.459] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], neighbouring = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1], [0, 0, 1], [0, 0, 1]
+[23:34:56.460] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 0, 1]
+[23:34:56.460] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.461] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], neighbouring = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], [1, 0, 0], [1, 0, 0]
+[23:34:56.461] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.463] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], neighbouring = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.463] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.464] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], neighbouring = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.464] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.465] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], neighbouring = origin = [1, 0, 0], length = [1, 1, 1], end = [2, 1, 1], [0, 0, 1], [0, 0, 1]
+[23:34:56.466] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 1, 1]
+[23:34:56.466] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.467] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], neighbouring = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.467] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.468] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], neighbouring = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.468] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.469] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], neighbouring = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], [0, 1, 0], [0, 1, 0]
+[23:34:56.470] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.470] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], neighbouring = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.471] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.472] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], neighbouring = origin = [0, 1, 0], length = [1, 1, 1], end = [1, 2, 1], [0, 0, 1], [0, 0, 1]
+[23:34:56.472] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 1, 1]
+[23:34:56.473] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.473] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], neighbouring = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], [1, 0, 0], [1, 0, 0]
+[23:34:56.474] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.475] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], neighbouring = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.475] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.476] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], neighbouring = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], [0, 1, 0], [0, 1, 0]
+[23:34:56.477] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.477] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], neighbouring = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.478] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.479] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], neighbouring = origin = [1, 1, 0], length = [1, 1, 1], end = [2, 2, 1], [0, 0, 1], [0, 0, 1]
+[23:34:56.479] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 2, 1]
+[23:34:56.479] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.481] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], neighbouring = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], [0, 0, 0], [0, 0, 0]
+[23:34:56.481] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.482] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], neighbouring = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], [0, 1, 0], [0, 1, 0]
+[23:34:56.482] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.483] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], neighbouring = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.483] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.484] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], neighbouring = origin = [0, 2, 0], length = [1, 1, 1], end = [1, 3, 1], [0, 0, 1], [0, 0, 1]
+[23:34:56.485] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 2, 1]
+[23:34:56.485] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.486] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], neighbouring = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], [1, 0, 0], [1, 0, 0]
+[23:34:56.486] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.487] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], neighbouring = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], [0, 1, 0], [0, 1, 0]
+[23:34:56.488] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.489] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], neighbouring = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.490] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.490] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], neighbouring = origin = [1, 2, 0], length = [1, 1, 1], end = [2, 3, 1], [0, 0, 1], [0, 0, 1]
+[23:34:56.491] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 0, 2]
+[23:34:56.491] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.492] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], neighbouring = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.493] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.493] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], neighbouring = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.494] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.495] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], neighbouring = origin = [0, 0, 3], length = [1, 1, 1], end = [1, 1, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.495] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.496] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], neighbouring = origin = [0, 0, 1], length = [1, 1, 1], end = [1, 1, 2], [0, 0, 1], [0, 0, 1]
+[23:34:56.497] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 0, 2]
+[23:34:56.497] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.498] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], neighbouring = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], [1, 0, 0], [1, 0, 0]
+[23:34:56.498] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.499] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], neighbouring = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.500] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.501] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], neighbouring = origin = [1, 0, 3], length = [1, 1, 1], end = [2, 1, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.501] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.502] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], neighbouring = origin = [1, 0, 1], length = [1, 1, 1], end = [2, 1, 2], [0, 0, 1], [0, 0, 1]
+[23:34:56.502] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 1, 2]
+[23:34:56.503] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.504] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], neighbouring = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.504] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.505] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], neighbouring = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.506] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.507] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], neighbouring = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], [0, 1, 0], [0, 1, 0]
+[23:34:56.508] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.509] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], neighbouring = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.509] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.510] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], neighbouring = origin = [0, 1, 1], length = [1, 1, 1], end = [1, 2, 2], [0, 0, 1], [0, 0, 1]
+[23:34:56.511] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 1, 2]
+[23:34:56.511] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.512] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], neighbouring = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], [1, 0, 0], [1, 0, 0]
+[23:34:56.513] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.513] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], neighbouring = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.514] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.515] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], neighbouring = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], [0, 1, 0], [0, 1, 0]
+[23:34:56.515] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.516] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], neighbouring = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.517] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.518] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], neighbouring = origin = [1, 1, 1], length = [1, 1, 1], end = [2, 2, 2], [0, 0, 1], [0, 0, 1]
+[23:34:56.518] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 2, 2]
+[23:34:56.518] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.519] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], neighbouring = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], [0, 0, 0], [0, 0, 0]
+[23:34:56.520] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.520] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], neighbouring = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], [0, 1, 0], [0, 1, 0]
+[23:34:56.521] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.521] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], neighbouring = origin = [0, 2, 3], length = [1, 1, 1], end = [1, 3, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.522] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.523] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], neighbouring = origin = [0, 2, 1], length = [1, 1, 1], end = [1, 3, 2], [0, 0, 1], [0, 0, 1]
+[23:34:56.523] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 2, 2]
+[23:34:56.523] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.524] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], neighbouring = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], [1, 0, 0], [1, 0, 0]
+[23:34:56.525] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.526] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], neighbouring = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], [0, 1, 0], [0, 1, 0]
+[23:34:56.526] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.527] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], neighbouring = origin = [1, 2, 3], length = [1, 1, 1], end = [2, 3, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.527] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.528] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], neighbouring = origin = [1, 2, 1], length = [1, 1, 1], end = [2, 3, 2], [0, 0, 1], [0, 0, 1]
+[23:34:56.529] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 0, 3]
+[23:34:56.529] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.530] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 3], length = [1, 1, 1], end = [1, 1, 4], neighbouring = origin = [1, 0, 3], length = [1, 1, 1], end = [2, 1, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.531] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.531] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 3], length = [1, 1, 1], end = [1, 1, 4], neighbouring = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.532] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.533] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 0, 3], length = [1, 1, 1], end = [1, 1, 4], neighbouring = origin = [0, 0, 2], length = [1, 1, 1], end = [1, 1, 3], [0, 0, 1], [0, 0, 1]
+[23:34:56.534] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 0, 3]
+[23:34:56.535] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.536] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 3], length = [1, 1, 1], end = [2, 1, 4], neighbouring = origin = [0, 0, 3], length = [1, 1, 1], end = [1, 1, 4], [1, 0, 0], [1, 0, 0]
+[23:34:56.536] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.537] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 3], length = [1, 1, 1], end = [2, 1, 4], neighbouring = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.538] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.540] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 0, 3], length = [1, 1, 1], end = [2, 1, 4], neighbouring = origin = [1, 0, 2], length = [1, 1, 1], end = [2, 1, 3], [0, 0, 1], [0, 0, 1]
+[23:34:56.541] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 1, 3]
+[23:34:56.545] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.547] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], neighbouring = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.548] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.549] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], neighbouring = origin = [0, 2, 3], length = [1, 1, 1], end = [1, 3, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.549] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.550] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], neighbouring = origin = [0, 0, 3], length = [1, 1, 1], end = [1, 1, 4], [0, 1, 0], [0, 1, 0]
+[23:34:56.550] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.551] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], neighbouring = origin = [0, 1, 2], length = [1, 1, 1], end = [1, 2, 3], [0, 0, 1], [0, 0, 1]
+[23:34:56.551] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 1, 3]
+[23:34:56.552] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.552] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], neighbouring = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], [1, 0, 0], [1, 0, 0]
+[23:34:56.553] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.553] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], neighbouring = origin = [1, 2, 3], length = [1, 1, 1], end = [2, 3, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.554] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.554] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], neighbouring = origin = [1, 0, 3], length = [1, 1, 1], end = [2, 1, 4], [0, 1, 0], [0, 1, 0]
+[23:34:56.555] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.556] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], neighbouring = origin = [1, 1, 2], length = [1, 1, 1], end = [2, 2, 3], [0, 0, 1], [0, 0, 1]
+[23:34:56.556] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [0, 2, 3]
+[23:34:56.557] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.557] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 3], length = [1, 1, 1], end = [1, 3, 4], neighbouring = origin = [1, 2, 3], length = [1, 1, 1], end = [2, 3, 4], [0, 0, 0], [0, 0, 0]
+[23:34:56.558] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.559] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 3], length = [1, 1, 1], end = [1, 3, 4], neighbouring = origin = [0, 1, 3], length = [1, 1, 1], end = [1, 2, 4], [0, 1, 0], [0, 1, 0]
+[23:34:56.559] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.560] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [0, 2, 3], length = [1, 1, 1], end = [1, 3, 4], neighbouring = origin = [0, 2, 2], length = [1, 1, 1], end = [1, 3, 3], [0, 0, 1], [0, 0, 1]
+[23:34:56.560] [info] mesoscopic_region.cpp:58 accord::mesoscopic::Region::LinkSiblingSubvolumes() linking at index = [1, 2, 3]
+[23:34:56.561] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.562] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 3], length = [1, 1, 1], end = [2, 3, 4], neighbouring = origin = [0, 2, 3], length = [1, 1, 1], end = [1, 3, 4], [1, 0, 0], [1, 0, 0]
+[23:34:56.562] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.563] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 3], length = [1, 1, 1], end = [2, 3, 4], neighbouring = origin = [1, 1, 3], length = [1, 1, 1], end = [2, 2, 4], [0, 1, 0], [0, 1, 0]
+[23:34:56.563] [info] mesoscopic_subvolume.cpp:85 accord::mesoscopic::Subvolume::AddNeighbour() add neighbour
+[23:34:56.564] [info] relation_box.cpp:151 accord::shape::relation::Box::CalculateAreaBetweenNeighbouringBoxes() box = origin = [1, 2, 3], length = [1, 1, 1], end = [2, 3, 4], neighbouring = origin = [1, 2, 2], length = [1, 1, 1], end = [2, 3, 3], [0, 0, 1], [0, 0, 1]
+[23:34:56.566] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.567] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.567] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.569] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.569] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.570] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.570] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.571] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.572] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.572] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.573] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.574] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.575] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.575] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.575] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.576] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.576] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.577] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.577] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.577] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.578] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.578] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.579] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.579] [info] mesoscopic_region.cpp:42 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume time = inf
+[23:34:56.580] [info] main.cpp:775 TestMesoscopic() region event time = inf, 
+[23:34:56.580] [info] main.cpp:778 TestMesoscopic() Realisation 0

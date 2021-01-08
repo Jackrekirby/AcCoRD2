@@ -3,6 +3,10 @@
 
 namespace accord::mesoscopic
 {
+	LinkedPropensityObjects::LinkedPropensityObjects()
+		: requires_update(false)
+	{
+	}
 	void LinkedPropensityObjects::RequiresUpdate()
 	{
 		requires_update = true;

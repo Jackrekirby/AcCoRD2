@@ -23,6 +23,8 @@
 // did you use a math vec struct?
 // do you store a list of objects to be updated when a molecule count is updated?
 // can i talk about what makes the original code < ..
+// when molecules are added to a subvolume outside of its action time if the propensity updated every time a molecule is added or for example
+// do you let multiple molecules be added then only update those subvolumes requiring an update
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -60,6 +62,7 @@
 // consider redoing reactions with reaction manager as all regions import reactions from it
 // split meso classes
 // ensure consistent reaction_factor reaction_coefficient_naming
+// rename events to reactions
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -71,14 +74,14 @@
 // update test envrionments to new format (consider switch statement?) (format keep changing)
 // abstract event queue (not easily possible, offers much more flexibility without abstraction)
 
+
 // IN PROGRESS
 // consider adding generate bounding box and rect to all shapes
 // consider multiple constructors for shapes so you can generate shapes using other shapes
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (next)
-// rename events to reactions
-
+// seperate public and private functions, particularly for active actors ane mesoscopic classes
 
 // TO DO (Imminent)
 // add subvolume neighbour check
@@ -758,8 +761,33 @@ void TestCylinder()
 void TestMesoscopic()
 {
 	using namespace accord;
-	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 3, 4), {1, 2, 3});
+	EventQueue5 event_queue(1);
+	Environment::Init("mesosimulation", 1, 5, 1, 0, 0, 0, 1, &event_queue);
+	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 3, 4), {1, 2, 3}, 0, 0, 0);
+	
+	event_queue.Add(&region);
+	region.LinkSiblingSubvolumes();
+
 	region.AddSubvolumesToQueue();
+	region.AddMolecule(1, {1, 2, 2});
+	
+
+	LOG_INFO("region event time = {}, ", region.GetEventTime());
+
+	do {
+		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+		while (true)
+		{
+			auto& event = event_queue.Front();
+			Environment::SetTime(event.GetEventTime());
+			if (Environment::GetTime() > Environment::GetRunTime())
+			{
+				break;
+			}
+			LOG_INFO("Event:({})", event);
+			event.Run();
+		}
+	} while (Environment::NextRealisation());
 }
 
 
@@ -772,10 +800,10 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	//TestMesoscopic();
+	TestMesoscopic();
 
 	//Event2Test();
-	TestSimpleEnvironment2();
+	//TestSimpleEnvironment2();
 	//ActiveActorTest();
 
 	//TestEnvironment2();

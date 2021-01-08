@@ -11,6 +11,8 @@ namespace accord::mesoscopic
 	class LinkedPropensityObjects
 	{
 	public:
+		LinkedPropensityObjects();
+
 		void RequiresUpdate();
 
 		void Add(PropensityObject* object);

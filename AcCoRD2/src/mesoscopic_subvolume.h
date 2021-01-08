@@ -24,6 +24,8 @@ namespace accord::mesoscopic
 	public:
 		Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients);
 
+		void CreateLayers(std::vector<double> diffusion_coefficients);
+
 		void AddMolecule(MoleculeID molecule_id);
 
 		void Run();
@@ -52,6 +54,8 @@ namespace accord::mesoscopic
 
 		void UpdatePropensities();
 
+		void UpdatePropensitiesAndTime(double current_time);
+
 		double CalculateTimeToNextReaction();
 
 		// Event Functions
@@ -63,12 +67,16 @@ namespace accord::mesoscopic
 		void UpdateTime(double delta_time);
 
 		bool ReactsBefore(const Subvolume& other);
+
+		void MarkForDeletion();
+
+		bool IsMarkedForDeletion();
 	private:
 		std::vector<Layer> layers;
 		std::vector<ZerothOrderReaction> zeroth_order_reactions;
 		std::vector<FirstOrderReaction> first_order_reactions;
 		std::vector<SecondOrderReaction> second_order_reactions;
-		std::vector<LinkedPropensityObjects*> linked_propensity_objects;
+		std::vector<LinkedPropensityObjects> linked_propensity_objects;
 		double reaction_propensity;
 		shape::relation::Box box;
 
