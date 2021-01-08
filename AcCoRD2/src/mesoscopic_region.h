@@ -8,6 +8,7 @@ namespace accord
 	struct Vec3d;
 }
 
+// once all subvolumes are confirmed then add reactions and events to the queue
 namespace accord::mesoscopic
 {
 	class Region

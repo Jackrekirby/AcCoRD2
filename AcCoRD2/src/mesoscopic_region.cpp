@@ -38,4 +38,27 @@ namespace accord::mesoscopic
 			}
 		}
 	}
+	void Region::AddZerothOrderReaction(MoleculeIDs products, double reaction_rate)
+	{
+		for (auto& subvolume : subvolumes)
+		{
+			subvolume.AddZerothOrderReaction(products, reaction_rate);
+		}
+	}
+
+	void Region::AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate)
+	{
+		for (auto& subvolume : subvolumes)
+		{
+			subvolume.AddFirstOrderReaction(reactant, products, reaction_rate);
+		}
+	}
+
+	void Region::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, MoleculeIDs products, double reaction_rate)
+	{
+		for (auto& subvolume : subvolumes)
+		{
+			subvolume.AddSecondOrderReaction(reactant_a, reactant_b, products, reaction_rate);
+		}
+	}
 }
