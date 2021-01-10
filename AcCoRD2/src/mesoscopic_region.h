@@ -53,6 +53,15 @@ namespace accord::mesoscopic
 		EventID GetID() const;
 
 		void Run();
+
+		void Print()
+		{
+			LOG_INFO("region times");
+			for (auto& subvolume : subvolumes)
+			{
+				LOG_INFO(subvolume.GetTime());
+			}
+		}
 	private:
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;

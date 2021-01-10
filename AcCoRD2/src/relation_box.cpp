@@ -148,7 +148,7 @@ namespace accord::shape::relation
 
 	double Box::CalculateAreaBetweenNeighbouringBoxes(const Box& other) const
 	{
-		LOG_INFO("box = {}, neighbouring = {}, {}, {}", *this, other, GetOrigin() == other.GetEnd(), (GetOrigin() == other.GetEnd()));
+		//LOG_INFO("box = {}, neighbouring = {}, {}, {}", *this, other, GetOrigin() == other.GetEnd(), (GetOrigin() == other.GetEnd()));
 		Axis3D axis = ((GetOrigin() == other.GetEnd()) || (GetEnd() == other.GetOrigin())).FindAxis();
 		return FlattenInAxis(axis).GenerateOverlapRect(other.FlattenInAxis(axis)).CalculateArea();
 	}

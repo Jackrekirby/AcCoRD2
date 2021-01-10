@@ -18,7 +18,7 @@ namespace accord::mesoscopic
 	{
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(id);
-		GetSubvolume(index).UpdatePropensitiesAndTime(0);
+		SetEventTime(subvolume_queue.Front().GetTime());
 	}
 
 	void Region::AddSubvolumesToQueue()
@@ -38,8 +38,8 @@ namespace accord::mesoscopic
 		for (auto& subvolume : subvolumes)
 		{
 			subvolume_queue.Add(&subvolume);
-			subvolume.UpdateTime(subvolume.CalculateTimeToNextReaction());
-			LOG_INFO("subvolume time = {}", subvolume.GetTime());
+			subvolume.UpdateReactionTime();
+			//LOG_INFO("subvolume time = {}", subvolume.GetTime());
 			
 		}
 
@@ -55,7 +55,7 @@ namespace accord::mesoscopic
 			{
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
-					LOG_INFO("linking at index = {}", i);
+					//LOG_INFO("linking at index = {}", i);
 					LinkSiblingSubvolumes(i);
 				}
 			}
@@ -115,7 +115,7 @@ namespace accord::mesoscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, 
-						subvolume_length, diffusion_coefficients);
+						subvolume_length, diffusion_coefficients, i.Volume());
 				}
 			}
 		}
@@ -187,7 +187,7 @@ namespace accord::mesoscopic
 
 	void Region::Run()
 	{
-		LOG_INFO("mesoscopic event");
 		subvolume_queue.Front().Run();
+		SetEventTime(subvolume_queue.Front().GetTime());
 	}
 }

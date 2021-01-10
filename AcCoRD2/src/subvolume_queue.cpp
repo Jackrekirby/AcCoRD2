@@ -66,6 +66,11 @@ namespace accord::mesoscopic
 		return *(subvolumes.at(index));
 	}
 
+	std::vector<Subvolume*> SubvolumeQueue::GetSubvolumes()
+	{
+		return subvolumes;
+	}
+
 	void SubvolumeQueue::Swap(size_t index_a, size_t index_b)
 	{
 		std::swap(pm.at(index_a), pm.at(index_b));

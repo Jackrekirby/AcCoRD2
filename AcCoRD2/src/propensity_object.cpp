@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "propensity_object.h"
+#include "mesoscopic_subvolume.h"
 
 namespace accord::mesoscopic
 {
-	LinkedPropensityObjects::LinkedPropensityObjects()
-		: requires_update(false)
+	LinkedPropensityObjects::LinkedPropensityObjects(Subvolume* subvolume)
+		: requires_update(false), subvolume(subvolume)
 	{
 	}
 	void LinkedPropensityObjects::RequiresUpdate()
@@ -17,7 +18,7 @@ namespace accord::mesoscopic
 		objects.emplace_back(object);
 	}
 
-	double LinkedPropensityObjects::UpdatePropensities()
+	void LinkedPropensityObjects::UpdatePropensities()
 	{
 		double delta = 0;
 		if (requires_update)
@@ -28,6 +29,9 @@ namespace accord::mesoscopic
 			}
 			requires_update = false;
 		}
-		return delta;
+		//LOG_INFO("new delta propensity = {}", delta);
+		subvolume->UpdateReactionPropensity(delta);
+		subvolume->UpdateReactionTime();
+		//LOG_INFO("new subvolume time = {}", subvolume->GetTime());
 	}
 }

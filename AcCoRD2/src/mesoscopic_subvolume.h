@@ -22,7 +22,7 @@ namespace accord::mesoscopic
 	class Subvolume
 	{
 	public:
-		Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients);
+		Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, SubvolumeID id);
 
 		void CreateLayers(std::vector<double> diffusion_coefficients);
 
@@ -54,9 +54,13 @@ namespace accord::mesoscopic
 
 		void UpdatePropensities();
 
+		void UpdatePropensities(MoleculeID id);
+
 		void UpdatePropensitiesAndTime(double current_time);
 
-		double CalculateTimeToNextReaction();
+		void UpdateReactionTime();
+
+		void UpdateReactionPropensity(double delta_propensity);
 
 		// Event Functions
 
@@ -65,6 +69,8 @@ namespace accord::mesoscopic
 		double GetTime() const;
 
 		void UpdateTime(double delta_time);
+
+		void SetTime(double new_time);
 
 		bool ReactsBefore(const Subvolume& other);
 
@@ -84,6 +90,7 @@ namespace accord::mesoscopic
 		double time;
 		size_t queue_index;
 		SubvolumeQueue* queue;
+		SubvolumeID id;
 
 		double CalculateDiffusionFactor(const Subvolume& neighbour);
 	};

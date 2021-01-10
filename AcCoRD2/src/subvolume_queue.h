@@ -28,6 +28,8 @@ namespace accord::mesoscopic
 		Subvolume& Front();
 
 		Subvolume& GetSubvolume(size_t index);
+
+		std::vector<Subvolume*> GetSubvolumes();
 	private:
 
 		// an unsorted vector which holds pointers to the subvolumes

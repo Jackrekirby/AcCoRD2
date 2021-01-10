@@ -12,12 +12,13 @@ namespace accord
 namespace accord::mesoscopic
 {
 	class LinkedPropensityObjects;
+	class Subvolume;
 
 	class Layer : public PropensityObject
 	{
 	public:
 
-		Layer(double diffusion_coefficient, LinkedPropensityObjects* linked_propensities);
+		Layer(double diffusion_coefficient, LinkedPropensityObjects* linked_propensities, MoleculeID id);
 
 		void AddMolecule();
 
@@ -40,5 +41,6 @@ namespace accord::mesoscopic
 		double diffusion_propensity; // the total propensity of all diffision reactions
 		double diffusion_coefficient; // the diffision coefficient of the molecule type
 		LinkedPropensityObjects* linked_propensities;
+		MoleculeID id;
 	};
 }

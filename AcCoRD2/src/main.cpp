@@ -25,6 +25,8 @@
 // can i talk about what makes the original code < ..
 // when molecules are added to a subvolume outside of its action time if the propensity updated every time a molecule is added or for example
 // do you let multiple molecules be added then only update those subvolumes requiring an update
+// updating event time does not work if time has not changed and/or old propensity = 0; 
+// --- SetTime(current_time + (old_propensity / reaction_propensity) * (time - current_time));
 
 // Investigate
 // If a regions start time is at 0.5 seconds and time step is 1 then shouldnt the regions first event be at 1.5 seconds?
@@ -34,6 +36,7 @@
 // Alot of relation checking could be done outside the class by an external class which simply returns a vector of regions which match.
 // E.g. Regions* = RelationFinder.GetRegionsWhichOverlap(shape). Then ActiveActor.AddRegions(Regions*)
 // E.g. RelationFinder.IsRelationShipValid(region_a, region_b, relationship)
+// could stick I/O on a seperate thread so can write to binary files which simulation runs next step. Would require a copy of the position vector or make it lockable
 
 // Learning Plan
 // Learnt the importance of reserving as allowing a vector to resize invalidates pointers.
@@ -763,21 +766,30 @@ void TestMesoscopic()
 	using namespace accord;
 	EventQueue5 event_queue(1);
 	Environment::Init("mesosimulation", 1, 5, 1, 0, 0, 0, 1, &event_queue);
-	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 3, 4), {1, 2, 3}, 0, 0, 0);
+	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 1, 1), {1, 2, 3}, 0, 0, 0);
 	
 	event_queue.Add(&region);
 	region.LinkSiblingSubvolumes();
 
 	region.AddSubvolumesToQueue();
-	region.AddMolecule(1, {1, 2, 2});
+
+	for (int i = 0; i < 1; i++)
+	{
+		region.AddMolecule(1, { 1, 2, 2 });
+	}
+	
+	//LOG_INFO("next event = {}", event_queue.Front());
+	//LOG_INFO("region event time = {}, ", region.GetEventTime());
+
 	
 
-	LOG_INFO("region event time = {}, ", region.GetEventTime());
+	//LOG_INFO(event_queue.Front());
 
 	do {
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
+			region.Print();
 			auto& event = event_queue.Front();
 			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())

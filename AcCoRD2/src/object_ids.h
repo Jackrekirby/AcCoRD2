@@ -21,6 +21,9 @@ namespace accord
 	using PassiveActorID = int;
 	using PassiveActorIDs = std::vector<int>;
 
+	using SubvolumeID = int;
+	using SubvolumeIDs = std::vector<int>;
+	
 	// grids are related to molecule id
 	// should subvolumes have an id?
 	// should microscopic and mesoscopic regions have their own id type?

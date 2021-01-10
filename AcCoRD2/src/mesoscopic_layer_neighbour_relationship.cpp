@@ -29,6 +29,7 @@ namespace accord::mesoscopic
 	double NeighbourRelationship::UpdatePropensity(int molecule_count)
 	{
 		diffusion_propensity = molecule_count * diffusion_factor;
+		//LOG_INFO("Updating Propensity {}", diffusion_propensity);
 		return diffusion_propensity;
 	}
 }

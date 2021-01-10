@@ -2,6 +2,8 @@
 
 namespace accord::mesoscopic
 {
+	class Subvolume;
+
 	class PropensityObject
 	{
 	public:
@@ -11,16 +13,17 @@ namespace accord::mesoscopic
 	class LinkedPropensityObjects
 	{
 	public:
-		LinkedPropensityObjects();
+		LinkedPropensityObjects(Subvolume* subvolume);
 
 		void RequiresUpdate();
 
 		void Add(PropensityObject* object);
 
-		double UpdatePropensities();
+		void UpdatePropensities();
 
 	private:
 		bool requires_update;
 		std::vector<PropensityObject*> objects;
+		Subvolume* subvolume;
 	};
 }
