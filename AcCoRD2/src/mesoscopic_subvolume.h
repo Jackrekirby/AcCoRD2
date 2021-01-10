@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "object_ids.h"
 #include "relation_box.h"
+#include "generating_box.h"
 
 #include "mesoscopic_layer.h"
 #include "mesoscopic_zeroth_order_reaction.h"
@@ -18,6 +19,12 @@ namespace accord::mesoscopic
 {
 	class SubvolumeQueue;
 
+	class SubvolumeBox : public shape::relation::Box, public shape::generating::Box
+	{
+	public:
+		SubvolumeBox(const Vec3d& origin, double length);
+	};
+
 	// add json log so u can get a list of all propensities
 	class Subvolume
 	{
@@ -32,7 +39,7 @@ namespace accord::mesoscopic
 
 		void SelectEvent();
 
-		const shape::relation::Box& GetBoundingBox() const;
+		const SubvolumeBox& GetBoundingBox() const;
 
 		// assumes the subvolums are neighbours
 		// add IfNeighbourAdd()
@@ -86,7 +93,7 @@ namespace accord::mesoscopic
 		std::vector<SecondOrderReaction> second_order_reactions;
 		std::vector<LinkedPropensityObjects> linked_propensity_objects;
 		double reaction_propensity;
-		shape::relation::Box box;
+		SubvolumeBox box;
 
 		// Event Variables
 		double time;

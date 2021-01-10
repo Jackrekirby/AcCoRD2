@@ -2,6 +2,7 @@
 #include "passive_actor.h"
 #include "microscopic_subvolume2.h"
 #include "environment.h"
+#include "mesoscopic_subvolume.h"
 
 namespace accord
 {
@@ -11,13 +12,13 @@ namespace accord
 	// nested class may not work
 	// can all typed subvolumes be merged into single class?
 	// consider renaming to SubvolumeVector
-	PassiveActor::TypedSubvolumes::TypedSubvolumes(MoleculeID id)
+	PassiveActor::TypedMicroscopicSubvolumes::TypedMicroscopicSubvolumes(MoleculeID id)
 		: id(id)
 	{
 
 	}
 
-	void PassiveActor::TypedSubvolumes::Add(microscopic::Subvolume* subvolume)
+	void PassiveActor::TypedMicroscopicSubvolumes::Add(microscopic::Subvolume* subvolume)
 	{
 		subvolumes.emplace_back(subvolume);
 	}
@@ -118,8 +119,8 @@ namespace accord
 	{
 		for (auto& id : molecule_ids)
 		{
-			enveloped_subvolumes.emplace_back(id);
-			partial_subvolumes.emplace_back(id);
+			enveloped_microscopic_subvolumes.emplace_back(id);
+			partial_microscopic_subvolumes.emplace_back(id);
 			for (auto& region : Environment::GetRegions())
 			{
 				//LOG_INFO(region->GetID());
@@ -128,12 +129,12 @@ namespace accord
 					if (GetShape()->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
 					{
 						//LOG_INFO("enveloped");
-						enveloped_subvolumes.back().Add(&subvolume);
+						enveloped_microscopic_subvolumes.back().Add(&subvolume);
 					}
 					else if (GetShape()->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
 					{
 						//LOG_INFO("partial");
-						partial_subvolumes.back().Add(&subvolume);
+						partial_microscopic_subvolumes.back().Add(&subvolume);
 					}
 					// otherwise subvolume is not inside actor so is ignored
 				}
@@ -145,13 +146,13 @@ namespace accord
 	{
 		for (auto& id : molecule_ids)
 		{
-			enveloped_subvolumes.emplace_back(id);
+			enveloped_microscopic_subvolumes.emplace_back(id);
 			for (auto& region_id : region_ids)
 			{
 				auto& region = Environment::GetRegion(region_id);
 				for (auto& subvolume : region.GetGrid(id).GetSubvolumes())
 				{
-					enveloped_subvolumes.back().Add(&subvolume);
+					enveloped_microscopic_subvolumes.back().Add(&subvolume);
 				}
 			}
 		}
@@ -161,7 +162,7 @@ namespace accord
 	{
 		MoleculeID id = 0;
 		// get all enveloped subvolumes of a given type
-		for (auto& typed_subvolumes : enveloped_subvolumes)
+		for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
 		{
 			std::vector<Vec3d> positions;
 			// iterate through each subvolume all of the same type and get positions
@@ -194,7 +195,7 @@ namespace accord
 	{
 		MoleculeID id = 0;
 		// get all partial subvolumes of a given type
-		for (auto& typed_subvolumes : partial_subvolumes)
+		for (auto& typed_subvolumes : partial_microscopic_subvolumes)
 		{
 			std::vector<Vec3d> positions;
 			// iterate through each subvolume all of the same type and get positions
@@ -228,6 +229,60 @@ namespace accord
 			id++;
 		}
 	}
+
+	void PassiveActor::ObserveEnvelopedMesoscopicSubvolumes(std::vector<size_t>& counts)
+	{
+		for (MoleculeID id : molecule_ids)
+		{
+			std::vector<Vec3d> positions;
+			for (auto& subvolume : enveloped_mesoscopic_subvolumes)
+			{
+				auto& box = subvolume.GetBoundingBox();
+				size_t count = subvolume.GetLayer(id).GetCount();
+				positions.reserve(positions.size() + count);
+				for (size_t i = 0; i < count; i++)
+				{
+					positions.emplace_back(box.GeneratePointInVolume());
+				}
+			}
+			// write positions all of the same molecule type to file
+			if (positions.size() != 0)
+			{
+				position_files.at(id).Write(positions);
+			}
+			counts.at(id) += positions.size();
+			positions.clear();
+		}
+	}
+
+	void PassiveActor::ObservePartialMesoscopicSubvolumes(std::vector<size_t>& counts)
+	{
+		for (MoleculeID id : molecule_ids)
+		{
+			std::vector<Vec3d> positions;
+			for (auto& partial_subvolume : partial_mesoscopic_subvolumes)
+			{
+				size_t count = partial_subvolume.subvolume->GetLayer(id).GetCount();
+				double probability = partial_subvolume.in_area_probability;
+				// in order to not generate a random number per molecule in the subvolume to determine if the molecule is inside the
+				// partial subvolume a single random number can be generated to determine the total number of molecules inside the
+				// parital subvolume.
+				size_t count_in_partial_subvolume = count * ((Random::GenerateRealUniform() - probability) / probability);
+				for (size_t i = 0; i < count_in_partial_subvolume; i++)
+				{
+					positions.emplace_back(partial_subvolume.box.GeneratePointInVolume());
+				}
+			// write positions all of the same molecule type to file
+			if (positions.size() != 0)
+			{
+				position_files.at(id).Write(positions);
+			}
+			counts.at(id) += positions.size();
+			positions.clear();
+		}
+	}
+
+
 	void to_json(Json& j, const PassiveActorShape& shape)
 	{
 		shape.ToJson(j);

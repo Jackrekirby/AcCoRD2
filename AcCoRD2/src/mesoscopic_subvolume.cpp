@@ -7,9 +7,15 @@
 
 namespace accord::mesoscopic
 {
+	SubvolumeBox::SubvolumeBox(const Vec3d& origin, double length)
+		: shape::relation::Box(origin, Vec3d(length)), shape::generating::Box(origin, Vec3d(length)),
+		shape::basic::Box(origin, Vec3d(length))
+	{
+
+	}
 
 	Subvolume::Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, SubvolumeID id)
-		: box(origin, Vec3d(length)), reaction_propensity(0), queue(nullptr), queue_index(0), time(0), id(id)
+		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(0), id(id)
 	{
 		CreateLayers(diffusion_coefficients);
 	}
@@ -77,7 +83,7 @@ namespace accord::mesoscopic
 		throw std::exception();
 	}
 
-	const shape::relation::Box& Subvolume::GetBoundingBox() const
+	const SubvolumeBox& Subvolume::GetBoundingBox() const
 	{
 		return box;
 	}

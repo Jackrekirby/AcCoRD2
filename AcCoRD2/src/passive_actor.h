@@ -6,8 +6,14 @@
 #include "object_ids.h"
 #include "vec3d.h"
 #include "relation_box.h"
+#include "generating_box.h"
 
 namespace accord::microscopic
+{
+	class Subvolume;
+}
+
+namespace accord::mesoscopic
 {
 	class Subvolume;
 }
@@ -35,15 +41,29 @@ namespace accord
 
 	class PassiveActor : public Event5
 	{
-		class TypedSubvolumes
+		class TypedMicroscopicSubvolumes
 		{
 		public:
-			TypedSubvolumes(MoleculeID id);
+			TypedMicroscopicSubvolumes(MoleculeID id);
 
 			void Add(microscopic::Subvolume* subvolume);
 
 			MoleculeID id;
 			std::vector<microscopic::Subvolume*> subvolumes;
+		};
+
+		class PartialMesoscopicSubvolume
+		{
+		public:
+			PartialMesoscopicSubvolume(mesoscopic::Subvolume* subvolume, shape::generating::Box box)
+				: box(box), subvolume(subvolume), in_area_probability(box.CalculateVolume() / subvolume->GetBoundingBox().CalculateVolume())
+			{
+
+			}
+
+			double in_area_probability;
+			shape::generating::Box box;
+			mesoscopic::Subvolume* subvolume;
 		};
 	public:
 		PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
@@ -68,8 +88,11 @@ namespace accord
 		std::vector<OutputBinarySingles<size_t>> count_files;
 		std::vector<OutputBinarySingles<double>> time_files;
 
-		std::vector<TypedSubvolumes> enveloped_subvolumes;
-		std::vector<TypedSubvolumes> partial_subvolumes;
+		std::vector<TypedMicroscopicSubvolumes> enveloped_microscopic_subvolumes;
+		std::vector<TypedMicroscopicSubvolumes> partial_microscopic_subvolumes;
+
+		std::vector<mesoscopic::Subvolume> enveloped_mesoscopic_subvolumes;
+		std::vector<PartialMesoscopicSubvolume> partial_mesoscopic_subvolumes;
 		// SHOULD BE PASSIVE ACTOR ID
 		ActiveActorID id;
 		double time_step;
@@ -84,6 +107,10 @@ namespace accord
 		void ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts);
 
 		void ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts);
+
+		void ObserveEnvelopedMesoscopicSubvolumes(std::vector<size_t>& counts);
+
+		void ObservePartialMesoscopicSubvolumes(std::vector<size_t>& counts);
 
 	protected:
 		void CreateFiles();

@@ -84,6 +84,10 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (next)
+// make generating shapes virtual
+// reaction testing in mesoscopic regions
+// passive and active actors in mesoscopic regions
+// review / remove redundant code in meso propensity checking
 // seperate public and private functions, particularly for active actors ane mesoscopic classes
 
 // TO DO (Imminent)
