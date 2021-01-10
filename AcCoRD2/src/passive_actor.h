@@ -55,18 +55,14 @@ namespace accord
 		class PartialMesoscopicSubvolume
 		{
 		public:
-			PartialMesoscopicSubvolume(mesoscopic::Subvolume* subvolume, shape::generating::Box box)
-				: box(box), subvolume(subvolume), in_area_probability(box.CalculateVolume() / subvolume->GetBoundingBox().CalculateVolume())
-			{
-
-			}
+			PartialMesoscopicSubvolume(mesoscopic::Subvolume* subvolume, shape::generating::Box box);
 
 			double in_area_probability;
 			shape::generating::Box box;
 			mesoscopic::Subvolume* subvolume;
 		};
 	public:
-		PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
+		PassiveActor(MicroRegionIDs region_ids, MicroRegionIDs meso_region_ids, MoleculeIDs molecule_ids,
 			double start_time, int priority, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
@@ -91,7 +87,7 @@ namespace accord
 		std::vector<TypedMicroscopicSubvolumes> enveloped_microscopic_subvolumes;
 		std::vector<TypedMicroscopicSubvolumes> partial_microscopic_subvolumes;
 
-		std::vector<mesoscopic::Subvolume> enveloped_mesoscopic_subvolumes;
+		std::vector<mesoscopic::Subvolume*> enveloped_mesoscopic_subvolumes;
 		std::vector<PartialMesoscopicSubvolume> partial_mesoscopic_subvolumes;
 		// SHOULD BE PASSIVE ACTOR ID
 		ActiveActorID id;
@@ -102,11 +98,13 @@ namespace accord
 		bool record_positions;
 		bool record_time;
 
-		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, RegionIDs region_ids);
+		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids);
 
 		void ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts);
 
 		void ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts);
+
+		void AddMesoscopicSubvolumes(MicroRegionIDs region_ids);
 
 		void ObserveEnvelopedMesoscopicSubvolumes(std::vector<size_t>& counts);
 

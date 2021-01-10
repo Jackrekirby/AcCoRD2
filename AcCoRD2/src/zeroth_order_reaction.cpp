@@ -3,7 +3,7 @@
 
 namespace accord
 {
-	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
+	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions)
 		: products(products), reaction_rate(reaction_rate), regions(regions)
 	{
 
@@ -19,7 +19,7 @@ namespace accord
 		return reaction_rate;
 	}
 
-	const RegionIDs& ZerothOrderReaction::GetRegions() const
+	const MicroRegionIDs& ZerothOrderReaction::GetRegions() const
 	{
 		return regions;
 	}

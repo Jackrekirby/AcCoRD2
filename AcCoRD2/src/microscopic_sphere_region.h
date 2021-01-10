@@ -10,7 +10,7 @@ namespace accord::microscopic
 	public:
 		SphereRegion(shape::basic::Sphere sphere, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
 			double start_time, double time_step, int priority,
-			SurfaceType surface_type, RegionID id);
+			SurfaceType surface_type, MicroRegionID id);
 
 		const SphereSurfaceShape& GetShape() const;
 	private:

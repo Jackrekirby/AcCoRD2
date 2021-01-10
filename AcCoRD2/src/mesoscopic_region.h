@@ -17,7 +17,7 @@ namespace accord::mesoscopic
 	{
 	public:
 		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes,
-			std::vector<double> diffusion_coefficients, double start_time, int priority, RegionID id);
+			std::vector<double> diffusion_coefficients, double start_time, int priority, MesoRegionID id);
 
 		void AddMolecule(MoleculeID id, const Vec3d& position);
 
@@ -28,6 +28,8 @@ namespace accord::mesoscopic
 		void LinkSiblingSubvolumes(const Vec3i& i);
 
 		Subvolume& GetSubvolume(Vec3i index);
+
+		std::vector<Subvolume>& GetSubvolumes();
 
 		Subvolume* GetSubvolumeIfExists(const Vec3i& index);
 
@@ -50,7 +52,7 @@ namespace accord::mesoscopic
 
 		Event5::Type GetType() const;
 
-		EventID GetID() const;
+		MesoRegionID GetID() const;
 
 		void Run();
 
@@ -65,7 +67,7 @@ namespace accord::mesoscopic
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;
 		shape::relation::Box box;
-		RegionID id;
+		MicroRegionID id;
 
 		Vec3i n_subvolumes;
 	};

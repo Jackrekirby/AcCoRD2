@@ -27,26 +27,26 @@ namespace accord
 	}
 
 	// Zeroth Order Reaction
-	void ReactionManager::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
+	void ReactionManager::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions)
 	{
 		zeroth_order_reactions.emplace_back(products, reaction_rate, regions);
 	}
 
 	// First Order Reaction
-	void ReactionManager::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
+	void ReactionManager::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, regions);
 		first_order_reaction_rates_per_molecule_type.at(reactant) += reaction_rate;
 	}
 
 	void ReactionManager::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions)
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions)
 	{
 		second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, regions);
 	}
 
 	void ReactionManager::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
-		double binding_radius, double unbinding_radius, const RegionIDs& regions)
+		double binding_radius, double unbinding_radius, const MicroRegionIDs& regions)
 	{
 		second_order_reactions.emplace_back(reactant, reactant, products, binding_radius, unbinding_radius, regions);
 	}

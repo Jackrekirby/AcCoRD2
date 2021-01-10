@@ -14,7 +14,7 @@
 clear all;
 clc;
 tic;
-sim = Accord.importFiles("D:\dev", "my_simulation5", [], [], true);
+sim = Accord.importFiles("D:\dev", "meso_sim", [], [], true);
 toc
 %% Watch Animation Live
 clc;

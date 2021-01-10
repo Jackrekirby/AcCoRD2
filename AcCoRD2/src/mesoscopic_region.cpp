@@ -7,7 +7,7 @@
 namespace accord::mesoscopic
 {
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
-		std::vector<double> diffusion_coefficients, double start_time, int priority, RegionID id)
+		std::vector<double> diffusion_coefficients, double start_time, int priority, MesoRegionID id)
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event5(start_time, priority), id(id),
 			n_subvolumes(n_subvolumes)
 	{
@@ -131,6 +131,11 @@ namespace accord::mesoscopic
 		}
 	}
 
+	std::vector<Subvolume>& Region::GetSubvolumes()
+	{
+		return subvolumes;
+	}
+
 	void Region::AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
@@ -182,7 +187,7 @@ namespace accord::mesoscopic
 		return Event5::Type::mesoscopic_region;
 	}
 
-	EventID Region::GetID() const
+	MesoRegionID Region::GetID() const
 	{
 		return id;
 	}

@@ -7,7 +7,7 @@ namespace accord
 	{
 	public:
 		SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products,
-			double binding_radius, double unbinding_radius, const RegionIDs& regions);
+			double binding_radius, double unbinding_radius, const MicroRegionIDs& regions);
 
 		MoleculeID GetReactantA() const;
 
@@ -19,7 +19,7 @@ namespace accord
 
 		double GetUnBindingRadius() const;
 
-		const RegionIDs& GetRegions() const;
+		const MicroRegionIDs& GetRegions() const;
 
 	private:
 		MoleculeID reactant_a;
@@ -27,6 +27,6 @@ namespace accord
 		MoleculeIDs products;
 		double binding_radius;
 		double unbinding_radius;
-		RegionIDs regions;
+		MicroRegionIDs regions;
 	};
 }

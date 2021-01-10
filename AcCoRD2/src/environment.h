@@ -1,16 +1,19 @@
 #pragma once
 #include "microscopic_region2.h"
+#include "mesoscopic_region.h"
 #include "passive_actor.h"
 #include "active_actor2.h"
 
 namespace accord
 {
+	// need to rename all region functions to get microscopic region
 	class Environment
 	{
 	public:
 		static void Init(std::string simulation_name, int num_realisations,
 			double run_time, int num_molecule_types, int num_microscopic_regions,
-			int num_passive_actors, int num_active_actors, uint64_t seed, EventQueue5* event_queue);
+			int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
+			uint64_t seed, EventQueue5* event_queue);
 
 		static void SetTime(double time);
 
@@ -24,15 +27,24 @@ namespace accord
 
 		static int GetRealisationNumber();
 
-		static microscopic::Region& GetRegion(RegionID id);
 
-		static std::vector<microscopic::Region*> GetRegions(RegionIDs ids);
+		static microscopic::Region& GetMicroscopicRegion(MicroRegionID id);
+
+		static std::vector<microscopic::Region*> GetRegions(MicroRegionIDs ids);
 
 		static std::vector<std::unique_ptr<microscopic::Region>>& GetRegions();
+
+
+		static mesoscopic::Region& GetMesoscopicRegion(MesoRegionID id);
+
+		static std::vector<mesoscopic::Region*> GetMesoscopicRegions(MesoRegionIDs ids);
+
+		static std::vector<mesoscopic::Region>& GetMesoscopicRegions();
 
 		static std::vector<std::unique_ptr<PassiveActor>>& GetPassiveActors();
 
 		static std::vector<std::unique_ptr<ActiveActor2>>& GetActiveActors();
+
 
 		static std::string GetFilePath();
 
@@ -64,19 +76,19 @@ namespace accord
 			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
 			double start_time, double time_step, int priority);
 		
-		static void DefineRelationship(RegionID region_a, RegionID region_b,
+		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
 			RelationshipPriority priority,
 			microscopic::SurfaceType ab_surface, microscopic::SurfaceType ba_surface);
 
-		static void DefineRelationship(RegionID region_a, RegionID region_b,
+		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
 			RelationshipPriority priority, microscopic::SurfaceType surface);
 
 		typedef std::vector<microscopic::SurfaceType> SurfaceTypes;
-		static void DefineRelationship(RegionID region_a, RegionID region_b,
+		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
 			RelationshipPriority priority,
 			SurfaceTypes ab_surfaces, SurfaceTypes ba_surfaces);
 
-		static void DefineRelationship(RegionID region_a, RegionID region_b,
+		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
 			RelationshipPriority priority, SurfaceTypes surfaces);
 	private:
 		static double time;
@@ -89,6 +101,7 @@ namespace accord
 		static EventQueue5* event_queue;
 
 		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
+		static std::vector<mesoscopic::Region> mesoscopic_regions;
 		static std::vector<std::unique_ptr<ActiveActor2>> active_actors;
 
 		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;

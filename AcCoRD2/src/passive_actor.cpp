@@ -33,7 +33,7 @@ namespace accord
 		
 	}
 
-	PassiveActor::PassiveActor(RegionIDs region_ids, MoleculeIDs molecule_ids,
+	PassiveActor::PassiveActor(MicroRegionIDs region_ids, MicroRegionIDs meso_region_ids, MoleculeIDs molecule_ids,
 		double start_time, int priority, double time_step,
 		ActiveActorID id, bool record_positions, bool record_time)
 		: Event5(start_time, priority), id(id),
@@ -41,6 +41,7 @@ namespace accord
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
 		AddMicroscopicSubvolumes(molecule_ids, region_ids);
+		AddMesoscopicSubvolumes(meso_region_ids);
 		CreateFiles();
 	}
 
@@ -84,6 +85,10 @@ namespace accord
 		std::vector<size_t> counts(Environment::GetNumberOfMoleculeTypes(), 0);
 		ObserveEnvelopedMicroscopicSubvolumes(counts);
 		ObservePartialMicroscopicSubvolumes(counts);
+
+		ObserveEnvelopedMesoscopicSubvolumes(counts);
+		ObservePartialMesoscopicSubvolumes(counts);
+
 		MoleculeID id = 0;
 		for (auto& count : counts)
 		{
@@ -142,18 +147,29 @@ namespace accord
 		}
 	}
 
-	void PassiveActor::AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, RegionIDs region_ids)
+	void PassiveActor::AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids)
 	{
 		for (auto& id : molecule_ids)
 		{
 			enveloped_microscopic_subvolumes.emplace_back(id);
 			for (auto& region_id : region_ids)
 			{
-				auto& region = Environment::GetRegion(region_id);
+				auto& region = Environment::GetMicroscopicRegion(region_id);
 				for (auto& subvolume : region.GetGrid(id).GetSubvolumes())
 				{
 					enveloped_microscopic_subvolumes.back().Add(&subvolume);
 				}
+			}
+		}
+	}
+
+	void PassiveActor::AddMesoscopicSubvolumes(MicroRegionIDs region_ids)
+	{
+		for (auto& region : Environment::GetMesoscopicRegions(region_ids))
+		{
+			for (auto& subvolume : region->GetSubvolumes())
+			{
+				enveloped_mesoscopic_subvolumes.emplace_back(&subvolume);
 			}
 		}
 	}
@@ -237,8 +253,8 @@ namespace accord
 			std::vector<Vec3d> positions;
 			for (auto& subvolume : enveloped_mesoscopic_subvolumes)
 			{
-				auto& box = subvolume.GetBoundingBox();
-				size_t count = subvolume.GetLayer(id).GetCount();
+				auto& box = subvolume->GetBoundingBox();
+				size_t count = subvolume->GetLayer(id).GetCount();
 				positions.reserve(positions.size() + count);
 				for (size_t i = 0; i < count; i++)
 				{
@@ -267,11 +283,12 @@ namespace accord
 				// in order to not generate a random number per molecule in the subvolume to determine if the molecule is inside the
 				// partial subvolume a single random number can be generated to determine the total number of molecules inside the
 				// parital subvolume.
-				size_t count_in_partial_subvolume = count * ((Random::GenerateRealUniform() - probability) / probability);
-				for (size_t i = 0; i < count_in_partial_subvolume; i++)
+				int count_in_partial_subvolume = static_cast<int>(std::round(count * ((Random::GenerateRealUniform() - probability) / probability)));
+				for (int i = 0; i < count_in_partial_subvolume; i++)
 				{
 					positions.emplace_back(partial_subvolume.box.GeneratePointInVolume());
 				}
+			}
 			// write positions all of the same molecule type to file
 			if (positions.size() != 0)
 			{
@@ -286,5 +303,11 @@ namespace accord
 	void to_json(Json& j, const PassiveActorShape& shape)
 	{
 		shape.ToJson(j);
+	}
+
+	PassiveActor::PartialMesoscopicSubvolume::PartialMesoscopicSubvolume(mesoscopic::Subvolume* subvolume, shape::generating::Box box)
+		: box(box), subvolume(subvolume), in_area_probability(box.CalculateVolume() / subvolume->GetBoundingBox().CalculateVolume())
+	{
+
 	}
 }

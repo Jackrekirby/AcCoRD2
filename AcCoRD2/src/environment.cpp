@@ -11,12 +11,14 @@ namespace accord
 {
 	void Environment::Init(std::string simulation_name, int num_realisations, 
 		double run_time, int num_molecule_types, int num_microscopic_regions,
-		int num_passive_actors, int num_active_actors, uint64_t seed, EventQueue5* event_queue)
+		int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
+		uint64_t seed, EventQueue5* event_queue)
 	{
 		Environment::time = 0;
 		Environment::run_time = run_time;
 		Environment::num_molecule_types = num_molecule_types;
 		Environment::microscopic_regions.reserve(num_microscopic_regions);
+		Environment::mesoscopic_regions.reserve(num_mesoscopic_regions);
 		Environment::passive_actors.reserve(num_passive_actors);
 		Environment::active_actors.reserve(num_active_actors);
 		Environment::simulation_name = simulation_name;
@@ -73,7 +75,7 @@ namespace accord
 		{
 			for (auto& region : reaction.GetRegions())
 			{
-				GetRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
+				GetMicroscopicRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
 			}
 		}
 
@@ -81,7 +83,7 @@ namespace accord
 		{
 			for (auto& region : reaction.GetRegions())
 			{
-				GetRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
+				GetMicroscopicRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
 					reaction.GetRate(), reaction.GetTotalRate());
 			}
 		}
@@ -92,12 +94,12 @@ namespace accord
 			{
 				if (reaction.GetReactantA() == reaction.GetReactantB())
 				{
-					GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetProducts(),
+					GetMicroscopicRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetProducts(),
 						reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
 				}
 				else
 				{
-					GetRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(),
+					GetMicroscopicRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(),
 						reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
 				}
 			}
@@ -141,12 +143,14 @@ namespace accord
 		return current_realisation;
 	}
 
-	microscopic::Region& Environment::GetRegion(RegionID id)
+
+
+	microscopic::Region& Environment::GetMicroscopicRegion(MicroRegionID id)
 	{
 		return *microscopic_regions.at(id);
 	}
 
-	std::vector<microscopic::Region*> Environment::GetRegions(RegionIDs ids)
+	std::vector<microscopic::Region*> Environment::GetRegions(MicroRegionIDs ids)
 	{
 		std::vector<microscopic::Region*> regions_ptrs;
 		for (auto id : ids)
@@ -160,6 +164,29 @@ namespace accord
 	{
 		return microscopic_regions;
 	}
+
+
+
+	mesoscopic::Region& Environment::GetMesoscopicRegion(MicroRegionID id)
+	{
+		return mesoscopic_regions.at(id);
+	}
+
+	std::vector<mesoscopic::Region*> Environment::GetMesoscopicRegions(MicroRegionIDs ids)
+	{
+		std::vector<mesoscopic::Region*> regions_ptrs;
+		for (auto id : ids)
+		{
+			regions_ptrs.push_back(&mesoscopic_regions.at(id));
+		}
+		return regions_ptrs;
+	}
+
+	std::vector<mesoscopic::Region>& Environment::GetMesoscopicRegions()
+	{
+		return mesoscopic_regions;
+	}
+
 
 	std::vector<std::unique_ptr<PassiveActor>>& Environment::GetPassiveActors()
 	{
@@ -209,23 +236,23 @@ namespace accord
 
 	// the only type of relationship which does not need to be defined is a neighbour and none
 	// if region a has a reflective surface and b is the neighbour
-	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
 		RelationshipPriority priority, 
 		SurfaceType ab_surface, SurfaceType ba_surface)
 	{
 		switch (priority)
 		{
 		case RelationshipPriority::A:
-			GetRegion(region_a).AddLowPriorityRelative(GetRegion(region_b), ab_surface, GetMoleculeIDs());
-			GetRegion(region_b).AddHighPriorityRelative(GetRegion(region_a), ba_surface, GetMoleculeIDs());
+			GetMicroscopicRegion(region_a).AddLowPriorityRelative(GetMicroscopicRegion(region_b), ab_surface, GetMoleculeIDs());
+			GetMicroscopicRegion(region_b).AddHighPriorityRelative(GetMicroscopicRegion(region_a), ba_surface, GetMoleculeIDs());
 			break;
 		case RelationshipPriority::B:
-			GetRegion(region_a).AddHighPriorityRelative(GetRegion(region_b), ab_surface, GetMoleculeIDs());
-			GetRegion(region_b).AddLowPriorityRelative(GetRegion(region_a), ba_surface, GetMoleculeIDs());
+			GetMicroscopicRegion(region_a).AddHighPriorityRelative(GetMicroscopicRegion(region_b), ab_surface, GetMoleculeIDs());
+			GetMicroscopicRegion(region_b).AddLowPriorityRelative(GetMicroscopicRegion(region_a), ba_surface, GetMoleculeIDs());
 			break;
 		case RelationshipPriority::None:
-			GetRegion(region_a).AddNeighbour(GetRegion(region_b), ab_surface, GetMoleculeIDs());
-			GetRegion(region_b).AddNeighbour(GetRegion(region_a), ba_surface, GetMoleculeIDs());
+			GetMicroscopicRegion(region_a).AddNeighbour(GetMicroscopicRegion(region_b), ab_surface, GetMoleculeIDs());
+			GetMicroscopicRegion(region_b).AddNeighbour(GetMicroscopicRegion(region_a), ba_surface, GetMoleculeIDs());
 			break;
 		default:
 			LOG_CRITICAL("Unknown RelationshipPriority type");
@@ -234,18 +261,18 @@ namespace accord
 
 		if (ab_surface == SurfaceType::None && ba_surface == SurfaceType::None)
 		{
-			GetRegion(region_a).LinkGrids(GetRegion(region_b), GetMoleculeIDs());
-			GetRegion(region_a).LinkGrids(GetRegion(region_b), GetMoleculeIDs());
+			GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), GetMoleculeIDs());
+			GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), GetMoleculeIDs());
 		}
 	}
 
-	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
 		RelationshipPriority priority, microscopic::SurfaceType surface)
 	{
 		DefineRelationship(region_a, region_b, priority, surface, surface);
 	}
 
-	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
 		RelationshipPriority priority,
 		SurfaceTypes ab_surfaces, SurfaceTypes ba_surfaces)
 	{
@@ -255,39 +282,39 @@ namespace accord
 		case RelationshipPriority::A:
 			for (auto& ab_surface : ab_surfaces)
 			{
-				GetRegion(region_a).AddLowPriorityRelative(GetRegion(region_b), ab_surface, { i });
+				GetMicroscopicRegion(region_a).AddLowPriorityRelative(GetMicroscopicRegion(region_b), ab_surface, { i });
 				i++;
 			}
 			i = 0;
 			for (auto& ba_surface : ba_surfaces)
 			{
-				GetRegion(region_b).AddHighPriorityRelative(GetRegion(region_a), ba_surface, { i });
+				GetMicroscopicRegion(region_b).AddHighPriorityRelative(GetMicroscopicRegion(region_a), ba_surface, { i });
 				i++;
 			}
 			break;
 		case RelationshipPriority::B:
 			for (auto& ab_surface : ab_surfaces)
 			{
-				GetRegion(region_a).AddHighPriorityRelative(GetRegion(region_b), ab_surface, { i });
+				GetMicroscopicRegion(region_a).AddHighPriorityRelative(GetMicroscopicRegion(region_b), ab_surface, { i });
 				i++;
 			}
 			i = 0;
 			for (auto& ba_surface : ba_surfaces)
 			{
-				GetRegion(region_b).AddLowPriorityRelative(GetRegion(region_a), ba_surface, { i });
+				GetMicroscopicRegion(region_b).AddLowPriorityRelative(GetMicroscopicRegion(region_a), ba_surface, { i });
 				i++;
 			}
 			break;
 		case RelationshipPriority::None:
 			for (auto& ab_surface : ab_surfaces)
 			{
-				GetRegion(region_a).AddNeighbour(GetRegion(region_b), ab_surface, { i });
+				GetMicroscopicRegion(region_a).AddNeighbour(GetMicroscopicRegion(region_b), ab_surface, { i });
 				i++;
 			}
 			i = 0;
 			for (auto& ba_surface : ba_surfaces)
 			{
-				GetRegion(region_b).AddNeighbour(GetRegion(region_a), ba_surface, { i });
+				GetMicroscopicRegion(region_b).AddNeighbour(GetMicroscopicRegion(region_a), ba_surface, { i });
 				i++;
 			}
 			break;
@@ -300,19 +327,20 @@ namespace accord
 		{
 			if (ab_surfaces.at(i) == SurfaceType::None && ba_surfaces.at(i) == SurfaceType::None)
 			{
-				GetRegion(region_a).LinkGrids(GetRegion(region_b), {i});
-				GetRegion(region_a).LinkGrids(GetRegion(region_b), {i});
+				GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), {i});
+				GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), {i});
 			}
 		}
 	}
 
-	void Environment::DefineRelationship(RegionID region_a, RegionID region_b, 
+	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
 		RelationshipPriority priority, SurfaceTypes surfaces)
 	{
 		DefineRelationship(region_a, region_b, priority, surfaces, surfaces);
 	}
 
 	std::vector<std::unique_ptr<microscopic::Region>> Environment::microscopic_regions;
+	std::vector<mesoscopic::Region> Environment::mesoscopic_regions;
 	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
 	std::vector<std::unique_ptr<ActiveActor2>> Environment::active_actors;
 	double Environment::run_time = 0;

@@ -21,7 +21,7 @@ namespace accord::microscopic
 		Region(std::vector<double> diffision_coefficients,
 			std::vector<Vec3i> n_subvolumes,
 			double start_time, double time_step, int priority,
-			SurfaceType surface_type, RegionID id);
+			SurfaceType surface_type, MicroRegionID id);
 
 		void Run();
 
@@ -83,7 +83,7 @@ namespace accord::microscopic
 
 		SurfaceType GetSurfaceType() const;
 
-		RegionID GetID() const;
+		MicroRegionID GetID() const;
 
 		void NextRealisation();
 
@@ -102,7 +102,7 @@ namespace accord::microscopic
 		double time_step;
 		double start_time;
 		double local_time;
-		RegionID id;
+		MicroRegionID id;
 
 		// link local grids to external grids between each molecule type for bi-molecular reactions.
 		// called by add relationship functions.

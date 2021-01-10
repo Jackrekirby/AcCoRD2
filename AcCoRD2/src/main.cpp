@@ -84,6 +84,7 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (next)
+// add simulation dir, seed dir and realisation dir for envrionment
 // make generating shapes virtual
 // reaction testing in mesoscopic regions
 // passive and active actors in mesoscopic regions
@@ -191,7 +192,7 @@ void TestSimpleEnvironment2()
 	// SIMULATION ============================================================================================================
 	std::string sim_dir = "D:/dev/my_simulation5";
 	EventQueue5 event_queue(3);
-	Environment::Init(sim_dir, 1, 1, 4, 1, 1, 0, 1, &event_queue);
+	Environment::Init(sim_dir, 1, 1, 4, 1, 0, 1, 0, 1, &event_queue);
 	//Random::GetGenerator().advance(2);
 
 	// CREATE REGIONS ========================================================================================================
@@ -253,8 +254,8 @@ void TestSimpleEnvironment2()
 	Environment::GetPassiveActors().reserve(Environment::GetRegions().size());
 	for (int i = 0; i < Environment::GetRegions().size(); i++)
 	{
-		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(RegionIDs({ i }),
-			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, time_step,
+		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(MicroRegionIDs({ i }),
+			MicroRegionIDs({ i }), MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, time_step,
 			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
 	}
 
@@ -385,7 +386,7 @@ void TestSimpleEnvironment2()
 //	Environment::GetPassiveActors().reserve(Environment::GetRegions().size());
 //	for (int i = 0; i < Environment::GetRegions().size(); i++)
 //	{
-//		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>( RegionIDs({ i }),
+//		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>( MicroRegionIDs({ i }),
 //			MoleculeIDs({ 0, 1, 2, 3 }), 0, -1, &event_queue, time_step, 
 //			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
 //	}
@@ -508,7 +509,7 @@ void TestSimpleEnvironment2()
 //	 CREATE ACTORS
 //	Environment::GetPassiveActors().reserve(2);
 //	Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(
-//		RegionIDs({ 0, 1, 2 }),
+//		MicroRegionIDs({ 0, 1, 2 }),
 //		MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true));
 //	Environment::GetPassiveActors().emplace_back(std::make_unique<BoxPassiveActor>(
 //		shape::basic::Box(Vec3d(4, -2, -2), Vec3d(2, 4, 4)),
@@ -687,9 +688,9 @@ void TestSimpleEnvironment2()
 //
 //	// ACTORS
 //	// cannot delete passive actor in vector
-//	PassiveActor p1(RegionIDs({ 0 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
-//	PassiveActor p2(RegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true);
-//	PassiveActor p3(RegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true);
+//	PassiveActor p1(MicroRegionIDs({ 0 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 0, true, true);
+//	PassiveActor p2(MicroRegionIDs({ 1 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 1, true, true);
+//	PassiveActor p3(MicroRegionIDs({ 2 }), MoleculeIDs({ 0, 1, 2 }), 0, -1, &event_queue, 0.05, 2, true, true);
 //
 //	do {
 //		if (Environment::GetRealisationNumber() > 0)
@@ -768,20 +769,66 @@ void TestCylinder()
 void TestMesoscopic()
 {
 	using namespace accord;
-	EventQueue5 event_queue(1);
-	Environment::Init("mesosimulation", 1, 5, 1, 0, 0, 0, 1, &event_queue);
-	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 2, 1), {1, 1, 1}, 0, 0, 0);
-	
-	event_queue.Add(&region);
-	region.LinkSiblingSubvolumes();
+	EventQueue5 event_queue(2);
+	std::string sim_dir = "D:/dev/meso_sim";
+	Environment::Init(sim_dir, 1, 5, 3, 0, 1, 1, 0, 1, &event_queue);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3d(2, 2, 1), std::vector<double>{1, 1, 1}, 0, 0, 0);
 
-	region.AddSubvolumesToQueue();
+	for (auto& meso_region : Environment::GetMesoscopicRegions())
+	{
+		Environment::GetEventQueue().Add(&meso_region);
+		meso_region.LinkSiblingSubvolumes();
+		meso_region.AddSubvolumesToQueue();
+	}
 
 	for (int i = 0; i < 6; i++)
 	{
-		region.AddMolecule(i % 3, { 1, 2, 2 });
+		Environment::GetMesoscopicRegions().at(0).AddMolecule(i % 3, { 1, 2, 2 });
 	}
 	
+	double time_step = 0.05;
+	Environment::GetPassiveActors().reserve(Environment::GetMesoscopicRegions().size());
+	for (int i = 0; i < Environment::GetMesoscopicRegions().size(); i++)
+	{
+		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(MicroRegionIDs({}),
+			MesoRegionIDs({ i }), MoleculeIDs({ 0, 1, 2}), 0, -1, time_step,
+			static_cast<int>(Environment::GetPassiveActors().size()), true, true));
+	}
+
+	Json json_regions;
+	for (auto& region : Environment::GetMesoscopicRegions())
+	{
+		for (auto& subvolume : region.GetSubvolumes())
+		{
+			json_regions["shapes"].emplace_back(static_cast<shape::basic::Box>(subvolume.GetBoundingBox()));
+		}
+	}
+	std::ofstream region_file(sim_dir  + "/regions.json");
+	region_file << JsonToString(json_regions);
+	region_file.close();
+
+	Json json_actors, shapeless_actor;
+	shapeless_actor["type"] = "none";
+	for (auto& passive_actor : Environment::GetPassiveActors())
+	{
+		if (passive_actor->GetShape() == nullptr)
+		{
+			json_actors["shapes"].emplace_back(shapeless_actor);
+		}
+		else
+		{
+			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
+		}
+	}
+	std::ofstream actors_file(sim_dir + "/actors.json");
+	actors_file << JsonToString(json_actors);
+	actors_file.close();
+
+	for (auto& actor : Environment::GetPassiveActors())
+	{
+		Environment::GetEventQueue().Add(actor.get());
+	}
+
 	//LOG_INFO("next event = {}", event_queue.Front());
 	//LOG_INFO("region event time = {}, ", region.GetEventTime());
 

@@ -9,8 +9,11 @@ namespace accord
 	using EventID = int;
 	using EventIDs = std::vector<int>;
 
-	using RegionID = int;
-	using RegionIDs = std::vector<int>;
+	using MicroRegionID = int;
+	using MicroRegionIDs = std::vector<int>;
+
+	using MesoRegionID = int;
+	using MesoRegionIDs = std::vector<int>;
 
 	using ReactionID = int;
 	using ReactionIDs = std::vector<int>;

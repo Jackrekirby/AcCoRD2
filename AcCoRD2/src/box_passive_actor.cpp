@@ -5,7 +5,7 @@ namespace accord
 {
 
 	PassiveActorBoxShape::PassiveActorBoxShape(shape::basic::Box box)
-		: Box(box)
+		: Box(box), shape::basic::Box(box)
 	{
 
 	}

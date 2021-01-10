@@ -4,7 +4,7 @@
 
 namespace accord
 {
-	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions)
+	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions)
 		: reactant(reactant), products(products), reaction_rate(reaction_rate), regions(regions)
 	{
 
@@ -30,7 +30,7 @@ namespace accord
 		return ReactionManager::GetSumOfRates(reactant);
 	}
 
-	const RegionIDs& FirstOrderReaction::GetRegions() const
+	const MicroRegionIDs& FirstOrderReaction::GetRegions() const
 	{
 		return regions;
 	}

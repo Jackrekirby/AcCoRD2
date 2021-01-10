@@ -13,7 +13,7 @@ namespace accord::microscopic
 	Region::Region(std::vector<double> diffision_coefficients,
 		std::vector<Vec3i> n_subvolumes_per_grid,
 		double start_time, double time_step, int priority,
-		SurfaceType surface_type, RegionID id)
+		SurfaceType surface_type, MicroRegionID id)
 		: Event5(start_time + time_step, priority),
 		time_step(time_step), id(id), surface_type(surface_type), start_time(start_time),
 		local_time(start_time)
@@ -207,7 +207,7 @@ namespace accord::microscopic
 		}
 	}
 
-	RegionID Region::GetID() const
+	MicroRegionID Region::GetID() const
 	{
 		return id;
 	}

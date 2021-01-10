@@ -4,7 +4,7 @@
 namespace accord
 {
 	SecondOrderReaction::SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions)
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions)
 		: reactant_a(reactant_a), reactant_b(reactant_b), products(products), binding_radius(binding_radius),
 		unbinding_radius(unbinding_radius), regions(regions)
 	{
@@ -35,7 +35,7 @@ namespace accord
 		return unbinding_radius;
 	}
 
-	const RegionIDs& SecondOrderReaction::GetRegions() const
+	const MicroRegionIDs& SecondOrderReaction::GetRegions() const
 	{
 		return regions;
 	}

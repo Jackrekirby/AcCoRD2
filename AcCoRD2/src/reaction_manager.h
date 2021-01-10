@@ -6,23 +6,23 @@
 
 namespace accord
 {
-	// in the future need to change RegionIDs to MicroscopicRegionIDs and MesoscopicRegionIDs
+	// in the future need to change MicroRegionIDs to MicroscopicRegionIDs and MesoscopicRegionIDs
 	class ReactionManager
 	{
 	public:
 		static void Init(int num_of_molecule_types);
 
 		// Zeroth Order Reaction
-		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions);
+		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions);
 
 		// First Order Reaction
-		static void AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const RegionIDs& regions);
+		static void AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions);
 
 		static void AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions);
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions);
 
 		static void AddSecondOrderReaction(MoleculeID reactant_a,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const RegionIDs& regions);
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions);
 
 		static double GetSumOfRates(MoleculeID reactant);
 

@@ -14,6 +14,11 @@ namespace accord::mesoscopic
 
 	}
 
+	void SubvolumeBox::ToJson(Json& j) const
+	{
+		j = static_cast<shape::basic::Box>(*this);
+	}
+
 	Subvolume::Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, SubvolumeID id)
 		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(0), id(id)
 	{
@@ -24,7 +29,7 @@ namespace accord::mesoscopic
 	{
 		linked_propensity_objects.reserve(diffusion_coefficients.size());
 		layers.reserve(diffusion_coefficients.size());
-		size_t i = 0;
+		MoleculeID i = 0;
 		for (auto& diffusion_coefficient : diffusion_coefficients)
 		{
 			linked_propensity_objects.emplace_back(this);

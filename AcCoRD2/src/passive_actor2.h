@@ -27,7 +27,7 @@ namespace accord
 			std::vector<microscopic::Subvolume*> subvolumes;
 		};
 	public:
-		PassiveActor2(RegionIDs region_ids, MoleculeIDs molecule_ids,
+		PassiveActor2(MicroRegionIDs region_ids, MoleculeIDs molecule_ids,
 			double start_time, int priority, EventQueue* event_queue, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
@@ -53,7 +53,7 @@ namespace accord
 
 		void CreateFiles();
 
-		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, RegionIDs region_ids);
+		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids);
 
 		void ObserveEnvelopedMicroscopicSubvolumes();
 

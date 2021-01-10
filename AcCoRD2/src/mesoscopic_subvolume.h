@@ -23,6 +23,8 @@ namespace accord::mesoscopic
 	{
 	public:
 		SubvolumeBox(const Vec3d& origin, double length);
+
+		void ToJson(Json& j) const;
 	};
 
 	// add json log so u can get a list of all propensities
