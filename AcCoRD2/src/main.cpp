@@ -766,16 +766,16 @@ void TestMesoscopic()
 	using namespace accord;
 	EventQueue5 event_queue(1);
 	Environment::Init("mesosimulation", 1, 5, 1, 0, 0, 0, 1, &event_queue);
-	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 1, 1), {1, 2, 3}, 0, 0, 0);
+	mesoscopic::Region region(Vec3d(0), 1, Vec3d(2, 2, 1), {1, 1, 1}, 0, 0, 0);
 	
 	event_queue.Add(&region);
 	region.LinkSiblingSubvolumes();
 
 	region.AddSubvolumesToQueue();
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		region.AddMolecule(1, { 1, 2, 2 });
+		region.AddMolecule(i % 3, { 1, 2, 2 });
 	}
 	
 	//LOG_INFO("next event = {}", event_queue.Front());
@@ -789,7 +789,7 @@ void TestMesoscopic()
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
-			region.Print();
+			//region.Print();
 			auto& event = event_queue.Front();
 			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())

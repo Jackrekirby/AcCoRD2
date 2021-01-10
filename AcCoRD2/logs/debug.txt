@@ -1,71 +1,190 @@
-[17:55:19.885] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.886] [info] main.cpp:789 TestMesoscopic() Realisation 0
-[17:55:19.887] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.887] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.887] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 0.6300655294936695
-[17:55:19.888] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.6300655294936695)
-[17:55:19.888] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.888] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.889] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.889] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 0.8230430334459524
-[17:55:19.889] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.889] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.8230430334459524)
-[17:55:19.890] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.890] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.890] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.891] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.891] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 1.0363995121248264
-[17:55:19.891] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.0363995121248264)
-[17:55:19.891] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.892] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.892] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.892] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 1.1264463447055393
-[17:55:19.893] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.893] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.1264463447055393)
-[17:55:19.893] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.893] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.894] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.894] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.898] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 1.410198848415838
-[17:55:19.898] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.410198848415838)
-[17:55:19.898] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.899] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.900] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.901] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 1.6138712896134129
-[17:55:19.901] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.902] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.6138712896134129)
-[17:55:19.903] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.903] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.904] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.905] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.906] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 2.1464531963399325
-[17:55:19.906] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.1464531963399325)
-[17:55:19.912] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.913] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.914] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.915] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 2.650846800265223
-[17:55:19.916] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.917] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.650846800265223)
-[17:55:19.917] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.918] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.919] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.920] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.922] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 3.364353675673283
-[17:55:19.923] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.364353675673283)
-[17:55:19.927] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.928] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.929] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.933] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 4.302140149835187
-[17:55:19.933] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.937] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.302140149835187)
-[17:55:19.937] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.938] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.939] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.940] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
-[17:55:19.942] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 4.461439120880635
-[17:55:19.943] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.461439120880635)
-[17:55:19.943] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
-[17:55:19.944] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() Here
-[17:55:19.946] [info] mesoscopic_region.h:59 accord::mesoscopic::Region::Print() region times
-[17:55:19.947] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() 5.784012077737025
-[17:55:19.949] [info] mesoscopic_region.h:62 accord::mesoscopic::Region::Print() inf
+[18:13:22.280] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.282] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.283] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.283] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.283] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.283] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.284] [info] main.cpp:789 TestMesoscopic() Realisation 0
+[18:13:22.284] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.01500780543011883)
+[18:13:22.284] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.285] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.285] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.04769028237018937)
+[18:13:22.285] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.286] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.286] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.09391281642230179)
+[18:13:22.286] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.286] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.287] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.24849813355844663)
+[18:13:22.287] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.287] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.288] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.299820857038619)
+[18:13:22.288] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.288] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.289] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.3817984012259556)
+[18:13:22.289] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.289] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.290] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.3867322144064545)
+[18:13:22.290] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.295] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.296] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.39995539279686065)
+[18:13:22.297] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.298] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.299] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.40059451941169955)
+[18:13:22.300] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.304] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.311] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.4365934769388966)
+[18:13:22.312] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.313] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.315] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.4813467355047315)
+[18:13:22.315] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.316] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.318] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.5750015631015758)
+[18:13:22.319] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.319] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.320] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.6842075751069494)
+[18:13:22.321] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.321] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.322] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.8837816537942774)
+[18:13:22.323] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.327] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.328] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.9530423166879771)
+[18:13:22.329] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.330] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.331] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:0.9864185749927331)
+[18:13:22.332] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.332] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.333] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.0799014020211746)
+[18:13:22.333] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.334] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.335] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.1526350739836442)
+[18:13:22.336] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.337] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.338] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.415771213232662)
+[18:13:22.339] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.340] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.343] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.4700260039313573)
+[18:13:22.343] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.344] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.345] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.5414070944863079)
+[18:13:22.347] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.347] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.348] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.5727183170593033)
+[18:13:22.349] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.349] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.351] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.586571829969266)
+[18:13:22.351] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.352] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.352] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.831754420852222)
+[18:13:22.353] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.354] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.355] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:1.953173548723926)
+[18:13:22.355] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.358] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.362] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.0293028959179984)
+[18:13:22.363] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.364] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.365] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.0682218763228555)
+[18:13:22.366] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.367] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.368] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.265619402256303)
+[18:13:22.369] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.370] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.371] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.3414543657217797)
+[18:13:22.371] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.372] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.373] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.3846713919790927)
+[18:13:22.375] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.378] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.379] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.3944471017989812)
+[18:13:22.379] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.381] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.382] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.471436743359024)
+[18:13:22.382] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.383] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.384] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.4866412648193457)
+[18:13:22.384] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.385] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.386] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.589571914217273)
+[18:13:22.387] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.388] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.390] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.6102782044814354)
+[18:13:22.391] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.393] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.394] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.6821797846142457)
+[18:13:22.394] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.395] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.396] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.692540891581733)
+[18:13:22.398] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.398] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.399] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:2.8720388307924924)
+[18:13:22.400] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.401] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.402] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.0009442390941494)
+[18:13:22.402] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.403] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.404] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.059307756016443)
+[18:13:22.404] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.405] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.406] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.4192801474003063)
+[18:13:22.408] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.409] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.410] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.5017313025475634)
+[18:13:22.411] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.412] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.413] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.5258920101488247)
+[18:13:22.414] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.414] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.415] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.6156137883141772)
+[18:13:22.416] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.416] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.423] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.6592757926340447)
+[18:13:22.426] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.428] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.429] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.6976562025777753)
+[18:13:22.429] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.430] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.431] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.705740547136806)
+[18:13:22.431] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.433] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.434] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.804226253531591)
+[18:13:22.434] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.435] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.435] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.8347804386686324)
+[18:13:22.437] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.438] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.438] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.8808240700237797)
+[18:13:22.439] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.440] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.442] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:3.9710253354696676)
+[18:13:22.443] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.443] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.444] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.012612210459388)
+[18:13:22.444] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.445] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.445] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.046276381851766)
+[18:13:22.448] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.449] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 0
+[18:13:22.450] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.076708955945722)
+[18:13:22.450] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.451] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.452] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.387185856073376)
+[18:13:22.453] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.455] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.456] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.547046452964397)
+[18:13:22.460] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 1
+[18:13:22.460] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.461] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.620405903748645)
+[18:13:22.462] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.462] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.463] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.7406980280690645)
+[18:13:22.463] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 2
+[18:13:22.464] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.465] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.856447362982269)
+[18:13:22.465] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 3
+[18:13:22.466] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1
+[18:13:22.466] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.866059306658178)
+[18:13:22.467] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.467] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 2
+[18:13:22.470] [info] main.cpp:799 TestMesoscopic() Event:(Type:mesoscopic region, ID:0, Time:4.9372463640465485)
+[18:13:22.470] [info] mesoscopic_subvolume.cpp:41 accord::mesoscopic::Subvolume::Run() subvolume id = 0
+[18:13:22.471] [info] mesoscopic_layer.cpp:18 accord::mesoscopic::Layer::AddMolecule() id = 1

@@ -108,6 +108,7 @@ namespace accord::mesoscopic
 	{
 		subvolumes.reserve(n_subvolumes.Volume());
 		Vec3i i;
+		int j = 0;
 		for (i.z = 0; i.z < n_subvolumes.z; i.z++)
 		{
 			for (i.y = 0; i.y < n_subvolumes.y; i.y++)
@@ -115,7 +116,8 @@ namespace accord::mesoscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, 
-						subvolume_length, diffusion_coefficients, i.Volume());
+						subvolume_length, diffusion_coefficients, j);
+					j++;
 				}
 			}
 		}

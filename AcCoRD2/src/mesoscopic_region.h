@@ -56,10 +56,9 @@ namespace accord::mesoscopic
 
 		void Print()
 		{
-			LOG_INFO("region times");
 			for (auto& subvolume : subvolumes)
 			{
-				LOG_INFO(subvolume.GetTime());
+				LOG_INFO("id = {}, time = {}", subvolume.GetID(), subvolume.GetTime());
 			}
 		}
 	private:

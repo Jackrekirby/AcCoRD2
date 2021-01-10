@@ -77,6 +77,8 @@ namespace accord::mesoscopic
 		void MarkForDeletion();
 
 		bool IsMarkedForDeletion();
+
+		SubvolumeID GetID() const;
 	private:
 		std::vector<Layer> layers;
 		std::vector<ZerothOrderReaction> zeroth_order_reactions;

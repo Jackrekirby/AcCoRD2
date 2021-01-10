@@ -15,7 +15,7 @@ namespace accord::mesoscopic
 
 	void Layer::AddMolecule()
 	{
-		LOG_INFO("Here");
+		LOG_INFO("id = {}", id);
 		molecule_count++;
 		linked_propensities->RequiresUpdate();
 	}

@@ -247,6 +247,11 @@ namespace accord::mesoscopic
 		return (time == -1);
 	}
 
+	SubvolumeID Subvolume::GetID() const
+	{
+		return id;
+	}
+
 	double Subvolume::CalculateDiffusionFactor(const Subvolume& neighbour)
 	{
 		auto area = GetBoundingBox().CalculateAreaBetweenNeighbouringBoxes(neighbour.GetBoundingBox());
