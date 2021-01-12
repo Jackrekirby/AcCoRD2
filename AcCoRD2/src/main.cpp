@@ -66,6 +66,8 @@
 // split meso classes
 // ensure consistent reaction_factor reaction_coefficient_naming
 // rename events to reactions
+// make generating shapes virtual (only boxes, spheres and cylinders)
+// reaction testing in mesoscopic regions
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -76,6 +78,7 @@
 // could use factory to build regions so regions dont have to be publically available in environment (factory no longer needed due to derived class)
 // update test envrionments to new format (consider switch statement?) (format keep changing)
 // abstract event queue (not easily possible, offers much more flexibility without abstraction)
+// add simulation dir, seed dir and realisation dir for envrionment (required renaming of existing functions)
 
 
 // IN PROGRESS
@@ -84,9 +87,6 @@
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (next)
-// add simulation dir, seed dir and realisation dir for envrionment
-// make generating shapes virtual
-// reaction testing in mesoscopic regions
 // passive and active actors in mesoscopic regions
 // review / remove redundant code in meso propensity checking
 // seperate public and private functions, particularly for active actors ane mesoscopic classes
@@ -223,7 +223,7 @@ void TestSimpleEnvironment2()
 	//int n_modulation_bits = 2;
 	//MoleculeIDs release_molecules = { 1 };
 	//ActiveActorNonRandom active_actor(action_interval, release_interval, slot_interval, 
-	//	{ 0, 1, 1, 0, 1, 1, 0, 0, 0, 1}, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin", release_molecules,
+	//	{ 0, 1, 1, 0, 1, 1, 0, 0, 0, 1}, n_modulation_bits, Environment::GetRealisationPath() + "a1_b.bin", release_molecules,
 	//	modulation_strength, Environment::GetRegions({ 0 }), std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
 	//	start_time, 5, &event_queue, 0);
 
@@ -236,7 +236,7 @@ void TestSimpleEnvironment2()
 	MoleculeIDs release_molecules = { 1, 2 };
 	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
 		action_interval, release_interval, slot_interval,
-		bit_probability, n_modulation_bits, Environment::GetFilePath() + "a1_b.bin",
+		bit_probability, n_modulation_bits, Environment::GetRealisationPath() + "a1_b.bin",
 		release_molecules, modulation_strength, Environment::GetRegions({ 0 }),
 		std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
 		start_time, 5, 0));
@@ -770,13 +770,17 @@ void TestMesoscopic()
 {
 	using namespace accord;
 	EventQueue5 event_queue(2);
-	std::string sim_dir = "D:/dev/meso_sim";
-	Environment::Init(sim_dir, 1, 5, 3, 0, 1, 1, 0, 1, &event_queue);
-	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3d(2, 2, 1), std::vector<double>{1, 1, 1}, 0, 0, 0);
+	Environment::Init("D:/dev/meso_sim", 1, 5, 3, 0, 1, 1, 0, 1, &event_queue);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3d(3, 3, 3), std::vector<double>{1, 1, 1}, 0, 0, 0);
+
+	LOG_INFO("simulation path = {}", Environment::GetSimulationPath());
 
 	//Environment::GetMesoscopicRegions().at(0).AddZerothOrderReaction({ 0 }, 1);
 	//Environment::GetMesoscopicRegions().at(0).AddFirstOrderReaction(1, {2}, 1);
-	Environment::GetMesoscopicRegions().at(0).AddSecondOrderReaction(0, 1, { 2 }, 1);
+	//Environment::GetMesoscopicRegions().at(0).AddSecondOrderReaction(0, 1, { 2 }, 1);
+
+	ReactionManager::AddSecondOrderReaction(0, 1, { 2 }, 0, 0, 1, {}, { 0 });
+	Environment::LinkReactionsToRegions();
 
 	for (auto& meso_region : Environment::GetMesoscopicRegions())
 	{
@@ -790,8 +794,6 @@ void TestMesoscopic()
 		Environment::GetMesoscopicRegions().at(0).AddMolecule(i % 2, { 1, 2, 2 });
 	}
 
-	
-	
 	double time_step = 0.05;
 	Environment::GetPassiveActors().reserve(Environment::GetMesoscopicRegions().size());
 	for (int i = 0; i < Environment::GetMesoscopicRegions().size(); i++)
@@ -804,12 +806,9 @@ void TestMesoscopic()
 	Json json_regions;
 	for (auto& region : Environment::GetMesoscopicRegions())
 	{
-		for (auto& subvolume : region.GetSubvolumes())
-		{
-			json_regions["shapes"].emplace_back(static_cast<shape::basic::Box>(subvolume.GetBoundingBox()));
-		}
+		json_regions["shapes"].emplace_back(region);
 	}
-	std::ofstream region_file(sim_dir  + "/regions.json");
+	std::ofstream region_file(Environment::GetSimulationPath() + "/regions.json");
 	region_file << JsonToString(json_regions);
 	region_file.close();
 
@@ -826,7 +825,7 @@ void TestMesoscopic()
 			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
 		}
 	}
-	std::ofstream actors_file(sim_dir + "/actors.json");
+	std::ofstream actors_file(Environment::GetSimulationPath() + "/actors.json");
 	actors_file << JsonToString(json_actors);
 	actors_file.close();
 

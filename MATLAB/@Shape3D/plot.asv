@@ -44,7 +44,7 @@ function hPlots = plot(obj, shapes)
         
         if(type == "gridBox")
             iGridBox = iGridBox + 1;
-            hPlots.gridBox(iGridBox) = obj.plotGriddedBox(shape.origin, shape.length, shape.nPartitions);
+            hPlots.box(iGridBox) = obj.plotBox(shape.origin, shape.length, shape.nPartitions);
         end
     end
     

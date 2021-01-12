@@ -9,7 +9,7 @@ namespace accord::shape::relation
 	class Box;
 	class Cylinder;
 
-	class Sphere : public basic::Sphere, public Shape3D
+	class Sphere : virtual public basic::Sphere, public Shape3D
 	{
 	public:
 		Sphere(Vec3d centre, double radius);

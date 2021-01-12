@@ -3,20 +3,6 @@
 
 namespace accord
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	void ReactionManager::Init(int num_of_molecule_types)
 	{
 		first_order_reaction_rates_per_molecule_type.reserve(num_of_molecule_types);
@@ -27,28 +13,34 @@ namespace accord
 	}
 
 	// Zeroth Order Reaction
-	void ReactionManager::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions)
+	void ReactionManager::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
+		const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
 	{
-		zeroth_order_reactions.emplace_back(products, reaction_rate, regions);
+		zeroth_order_reactions.emplace_back(products, reaction_rate, micro_regions, meso_regions);
 	}
 
 	// First Order Reaction
-	void ReactionManager::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions)
+	void ReactionManager::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, 
+		double reaction_rate, const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
 	{
-		first_order_reactions.emplace_back(reactant, products, reaction_rate, regions);
+		first_order_reactions.emplace_back(reactant, products, reaction_rate, micro_regions, meso_regions);
 		first_order_reaction_rates_per_molecule_type.at(reactant) += reaction_rate;
 	}
 
 	void ReactionManager::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions)
+		const MoleculeIDs& products, double binding_radius, double unbinding_radius, 
+		double reaction_rate, const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
 	{
-		second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, regions);
+		second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, 
+			unbinding_radius, reaction_rate, micro_regions, meso_regions);
 	}
 
 	void ReactionManager::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
-		double binding_radius, double unbinding_radius, const MicroRegionIDs& regions)
+		double binding_radius, double unbinding_radius, double reaction_rate, 
+		const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
 	{
-		second_order_reactions.emplace_back(reactant, reactant, products, binding_radius, unbinding_radius, regions);
+		second_order_reactions.emplace_back(reactant, reactant, products, binding_radius,
+			unbinding_radius, reaction_rate, micro_regions, meso_regions);
 	}
 
 	double ReactionManager::GetSumOfRates(MoleculeID reactant)

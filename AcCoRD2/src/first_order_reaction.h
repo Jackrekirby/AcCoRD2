@@ -6,7 +6,8 @@ namespace accord
 	class FirstOrderReaction
 	{
 	public:
-		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions);
+		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, 
+			const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
 
 		MoleculeID GetReactant() const;
 
@@ -16,12 +17,15 @@ namespace accord
 
 		double GetTotalRate() const;
 
-		const MicroRegionIDs& GetRegions() const;
+		const MicroRegionIDs& GetMicroRegions() const;
+
+		const MesoRegionIDs& GetMesoRegions() const;
 
 	private:
 		MoleculeID reactant;
 		MoleculeIDs products;
 		double reaction_rate;
-		MicroRegionIDs regions;
+		MicroRegionIDs micro_regions;
+		MesoRegionIDs meso_regions;
 	};
 }

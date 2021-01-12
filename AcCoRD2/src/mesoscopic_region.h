@@ -56,13 +56,12 @@ namespace accord::mesoscopic
 
 		void Run();
 
-		void Print()
-		{
-			for (auto& subvolume : subvolumes)
-			{
-				LOG_INFO("id = {}, time = {}", subvolume.GetID(), subvolume.GetTime());
-			}
-		}
+		void Print();
+
+		const shape::relation::Box& GetBoundingBox() const;
+
+		void ToJson(Json& j) const;
+
 	private:
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;
@@ -71,4 +70,6 @@ namespace accord::mesoscopic
 
 		Vec3i n_subvolumes;
 	};
+
+	void to_json(Json& j, const Region& region);
 }

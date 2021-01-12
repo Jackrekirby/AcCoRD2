@@ -10,7 +10,7 @@ namespace accord
 	class Environment
 	{
 	public:
-		static void Init(std::string simulation_name, int num_realisations,
+		static void Init(std::string simulation_path, int num_realisations,
 			double run_time, int num_molecule_types, int num_microscopic_regions,
 			int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
 			uint64_t seed, EventQueue5* event_queue);
@@ -23,7 +23,7 @@ namespace accord
 
 		static int GetNumberOfMoleculeTypes();
 
-		static std::string GetSimulationName();
+		static std::string GetSimulationPath();
 
 		static int GetRealisationNumber();
 
@@ -46,7 +46,7 @@ namespace accord
 		static std::vector<std::unique_ptr<ActiveActor2>>& GetActiveActors();
 
 
-		static std::string GetFilePath();
+		static std::string GetRealisationPath();
 
 		static bool NextRealisation();
 
@@ -94,7 +94,7 @@ namespace accord
 		static double time;
 		static double run_time;
 		static int num_molecule_types;
-		static std::string simulation_name;
+		static std::string simulation_path;
 		static int num_realisations;
 		static int current_realisation;
 		static uint64_t seed;

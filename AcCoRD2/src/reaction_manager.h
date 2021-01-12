@@ -13,16 +13,20 @@ namespace accord
 		static void Init(int num_of_molecule_types);
 
 		// Zeroth Order Reaction
-		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions);
+		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
+			const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
 
 		// First Order Reaction
-		static void AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, const MicroRegionIDs& regions);
+		static void AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, 
+			const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
 
 		static void AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions);
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius,
+			double reaction_rate, const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
 
 		static void AddSecondOrderReaction(MoleculeID reactant_a,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius, const MicroRegionIDs& regions);
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius, 
+			double reaction_rate, const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
 
 		static double GetSumOfRates(MoleculeID reactant);
 

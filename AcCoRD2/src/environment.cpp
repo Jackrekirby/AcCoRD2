@@ -9,7 +9,7 @@
 
 namespace accord
 {
-	void Environment::Init(std::string simulation_name, int num_realisations, 
+	void Environment::Init(std::string simulation_path, int num_realisations,
 		double run_time, int num_molecule_types, int num_microscopic_regions,
 		int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
 		uint64_t seed, EventQueue5* event_queue)
@@ -21,7 +21,7 @@ namespace accord
 		Environment::mesoscopic_regions.reserve(num_mesoscopic_regions);
 		Environment::passive_actors.reserve(num_passive_actors);
 		Environment::active_actors.reserve(num_active_actors);
-		Environment::simulation_name = simulation_name;
+		Environment::simulation_path = simulation_path;
 		Environment::num_realisations = num_realisations;
 		Environment::current_realisation = 0;
 		Environment::seed = seed;
@@ -30,7 +30,7 @@ namespace accord
 		Random::SetSeed(seed);
 
 		// will fail if files are open
-		std::filesystem::remove_all(simulation_name +
+		std::filesystem::remove_all(simulation_path +
 			"/s" + std::to_string(Environment::seed));
 
 		Environment::CreateDirectories();
@@ -73,7 +73,12 @@ namespace accord
 	{
 		for (auto& reaction : ReactionManager::GetZerothOrderReactions())
 		{
-			for (auto& region : reaction.GetRegions())
+			for (auto& region : reaction.GetMicroRegions())
+			{
+				GetMicroscopicRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
+			}
+
+			for (auto& region : reaction.GetMesoRegions())
 			{
 				GetMicroscopicRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
 			}
@@ -81,16 +86,21 @@ namespace accord
 
 		for (auto& reaction : ReactionManager::GetFirstOrderReactions())
 		{
-			for (auto& region : reaction.GetRegions())
+			for (auto& region : reaction.GetMicroRegions())
 			{
 				GetMicroscopicRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
 					reaction.GetRate(), reaction.GetTotalRate());
+			}
+
+			for (auto& region : reaction.GetMesoRegions())
+			{
+				GetMesoscopicRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(), reaction.GetRate());
 			}
 		}
 
 		for (auto& reaction : ReactionManager::GetSecondOrderReactions())
 		{
-			for (auto& region : reaction.GetRegions())
+			for (auto& region : reaction.GetMicroRegions())
 			{
 				if (reaction.GetReactantA() == reaction.GetReactantB())
 				{
@@ -102,6 +112,11 @@ namespace accord
 					GetMicroscopicRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(),
 						reaction.GetBindingRadius(), reaction.GetUnBindingRadius());
 				}
+			}
+
+			for (auto& region : reaction.GetMesoRegions())
+			{
+				GetMesoscopicRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(), reaction.GetRate());
 			}
 		}
 	}
@@ -133,9 +148,9 @@ namespace accord
 			surface_type, static_cast<int>(Environment::GetRegions().size())));
 	}
 
-	std::string Environment::GetSimulationName()
+	std::string Environment::GetSimulationPath()
 	{
-		return simulation_name;
+		return simulation_path;
 	}
 
 	int Environment::GetRealisationNumber()
@@ -198,11 +213,11 @@ namespace accord
 		return active_actors;
 	}
 
-	std::string Environment::GetFilePath()
+	std::string Environment::GetRealisationPath()
 	{
-		return Environment::GetSimulationName() +
-			"/s" + std::to_string(Environment::seed) +
-			"/r" + std::to_string(Environment::current_realisation) + "/";
+		return Environment::GetSimulationPath() +
+			"/s" + std::to_string(seed) +
+			"/r" + std::to_string(current_realisation) + "/";
 	}
 
 	// returns true if there is another relisation
@@ -226,7 +241,7 @@ namespace accord
 
 	void Environment::CreateDirectories()
 	{
-		std::filesystem::create_directories(GetFilePath());
+		std::filesystem::create_directories(GetRealisationPath());
 	}
 
 	EventQueue5& Environment::GetEventQueue()
@@ -346,7 +361,7 @@ namespace accord
 	double Environment::run_time = 0;
 	double Environment::time = 0;
 	int Environment::num_molecule_types = 0;
-	std::string Environment::simulation_name = "simulation";
+	std::string Environment::simulation_path = "simulation";
 	int Environment::num_realisations = 1;
 	int Environment::current_realisation = 0;
 	uint64_t Environment::seed = 1;

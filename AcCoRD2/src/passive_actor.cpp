@@ -105,10 +105,10 @@ namespace accord
 
 		if (record_time)
 		{
-			time_files.emplace_back(Environment::GetFilePath() + "p" + std::to_string(id) + "_t.bin");
+			time_files.emplace_back(Environment::GetRealisationPath() + "p" + std::to_string(id) + "_t.bin");
 		}
 
-		std::string file_path = Environment::GetFilePath() + "p" +
+		std::string file_path = Environment::GetRealisationPath() + "p" +
 			std::to_string(id) + "_m";
 		for (auto& id : molecule_ids)
 		{
@@ -145,6 +145,30 @@ namespace accord
 				}
 			}
 		}
+	}
+
+	void PassiveActor::AddMesoscopicSubvolumesWhichAreInsideActor()
+	{
+		for (auto& region : Environment::GetMesoscopicRegions())
+		{
+			for (auto& subvolume : region.GetSubvolumes())
+			{
+				if (GetShape()->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
+				{
+					//LOG_INFO("enveloped");
+					enveloped_mesoscopic_subvolumes.emplace_back(&subvolume);
+				}
+				else if (GetShape()->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
+				{
+					// cannot generate overlap box if actor shape is not a box.
+					// therefore will have to resort to genrating position then checking if it is within the actor
+					//subvolume.GetBoundingBox().GenerateOverlapBox();
+					//partial_microscopic_subvolumes.emplace_back(&subvolume);
+				}
+				// otherwise subvolume is not inside actor so is ignored
+			}
+		}
+		
 	}
 
 	void PassiveActor::AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids)

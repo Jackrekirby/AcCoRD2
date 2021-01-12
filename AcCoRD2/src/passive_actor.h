@@ -114,5 +114,7 @@ namespace accord
 		void CreateFiles();
 
 		void AddMicroscopicSubvolumesWhichAreInsideActor(MoleculeIDs molecule_ids);
+
+		void AddMesoscopicSubvolumesWhichAreInsideActor();
 	};
 }

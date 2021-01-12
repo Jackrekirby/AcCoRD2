@@ -22,7 +22,7 @@ namespace accord::shape::relation
 	class Shape3D;
 	class SufaceShape;
 
-	class Cylinder : public basic::Cylinder, public Shape3D
+	class Cylinder : virtual public basic::Cylinder, public Shape3D
 	{
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);

@@ -58,6 +58,7 @@ classdef Shape3D < handle
         hCylinder = plotCylinder(obj, base_centre, radius, length, args)
         hCircleSurface = plotCircleSurface(obj, centre, radius, axis, args)
         hRectSurface = plotRectSurface(obj, origin, length, args)
+        hGrid = plotGriddedBox(obj, origin, length, nPartitions, args)
         hPlots = plot(obj, shapes)
     end
     

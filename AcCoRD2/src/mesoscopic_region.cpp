@@ -197,4 +197,31 @@ namespace accord::mesoscopic
 		subvolume_queue.Front().Run();
 		SetEventTime(subvolume_queue.Front().GetTime());
 	}
+
+	void Region::Print()
+	{
+		for (auto& subvolume : subvolumes)
+		{
+			LOG_INFO("id = {}, time = {}", subvolume.GetID(), subvolume.GetTime());
+		}
+	}
+
+	const shape::relation::Box& Region::GetBoundingBox() const
+	{
+		return box;
+	}
+
+	void Region::ToJson(Json& j) const
+	{
+		j["type"] = "gridBox";
+		j["origin"] = box.GetOrigin();
+		j["length"] = box.GetLength();
+		j["end"] = box.GetEnd();
+		j["nPartitions"] = n_subvolumes;
+	}
+
+	void to_json(Json& j, const Region& region)
+	{
+		region.ToJson(j);
+	}
 }
