@@ -3,13 +3,16 @@
 namespace accord::mesoscopic
 {
 	class Layer;
+	class Region;
 
 	class NeighbourRelationship
 	{
 	public:
-		NeighbourRelationship(Layer* neighbour, double diffusion_factor);
+		NeighbourRelationship(Layer* neighbour, double diffusion_factor, Region* region);
 
 		Layer& GetNeighbour();
+
+		Region* GetRegion();
 
 		double GetDiffusionFactor();
 
@@ -20,5 +23,6 @@ namespace accord::mesoscopic
 		double diffusion_propensity;
 		double diffusion_factor;
 		Layer* neighbour;
+		Region* region;
 	};
 }

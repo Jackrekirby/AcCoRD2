@@ -13,6 +13,7 @@ namespace accord::mesoscopic
 {
 	class LinkedPropensityObjects;
 	class Subvolume;
+	class Region;
 
 	class Layer : public PropensityObject
 	{
@@ -32,7 +33,7 @@ namespace accord::mesoscopic
 
 		double GetPropensity();
 
-		void AddNeighbourRelationship(Layer* neighbour, double diffusion_factor);
+		void AddNeighbourRelationship(Layer* neighbour, double diffusion_factor, Region* region = nullptr);
 
 		double GetCoefficient();
 	private:

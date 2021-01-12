@@ -107,6 +107,17 @@ namespace accord::mesoscopic
 		}
 	}
 
+	void Subvolume::AddNeighbour(Subvolume& subvolume, Region* region)
+	{
+		double diffusion_factor = CalculateDiffusionFactor(subvolume);
+		MoleculeID i = 0;
+		for (auto& layer : layers)
+		{
+			layer.AddNeighbourRelationship(&subvolume.GetLayer(i), diffusion_factor, region);
+			i++;
+		}
+	}
+
 	Layer& Subvolume::GetLayer(MoleculeID id)
 	{
 		return layers.at(id);

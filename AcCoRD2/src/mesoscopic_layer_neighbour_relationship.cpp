@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "mesoscopic_layer_neighbour_relationship.h"
 #include "mesoscopic_layer.h"
+#include "mesoscopic_region.h"
 
 namespace accord::mesoscopic
 {
-	NeighbourRelationship::NeighbourRelationship(Layer* neighbour, double diffusion_factor)
-		: neighbour(neighbour), diffusion_factor(diffusion_factor),
+	NeighbourRelationship::NeighbourRelationship(Layer* neighbour, double diffusion_factor, Region* region)
+		: neighbour(neighbour), diffusion_factor(diffusion_factor), region(region),
 		diffusion_propensity(0)
 	{
 
@@ -14,6 +15,11 @@ namespace accord::mesoscopic
 	Layer& NeighbourRelationship::GetNeighbour()
 	{
 		return *neighbour;
+	}
+
+	Region* NeighbourRelationship::GetRegion()
+	{
+		return region;
 	}
 
 	double NeighbourRelationship::GetDiffusionFactor()

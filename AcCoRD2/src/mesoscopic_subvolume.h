@@ -45,7 +45,12 @@ namespace accord::mesoscopic
 
 		// assumes the subvolums are neighbours
 		// add IfNeighbourAdd()
+		// add a sibling neighbour
 		void AddNeighbour(Subvolume& subvolume);
+
+		// add a neighbour owned by a different region
+		// region pointer needed so regions event time can be updated
+		void AddNeighbour(Subvolume& subvolume, Region* region);
 
 		Layer& GetLayer(MoleculeID id);
 

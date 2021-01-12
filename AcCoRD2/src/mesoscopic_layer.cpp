@@ -3,6 +3,7 @@
 #include "vec3d.h"
 #include "mesoscopic_layer_neighbour_relationship.h"
 #include "propensity_object.h"
+#include "mesoscopic_region.h"
 
 namespace accord::mesoscopic
 {
@@ -39,15 +40,19 @@ namespace accord::mesoscopic
 	void Layer::Diffuse(double index)
 	{
 		//LOG_INFO("index = {}, count = {}, id = {}", index, molecule_count, id);
-		for (auto& relationbship : neighbour_relationships)
+		for (auto& relationship : neighbour_relationships)
 		{
-			index -= relationbship.GetPropensity();
+			index -= relationship.GetPropensity();
 			if (index < 0)
 			{
 				RemoveMolecule();
-				Layer& neighbour = relationbship.GetNeighbour();
+				Layer& neighbour = relationship.GetNeighbour();
 				neighbour.AddMolecule();
 				neighbour.linked_propensities->UpdatePropensities();
+				if (relationship.GetRegion() != nullptr)
+				{
+					relationship.GetRegion()->RefreshEventTime();
+				}
 				return;
 			}
 		}
@@ -76,9 +81,9 @@ namespace accord::mesoscopic
 		return diffusion_propensity;
 	}
 
-	void Layer::AddNeighbourRelationship(Layer* neighbour, double diffusion_factor)
+	void Layer::AddNeighbourRelationship(Layer* neighbour, double diffusion_factor, Region* region)
 	{
-		neighbour_relationships.emplace_back(neighbour, diffusion_factor * diffusion_coefficient);
+		neighbour_relationships.emplace_back(neighbour, diffusion_factor * diffusion_coefficient, region);
 	}
 
 	double Layer::GetCoefficient()

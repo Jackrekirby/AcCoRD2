@@ -18,7 +18,7 @@ namespace accord::mesoscopic
 	{
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(id);
-		SetEventTime(subvolume_queue.Front().GetTime());
+		RefreshEventTime();
 	}
 
 	void Region::AddSubvolumesToQueue()
@@ -152,6 +152,11 @@ namespace accord::mesoscopic
 		}
 	}
 
+	void Region::RefreshEventTime()
+	{
+		SetEventTime(subvolume_queue.Front().GetTime());
+	}
+
 	// will delete subvolumes from the region in preparation for another mesoscopic or microscopic region to be placed inside
 	void Region::AddChild()
 	{
@@ -160,9 +165,31 @@ namespace accord::mesoscopic
 		// for those which neighbour add as neighbour (just send across to the add neighbour function
 	}
 
-	void Region::AddNeighbour()
+	void Region::AddNeighbour(Region& other)
 	{
 		// for those which neighbour add as neighbour
+		// each subvolume is checked against every other subvolume.
+		// Inefficient but as only done once not a high priority performace improvement unless a region contains 1000's of subvolumes
+		if (box.IsPartiallyNeighbouring(other.box))
+		{
+			for (auto& s1 : subvolumes)
+			{
+				auto& b1 = s1.GetBoundingBox();
+				for (auto& s2 : other.subvolumes)
+				{
+					auto& b2 = s2.GetBoundingBox();
+					if (b1.IsPartiallyNeighbouring(b2))
+					{
+						s1.AddNeighbour(s2, &other);
+						LOG_INFO("subvolumes {} and {} are neighbours", s1.GetID(), s2.GetID());
+					}
+				}
+			}
+		}
+		else
+		{
+			LOG_WARN("Attempted to add mesoscopic region as neighbour but the regions do not neighbour");
+		}
 	}
 
 	// returns the required dimensions of the replacement region to ensure correct neighbouring (avoid floating point error)
@@ -196,6 +223,7 @@ namespace accord::mesoscopic
 	{
 		subvolume_queue.Front().Run();
 		SetEventTime(subvolume_queue.Front().GetTime());
+		LOG_INFO("event time = {}", GetEventTime());
 	}
 
 	void Region::Print()

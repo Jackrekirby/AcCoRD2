@@ -45,7 +45,7 @@ namespace accord::mesoscopic
 		// will delete subvolumes from the region in preparation for another mesoscopic or microscopic region to be placed inside
 		void AddChild();
 
-		void AddNeighbour();
+		void AddNeighbour(Region& region);
 
 		// returns the required dimensions of the replacement region to ensure correct neighbouring (avoid floating point error)
 		shape::basic::Box RemoveInterior(const Vec3i& origin_subvolume, const Vec3i& n_subvolumes);
@@ -61,6 +61,8 @@ namespace accord::mesoscopic
 		const shape::relation::Box& GetBoundingBox() const;
 
 		void ToJson(Json& j) const;
+
+		void RefreshEventTime();
 
 	private:
 		SubvolumeQueue subvolume_queue;

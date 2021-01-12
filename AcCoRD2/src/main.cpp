@@ -38,6 +38,9 @@
 // E.g. RelationFinder.IsRelationShipValid(region_a, region_b, relationship)
 // could stick I/O on a seperate thread so can write to binary files which simulation runs next step. Would require a copy of the position vector or make it lockable
 
+// if the surface type between neighbours is not none then no point in adding relationship: Answer: Wrong as the default surface may be none and so the neighboru relationship
+// provides the exception
+
 // Learning Plan
 // Learnt the importance of reserving as allowing a vector to resize invalidates pointers.
 // Learnt how to use visual studio performance profiler
@@ -80,13 +83,15 @@
 // abstract event queue (not easily possible, offers much more flexibility without abstraction)
 // add simulation dir, seed dir and realisation dir for envrionment (required renaming of existing functions)
 
-
 // IN PROGRESS
 // consider adding generate bounding box and rect to all shapes
 // consider multiple constructors for shapes so you can generate shapes using other shapes
 // add a GetBasicShape() to each shape type so you can write the basic shape of a region to json
 
 // TO DO (next)
+// diffusion between multiple mesoscopic regions
+// hybrid diffusion
+
 // passive and active actors in mesoscopic regions
 // review / remove redundant code in meso propensity checking
 // seperate public and private functions, particularly for active actors ane mesoscopic classes
@@ -769,18 +774,22 @@ void TestCylinder()
 void TestMesoscopic()
 {
 	using namespace accord;
-	EventQueue5 event_queue(2);
-	Environment::Init("D:/dev/meso_sim", 1, 5, 3, 0, 1, 1, 0, 1, &event_queue);
-	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3d(3, 3, 3), std::vector<double>{1, 1, 1}, 0, 0, 0);
+	EventQueue5 event_queue(4);
+	Environment::Init("D:/dev/meso_sim", 1, 10, 3, 0, 1, 1, 0, 1, &event_queue);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 0);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);
 
 	LOG_INFO("simulation path = {}", Environment::GetSimulationPath());
+	Environment::GetMesoscopicRegion(1).AddNeighbour(Environment::GetMesoscopicRegion(0));
+	Environment::GetMesoscopicRegion(0).AddNeighbour(Environment::GetMesoscopicRegion(1));
+	
 
 	//Environment::GetMesoscopicRegions().at(0).AddZerothOrderReaction({ 0 }, 1);
 	//Environment::GetMesoscopicRegions().at(0).AddFirstOrderReaction(1, {2}, 1);
 	//Environment::GetMesoscopicRegions().at(0).AddSecondOrderReaction(0, 1, { 2 }, 1);
 
-	ReactionManager::AddSecondOrderReaction(0, 1, { 2 }, 0, 0, 1, {}, { 0 });
-	Environment::LinkReactionsToRegions();
+	//ReactionManager::AddSecondOrderReaction(0, 1, { 2 }, 0, 0, 1, {}, { 0 });
+	//Environment::LinkReactionsToRegions();
 
 	for (auto& meso_region : Environment::GetMesoscopicRegions())
 	{
@@ -789,10 +798,12 @@ void TestMesoscopic()
 		meso_region.AddSubvolumesToQueue();
 	}
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		Environment::GetMesoscopicRegions().at(0).AddMolecule(i % 2, { 1, 2, 2 });
+		//Environment::GetMesoscopicRegion(0).AddMolecule(i % 2, { 0.5, 0.5, 0.5 });
+		Environment::GetMesoscopicRegion(1).AddMolecule(0, { 3.5, 0.5, 0.5 });
 	}
+	
 
 	double time_step = 0.05;
 	Environment::GetPassiveActors().reserve(Environment::GetMesoscopicRegions().size());
@@ -845,7 +856,8 @@ void TestMesoscopic()
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
-			//region.Print();
+			Environment::GetMesoscopicRegion(0).Print();
+			Environment::GetMesoscopicRegion(1).Print();
 			auto& event = event_queue.Front();
 			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())
