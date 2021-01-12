@@ -285,6 +285,7 @@
     <ClInclude Include="src\subvolume_queue.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="kanban.txt" />
     <Text Include="lib\pcg\LICENSE-APACHE.txt" />
     <Text Include="lib\pcg\LICENSE-MIT.txt" />
     <Text Include="lib\pcg\LICENSE.txt" />

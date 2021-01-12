@@ -695,6 +695,9 @@
     <Text Include="lib\pcg\LICENSE.txt">
       <Filter>lib\pcg</Filter>
     </Text>
+    <Text Include="kanban.txt">
+      <Filter>src\other</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\pcg\LICENSE.spdx">
