@@ -4,10 +4,10 @@
 namespace accord::mesoscopic
 {
 	ZerothOrderReaction::ZerothOrderReaction(const std::vector<Layer*>& products, double reaction_rate, double volume)
-		: reaction_propensity(reaction_rate* volume),
+		: reaction_propensity(reaction_rate * volume),
 		products(products)
 	{
-
+		LOG_INFO("propensity = {}", reaction_propensity);
 	}
 
 	void ZerothOrderReaction::React()

@@ -774,6 +774,10 @@ void TestMesoscopic()
 	Environment::Init(sim_dir, 1, 5, 3, 0, 1, 1, 0, 1, &event_queue);
 	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3d(2, 2, 1), std::vector<double>{1, 1, 1}, 0, 0, 0);
 
+	//Environment::GetMesoscopicRegions().at(0).AddZerothOrderReaction({ 0 }, 1);
+	//Environment::GetMesoscopicRegions().at(0).AddFirstOrderReaction(1, {2}, 1);
+	Environment::GetMesoscopicRegions().at(0).AddSecondOrderReaction(0, 1, { 2 }, 1);
+
 	for (auto& meso_region : Environment::GetMesoscopicRegions())
 	{
 		Environment::GetEventQueue().Add(&meso_region);
@@ -783,8 +787,10 @@ void TestMesoscopic()
 
 	for (int i = 0; i < 6; i++)
 	{
-		Environment::GetMesoscopicRegions().at(0).AddMolecule(i % 3, { 1, 2, 2 });
+		Environment::GetMesoscopicRegions().at(0).AddMolecule(i % 2, { 1, 2, 2 });
 	}
+
+	
 	
 	double time_step = 0.05;
 	Environment::GetPassiveActors().reserve(Environment::GetMesoscopicRegions().size());

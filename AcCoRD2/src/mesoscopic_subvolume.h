@@ -71,6 +71,8 @@ namespace accord::mesoscopic
 
 		void UpdateReactionPropensity(double delta_propensity);
 
+		double GetPropensity();
+
 		// Event Functions
 
 		void LinkToQueue(SubvolumeQueue* queue, size_t queue_index);

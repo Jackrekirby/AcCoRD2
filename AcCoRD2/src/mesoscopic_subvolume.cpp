@@ -126,6 +126,7 @@ namespace accord::mesoscopic
 	void Subvolume::AddZerothOrderReaction(MoleculeIDs products, double reaction_rate)
 	{
 		zeroth_order_reactions.emplace_back(GetLayers(products), reaction_rate, GetBoundingBox().CalculateVolume());
+		reaction_propensity += zeroth_order_reactions.back().GetPropensity();
 	}
 
 	void Subvolume::AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate)
@@ -194,6 +195,11 @@ namespace accord::mesoscopic
 	{
 		//LOG_INFO("new reaction propensity = {}, {}", reaction_propensity, delta_propensity);
 		reaction_propensity += delta_propensity;
+	}
+
+	double Subvolume::GetPropensity()
+	{
+		return reaction_propensity;
 	}
 
 	void Subvolume::LinkToQueue(SubvolumeQueue* queue, size_t queue_index)

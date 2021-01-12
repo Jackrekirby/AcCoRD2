@@ -39,7 +39,7 @@ namespace accord::mesoscopic
 		{
 			subvolume_queue.Add(&subvolume);
 			subvolume.UpdateReactionTime();
-			//LOG_INFO("subvolume time = {}", subvolume.GetTime());
+			LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
 			
 		}
 
@@ -123,17 +123,17 @@ namespace accord::mesoscopic
 		}
 	}
 
+	std::vector<Subvolume>& Region::GetSubvolumes()
+	{
+		return subvolumes;
+	}
+
 	void Region::AddZerothOrderReaction(MoleculeIDs products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{
 			subvolume.AddZerothOrderReaction(products, reaction_rate);
 		}
-	}
-
-	std::vector<Subvolume>& Region::GetSubvolumes()
-	{
-		return subvolumes;
 	}
 
 	void Region::AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate)
