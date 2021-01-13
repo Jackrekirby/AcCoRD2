@@ -79,7 +79,7 @@ void TestSimpleEnvironment2()
 	MoleculeIDs release_molecules = { 1, 2 };
 	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
 		action_interval, release_interval, slot_interval,
-		bit_probability, n_modulation_bits, Environment::GetRealisationPath() + "a1_b.bin",
+		bit_probability, n_modulation_bits,
 		release_molecules, modulation_strength, Environment::GetRegions({ 0 }), Environment::GetMesoscopicRegions({}),
 		std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)), start_time, 5, 0));
 
@@ -647,7 +647,7 @@ void TestMesoscopic()
 	//
 	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
 		action_interval, release_interval, slot_interval,
-		bit_probability, n_modulation_bits, Environment::GetRealisationPath() + "a1_b.bin",
+		bit_probability, n_modulation_bits,
 		release_molecules, modulation_strength, Environment::GetRegions({}), Environment::GetMesoscopicRegions({0}),
 		std::make_unique<ActiveActorBox>(Vec3d(0), Vec3d(2, 1, 1)), 0, 5, 0));
 

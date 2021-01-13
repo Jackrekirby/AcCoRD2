@@ -155,6 +155,7 @@ namespace accord::mesoscopic
 
 	void Region::RefreshEventTime()
 	{
+		//LOG_INFO("time = {}", subvolume_queue.Front().GetTime());
 		SetEventTime(subvolume_queue.Front().GetTime());
 	}
 
