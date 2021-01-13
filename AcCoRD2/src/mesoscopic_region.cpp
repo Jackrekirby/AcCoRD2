@@ -9,13 +9,14 @@ namespace accord::mesoscopic
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
 		std::vector<double> diffusion_coefficients, double start_time, int priority, MesoRegionID id)
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event5(start_time, priority), id(id),
-			n_subvolumes(n_subvolumes)
+			n_subvolumes(n_subvolumes), start_time(start_time)
 	{
 		CreateSubvolumes(n_subvolumes, diffusion_coefficients, subvolume_length);
 	}
 
 	void Region::AddMolecule(MoleculeID id, const Vec3d& position)
 	{
+		LOG_INFO("molecule id = {}", id);
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(id);
 		RefreshEventTime();
@@ -116,7 +117,7 @@ namespace accord::mesoscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, 
-						subvolume_length, diffusion_coefficients, j);
+						subvolume_length, diffusion_coefficients, start_time, j);
 					j++;
 				}
 			}
@@ -223,7 +224,7 @@ namespace accord::mesoscopic
 	{
 		subvolume_queue.Front().Run();
 		SetEventTime(subvolume_queue.Front().GetTime());
-		LOG_INFO("event time = {}", GetEventTime());
+		//LOG_INFO("event time = {}", GetEventTime());
 	}
 
 	void Region::Print()
@@ -237,6 +238,15 @@ namespace accord::mesoscopic
 	const shape::relation::Box& Region::GetBoundingBox() const
 	{
 		return box;
+	}
+
+	void Region::NextRealisation()
+	{
+		for (auto& subvolume : subvolumes)
+		{
+			subvolume.NextRealisation(start_time);
+		}
+		RefreshEventTime();
 	}
 
 	void Region::ToJson(Json& j) const

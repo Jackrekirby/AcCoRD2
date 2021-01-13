@@ -6,13 +6,14 @@
 #include "microscopic_box_region.h"
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
+#include "event_queue5.h"
 
 namespace accord
 {
 	void Environment::Init(std::string simulation_path, int num_realisations,
 		double run_time, int num_molecule_types, int num_microscopic_regions,
 		int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
-		uint64_t seed, EventQueue5* event_queue)
+		uint64_t seed)
 	{
 		Environment::time = 0;
 		Environment::run_time = run_time;
@@ -25,7 +26,8 @@ namespace accord
 		Environment::num_realisations = num_realisations;
 		Environment::current_realisation = 0;
 		Environment::seed = seed;
-		Environment::event_queue = event_queue;
+		Environment::event_queue = EventQueue5(num_microscopic_regions + 
+			num_mesoscopic_regions + num_passive_actors + num_active_actors);
 
 		Random::SetSeed(seed);
 
@@ -246,7 +248,7 @@ namespace accord
 
 	EventQueue5& Environment::GetEventQueue()
 	{
-		return *event_queue;
+		return event_queue;
 	}
 
 	// the only type of relationship which does not need to be defined is a neighbour and none
@@ -365,5 +367,5 @@ namespace accord
 	int Environment::num_realisations = 1;
 	int Environment::current_realisation = 0;
 	uint64_t Environment::seed = 1;
-	EventQueue5* Environment::event_queue;
+	EventQueue5 Environment::event_queue;
 }

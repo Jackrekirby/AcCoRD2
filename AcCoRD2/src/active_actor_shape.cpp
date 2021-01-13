@@ -18,4 +18,15 @@ namespace accord
 	{
 		return shape::generating::Box::CalculateVolume();
 	}
+
+	void ActiveActorBox::ToJson(Json& j) const
+	{
+		j = static_cast<shape::basic::Box>(*this);
+	}
+
+	void to_json(Json& j, const ActiveActorShape& shape)
+	{
+		shape.ToJson(j);
+	}
+
 }

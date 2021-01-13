@@ -11,18 +11,23 @@ namespace accord
 		class Region;
 	}
 
+	namespace mesoscopic
+	{
+		class Region;
+	}
+
 	class ActiveActor2 : public Event5
 	{
 	public:
 		ActiveActor2(double action_interval, double release_interval, MoleculeIDs release_molecules,
-			int modulation_strength, std::vector<microscopic::Region*> regions, std::unique_ptr<ActiveActorShape> shape,
-			double start_time, int priority, ActiveActorID id);
+			int modulation_strength, std::vector<microscopic::Region*> micro_regions, std::vector<mesoscopic::Region*> meso_regions,
+			std::unique_ptr<ActiveActorShape> shape, double start_time, int priority, ActiveActorID id);
 
 		virtual void Run() = 0;
 
 		Type GetType() const;
 
-		EventID GetID() const;
+		ActiveActorID GetID() const;
 
 		ActiveActorShape& GetShape();
 
@@ -31,8 +36,11 @@ namespace accord
 		// could return true if a new symbol needs to be generated
 		bool SetNextReleaseTime(double elapsed_time);
 
+		virtual void NextRealisation();
+
 	private:
-		std::vector<microscopic::Region*> regions; // will need to change to generic region in the future
+		std::vector<microscopic::Region*> micro_regions;
+		std::vector<mesoscopic::Region*> meso_regions;
 		std::unique_ptr<ActiveActorShape> shape;
 		MoleculeIDs release_molecules;
 		ActiveActorID id;
@@ -42,5 +50,6 @@ namespace accord
 		double release_interval;
 		double local_time;
 		int modulation_strength;
+		double start_time;
 	};
 }

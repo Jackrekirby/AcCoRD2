@@ -31,7 +31,7 @@ namespace accord::mesoscopic
 	class Subvolume
 	{
 	public:
-		Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, SubvolumeID id);
+		Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, double start_time, SubvolumeID id);
 
 		void CreateLayers(std::vector<double> diffusion_coefficients);
 
@@ -78,7 +78,7 @@ namespace accord::mesoscopic
 
 		double GetPropensity();
 
-		// Event Functions
+		// Event Functions (move to SubvolumeEvent Class, allows variables to be private / encapsulated)
 
 		void LinkToQueue(SubvolumeQueue* queue, size_t queue_index);
 
@@ -93,6 +93,8 @@ namespace accord::mesoscopic
 		void MarkForDeletion();
 
 		bool IsMarkedForDeletion();
+
+		void NextRealisation(double start_time);
 
 		SubvolumeID GetID() const;
 	private:

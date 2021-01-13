@@ -64,12 +64,14 @@ namespace accord::mesoscopic
 
 		void RefreshEventTime();
 
+		void NextRealisation();
+
 	private:
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;
 		shape::relation::Box box;
 		MicroRegionID id;
-
+		double start_time;
 		Vec3i n_subvolumes;
 	};
 

@@ -13,7 +13,7 @@ namespace accord
 		static void Init(std::string simulation_path, int num_realisations,
 			double run_time, int num_molecule_types, int num_microscopic_regions,
 			int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
-			uint64_t seed, EventQueue5* event_queue);
+			uint64_t seed);
 
 		static void SetTime(double time);
 
@@ -98,12 +98,11 @@ namespace accord
 		static int num_realisations;
 		static int current_realisation;
 		static uint64_t seed;
-		static EventQueue5* event_queue;
+		static EventQueue5 event_queue;
 
 		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
 		static std::vector<mesoscopic::Region> mesoscopic_regions;
 		static std::vector<std::unique_ptr<ActiveActor2>> active_actors;
-
 		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;
 	};
 }

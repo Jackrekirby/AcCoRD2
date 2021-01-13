@@ -30,6 +30,17 @@ namespace accord
 		{
 			Close();
 		}
+
+		void NewFile(std::string file_path)
+		{
+			file.close();
+			file.clear();
+			file.open(file_path);
+			if (!file.is_open())
+			{
+				LOG_ERROR("OutputBinaryVectors could not open file <{}>", file_path);
+			}
+		}
 		
 		void Write(const T value)
 		{

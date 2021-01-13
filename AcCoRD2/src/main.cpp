@@ -35,8 +35,7 @@ void TestSimpleEnvironment2()
 
 	// SIMULATION ============================================================================================================
 	std::string sim_dir = "D:/dev/my_simulation5";
-	EventQueue5 event_queue(3);
-	Environment::Init(sim_dir, 1, 1, 4, 1, 0, 1, 0, 1, &event_queue);
+	Environment::Init(sim_dir, 1, 1, 4, 1, 0, 1, 0, 1);
 	//Random::GetGenerator().advance(2);
 
 	// CREATE REGIONS ========================================================================================================
@@ -81,9 +80,8 @@ void TestSimpleEnvironment2()
 	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
 		action_interval, release_interval, slot_interval,
 		bit_probability, n_modulation_bits, Environment::GetRealisationPath() + "a1_b.bin",
-		release_molecules, modulation_strength, Environment::GetRegions({ 0 }),
-		std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)),
-		start_time, 5, 0));
+		release_molecules, modulation_strength, Environment::GetRegions({ 0 }), Environment::GetMesoscopicRegions({}),
+		std::make_unique<ActiveActorBox>(Vec3d(-1), Vec3d(2)), start_time, 5, 0));
 
 	Json json_regions;
 	for (auto& regions : Environment::GetRegions())
@@ -152,7 +150,7 @@ void TestSimpleEnvironment2()
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
 		while (true)
 		{
-			auto& event = event_queue.Front();
+			auto& event = Environment::GetEventQueue().Front();
 			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())
 			{
@@ -613,14 +611,14 @@ void TestCylinder()
 void TestMesoscopic()
 {
 	using namespace accord;
-	EventQueue5 event_queue(4);
-	Environment::Init("D:/dev/meso_sim", 1, 10, 3, 0, 1, 1, 0, 1, &event_queue);
+	int n_micro_regions = 0, n_meso_regions = 1, n_passive_actors = n_meso_regions + n_micro_regions, n_active_actors = 1;
+	Environment::Init("D:/dev/meso_sim", 2 , 10, 3, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
 	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 0);
-	Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);
+	//Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);
 
 	LOG_INFO("simulation path = {}", Environment::GetSimulationPath());
-	Environment::GetMesoscopicRegion(1).AddNeighbour(Environment::GetMesoscopicRegion(0));
-	Environment::GetMesoscopicRegion(0).AddNeighbour(Environment::GetMesoscopicRegion(1));
+	//Environment::GetMesoscopicRegion(1).AddNeighbour(Environment::GetMesoscopicRegion(0));
+	//Environment::GetMesoscopicRegion(0).AddNeighbour(Environment::GetMesoscopicRegion(1));
 	
 
 	//Environment::GetMesoscopicRegions().at(0).AddZerothOrderReaction({ 0 }, 1);
@@ -637,15 +635,32 @@ void TestMesoscopic()
 		meso_region.AddSubvolumesToQueue();
 	}
 
-	for (int i = 0; i < 10; i++)
+
+
+	double action_interval = Environment::GetRunTime() / 5;
+	double release_interval = action_interval / 2;
+	double slot_interval = release_interval / 5;
+	int modulation_strength = 1;
+	int n_modulation_bits = 2;
+	double bit_probability = 0.3;
+	MoleculeIDs release_molecules = { 0, 1, 2 };
+	//
+	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
+		action_interval, release_interval, slot_interval,
+		bit_probability, n_modulation_bits, Environment::GetRealisationPath() + "a1_b.bin",
+		release_molecules, modulation_strength, Environment::GetRegions({}), Environment::GetMesoscopicRegions({0}),
+		std::make_unique<ActiveActorBox>(Vec3d(0), Vec3d(2, 1, 1)), 0, 5, 0));
+
+	for (int i = 0; i < 0; i++)
 	{
 		//Environment::GetMesoscopicRegion(0).AddMolecule(i % 2, { 0.5, 0.5, 0.5 });
-		Environment::GetMesoscopicRegion(1).AddMolecule(0, { 3.5, 0.5, 0.5 });
+		Environment::GetMesoscopicRegion(0).AddMolecule(0, { 3.5, 0.5, 0.5 });
 	}
 	
 
 	double time_step = 0.05;
 	Environment::GetPassiveActors().reserve(Environment::GetMesoscopicRegions().size());
+	LOG_INFO(Environment::GetMesoscopicRegions().size());
 	for (int i = 0; i < Environment::GetMesoscopicRegions().size(); i++)
 	{
 		Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(MicroRegionIDs({}),
@@ -675,11 +690,26 @@ void TestMesoscopic()
 			json_actors["shapes"].emplace_back(*(passive_actor->GetShape()));
 		}
 	}
-	std::ofstream actors_file(Environment::GetSimulationPath() + "/actors.json");
+	std::ofstream actors_file(Environment::GetSimulationPath() + "/passive_actors.json");
 	actors_file << JsonToString(json_actors);
 	actors_file.close();
 
+
+	json_actors.clear();
+	for (auto& actor : Environment::GetActiveActors())
+	{
+		json_actors["shapes"].emplace_back(actor->GetShape());
+	}
+	std::ofstream active_actors_file(Environment::GetSimulationPath() + "/active_actors.json");
+	active_actors_file << JsonToString(json_actors);
+	active_actors_file.close();
+
 	for (auto& actor : Environment::GetPassiveActors())
+	{
+		Environment::GetEventQueue().Add(actor.get());
+	}
+
+	for (auto& actor : Environment::GetActiveActors())
 	{
 		Environment::GetEventQueue().Add(actor.get());
 	}
@@ -687,23 +717,40 @@ void TestMesoscopic()
 	//LOG_INFO("next event = {}", event_queue.Front());
 	//LOG_INFO("region event time = {}, ", region.GetEventTime());
 
-	
-
 	//LOG_INFO(event_queue.Front());
 
 	do {
 		LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+		if (Environment::GetRealisationNumber() > 0)
+		{
+			for (auto& passive_actor : Environment::GetPassiveActors())
+			{
+				passive_actor->NextRealisation();
+			}
+			for (auto& region : Environment::GetRegions())
+			{
+				region->NextRealisation();
+			}
+			for (auto& active_actors : Environment::GetActiveActors())
+			{
+				active_actors->NextRealisation();
+			}
+			for (auto& region : Environment::GetMesoscopicRegions())
+			{
+				region.NextRealisation();
+			}
+		}
 		while (true)
 		{
-			Environment::GetMesoscopicRegion(0).Print();
-			Environment::GetMesoscopicRegion(1).Print();
-			auto& event = event_queue.Front();
+			//Environment::GetMesoscopicRegion(0).Print();
+			//Environment::GetMesoscopicRegion(1).Print();
+			auto& event = Environment::GetEventQueue().Front();
 			Environment::SetTime(event.GetEventTime());
 			if (Environment::GetTime() > Environment::GetRunTime())
 			{
 				break;
 			}
-			LOG_INFO("Event:({})", event);
+			//LOG_INFO("Event:({})", event);
 			event.Run();
 		}
 	} while (Environment::NextRealisation());

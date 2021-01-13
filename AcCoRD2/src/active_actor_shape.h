@@ -10,6 +10,8 @@ namespace accord
 		virtual Vec3d GenerateMolecule() = 0;
 
 		virtual double CalculateVolume() = 0;
+
+		virtual void ToJson(Json& j) const = 0;
 	};
 
 	//ActiveActorSphere
@@ -27,5 +29,9 @@ namespace accord
 		Vec3d GenerateMolecule();
 
 		double CalculateVolume();
+
+		void ToJson(Json& j) const;
 	};
+
+	void to_json(Json& j, const ActiveActorShape& shape);
 }

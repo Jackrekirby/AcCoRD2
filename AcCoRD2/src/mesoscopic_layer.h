@@ -18,7 +18,6 @@ namespace accord::mesoscopic
 	class Layer : public PropensityObject
 	{
 	public:
-
 		Layer(double diffusion_coefficient, LinkedPropensityObjects* linked_propensities, MoleculeID id);
 
 		void AddMolecule();
@@ -36,6 +35,8 @@ namespace accord::mesoscopic
 		void AddNeighbourRelationship(Layer* neighbour, double diffusion_factor, Region* region = nullptr);
 
 		double GetCoefficient();
+
+		void NextRealisation();
 	private:
 		std::vector<NeighbourRelationship> neighbour_relationships;
 		int molecule_count;

@@ -16,7 +16,7 @@ namespace accord::mesoscopic
 
 	void Layer::AddMolecule()
 	{
-		LOG_INFO("id = {}", id);
+		//LOG_INFO("id = {}", id);
 		molecule_count++;
 		linked_propensities->RequiresUpdate();
 	}
@@ -48,6 +48,7 @@ namespace accord::mesoscopic
 				RemoveMolecule();
 				Layer& neighbour = relationship.GetNeighbour();
 				neighbour.AddMolecule();
+				// if the region is not the parent region then propensity should be updated differently?
 				neighbour.linked_propensities->UpdatePropensities();
 				if (relationship.GetRegion() != nullptr)
 				{
@@ -89,5 +90,11 @@ namespace accord::mesoscopic
 	double Layer::GetCoefficient()
 	{
 		return diffusion_coefficient * molecule_count;
+	}
+
+	void Layer::NextRealisation()
+	{
+		molecule_count = 0;
+		linked_propensities->RequiresUpdate();
 	}
 }

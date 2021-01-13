@@ -19,8 +19,8 @@ namespace accord::mesoscopic
 		j = static_cast<shape::basic::Box>(*this);
 	}
 
-	Subvolume::Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, SubvolumeID id)
-		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(0), id(id)
+	Subvolume::Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, double start_time, SubvolumeID id)
+		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(start_time), id(id)
 	{
 		CreateLayers(diffusion_coefficients);
 	}
@@ -43,13 +43,14 @@ namespace accord::mesoscopic
 	void Subvolume::AddMolecule(MoleculeID molecule_id)
 	{
 		layers.at(molecule_id).AddMolecule();
-		UpdatePropensities(molecule_id);
+		UpdatePropensities(molecule_id); // switch to ratio method
+		// e.g. CalculateTime and ModifyTime or simply use function args
 		//UpdateReactionTime();
 	}
 
 	void Subvolume::Run()
 	{
-		LOG_INFO("subvolume id = {}", id);
+		//LOG_INFO("subvolume id = {}", id);
 		// change event to reaction
 		SelectEvent();
 		UpdatePropensities();
@@ -198,7 +199,14 @@ namespace accord::mesoscopic
 
 	void Subvolume::UpdateReactionTime()
 	{
-		SetTime(Environment::GetTime() - log(Random::GenerateRealUniform()) / reaction_propensity);
+		// Changed environment.GetTime() to region.GetTime() so subvolume reactions times can be offset from the regions start time
+		// it is incorrect to keep updating form environment time as if another object updates the subvolume then event the same propensity
+		// will result in a later subvolume reaction time.
+
+		// this (using parent) is the incorrect way to update the reaction time if it is not a subvolume event as event time has since updated 
+		// CORRECTED by updating and not setting time
+
+		UpdateTime(log(Random::GenerateRealUniform()) / reaction_propensity);
 		//LOG_INFO("time = {}", GetTime());
 	}
 
@@ -273,6 +281,17 @@ namespace accord::mesoscopic
 	bool Subvolume::IsMarkedForDeletion()
 	{
 		return (time == -1);
+	}
+
+	// could store start time locally instead
+	void Subvolume::NextRealisation(double start_time)
+	{
+		SetTime(start_time);
+		for (auto& layer : layers)
+		{
+			layer.NextRealisation();
+		}
+		UpdatePropensities();
 	}
 
 	SubvolumeID Subvolume::GetID() const

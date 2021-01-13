@@ -22,7 +22,7 @@ shape3d = Shape3D('LineColorMap', hsv(length(sim.regions.shapes)), ...
 'FaceColorMap', hsv(length(sim.regions.shapes)));
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
-r = Accord.playAnimateRealisation(r, 0.5);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;
