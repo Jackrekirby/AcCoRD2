@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fixed_range_int.cpp" />
     <ClCompile Include="src\event5.cpp" />
     <ClCompile Include="src\event_queue5.cpp" />
     <ClCompile Include="src\mesoscopic_layer_neighbour_relationship.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\fixed_range_int.h" />
     <ClInclude Include="src\event5.h" />
     <ClInclude Include="src\event_queue.h" />
     <ClInclude Include="src\event_queue5.h" />
@@ -285,7 +287,7 @@
     <ClInclude Include="src\subvolume_queue.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="kanban.txt" />
+    <Text Include="src\kanban.txt" />
     <Text Include="lib\pcg\LICENSE-APACHE.txt" />
     <Text Include="lib\pcg\LICENSE-MIT.txt" />
     <Text Include="lib\pcg\LICENSE.txt" />

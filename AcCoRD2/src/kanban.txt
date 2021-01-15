@@ -90,10 +90,10 @@
 
 // TO DO (next)
 // json input
-// hybrid diffusion
-// make SubvolumeEvent class
+// hybrid diffusion <<<<<<<<<<<<<<<<<<
+// make SubvolumeEvent class <<<<<<<<<<<<<<<<
 // ask about shapeless active actors
-// plot active and passive actors in MATLAB
+// plot active and passive actors in MATLAB <<<<<<<<<<<<<<<
 
 // passive and active actors in mesoscopic regions
 // review / remove redundant code in meso propensity checking

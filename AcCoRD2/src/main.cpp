@@ -756,7 +756,7 @@ void TestMesoscopic()
 	} while (Environment::NextRealisation());
 }
 
-
+#include "fixed_range_int.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -766,7 +766,12 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	TestMesoscopic();
+	using namespace accord;
+	using MoleculeIDs2 = std::vector<MoleculeID2>;
+	MoleculeID2::SetRange(5, 10);
+	//MoleculeID2 a(11);
+	MoleculeIDs2 v = {6, 7, 8, 12};
+	//TestMesoscopic();
 
 	//Event2Test();
 	//TestSimpleEnvironment2();

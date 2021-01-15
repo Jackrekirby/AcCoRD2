@@ -319,6 +319,9 @@
     <ClCompile Include="src\event_queue5.cpp">
       <Filter>src\simulation\event</Filter>
     </ClCompile>
+    <ClCompile Include="fixed_range_int.cpp">
+      <Filter>src\other\ids</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -684,6 +687,9 @@
     <ClInclude Include="src\event_queue.h">
       <Filter>src\event</Filter>
     </ClInclude>
+    <ClInclude Include="src\fixed_range_int.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -695,7 +701,7 @@
     <Text Include="lib\pcg\LICENSE.txt">
       <Filter>lib\pcg</Filter>
     </Text>
-    <Text Include="kanban.txt">
+    <Text Include="src\kanban.txt">
       <Filter>src\other</Filter>
     </Text>
   </ItemGroup>
@@ -947,6 +953,9 @@
     </Filter>
     <Filter Include="src\simulation\event">
       <UniqueIdentifier>{7a0579bc-d34e-4f97-a5f7-e12f6aeee686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\other\ids">
+      <UniqueIdentifier>{cb0ceb7a-12eb-43fd-b845-c63038ad989d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
