@@ -3,10 +3,10 @@
 
 namespace accord
 {
-	class FixedRangeInt
+	class MicroscopicRegionID
 	{
 	public:
-		FixedRangeInt(int value);
+		MicroscopicRegionID(int id);
 
 		int operator () () const;
 
@@ -24,32 +24,13 @@ namespace accord
 
 		operator int() const;
 
-		static void SetRange(int min, int max);
+		static void SetNumIDs(int count);
 	private:
-		int value;
-		static int min;
-		static int max;
+		int id;
+		static int count;
 
 		void InRange();
 	};
-
-	class MoleculeID2 : public FixedRangeInt
-	{
-	public:
-		MoleculeID2(int id)
-			: FixedRangeInt(id)
-		{
-
-		}
-	};
-
-	class RegionID2 : public FixedRangeInt
-	{
-	public:
-		RegionID2(int id)
-			: FixedRangeInt(id)
-		{
-
-		}
-	};
+	
+	using MicroscopicRegionIDs = std::vector<MicroscopicRegionID>;
 }

@@ -319,7 +319,22 @@
     <ClCompile Include="src\event_queue5.cpp">
       <Filter>src\simulation\event</Filter>
     </ClCompile>
-    <ClCompile Include="fixed_range_int.cpp">
+    <ClCompile Include="src\molecule_id.cpp">
+      <Filter>src\other\ids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\passive_actor_id.cpp">
+      <Filter>src\other\ids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_region_id.cpp">
+      <Filter>src\other\ids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesoscopic_region_id.cpp">
+      <Filter>src\other\ids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event_id.cpp">
+      <Filter>src\other\ids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_id.cpp">
       <Filter>src\other\ids</Filter>
     </ClCompile>
   </ItemGroup>
@@ -681,13 +696,28 @@
     <ClInclude Include="src\event_queue5.h">
       <Filter>src\simulation\event</Filter>
     </ClInclude>
-    <ClInclude Include="src\object_ids.h">
-      <Filter>src\other</Filter>
-    </ClInclude>
     <ClInclude Include="src\event_queue.h">
       <Filter>src\event</Filter>
     </ClInclude>
-    <ClInclude Include="src\fixed_range_int.h">
+    <ClInclude Include="src\molecule_id.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor_id.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_region_id.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesoscopic_region_id.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event_id.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_id.h">
+      <Filter>src\other\ids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object_ids.h">
       <Filter>src\other\ids</Filter>
     </ClInclude>
   </ItemGroup>

@@ -756,7 +756,17 @@ void TestMesoscopic()
 	} while (Environment::NextRealisation());
 }
 
-#include "fixed_range_int.h"
+// List of IDS
+//MoleculeID convert
+//EventID convert
+//MicroRegionID convert
+//MesoRegionID convert
+//ReactionID not required and would require seperation per order
+//ActiveActorID convert
+//PassiveActorID convert
+//SubvolumeID different per mesoscopic region
+
+#include "molecule_id.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -767,10 +777,10 @@ int main()
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
 	using namespace accord;
-	using MoleculeIDs2 = std::vector<MoleculeID2>;
-	MoleculeID2::SetRange(5, 10);
+	using MoleculeIDs = std::vector<MoleculeID>;
+	MoleculeID::SetNumIDs(10);
 	//MoleculeID2 a(11);
-	MoleculeIDs2 v = {6, 7, 8, 12};
+	MoleculeIDs v = {6, 7, 8, 12};
 	//TestMesoscopic();
 
 	//Event2Test();

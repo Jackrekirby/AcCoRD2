@@ -3,8 +3,6 @@
 //#include "random.h"
 #include "event_queue.h"
 
-
-
 namespace accord
 {
 	class EventQueue;

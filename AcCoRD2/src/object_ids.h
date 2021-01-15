@@ -3,14 +3,14 @@
 
 namespace accord
 {
-	using MoleculeID = int;
-	using MoleculeIDs = std::vector<int>;
+	//using MoleculeID = int;
+	//using MoleculeIDs = std::vector<int>;
 
-	using EventID = int;
-	using EventIDs = std::vector<int>;
+	//using EventID = int;
+	//using EventIDs = std::vector<int>;
 
-	using MicroRegionID = int;
-	using MicroRegionIDs = std::vector<int>;
+	//using MicroRegionID = int;
+	//using MicroRegionIDs = std::vector<int>;
 
 	using MesoRegionID = int;
 	using MesoRegionIDs = std::vector<int>;
@@ -18,11 +18,11 @@ namespace accord
 	using ReactionID = int;
 	using ReactionIDs = std::vector<int>;
 
-	using ActiveActorID = int;
-	using ActiveActorIDs = std::vector<int>;
+	//using ActiveActorID = int;
+	//using ActiveActorIDs = std::vector<int>;
 
-	using PassiveActorID = int;
-	using PassiveActorIDs = std::vector<int>;
+	//using PassiveActorID = int;
+	//using PassiveActorIDs = std::vector<int>;
 
 	using SubvolumeID = int;
 	using SubvolumeIDs = std::vector<int>;

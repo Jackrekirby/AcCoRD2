@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="fixed_range_int.cpp" />
+    <ClCompile Include="src\active_actor_id.cpp" />
+    <ClCompile Include="src\event_id.cpp" />
+    <ClCompile Include="src\mesoscopic_region_id.cpp" />
+    <ClCompile Include="src\microscopic_region_id.cpp" />
+    <ClCompile Include="src\molecule_id.cpp" />
     <ClCompile Include="src\event5.cpp" />
     <ClCompile Include="src\event_queue5.cpp" />
     <ClCompile Include="src\mesoscopic_layer_neighbour_relationship.cpp" />
@@ -29,6 +33,7 @@
     <ClCompile Include="src\mesoscopic_second_order_reaction.cpp" />
     <ClCompile Include="src\mesoscopic_subvolume.cpp" />
     <ClCompile Include="src\mesoscopic_zeroth_order_reaction.cpp" />
+    <ClCompile Include="src\passive_actor_id.cpp" />
     <ClCompile Include="src\propensity_object.cpp" />
     <ClCompile Include="src\active_actor_shape.cpp" />
     <ClCompile Include="src\active_actor_random_bits.cpp" />
@@ -163,7 +168,11 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\fixed_range_int.h" />
+    <ClInclude Include="src\active_actor_id.h" />
+    <ClInclude Include="src\event_id.h" />
+    <ClInclude Include="src\mesoscopic_region_id.h" />
+    <ClInclude Include="src\microscopic_region_id.h" />
+    <ClInclude Include="src\molecule_id.h" />
     <ClInclude Include="src\event5.h" />
     <ClInclude Include="src\event_queue.h" />
     <ClInclude Include="src\event_queue5.h" />
@@ -173,6 +182,7 @@
     <ClInclude Include="src\mesoscopic_second_order_reaction.h" />
     <ClInclude Include="src\mesoscopic_subvolume.h" />
     <ClInclude Include="src\mesoscopic_zeroth_order_reaction.h" />
+    <ClInclude Include="src\passive_actor_id.h" />
     <ClInclude Include="src\propensity_object.h" />
     <ClInclude Include="src\mesoscopic_layer.h" />
     <ClInclude Include="src\active_actor_shape.h" />

@@ -44,7 +44,7 @@ namespace accord
 		template<typename OStream>
 		friend OStream& operator << (OStream& os, const Event& event)
 		{
-			return os << fmt::format("Type:{}, ID:{}, Time:{}", 
+			return os << fmt::format("Type:{}, ID:{}, Time:{}",
 				event.GetType(), event.GetID(), event.GetEventTime());
 		}
 	private:

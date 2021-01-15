@@ -21,30 +21,18 @@ namespace accord
 
 		bool OccursBefore(const Event5& other);
 
-		enum class Type
+		virtual std::string LogEvent()
 		{
-			microscopic_region, mesoscopic_region, active_actor, passive_actor
-		};
-
-		virtual Type GetType() const = 0;
-
-		virtual EventID GetID() const = 0;
+			return fmt::format("Index:{}, Priority:{}, Time:{}",
+				queue_index, priority, time);
+		}
 
 		virtual void Run() = 0;
-
-		static std::string ToString(Type type);
-
-		template<typename OStream>
-		static friend OStream& operator << (OStream& os, const Type& type)
-		{
-			return os << ToString(type);
-		}
 
 		template<typename OStream>
 		friend OStream& operator << (OStream& os, const Event5& event)
 		{
-			return os << fmt::format("Type:{}, ID:{}, Time:{}",
-				event.GetType(), event.GetID(), event.GetEventTime());
+			return os << LogEvent();
 		}
 	protected:
 		double time;
