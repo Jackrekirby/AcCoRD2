@@ -15,9 +15,8 @@
 
 namespace accord::microscopic
 {
-	Grid::Grid(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region* region)
-		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient),
-		region(region), id(id)
+	Grid::Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const MoleculeID& id, Region* region)
+		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient), region(region), id(id)
 	{
 		//LOG_INFO("id = {}", id);
 		CreateSubvolumes();
@@ -275,7 +274,7 @@ namespace accord::microscopic
 		// UNECCESSARY? Let region control local grid linking and just call link grid
 	}
 
-	MoleculeID Grid::GetMoleculeID()
+	const MoleculeID& Grid::GetMoleculeID()
 	{
 		return id;
 	}

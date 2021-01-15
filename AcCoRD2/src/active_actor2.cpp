@@ -7,21 +7,21 @@
 // need to add check so a shape checks all regions it can place molecules in
 namespace accord
 {
-	ActiveActor2::ActiveActor2(double action_interval, double release_interval, MoleculeIDs release_molecules,
-		int modulation_strength, std::vector<microscopic::Region*> micro_regions, std::vector<mesoscopic::Region*> meso_regions,
-		std::unique_ptr<ActiveActorShape> shape, double start_time, int priority, ActiveActorID id)
+	ActiveActor2::ActiveActor2(double action_interval, double release_interval, const MoleculeIDs& release_molecules,
+		int modulation_strength, const std::vector<microscopic::Region*>& microscopic_regions, const std::vector<mesoscopic::Region*>& mesoscopic_regions,
+		std::unique_ptr<ActiveActorShape> shape, double start_time, int priority, const ActiveActorID& id)
 		: action_interval(action_interval), release_interval(release_interval), release_molecules(release_molecules),
-		modulation_strength(modulation_strength), micro_regions(micro_regions), meso_regions(meso_regions), Event5(start_time, priority), 
+		modulation_strength(modulation_strength), microscopic_regions(microscopic_regions), mesoscopic_regions(mesoscopic_regions), Event5(start_time, priority),
 		id(id), shape(std::move(shape)), local_time(start_time), last_action_time(start_time), start_time(start_time)
 	{
 	}
 
-	Event5::Type ActiveActor2::GetType() const
+	std::string ActiveActor2::LogEvent() const
 	{
-		return Type::active_actor;
+		return fmt::format("Active Actor. ID:{}, Priority:{}, Time:{}", id, priority, time);
 	}
 
-	ActiveActorID ActiveActor2::GetID() const
+	const ActiveActorID& ActiveActor2::GetID() const
 	{
 		return id;
 	}
@@ -40,7 +40,7 @@ namespace accord
 			{
 				LOG_INFO("molecule id = {}", molecule);
 				Vec3d position = GetShape().GenerateMolecule();
-				for (auto& region : micro_regions)
+				for (auto& region : microscopic_regions)
 				{
 					if (region->GetShape().IsMoleculeInsideBorder(position))
 					{
@@ -49,7 +49,7 @@ namespace accord
 					}
 				}
 
-				for (auto& region : meso_regions)
+				for (auto& region : mesoscopic_regions)
 				{
 					if (region->GetBoundingBox().IsWithinOrOnBorder(position))
 					{

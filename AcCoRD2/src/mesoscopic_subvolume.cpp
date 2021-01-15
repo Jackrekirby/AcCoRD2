@@ -19,13 +19,13 @@ namespace accord::mesoscopic
 		j = static_cast<shape::basic::Box>(*this);
 	}
 
-	Subvolume::Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, double start_time, SubvolumeID id)
-		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(start_time), id(id)
+	Subvolume::Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const SubvolumeID& id)
+		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(0), id(id)
 	{
 		CreateLayers(diffusion_coefficients);
 	}
 
-	void Subvolume::CreateLayers(std::vector<double> diffusion_coefficients)
+	void Subvolume::CreateLayers(const std::vector<double>& diffusion_coefficients)
 	{
 		linked_propensity_objects.reserve(diffusion_coefficients.size());
 		layers.reserve(diffusion_coefficients.size());
@@ -40,7 +40,7 @@ namespace accord::mesoscopic
 		}
 	}
 
-	void Subvolume::AddMolecule(MoleculeID molecule_id)
+	void Subvolume::AddMolecule(const MoleculeID& molecule_id)
 	{
 		layers.at(molecule_id).AddMolecule();
 		UpdatePropensities(molecule_id); // switch to ratio method
@@ -119,12 +119,12 @@ namespace accord::mesoscopic
 		}
 	}
 
-	Layer& Subvolume::GetLayer(MoleculeID id)
+	Layer& Subvolume::GetLayer(const MoleculeID& id)
 	{
 		return layers.at(id);
 	}
 
-	std::vector<Layer*> Subvolume::GetLayers(MoleculeIDs ids)
+	std::vector<Layer*> Subvolume::GetLayers(const MoleculeIDs& ids)
 	{
 		std::vector<Layer*> layer_ptrs;
 		layer_ptrs.reserve(ids.size());
@@ -135,20 +135,20 @@ namespace accord::mesoscopic
 		return layer_ptrs;
 	}
 
-	void Subvolume::AddZerothOrderReaction(MoleculeIDs products, double reaction_rate)
+	void Subvolume::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
 	{
 		zeroth_order_reactions.emplace_back(GetLayers(products), reaction_rate, GetBoundingBox().CalculateVolume());
 		reaction_propensity += zeroth_order_reactions.back().GetPropensity();
 	}
 
-	void Subvolume::AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate)
+	void Subvolume::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate)
 	{
 		first_order_reactions.emplace_back(&GetLayer(reactant), GetLayers(products), reaction_rate);
 		AddLinkToPropensityObject(reactant, &first_order_reactions.back());
 		AddLinkToPropensityObjects(products, &first_order_reactions.back());
 	}
 
-	void Subvolume::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, MoleculeIDs products, double reaction_rate)
+	void Subvolume::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate)
 	{
 		second_order_reactions.emplace_back(&GetLayer(reactant_a), &GetLayer(reactant_b), GetLayers(products),
 			reaction_rate, GetBoundingBox().CalculateVolume());
@@ -156,12 +156,12 @@ namespace accord::mesoscopic
 		AddLinkToPropensityObjects(products, &second_order_reactions.back());
 	}
 
-	void Subvolume::AddLinkToPropensityObject(MoleculeID id, PropensityObject* object)
+	void Subvolume::AddLinkToPropensityObject(const MoleculeID& id, PropensityObject* object)
 	{
 		linked_propensity_objects.at(id).Add(object);
 	}
 
-	void Subvolume::AddLinkToPropensityObjects(MoleculeIDs ids, PropensityObject* object)
+	void Subvolume::AddLinkToPropensityObjects(const MoleculeIDs& ids, PropensityObject* object)
 	{
 		for (MoleculeID id : ids)
 		{
@@ -178,7 +178,7 @@ namespace accord::mesoscopic
 		}
 	}
 
-	void Subvolume::UpdatePropensities(MoleculeID id)
+	void Subvolume::UpdatePropensities(const MoleculeID& id)
 	{
 		// only updates the propensity of objects which are affected by a change in molecule count
 		linked_propensity_objects.at(id).UpdatePropensities();

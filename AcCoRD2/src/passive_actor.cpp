@@ -23,36 +23,22 @@ namespace accord
 		subvolumes.emplace_back(subvolume);
 	}
 
-	PassiveActor::PassiveActor(MoleculeIDs molecule_ids,
-		double start_time, int priority, double time_step,
-		ActiveActorID id, bool record_positions, bool record_time)
-		: Event5(start_time, priority), id(id),
-		time_step(time_step), record_positions(record_positions), record_time(record_time),
+	PassiveActor::PassiveActor(const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step,
+		const PassiveActorID& id, bool record_positions, bool record_time)
+		: Event5(start_time, priority), id(id), time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
 		
 	}
 
-	PassiveActor::PassiveActor(MicroRegionIDs region_ids, MicroRegionIDs meso_region_ids, MoleculeIDs molecule_ids,
-		double start_time, int priority, double time_step,
-		ActiveActorID id, bool record_positions, bool record_time)
+	PassiveActor::PassiveActor(const MicroscopicRegionIDs& microscopic_region_ids, const MesoscopicRegionIDs& mesoscopic_region_ids, const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step, const PassiveActorID& id, bool record_positions, bool record_time)
 		: Event5(start_time, priority), id(id),
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
-		AddMicroscopicSubvolumes(molecule_ids, region_ids);
-		AddMesoscopicSubvolumes(meso_region_ids);
+		AddMicroscopicSubvolumes(molecule_ids, microscopic_region_ids);
+		AddMesoscopicSubvolumes(mesoscopic_region_ids);
 		CreateFiles();
-	}
-
-	Event5::Type PassiveActor::GetType() const
-	{
-		return Event5::Type::passive_actor;
-	}
-
-	ActiveActorID PassiveActor::GetID() const
-	{
-		return id;
 	}
 
 	void PassiveActor::NextRealisation()
@@ -120,7 +106,7 @@ namespace accord
 		}
 	}
 
-	void PassiveActor::AddMicroscopicSubvolumesWhichAreInsideActor(MoleculeIDs molecule_ids)
+	void PassiveActor::AddMicroscopicSubvolumesWhichAreInsideActor(const MoleculeIDs& molecule_ids)
 	{
 		for (auto& id : molecule_ids)
 		{
@@ -171,7 +157,7 @@ namespace accord
 		
 	}
 
-	void PassiveActor::AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids)
+	void PassiveActor::AddMicroscopicSubvolumes(const MoleculeIDs& molecule_ids, const MicroscopicRegionIDs& region_ids)
 	{
 		for (auto& id : molecule_ids)
 		{
@@ -187,7 +173,7 @@ namespace accord
 		}
 	}
 
-	void PassiveActor::AddMesoscopicSubvolumes(MicroRegionIDs region_ids)
+	void PassiveActor::AddMesoscopicSubvolumes(const MesoscopicRegionIDs& region_ids)
 	{
 		for (auto& region : Environment::GetMesoscopicRegions(region_ids))
 		{
@@ -323,6 +309,10 @@ namespace accord
 		}
 	}
 
+	std::string PassiveActor::LogEvent() const
+	{
+		return fmt::format("Passive Actor. ID:{}, Priority:{}, Time:{}", id, priority, time);
+	}
 
 	void to_json(Json& j, const PassiveActorShape& shape)
 	{

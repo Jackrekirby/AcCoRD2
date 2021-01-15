@@ -7,7 +7,7 @@
 
 namespace accord::microscopic
 {
-	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region)
 		: reactant_a(reactant_a), reactant_b(reactant_b), SecondOrderReaction(products, binding_radius, unbinding_radius), 
 		reactant_a_grid(&(region->GetGrid(reactant_a)))
@@ -27,7 +27,7 @@ namespace accord::microscopic
 	}
 
 
-	OneReactantSecondOrderReaction::OneReactantSecondOrderReaction(MoleculeID reactant,
+	OneReactantSecondOrderReaction::OneReactantSecondOrderReaction(const MoleculeID& reactant,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region)
 		: reactant(reactant), SecondOrderReaction(products, binding_radius, unbinding_radius),
 		reactant_grid(&(region->GetGrid(reactant)))

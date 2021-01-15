@@ -12,8 +12,8 @@ namespace accord
 	//using MicroRegionID = int;
 	//using MicroRegionIDs = std::vector<int>;
 
-	using MesoRegionID = int;
-	using MesoRegionIDs = std::vector<int>;
+	//using MesoRegionID = int;
+	//using MesoRegionIDs = std::vector<int>;
 
 	using ReactionID = int;
 	using ReactionIDs = std::vector<int>;

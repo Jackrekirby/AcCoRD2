@@ -4,15 +4,15 @@
 
 namespace accord
 {
-	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, 
-		double reaction_rate, const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
+	FirstOrderReaction::FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, 
+		double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 		: reactant(reactant), products(products), reaction_rate(reaction_rate),
-		micro_regions(micro_regions), meso_regions(meso_regions)
+		microscopic_regions(microscopic_regions), mesoscopic_regions(mesoscopic_regions)
 	{
 
 	}
 
-	MoleculeID FirstOrderReaction::GetReactant() const
+	const MoleculeID& FirstOrderReaction::GetReactant() const
 	{
 		return reactant;
 	}
@@ -32,13 +32,13 @@ namespace accord
 		return ReactionManager::GetSumOfRates(reactant);
 	}
 
-	const MicroRegionIDs& FirstOrderReaction::GetMicroRegions() const
+	const MicroscopicRegionIDs& FirstOrderReaction::GetMicroscopicRegions() const
 	{
-		return micro_regions;
+		return microscopic_regions;
 	}
 
-	const MesoRegionIDs& FirstOrderReaction::GetMesoRegions() const
+	const MesoscopicRegionIDs& FirstOrderReaction::GetMesoscopicRegions() const
 	{
-		return meso_regions;
+		return mesoscopic_regions;
 	}
 }

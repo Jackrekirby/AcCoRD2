@@ -4,9 +4,9 @@
 namespace accord
 {
 	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
-		const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
-		: products(products), reaction_rate(reaction_rate), 
-		micro_regions(micro_regions), meso_regions(meso_regions)
+		const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
+		: products(products), reaction_rate(reaction_rate),
+		microscopic_regions(microscopic_regions), mesoscopic_regions(mesoscopic_regions)
 	{
 
 	}
@@ -21,14 +21,14 @@ namespace accord
 		return reaction_rate;
 	}
 
-	const MicroRegionIDs& ZerothOrderReaction::GetMicroRegions() const
+	const MicroscopicRegionIDs& ZerothOrderReaction::GetMicroscopicRegions() const
 	{
-		return micro_regions;
+		return microscopic_regions;
 	}
 
-	const MesoRegionIDs& ZerothOrderReaction::GetMesoRegions() const
+	const MesoscopicRegionIDs& ZerothOrderReaction::GetMesoscopicRegions() const
 	{
-		return meso_regions;
+		return mesoscopic_regions;
 	}
 
 }

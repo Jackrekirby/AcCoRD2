@@ -3,6 +3,7 @@
 #include "subvolume_queue.h"
 #include "event5.h"
 #include "vec3i.h"
+#include "mesoscopic_region_id.h"
 
 namespace accord
 {
@@ -11,15 +12,15 @@ namespace accord
 
 // once all subvolumes are confirmed then add reactions and events to the queue
 // may need to seperate mesoscopic and microscopic region ids
+
 namespace accord::mesoscopic
 {
 	class Region : public Event5
 	{
 	public:
-		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes,
-			std::vector<double> diffusion_coefficients, double start_time, int priority, MesoRegionID id);
+		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes, const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id);
 
-		void AddMolecule(MoleculeID id, const Vec3d& position);
+		void AddMolecule(const MoleculeID& id, const Vec3d& position);
 
 		void AddSubvolumesToQueue();
 
@@ -36,11 +37,11 @@ namespace accord::mesoscopic
 		void CreateSubvolumes(const Vec3i& n_subvolumes, std::vector<double> diffusion_coefficients,
 			double subvolume_length);
 
-		void AddZerothOrderReaction(MoleculeIDs products, double reaction_rate);
+		void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate);
 
-		void AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate);
+		void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate);
 
-		void AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, MoleculeIDs products, double reaction_rate);
+		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate);
 
 		// will delete subvolumes from the region in preparation for another mesoscopic or microscopic region to be placed inside
 		void AddChild();
@@ -50,9 +51,7 @@ namespace accord::mesoscopic
 		// returns the required dimensions of the replacement region to ensure correct neighbouring (avoid floating point error)
 		shape::basic::Box RemoveInterior(const Vec3i& origin_subvolume, const Vec3i& n_subvolumes);
 
-		Event5::Type GetType() const;
-
-		MesoRegionID GetID() const;
+		std::string LogEvent() const;
 
 		void Run();
 
@@ -70,8 +69,7 @@ namespace accord::mesoscopic
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;
 		shape::relation::Box box;
-		MicroRegionID id;
-		double start_time;
+		MesoscopicRegionID id;
 		Vec3i n_subvolumes;
 	};
 

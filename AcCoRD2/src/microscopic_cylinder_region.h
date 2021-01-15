@@ -8,9 +8,8 @@ namespace accord::microscopic
 	class CylinderRegion : public Region
 	{
 	public:
-		CylinderRegion(shape::basic::Cylinder Cylinder, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
-			double start_time, double time_step, int priority,
-			SurfaceType surface_type, MicroRegionID id);
+		CylinderRegion(shape::basic::Cylinder Cylinder, const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+			double time_step, int priority, SurfaceType surface_type, const MicroscopicRegionID& id);
 
 		const CylinderSurfaceShape& GetShape() const;
 	private:

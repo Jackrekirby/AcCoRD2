@@ -1,9 +1,9 @@
 #pragma once
 #include "pch.h"
 #include "event5.h"
-#include "object_ids.h"
 #include "active_actor_id.h"
 #include "active_actor_shape.h"
+#include "molecule_id.h"
 
 namespace accord
 {
@@ -17,18 +17,16 @@ namespace accord
 		class Region;
 	}
 
-	class ActiveActorID;
-
 	class ActiveActor2 : public Event5
 	{
 	public:
-		ActiveActor2(double action_interval, double release_interval, MoleculeIDs release_molecules,
-			int modulation_strength, std::vector<microscopic::Region*> micro_regions, std::vector<mesoscopic::Region*> meso_regions,
+		ActiveActor2(double action_interval, double release_interval, const MoleculeIDs& release_molecules,
+			int modulation_strength, const std::vector<microscopic::Region*>& microscopic_regions, const std::vector<mesoscopic::Region*>& mesoscopic_regions,
 			std::unique_ptr<ActiveActorShape> shape, double start_time, int priority, const ActiveActorID& id);
 
 		virtual void Run() = 0;
 
-		Type GetType() const;
+		std::string LogEvent() const;
 
 		const ActiveActorID& GetID() const;
 
@@ -42,8 +40,8 @@ namespace accord
 		virtual void NextRealisation();
 
 	private:
-		std::vector<microscopic::Region*> micro_regions;
-		std::vector<mesoscopic::Region*> meso_regions;
+		std::vector<microscopic::Region*> microscopic_regions;
+		std::vector<mesoscopic::Region*> mesoscopic_regions;
 		std::unique_ptr<ActiveActorShape> shape;
 		MoleculeIDs release_molecules;
 		ActiveActorID id;

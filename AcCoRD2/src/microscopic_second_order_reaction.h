@@ -1,15 +1,14 @@
 #pragma once
 #include "pch.h"
+#include "molecule_id.h"
+
 // is it better to pass id's or grids? (can a grid be passed?)
 namespace accord::microscopic
 {
-	using MoleculeID = int;
-	using MoleculeIDs = std::vector<int>;
 	class Region;
 	class Grid;
 	class Subvolume;
 	class NormalMolecule;
-
 
 	class SecondOrderReaction
 	{
@@ -31,7 +30,7 @@ namespace accord::microscopic
 	class OneReactantSecondOrderReaction : public SecondOrderReaction
 	{
 	public:
-		OneReactantSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products, 
+		OneReactantSecondOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, 
 			double binding_radius, double unbinding_radius, Region* region);
 
 		void CalculateReactions(double current_time);
@@ -45,7 +44,7 @@ namespace accord::microscopic
 	class TwoReactantSecondOrderReaction : public SecondOrderReaction
 	{
 	public:
-		TwoReactantSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+		TwoReactantSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
 			const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region);
 
 		void CalculateReactions(double current_time);

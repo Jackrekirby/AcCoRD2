@@ -10,13 +10,9 @@
 
 namespace accord::microscopic
 {
-	Region::Region(std::vector<double> diffision_coefficients,
-		std::vector<Vec3i> n_subvolumes_per_grid,
-		double start_time, double time_step, int priority,
-		SurfaceType surface_type, MicroRegionID id)
-		: Event5(start_time + time_step, priority),
-		time_step(time_step), id(id), surface_type(surface_type), start_time(start_time),
-		local_time(start_time)
+	Region::Region(const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes_per_grid,
+		double time_step, int priority, SurfaceType surface_type, const MicroscopicRegionID& id)
+		: Event5(time_step, priority), time_step(time_step), id(id), surface_type(surface_type), local_time(0)
 	{
 		
 	}
@@ -86,23 +82,23 @@ namespace accord::microscopic
 	}
 
 	// add a recent molecule
-	void Region::AddMolecule(MoleculeID id, const Vec3d& position, double time)
+	void Region::AddMolecule(const MoleculeID& id, const Vec3d& position, double time)
 	{
 		GetGrid(id).AddMolecule(position, time);
 	}
 
 	// add a normal molecule
-	void Region::AddMolecule(MoleculeID id, const Vec3d& position)
+	void Region::AddMolecule(const MoleculeID& id, const Vec3d& position)
 	{
 		GetGrid(id).AddMolecule(position);
 	}
 
-	void Region::AddMolecule(MoleculeID id, double time)
+	void Region::AddMolecule(const MoleculeID& id, double time)
 	{
 		GetGrid(id).AddMolecule(time);
 	}
 
-	void Region::AddMolecule(MoleculeID id)
+	void Region::AddMolecule(const MoleculeID& id)
 	{
 		GetGrid(id).AddMolecule();
 	}
@@ -115,19 +111,19 @@ namespace accord::microscopic
 	}
 
 	// First Order Reaction
-	void Region::AddFirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
+	void Region::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, total_reaction_rate, this);
 	}
 
 	// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-	void Region::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+	void Region::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius)
 	{
 		two_reactant_second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, this);
 	}
 
-	void Region::AddSecondOrderReaction(MoleculeID reactant, const MoleculeIDs& products,
+	void Region::AddSecondOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products,
 		double binding_radius, double unbinding_radius)
 	{
 		one_reactant_second_order_reactions.emplace_back(reactant, products, binding_radius, unbinding_radius, this);
@@ -145,11 +141,6 @@ namespace accord::microscopic
 		return time_step;
 	}
 
-	double Region::GetStartTime() const
-	{
-		return start_time;
-	}
-
 	double Region::GetLocalTime() const
 	{
 		return local_time;
@@ -161,7 +152,7 @@ namespace accord::microscopic
 		return grids;
 	}
 
-	Grid& Region::GetGrid(MoleculeID id)
+	Grid& Region::GetGrid(const MoleculeID& id)
 	{
 		return grids.at(id);
 	}
@@ -207,14 +198,9 @@ namespace accord::microscopic
 		}
 	}
 
-	MicroRegionID Region::GetID() const
+	std::string Region::LogEvent() const
 	{
-		return id;
-	}
-
-	Event5::Type Region::GetType() const
-	{
-		return Event5::Type::microscopic_region;
+		return fmt::format("Mesoscopic Region. ID:{}, Priority:{}, Time:{}", id, priority, time);
 	}
 
 	SurfaceType Region::GetSurfaceType() const
@@ -224,7 +210,7 @@ namespace accord::microscopic
 
 	void Region::NextRealisation()
 	{
-		SetEventTime(start_time);
+		SetEventTime(0);
 		for (auto& grid : grids)
 		{
 			for (auto& subvolume : grid.GetSubvolumes())

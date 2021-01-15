@@ -14,6 +14,8 @@
 
 #include "microscopic_relative.h"
 #include "microscopic_relationship.h"
+
+#include "molecule_id.h"
 //#include "microscopic_high_priority_relative.h"
 //#include "microscopic_low_priority_relative.h"
 //#include "microscopic_neighbour.h"
@@ -38,7 +40,7 @@ namespace accord::microscopic
 	class Grid : public Owner, public Relative
 	{
 	public:
-		Grid(Vec3d origin, Vec3d length, Vec3i n_subvolumes, double diffision_coefficient, MoleculeID id, Region* region);
+		Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const MoleculeID& id, Region* region);
 
 		void AddMolecule(const Vec3d& position);
 
@@ -84,7 +86,7 @@ namespace accord::microscopic
 		// every cell needs to be checked for overlap due to different cell sizes.
 		void LinkLocalGrid(Grid& grid);
 
-		MoleculeID GetMoleculeID();
+		const MoleculeID& GetMoleculeID();
 
 		void AddNeighbour(Relative* relative, SurfaceType type);
 

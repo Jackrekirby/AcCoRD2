@@ -5,7 +5,7 @@
 
 namespace accord::microscopic
 {
-	FirstOrderReaction::FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region)
+	FirstOrderReaction::FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region)
 		: region(region), reaction_probability(CalculateReactionProbability(reaction_rate, total_reaction_rate, region->GetTimeStep())),
 		min_reaction_time(CalculateMinimumReactionTime(total_reaction_rate, region->GetTimeStep())), total_reaction_rate(total_reaction_rate),
 		product_grids(GetProductGrids(products)), reaction_grid(&(region->GetGrid(reactant)))

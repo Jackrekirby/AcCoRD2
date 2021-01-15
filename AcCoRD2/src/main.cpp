@@ -766,6 +766,12 @@ void TestMesoscopic()
 //PassiveActorID convert
 //SubvolumeID different per mesoscopic region
 
+// ensure naming consistency with id's and ptrs. avoid id name unless local to function only
+// to avoid passive id to each object just store static variable?
+// remove start time from regions
+// ensure consistency with passing ids and passing objects. Only pass ids if then not just calling environment in constructor
+// pass shapes by const ref
+
 #include "molecule_id.h"
 int main()
 {

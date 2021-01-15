@@ -7,14 +7,14 @@
 namespace accord::mesoscopic
 {
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
-		std::vector<double> diffusion_coefficients, double start_time, int priority, MesoRegionID id)
-		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event5(start_time, priority), id(id),
-			n_subvolumes(n_subvolumes), start_time(start_time)
+		const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id)
+		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event5(0, priority), id(id),
+			n_subvolumes(n_subvolumes)
 	{
 		CreateSubvolumes(n_subvolumes, diffusion_coefficients, subvolume_length);
 	}
 
-	void Region::AddMolecule(MoleculeID id, const Vec3d& position)
+	void Region::AddMolecule(const MoleculeID& id, const Vec3d& position)
 	{
 		LOG_INFO("molecule id = {}", id);
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
@@ -117,7 +117,7 @@ namespace accord::mesoscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, 
-						subvolume_length, diffusion_coefficients, start_time, j);
+						subvolume_length, diffusion_coefficients, j);
 					j++;
 				}
 			}
@@ -129,7 +129,7 @@ namespace accord::mesoscopic
 		return subvolumes;
 	}
 
-	void Region::AddZerothOrderReaction(MoleculeIDs products, double reaction_rate)
+	void Region::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{
@@ -137,7 +137,7 @@ namespace accord::mesoscopic
 		}
 	}
 
-	void Region::AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate)
+	void Region::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{
@@ -145,7 +145,7 @@ namespace accord::mesoscopic
 		}
 	}
 
-	void Region::AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, MoleculeIDs products, double reaction_rate)
+	void Region::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{
@@ -211,14 +211,9 @@ namespace accord::mesoscopic
 		return { box.GetOrigin() + (box.GetLength() / Vec3d(origin_subvolume)), box.GetLength() / Vec3d(n_subvolumes) };
 	}
 
-	Event5::Type Region::GetType() const
+	std::string Region::LogEvent() const
 	{
-		return Event5::Type::mesoscopic_region;
-	}
-
-	MesoRegionID Region::GetID() const
-	{
-		return id;
+		return fmt::format("Microscopic Region. ID:{}, Priority:{}, Time:{}", id, priority, time);
 	}
 
 	void Region::Run()
@@ -245,7 +240,7 @@ namespace accord::mesoscopic
 	{
 		for (auto& subvolume : subvolumes)
 		{
-			subvolume.NextRealisation(start_time);
+			subvolume.NextRealisation(0);
 		}
 		RefreshEventTime();
 	}

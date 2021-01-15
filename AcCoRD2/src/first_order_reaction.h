@@ -1,15 +1,17 @@
 #pragma once
-#include "object_ids.h"
+#include "molecule_id.h"
+#include "microscopic_region_id.h"
+#include "mesoscopic_region_id.h"
 
 namespace accord
 {
 	class FirstOrderReaction
 	{
 	public:
-		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, 
-			const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
+		FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, 
+			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
 
-		MoleculeID GetReactant() const;
+		const MoleculeID& GetReactant() const;
 
 		const MoleculeIDs& GetProducts() const;
 
@@ -17,15 +19,15 @@ namespace accord
 
 		double GetTotalRate() const;
 
-		const MicroRegionIDs& GetMicroRegions() const;
+		const MicroscopicRegionIDs& GetMicroscopicRegions() const;
 
-		const MesoRegionIDs& GetMesoRegions() const;
+		const MesoscopicRegionIDs& GetMesoscopicRegions() const;
 
 	private:
 		MoleculeID reactant;
 		MoleculeIDs products;
 		double reaction_rate;
-		MicroRegionIDs micro_regions;
-		MesoRegionIDs meso_regions;
+		MicroscopicRegionIDs microscopic_regions;
+		MesoscopicRegionIDs mesoscopic_regions;
 	};
 }

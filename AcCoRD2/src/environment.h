@@ -28,16 +28,16 @@ namespace accord
 		static int GetRealisationNumber();
 
 
-		static microscopic::Region& GetMicroscopicRegion(MicroRegionID id);
+		static microscopic::Region& GetMicroscopicRegion(const MicroscopicRegionID& id);
 
-		static std::vector<microscopic::Region*> GetRegions(MicroRegionIDs ids);
+		static std::vector<microscopic::Region*> GetRegions(const MicroscopicRegionIDs& ids);
 
 		static std::vector<std::unique_ptr<microscopic::Region>>& GetRegions();
 
 
-		static mesoscopic::Region& GetMesoscopicRegion(MesoRegionID id);
+		static mesoscopic::Region& GetMesoscopicRegion(const MesoscopicRegionID& id);
 
-		static std::vector<mesoscopic::Region*> GetMesoscopicRegions(MesoRegionIDs ids);
+		static std::vector<mesoscopic::Region*> GetMesoscopicRegions(const MesoscopicRegionIDs& ids);
 
 		static std::vector<mesoscopic::Region>& GetMesoscopicRegions();
 
@@ -65,30 +65,30 @@ namespace accord
 
 		typedef microscopic::SurfaceType SurfaceType;
 		static void AddRegion(shape::basic::Box box, SurfaceType surface_type, 
-			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
-			double start_time, double time_step, int priority);
+			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes, 
+			double time_step, int priority);
 
 		static void AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type,
-			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
-			double start_time, double time_step, int priority);
+			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+			double time_step, int priority);
 
 		static void AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type,
-			std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
-			double start_time, double time_step, int priority);
+			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+			double time_step, int priority);
 		
-		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
+		static void DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 			RelationshipPriority priority,
 			microscopic::SurfaceType ab_surface, microscopic::SurfaceType ba_surface);
 
-		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
+		static void DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 			RelationshipPriority priority, microscopic::SurfaceType surface);
 
 		typedef std::vector<microscopic::SurfaceType> SurfaceTypes;
-		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
+		static void DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 			RelationshipPriority priority,
 			SurfaceTypes ab_surfaces, SurfaceTypes ba_surfaces);
 
-		static void DefineRelationship(MicroRegionID region_a, MicroRegionID region_b,
+		static void DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 			RelationshipPriority priority, SurfaceTypes surfaces);
 	private:
 		static double time;

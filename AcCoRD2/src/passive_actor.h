@@ -3,10 +3,14 @@
 #include "event5.h"
 #include "output_binary_vectors.h"
 #include "output_binary_singles.h"
-#include "object_ids.h"
 #include "vec3d.h"
 #include "relation_box.h"
 #include "generating_box.h"
+
+#include "mesoscopic_region_id.h"
+#include "microscopic_region_id.h"
+#include "passive_actor_id.h"
+#include "molecule_id.h"
 
 namespace accord::microscopic
 {
@@ -62,17 +66,11 @@ namespace accord
 			mesoscopic::Subvolume* subvolume;
 		};
 	public:
-		PassiveActor(MicroRegionIDs region_ids, MicroRegionIDs meso_region_ids, MoleculeIDs molecule_ids,
-			double start_time, int priority, double time_step,
-			ActiveActorID id, bool record_positions, bool record_time);
+		PassiveActor(const MicroscopicRegionIDs& region_ids, const MesoscopicRegionIDs& mesoscopic_region_ids, const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step, const PassiveActorID& id, bool record_positions, bool record_time);
 
-		PassiveActor(MoleculeIDs molecule_ids,
-			double start_time, int priority, double time_step,
-			ActiveActorID id, bool record_positions, bool record_time);
+		PassiveActor(const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step, const PassiveActorID& id, bool record_positions, bool record_time);
 
-		Type GetType() const;
-
-		ActiveActorID GetID() const;
+		std::string LogEvent() const;
 
 		void NextRealisation();
 
@@ -90,7 +88,7 @@ namespace accord
 		std::vector<mesoscopic::Subvolume*> enveloped_mesoscopic_subvolumes;
 		std::vector<PartialMesoscopicSubvolume> partial_mesoscopic_subvolumes;
 		// SHOULD BE PASSIVE ACTOR ID
-		ActiveActorID id;
+		PassiveActorID id;
 		double time_step;
 		double start_time;
 
@@ -98,13 +96,13 @@ namespace accord
 		bool record_positions;
 		bool record_time;
 
-		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids);
+		void AddMicroscopicSubvolumes(const MoleculeIDs& molecule_ids, const MicroscopicRegionIDs& region_ids);
 
 		void ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts);
 
 		void ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts);
 
-		void AddMesoscopicSubvolumes(MicroRegionIDs region_ids);
+		void AddMesoscopicSubvolumes(const MesoscopicRegionIDs& region_ids);
 
 		void ObserveEnvelopedMesoscopicSubvolumes(std::vector<size_t>& counts);
 
@@ -113,7 +111,7 @@ namespace accord
 	protected:
 		void CreateFiles();
 
-		void AddMicroscopicSubvolumesWhichAreInsideActor(MoleculeIDs molecule_ids);
+		void AddMicroscopicSubvolumesWhichAreInsideActor(const MoleculeIDs& molecule_ids);
 
 		void AddMesoscopicSubvolumesWhichAreInsideActor();
 	};

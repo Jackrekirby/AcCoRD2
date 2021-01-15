@@ -7,8 +7,6 @@ namespace accord
 	class Event5
 	{
 	public:
-		using EventID = int;
-
 		Event5(double start_time = 0, int priority = 0);
 
 		void LinkToQueue(EventQueue5* queue, size_t queue_index);
@@ -21,11 +19,7 @@ namespace accord
 
 		bool OccursBefore(const Event5& other);
 
-		virtual std::string LogEvent()
-		{
-			return fmt::format("Index:{}, Priority:{}, Time:{}",
-				queue_index, priority, time);
-		}
+		virtual std::string LogEvent() const;
 
 		virtual void Run() = 0;
 

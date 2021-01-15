@@ -5,6 +5,7 @@
 #include "microscopic_normal_molecule.h"
 #include "microscopic_recent_molecule.h"
 #include "microscopic_typed_subvolume.h"
+#include "molecule_id.h"
 
 // Moving non owning, low priority surfaces is easy just not owning ones.
 
@@ -16,7 +17,7 @@ namespace accord::microscopic
 	{
 	public:
 
-		Subvolume(Vec3d origin, Vec3d length, Grid* grid, int n_molecule_types);
+		Subvolume(const Vec3d& origin, const Vec3d& length, Grid* grid, int n_molecule_types);
 
 		void AddMolecule(const Vec3d& position);
 
@@ -41,7 +42,7 @@ namespace accord::microscopic
 		std::vector<TypedSubvolume>& GetRelations();
 
 		// may need const version
-		TypedSubvolume& GetRelation(MoleculeID id);
+		TypedSubvolume& GetRelation(const MoleculeID& id);
 
 		const shape::relation::Box& GetBoundingBox();
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "object_ids.h"
+#include "molecule_id.h"
 
 namespace accord::microscopic
 {

@@ -8,9 +8,8 @@ namespace accord::microscopic
 	class BoxRegion : public Region
 	{
 	public:
-		BoxRegion(shape::basic::Box box, std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes,
-			double start_time, double time_step, int priority,
-			SurfaceType surface_type, MicroRegionID id);
+		BoxRegion(shape::basic::Box box, const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+			double time_step, int priority, SurfaceType surface_type, const MicroscopicRegionID& id);
 
 		const BoxSurfaceShape& GetShape() const;
 	private:

@@ -4,7 +4,7 @@
 
 namespace accord::microscopic
 {
-	Subvolume::Subvolume(Vec3d origin, Vec3d length, Grid* grid, int n_molecule_types)
+	Subvolume::Subvolume(const Vec3d& origin, const Vec3d& length, Grid* grid, int n_molecule_types)
 		: box(origin, length), grid(grid)
 	{
 		//LOG_INFO("grid id = {}", grid->GetMoleculeID());
@@ -72,7 +72,7 @@ namespace accord::microscopic
 	}
 
 	// may need const version
-	TypedSubvolume& Subvolume::GetRelation(MoleculeID id)
+	TypedSubvolume& Subvolume::GetRelation(const MoleculeID& id)
 	{
 		return relations.at(id);
 	}

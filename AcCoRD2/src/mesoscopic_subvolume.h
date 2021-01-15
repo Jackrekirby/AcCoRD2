@@ -1,9 +1,8 @@
 #pragma once
 #include "pch.h"
-#include "object_ids.h"
 #include "relation_box.h"
 #include "generating_box.h"
-
+#include "object_ids.h"
 #include "mesoscopic_layer.h"
 #include "mesoscopic_zeroth_order_reaction.h"
 #include "mesoscopic_first_order_reaction.h"
@@ -31,11 +30,11 @@ namespace accord::mesoscopic
 	class Subvolume
 	{
 	public:
-		Subvolume(const Vec3d& origin, double length, std::vector<double> diffusion_coefficients, double start_time, SubvolumeID id);
+		Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const SubvolumeID& id);
 
-		void CreateLayers(std::vector<double> diffusion_coefficients);
+		void CreateLayers(const std::vector<double>& diffusion_coefficients);
 
-		void AddMolecule(MoleculeID molecule_id);
+		void AddMolecule(const MoleculeID& molecule_id);
 
 		void Run();
 
@@ -52,23 +51,23 @@ namespace accord::mesoscopic
 		// region pointer needed so regions event time can be updated
 		void AddNeighbour(Subvolume& subvolume, Region* region);
 
-		Layer& GetLayer(MoleculeID id);
+		Layer& GetLayer(const MoleculeID& id);
 
-		std::vector<Layer*> GetLayers(MoleculeIDs ids);
+		std::vector<Layer*> GetLayers(const MoleculeIDs& ids);
 
-		void AddZerothOrderReaction(MoleculeIDs products, double reaction_rate);
+		void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate);
 
-		void AddFirstOrderReaction(MoleculeID reactant, MoleculeIDs products, double reaction_rate);
+		void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate);
 
-		void AddSecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, MoleculeIDs products, double reaction_rate);
+		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate);
 
-		void AddLinkToPropensityObject(MoleculeID id, PropensityObject* object);
+		void AddLinkToPropensityObject(const MoleculeID& id, PropensityObject* object);
 
-		void AddLinkToPropensityObjects(MoleculeIDs ids, PropensityObject* object);
+		void AddLinkToPropensityObjects(const MoleculeIDs& ids, PropensityObject* object);
 
 		void UpdatePropensities();
 
-		void UpdatePropensities(MoleculeID id);
+		void UpdatePropensities(const MoleculeID& id);
 
 		void UpdatePropensitiesAndTime(double current_time);
 

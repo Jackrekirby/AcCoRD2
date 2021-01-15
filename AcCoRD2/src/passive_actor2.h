@@ -19,7 +19,7 @@ namespace accord
 		class TypedSubvolumes
 		{
 		public:
-			TypedSubvolumes(MoleculeID id);
+			TypedSubvolumes(const MoleculeID& id);
 
 			void Add(microscopic::Subvolume* subvolume);
 
@@ -27,13 +27,13 @@ namespace accord
 			std::vector<microscopic::Subvolume*> subvolumes;
 		};
 	public:
-		PassiveActor2(MicroRegionIDs region_ids, MoleculeIDs molecule_ids,
+		PassiveActor2(const MicroscopicRegionIDs& microscopic_region_ids, const MoleculeIDs& molecule_ids,
 			double start_time, int priority, EventQueue* event_queue, double time_step,
 			ActiveActorID id, bool record_positions, bool record_time);
 
 		Type GetType() const;
 
-		ActiveActorID GetID() const;
+		const PassiveActorID& GetID() const;
 
 		void NextRealisation();
 
@@ -53,7 +53,7 @@ namespace accord
 
 		void CreateFiles();
 
-		void AddMicroscopicSubvolumes(MoleculeIDs molecule_ids, MicroRegionIDs region_ids);
+		void AddMicroscopicSubvolumes(const MoleculeIDs& molecule_ids, const MicroscopicRegionIDs& microscopic_region_ids);
 
 		void ObserveEnvelopedMicroscopicSubvolumes();
 

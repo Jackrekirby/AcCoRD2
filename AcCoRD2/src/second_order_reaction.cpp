@@ -3,20 +3,21 @@
 
 namespace accord
 {
-	SecondOrderReaction::SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b,
+	SecondOrderReaction::SecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
 		const MoleculeIDs& products, double binding_radius, double unbinding_radius, double reaction_rate,
-		const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions)
+		const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 		: reactant_a(reactant_a), reactant_b(reactant_b), products(products), binding_radius(binding_radius),
-		unbinding_radius(unbinding_radius), reaction_rate(reaction_rate), micro_regions(micro_regions), meso_regions(meso_regions)
+		unbinding_radius(unbinding_radius), reaction_rate(reaction_rate), microscopic_regions(microscopic_regions), 
+		mesoscopic_regions(mesoscopic_regions)
 	{
 	}
 
-	MoleculeID SecondOrderReaction::GetReactantA() const
+	const MoleculeID& SecondOrderReaction::GetReactantA() const
 	{
 		return reactant_a;
 	}
 
-	MoleculeID SecondOrderReaction::GetReactantB() const
+	const MoleculeID& SecondOrderReaction::GetReactantB() const
 	{
 		return reactant_b;
 	}
@@ -41,13 +42,13 @@ namespace accord
 		return reaction_rate;
 	}
 
-	const MicroRegionIDs& SecondOrderReaction::GetMicroRegions() const
+	const MicroscopicRegionIDs& SecondOrderReaction::GetMicroscopicRegions() const
 	{
-		return micro_regions;
+		return microscopic_regions;
 	}
 
-	const MesoRegionIDs& SecondOrderReaction::GetMesoRegions() const
+	const MesoscopicRegionIDs& SecondOrderReaction::GetMesoscopicRegions() const
 	{
-		return meso_regions;
+		return mesoscopic_regions;
 	}
 }

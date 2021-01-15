@@ -75,26 +75,26 @@ namespace accord
 	{
 		for (auto& reaction : ReactionManager::GetZerothOrderReactions())
 		{
-			for (auto& region : reaction.GetMicroRegions())
+			for (auto& region : reaction.GetMicroscopicRegions())
 			{
 				GetMicroscopicRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
 			}
 
-			for (auto& region : reaction.GetMesoRegions())
+			for (auto& region : reaction.GetMesoscopicRegions())
 			{
-				GetMicroscopicRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
+				GetMesoscopicRegion(region).AddZerothOrderReaction(reaction.GetProducts(), reaction.GetRate());
 			}
 		}
 
 		for (auto& reaction : ReactionManager::GetFirstOrderReactions())
 		{
-			for (auto& region : reaction.GetMicroRegions())
+			for (auto& region : reaction.GetMicroscopicRegions())
 			{
 				GetMicroscopicRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(),
 					reaction.GetRate(), reaction.GetTotalRate());
 			}
 
-			for (auto& region : reaction.GetMesoRegions())
+			for (auto& region : reaction.GetMesoscopicRegions())
 			{
 				GetMesoscopicRegion(region).AddFirstOrderReaction(reaction.GetReactant(), reaction.GetProducts(), reaction.GetRate());
 			}
@@ -102,7 +102,7 @@ namespace accord
 
 		for (auto& reaction : ReactionManager::GetSecondOrderReactions())
 		{
-			for (auto& region : reaction.GetMicroRegions())
+			for (auto& region : reaction.GetMicroscopicRegions())
 			{
 				if (reaction.GetReactantA() == reaction.GetReactantB())
 				{
@@ -116,7 +116,7 @@ namespace accord
 				}
 			}
 
-			for (auto& region : reaction.GetMesoRegions())
+			for (auto& region : reaction.GetMesoscopicRegions())
 			{
 				GetMesoscopicRegion(region).AddSecondOrderReaction(reaction.GetReactantA(), reaction.GetReactantB(), reaction.GetProducts(), reaction.GetRate());
 			}
@@ -124,29 +124,29 @@ namespace accord
 	}
 
 	void Environment::AddRegion(shape::basic::Box box, SurfaceType surface_type, 
-		std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
-		double start_time, double time_step, int priority)
+		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
-			box, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+			box, diffision_coefficients, n_subvolumes, time_step, priority,
 			surface_type, static_cast<int>(GetRegions().size())));
 	}
 
 	void Environment::AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type, 
-		std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
-		double start_time, double time_step, int priority)
+		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::SphereRegion>(
-			sphere, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+			sphere, diffision_coefficients, n_subvolumes, time_step, priority,
 			surface_type, static_cast<int>(Environment::GetRegions().size())));
 	}
 
 	void Environment::AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type, 
-		std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, 
-		double start_time, double time_step, int priority)
+		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
-			cylinder, diffision_coefficients, n_subvolumes, start_time, time_step, priority,
+			cylinder, diffision_coefficients, n_subvolumes, time_step, priority,
 			surface_type, static_cast<int>(Environment::GetRegions().size())));
 	}
 
@@ -162,12 +162,12 @@ namespace accord
 
 
 
-	microscopic::Region& Environment::GetMicroscopicRegion(MicroRegionID id)
+	microscopic::Region& Environment::GetMicroscopicRegion(const MicroscopicRegionID& id)
 	{
 		return *microscopic_regions.at(id);
 	}
 
-	std::vector<microscopic::Region*> Environment::GetRegions(MicroRegionIDs ids)
+	std::vector<microscopic::Region*> Environment::GetRegions(const MicroscopicRegionIDs& ids)
 	{
 		std::vector<microscopic::Region*> regions_ptrs;
 		for (auto id : ids)
@@ -184,12 +184,12 @@ namespace accord
 
 
 
-	mesoscopic::Region& Environment::GetMesoscopicRegion(MicroRegionID id)
+	mesoscopic::Region& Environment::GetMesoscopicRegion(const MesoscopicRegionID& id)
 	{
 		return mesoscopic_regions.at(id);
 	}
 
-	std::vector<mesoscopic::Region*> Environment::GetMesoscopicRegions(MicroRegionIDs ids)
+	std::vector<mesoscopic::Region*> Environment::GetMesoscopicRegions(const MesoscopicRegionIDs& ids)
 	{
 		std::vector<mesoscopic::Region*> regions_ptrs;
 		for (auto id : ids)
@@ -253,9 +253,8 @@ namespace accord
 
 	// the only type of relationship which does not need to be defined is a neighbour and none
 	// if region a has a reflective surface and b is the neighbour
-	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
-		RelationshipPriority priority, 
-		SurfaceType ab_surface, SurfaceType ba_surface)
+	void Environment::DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
+		RelationshipPriority priority, SurfaceType ab_surface, SurfaceType ba_surface)
 	{
 		switch (priority)
 		{
@@ -283,13 +282,13 @@ namespace accord
 		}
 	}
 
-	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
+	void Environment::DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 		RelationshipPriority priority, microscopic::SurfaceType surface)
 	{
 		DefineRelationship(region_a, region_b, priority, surface, surface);
 	}
 
-	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
+	void Environment::DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 		RelationshipPriority priority,
 		SurfaceTypes ab_surfaces, SurfaceTypes ba_surfaces)
 	{
@@ -350,7 +349,7 @@ namespace accord
 		}
 	}
 
-	void Environment::DefineRelationship(MicroRegionID region_a, MicroRegionID region_b, 
+	void Environment::DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 		RelationshipPriority priority, SurfaceTypes surfaces)
 	{
 		DefineRelationship(region_a, region_b, priority, surfaces, surfaces);

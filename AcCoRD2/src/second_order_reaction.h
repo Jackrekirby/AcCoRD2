@@ -1,18 +1,20 @@
 #pragma once
-#include "object_ids.h"
+#include "molecule_id.h"
+#include "microscopic_region_id.h"
+#include "mesoscopic_region_id.h"
 
 namespace accord
 {
 	class SecondOrderReaction
 	{
 	public:
-		SecondOrderReaction(MoleculeID reactant_a, MoleculeID reactant_b, const MoleculeIDs& products,
+		SecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products,
 			double binding_radius, double unbinding_radius, double reaction_rate, 
-			const MicroRegionIDs& micro_regions, const MesoRegionIDs& meso_regions);
+			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
 
-		MoleculeID GetReactantA() const;
+		const MoleculeID& GetReactantA() const;
 
-		MoleculeID GetReactantB() const;
+		const MoleculeID& GetReactantB() const;
 
 		const MoleculeIDs& GetProducts() const;
 
@@ -22,9 +24,9 @@ namespace accord
 
 		double GetRate() const;
 
-		const MicroRegionIDs& GetMicroRegions() const;
+		const MicroscopicRegionIDs& GetMicroscopicRegions() const;
 
-		const MesoRegionIDs& GetMesoRegions() const;
+		const MesoscopicRegionIDs& GetMesoscopicRegions() const;
 
 	private:
 		MoleculeID reactant_a;
@@ -33,7 +35,7 @@ namespace accord
 		double binding_radius;
 		double unbinding_radius;
 		double reaction_rate;
-		MicroRegionIDs micro_regions;
-		MesoRegionIDs meso_regions;
+		MicroscopicRegionIDs microscopic_regions;
+		MesoscopicRegionIDs mesoscopic_regions;
 	};
 }

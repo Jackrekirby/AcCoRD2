@@ -21,9 +21,9 @@ namespace accord
 	class BoxPassiveActor : public PassiveActor
 	{
 	public:
-		BoxPassiveActor(shape::relation::Box box, MoleculeIDs molecule_ids,
+		BoxPassiveActor(shape::relation::Box box, const MoleculeIDs& molecule_ids,
 			double start_time, int priority, double time_step,
-			ActiveActorID id, bool record_positions, bool record_time);
+			const PassiveActorID& id, bool record_positions, bool record_time);
 
 		const PassiveActorBoxShape* const GetShape() const;
 	private:

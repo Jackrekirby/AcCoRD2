@@ -63,19 +63,9 @@ namespace accord
 		return (time < other.time);
 	}
 
-	std::string Event5::ToString(Type type) {
-		switch (type)
-		{
-		case Type::microscopic_region:
-			return "microscopic region";
-		case Type::mesoscopic_region:
-			return "mesoscopic region";
-		case Type::active_actor:
-			return "active actor";
-		case Type::passive_actor:
-			return "passive actor";
-		}
-		LOG_CRITICAL("Unknown Event type");
-		throw std::exception();
+	std::string Event5::LogEvent() const
+	{
+		return fmt::format("Index:{}, Priority:{}, Time:{}",
+			queue_index, priority, time);
 	}
 }

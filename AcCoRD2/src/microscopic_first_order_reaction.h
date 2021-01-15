@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
-#include "object_ids.h"
 #include "vec3d.h"
+#include "molecule_id.h"
 
 namespace accord::microscopic
 {
@@ -12,7 +12,7 @@ namespace accord::microscopic
 	class FirstOrderReaction
 	{
 	public:
-		FirstOrderReaction(MoleculeID reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region);
+		FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region);
 
 		void Run();
 	private:
