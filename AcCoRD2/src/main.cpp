@@ -169,13 +169,6 @@ void TestMesoscopic()
 {
 	using namespace accord;
 	int n_micro_regions = 0, n_meso_regions = 1, n_passive_actors = n_meso_regions + n_micro_regions, n_active_actors = 1, n_molecule_types = 3;
-
-	MoleculeID::SetNumIDs(n_molecule_types);
-	MicroscopicRegionID::SetNumIDs(n_micro_regions);
-	MesoscopicRegionID::SetNumIDs(n_meso_regions);
-	PassiveActorID::SetNumIDs(n_passive_actors);
-	ActiveActorID::SetNumIDs(n_active_actors);
-
 	Environment::Init("D:/dev/meso_sim", 2, 10, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
 	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0);
 	//Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);

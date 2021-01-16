@@ -15,6 +15,12 @@ namespace accord
 		int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
 		uint64_t seed)
 	{
+		MoleculeID::SetNumIDs(num_molecule_types);
+		MicroscopicRegionID::SetNumIDs(num_microscopic_regions);
+		MesoscopicRegionID::SetNumIDs(num_mesoscopic_regions);
+		PassiveActorID::SetNumIDs(num_passive_actors);
+		ActiveActorID::SetNumIDs(num_active_actors);
+
 		Environment::time = 0;
 		Environment::run_time = run_time;
 		Environment::num_molecule_types = num_molecule_types;
