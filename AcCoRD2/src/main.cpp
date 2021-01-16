@@ -206,7 +206,7 @@ void TestMesoscopic()
 		action_interval, release_interval, slot_interval,
 		bit_probability, n_modulation_bits,
 		release_molecules, modulation_strength, Environment::GetRegions({}), Environment::GetMesoscopicRegions({0}),
-		std::make_unique<ActiveActorBox>(Vec3d(0), Vec3d(2, 1, 1)), 0, 5, 0));
+		std::make_unique<ActiveActorBox>(Vec3d(0), Vec3d(2, 1.5, 1.5)), 0, 5, 0));
 
 	for (int i = 0; i < 0; i++)
 	{
@@ -313,24 +313,15 @@ void TestMesoscopic()
 	} while (Environment::NextRealisation());
 }
 
-// List of IDS
-//MoleculeID convert
-//EventID convert
-//MicroRegionID convert
-//MesoRegionID convert
-//ReactionID not required and would require seperation per order
-//ActiveActorID convert
-//PassiveActorID convert
-//SubvolumeID different per mesoscopic region
+//   ensure naming consistency with id's and ptrs. avoid id name unless local to function only
+// X to avoid passive id to each object just store static variable?
+// * remove start time from regions
+//   ensure consistency with passing ids and passing objects. Only pass ids if then not just calling environment in constructor
+//   pass shapes by const ref
+//   pass enums by const ref
+//   does FirstOrderReaction and SecondOrderReaction for microscopic regions need a next realisation function?
+//	 test delete area of mesoscopic region
 
-// ensure naming consistency with id's and ptrs. avoid id name unless local to function only
-// to avoid passive id to each object just store static variable?
-// remove start time from regions
-// ensure consistency with passing ids and passing objects. Only pass ids if then not just calling environment in constructor
-// pass shapes by const ref
-// does FirstOrderReaction and SecondOrderReaction for microscopic regions need a next realisation function?
-
-#include "molecule_id.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -340,13 +331,6 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	//using namespace accord;
-	//using MoleculeIDs = std::vector<MoleculeID>;
-	//MoleculeID::SetNumIDs(10);
-
-	//MoleculeID a;
-	//MoleculeID2 a(11);
-	//MoleculeIDs v = {6, 7, 8, 12};
 	TestMesoscopic();
 
 	//Event2Test();

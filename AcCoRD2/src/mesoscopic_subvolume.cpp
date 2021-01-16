@@ -20,7 +20,7 @@ namespace accord::mesoscopic
 	}
 
 	Subvolume::Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const SubvolumeID& id)
-		: box(origin, length), reaction_propensity(0), queue(nullptr), queue_index(0), time(0), id(id)
+		: box(origin, length), reaction_propensity(0), id(id), deleteFlag(false)
 	{
 		CreateLayers(diffusion_coefficients);
 	}
@@ -205,7 +205,6 @@ namespace accord::mesoscopic
 
 		// this (using parent) is the incorrect way to update the reaction time if it is not a subvolume event as event time has since updated 
 		// CORRECTED by updating and not setting time
-
 		SetTime(Environment::GetTime() - log(Random::GenerateRealUniform()) / reaction_propensity);
 		UpdateTime(-log(Random::GenerateRealUniform()) / reaction_propensity);
 		//LOG_INFO("time = {}", GetTime());
@@ -222,66 +221,14 @@ namespace accord::mesoscopic
 		return reaction_propensity;
 	}
 
-	void Subvolume::LinkToQueue(SubvolumeQueue* queue, size_t queue_index)
-	{
-		this->queue = queue;
-		this->queue_index = queue_index;
-	}
-
-	double Subvolume::GetTime() const
-	{
-		return time;
-	}
-
-	void Subvolume::UpdateTime(double delta_time)
-	{
-		// negative delta time should never occur. Consider removing.
-		if (delta_time > 0)
-		{
-			
-			time += delta_time;
-			queue->DecreasePriority(queue_index);
-		}
-		else
-		{
-			time += delta_time;
-			queue->IncreasePriority(queue_index);
-		}
-	}
-
-	void Subvolume::SetTime(double new_time)
-	{
-		if (new_time > time)
-		{
-			//LOG_INFO("increasing time");
-			time = new_time;
-			queue->DecreasePriority(queue_index);
-		}
-		else
-		{
-			//LOG_INFO("decreasing time");
-			time = new_time;
-			queue->IncreasePriority(queue_index);
-		}
-	}
-
-	bool Subvolume::ReactsBefore(const Subvolume& other)
-	{
-		if (time == other.time)
-		{
-			return (Random::GenerateRealUniform() > 0.5);
-		}
-		return (time < other.time);
-	}
-
 	void Subvolume::MarkForDeletion()
 	{
-		time = -1;
+		deleteFlag = true;
 	}
 
 	bool Subvolume::IsMarkedForDeletion()
 	{
-		return (time == -1);
+		return deleteFlag;
 	}
 
 	// could store start time locally instead

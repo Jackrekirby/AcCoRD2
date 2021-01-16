@@ -7,7 +7,7 @@
 #include "mesoscopic_first_order_reaction.h"
 #include "mesoscopic_second_order_reaction.h"
 #include "propensity_object.h"
-
+#include "mesoscopic_subvolume_event.h"
 namespace accord
 {
 	struct Vec3d;
@@ -18,8 +18,6 @@ namespace accord::mesoscopic
 	using SubvolumeID = int;
 	using SubvolumeIDs = std::vector<int>;
 
-	class SubvolumeQueue;
-
 	class SubvolumeBox : public shape::relation::Box, public shape::generating::Box
 	{
 	public:
@@ -29,7 +27,7 @@ namespace accord::mesoscopic
 	};
 
 	// add json log so u can get a list of all propensities
-	class Subvolume
+	class Subvolume : public SubvolumeEvent
 	{
 	public:
 		Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const SubvolumeID& id);
@@ -79,18 +77,6 @@ namespace accord::mesoscopic
 
 		double GetPropensity();
 
-		// Event Functions (move to SubvolumeEvent Class, allows variables to be private / encapsulated)
-
-		void LinkToQueue(SubvolumeQueue* queue, size_t queue_index);
-
-		double GetTime() const;
-
-		void UpdateTime(double delta_time);
-
-		void SetTime(double new_time);
-
-		bool ReactsBefore(const Subvolume& other);
-
 		void MarkForDeletion();
 
 		bool IsMarkedForDeletion();
@@ -105,12 +91,8 @@ namespace accord::mesoscopic
 		std::vector<SecondOrderReaction> second_order_reactions;
 		std::vector<LinkedPropensityObjects> linked_propensity_objects;
 		double reaction_propensity;
+		bool deleteFlag;
 		SubvolumeBox box;
-
-		// Event Variables
-		double time;
-		size_t queue_index;
-		SubvolumeQueue* queue;
 		SubvolumeID id;
 
 		double CalculateDiffusionFactor(const Subvolume& neighbour);

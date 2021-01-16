@@ -16,7 +16,8 @@ classdef Accord
             simulation = Accord.findEachRealisationFolder(simulationDir, ...
                 seeds, realisations, trackImporting);
             simulation.regions = Accord.importRegionShapes(simulationDir, trackImporting);
-            simulation.actors = Accord.importActorShapes(simulationDir, trackImporting);
+            simulation.passiveActors = Accord.importPassiveActorShapes(simulationDir, trackImporting);
+            simulation.activeActors = Accord.importActiveActorShapes(simulationDir, trackImporting);
             if(trackImporting)
                 disp("Import Complete")
             end
@@ -39,7 +40,8 @@ classdef Accord
             r = Accord.initiliseMoleculePlots(r, colorByActor, ...
                 solidMolecules, moleculeSize);
             r.hRegions = Accord.plotRegions(simulation, shape3D);
-            r.hActors = Accord.plotActors(simulation, shape3D);
+            r.hPassiveActors = Accord.plotPassiveActors(simulation, shape3D);
+            r.hActiveActors = Accord.plotActiveActors(simulation, shape3D);
         end
         
         function r = playAnimateRealisation(r, playBackSpeed)
@@ -343,10 +345,17 @@ classdef Accord
             end
         end
         
-        function regions = importActorShapes(simulationDir, trackImporting)
-            regions = jsondecode(fileread(simulationDir + "\actors.json"));
+        function passiveActors = importPassiveActorShapes(simulationDir, trackImporting)
+            passiveActors = jsondecode(fileread(simulationDir + "\passive_actors.json"));
             if(trackImporting)
-                disp(simulationDir + "\actors.json");
+                disp(simulationDir + "\passive_actors.json");
+            end
+        end
+        
+        function activeActors = importActiveActorShapes(simulationDir, trackImporting)
+            activeActors = jsondecode(fileread(simulationDir + "\active_actors.json"));
+            if(trackImporting)
+                disp(simulationDir + "\active_actors.json");
             end
         end
         
@@ -605,12 +614,20 @@ classdef Accord
             hPlots = shape3D.plot(simulation.regions.shapes);
         end
         
-        function hPlots = plotActors(simulation, shape3D)
+        function hPlots = plotPassiveActors(simulation, shape3D)
             arguments
                 simulation
                 shape3D = Shape3D();
             end
-            hPlots = shape3D.plot(simulation.actors.shapes);
+            hPlots = shape3D.plot(simulation.passiveActors.shapes);
+        end
+        
+        function hPlots = plotActiveActors(simulation, shape3D)
+            arguments
+                simulation
+                shape3D = Shape3D();
+            end
+            hPlots = shape3D.plot(simulation.activeActors.shapes);
         end
         
         %% plotCount

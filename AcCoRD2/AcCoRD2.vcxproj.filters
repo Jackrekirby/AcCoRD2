@@ -328,6 +328,9 @@
     <ClCompile Include="src\active_actor.cpp">
       <Filter>src\simulation\active actor</Filter>
     </ClCompile>
+    <ClCompile Include="src\mesoscopic_subvolume_event.cpp">
+      <Filter>src\simulation\mesoscopic\subvolume</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -695,6 +698,9 @@
     </ClInclude>
     <ClInclude Include="src\active_actor.h">
       <Filter>src\simulation\active actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesoscopic_subvolume_event.h">
+      <Filter>src\simulation\mesoscopic\subvolume</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
