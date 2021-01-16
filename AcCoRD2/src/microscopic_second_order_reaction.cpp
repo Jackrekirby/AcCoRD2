@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "microscopic_second_order_reaction.h"
-#include "microscopic_region2.h"
-#include "microscopic_subvolume2.h"
+#include "microscopic_region.h"
+#include "microscopic_subvolume.h"
 #include "vec3b.h"
-
 
 namespace accord::microscopic
 {

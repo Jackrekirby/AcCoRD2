@@ -3,8 +3,6 @@
 #include "event_queue_test.h"
 //#include "logger.h"
 //#include "random.h"
-#include "event_queue.h"
-#include "event.h"
 
 //#include "event_queue2.h"
 //#include "event2.h"
@@ -14,7 +12,7 @@ namespace accord
 {
 	void EventQueueTest()
 	{
-		accord::Random::SetSeed();
+		//accord::Random::SetSeed();
 
 		//accord::EventQueue event_queue(3);
 		//accord::Event event(5.0, 0, &event_queue);

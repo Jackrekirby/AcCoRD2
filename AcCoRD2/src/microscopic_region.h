@@ -1,8 +1,8 @@
 #pragma once
 #include "pch.h"
 #include "vec3d.h"
-#include "event5.h"
-#include "microscopic_grid2.h"
+#include "event.h"
+#include "microscopic_grid.h"
 //#include "microscopic_surface.h"
 #include "microscopic_zeroth_order_reaction.h"
 #include "microscopic_first_order_reaction.h"
@@ -17,7 +17,7 @@
 
 namespace accord::microscopic
 {
-	class Region : public Event5
+	class Region : public Event
 	{
 	public:
 		Region(const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,

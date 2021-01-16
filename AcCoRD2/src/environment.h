@@ -1,8 +1,8 @@
 #pragma once
-#include "microscopic_region2.h"
+#include "microscopic_region.h"
 #include "mesoscopic_region.h"
 #include "passive_actor.h"
-#include "active_actor2.h"
+#include "active_actor.h"
 
 namespace accord
 {
@@ -43,7 +43,7 @@ namespace accord
 
 		static std::vector<std::unique_ptr<PassiveActor>>& GetPassiveActors();
 
-		static std::vector<std::unique_ptr<ActiveActor2>>& GetActiveActors();
+		static std::vector<std::unique_ptr<ActiveActor>>& GetActiveActors();
 
 
 		static std::string GetRealisationPath();
@@ -52,7 +52,7 @@ namespace accord
 
 		static void CreateDirectories();
 
-		static EventQueue5& GetEventQueue();
+		static EventQueue& GetEventQueue();
 
 		enum class RelationshipPriority
 		{
@@ -98,11 +98,11 @@ namespace accord
 		static int num_realisations;
 		static int current_realisation;
 		static uint64_t seed;
-		static EventQueue5 event_queue;
+		static EventQueue event_queue;
 
 		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
 		static std::vector<mesoscopic::Region> mesoscopic_regions;
-		static std::vector<std::unique_ptr<ActiveActor2>> active_actors;
+		static std::vector<std::unique_ptr<ActiveActor>> active_actors;
 		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;
 	};
 }

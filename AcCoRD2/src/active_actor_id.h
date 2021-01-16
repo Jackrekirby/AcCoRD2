@@ -6,7 +6,7 @@ namespace accord
 	class ActiveActorID
 	{
 	public:
-		ActiveActorID(int id);
+		ActiveActorID(int id = 0);
 
 		int operator () () const;
 

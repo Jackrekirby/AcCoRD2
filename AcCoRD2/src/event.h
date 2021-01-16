@@ -1,58 +1,31 @@
 #pragma once
 
-// by adding event Type it is now specific to environment events
-// consider abstracting to seperate into environment and subvolume events
-
 namespace accord
 {
 	class EventQueue;
 
 	class Event
 	{
-		friend class EventQueue;
 	public:
-		using EventID = int;
+		Event(double start_time = 0, int priority = 0);
 
-		Event(double start_time, int priority, EventQueue* event_queue);
-
-		// should rename UpdateEventTime
-		void UpdateTime(double new_time);
+		void LinkToQueue(EventQueue* queue, size_t queue_index);
 
 		double GetEventTime() const;
 
-		int GetPriority() const;
+		void SetEventTime(double time);
+
+		void UpdateEventTime(double delta_time);
+
+		bool OccursBefore(const Event& other);
+
+		virtual std::string LogEvent() const;
 
 		virtual void Run() = 0;
-
-		enum class Type
-		{
-			microscopic_region, mesoscopic_region, active_actor, passive_actor
-		};
-
-		virtual Type GetType() const = 0;
-
-		virtual EventID GetID() const = 0;
-
-		static std::string ToString(Type type);
-
-		template<typename OStream>
-		static friend OStream& operator << (OStream& os, const Type& type)
-		{
-			return os << ToString(type);
-		}
-
-		template<typename OStream>
-		friend OStream& operator << (OStream& os, const Event& event)
-		{
-			return os << fmt::format("Type:{}, ID:{}, Time:{}",
-				event.GetType(), event.GetID(), event.GetEventTime());
-		}
-	private:
+	protected:
 		double time;
 		int priority;
 		size_t queue_index;
-		EventQueue* event_queue;
-
-		bool OccursBefore(const Event& other);
+		EventQueue* queue;
 	};
 }

@@ -1,9 +1,9 @@
 #pragma once
-#include "active_actor2.h"
+#include "active_actor.h"
 
 namespace accord
 {
-	class ActiveActorRandomTime : public ActiveActor2
+	class ActiveActorRandomTime : public ActiveActor
 	{
 	public:
 		ActiveActorRandomTime(double action_interval, double release_interval,

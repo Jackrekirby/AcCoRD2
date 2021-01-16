@@ -60,7 +60,11 @@ namespace accord
 
 	void MoleculeID::InRange()
 		{
-			if (id < 0 || id >= count)
+			if (count == 0)
+			{
+				LOG_CRITICAL("ID was set to {}, but there is no valid ID as ID count = {}.", id, count);
+			} 
+			else if (id < 0 || id >= count)
 			{
 				LOG_CRITICAL("ID was set to {}, but 0 <= ID < {}.", id, count);
 				throw std::exception();

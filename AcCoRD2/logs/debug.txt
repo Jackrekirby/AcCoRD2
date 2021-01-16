@@ -1,0 +1,1166 @@
+[00:08:55.343] [info] main.cpp:183 TestMesoscopic() simulation path = D:/dev/meso_sim
+[00:08:55.346] [info] mesoscopic_region.cpp:43 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume propensity = 0.0, time = inf
+[00:08:55.346] [info] mesoscopic_region.cpp:43 accord::mesoscopic::Region::AddSubvolumesToQueue() subvolume propensity = 0.0, time = inf
+[00:08:55.347] [info] main.cpp:228 TestMesoscopic() 1
+[00:08:55.352] [info] main.cpp:287 TestMesoscopic() Realisation 0
+[00:08:55.352] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.0)
+[00:08:55.352] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:55.353] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 0
+[00:08:55.353] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.0)
+[00:08:55.353] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.05)
+[00:08:55.356] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.1)
+[00:08:55.356] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.15000000000000002)
+[00:08:55.357] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.2)
+[00:08:55.357] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.2)
+[00:08:55.357] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.25)
+[00:08:55.358] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.3)
+[00:08:55.358] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.35)
+[00:08:55.358] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.39999999999999997)
+[00:08:55.359] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.4)
+[00:08:55.359] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.44999999999999996)
+[00:08:55.359] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.49999999999999994)
+[00:08:55.360] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.5499999999999999)
+[00:08:55.360] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.6)
+[00:08:55.361] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.6000000000000001)
+[00:08:55.361] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.65)
+[00:08:55.361] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.7000000000000001)
+[00:08:55.362] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.7500000000000001)
+[00:08:55.369] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.8)
+[00:08:55.370] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.8000000000000002)
+[00:08:55.371] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.8500000000000002)
+[00:08:55.372] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.9000000000000002)
+[00:08:55.373] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.9500000000000003)
+[00:08:55.381] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:1.0)
+[00:08:55.382] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.0000000000000002)
+[00:08:55.384] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.0500000000000003)
+[00:08:55.386] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.1000000000000003)
+[00:08:55.387] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.1500000000000004)
+[00:08:55.389] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.2000000000000004)
+[00:08:55.394] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.2500000000000004)
+[00:08:55.395] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.3000000000000005)
+[00:08:55.396] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.3500000000000005)
+[00:08:55.397] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.4000000000000006)
+[00:08:55.399] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.4500000000000006)
+[00:08:55.400] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.5000000000000007)
+[00:08:55.402] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.5500000000000007)
+[00:08:55.404] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.6000000000000008)
+[00:08:55.405] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.6500000000000008)
+[00:08:55.409] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.7000000000000008)
+[00:08:55.412] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.7500000000000009)
+[00:08:55.413] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.800000000000001)
+[00:08:55.414] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.850000000000001)
+[00:08:55.415] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.900000000000001)
+[00:08:55.416] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.950000000000001)
+[00:08:55.417] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.0)
+[00:08:55.418] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:55.420] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 1, symbol = 1
+[00:08:55.421] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.422] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.422] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.425] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.426] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.427] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.427] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.000000000000001)
+[00:08:55.428] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.0500000000000007)
+[00:08:55.430] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.1000000000000005)
+[00:08:55.431] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.1500000000000004)
+[00:08:55.432] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.2)
+[00:08:55.432] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.433] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.433] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.434] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.435] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.436] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.436] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.2)
+[00:08:55.437] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.25)
+[00:08:55.438] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.3)
+[00:08:55.441] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.3499999999999996)
+[00:08:55.445] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.3999999999999995)
+[00:08:55.445] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.4000000000000004)
+[00:08:55.448] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.450] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.451] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.452] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.453] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.454] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.455] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.4499999999999993)
+[00:08:55.455] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.499999999999999)
+[00:08:55.457] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.549999999999999)
+[00:08:55.460] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.5999999999999988)
+[00:08:55.462] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.6000000000000005)
+[00:08:55.462] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.463] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.464] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.465] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.465] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.466] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.467] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.6499999999999986)
+[00:08:55.468] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.6999999999999984)
+[00:08:55.468] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.706120282372164)
+[00:08:55.469] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.7499999999999982)
+[00:08:55.469] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.799999999999998)
+[00:08:55.472] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.8000000000000007)
+[00:08:55.474] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.475] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.478] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.478] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.479] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.482] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.483] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.849999999999998)
+[00:08:55.484] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.8930876238068066)
+[00:08:55.487] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.8999999999999977)
+[00:08:55.488] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.9499999999999975)
+[00:08:55.489] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.991927455694868)
+[00:08:55.495] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.9999999999999973)
+[00:08:55.495] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:3.000000000000001)
+[00:08:55.496] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.049999999999997)
+[00:08:55.496] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.099999999999997)
+[00:08:55.497] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.149999999999997)
+[00:08:55.498] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.1999999999999966)
+[00:08:55.498] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.2298761011764228)
+[00:08:55.499] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.2499999999999964)
+[00:08:55.500] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.2999999999999963)
+[00:08:55.500] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.349999999999996)
+[00:08:55.502] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.399999999999996)
+[00:08:55.503] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.4499999999999957)
+[00:08:55.504] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.4711155215084295)
+[00:08:55.505] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.4999999999999956)
+[00:08:55.506] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.5499999999999954)
+[00:08:55.508] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.599999999999995)
+[00:08:55.509] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.649999999999995)
+[00:08:55.510] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.699999999999995)
+[00:08:55.511] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.7238739145710147)
+[00:08:55.512] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.7499999999999947)
+[00:08:55.513] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.7999999999999945)
+[00:08:55.513] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.8123769638332305)
+[00:08:55.514] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.8499999999999943)
+[00:08:55.514] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.8999771060632296)
+[00:08:55.515] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.899999999999994)
+[00:08:55.515] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.949999999999994)
+[00:08:55.516] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.999999999999994)
+[00:08:55.516] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.0)
+[00:08:55.517] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 1, symbol = 2
+[00:08:55.517] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 1, symbol = 3
+[00:08:55.518] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.518] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.519] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.519] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.520] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.523] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.530] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.533] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.533] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.534] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.534] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.535] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.535] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.536] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.536] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.537] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.537] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.538] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.539] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.049999999999994)
+[00:08:55.539] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.061149933159162)
+[00:08:55.540] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.099999999999993)
+[00:08:55.544] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.149999999999993)
+[00:08:55.544] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.185680566269016)
+[00:08:55.545] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.199999999999993)
+[00:08:55.546] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.2)
+[00:08:55.547] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.547] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.549] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.550] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.551] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.554] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.554] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.555] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.555] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.556] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.556] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.557] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.558] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.559] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.560] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.560] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.561] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.561] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.562] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.249999999999993)
+[00:08:55.564] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.299999999999993)
+[00:08:55.565] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.322240813522437)
+[00:08:55.565] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.3499999999999925)
+[00:08:55.566] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.399999999999992)
+[00:08:55.567] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.4)
+[00:08:55.567] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.568] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.568] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.569] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.570] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.570] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.571] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.571] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.574] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.575] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.576] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.576] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.577] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.578] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.578] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.579] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.579] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.580] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.580] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.449999999999992)
+[00:08:55.581] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.499999999999992)
+[00:08:55.583] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.512040469672598)
+[00:08:55.588] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.549999999999992)
+[00:08:55.589] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.599999999999992)
+[00:08:55.591] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.6000000000000005)
+[00:08:55.591] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.592] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.594] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.595] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.601] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.606] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.609] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.613] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.614] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.615] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.616] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.617] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.618] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.618] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.619] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.619] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.620] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.621] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.623] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.64116045246029)
+[00:08:55.628] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.6499999999999915)
+[00:08:55.629] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.691328295192506)
+[00:08:55.629] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.699999999999991)
+[00:08:55.630] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.710354748497953)
+[00:08:55.630] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.7213573815762455)
+[00:08:55.632] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.748082080079764)
+[00:08:55.632] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.749999999999991)
+[00:08:55.633] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.799999999999991)
+[00:08:55.634] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.800000000000001)
+[00:08:55.634] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.635] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.635] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.636] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.636] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.637] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.638] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.638] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.639] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.639] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.643] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.644] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.645] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:55.646] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:55.648] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:55.649] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:55.650] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:55.654] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:55.655] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.849999999999991)
+[00:08:55.657] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.899999999999991)
+[00:08:55.660] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.901381128390979)
+[00:08:55.661] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.918380835572185)
+[00:08:55.664] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.947956135628023)
+[00:08:55.668] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.94999999999999)
+[00:08:55.671] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.99999999999999)
+[00:08:55.671] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:5.000000000000001)
+[00:08:55.672] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.032600131036667)
+[00:08:55.675] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.04999999999999)
+[00:08:55.676] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.073934822945595)
+[00:08:55.677] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.083241434975658)
+[00:08:55.677] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.09999999999999)
+[00:08:55.678] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.108749186439973)
+[00:08:55.679] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.14999999999999)
+[00:08:55.680] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.155243242166099)
+[00:08:55.681] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.196319021445038)
+[00:08:55.681] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.1999999999999895)
+[00:08:55.684] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.212894173441289)
+[00:08:55.684] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.249999999999989)
+[00:08:55.686] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.278170468227842)
+[00:08:55.687] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.299999999999989)
+[00:08:55.688] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.310041257860359)
+[00:08:55.689] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.3340121606406425)
+[00:08:55.690] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.349999999999989)
+[00:08:55.691] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.369123686304536)
+[00:08:55.693] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.3812297644423515)
+[00:08:55.694] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.399194652253859)
+[00:08:55.695] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.399999999999989)
+[00:08:55.696] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.449999999999989)
+[00:08:55.696] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.479315009172971)
+[00:08:55.697] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.499622251362259)
+[00:08:55.698] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.4999999999999885)
+[00:08:55.698] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.525851445412569)
+[00:08:55.699] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.549999999999988)
+[00:08:55.700] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.58582848033092)
+[00:08:55.700] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.599999999999988)
+[00:08:55.701] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.649999999999988)
+[00:08:55.704] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.6569013746032555)
+[00:08:55.704] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.667816202414095)
+[00:08:55.705] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.689910331332105)
+[00:08:55.706] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.699999999999988)
+[00:08:55.708] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.749999999999988)
+[00:08:55.708] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.759170349587289)
+[00:08:55.709] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.799999999999987)
+[00:08:55.710] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.822082928220581)
+[00:08:55.710] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.841157442957634)
+[00:08:55.711] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.849999999999987)
+[00:08:55.713] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.878896396634656)
+[00:08:55.714] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.899999999999987)
+[00:08:55.715] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.927408571168177)
+[00:08:55.715] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.949999999999987)
+[00:08:55.716] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.9654780820662685)
+[00:08:55.716] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.999737566811606)
+[00:08:55.717] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.999999999999987)
+[00:08:55.718] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.0)
+[00:08:55.718] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:55.718] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 0
+[00:08:55.719] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.019681624000671)
+[00:08:55.720] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.0499999999999865)
+[00:08:55.721] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.078887499307362)
+[00:08:55.721] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.099999999999986)
+[00:08:55.722] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.144844850092067)
+[00:08:55.726] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.149999999999986)
+[00:08:55.727] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.199999999999986)
+[00:08:55.728] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.2)
+[00:08:55.728] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.249999999999986)
+[00:08:55.729] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.273395510181132)
+[00:08:55.730] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.299999999999986)
+[00:08:55.731] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.300214161861347)
+[00:08:55.731] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.324716602136063)
+[00:08:55.732] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.341511007489621)
+[00:08:55.733] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.349999999999985)
+[00:08:55.735] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.35312598312863)
+[00:08:55.736] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.358620182182564)
+[00:08:55.736] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.364199852581124)
+[00:08:55.737] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.399999999999985)
+[00:08:55.738] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.4)
+[00:08:55.739] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.429328442449354)
+[00:08:55.739] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.444207303257981)
+[00:08:55.740] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.449999999999985)
+[00:08:55.742] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.479824700775464)
+[00:08:55.744] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.495532130214641)
+[00:08:55.746] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.499999999999985)
+[00:08:55.748] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.534609325998811)
+[00:08:55.749] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.549999999999985)
+[00:08:55.749] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.596332280830753)
+[00:08:55.750] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.5999999999999845)
+[00:08:55.751] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.6000000000000005)
+[00:08:55.752] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.629426093127523)
+[00:08:55.755] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.636426658671823)
+[00:08:55.755] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.649999999999984)
+[00:08:55.757] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.699999999999984)
+[00:08:55.759] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.702271501030455)
+[00:08:55.760] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.743746706577432)
+[00:08:55.760] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.749999999999984)
+[00:08:55.763] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.799999999999984)
+[00:08:55.765] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.800000000000001)
+[00:08:55.765] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.824193200126025)
+[00:08:55.766] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.849999999999984)
+[00:08:55.768] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.880278887382197)
+[00:08:55.768] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.898101145735464)
+[00:08:55.769] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.8999999999999835)
+[00:08:55.770] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.944024650127838)
+[00:08:55.771] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.949999999999983)
+[00:08:55.772] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.974326236126516)
+[00:08:55.772] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.9928260045264405)
+[00:08:55.776] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.999999999999983)
+[00:08:55.778] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:7.000000000000001)
+[00:08:55.782] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.000385456260308)
+[00:08:55.783] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.0306478844022555)
+[00:08:55.786] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.049999999999983)
+[00:08:55.788] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.05551244217847)
+[00:08:55.788] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.092916260198304)
+[00:08:55.789] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.099999999999983)
+[00:08:55.790] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.144699621811768)
+[00:08:55.793] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.149999999999983)
+[00:08:55.795] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.193289523125947)
+[00:08:55.796] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.199999999999982)
+[00:08:55.797] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.219891806071536)
+[00:08:55.798] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.2418113343493955)
+[00:08:55.800] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.249999999999982)
+[00:08:55.802] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.299999999999982)
+[00:08:55.802] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.349999999999982)
+[00:08:55.803] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.36677283884435)
+[00:08:55.804] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.399999999999982)
+[00:08:55.805] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.4499999999999815)
+[00:08:55.809] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.459982653637535)
+[00:08:55.810] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.472263940711325)
+[00:08:55.811] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.499999999999981)
+[00:08:55.812] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.5143573058143645)
+[00:08:55.812] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.549999999999981)
+[00:08:55.814] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.560346060335991)
+[00:08:55.817] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.5623959642224925)
+[00:08:55.818] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.599999999999981)
+[00:08:55.820] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.605498159881876)
+[00:08:55.828] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.649999999999981)
+[00:08:55.831] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.675309589529413)
+[00:08:55.832] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.699999999999981)
+[00:08:55.834] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.732017079188553)
+[00:08:55.835] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.7499999999999805)
+[00:08:55.838] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.793840510561304)
+[00:08:55.839] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.79999999999998)
+[00:08:55.848] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.805989387891485)
+[00:08:55.849] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.84999999999998)
+[00:08:55.850] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.858215340537377)
+[00:08:55.850] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.871649233367506)
+[00:08:55.859] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.89999999999998)
+[00:08:55.868] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.9356966230866774)
+[00:08:55.878] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.946080052390051)
+[00:08:55.880] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.94999999999998)
+[00:08:55.881] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.99644821209596)
+[00:08:55.883] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.99999999999998)
+[00:08:55.884] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.0)
+[00:08:55.887] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:55.889] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 0
+[00:08:55.893] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.048606523038961)
+[00:08:55.898] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.04999999999998)
+[00:08:55.900] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.09999999999998)
+[00:08:55.901] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.102372590794262)
+[00:08:55.903] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.14999999999998)
+[00:08:55.904] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.165701189998536)
+[00:08:55.905] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.185528437923255)
+[00:08:55.909] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.199999999999982)
+[00:08:55.914] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.2)
+[00:08:55.918] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.224278301515184)
+[00:08:55.920] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.236531834756427)
+[00:08:55.921] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.249999999999982)
+[00:08:55.923] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.299999999999983)
+[00:08:55.929] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.324942481758399)
+[00:08:55.931] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.334735178404808)
+[00:08:55.933] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.349999999999984)
+[00:08:55.934] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.399999999999984)
+[00:08:55.941] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.399999999999999)
+[00:08:55.943] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.412326171582372)
+[00:08:55.944] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.449999999999985)
+[00:08:55.946] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.487263998089652)
+[00:08:55.946] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.499999999999986)
+[00:08:55.947] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.533025435355206)
+[00:08:55.949] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.536376944343047)
+[00:08:55.950] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.549999999999986)
+[00:08:55.951] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.570916497112384)
+[00:08:55.952] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.599999999999987)
+[00:08:55.953] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.599999999999998)
+[00:08:55.953] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.630906997395645)
+[00:08:55.954] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.636244441766644)
+[00:08:55.955] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.649999999999988)
+[00:08:55.956] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.697597885098297)
+[00:08:55.956] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.699999999999989)
+[00:08:55.959] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.711539511313884)
+[00:08:55.960] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.733413911113644)
+[00:08:55.961] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.74999999999999)
+[00:08:55.962] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.76178330965692)
+[00:08:55.963] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.770278560106378)
+[00:08:55.963] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.79999999999999)
+[00:08:55.966] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.799999999999997)
+[00:08:55.967] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.839015899271622)
+[00:08:55.968] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.844159510940054)
+[00:08:55.968] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.84999999999999)
+[00:08:55.971] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.899999999999991)
+[00:08:55.972] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.910872813254668)
+[00:08:55.973] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.916007835201972)
+[00:08:55.975] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.949999999999992)
+[00:08:55.976] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.975704811456668)
+[00:08:55.977] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.999999999999993)
+[00:08:55.978] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.999999999999996)
+[00:08:55.978] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.012734546611036)
+[00:08:55.979] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.049999999999994)
+[00:08:55.982] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.071017362752368)
+[00:08:55.983] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.099999999999994)
+[00:08:55.985] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.138065863505314)
+[00:08:55.986] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.148719564092078)
+[00:08:55.988] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.149999999999995)
+[00:08:55.989] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.18015235784289)
+[00:08:55.994] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.19792684869727)
+[00:08:55.997] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.199999999999996)
+[00:08:55.998] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.249999999999996)
+[00:08:56.001] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.259654705520147)
+[00:08:56.003] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.299999999999997)
+[00:08:56.006] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.31204648886399)
+[00:08:56.009] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.339799742255398)
+[00:08:56.014] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.349999999999998)
+[00:08:56.015] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.390149610044588)
+[00:08:56.018] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.399999999999999)
+[00:08:56.020] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.446065041766348)
+[00:08:56.023] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.45)
+[00:08:56.025] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.475717213895333)
+[00:08:56.027] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.5)
+[00:08:56.028] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.536576161655923)
+[00:08:56.030] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.54164830917217)
+[00:08:56.033] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.55)
+[00:08:56.036] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.590956787824357)
+[00:08:56.036] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.600000000000001)
+[00:08:56.038] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.625390574809968)
+[00:08:56.040] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.650000000000002)
+[00:08:56.043] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.669071942562997)
+[00:08:56.043] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.700000000000003)
+[00:08:56.045] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.706048229940485)
+[00:08:56.045] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.713641053194173)
+[00:08:56.046] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.750000000000004)
+[00:08:56.047] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.75347939089753)
+[00:08:56.047] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.781873270405026)
+[00:08:56.048] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.799030151420872)
+[00:08:56.048] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.800000000000004)
+[00:08:56.049] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.842540844552957)
+[00:08:56.050] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.850000000000005)
+[00:08:56.051] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.89805701329129)
+[00:08:56.054] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.900000000000006)
+[00:08:56.056] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.919102572082181)
+[00:08:56.056] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.946163452303006)
+[00:08:56.058] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.950000000000006)
+[00:08:56.060] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.990044700359883)
+[00:08:56.064] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:10.0)
+[00:08:56.067] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:56.069] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 0
+[00:08:56.073] [info] main.cpp:287 TestMesoscopic() Realisation 1
+[00:08:56.083] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.0)
+[00:08:56.084] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 1, symbol = 2
+[00:08:56.086] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 2
+[00:08:56.087] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.088] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.093] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.095] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.096] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.097] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.098] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.099] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.100] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.102] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.103] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.105] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.106] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.0)
+[00:08:56.108] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.05)
+[00:08:56.109] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.1)
+[00:08:56.112] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.15000000000000002)
+[00:08:56.113] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.2)
+[00:08:56.113] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.115] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.116] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.116] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.117] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.118] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.119] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.122] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.123] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.125] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.126] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.127] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.128] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.2)
+[00:08:56.129] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.25)
+[00:08:56.131] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.2988311274455291)
+[00:08:56.132] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.3)
+[00:08:56.133] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.35)
+[00:08:56.133] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.39999999999999997)
+[00:08:56.134] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.4)
+[00:08:56.135] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.135] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.136] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.137] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.138] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.139] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.143] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.146] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.147] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.147] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.148] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.149] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.150] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.44999999999999996)
+[00:08:56.152] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.47783829273778716)
+[00:08:56.153] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.49999999999999994)
+[00:08:56.155] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.5499999999999999)
+[00:08:56.159] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.6)
+[00:08:56.161] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.6000000000000001)
+[00:08:56.163] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.165] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.166] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.167] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.169] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.170] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.171] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.174] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.178] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.179] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.180] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.183] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.184] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.6497597364634969)
+[00:08:56.186] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.65)
+[00:08:56.187] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.7000000000000001)
+[00:08:56.189] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.7421268690801923)
+[00:08:56.189] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.7500000000000001)
+[00:08:56.193] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:0.8)
+[00:08:56.194] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.195] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.197] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.199] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.200] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.201] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.203] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.204] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.205] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.206] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.208] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.209] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.210] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.8000000000000002)
+[00:08:56.211] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.8500000000000002)
+[00:08:56.213] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.8892233272028227)
+[00:08:56.214] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.8973725560960333)
+[00:08:56.216] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.9000000000000002)
+[00:08:56.216] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:0.9197123693736435)
+[00:08:56.217] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:0.9500000000000003)
+[00:08:56.218] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:1.0)
+[00:08:56.218] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.0000000000000002)
+[00:08:56.219] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.0235963551605378)
+[00:08:56.220] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.0500000000000003)
+[00:08:56.221] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.1000000000000003)
+[00:08:56.224] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.1463947191928645)
+[00:08:56.229] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.1500000000000004)
+[00:08:56.230] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.2000000000000004)
+[00:08:56.232] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.218803277133008)
+[00:08:56.234] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.2500000000000004)
+[00:08:56.235] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.3000000000000005)
+[00:08:56.236] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.3500000000000005)
+[00:08:56.236] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.4000000000000006)
+[00:08:56.237] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.4331354458230567)
+[00:08:56.238] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.4500000000000006)
+[00:08:56.239] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.4804875459894289)
+[00:08:56.239] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.4954781516777147)
+[00:08:56.240] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.5000000000000007)
+[00:08:56.242] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.5500000000000007)
+[00:08:56.245] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.5747387266112862)
+[00:08:56.247] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.6000000000000008)
+[00:08:56.248] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.6500000000000008)
+[00:08:56.249] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.67496022316514)
+[00:08:56.250] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.7000000000000008)
+[00:08:56.251] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.7500000000000009)
+[00:08:56.253] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.800000000000001)
+[00:08:56.257] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.8275290388876029)
+[00:08:56.263] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.850000000000001)
+[00:08:56.265] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.900000000000001)
+[00:08:56.267] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:1.949931355265168)
+[00:08:56.268] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:1.950000000000001)
+[00:08:56.269] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.0)
+[00:08:56.270] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:56.271] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 0
+[00:08:56.272] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.000000000000001)
+[00:08:56.273] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.043342162598901)
+[00:08:56.277] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.0500000000000007)
+[00:08:56.279] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.0661948962667878)
+[00:08:56.280] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.1000000000000005)
+[00:08:56.286] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.1256471430431336)
+[00:08:56.289] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.1425647282875375)
+[00:08:56.294] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.1500000000000004)
+[00:08:56.299] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.2)
+[00:08:56.301] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.2)
+[00:08:56.304] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.25)
+[00:08:56.306] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.291119826238971)
+[00:08:56.307] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.3)
+[00:08:56.314] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.3499999999999996)
+[00:08:56.316] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.379440111452839)
+[00:08:56.317] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.3999999999999995)
+[00:08:56.318] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.4000000000000004)
+[00:08:56.319] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.443536009011932)
+[00:08:56.320] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.4499999999999993)
+[00:08:56.321] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.499999999999999)
+[00:08:56.325] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.501501504679783)
+[00:08:56.332] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.5420048151195322)
+[00:08:56.333] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.549999999999999)
+[00:08:56.336] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.5999999999999988)
+[00:08:56.338] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.6000000000000005)
+[00:08:56.342] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.6499999999999986)
+[00:08:56.348] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.6999999999999984)
+[00:08:56.350] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.7160721902169205)
+[00:08:56.354] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.7499999999999982)
+[00:08:56.364] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.799999999999998)
+[00:08:56.366] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:2.8000000000000007)
+[00:08:56.368] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.8424909852643885)
+[00:08:56.371] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.849999999999998)
+[00:08:56.373] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.8999999999999977)
+[00:08:56.380] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.938409261900801)
+[00:08:56.386] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.9499999999999975)
+[00:08:56.412] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:2.9769266804536434)
+[00:08:56.430] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:2.9999999999999973)
+[00:08:56.431] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:3.000000000000001)
+[00:08:56.432] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.049999999999997)
+[00:08:56.436] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.061606167116894)
+[00:08:56.445] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.099999999999997)
+[00:08:56.447] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.149999999999997)
+[00:08:56.449] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.1695607462708177)
+[00:08:56.452] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.1999999999999966)
+[00:08:56.457] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.2493477668451027)
+[00:08:56.461] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.2499999999999964)
+[00:08:56.462] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.267427087757361)
+[00:08:56.463] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.2999999999999963)
+[00:08:56.464] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.3394823565313856)
+[00:08:56.466] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.349999999999996)
+[00:08:56.468] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.399999999999996)
+[00:08:56.469] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.4002800823768995)
+[00:08:56.471] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.4499999999999957)
+[00:08:56.471] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.4999999999999956)
+[00:08:56.473] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.5499999999999954)
+[00:08:56.474] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.5820506191891717)
+[00:08:56.475] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.599999999999995)
+[00:08:56.477] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.649999999999995)
+[00:08:56.479] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.6668483588717966)
+[00:08:56.479] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.699999999999995)
+[00:08:56.481] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.7394626928003603)
+[00:08:56.482] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.7432241036913068)
+[00:08:56.483] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.7499999999999947)
+[00:08:56.484] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.7999999999999945)
+[00:08:56.485] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.802589758288502)
+[00:08:56.486] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.8499999999999943)
+[00:08:56.489] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.899999999999994)
+[00:08:56.495] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:3.9353317301273107)
+[00:08:56.498] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.949999999999994)
+[00:08:56.506] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:3.999999999999994)
+[00:08:56.510] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.0)
+[00:08:56.513] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:56.516] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 0
+[00:08:56.519] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.049999999999994)
+[00:08:56.522] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.065553519234692)
+[00:08:56.527] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.099999999999993)
+[00:08:56.532] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.125446912088563)
+[00:08:56.566] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.149999999999993)
+[00:08:56.589] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.199999999999993)
+[00:08:56.627] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.2)
+[00:08:56.633] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.2103607949499935)
+[00:08:56.637] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.249999999999993)
+[00:08:56.639] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.266916990341449)
+[00:08:56.645] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.299999999999993)
+[00:08:56.650] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.310201909760093)
+[00:08:56.653] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.3499999999999925)
+[00:08:56.656] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.385427449329951)
+[00:08:56.660] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.399999999999992)
+[00:08:56.662] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.4)
+[00:08:56.674] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.449999999999992)
+[00:08:56.688] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.452265141650439)
+[00:08:56.689] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.499999999999992)
+[00:08:56.690] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.538527667907955)
+[00:08:56.690] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.549999999999992)
+[00:08:56.693] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.599999999999992)
+[00:08:56.694] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.6000000000000005)
+[00:08:56.695] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.6499999999999915)
+[00:08:56.696] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.6634730660087405)
+[00:08:56.697] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.699999999999991)
+[00:08:56.698] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.7086399964679835)
+[00:08:56.699] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.71559670055749)
+[00:08:56.700] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.749999999999991)
+[00:08:56.701] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.782393167298838)
+[00:08:56.703] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.799999999999991)
+[00:08:56.704] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:4.800000000000001)
+[00:08:56.705] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.849999999999991)
+[00:08:56.706] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.893001153923073)
+[00:08:56.706] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.899999999999991)
+[00:08:56.708] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.94999999999999)
+[00:08:56.709] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:4.950170792750142)
+[00:08:56.710] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:4.99999999999999)
+[00:08:56.710] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:5.000000000000001)
+[00:08:56.711] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.04999999999999)
+[00:08:56.713] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.056089586372249)
+[00:08:56.714] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.098610665307682)
+[00:08:56.714] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.09999999999999)
+[00:08:56.715] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.14999999999999)
+[00:08:56.716] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.151776715726054)
+[00:08:56.716] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.1999999999999895)
+[00:08:56.717] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.222826656357843)
+[00:08:56.718] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.249999999999989)
+[00:08:56.719] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.299999999999989)
+[00:08:56.720] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.3429226914531585)
+[00:08:56.721] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.349999999999989)
+[00:08:56.726] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.357043952573523)
+[00:08:56.729] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.399999999999989)
+[00:08:56.730] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.413217454954617)
+[00:08:56.730] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.449999999999989)
+[00:08:56.731] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.4999999999999885)
+[00:08:56.732] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.549999999999988)
+[00:08:56.734] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.560411361224937)
+[00:08:56.734] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.593988401579382)
+[00:08:56.735] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.599999999999988)
+[00:08:56.736] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.649999999999988)
+[00:08:56.736] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.699999999999988)
+[00:08:56.737] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.727493628081768)
+[00:08:56.738] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.749999999999988)
+[00:08:56.739] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.799999999999987)
+[00:08:56.739] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.849999999999987)
+[00:08:56.740] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.879137882354609)
+[00:08:56.740] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.899999999999987)
+[00:08:56.742] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.949999999999987)
+[00:08:56.745] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:5.970347074477415)
+[00:08:56.746] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:5.999999999999987)
+[00:08:56.748] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.0)
+[00:08:56.748] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 1, symbol = 2
+[00:08:56.749] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 0, symbol = 2
+[00:08:56.749] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.750] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.751] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.751] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.752] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.753] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.753] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.756] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.757] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.758] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.759] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.760] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.761] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.0499999999999865)
+[00:08:56.762] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.08385636915764)
+[00:08:56.762] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.099999999999986)
+[00:08:56.763] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.149999999999986)
+[00:08:56.764] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.199999999999986)
+[00:08:56.766] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.2)
+[00:08:56.767] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.767] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.768] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.769] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.769] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.770] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.771] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.772] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.772] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.773] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.774] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.777] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.778] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.249999999999986)
+[00:08:56.779] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.282080957363619)
+[00:08:56.779] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.299999999999986)
+[00:08:56.780] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.349999999999985)
+[00:08:56.781] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.399999999999985)
+[00:08:56.782] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.4)
+[00:08:56.782] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.783] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.783] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.784] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.784] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.786] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.787] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.788] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.788] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.789] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.790] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.790] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.791] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.417963088738308)
+[00:08:56.792] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.449999999999985)
+[00:08:56.793] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.478613523021725)
+[00:08:56.793] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.499999999999985)
+[00:08:56.794] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.549999999999985)
+[00:08:56.794] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.557954032940664)
+[00:08:56.796] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.5999999999999845)
+[00:08:56.797] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.6000000000000005)
+[00:08:56.797] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.798] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.798] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.799] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.799] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.800] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.800] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.801] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.801] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.802] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.802] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.803] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.803] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.615701037925924)
+[00:08:56.804] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.636429453850093)
+[00:08:56.804] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.649999999999984)
+[00:08:56.807] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.658772077900219)
+[00:08:56.808] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.699999999999984)
+[00:08:56.809] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.71770834858584)
+[00:08:56.809] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.749999999999984)
+[00:08:56.811] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.757475828307894)
+[00:08:56.811] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.799999999999984)
+[00:08:56.812] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:6.800000000000001)
+[00:08:56.812] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.813] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.813] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.814] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.814] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.815] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.815] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.818] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.818] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.819] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.819] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.820] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.820] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.849999999999984)
+[00:08:56.821] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.852838598243785)
+[00:08:56.821] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.8999999999999835)
+[00:08:56.822] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:6.914611687875609)
+[00:08:56.822] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.949999999999983)
+[00:08:56.823] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:6.999999999999983)
+[00:08:56.824] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:7.000000000000001)
+[00:08:56.824] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.030083346743122)
+[00:08:56.825] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.049999999999983)
+[00:08:56.826] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.099999999999983)
+[00:08:56.829] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.131093676627284)
+[00:08:56.830] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.143734815806656)
+[00:08:56.830] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.149999999999983)
+[00:08:56.851] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.199999999999982)
+[00:08:56.853] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.204559766571426)
+[00:08:56.853] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.247660953986158)
+[00:08:56.854] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.249999999999982)
+[00:08:56.855] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.299999999999982)
+[00:08:56.856] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.309767998667135)
+[00:08:56.856] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.349999999999982)
+[00:08:56.857] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.384850205777236)
+[00:08:56.859] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.399999999999982)
+[00:08:56.861] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.4499999999999815)
+[00:08:56.862] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.478826916101792)
+[00:08:56.865] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.499999999999981)
+[00:08:56.868] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.5448512376451635)
+[00:08:56.869] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.549999999999981)
+[00:08:56.870] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.596109107894479)
+[00:08:56.871] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.599999999999981)
+[00:08:56.873] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.649999999999981)
+[00:08:56.874] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.684752794975697)
+[00:08:56.879] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.699999999999981)
+[00:08:56.880] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.7240264559818055)
+[00:08:56.880] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.7499999999999805)
+[00:08:56.882] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.784210180049695)
+[00:08:56.884] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.79999999999998)
+[00:08:56.886] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.840688872945539)
+[00:08:56.889] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.84999999999998)
+[00:08:56.891] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.861042961584776)
+[00:08:56.895] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.884001845871791)
+[00:08:56.896] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.89999999999998)
+[00:08:56.899] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.94999999999998)
+[00:08:56.901] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.956014667643937)
+[00:08:56.902] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.9750924325425885)
+[00:08:56.904] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.985475547240242)
+[00:08:56.905] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:7.988472952100275)
+[00:08:56.907] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:7.99999999999998)
+[00:08:56.911] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.0)
+[00:08:56.913] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 1, symbol = 2
+[00:08:56.915] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 1, symbol = 3
+[00:08:56.916] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.917] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.920] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.921] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.925] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.928] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.956] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.962] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.964] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.965] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.970] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.971] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.972] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:56.974] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:56.975] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:56.979] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:56.980] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:56.982] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:56.983] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.007664944156884)
+[00:08:56.983] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.036938741886546)
+[00:08:56.984] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.04063810874438)
+[00:08:56.985] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.048494962731162)
+[00:08:56.989] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.04999999999998)
+[00:08:56.990] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.077917744314872)
+[00:08:56.991] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.099606422996697)
+[00:08:56.992] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.09999999999998)
+[00:08:56.994] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.14999999999998)
+[00:08:56.994] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.162880911436059)
+[00:08:56.995] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.170023582836558)
+[00:08:56.996] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.182668910515876)
+[00:08:56.996] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.199089798707249)
+[00:08:56.997] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.199999999999982)
+[00:08:56.999] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.2)
+[00:08:57.000] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.001] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.003] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.004] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.005] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.006] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.009] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.014] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.020] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.021] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.023] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.025] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.028] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.028] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.029] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.031] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.032] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.033] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.034] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.218743777268083)
+[00:08:57.034] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.249999999999982)
+[00:08:57.035] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.259891324369217)
+[00:08:57.036] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.299999999999983)
+[00:08:57.038] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.307598067286131)
+[00:08:57.039] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.32961091633967)
+[00:08:57.040] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.348528212871559)
+[00:08:57.041] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.349999999999984)
+[00:08:57.043] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.381958389077619)
+[00:08:57.044] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.397073908549844)
+[00:08:57.045] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.399999999999984)
+[00:08:57.047] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.399999999999999)
+[00:08:57.049] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.050] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.051] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.052] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.053] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.053] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.054] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.055] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.056] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.056] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.060] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.060] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.062] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.062] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.063] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.064] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.064] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.065] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.065] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.41420181450727)
+[00:08:57.066] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.4471903929915)
+[00:08:57.066] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.449999999999985)
+[00:08:57.068] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.454094956879908)
+[00:08:57.070] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.483843565491409)
+[00:08:57.072] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.491020216383083)
+[00:08:57.072] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.499999999999986)
+[00:08:57.073] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.5052452525962)
+[00:08:57.076] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.526682589315953)
+[00:08:57.077] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.543595893028805)
+[00:08:57.080] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.549999999999986)
+[00:08:57.081] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.594747777732612)
+[00:08:57.082] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.599999999999987)
+[00:08:57.084] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.599999999999998)
+[00:08:57.084] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.085] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.085] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.086] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.087] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.087] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.088] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.090] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.091] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.092] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.094] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.095] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.095] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.096] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.096] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.097] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.097] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.098] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.099] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.617468645509625)
+[00:08:57.101] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.636850668731322)
+[00:08:57.101] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.649999999999988)
+[00:08:57.102] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.686039888755259)
+[00:08:57.103] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.694453965674306)
+[00:08:57.104] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.699999999999989)
+[00:08:57.105] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.712037523800795)
+[00:08:57.105] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.72289211383925)
+[00:08:57.105] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.737231338520477)
+[00:08:57.106] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.74999999999999)
+[00:08:57.107] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.757608323604828)
+[00:08:57.107] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.778029536082602)
+[00:08:57.108] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.794533839621387)
+[00:08:57.109] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.79999999999999)
+[00:08:57.112] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.799999999999997)
+[00:08:57.112] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.112] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.113] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.113] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.114] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.115] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.115] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.116] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.117] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.117] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.118] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.118] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.119] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.119] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.122] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.122] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.123] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.125] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2
+[00:08:57.126] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.814779020103295)
+[00:08:57.127] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.836437097348796)
+[00:08:57.127] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.84999999999999)
+[00:08:57.128] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.863514069483113)
+[00:08:57.128] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.892456421097458)
+[00:08:57.129] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.899999999999991)
+[00:08:57.130] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.902670751755418)
+[00:08:57.132] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.931666805286344)
+[00:08:57.132] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.949999999999992)
+[00:08:57.133] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.967624566235713)
+[00:08:57.134] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.977416856621103)
+[00:08:57.134] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.99409223155512)
+[00:08:57.135] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:8.999100120502272)
+[00:08:57.135] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:8.999999999999993)
+[00:08:57.136] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:8.999999999999996)
+[00:08:57.137] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.049999999999994)
+[00:08:57.144] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.05132261922318)
+[00:08:57.146] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.08784664060048)
+[00:08:57.147] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.099999999999994)
+[00:08:57.148] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.106986864186645)
+[00:08:57.149] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.109477931378564)
+[00:08:57.151] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.134444644182736)
+[00:08:57.152] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.149999999999995)
+[00:08:57.153] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.18866264097353)
+[00:08:57.153] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.199999999999996)
+[00:08:57.155] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.205696368056834)
+[00:08:57.155] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.20762065672274)
+[00:08:57.156] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.240604856509746)
+[00:08:57.157] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.249999999999996)
+[00:08:57.158] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.269902859819522)
+[00:08:57.160] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.279940600380773)
+[00:08:57.163] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.299999999999997)
+[00:08:57.166] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.302217504345045)
+[00:08:57.167] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.349999999999998)
+[00:08:57.168] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.37381234474125)
+[00:08:57.169] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.37670987907513)
+[00:08:57.170] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.385594658169373)
+[00:08:57.174] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.399999999999999)
+[00:08:57.177] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.416888291188616)
+[00:08:57.178] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.436210579302617)
+[00:08:57.179] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.45)
+[00:08:57.180] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.475109616541175)
+[00:08:57.181] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.5)
+[00:08:57.183] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.50548870070023)
+[00:08:57.184] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.511496623624387)
+[00:08:57.184] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.536050984533466)
+[00:08:57.185] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.540470400805164)
+[00:08:57.186] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.55)
+[00:08:57.187] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.570513779840118)
+[00:08:57.187] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.577295871315611)
+[00:08:57.188] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.57953886462896)
+[00:08:57.189] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.584147775580385)
+[00:08:57.189] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.600000000000001)
+[00:08:57.190] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.600836708906739)
+[00:08:57.194] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.625080643834458)
+[00:08:57.194] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.637860856805695)
+[00:08:57.195] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.650000000000002)
+[00:08:57.196] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.652514736226196)
+[00:08:57.196] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.673300323596434)
+[00:08:57.197] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.682966724960202)
+[00:08:57.198] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.700000000000003)
+[00:08:57.199] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.720166710491496)
+[00:08:57.199] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.737136139939357)
+[00:08:57.200] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.750000000000004)
+[00:08:57.201] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.789129683923523)
+[00:08:57.201] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.800000000000004)
+[00:08:57.204] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.81041075756084)
+[00:08:57.205] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.83922545359782)
+[00:08:57.206] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.850000000000005)
+[00:08:57.207] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.880567672731248)
+[00:08:57.207] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.899107434837523)
+[00:08:57.208] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.900000000000006)
+[00:08:57.209] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.91097593464426)
+[00:08:57.210] [info] main.cpp:317 TestMesoscopic() Event:(Passive Actor. ID:0, Priority:-1, Time:9.950000000000006)
+[00:08:57.211] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.959620872156876)
+[00:08:57.211] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.964121426300661)
+[00:08:57.212] [info] main.cpp:317 TestMesoscopic() Event:(Microscopic Region. ID:0, Priority:0, Time:9.983114175642973)
+[00:08:57.213] [info] main.cpp:317 TestMesoscopic() Event:(Active Actor. ID:0, Priority:5, Time:10.0)
+[00:08:57.215] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 0, bit = 0, symbol = 0
+[00:08:57.216] [info] active_actor_random_bits.cpp:57 accord::ActiveActorRandomBits::GenerateSymbol() i = 1, bit = 1, symbol = 1
+[00:08:57.217] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 0
+[00:08:57.217] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 0
+[00:08:57.218] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 1
+[00:08:57.219] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 1
+[00:08:57.219] [info] active_actor.cpp:41 accord::ActiveActor::ReleaseMolecules() molecule id = 2
+[00:08:57.220] [info] mesoscopic_region.cpp:19 accord::mesoscopic::Region::AddMolecule() molecule id = 2

@@ -8,7 +8,7 @@ namespace accord::mesoscopic
 {
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
 		const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id)
-		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event5(0, priority), id(id),
+		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event(0, priority), id(id),
 			n_subvolumes(n_subvolumes)
 	{
 		CreateSubvolumes(n_subvolumes, diffusion_coefficients, subvolume_length);

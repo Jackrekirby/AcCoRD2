@@ -9,7 +9,7 @@ namespace accord
 		MoleculeIDs release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& micro_regions,
 		const std::vector<mesoscopic::Region*>& meso_regions, std::unique_ptr<ActiveActorShape> shape,
 		double start_time, int priority, const ActiveActorID& id)
-		: ActiveActor2(action_interval, release_interval, release_molecules, modulation_strength, micro_regions, meso_regions, std::move(shape),
+		: ActiveActor(action_interval, release_interval, release_molecules, modulation_strength, micro_regions, meso_regions, std::move(shape),
 			start_time, priority, id), bit_probability(bit_probability), n_modulation_bits(n_modulation_bits),
 		symbol_file(CreateSymbolFilePath()), n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(0),
 		slot_interval(slot_interval), symbol(0)

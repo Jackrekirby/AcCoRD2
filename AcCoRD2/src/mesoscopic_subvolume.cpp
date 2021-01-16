@@ -29,7 +29,7 @@ namespace accord::mesoscopic
 	{
 		linked_propensity_objects.reserve(diffusion_coefficients.size());
 		layers.reserve(diffusion_coefficients.size());
-		MoleculeID i = 0;
+		int i = 0;
 		for (auto& diffusion_coefficient : diffusion_coefficients)
 		{
 			linked_propensity_objects.emplace_back(this);
@@ -100,7 +100,7 @@ namespace accord::mesoscopic
 	{
 		//LOG_INFO("add neighbour");
 		double diffusion_factor = CalculateDiffusionFactor(subvolume);
-		MoleculeID i = 0;
+		int i = 0;
 		for (auto& layer : layers)
 		{
 			layer.AddNeighbourRelationship(&subvolume.GetLayer(i), diffusion_factor);

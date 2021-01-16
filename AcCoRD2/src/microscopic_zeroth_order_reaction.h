@@ -26,8 +26,6 @@ namespace accord::microscopic
 
 		double GenerateNextReactionTime();
 
-		double CalculateStartTime();
-
 		double CalculateReactionCoefficient(double reaction_rate);
 
 		std::vector<Grid*> GetProductGrids(const MoleculeIDs& products);

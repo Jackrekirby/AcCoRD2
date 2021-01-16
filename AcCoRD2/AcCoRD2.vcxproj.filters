@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\event.cpp">
-      <Filter>src\event</Filter>
-    </ClCompile>
-    <ClCompile Include="src\event_queue.cpp">
-      <Filter>src\event</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src\other</Filter>
     </ClCompile>
@@ -158,52 +152,43 @@
       <Filter>src\shapes\collision\circle</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_first_order_reaction.cpp">
-      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\microscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_normal_molecule.cpp">
-      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\microscopic\molecule</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_recent_molecule.cpp">
-      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\microscopic\molecule</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_second_order_reaction.cpp">
-      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\microscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_zeroth_order_reaction.cpp">
-      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\microscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_typed_subvolume.cpp">
-      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_subvolume2.cpp">
-      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_grid2.cpp">
-      <Filter>src\simulation\regimes\microscopic\grid</Filter>
+      <Filter>src\simulation\microscopic\subvolume</Filter>
     </ClCompile>
     <ClCompile Include="src\environment.cpp">
       <Filter>src\simulation\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_region2.cpp">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
     </ClCompile>
     <ClCompile Include="src\event_queue_test.cpp">
       <Filter>src\tests</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_box_surface_shape.cpp">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\molecule_destination.cpp">
-      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\microscopic\molecule</Filter>
     </ClCompile>
     <ClCompile Include="src\passive_actor.cpp">
-      <Filter>src\simulation\actors\passive</Filter>
+      <Filter>src\simulation\passive actor</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_relationship.cpp">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\microscopic\relations</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\basic_cylinder.cpp">
       <Filter>src\shapes\basic\cylinder</Filter>
@@ -239,25 +224,25 @@
       <Filter>src\shapes\collision\shape</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\basic_shape.cpp">
       <Filter>src\shapes\basic\shape</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_box_region.cpp">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\microscopic\region</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_sphere_region.cpp">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\microscopic\region</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_cylinder_region.cpp">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\microscopic\region</Filter>
     </ClCompile>
     <ClCompile Include="src\shapeless_passive_actor.cpp">
-      <Filter>src\simulation\actors\passive</Filter>
+      <Filter>src\simulation\passive actor</Filter>
     </ClCompile>
     <ClCompile Include="src\box_passive_actor.cpp">
-      <Filter>src\simulation\actors\passive</Filter>
+      <Filter>src\simulation\passive actor</Filter>
     </ClCompile>
     <ClCompile Include="src\reaction_manager.cpp">
       <Filter>src\simulation\reactions</Filter>
@@ -271,71 +256,77 @@
     <ClCompile Include="src\first_order_reaction.cpp">
       <Filter>src\simulation\reactions</Filter>
     </ClCompile>
-    <ClCompile Include="src\active_actor2.cpp">
-      <Filter>src\simulation\actors\actor</Filter>
-    </ClCompile>
     <ClCompile Include="src\active_actor_non_random.cpp">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClCompile>
     <ClCompile Include="src\active_actor_shape.cpp">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClCompile>
     <ClCompile Include="src\active_actor_random_time.cpp">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClCompile>
     <ClCompile Include="src\active_actor_random_bits.cpp">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClCompile>
     <ClCompile Include="src\propensity_object.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\propensity objects</Filter>
+      <Filter>src\simulation\mesoscopic\propensity objects</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_zeroth_order_reaction.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+      <Filter>src\simulation\mesoscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_subvolume.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\subvolume</Filter>
+      <Filter>src\simulation\mesoscopic\subvolume</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_second_order_reaction.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+      <Filter>src\simulation\mesoscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_region.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\region</Filter>
+      <Filter>src\simulation\mesoscopic\region</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_layer_neighbour_relationship.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+      <Filter>src\simulation\mesoscopic\layer</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_layer.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+      <Filter>src\simulation\mesoscopic\layer</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_first_order_reaction.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+      <Filter>src\simulation\mesoscopic\reactions</Filter>
     </ClCompile>
     <ClCompile Include="src\subvolume_queue.cpp">
-      <Filter>src\simulation\regimes\mesoscopic\queue</Filter>
-    </ClCompile>
-    <ClCompile Include="src\event5.cpp">
-      <Filter>src\simulation\event</Filter>
-    </ClCompile>
-    <ClCompile Include="src\event_queue5.cpp">
-      <Filter>src\simulation\event</Filter>
+      <Filter>src\simulation\mesoscopic\queue</Filter>
     </ClCompile>
     <ClCompile Include="src\molecule_id.cpp">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClCompile>
     <ClCompile Include="src\passive_actor_id.cpp">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_region_id.cpp">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClCompile>
     <ClCompile Include="src\mesoscopic_region_id.cpp">
-      <Filter>src\other\ids</Filter>
-    </ClCompile>
-    <ClCompile Include="src\event_id.cpp">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClCompile>
     <ClCompile Include="src\active_actor_id.cpp">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event_queue.cpp">
+      <Filter>src\simulation\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event.cpp">
+      <Filter>src\simulation\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_subvolume.cpp">
+      <Filter>src\simulation\microscopic\subvolume</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_region.cpp">
+      <Filter>src\simulation\microscopic\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_grid.cpp">
+      <Filter>src\simulation\microscopic\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor.cpp">
+      <Filter>src\simulation\active actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,9 +338,6 @@
     </ClInclude>
     <ClInclude Include="lib\pcg\pcg_extras.hpp">
       <Filter>lib\pcg</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event.h">
-      <Filter>src\event</Filter>
     </ClInclude>
     <ClInclude Include="src\output_binary_singles.h">
       <Filter>src\other\binary</Filter>
@@ -514,67 +502,58 @@
       <Filter>src\shapes\collision\circle</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_first_order_reaction.h">
-      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\microscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_normal_molecule.h">
-      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\microscopic\molecule</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_recent_molecule.h">
-      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\microscopic\molecule</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_second_order_reaction.h">
-      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
+      <Filter>src\simulation\microscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_zeroth_order_reaction.h">
-      <Filter>src\simulation\regimes\microscopic\reactions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_subvolume2.h">
-      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
+      <Filter>src\simulation\microscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_typed_subvolume.h">
-      <Filter>src\simulation\regimes\microscopic\subvolume</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_region2.h">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_grid2.h">
-      <Filter>src\simulation\regimes\microscopic\grid</Filter>
+      <Filter>src\simulation\microscopic\subvolume</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_owner.h">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\environment.h">
       <Filter>src\simulation\environment</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_surface_shape.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\event_queue_test.h">
       <Filter>src\tests</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_box_surface_shape.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\molecule_destination.h">
-      <Filter>src\simulation\regimes\microscopic\molecule</Filter>
+      <Filter>src\simulation\microscopic\molecule</Filter>
     </ClInclude>
     <ClInclude Include="src\enum_array.h">
       <Filter>src\other\containers</Filter>
     </ClInclude>
     <ClInclude Include="src\passive_actor.h">
-      <Filter>src\simulation\actors\passive</Filter>
+      <Filter>src\simulation\passive actor</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_relative.h">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_relationship.h">
-      <Filter>src\simulation\regimes\microscopic\relations</Filter>
+      <Filter>src\simulation\microscopic\relations</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_surface_type.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_sphere_surface_shape.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\collision_cylinder.h">
       <Filter>src\shapes\collision\cylinder</Filter>
@@ -610,7 +589,7 @@
       <Filter>src\shapes\collision\shape</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_cylinder_surface_shape.h">
-      <Filter>src\simulation\regimes\microscopic\surface</Filter>
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\basic_shape.h">
       <Filter>src\shapes\basic\shape</Filter>
@@ -619,19 +598,19 @@
       <Filter>src\shapes\basic\shape</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_box_region.h">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\microscopic\region</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_sphere_region.h">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\microscopic\region</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_cylinder_region.h">
-      <Filter>src\simulation\regimes\microscopic\region</Filter>
+      <Filter>src\simulation\microscopic\region</Filter>
     </ClInclude>
     <ClInclude Include="src\shapeless_passive_actor.h">
-      <Filter>src\simulation\actors\passive</Filter>
+      <Filter>src\simulation\passive actor</Filter>
     </ClInclude>
     <ClInclude Include="src\box_passive_actor.h">
-      <Filter>src\simulation\actors\passive</Filter>
+      <Filter>src\simulation\passive actor</Filter>
     </ClInclude>
     <ClInclude Include="src\reaction_manager.h">
       <Filter>src\simulation\reactions</Filter>
@@ -645,80 +624,77 @@
     <ClInclude Include="src\first_order_reaction.h">
       <Filter>src\simulation\reactions</Filter>
     </ClInclude>
-    <ClInclude Include="src\active_actor.h">
-      <Filter>src\simulation\actors\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="src\active_actor2.h">
-      <Filter>src\simulation\actors\actor</Filter>
-    </ClInclude>
     <ClInclude Include="src\active_actor_random_time.h">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClInclude>
     <ClInclude Include="src\active_actor_random_bits.h">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClInclude>
     <ClInclude Include="src\active_actor_non_random.h">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClInclude>
     <ClInclude Include="src\active_actor_shape.h">
-      <Filter>src\simulation\actors\actor</Filter>
+      <Filter>src\simulation\active actor</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_layer.h">
-      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+      <Filter>src\simulation\mesoscopic\layer</Filter>
     </ClInclude>
     <ClInclude Include="src\propensity_object.h">
-      <Filter>src\simulation\regimes\mesoscopic\propensity objects</Filter>
+      <Filter>src\simulation\mesoscopic\propensity objects</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_zeroth_order_reaction.h">
-      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+      <Filter>src\simulation\mesoscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_subvolume.h">
-      <Filter>src\simulation\regimes\mesoscopic\subvolume</Filter>
+      <Filter>src\simulation\mesoscopic\subvolume</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_second_order_reaction.h">
-      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+      <Filter>src\simulation\mesoscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_region.h">
-      <Filter>src\simulation\regimes\mesoscopic\region</Filter>
+      <Filter>src\simulation\mesoscopic\region</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_layer_neighbour_relationship.h">
-      <Filter>src\simulation\regimes\mesoscopic\layer</Filter>
+      <Filter>src\simulation\mesoscopic\layer</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_first_order_reaction.h">
-      <Filter>src\simulation\regimes\mesoscopic\reactions</Filter>
+      <Filter>src\simulation\mesoscopic\reactions</Filter>
     </ClInclude>
     <ClInclude Include="src\subvolume_queue.h">
-      <Filter>src\simulation\regimes\mesoscopic\queue</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event5.h">
-      <Filter>src\simulation\event</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event_queue5.h">
-      <Filter>src\simulation\event</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event_queue.h">
-      <Filter>src\event</Filter>
+      <Filter>src\simulation\mesoscopic\queue</Filter>
     </ClInclude>
     <ClInclude Include="src\molecule_id.h">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClInclude>
     <ClInclude Include="src\passive_actor_id.h">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_region_id.h">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClInclude>
     <ClInclude Include="src\mesoscopic_region_id.h">
-      <Filter>src\other\ids</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event_id.h">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClInclude>
     <ClInclude Include="src\active_actor_id.h">
-      <Filter>src\other\ids</Filter>
+      <Filter>src\simulation\ids</Filter>
     </ClInclude>
-    <ClInclude Include="src\object_ids.h">
-      <Filter>src\other\ids</Filter>
+    <ClInclude Include="src\event_queue.h">
+      <Filter>src\simulation\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event.h">
+      <Filter>src\simulation\event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_subvolume.h">
+      <Filter>src\simulation\microscopic\subvolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_region.h">
+      <Filter>src\simulation\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_grid.h">
+      <Filter>src\simulation\microscopic\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor.h">
+      <Filter>src\simulation\active actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -785,9 +761,6 @@
     </Filter>
     <Filter Include="src\shapes\relation">
       <UniqueIdentifier>{c0a3d719-7c40-4d85-8994-c021e01568f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\event">
-      <UniqueIdentifier>{2c64c1b5-6e38-4b80-b4ff-442c915505bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\tests">
       <UniqueIdentifier>{c2730454-72b2-41ea-ac77-2a08a0e8f6ca}</UniqueIdentifier>
@@ -900,39 +873,6 @@
     <Filter Include="src\other\containers">
       <UniqueIdentifier>{7ccf8c18-8a6f-4de2-b071-39aa565600b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\simulation\actors">
-      <UniqueIdentifier>{1a152e55-46e0-4c08-a091-6b75e4eb4cc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes">
-      <UniqueIdentifier>{b906f2bc-7c25-46c8-8411-076e5e3b6cb2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic">
-      <UniqueIdentifier>{eeeee95d-52c9-4172-823e-c36656262369}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\relations">
-      <UniqueIdentifier>{f8c51a59-eb90-420f-a343-fa989b60bc9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\molecule">
-      <UniqueIdentifier>{42549907-65c0-4ea6-b7b2-9bfa13cf6278}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\reactions">
-      <UniqueIdentifier>{0a1d4d86-7d17-4a52-9eda-14cb0a837272}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\grid">
-      <UniqueIdentifier>{956b3710-f765-49bd-927a-6f9a137bc4e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\surface">
-      <UniqueIdentifier>{86b0885c-1409-4237-b18a-a6e92bd81029}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\region">
-      <UniqueIdentifier>{e0ffecf9-fdf4-454b-8e97-866d58b7ceab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\microscopic\subvolume">
-      <UniqueIdentifier>{f1f63f2d-6886-471d-af02-9759a7e9072f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\actors\passive">
-      <UniqueIdentifier>{e226d73e-94a2-431e-893b-d43fae654fbc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\shapes\basic\cylinder">
       <UniqueIdentifier>{f0ed210c-14a4-4655-8854-807c2e2ca54a}</UniqueIdentifier>
     </Filter>
@@ -957,35 +897,62 @@
     <Filter Include="src\simulation\reactions">
       <UniqueIdentifier>{ba032fae-1b9f-4513-80df-7bdc0b4ab2bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\simulation\actors\actor">
-      <UniqueIdentifier>{cd66ce18-8945-44ac-a2e6-5a89cf0982f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic">
-      <UniqueIdentifier>{5203291a-a566-456d-b128-cd671b64dcf4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic\reactions">
-      <UniqueIdentifier>{9a6ca616-a6ac-4375-a967-6b524f127d8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic\region">
-      <UniqueIdentifier>{5a1b7f3b-8c86-4129-8e10-7d4aa14b493f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic\layer">
-      <UniqueIdentifier>{fed54dae-94dd-4d42-acc6-a9b965cf4308}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic\subvolume">
-      <UniqueIdentifier>{d4f0674d-95b9-4697-b377-018d870654b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic\propensity objects">
-      <UniqueIdentifier>{a6e46ffc-8a43-44eb-a46b-ec8430e83ea4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\regimes\mesoscopic\queue">
-      <UniqueIdentifier>{ca1c5e32-88e7-4dad-af95-9d923bc0855c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\simulation\event">
       <UniqueIdentifier>{7a0579bc-d34e-4f97-a5f7-e12f6aeee686}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\other\ids">
+    <Filter Include="src\simulation\ids">
       <UniqueIdentifier>{cb0ceb7a-12eb-43fd-b845-c63038ad989d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic">
+      <UniqueIdentifier>{5203291a-a566-456d-b128-cd671b64dcf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic\reactions">
+      <UniqueIdentifier>{9a6ca616-a6ac-4375-a967-6b524f127d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic\region">
+      <UniqueIdentifier>{5a1b7f3b-8c86-4129-8e10-7d4aa14b493f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic\layer">
+      <UniqueIdentifier>{fed54dae-94dd-4d42-acc6-a9b965cf4308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic\subvolume">
+      <UniqueIdentifier>{d4f0674d-95b9-4697-b377-018d870654b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic\propensity objects">
+      <UniqueIdentifier>{a6e46ffc-8a43-44eb-a46b-ec8430e83ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\mesoscopic\queue">
+      <UniqueIdentifier>{ca1c5e32-88e7-4dad-af95-9d923bc0855c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic">
+      <UniqueIdentifier>{eeeee95d-52c9-4172-823e-c36656262369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations">
+      <UniqueIdentifier>{f8c51a59-eb90-420f-a343-fa989b60bc9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\molecule">
+      <UniqueIdentifier>{42549907-65c0-4ea6-b7b2-9bfa13cf6278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\reactions">
+      <UniqueIdentifier>{0a1d4d86-7d17-4a52-9eda-14cb0a837272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\grid">
+      <UniqueIdentifier>{956b3710-f765-49bd-927a-6f9a137bc4e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\surface">
+      <UniqueIdentifier>{86b0885c-1409-4237-b18a-a6e92bd81029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\region">
+      <UniqueIdentifier>{e0ffecf9-fdf4-454b-8e97-866d58b7ceab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\subvolume">
+      <UniqueIdentifier>{f1f63f2d-6886-471d-af02-9759a7e9072f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\active actor">
+      <UniqueIdentifier>{cd66ce18-8945-44ac-a2e6-5a89cf0982f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\passive actor">
+      <UniqueIdentifier>{e226d73e-94a2-431e-893b-d43fae654fbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

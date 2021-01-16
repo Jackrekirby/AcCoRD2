@@ -20,12 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\active_actor_id.cpp" />
-    <ClCompile Include="src\event_id.cpp" />
     <ClCompile Include="src\mesoscopic_region_id.cpp" />
     <ClCompile Include="src\microscopic_region_id.cpp" />
     <ClCompile Include="src\molecule_id.cpp" />
-    <ClCompile Include="src\event5.cpp" />
-    <ClCompile Include="src\event_queue5.cpp" />
+    <ClCompile Include="src\event.cpp" />
+    <ClCompile Include="src\event_queue.cpp" />
     <ClCompile Include="src\mesoscopic_layer_neighbour_relationship.cpp" />
     <ClCompile Include="src\mesoscopic_first_order_reaction.cpp" />
     <ClCompile Include="src\mesoscopic_layer.cpp" />
@@ -38,7 +37,7 @@
     <ClCompile Include="src\active_actor_shape.cpp" />
     <ClCompile Include="src\active_actor_random_bits.cpp" />
     <ClCompile Include="src\active_actor_random_time.cpp" />
-    <ClCompile Include="src\active_actor2.cpp" />
+    <ClCompile Include="src\active_actor.cpp" />
     <ClCompile Include="src\active_actor_non_random.cpp" />
     <ClCompile Include="src\first_order_reaction.cpp" />
     <ClCompile Include="src\second_order_reaction.cpp" />
@@ -62,11 +61,11 @@
     <ClCompile Include="src\microscopic_sphere_surface_shape.cpp" />
     <ClCompile Include="src\passive_actor.cpp" />
     <ClCompile Include="src\microscopic_box_surface_shape.cpp" />
-    <ClCompile Include="src\microscopic_region2.cpp" />
+    <ClCompile Include="src\microscopic_region.cpp" />
     <ClCompile Include="src\molecule_destination.cpp" />
     <ClCompile Include="src\environment.cpp" />
-    <ClCompile Include="src\microscopic_grid2.cpp" />
-    <ClCompile Include="src\microscopic_subvolume2.cpp" />
+    <ClCompile Include="src\microscopic_grid.cpp" />
+    <ClCompile Include="src\microscopic_subvolume.cpp" />
     <ClCompile Include="src\microscopic_first_order_reaction.cpp" />
     <ClCompile Include="src\microscopic_normal_molecule.cpp" />
     <ClCompile Include="src\microscopic_recent_molecule.cpp" />
@@ -94,13 +93,6 @@
     <ClCompile Include="src\basic_rect.cpp" />
     <ClCompile Include="src\basic_box.cpp" />
     <ClCompile Include="src\basic_circle.cpp" />
-    <ClCompile Include="src\event.cpp" />
-    <ClCompile Include="src\event_queue.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\axis_3d.cpp" />
     <ClCompile Include="src\constants.cpp">
@@ -169,13 +161,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\active_actor_id.h" />
-    <ClInclude Include="src\event_id.h" />
     <ClInclude Include="src\mesoscopic_region_id.h" />
     <ClInclude Include="src\microscopic_region_id.h" />
     <ClInclude Include="src\molecule_id.h" />
-    <ClInclude Include="src\event5.h" />
+    <ClInclude Include="src\event.h" />
     <ClInclude Include="src\event_queue.h" />
-    <ClInclude Include="src\event_queue5.h" />
     <ClInclude Include="src\mesoscopic_first_order_reaction.h" />
     <ClInclude Include="src\mesoscopic_layer_neighbour_relationship.h" />
     <ClInclude Include="src\mesoscopic_region.h" />
@@ -186,11 +176,10 @@
     <ClInclude Include="src\propensity_object.h" />
     <ClInclude Include="src\mesoscopic_layer.h" />
     <ClInclude Include="src\active_actor_shape.h" />
-    <ClInclude Include="src\active_actor2.h" />
+    <ClInclude Include="src\active_actor.h" />
     <ClInclude Include="src\active_actor_non_random.h" />
     <ClInclude Include="src\active_actor_random_bits.h" />
     <ClInclude Include="src\active_actor_random_time.h" />
-    <ClInclude Include="src\active_actor.h" />
     <ClInclude Include="src\first_order_reaction.h" />
     <ClInclude Include="src\second_order_reaction.h" />
     <ClInclude Include="src\reaction_manager.h" />
@@ -214,20 +203,19 @@
     <ClInclude Include="src\microscopic_surface_type.h" />
     <ClInclude Include="src\microscopic_relationship.h" />
     <ClInclude Include="src\microscopic_relative.h" />
-    <ClInclude Include="src\object_ids.h" />
     <ClInclude Include="src\passive_actor.h" />
     <ClInclude Include="src\microscopic_box_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface_shape.h" />
     <ClInclude Include="src\molecule_destination.h" />
     <ClInclude Include="src\environment.h" />
     <ClInclude Include="src\microscopic_first_order_reaction.h" />
-    <ClInclude Include="src\microscopic_grid2.h" />
+    <ClInclude Include="src\microscopic_grid.h" />
     <ClInclude Include="src\microscopic_normal_molecule.h" />
     <ClInclude Include="src\microscopic_owner.h" />
     <ClInclude Include="src\microscopic_recent_molecule.h" />
-    <ClInclude Include="src\microscopic_region2.h" />
+    <ClInclude Include="src\microscopic_region.h" />
     <ClInclude Include="src\microscopic_second_order_reaction.h" />
-    <ClInclude Include="src\microscopic_subvolume2.h" />
+    <ClInclude Include="src\microscopic_subvolume.h" />
     <ClInclude Include="src\microscopic_typed_subvolume.h" />
     <ClInclude Include="src\collision_circle.h" />
     <ClInclude Include="src\collision_2d.h" />
@@ -255,7 +243,6 @@
     <ClInclude Include="src\basic_rect.h" />
     <ClInclude Include="src\basic_box.h" />
     <ClInclude Include="src\basic_circle.h" />
-    <ClInclude Include="src\event.h" />
     <ClInclude Include="src\axis_3d.h" />
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\basic_plane.h" />

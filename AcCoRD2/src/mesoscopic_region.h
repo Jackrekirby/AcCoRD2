@@ -1,7 +1,7 @@
 #pragma once
 #include "mesoscopic_subvolume.h"
 #include "subvolume_queue.h"
-#include "event5.h"
+#include "event.h"
 #include "vec3i.h"
 #include "mesoscopic_region_id.h"
 
@@ -15,7 +15,7 @@ namespace accord
 
 namespace accord::mesoscopic
 {
-	class Region : public Event5
+	class Region : public Event
 	{
 	public:
 		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes, const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id);

@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "microscopic_grid2.h"
+#include "microscopic_grid.h"
 
 #include "environment.h"
-#include "microscopic_region2.h"
+#include "microscopic_region.h"
 
 #include "vec3b.h"
 

@@ -6,7 +6,7 @@ namespace accord
 	class MoleculeID
 	{
 	public:
-		MoleculeID(int id);
+		MoleculeID(int id = 0);
 
 		int operator () () const;
 

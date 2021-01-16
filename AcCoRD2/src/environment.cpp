@@ -6,7 +6,7 @@
 #include "microscopic_box_region.h"
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
-#include "event_queue5.h"
+#include "event_queue.h"
 
 namespace accord
 {
@@ -26,7 +26,7 @@ namespace accord
 		Environment::num_realisations = num_realisations;
 		Environment::current_realisation = 0;
 		Environment::seed = seed;
-		Environment::event_queue = EventQueue5(num_microscopic_regions + 
+		Environment::event_queue = EventQueue(num_microscopic_regions + 
 			num_mesoscopic_regions + num_passive_actors + num_active_actors);
 
 		Random::SetSeed(seed);
@@ -210,7 +210,7 @@ namespace accord
 		return passive_actors;
 	}
 
-	std::vector<std::unique_ptr<ActiveActor2>>& Environment::GetActiveActors()
+	std::vector<std::unique_ptr<ActiveActor>>& Environment::GetActiveActors()
 	{
 		return active_actors;
 	}
@@ -246,7 +246,7 @@ namespace accord
 		std::filesystem::create_directories(GetRealisationPath());
 	}
 
-	EventQueue5& Environment::GetEventQueue()
+	EventQueue& Environment::GetEventQueue()
 	{
 		return event_queue;
 	}
@@ -358,7 +358,7 @@ namespace accord
 	std::vector<std::unique_ptr<microscopic::Region>> Environment::microscopic_regions;
 	std::vector<mesoscopic::Region> Environment::mesoscopic_regions;
 	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
-	std::vector<std::unique_ptr<ActiveActor2>> Environment::active_actors;
+	std::vector<std::unique_ptr<ActiveActor>> Environment::active_actors;
 	double Environment::run_time = 0;
 	double Environment::time = 0;
 	int Environment::num_molecule_types = 0;
@@ -366,5 +366,5 @@ namespace accord
 	int Environment::num_realisations = 1;
 	int Environment::current_realisation = 0;
 	uint64_t Environment::seed = 1;
-	EventQueue5 Environment::event_queue;
+	EventQueue Environment::event_queue;
 }

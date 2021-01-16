@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "microscopic_first_order_reaction.h"
-#include "microscopic_region2.h"
-#include "microscopic_grid2.h"
+#include "microscopic_region.h"
+#include "microscopic_grid.h"
 
 namespace accord::microscopic
 {

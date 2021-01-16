@@ -6,7 +6,7 @@ namespace accord
 	class MesoscopicRegionID
 	{
 	public:
-		MesoscopicRegionID(int id);
+		MesoscopicRegionID(int id = 0);
 
 		int operator () () const;
 

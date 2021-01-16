@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "microscopic_subvolume2.h"
-#include "microscopic_grid2.h"
+#include "microscopic_subvolume.h"
+#include "microscopic_grid.h"
 
 namespace accord::microscopic
 {

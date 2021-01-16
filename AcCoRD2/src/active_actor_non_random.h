@@ -1,11 +1,11 @@
 #pragma once
-#include "active_actor2.h"
+#include "active_actor.h"
 #include "output_binary_vectors.h"
 
 // bit sequence only saved for realisation 0
 namespace accord
 {
-	class ActiveActorNonRandom : public ActiveActor2
+	class ActiveActorNonRandom : public ActiveActor
 	{
 	public:
 		ActiveActorNonRandom(double action_interval, double release_interval, double slot_interval,

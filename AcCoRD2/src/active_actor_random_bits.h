@@ -1,10 +1,10 @@
 #pragma once
-#include "active_actor2.h"
+#include "active_actor.h"
 #include "output_binary_vectors.h"
 
 namespace accord
 {
-	class ActiveActorRandomBits : public ActiveActor2
+	class ActiveActorRandomBits : public ActiveActor
 	{
 	public:
 		ActiveActorRandomBits(double action_interval, double release_interval, double slot_interval,

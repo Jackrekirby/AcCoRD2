@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "passive_actor.h"
-#include "microscopic_subvolume2.h"
+#include "microscopic_subvolume.h"
 #include "environment.h"
 #include "mesoscopic_subvolume.h"
 
@@ -25,14 +25,14 @@ namespace accord
 
 	PassiveActor::PassiveActor(const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step,
 		const PassiveActorID& id, bool record_positions, bool record_time)
-		: Event5(start_time, priority), id(id), time_step(time_step), record_positions(record_positions), record_time(record_time),
+		: Event(start_time, priority), id(id), time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
 		
 	}
 
 	PassiveActor::PassiveActor(const MicroscopicRegionIDs& microscopic_region_ids, const MesoscopicRegionIDs& mesoscopic_region_ids, const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step, const PassiveActorID& id, bool record_positions, bool record_time)
-		: Event5(start_time, priority), id(id),
+		: Event(start_time, priority), id(id),
 		time_step(time_step), record_positions(record_positions), record_time(record_time),
 		molecule_ids(molecule_ids), start_time(start_time)
 	{
@@ -75,7 +75,7 @@ namespace accord
 		ObserveEnvelopedMesoscopicSubvolumes(counts);
 		ObservePartialMesoscopicSubvolumes(counts);
 
-		MoleculeID id = 0;
+		int id = 0;
 		for (auto& count : counts)
 		{
 			count_files.at(id).Write(count);
@@ -186,7 +186,7 @@ namespace accord
 
 	void PassiveActor::ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts)
 	{
-		MoleculeID id = 0;
+		int id = 0;
 		// get all enveloped subvolumes of a given type
 		for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
 		{

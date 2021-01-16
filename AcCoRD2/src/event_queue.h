@@ -1,15 +1,17 @@
 #pragma once
-//#include <vector>
 #include "pch.h"
 
 namespace accord
 {
 	class Event;
-
 	class EventQueue
 	{
 	public:
 		EventQueue(size_t capacity);
+
+		EventQueue();
+
+		void Reserve(size_t capacity);
 
 		size_t GetSize();
 
@@ -21,9 +23,9 @@ namespace accord
 
 		Event& Front();
 
-		std::vector<Event*> GetEvents();
+		Event& GetEvent(size_t index);
 	private:
-		
+
 		// an unsorted vector which holds pointers to the events
 		std::vector<Event*> events;
 		// the position map stores the location of the values as a binary heap
@@ -41,12 +43,7 @@ namespace accord
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const EventQueue& event_queue)
 		{
-			os << "Events (time, priority) = [";
-			for (auto& event : event_queue.events)
-			{
-				os << "( " << event->GetTime() << ", " << event->GetPriority() << "), ";
-			}
-			os << "]\n pm = [";
+			os << "pm = [";
 			for (auto& index : event_queue.pm)
 			{
 				os << index << ", ";

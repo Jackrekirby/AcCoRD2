@@ -1,17 +1,19 @@
 #include "pch.h"
 #include "event.h"
-//#include "random.h"
 #include "event_queue.h"
 
 namespace accord
 {
-	class EventQueue;
-
-	Event::Event(double start_time, int priority, EventQueue* event_queue)
-		: time(start_time), priority(priority), event_queue(event_queue), 
-		queue_index(event_queue->GetSize())
+	Event::Event(double start_time, int priority)
+		: time(start_time), queue_index(0), priority(priority), queue(nullptr)
 	{
-		event_queue->Add(this);
+
+	}
+
+	void Event::LinkToQueue(EventQueue* queue, size_t queue_index)
+	{
+		this->queue = queue;
+		this->queue_index = queue_index;
 	}
 
 	double Event::GetEventTime() const
@@ -19,22 +21,32 @@ namespace accord
 		return time;
 	}
 
-	int Event::GetPriority() const
+	void Event::UpdateEventTime(double delta_time)
 	{
-		return priority;
+		// negative delta time should never occur. Consider removing.
+		if (delta_time > 0)
+		{
+			time += delta_time;
+			queue->DecreasePriority(queue_index);
+		}
+		else
+		{
+			time += delta_time;
+			queue->IncreasePriority(queue_index);
+		}
 	}
 
-	void Event::UpdateTime(double new_time)
+	void Event::SetEventTime(double new_time)
 	{
 		if (new_time > time)
 		{
 			time = new_time;
-			event_queue->DecreasePriority(queue_index);
+			queue->DecreasePriority(queue_index);
 		}
 		else
 		{
 			time = new_time;
-			event_queue->IncreasePriority(queue_index);
+			queue->IncreasePriority(queue_index);
 		}
 	}
 
@@ -51,19 +63,9 @@ namespace accord
 		return (time < other.time);
 	}
 
-	std::string Event::ToString(Type type) {
-		switch (type)
-		{
-		case Type::microscopic_region:
-			return "microscopic region";
-		case Type::mesoscopic_region:
-			return "mesoscopic region";
-		case Type::active_actor:
-			return "active actor";
-		case Type::passive_actor:
-			return "passive actor";
-		}
-		LOG_CRITICAL("Unknown Event type");
-		throw std::exception();
+	std::string Event::LogEvent() const
+	{
+		return fmt::format("Index:{}, Priority:{}, Time:{}",
+			queue_index, priority, time);
 	}
 }

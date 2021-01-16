@@ -6,7 +6,7 @@ namespace accord
 	class PassiveActorID
 	{
 	public:
-		PassiveActorID(int id);
+		PassiveActorID(int id = 0);
 
 		int operator () () const;
 

@@ -2,7 +2,6 @@
 #include "pch.h"
 #include "relation_box.h"
 #include "generating_box.h"
-#include "object_ids.h"
 #include "mesoscopic_layer.h"
 #include "mesoscopic_zeroth_order_reaction.h"
 #include "mesoscopic_first_order_reaction.h"
@@ -16,6 +15,9 @@ namespace accord
 
 namespace accord::mesoscopic
 {
+	using SubvolumeID = int;
+	using SubvolumeIDs = std::vector<int>;
+
 	class SubvolumeQueue;
 
 	class SubvolumeBox : public shape::relation::Box, public shape::generating::Box

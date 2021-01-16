@@ -1,33 +1,31 @@
 #pragma once
+//#include <vector>
 #include "pch.h"
 
 namespace accord
 {
-	class Event5;
-	class EventQueue5
+	class Event;
+
+	class EventQueue
 	{
 	public:
-		EventQueue5(size_t capacity);
-
-		EventQueue5();
-
-		void Reserve(size_t capacity);
+		EventQueue(size_t capacity);
 
 		size_t GetSize();
 
-		void Add(Event5* event);
+		void Add(Event* event);
 
 		void IncreasePriority(size_t index);
 
 		void DecreasePriority(size_t index);
 
-		Event5& Front();
+		Event& Front();
 
-		Event5& GetEvent(size_t index);
+		std::vector<Event*> GetEvents();
 	private:
-
+		
 		// an unsorted vector which holds pointers to the events
-		std::vector<Event5*> events;
+		std::vector<Event*> events;
 		// the position map stores the location of the values as a binary heap
 		std::vector<size_t> pm;
 		// the inverse map stores the location of the indicies in the position map
@@ -41,9 +39,14 @@ namespace accord
 		void Sink(size_t index);
 
 		template<typename OStream>
-		friend OStream& operator<<(OStream& os, const EventQueue5& event_queue)
+		friend OStream& operator<<(OStream& os, const EventQueue& event_queue)
 		{
-			os << "pm = [";
+			os << "Events (time, priority) = [";
+			for (auto& event : event_queue.events)
+			{
+				os << "( " << event->GetTime() << ", " << event->GetPriority() << "), ";
+			}
+			os << "]\n pm = [";
 			for (auto& index : event_queue.pm)
 			{
 				os << index << ", ";

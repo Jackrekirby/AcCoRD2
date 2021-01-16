@@ -1,18 +1,18 @@
 #include "pch.h"
-#include "microscopic_region2.h"
+#include "microscopic_region.h"
 
 #include "environment.h"
 
-#include "microscopic_neighbour.h"
-#include "microscopic_low_priority_relation.h"
-#include "microscopic_high_priority_relation.h"
+//#include "microscopic_neighbour.h"
+//#include "microscopic_low_priority_relation.h"
+//#include "microscopic_high_priority_relation.h"
 #include "microscopic_surface_shape.h"
 
 namespace accord::microscopic
 {
 	Region::Region(const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes_per_grid,
 		double time_step, int priority, SurfaceType surface_type, const MicroscopicRegionID& id)
-		: Event5(time_step, priority), time_step(time_step), id(id), surface_type(surface_type), local_time(0)
+		: Event(time_step, priority), time_step(time_step), id(id), surface_type(surface_type), local_time(0)
 	{
 		
 	}

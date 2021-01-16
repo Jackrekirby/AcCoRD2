@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "event5.h"
+#include "event.h"
 #include "output_binary_vectors.h"
 #include "output_binary_singles.h"
 #include "vec3d.h"
@@ -43,7 +43,7 @@ namespace accord
 	// does not have to be a unique pointer
 	// will eventually need to add mesoscopic::subvolume to typed subvolumes
 
-	class PassiveActor : public Event5
+	class PassiveActor : public Event
 	{
 		class TypedMicroscopicSubvolumes
 		{
