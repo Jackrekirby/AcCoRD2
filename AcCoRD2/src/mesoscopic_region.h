@@ -71,6 +71,7 @@ namespace accord::mesoscopic
 		shape::relation::Box box;
 		MesoscopicRegionID id;
 		Vec3i n_subvolumes;
+		double subvolume_length;
 	};
 
 	void to_json(Json& j, const Region& region);

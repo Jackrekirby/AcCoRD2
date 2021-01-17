@@ -38,7 +38,7 @@ namespace accord
 		{
 			for (MoleculeID molecule : release_molecules)
 			{
-				LOG_INFO("molecule id = {}", molecule);
+				//LOG_INFO("molecule id = {}", molecule);
 				Vec3d position = GetShape().GenerateMolecule();
 				for (auto& region : microscopic_regions)
 				{
@@ -51,11 +51,15 @@ namespace accord
 
 				for (auto& region : mesoscopic_regions)
 				{
-					if (region->GetBoundingBox().IsWithinOrOnBorder(position))
+					for (auto& subvolume : region->GetSubvolumes())
 					{
-						region->AddMolecule(molecule, position);
-						break;
+						if (subvolume.GetBoundingBox().IsWithinOrOnBorder(position))
+						{
+							subvolume.AddMolecule(molecule);
+							break;
+						}
 					}
+					region->RefreshEventTime();
 				}
 			}
 		}

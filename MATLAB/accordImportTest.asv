@@ -49,7 +49,7 @@ Accord.displayShapes(sim, 10, shape3d);
 %% Plot Count For Each Passive Actor
 clc;
 figure
-nPassiveActors = length(sim.passiveActors.shapes);
+nPassiveActors = length(sim.actors.shapes);
 for iPassiveActor = 1:nPassiveActors
     subplot(nPassiveActors, 1, iPassiveActor);
     Accord.plotCountForPassiveActor(sim, iPassiveActor, Inf, Inf);

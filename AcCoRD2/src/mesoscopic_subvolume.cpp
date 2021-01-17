@@ -50,7 +50,7 @@ namespace accord::mesoscopic
 
 	void Subvolume::Run()
 	{
-		//LOG_INFO("subvolume id = {}", id);
+		LOG_INFO("subvolume id = {}", id);
 		// change event to reaction
 		SelectEvent();
 		UpdatePropensities();
@@ -232,9 +232,10 @@ namespace accord::mesoscopic
 	}
 
 	// could store start time locally instead
-	void Subvolume::NextRealisation(double start_time)
+	void Subvolume::NextRealisation()
 	{
-		SetTime(start_time);
+		LOG_INFO("subvolume id = {}", id);
+		SetTime(0);
 		for (auto& layer : layers)
 		{
 			layer.NextRealisation();

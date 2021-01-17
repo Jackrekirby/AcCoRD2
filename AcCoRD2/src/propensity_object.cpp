@@ -15,6 +15,7 @@ namespace accord::mesoscopic
 
 	void LinkedPropensityObjects::Add(PropensityObject* object)
 	{
+		LOG_INFO("adding object");
 		objects.emplace_back(object);
 	}
 
@@ -28,10 +29,12 @@ namespace accord::mesoscopic
 				delta += object->UpdatePropensity();
 			}
 			requires_update = false;
+
+			subvolume->UpdateReactionPropensity(delta);
+			subvolume->UpdateReactionTime();
 		}
 		//LOG_INFO("new delta propensity = {}", delta);
-		subvolume->UpdateReactionPropensity(delta);
-		subvolume->UpdateReactionTime();
+
 		//LOG_INFO("new subvolume time = {}", subvolume->GetTime());
 	}
 }

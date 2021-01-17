@@ -54,7 +54,7 @@ namespace accord
 			symbol += bit * power;
 			bits.emplace_back(bit);
 			
-			LOG_INFO("i = {}, bit = {}, symbol = {}", i, bit, symbol);
+			//LOG_INFO("i = {}, bit = {}, symbol = {}", i, bit, symbol);
 			power /= 2;
 			
 		}

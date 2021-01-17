@@ -72,6 +72,7 @@
 // reaction testing in mesoscopic regions
 // diffusion between multiple mesoscopic regions
 // make SubvolumeEvent class
+// plot active and passive actors in MATLAB
 
 // CANCELLED
 // add clip function // wrap was clip
@@ -92,7 +93,6 @@
 // TO DO (next)
 // json input
 // hybrid diffusion <<<<<<<<<<<<<<<<<<
-// plot active and passive actors in MATLAB <<<<<<<<<<<<<<<
 
 // passive and active actors in mesoscopic regions
 // review / remove redundant code in meso propensity checking

@@ -81,7 +81,7 @@ namespace accord::mesoscopic
 
 		bool IsMarkedForDeletion();
 
-		void NextRealisation(double start_time);
+		void NextRealisation();
 
 		SubvolumeID GetID() const;
 	private:

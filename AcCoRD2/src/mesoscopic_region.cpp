@@ -9,14 +9,15 @@ namespace accord::mesoscopic
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
 		const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id)
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event(0, priority), id(id),
-			n_subvolumes(n_subvolumes)
+			n_subvolumes(n_subvolumes), subvolume_length(subvolume_length)
 	{
+		LOG_INFO("n subs = {}", n_subvolumes);
 		CreateSubvolumes(n_subvolumes, diffusion_coefficients, subvolume_length);
 	}
 
 	void Region::AddMolecule(const MoleculeID& id, const Vec3d& position)
 	{
-		LOG_INFO("molecule id = {}", id);
+		//LOG_INFO("molecule id = {}", id);
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(id);
 		RefreshEventTime();
@@ -25,6 +26,7 @@ namespace accord::mesoscopic
 	void Region::AddSubvolumesToQueue()
 	{
 		// now subvolumes are confirmed delete subvolumes marked for deletion (because other regions have replaced the subvolumes)
+		LOG_INFO("num_subvolume = {}", subvolumes.size());
 		std::vector<Subvolume> new_subvolumes;
 		for (auto& subvolume : subvolumes)
 		{
@@ -32,15 +34,19 @@ namespace accord::mesoscopic
 			{
 				new_subvolumes.emplace_back(subvolume);
 			}
+			else
+			{
+				LOG_INFO("is marked for deletion");
+			}
 		}
 		subvolumes = new_subvolumes;
-
+		LOG_INFO("num_subvolume = {}", subvolumes.size());
 		subvolume_queue.Reserve(subvolumes.size());
 		for (auto& subvolume : subvolumes)
 		{
 			subvolume_queue.Add(&subvolume);
 			subvolume.UpdateReactionTime();
-			LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
+			//LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
 			
 		}
 
@@ -56,8 +62,12 @@ namespace accord::mesoscopic
 			{
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
-					//LOG_INFO("linking at index = {}", i);
-					LinkSiblingSubvolumes(i);
+					LOG_INFO("linking at index = {}", i);
+					
+					if (!GetSubvolume(i).IsMarkedForDeletion())
+					{
+						LinkSiblingSubvolumes(i);
+					}
 				}
 			}
 		}
@@ -81,6 +91,7 @@ namespace accord::mesoscopic
 			auto subvolume2 = GetSubvolumeIfExists(i + offset);
 			if (subvolume2 != nullptr && !subvolume2->IsMarkedForDeletion())
 			{
+				LOG_INFO("nieghbour ids = {}, {}", subvolume->GetID(), subvolume2->GetID());
 				subvolume->AddNeighbour(*subvolume2);
 			}
 		}
@@ -197,18 +208,31 @@ namespace accord::mesoscopic
 	// returns the required dimensions of the replacement region to ensure correct neighbouring (avoid floating point error)
 	shape::basic::Box Region::RemoveInterior(const Vec3i& origin_subvolume, const Vec3i& n_subvolumes)
 	{
+		
 		Vec3i i = origin_subvolume;
-		for (; i.x < n_subvolumes.x; i.x++)
+		Vec3i end_subvolume = origin_subvolume + n_subvolumes;
+		LOG_INFO("HERE {} {} {}", origin_subvolume, n_subvolumes, end_subvolume);
+		for (i.x = origin_subvolume.x; i.x < end_subvolume.x; i.x++)
 		{
-			for (; i.x < n_subvolumes.x; i.x++)
+			for (i.y = origin_subvolume.y; i.y < end_subvolume.y; i.y++)
 			{
-				for (; i.x < n_subvolumes.x; i.x++)
+				for (i.z = origin_subvolume.z; i.z < end_subvolume.z; i.z++)
 				{
-					GetSubvolume(i).MarkForDeletion();
+					LOG_INFO("removing i = {}, {}", i, i.x + i.y * this->n_subvolumes.x + i.z * this->n_subvolumes.x * this->n_subvolumes.y);
+					Subvolume* s = GetSubvolumeIfExists(i);
+					if (s != nullptr)
+					{
+						s->MarkForDeletion();
+					}
+					else
+					{
+						LOG_INFO("subvolume cannot be deleted as it does not exist");
+					}
+					
 				}
 			}
 		}
-		return { box.GetOrigin() + (box.GetLength() / Vec3d(origin_subvolume)), box.GetLength() / Vec3d(n_subvolumes) };
+		return { box.GetOrigin() + Vec3d(origin_subvolume) * subvolume_length, subvolume_length * Vec3d(n_subvolumes) };
 	}
 
 	std::string Region::LogEvent() const
@@ -240,7 +264,7 @@ namespace accord::mesoscopic
 	{
 		for (auto& subvolume : subvolumes)
 		{
-			subvolume.NextRealisation(0);
+			subvolume.NextRealisation();
 		}
 		RefreshEventTime();
 	}

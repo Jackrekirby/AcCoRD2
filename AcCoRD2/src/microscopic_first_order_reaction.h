@@ -20,7 +20,6 @@ namespace accord::microscopic
 		double reaction_probability;
 		double min_reaction_time;
 		double total_reaction_rate;
-		double time;
 		Grid* reaction_grid;
 		std::vector<Grid*> product_grids;
 

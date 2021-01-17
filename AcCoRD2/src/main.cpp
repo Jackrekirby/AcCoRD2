@@ -165,12 +165,18 @@ void TestSimpleEnvironment2()
 	LOG_INFO("Cleaning Up");
 }
 
+
+// problems user has to manually add regions to active actors in child order otherwise molecules may be added to child and not parent
+// an active actor may attempt to place a molecule in a mesoscopic region where the subvolume has been removed
+
+// molecules not diffusion across subvolumes
+// second realisation fails
 void TestMesoscopic()
 {
 	using namespace accord;
 	int n_micro_regions = 0, n_meso_regions = 1, n_passive_actors = n_meso_regions + n_micro_regions, n_active_actors = 1, n_molecule_types = 3;
-	Environment::Init("D:/dev/meso_sim", 2, 10, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
-	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0);
+	Environment::Init("D:/dev/meso_sim", 1, 30, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, 0, 0);
 	//Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);
 
 	LOG_INFO("simulation path = {}", Environment::GetSimulationPath());
@@ -185,14 +191,13 @@ void TestMesoscopic()
 	//ReactionManager::AddSecondOrderReaction(0, 1, { 2 }, 0, 0, 1, {}, { 0 });
 	//Environment::LinkReactionsToRegions();
 
+	//Environment::GetMesoscopicRegion(0).RemoveInterior(Vec3d(2, 2, 0), Vec3d(1, 1, 3));
 	for (auto& meso_region : Environment::GetMesoscopicRegions())
 	{
 		Environment::GetEventQueue().Add(&meso_region);
 		meso_region.LinkSiblingSubvolumes();
 		meso_region.AddSubvolumesToQueue();
 	}
-
-
 
 	double action_interval = Environment::GetRunTime() / 5;
 	double release_interval = action_interval / 2;
@@ -206,7 +211,7 @@ void TestMesoscopic()
 		action_interval, release_interval, slot_interval,
 		bit_probability, n_modulation_bits,
 		release_molecules, modulation_strength, Environment::GetRegions({}), Environment::GetMesoscopicRegions({0}),
-		std::make_unique<ActiveActorBox>(Vec3d(0), Vec3d(2, 1.5, 1.5)), 0, 5, 0));
+		std::make_unique<ActiveActorBox>(Vec3d(0), Vec3d(1, 1, 1)), 0, 5, 0));
 
 	for (int i = 0; i < 0; i++)
 	{
@@ -225,14 +230,19 @@ void TestMesoscopic()
 			MesoscopicRegionIDs({ MesoscopicRegionID(i) }), MoleculeIDs({ 0, 1, 2 }), 0, -1, time_step, PassiveActorID(i), true, true));
 	}
 
-	Json json_regions;
+	Json json_regions, json_subvolumes;
 	for (auto& region : Environment::GetMesoscopicRegions())
 	{
-		json_regions["shapes"].emplace_back(region);
+		json_regions["shapes"].emplace_back(static_cast<shape::basic::Box>(region.GetBoundingBox()));
+		for (auto& subvolume : region.GetSubvolumes())
+		{
+			json_subvolumes["shapes"].emplace_back(static_cast<shape::basic::Box>(subvolume.GetBoundingBox()));
+		}
 	}
+	std::ofstream subvolume_file(Environment::GetSimulationPath() + "/subvolumes.json");
+	subvolume_file << JsonToString(json_subvolumes); subvolume_file.close();
 	std::ofstream region_file(Environment::GetSimulationPath() + "/regions.json");
-	region_file << JsonToString(json_regions);
-	region_file.close();
+	region_file << JsonToString(json_regions); region_file.close();
 
 	Json json_actors, shapeless_actor;
 	shapeless_actor["type"] = "none";
@@ -307,7 +317,7 @@ void TestMesoscopic()
 			{
 				break;
 			}
-			LOG_INFO("Event:({})", event.LogEvent());
+			//LOG_INFO("Event:({})", event.LogEvent());
 			event.Run();
 		}
 	} while (Environment::NextRealisation());
@@ -319,8 +329,8 @@ void TestMesoscopic()
 //   ensure consistency with passing ids and passing objects. Only pass ids if then not just calling environment in constructor
 //   pass shapes by const ref
 //   pass enums by const ref
-//   does FirstOrderReaction and SecondOrderReaction for microscopic regions need a next realisation function?
-//	 test delete area of mesoscopic region
+// X does FirstOrderReaction and SecondOrderReaction for microscopic regions need a next realisation function?
+// 	 test delete area of mesoscopic region
 
 int main()
 {
