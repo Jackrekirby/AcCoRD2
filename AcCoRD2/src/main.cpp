@@ -175,9 +175,10 @@ void TestSimpleEnvironment2()
 
 void TestMesoscopic()
 {
+	LOG_INFO("start");
 	using namespace accord;
-	int n_micro_regions = 0, n_meso_regions = 1, n_passive_actors = n_meso_regions + n_micro_regions, n_active_actors = 1, n_molecule_types = 3;
-	Environment::Init("D:/dev/meso_sim", 2, 10, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
+	int n_micro_regions = 0, n_meso_regions = 2, n_passive_actors = n_meso_regions + n_micro_regions, n_active_actors = 1, n_molecule_types = 3;
+	Environment::Init("D:/dev/meso_sim", 1, 10, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
 
 	Vec3i start_subvolume(1, 1, 1);
 	Vec3i end_subvolume(2, 2, 2);
@@ -196,12 +197,12 @@ void TestMesoscopic()
 	}
 
 
-	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, remove_subvolumes,  0, 0);
-	//Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, remove_subvolumes, 0, 0);
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(3, 0, 0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, std::vector<Vec3i>{}, 0, 1);
 
 	LOG_INFO("simulation path = {}", Environment::GetSimulationPath());
-	//Environment::GetMesoscopicRegion(1).AddNeighbour(Environment::GetMesoscopicRegion(0));
-	//Environment::GetMesoscopicRegion(0).AddNeighbour(Environment::GetMesoscopicRegion(1));
+	Environment::GetMesoscopicRegion(1).AddNeighbour(Environment::GetMesoscopicRegion(0));
+	Environment::GetMesoscopicRegion(0).AddNeighbour(Environment::GetMesoscopicRegion(1));
 	
 
 	//Environment::GetMesoscopicRegions().at(0).AddZerothOrderReaction({ 0 }, 1);

@@ -15,7 +15,7 @@ namespace accord::mesoscopic
 
 	void LinkedPropensityObjects::Add(PropensityObject* object)
 	{
-		LOG_INFO("adding object");
+		//LOG_INFO("adding object");
 		objects.emplace_back(object);
 	}
 

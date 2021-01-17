@@ -50,7 +50,7 @@ namespace accord::mesoscopic
 
 	void Subvolume::Run()
 	{
-		LOG_INFO("subvolume id = {}", id);
+		//LOG_INFO("subvolume id = {}", id);
 		// change event to reaction
 		SelectEvent();
 		UpdatePropensities();

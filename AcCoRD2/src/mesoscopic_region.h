@@ -26,8 +26,6 @@ namespace accord::mesoscopic
 
 		void LinkSiblingSubvolumes();
 
-		void LinkSiblingSubvolumes(const Vec3i& i);
-
 		Subvolume& GetSubvolume(Vec3i index);
 
 		std::vector<Subvolume>& GetSubvolumes();

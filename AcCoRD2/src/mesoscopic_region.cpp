@@ -68,53 +68,13 @@ namespace accord::mesoscopic
 			{
 				if (&s1 != &s2)
 				{
-					LOG_INFO("link1");
+					//LOG_INFO("link1");
 					if ((s1.GetRelativePosition() - s2.GetRelativePosition()).Abs().Sum() == 1)
 					{
-						LOG_INFO("link2 {} {}", s1.GetRelativePosition(), s2.GetRelativePosition());
+						//LOG_INFO("link2 {} {}", s1.GetRelativePosition(), s2.GetRelativePosition());
 						s1.AddNeighbour(s2);
 					}
 				}
-			}
-		}
-		//Vec3i i;
-		//for (i.z = 0; i.z < n_subvolumes.z; i.z++)
-		//{
-		//	for (i.y = 0; i.y < n_subvolumes.y; i.y++)
-		//	{
-		//		for (i.x = 0; i.x < n_subvolumes.x; i.x++)
-		//		{
-		//			LOG_INFO("linking at index = {}", i);
-		//			
-		//			if (!GetSubvolume(i).IsMarkedForDeletion())
-		//			{
-		//				LinkSiblingSubvolumes(i);
-		//			}
-		//		}
-		//	}
-		//}
-	}
-
-	// for a given cell check the 26 cells surrounding it and link them if they are not already linked
-	void Region::LinkSiblingSubvolumes(const Vec3i& i)
-	{
-		// should always be passing a valid subvolume;
-		auto subvolume = GetSubvolumeIfExists(i);
-		if (subvolume == nullptr)
-		{
-			LOG_CRITICAL("Index of subvolume is out of range. Index = [{}]", i);
-			throw std::exception();
-		}
-
-		std::array<Vec3i, 6> offsets = { Vec3i(1, 0, 0), {-1, 0, 0}, {0, 1, 0}, {0, -1, 0}, {0, 0, 1}, {0, 0, -1} };
-		for (auto& offset : offsets)
-		{
-			//LOG_INFO("Linking sibling subvolumes");
-			auto subvolume2 = GetSubvolumeIfExists(i + offset);
-			if (subvolume2 != nullptr && !subvolume2->IsMarkedForDeletion())
-			{
-				LOG_INFO("nieghbour ids = {}, {}", subvolume->GetID(), subvolume2->GetID());
-				subvolume->AddNeighbour(*subvolume2);
 			}
 		}
 	}
@@ -160,14 +120,14 @@ namespace accord::mesoscopic
 					// if remove index not found then include subvolume
 					if (std::find(removed_indices.begin(), removed_indices.end(), GetIndex(i)) == removed_indices.end())
 					{
-						LOG_INFO("include subvolume = {}", i);
+						//LOG_INFO("include subvolume = {}", i);
 						subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length,
 							subvolume_length, diffusion_coefficients, i, j);
 						j++;
 					}
 					else
 					{
-						LOG_INFO("dont include subvolume = {}", i);
+						//LOG_INFO("dont include subvolume = {}", i);
 					}
 				}
 			}
@@ -222,18 +182,24 @@ namespace accord::mesoscopic
 		// for those which neighbour add as neighbour
 		// each subvolume is checked against every other subvolume.
 		// Inefficient but as only done once not a high priority performace improvement unless a region contains 1000's of subvolumes
+		LOG_INFO("add region");
 		if (box.IsPartiallyNeighbouring(other.box))
 		{
+			LOG_INFO("regions are neighbouring");
 			for (auto& s1 : subvolumes)
 			{
 				auto& b1 = s1.GetBoundingBox();
 				for (auto& s2 : other.subvolumes)
 				{
+					LOG_INFO("subvolume id = {}, {}", s1.GetID(), s2.GetID());
 					auto& b2 = s2.GetBoundingBox();
 					if (b1.IsPartiallyNeighbouring(b2))
 					{
-						s1.AddNeighbour(s2, &other);
-						LOG_INFO("subvolumes {} and {} are neighbours", s1.GetID(), s2.GetID());
+						/*if (((b1.GetOrigin() == b2.GetEnd()) || (b1.GetEnd() == b2.GetOrigin())).Sum() == 1)
+						{*/
+							s1.AddNeighbour(s2, &other);
+							LOG_INFO("subvolumes {} and {} are neighbours", s1.GetID(), s2.GetID());
+						//}
 					}
 				}
 			}

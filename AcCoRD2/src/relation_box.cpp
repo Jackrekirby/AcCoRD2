@@ -50,7 +50,7 @@ namespace accord::shape::relation
 
 	RectSurface Box::GenerateFace(const Vec3d& position, Axis3D axis, const Vec3d& origin, const Vec3d& length)
 	{
-		return { { origin.GetAxis(axis), axis }, { origin.GetPlane(axis), length.GetPlane(axis) } };
+		return { { position.GetAxis(axis), axis }, { origin.GetPlane(axis), length.GetPlane(axis) } };
 	}
 
 	bool Box::IsOverlapping(const Box& other) const
@@ -117,6 +117,9 @@ namespace accord::shape::relation
 	{
 		for (auto& face : face_types)
 		{
+			LOG_INFO("face = {}", face);
+			LOG_INFO("surface = {} {}", faces.at(face).GetPlane(), faces.at(face).GetShape());
+			LOG_INFO("surface = {} {}", other.faces.at(GetOppositeFace(face)).GetPlane(), other.faces.at(GetOppositeFace(face)).GetShape());
 			if (faces.at(face).IsPartiallyNeighbouring(other.faces.at(GetOppositeFace(face)))) return true;
 		}
 		return false;
@@ -148,7 +151,7 @@ namespace accord::shape::relation
 
 	double Box::CalculateAreaBetweenNeighbouringBoxes(const Box& other) const
 	{
-		LOG_INFO("box = {}, neighbouring = {}, {}, {}", *this, other, GetOrigin() == other.GetEnd(), (GetOrigin() == other.GetEnd()));
+		//LOG_INFO("box = {}, neighbouring = {}, {}, {}", *this, other, GetOrigin() == other.GetEnd(), (GetOrigin() == other.GetEnd()));
 		Axis3D axis = ((GetOrigin() == other.GetEnd()) || (GetEnd() == other.GetOrigin())).FindAxis();
 		return FlattenInAxis(axis).GenerateOverlapRect(other.FlattenInAxis(axis)).CalculateArea();
 	}

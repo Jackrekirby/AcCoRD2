@@ -28,7 +28,9 @@ namespace accord::shape::relation
 
 	bool Rect::IsOverlapping(const Rect& other) const
 	{
-		return (GetOrigin() <= other.GetEnd() && GetEnd() >= other.GetOrigin()).All();
+		LOG_INFO("a = {}, b = {}", *this, other);
+		return (GetOrigin() < other.GetEnd() && GetEnd() > other.GetOrigin()).All() || 
+			(GetOrigin() == other.GetOrigin() && GetEnd() == other.GetEnd()).All();
 	}
 
 	bool Rect::IsEnveloping(const Rect& other) const
