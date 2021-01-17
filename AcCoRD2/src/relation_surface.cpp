@@ -12,7 +12,7 @@ namespace accord::shape::relation
 
 	bool Surface::IsPartiallyNeighbouring(const Surface& other) const
 	{
-		LOG_INFO("plane = {},  {}", GetPlane().GetPosition(), other.GetPlane().GetPosition());
+		//LOG_INFO("plane = {},  {}", GetPlane().GetPosition(), other.GetPlane().GetPosition());
 		return (GetPlane().IsNeighbouring(other.GetPlane()) && GetShape().IsOverlapping(other.GetShape()));
 	}
 

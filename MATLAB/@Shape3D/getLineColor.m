@@ -5,6 +5,8 @@ function color = getLineColor(obj)
         if(obj.LineColorMapIndex > size(obj.LineColorMap, 1))
             obj.LineColorMapIndex = 1;
         end
+    elseif(strcmp(obj.LineColor, 'paused'))
+        color = obj.LineColorMap(obj.LineColorMapIndex, :);
     else
         color = obj.LineColor;
     end

@@ -40,8 +40,8 @@ classdef Accord
             r.hFigure = Accord.initialiseFigure(figureLimits, 'on');
             r = Accord.initiliseMoleculePlots(r, colorByActor, ...
                 solidMolecules, moleculeSize);
-            %r.hRegions = Accord.plotRegions(simulation, shape3D);
-            r.hRegions = Accord.plotSubvolumes(simulation, shape3D);
+            r.hRegions = Accord.plotRegions(simulation, shape3D);
+            %r.hRegions = Accord.plotSubvolumes(simulation, shape3D);
             r.hPassiveActors = Accord.plotPassiveActors(simulation, shape3D);
             r.hActiveActors = Accord.plotActiveActors(simulation, shape3D);
         end
@@ -72,8 +72,8 @@ classdef Accord
             end
             
             hShapes.hFigure = Accord.initialiseFigure(figureLimits);
-            %r.hRegions = Accord.plotRegions(simulation, shape3D);
-            r.hSubvolumes = Accord.plotSubvolumes(simulation, shape3D);
+            r.hRegions = Accord.plotRegions(simulation, shape3D);
+            %r.hSubvolumes = Accord.plotSubvolumes(simulation, shape3D);
             r.hPassiveActors = Accord.plotPassiveActors(simulation, shape3D);
             r.hActiveActors = Accord.plotActiveActors(simulation, shape3D);
             hShapes.hFigure.Visible = 'on';
@@ -623,7 +623,21 @@ classdef Accord
                 simulation
                 shape3D = Shape3D();
             end
-            hPlots = shape3D.plot(simulation.regions.shapes);
+            hold on;
+            if(isfield(simulation.regions, 'mesoscopic'))
+                for i = 1:length(simulation.regions.mesoscopic)
+                    shape3D.plot(simulation.regions.mesoscopic(i).box);
+                end
+                shape3D.FaceAlpha = 0;
+                shape3D.LineColor = 'paused';
+                for i = 1:length(simulation.regions.mesoscopic)
+                    shape3D.plot(simulation.regions.mesoscopic(i).subvolumes);
+                    shape3D.nextLineColor();
+                end
+            end
+            hold off;
+            %hPlots = shape3D.plot(simulation.regions.shapes);
+            hPlots = 0;
         end
         
         function hPlots = plotSubvolumes(simulation, shape3D)

@@ -5,6 +5,8 @@ function color = getFaceColor(obj)
         if(obj.FaceColorMapIndex > size(obj.FaceColorMap, 1))
             obj.FaceColorMapIndex = 1;
         end
+    elseif(strcmp(obj.FaceColor, 'paused'))
+        color = obj.FaceColorMap(obj.FaceColorMapIndex, :);
     else
         color = obj.FaceColor;
     end

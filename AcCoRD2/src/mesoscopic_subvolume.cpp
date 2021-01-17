@@ -110,7 +110,7 @@ namespace accord::mesoscopic
 
 	void Subvolume::AddNeighbour(Subvolume& subvolume, Region* region)
 	{
-		LOG_INFO("here");
+		//LOG_INFO("here");
 		double diffusion_factor = CalculateDiffusionFactor(subvolume);
 		int i = 0;
 		for (auto& layer : layers)

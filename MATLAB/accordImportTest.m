@@ -20,10 +20,10 @@ sim = Accord.importFiles("D:\dev", "meso_sim", [], [], true);
 toc
 %% Watch Animation Live
 clc;
-shape3d = Shape3D('LineColorMap', hsv(length(sim.regions.shapes)), ...
-'FaceColorMap', hsv(length(sim.regions.shapes)));
+shape3d = Shape3D('LineColorMap', hsv(2), ...
+'FaceColorMap', hsv(2), 'EdgeAlpha', 1);
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
-r = Accord.initAnimateRealisation(sim, 1, 2, 5, false, true, 15, shape3d);
+r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
 r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
@@ -42,8 +42,8 @@ r = Accord.saveAnimateRealisation(r, 3, "D:\dev\videos\sim7.mp4");
 toc
 %% Display Regions & Actors
 clc;
-shape3d = Shape3D('LineColorMap', hsv(length(sim.regions.shapes)), ...
-'FaceColorMap', hsv(16), 'FaceAlpha', 0.1);
+shape3d = Shape3D('LineColorMap', hsv(2), ...
+'FaceColorMap', hsv(2), 'FaceAlpha', 0.1, 'EdgeAlpha', 1);
 Accord.displayShapes(sim, 10, shape3d);
 
 %% Plot Count For Each Passive Actor

@@ -16,6 +16,7 @@ classdef Accord
             simulation = Accord.findEachRealisationFolder(simulationDir, ...
                 seeds, realisations, trackImporting);
             simulation.regions = Accord.importRegionShapes(simulationDir, trackImporting);
+            simulation.subvolumes = Accord.importSubvolumeShapes(simulationDir, trackImporting);
             simulation.passiveActors = Accord.importPassiveActorShapes(simulationDir, trackImporting);
             simulation.activeActors = Accord.importActiveActorShapes(simulationDir, trackImporting);
             if(trackImporting)
@@ -53,15 +54,16 @@ classdef Accord
             r = Accord.plotMolecules(r, playBackSpeed);
         end
         
-         function r = saveAnimateRealisation(r, playBackSpeed, path)
+        function r = saveAnimateRealisation(r, playBackSpeed, path)
             arguments
                 r
                 playBackSpeed = 1;
                 path = 'simulation_video.mp4';
             end
             r = Accord.saveMolecules(r, playBackSpeed, path);
-        end
+         end
         
+        % r not being returned
         function hShapes = displayShapes(simulation, figureLimits, shape3D)
             arguments
                 simulation
@@ -70,7 +72,8 @@ classdef Accord
             end
             
             hShapes.hFigure = Accord.initialiseFigure(figureLimits);
-            r.hRegions = Accord.plotRegions(simulation, shape3D);
+            %r.hRegions = Accord.plotRegions(simulation, shape3D);
+            r.hSubvolumes = Accord.plotSubvolumes(simulation, shape3D);
             r.hPassiveActors = Accord.plotPassiveActors(simulation, shape3D);
             r.hActiveActors = Accord.plotActiveActors(simulation, shape3D);
             hShapes.hFigure.Visible = 'on';
@@ -620,7 +623,22 @@ classdef Accord
                 simulation
                 shape3D = Shape3D();
             end
+            if(isfield(simulation.regions, 'mesoscopic'))
+                for i = 1:length(simulation.regions.mesoscopic)
+                    shape3D.plotBox(simulation.regions.mesoscopic(i).box);
+                    shape3D.plotBox(simulation.regions.mesoscopic(i).box);
+                end
+            end
             hPlots = shape3D.plot(simulation.regions.shapes);
+        end
+        
+        function hPlots = plotSubvolumes(simulation, shape3D)
+            arguments
+                simulation
+                shape3D = Shape3D();
+            end
+            shape3D.FaceAlpha = 0;
+            hPlots = shape3D.plot(simulation.subvolumes.shapes);
         end
         
         function hPlots = plotPassiveActors(simulation, shape3D)

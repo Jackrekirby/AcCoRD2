@@ -61,19 +61,7 @@ classdef Shape3D < handle
         hGrid = plotGriddedBox(obj, origin, length, nPartitions, args)
         hPlots = plot(obj, shapes)
         
-        function nextFaceColor(obj)
-            obj.FaceColorMapIndex = obj.FaceColorMapIndex + 1;
-            if(obj.FaceColorMapIndex > size(obj.FaceColorMap, 1))
-                obj.FaceColorMapIndex = 1;
-            end
-        end
-        
-        function nextLineColor(obj)
-            obj.LineColorMapIndex = obj.LineColorMapIndex + 1;
-            if(obj.LineColorMapIndex > size(obj.LineColorMap, 1))
-                obj.LineColorMapIndex = 1;
-            end
-        end
+        function nextColor()
     end
     
     methods (Access = private)

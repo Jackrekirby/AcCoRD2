@@ -117,9 +117,9 @@ namespace accord::shape::relation
 	{
 		for (auto& face : face_types)
 		{
-			LOG_INFO("face = {}", face);
-			LOG_INFO("surface = {} {}", faces.at(face).GetPlane(), faces.at(face).GetShape());
-			LOG_INFO("surface = {} {}", other.faces.at(GetOppositeFace(face)).GetPlane(), other.faces.at(GetOppositeFace(face)).GetShape());
+			//LOG_INFO("face = {}", face);
+			//LOG_INFO("surface = {} {}", faces.at(face).GetPlane(), faces.at(face).GetShape());
+			//LOG_INFO("surface = {} {}", other.faces.at(GetOppositeFace(face)).GetPlane(), other.faces.at(GetOppositeFace(face)).GetShape());
 			if (faces.at(face).IsPartiallyNeighbouring(other.faces.at(GetOppositeFace(face)))) return true;
 		}
 		return false;

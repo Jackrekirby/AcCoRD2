@@ -1,78 +1,27 @@
-[22:32:04.247] [info] main.cpp:178 TestMesoscopic() start
-[22:32:04.256] [info] main.cpp:193 TestMesoscopic() remove = [1, 1, 1]
-[22:32:04.256] [info] main.cpp:193 TestMesoscopic() remove = [2, 1, 1]
-[22:32:04.257] [info] main.cpp:193 TestMesoscopic() remove = [1, 2, 1]
-[22:32:04.257] [info] main.cpp:193 TestMesoscopic() remove = [2, 2, 1]
-[22:32:04.258] [info] main.cpp:193 TestMesoscopic() remove = [1, 1, 2]
-[22:32:04.258] [info] main.cpp:193 TestMesoscopic() remove = [2, 1, 2]
-[22:32:04.259] [info] main.cpp:193 TestMesoscopic() remove = [1, 2, 2]
-[22:32:04.259] [info] main.cpp:193 TestMesoscopic() remove = [2, 2, 2]
-[22:32:04.259] [info] mesoscopic_region.cpp:14 accord::mesoscopic::Region::Region() n subs = [3, 3, 3]
-[22:32:04.260] [info] mesoscopic_region.cpp:14 accord::mesoscopic::Region::Region() n subs = [3, 3, 3]
-[22:32:04.261] [info] main.cpp:203 TestMesoscopic() simulation path = D:/dev/meso_sim
-[22:32:04.262] [info] mesoscopic_region.cpp:185 accord::mesoscopic::Region::AddNeighbour() add region
-[22:32:04.262] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = negative x
-[22:32:04.263] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 3.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.264] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.266] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 3.0,  0.0
-[22:32:04.267] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = negative y
-[22:32:04.268] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.269] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.269] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.270] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [0, 0], length = [3, 3], end = [3, 3], b = origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.270] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = negative z
-[22:32:04.271] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.272] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.272] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.273] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [0, 0], length = [3, 3], end = [3, 3], b = origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.273] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = positive x
-[22:32:04.276] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 3.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.279] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.280] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 3.0,  0.0
-[22:32:04.281] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = positive y
-[22:32:04.282] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.283] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.285] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.286] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [0, 0], length = [3, 3], end = [3, 3], b = origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.287] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = positive z
-[22:32:04.293] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.295] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.296] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.297] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [0, 0], length = [3, 3], end = [3, 3], b = origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.297] [warning] mesoscopic_region.cpp:209 accord::mesoscopic::Region::AddNeighbour() Attempted to add mesoscopic region as neighbour but the regions do not neighbour
-[22:32:04.298] [info] mesoscopic_region.cpp:185 accord::mesoscopic::Region::AddNeighbour() add region
-[22:32:04.298] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = negative x
-[22:32:04.299] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.300] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 3.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.301] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  3.0
-[22:32:04.303] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = negative y
-[22:32:04.304] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.307] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.307] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.308] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [3, 0], length = [3, 3], end = [6, 3], b = origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.309] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = negative z
-[22:32:04.310] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.310] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.311] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.312] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [3, 0], length = [3, 3], end = [6, 3], b = origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.312] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = positive x
-[22:32:04.313] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.313] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 3.0, axis = x origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.314] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  3.0
-[22:32:04.314] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = positive y
-[22:32:04.315] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.316] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = y origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.317] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.318] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [3, 0], length = [3, 3], end = [6, 3], b = origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.318] [info] relation_box.cpp:120 accord::shape::relation::Box::IsPartiallyNeighbouring() face = positive z
-[22:32:04.319] [info] relation_box.cpp:121 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.320] [info] relation_box.cpp:122 accord::shape::relation::Box::IsPartiallyNeighbouring() surface = position = 0.0, axis = z origin = [3, 0], length = [3, 3], end = [6, 3]
-[22:32:04.321] [info] relation_surface.cpp:15 accord::shape::relation::Surface::IsPartiallyNeighbouring() plane = 0.0,  0.0
-[22:32:04.322] [info] relation_rect.cpp:31 accord::shape::relation::Rect::IsOverlapping() a = origin = [3, 0], length = [3, 3], end = [6, 3], b = origin = [0, 0], length = [3, 3], end = [3, 3]
-[22:32:04.322] [warning] mesoscopic_region.cpp:209 accord::mesoscopic::Region::AddNeighbour() Attempted to add mesoscopic region as neighbour but the regions do not neighbour
-[22:32:04.323] [info] mesoscopic_region.cpp:35 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 19
-[22:32:04.325] [info] mesoscopic_region.cpp:49 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 19
-[22:32:04.326] [info] mesoscopic_region.cpp:35 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 27
-[22:32:04.329] [info] mesoscopic_region.cpp:49 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 27
-[22:32:04.330] [info] main.cpp:247 TestMesoscopic() 2
-[22:32:04.358] [info] main.cpp:311 TestMesoscopic() Realisation 0
+[22:55:05.555] [info] main.cpp:181 TestMesoscopic() simulation path = D:/dev/meso_sim
+[22:55:05.558] [info] main.cpp:193 TestMesoscopic() remove = [1, 1, 1]
+[22:55:05.558] [info] main.cpp:193 TestMesoscopic() remove = [2, 1, 1]
+[22:55:05.558] [info] main.cpp:193 TestMesoscopic() remove = [1, 2, 1]
+[22:55:05.559] [info] main.cpp:193 TestMesoscopic() remove = [2, 2, 1]
+[22:55:05.559] [info] main.cpp:193 TestMesoscopic() remove = [1, 1, 2]
+[22:55:05.559] [info] main.cpp:193 TestMesoscopic() remove = [2, 1, 2]
+[22:55:05.559] [info] main.cpp:193 TestMesoscopic() remove = [1, 2, 2]
+[22:55:05.560] [info] main.cpp:193 TestMesoscopic() remove = [2, 2, 2]
+[22:55:05.560] [info] mesoscopic_region.cpp:14 accord::mesoscopic::Region::Region() n subs = [3, 3, 3]
+[22:55:05.562] [info] mesoscopic_region.cpp:14 accord::mesoscopic::Region::Region() n subs = [3, 3, 3]
+[22:55:05.563] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 0 and 2 are neighbours
+[22:55:05.564] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 3 and 5 are neighbours
+[22:55:05.564] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 6 and 8 are neighbours
+[22:55:05.565] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 9 and 11 are neighbours
+[22:55:05.565] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 18 and 16 are neighbours
+[22:55:05.569] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 2 and 0 are neighbours
+[22:55:05.569] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 5 and 3 are neighbours
+[22:55:05.570] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 8 and 6 are neighbours
+[22:55:05.570] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 11 and 9 are neighbours
+[22:55:05.571] [info] mesoscopic_region.cpp:202 accord::mesoscopic::Region::AddNeighbour() subvolumes 16 and 18 are neighbours
+[22:55:05.572] [info] mesoscopic_region.cpp:35 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 19
+[22:55:05.574] [info] mesoscopic_region.cpp:49 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 19
+[22:55:05.575] [info] mesoscopic_region.cpp:35 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 27
+[22:55:05.578] [info] mesoscopic_region.cpp:49 accord::mesoscopic::Region::AddSubvolumesToQueue() num_subvolume = 27
+[22:55:05.586] [info] main.cpp:247 TestMesoscopic() 2
+[22:55:05.619] [info] main.cpp:313 TestMesoscopic() Realisation 0
