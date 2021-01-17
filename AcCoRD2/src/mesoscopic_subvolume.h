@@ -8,6 +8,8 @@
 #include "mesoscopic_second_order_reaction.h"
 #include "propensity_object.h"
 #include "mesoscopic_subvolume_event.h"
+#include "vec3i.h"
+
 namespace accord
 {
 	struct Vec3d;
@@ -30,7 +32,7 @@ namespace accord::mesoscopic
 	class Subvolume : public SubvolumeEvent
 	{
 	public:
-		Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const SubvolumeID& id);
+		Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const Vec3i& relative_position, const SubvolumeID& id);
 
 		void CreateLayers(const std::vector<double>& diffusion_coefficients);
 
@@ -83,6 +85,8 @@ namespace accord::mesoscopic
 
 		void NextRealisation();
 
+		const Vec3i& GetRelativePosition() const;
+
 		SubvolumeID GetID() const;
 	private:
 		std::vector<Layer> layers;
@@ -90,6 +94,7 @@ namespace accord::mesoscopic
 		std::vector<FirstOrderReaction> first_order_reactions;
 		std::vector<SecondOrderReaction> second_order_reactions;
 		std::vector<LinkedPropensityObjects> linked_propensity_objects;
+		Vec3i relative_position;
 		double reaction_propensity;
 		bool deleteFlag;
 		SubvolumeBox box;

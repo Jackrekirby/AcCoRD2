@@ -19,8 +19,8 @@ namespace accord::mesoscopic
 		j = static_cast<shape::basic::Box>(*this);
 	}
 
-	Subvolume::Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const SubvolumeID& id)
-		: box(origin, length), reaction_propensity(0), id(id), deleteFlag(false)
+	Subvolume::Subvolume(const Vec3d& origin, double length, const std::vector<double>& diffusion_coefficients, const Vec3i& relative_position, const SubvolumeID& id)
+		: box(origin, length), reaction_propensity(0), id(id), deleteFlag(false), relative_position(relative_position)
 	{
 		CreateLayers(diffusion_coefficients);
 	}
@@ -110,8 +110,9 @@ namespace accord::mesoscopic
 
 	void Subvolume::AddNeighbour(Subvolume& subvolume, Region* region)
 	{
+		LOG_INFO("here");
 		double diffusion_factor = CalculateDiffusionFactor(subvolume);
-		MoleculeID i = 0;
+		int i = 0;
 		for (auto& layer : layers)
 		{
 			layer.AddNeighbourRelationship(&subvolume.GetLayer(i), diffusion_factor, region);
@@ -241,6 +242,11 @@ namespace accord::mesoscopic
 			layer.NextRealisation();
 		}
 		UpdatePropensities();
+	}
+
+	const Vec3i& Subvolume::GetRelativePosition() const
+	{
+		return relative_position;
 	}
 
 	SubvolumeID Subvolume::GetID() const

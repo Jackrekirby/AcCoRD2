@@ -7,12 +7,18 @@
 namespace accord::mesoscopic
 {
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
-		const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id)
+		const std::vector<double>& diffusion_coefficients, const std::vector<Vec3i>& removedSubvolumes, int priority, const MesoscopicRegionID& id)
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event(0, priority), id(id),
 			n_subvolumes(n_subvolumes), subvolume_length(subvolume_length)
 	{
 		LOG_INFO("n subs = {}", n_subvolumes);
-		CreateSubvolumes(n_subvolumes, diffusion_coefficients, subvolume_length);
+		std::vector<int> removed_indices;
+		removed_indices.reserve(removedSubvolumes.size());
+		for (const Vec3i& subvolume_index : removedSubvolumes)
+		{
+			removed_indices.emplace_back(GetIndex(subvolume_index));
+		}
+		CreateSubvolumes(n_subvolumes, diffusion_coefficients, subvolume_length, removed_indices);
 	}
 
 	void Region::AddMolecule(const MoleculeID& id, const Vec3d& position)
@@ -55,22 +61,38 @@ namespace accord::mesoscopic
 
 	void Region::LinkSiblingSubvolumes()
 	{
-		Vec3i i;
-		for (i.z = 0; i.z < n_subvolumes.z; i.z++)
+		for (auto& s1 : subvolumes)
 		{
-			for (i.y = 0; i.y < n_subvolumes.y; i.y++)
+			auto& b1 = s1.GetBoundingBox();
+			for (auto& s2 : subvolumes)
 			{
-				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
+				if (&s1 != &s2)
 				{
-					LOG_INFO("linking at index = {}", i);
-					
-					if (!GetSubvolume(i).IsMarkedForDeletion())
+					LOG_INFO("link1");
+					if ((s1.GetRelativePosition() - s2.GetRelativePosition()).Abs().Sum() == 1)
 					{
-						LinkSiblingSubvolumes(i);
+						LOG_INFO("link2 {} {}", s1.GetRelativePosition(), s2.GetRelativePosition());
+						s1.AddNeighbour(s2);
 					}
 				}
 			}
 		}
+		//Vec3i i;
+		//for (i.z = 0; i.z < n_subvolumes.z; i.z++)
+		//{
+		//	for (i.y = 0; i.y < n_subvolumes.y; i.y++)
+		//	{
+		//		for (i.x = 0; i.x < n_subvolumes.x; i.x++)
+		//		{
+		//			LOG_INFO("linking at index = {}", i);
+		//			
+		//			if (!GetSubvolume(i).IsMarkedForDeletion())
+		//			{
+		//				LinkSiblingSubvolumes(i);
+		//			}
+		//		}
+		//	}
+		//}
 	}
 
 	// for a given cell check the 26 cells surrounding it and link them if they are not already linked
@@ -106,6 +128,14 @@ namespace accord::mesoscopic
 		return subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 	}
 
+	int Region::GetIndex(Vec3i index)
+	{
+		// if index is below or above index range limit it to within range
+		index *= (index > Vec3i(0, 0, 0));
+		index.EqualIf((index >= n_subvolumes), n_subvolumes - 1);
+		return (index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
+	}
+
 	// could be private?
 	// if index is not valid null will be returned
 	Subvolume* Region::GetSubvolumeIfExists(const Vec3i& index)
@@ -116,7 +146,7 @@ namespace accord::mesoscopic
 	}
 
 	void Region::CreateSubvolumes(const Vec3i& n_subvolumes, 
-		std::vector<double> diffusion_coefficients, double subvolume_length)
+		std::vector<double> diffusion_coefficients, double subvolume_length, const std::vector<int>& removed_indices)
 	{
 		subvolumes.reserve(n_subvolumes.Volume());
 		Vec3i i;
@@ -127,9 +157,18 @@ namespace accord::mesoscopic
 			{
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
-					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, 
-						subvolume_length, diffusion_coefficients, j);
-					j++;
+					// if remove index not found then include subvolume
+					if (std::find(removed_indices.begin(), removed_indices.end(), GetIndex(i)) == removed_indices.end())
+					{
+						LOG_INFO("include subvolume = {}", i);
+						subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length,
+							subvolume_length, diffusion_coefficients, i, j);
+						j++;
+					}
+					else
+					{
+						LOG_INFO("dont include subvolume = {}", i);
+					}
 				}
 			}
 		}

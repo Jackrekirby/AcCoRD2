@@ -34,7 +34,7 @@ namespace accord
 
 		static Vec3i GenerateIntUniform(int lower_bound, int upper_bound);
 
-
+		Vec3i Abs() const;
 
 		// returns the larger of x, y or z
 		int Max() const;
@@ -50,6 +50,9 @@ namespace accord
 
 		// volume = x * y * z
 		int Volume() const;
+
+		// volume = x + y + z
+		int Sum() const;
 
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const Vec3i& v)

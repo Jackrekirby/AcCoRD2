@@ -43,6 +43,11 @@ namespace accord
 		};
 	}
 
+	Vec3i Vec3i::Abs() const
+	{
+		return { std::abs(x), std::abs(y), std::abs(z) };
+	}
+
 	// returns the larger of x, y or z
 	int Vec3i::Max() const
 	{
@@ -71,6 +76,11 @@ namespace accord
 	int Vec3i::Volume() const
 	{
 		return x * y * z;
+	}
+
+	int Vec3i::Sum() const
+	{
+		return x + y + z;
 	}
 	
 

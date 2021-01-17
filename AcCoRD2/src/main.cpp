@@ -171,12 +171,32 @@ void TestSimpleEnvironment2()
 
 // molecules not diffusion across subvolumes
 // second realisation fails
+// is fully neighbouring does not work for neighbouring subvolumes
+
 void TestMesoscopic()
 {
 	using namespace accord;
 	int n_micro_regions = 0, n_meso_regions = 1, n_passive_actors = n_meso_regions + n_micro_regions, n_active_actors = 1, n_molecule_types = 3;
-	Environment::Init("D:/dev/meso_sim", 1, 30, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
-	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, 0, 0);
+	Environment::Init("D:/dev/meso_sim", 2, 10, n_molecule_types, n_micro_regions, n_meso_regions, n_passive_actors, n_active_actors, 1);
+
+	Vec3i start_subvolume(1, 1, 1);
+	Vec3i end_subvolume(2, 2, 2);
+	std::vector<Vec3i> remove_subvolumes;
+	Vec3i i;
+	for (i.z = start_subvolume.z; i.z <= end_subvolume.z; i.z++)
+	{
+		for (i.y = start_subvolume.y; i.y <= end_subvolume.y; i.y++)
+		{
+			for (i.x = start_subvolume.x; i.x <= end_subvolume.x; i.x++)
+			{
+				LOG_INFO("remove = {}", i);
+				remove_subvolumes.emplace_back(i);
+			}
+		}
+	}
+
+
+	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, remove_subvolumes,  0, 0);
 	//Environment::GetMesoscopicRegions().emplace_back(Vec3d(2, 0, 0), 1, Vec3i(2, 1, 1), std::vector<double>{1, 1, 1}, 0, 0, 1);
 
 	LOG_INFO("simulation path = {}", Environment::GetSimulationPath());

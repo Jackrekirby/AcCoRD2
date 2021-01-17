@@ -18,7 +18,7 @@ namespace accord::mesoscopic
 	class Region : public Event
 	{
 	public:
-		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes, const std::vector<double>& diffusion_coefficients, int priority, const MesoscopicRegionID& id);
+		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes, const std::vector<double>& diffusion_coefficients, const std::vector<Vec3i>& removedSubvolumes, int priority, const MesoscopicRegionID& id);
 
 		void AddMolecule(const MoleculeID& id, const Vec3d& position);
 
@@ -34,8 +34,10 @@ namespace accord::mesoscopic
 
 		Subvolume* GetSubvolumeIfExists(const Vec3i& index);
 
+		int GetIndex(Vec3i index);
+
 		void CreateSubvolumes(const Vec3i& n_subvolumes, std::vector<double> diffusion_coefficients,
-			double subvolume_length);
+			double subvolume_length, const std::vector<int>& removed_indices);
 
 		void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate);
 
