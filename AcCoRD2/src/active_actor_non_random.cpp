@@ -12,7 +12,7 @@ namespace accord
 		: ActiveActor(action_interval, release_interval, release_molecules, modulation_strength, micro_regions, meso_regions, std::move(shape),
 			start_time, priority, id), n_modulation_bits(n_modulation_bits), bit_sequence(bit_sequence),
 			slot_interval(slot_interval), symbol(0), symbol_index(0),
-			n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(release_index)
+			n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(0)
 	{
 		LOG_INFO("action = {}, release = {}, slot = {}", action_interval, release_interval, slot_interval);
 

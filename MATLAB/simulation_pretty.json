@@ -1,0 +1,80 @@
+{
+   "NumberOfRepeats":5,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":2,
+   "DefaultProperties":{
+      "DiffusionCoefficients":[ 1, 2 ],
+      "MicroscopicTimeStep":1
+   },
+   "MicroscopicRegions":{
+      "Shape":"Box",
+      "Origin":[ 0, 0, 0 ],
+      "Length":[ 1, 1, 1 ],
+      "SurfaceType":"Reflecting",
+      "DiffusionCoefficients":[ 3, 4 ],
+      "NumberOfSubvolumes":[ 1, 2, 3 ],
+      "TimeStep":0.1,
+      "Priority":0
+   },
+   "MesoscopicRegions":{
+      "Name":"MesoRegion1",
+      "Origin":[ 0, 0, 0],
+      "Length":[ 1, 1, 1],
+      "NumberOfSubvolumes":[ 1, 2, 3 ],
+      "DiffusionCoefficients":[3,4],
+      "RemoveSubvolumes":0,
+      "Priority":0
+   },
+   "PassiveActors":{
+      "Name":"PassiveActor1",
+      "MoleculeTypesToObserve":0,
+      "StartTime":0,
+      "Priority":0,
+      "TimeStep":0,
+      "RecordPositions":true,
+      "RecordObservationTime":true,
+      "RegionsToObserve":[ "MicroRegion1", "MesoRegion1"],
+      "Shape":"Box",
+      "Origin":[ 0, 0, 0 ],
+      "Length":[ 1, 1, 1 ]
+   },
+   "ActiveActors":[
+      {
+         "Name":"ActiveActor1",
+         "StartTime":0,
+         "Priority":0,
+         "ActionInterval":0,
+         "ReleaseInterval":0,
+         "ModulationStrength":10,
+         "MoleculeTypesToRelease":[ 0, 1 ],
+         "RegionsToActIn":[ "MicroRegion1", "MesoRegion1" ],
+         "Shape":"Box",
+         "Origin":[ 0, 0, 0 ],
+         "Length":[ 1, 1, 1 ],
+         "Type":"RandomTime",
+         "NumModulationBits":2,
+         "SlotInterval":1,
+         "BitSequence":[ 1, 1, 0, 0, 1, 0, 0, 1 ];
+         "BitProbability":0.5
+      },
+      {
+	"Name":"ActiveActor2",
+         "StartTime":0,
+         "Priority":0,
+         "ActionInterval":0,
+         "ReleaseInterval":0,
+         "ModulationStrength":10,
+         "MoleculeTypesToRelease":[ 0, 1 ],
+         "RegionsToActIn":[ "MicroRegion1", "MesoRegion1" ],
+         "Shape":"Box",
+         "Origin":[ 0, 0, 0 ],
+         "Length":[ 1, 1, 1 ],
+         "Type":"RandomTime",
+         "NumModulationBits":2,
+         "SlotInterval":1,
+         "BitSequence":[ 1, 1, 0, 0, 1, 0, 0, 1 ];
+         "BitProbability":0.5
+      }
+   ]
+}
