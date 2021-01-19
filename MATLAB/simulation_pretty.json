@@ -26,19 +26,21 @@
       "RemoveSubvolumes":0,
       "Priority":0
    },
-   "PassiveActors":{
-      "Name":"PassiveActor1",
-      "MoleculeTypesToObserve":0,
-      "StartTime":0,
-      "Priority":0,
-      "TimeStep":0,
-      "RecordPositions":true,
-      "RecordObservationTime":true,
-      "RegionsToObserve":[ "MicroRegion1", "MesoRegion1"],
-      "Shape":"Box",
-      "Origin":[ 0, 0, 0 ],
-      "Length":[ 1, 1, 1 ]
-   },
+   "PassiveActors":[
+	   {
+		  "Name":"PassiveActor1",
+		  "MoleculeTypesToObserve":0,
+		  "StartTime":0,
+		  "Priority":0,
+		  "TimeStep":0,
+		  "RecordPositions":true,
+		  "RecordObservationTime":true,
+		  "RegionsToObserve":[ "MicroRegion1", "MesoRegion1"],
+		  "Shape":"Box",
+		  "Origin":[ 0, 0, 0 ],
+		  "Length":[ 1, 1, 1 ]
+		}
+	],
    "ActiveActors":[
       {
          "Name":"ActiveActor1",

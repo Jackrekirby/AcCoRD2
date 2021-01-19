@@ -355,6 +355,31 @@ void TestMesoscopic()
 // X does FirstOrderReaction and SecondOrderReaction for microscopic regions need a next realisation function?
 // 	 test delete area of mesoscopic region
 
+//void ReadJsonValue(accord::Json& j, std::string key, bool& value)
+//{
+//	if (j["key"].is_boolean())
+//	{
+//		value = j[key].get<bool>();
+//	}
+//	else
+//	{
+//		LOG_ERROR("{} expected type bool but was type ", key, std::string(j[key].type_name()));
+//		throw std::exception();
+//	}
+//}
+//void ReadJsonImport()
+//{
+//	std::string path = "C:/dev/AcCoRD2/MATLAB/simulation.json";
+//	std::ifstream i(path);
+//	accord::Json j;
+//	i >> j;
+//	
+//	bool n;
+//	ReadJsonValue(j, "NumberOfRepeats", n);
+//
+//}
+
+#include "config_importer.h"
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -364,7 +389,12 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	TestMesoscopic();
+	accord::ConfigImporter c("C:/dev/AcCoRD2/MATLAB/simulation.json");
+	//ReadJsonImport();
+
+
+
+	//TestMesoscopic();
 
 	//Event2Test();
 	//TestSimpleEnvironment2();

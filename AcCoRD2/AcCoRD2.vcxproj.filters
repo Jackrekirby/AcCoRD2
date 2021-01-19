@@ -702,6 +702,9 @@
     <ClInclude Include="src\mesoscopic_subvolume_event.h">
       <Filter>src\simulation\mesoscopic\subvolume</Filter>
     </ClInclude>
+    <ClInclude Include="src\config_importer.h">
+      <Filter>src\simulation\import</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -959,6 +962,9 @@
     </Filter>
     <Filter Include="src\simulation\passive actor">
       <UniqueIdentifier>{e226d73e-94a2-431e-893b-d43fae654fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\import">
+      <UniqueIdentifier>{66a68ed6-2ed7-4026-ae28-59c8ccda956b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
