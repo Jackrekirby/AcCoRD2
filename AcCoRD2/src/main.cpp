@@ -166,12 +166,8 @@ void TestSimpleEnvironment2()
 }
 
 
-// problems user has to manually add regions to active actors in child order otherwise molecules may be added to child and not parent
-// an active actor may attempt to place a molecule in a mesoscopic region where the subvolume has been removed
 
-// molecules not diffusion across subvolumes
-// second realisation fails
-// is fully neighbouring does not work for neighbouring subvolumes
+// region relationship of type none should be done automatically for neighbours (would require region relation checking)
 
 void TestMesoscopic()
 {
@@ -389,7 +385,7 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	accord::ConfigImporter c("C:/dev/AcCoRD2/MATLAB/simulation.json");
+	accord::ConfigImporter c("C:/dev/AcCoRD2/MATLAB/simulation2.json");
 	//ReadJsonImport();
 
 

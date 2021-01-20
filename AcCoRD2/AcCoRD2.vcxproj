@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="config_importer.cpp" />
+    <ClCompile Include="src\json_key_pair.cpp" />
     <ClCompile Include="src\mesoscopic_subvolume_event.cpp" />
     <ClCompile Include="src\active_actor_id.cpp" />
     <ClCompile Include="src\mesoscopic_region_id.cpp" />
@@ -161,6 +163,7 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\json_key_pair.h" />
     <ClInclude Include="src\config_importer.h" />
     <ClInclude Include="src\mesoscopic_subvolume_event.h" />
     <ClInclude Include="src\active_actor_id.h" />

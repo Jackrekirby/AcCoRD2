@@ -331,6 +331,12 @@
     <ClCompile Include="src\mesoscopic_subvolume_event.cpp">
       <Filter>src\simulation\mesoscopic\subvolume</Filter>
     </ClCompile>
+    <ClCompile Include="src\json_key_pair.cpp">
+      <Filter>src\simulation\import</Filter>
+    </ClCompile>
+    <ClCompile Include="config_importer.cpp">
+      <Filter>src\simulation\import</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -703,6 +709,9 @@
       <Filter>src\simulation\mesoscopic\subvolume</Filter>
     </ClInclude>
     <ClInclude Include="src\config_importer.h">
+      <Filter>src\simulation\import</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json_key_pair.h">
       <Filter>src\simulation\import</Filter>
     </ClInclude>
   </ItemGroup>

@@ -141,7 +141,16 @@
 // NEED TO WARN IF CANNOT WRITE TO FILE / DELETE SEED FOLDER
 // find location where i have repeated a scalar to construct a vec and use new scalar constructor
 
-// BUGS
+// Known Bugs / Problems
+// User has to manually add regions to active actors in child order otherwise molecules may be added to child and not parent
+// An active actor may attempt to place a molecule in a mesoscopic region where the subvolume has been removed
+
+// Resolved Bugs
+// Molecules not diffusing across subvolumes
+// Second realisation fails when removing subvolumes
+// Fully neighbouring does not work for neighbouring subvolumes
+
+// Fixed Major Bugs
 // 1. WHY WERE RECENT MOLECULES AHEAD OF EVENT TIME IF BOTH REGIONS HAVE THE SAME TIME STEP AND OCCUR
 // AT THE SAME TIME?
 // ANSWER: Recent molecules were being added to the next event time rather than the current one

@@ -12,7 +12,7 @@ a.MicroscopicTimeStep = 1;
 s.DefaultProperties = a;
 
 
-MicroscopicRegion.Name = "MicroRegion1";
+MesoscopicRegion.Name = "MicroRegion1";
 MicroscopicRegion.Shape = "Box";
 MicroscopicRegion.Origin = [0, 0, 0];
 MicroscopicRegion.Length = [1, 1, 1]; 
@@ -26,7 +26,7 @@ s.MicroscopicRegions(1) = MicroscopicRegion;
 
 MesoscopicRegion.Name = "MesoRegion1";
 MesoscopicRegion.Origin = [0, 0, 0];
-MesoscopicRegion.SubvolumeLength = [1, 1, 1]; 
+MesoscopicRegion.Length = [1, 1, 1]; 
 MesoscopicRegion.NumberOfSubvolumes = [1, 2, 3];
 MesoscopicRegion.DiffusionCoefficients = [3, 4];
 MesoscopicRegion.RemoveSubvolumes = 0; % should be automated in some way
@@ -35,7 +35,7 @@ MesoscopicRegion.Priority = 0;
 s.MesoscopicRegions(1) = MesoscopicRegion;
 
 PassiveActor.Name = "PassiveActor1";
-PassiveActor.MoleculeTypesToObserve = [0, 2];
+PassiveActor.MoleculeTypesToObserve = [0];
 PassiveActor.StartTime = 0;
 PassiveActor.Priority = 0;
 PassiveActor.TimeStep = 0;
@@ -88,8 +88,22 @@ Relationship.SurfaceTypes = ["Reflecting"];
 Relationship.AToBSurfaceTypes = ["Reflecting"];
 Relationship.BToASurfaceTypes = ["None", "Reflecting", "Absorbing"];
 
-s.Relationship(1) = Relationship;
-s.Relationship(2) = Relationship;
+
+// Zeroth Order Reaction
+		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
+			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
+
+		// First Order Reaction
+		static void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate,
+			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& meso_regions);
+
+		static void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
+			const MoleculeIDs& products, double binding_radius, double unbinding_radius,
+			double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
+
+		static void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeIDs& products, double binding_radius, 
+			double unbinding_radius,  double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, 
+			const MesoscopicRegionIDs& mesoscopic_regions);
 
 ZerothOrder.Products = [2, 3, 0];
 ZerothOrder.ReactionRate = 4.6;
@@ -108,12 +122,6 @@ SecondOrder.BindingRadius = 3;
 SecondOrder.UnBindingRadius = 3.5;
 SecondOrder.OccurInRegions = ["MicroRegion1", "MesoRegion1"];
             
-s.ZerothOrderReactions(1) = ZerothOrder;
-s.ZerothOrderReactions(2) = ZerothOrder;
-s.FirstOrderReactions(1) = FirstOrder;
-s.FirstOrderReactions(2) = FirstOrder;
-s.SecondOrderReactions(1) = SecondOrder;
-s.SecondOrderReactions(2) = SecondOrder;
             
 jsonText = jsonencode(s);
 
