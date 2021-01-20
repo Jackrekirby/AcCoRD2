@@ -113,21 +113,35 @@ namespace accord
 			return j;
 		}
 
-
-
 		void ThrowIncorrectType(const std::string& type)
 		{
 			std::string keys;
-			LOG_ERROR("<{}> expected {} but was type {}", Log(), type, std::string(j.type_name()));
+			LOG_ERROR("<{}> expected {} but was type {}", Log(), type, std::string(GetJson().type_name()));
 
 			throw std::exception();
 		}
 
+		size_t GetArraySize() const
+		{
+			if (GetJson().is_array())
+			{
+				return GetJson().size();
+			}
+			else if (GetJson().is_object())
+			{
+				return 1;
+			}
+			else
+			{
+				LOG_CRITICAL("Expected array or object but was type {}", std::string(GetJson().type_name()));
+				throw std::exception();
+			}
+		}
 		
 
 		void IsBool()
 		{
-			if (!j.is_boolean())
+			if (!GetJson().is_boolean())
 			{
 				ThrowIncorrectType("boolean");
 			}
@@ -135,7 +149,7 @@ namespace accord
 
 		void IsInt()
 		{
-			if (!j.is_number_integer())
+			if (!GetJson().is_number_integer())
 			{
 				ThrowIncorrectType("integer");
 			}
@@ -143,7 +157,7 @@ namespace accord
 
 		void IsFloat()
 		{
-			if (!j.is_number_float())
+			if (!GetJson().is_number_float())
 			{
 				ThrowIncorrectType("float");
 			}
@@ -151,7 +165,7 @@ namespace accord
 
 		void IsNumber()
 		{
-			if (!j.is_number())
+			if (!GetJson().is_number())
 			{
 				ThrowIncorrectType("float or int");
 			}
@@ -159,7 +173,7 @@ namespace accord
 
 		void IsString()
 		{
-			if (!j.is_string())
+			if (!GetJson().is_string())
 			{
 				ThrowIncorrectType("string");
 			}
@@ -167,7 +181,7 @@ namespace accord
 
 		void IsArray()
 		{
-			if (!j.is_array())
+			if (!GetJson().is_array())
 			{
 				ThrowIncorrectType("array");
 			}
@@ -175,18 +189,65 @@ namespace accord
 
 		void IsObject()
 		{
-			if (!j.is_object())
+			if (!GetJson().is_object())
 			{
 				ThrowIncorrectType("object");
 			}
 		}
 
-		void IsArrayOrObject()
+		void IsStructure()
 		{
 			if (!j.is_structured())
 			{
 				ThrowIncorrectType("array or object");
 			}
+		}
+
+
+		void IsArrayOfType(void(JsonKeyPair::* IsType)())
+		{
+			IsArray();
+			size_t n = GetArraySize();
+			for (size_t i = 0; i < n; i++)
+			{
+				SetIndex(i);
+				(this->*IsType)();
+			}
+		}
+
+		void IsArrayOfBools()
+		{
+			IsArrayOfType(&JsonKeyPair::IsBool);
+		}
+
+		void IsArrayOfInts()
+		{
+			IsArrayOfType(&JsonKeyPair::IsInt);
+		}
+
+		void IsArrayOfFloats()
+		{
+			IsArrayOfType(&JsonKeyPair::IsFloat);
+		}
+
+		void IsArrayOfNumbers()
+		{
+			IsArrayOfType(&JsonKeyPair::IsNumber);
+		}
+
+		void IsArrayOfArrays()
+		{
+			IsArrayOfType(&JsonKeyPair::IsArray);
+		}
+
+		void IsArrayOfObjects()
+		{
+			IsArrayOfType(&JsonKeyPair::IsObject);
+		}
+
+		void IsArrayOfStructures()
+		{
+			IsArrayOfType(&JsonKeyPair::IsStructure);
 		}
 	private:
 		Json j;
@@ -203,45 +264,34 @@ namespace accord
 			std::ifstream i(file_path);
 			i >> j;
 
-			if (j["MicroscopicRegions"]["Origin"][0].is_number())
-			{
-				LOG_INFO("is number!");
-			}
+			JsonKeyPair config(j);
+			config.Add("NumberOfRepeats").IsInt();
+			config.Add("FinalSimulationTime").IsNumber();
+			config.Add("RandomNumberSeed").IsInt();
+			config.Add("NumberOfMoleculeTypes").IsInt();
 
-			JsonKeyPair k(j);
-			k.Add("NumberOfRepeats").IsBool();
-			IsBool(k, "NumberOfRepeats");
-			IsNumber(k, "FinalSimulationTime");
-			IsInt(k, "RandomNumberSeed");
-			IsInt(k, "NumberOfMoleculeTypes");
-
-			IsArrayOrObject(k, "MicroscopicRegions");
-			JsonKeyPair microscopic_region(k, "MicroscopicRegions");
-			size_t n = GetArraySize(microscopic_region.GetJson());
+			JsonKeyPair microscopic_regions = config.Add("MicroscopicRegions");
+			microscopic_regions.IsStructure();
+			size_t n = microscopic_regions.GetArraySize();
 			
 			for (size_t i = 0; i < n; i++)
 			{
-				microscopic_region.SetIndex(i);
+				microscopic_regions.SetIndex(i);
 
-				if (microscopic_region.GetJson()["Origin"][0].is_number())
-				{
-					LOG_INFO("is also number!");
-				}
-				
-
-				IsString(microscopic_region,	"Name");
-				IsString(microscopic_region,	"SurfaceType");
-				IsArray(microscopic_region,		"DiffusionCoefficients");
-				IsArray(microscopic_region,		"NumberOfSubvolumes");
-				IsNumber(microscopic_region,	"TimeStep");
-				IsInt(microscopic_region,		"Priority");
-
-				IsString(microscopic_region,	"Shape");
-				std::string shape_type = microscopic_region.GetJson()["Shape"].get<std::string>();
+				microscopic_regions.Add("Names").IsString();
+				microscopic_regions.Add("SurfaceType").IsString();
+				microscopic_regions.Add("DiffusionCoefficients").IsArray();
+				microscopic_regions.Add("NumberOfSubvolumes").IsArray();
+				microscopic_regions.Add("TimeStep").IsNumber();
+				microscopic_regions.Add("Priority").IsInt();
+				JsonKeyPair shape = microscopic_regions.Add("Shape");
+				shape.IsString();
+				std::string shape_type = shape.GetJson().get<std::string>();
 				if (shape_type == "Box")
 				{
-					IsTypeArray(microscopic_region, "Origin", &ConfigImporter::IsNumbers);
-					IsTypeArray(microscopic_region, "Length", &ConfigImporter::IsInt);
+					microscopic_regions.Add("Origin").IsArrayOfNumbers();
+					microscopic_regions.Add("Length").IsArrayOfNumbers();
+					//IsArrayOfType(microscopic_region, "Length", &ConfigImporter::IsInt);
 				} else if (shape_type == "Sphere")
 				{
 					//IsArray(microscopic_region, "Centre");
@@ -259,211 +309,5 @@ namespace accord
 		}
 	private:
 		Json j;
-
-		void ThrowIncorrectType(const std::string& type, const JsonKeyPair& json_key_pair, const std::string& key, const Json& value)
-		{
-			std::string keys;
-			LOG_ERROR("<{}> expected {} but was type {}", json_key_pair.Log(key), type, std::string(value.type_name()));
-			
-			throw std::exception();
-		}
-
-		void ThrowIncorrectType(const std::string& type, const JsonKeyPair& json_key_pair, const Json& value)
-		{
-			std::string keys;
-			LOG_ERROR("<{}> expected {} but was type {}", json_key_pair.Log(), type, std::string(value.type_name()));
-
-			throw std::exception();
-		}
-
-		void DoesExist(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			if (!json_key_pair.GetJson().contains(key))
-			{
-				LOG_ERROR("The key <{}> could not be found", json_key_pair.Log(key));
-				throw std::exception();
-			}
-		}
-
-		size_t GetArraySize(const Json& value)
-		{
-			if (value.is_array())
-			{
-				return value.size();
-			}
-			else if(value.is_object())
-			{
-				return 1;
-			}
-			else
-			{
-				LOG_CRITICAL("Expected array or object but was type {}", std::string(value.type_name()));
-				throw std::exception();
-			}
-		}
-
-
-		void IsBool(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_boolean())
-			{
-				ThrowIncorrectType("bool", json_key_pair, value);
-			}
-		}
-
-		void IsInt(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_number_integer())
-			{
-				ThrowIncorrectType("integer", json_key_pair, value);
-			}
-		}
-
-		void IsFloat(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_number_float())
-			{
-				ThrowIncorrectType("float", json_key_pair, value);
-			}
-		}
-
-		void IsNumber(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_number())
-			{
-				ThrowIncorrectType("number", json_key_pair, value);
-			}
-		}
-
-		void IsString(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_string())
-			{
-				ThrowIncorrectType("string", json_key_pair, value);
-			}
-		}
-
-		void IsArray(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_array())
-			{
-				ThrowIncorrectType("array", json_key_pair, value);
-			}
-		}
-
-		void IsObject(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_object())
-			{
-				ThrowIncorrectType("object", json_key_pair, value);
-			}
-		}
-
-		void IsArrayOrObject(const JsonKeyPair& json_key_pair)
-		{
-			Json value = json_key_pair.GetJson();
-			if (!value.is_structured())
-			{
-				ThrowIncorrectType("array or object", json_key_pair, value);
-			}
-		}
-
-
-		void IsBool(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsBool(a);
-		}
-
-		void IsInt(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsInt(a);
-		}
-
-		void IsFloat(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsFloat(a);
-		}
-
-		void IsNumber(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsNumber(a);
-		}
-
-		void IsString(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsString(a);
-		}
-
-		void IsArray(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsArray(a);
-		}
-
-		void IsObject(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsObject(a);
-		}
-
-		void IsArrayOrObject(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			DoesExist(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			IsArrayOrObject(a);
-		}
-		
-
-		void IsNumbers(const JsonKeyPair& json_key_pair)
-		{
-			auto& value = json_key_pair.GetJson();
-			if (!value.is_number())
-			{
-				ThrowIncorrectType("number", json_key_pair, value);
-			}
-		}
-
-		void IsTypeArray(const JsonKeyPair& json_key_pair, const std::string& key, void(ConfigImporter::*IsType)(const JsonKeyPair&))
-		{
-			IsArray(json_key_pair, key);
-			JsonKeyPair a(json_key_pair, key);
-			Json n = json_key_pair.GetJson()[key].size();
-			for (size_t i = 0; i < n; i++)
-			{
-				a.SetIndex(i);
-				(this->*IsType)(a);
-			}
-		}
-
-		void IsIntArray(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			IsTypeArray(json_key_pair, key, &ConfigImporter::IsInt);
-		}
-
-		void IsNumberArray(const JsonKeyPair& json_key_pair, const std::string& key)
-		{
-			IsTypeArray(json_key_pair, key, &ConfigImporter::IsNumber);
-		}
-
-
 	};
 }
