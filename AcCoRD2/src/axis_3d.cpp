@@ -17,6 +17,21 @@ namespace accord
 		throw std::exception();
 	}
 
+	Axis3D StringToEnum(const std::string& axis) {
+		if (axis == "x")
+		{
+			return Axis3D::x;
+		} else if (axis == "y")
+		{
+			return Axis3D::y;
+		} else if (axis == "z")
+		{
+			return Axis3D::z;
+		}
+		LOG_CRITICAL("Unknown Axis3D string {}", axis);
+		throw std::exception();
+	}
+
 	std::array<Axis3D, 2> GetOtherAxes(Axis3D axis)
 	{
 		switch (axis)
@@ -35,5 +50,10 @@ namespace accord
 	void to_json(Json& j, Axis3D axis)
 	{
 		j = EnumToString(axis);
+	}
+
+	void from_json(const Json& j, Axis3D& axis) 
+	{
+		axis = StringToEnum(j.get<std::string>());
 	}
 }

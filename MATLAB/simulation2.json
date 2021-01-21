@@ -1,16 +1,19 @@
 {
-   "NumberOfRepeats":5,
+   "SaveToFolder": "D:/dev/meso_sim",
+   "NumberOfRealisations":5,
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":2,
    "DefaultProperties":{
       "DiffusionCoefficients":[
          1,
-         2
+         2,
+         3
       ],
       "MicroscopicTimeStep":1
    },
-   "MicroscopicRegions":{
+   "MicroscopicRegions":[
+     {
       "Name":"MicroRegion1",
       "Shape":"Box",
       "Origin":[
@@ -29,13 +32,14 @@
          4
       ],
       "NumberOfSubvolumes":[
-         1,
-         2,
-         3
+         [1, 1, 1],
+         [1, 2, 1],
+         [1, 1, 3]
       ],
       "TimeStep":0.1,
       "Priority":0
-   },
+   }
+   ],
    "MesoscopicRegions":{
       "Name":"MesoRegion1",
       "Origin":[

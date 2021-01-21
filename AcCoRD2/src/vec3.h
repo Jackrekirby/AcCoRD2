@@ -204,4 +204,11 @@ namespace accord
 	{
 		j = { v.x, v.y, v.z };
 	}
+
+	template<typename T>
+	void from_json(const Json& j, Vec3<T>& v) {
+		j.at(0).get_to(v.x);
+		j.at(1).get_to(v.y);
+		j.at(2).get_to(v.z);
+	}
 }

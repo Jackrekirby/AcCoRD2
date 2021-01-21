@@ -62,4 +62,10 @@ namespace accord
         j = { v.x, v.y, v.z };
     }
 
+    void from_json(const Json& j, Vec3b& v) {
+        j.at(0).get_to(v.x);
+        j.at(1).get_to(v.y);
+        j.at(2).get_to(v.z);
+    }
+
 }

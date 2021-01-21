@@ -334,7 +334,10 @@
     <ClCompile Include="src\json_key_pair.cpp">
       <Filter>src\simulation\import</Filter>
     </ClCompile>
-    <ClCompile Include="config_importer.cpp">
+    <ClCompile Include="src\microscopic_surface_type.cpp">
+      <Filter>src\simulation\microscopic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\config_importer.cpp">
       <Filter>src\simulation\import</Filter>
     </ClCompile>
   </ItemGroup>

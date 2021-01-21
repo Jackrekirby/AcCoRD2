@@ -31,7 +31,6 @@ namespace accord
 		keys.append(key);
 	}
 
-
 	bool JsonKeyPair::IsKey(const std::string& key) const
 	{
 		return (GetJson().contains(key));
@@ -149,6 +148,11 @@ namespace accord
 		}
 	}
 
+	void JsonKeyPair::IsPositive()
+	{
+		IsGreaterThan(0);
+	}
+
 
 	void JsonKeyPair::IsBool()
 	{
@@ -213,7 +217,6 @@ namespace accord
 			ThrowIncorrectType("array or object");
 		}
 	}
-
 
 	void JsonKeyPair::IsArrayOfType(void(JsonKeyPair::* IsType)())
 	{

@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="config_importer.cpp" />
+    <ClCompile Include="src\config_importer.cpp" />
+    <ClCompile Include="src\microscopic_surface_type.cpp" />
     <ClCompile Include="src\json_key_pair.cpp" />
     <ClCompile Include="src\mesoscopic_subvolume_event.cpp" />
     <ClCompile Include="src\active_actor_id.cpp" />

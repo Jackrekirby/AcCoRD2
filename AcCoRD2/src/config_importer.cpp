@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "config_importer.h"
 #include "json_key_pair.h"
+#include "environment.h"
 #include <fstream>
 
 namespace accord
@@ -25,12 +26,19 @@ namespace accord
 		ValidateJson();
 	}
 
+	const Json& ConfigImporter::GetJson()
+	{
+		return j;
+	}
+
 	void ConfigImporter::ValidateJson()
 	{
 		JsonKeyPair config(j);
 		JsonKeyPair a;
 
-		a = config.Add("NumberOfRepeats");
+		a = config.Add("SaveToFolder");
+		a.IsString();
+		a = config.Add("NumberOfRealisations");
 		a.IsInt();
 		a.IsPositive();
 		a = config.Add("FinalSimulationTime");
@@ -61,7 +69,7 @@ namespace accord
 			shape_owner.Add("Origin").IsArrayOfNumbers();
 			JsonKeyPair length = shape_owner.Add("Length");
 			length.IsArrayOfNumbers();
-			length.IsGreaterThan(0);
+			length.IsPositive();
 		}
 		else if (shape_str == "Sphere")
 		{
@@ -70,9 +78,10 @@ namespace accord
 		}
 		else if (shape_str == "Cylinder")
 		{
-			shape_owner.Add("Origin").IsArrayOfNumbers();
-			shape_owner.Add("Length").IsArrayOfNumbers();
-			shape_owner.Add("Axis").IsArrayOfNumbers();
+			shape_owner.Add("BaseCentre").IsArrayOfNumbers();
+			shape_owner.Add("Radius").IsNumber();
+			shape_owner.Add("Length").IsNumber();
+			shape_owner.Add("Axis").IsString();
 		}
 		else
 		{
@@ -97,7 +106,18 @@ namespace accord
 				region_names.emplace_back(name.GetJson().get<std::string>());
 				microscopic_regions.Add("SurfaceType").IsString();
 				microscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers();
-				microscopic_regions.Add("NumberOfSubvolumes").IsArrayOfInts();
+
+
+				JsonKeyPair number_of_subvolumes = microscopic_regions.Add("NumberOfSubvolumes");
+				number_of_subvolumes.IsArrayOfArrays();
+				size_t number_of_subvolumes_size = number_of_subvolumes.GetArraySize();
+				for (size_t i2 = 0; i2 < number_of_subvolumes_size; i2++)
+				{
+					number_of_subvolumes.SetIndex(i2);
+					JsonKeyPair nos(number_of_subvolumes.GetJson());
+					nos.IsArrayOfInts();
+				}
+
 				microscopic_regions.Add("TimeStep").IsNumber();
 				microscopic_regions.Add("Priority").IsInt();
 

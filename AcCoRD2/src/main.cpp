@@ -168,6 +168,7 @@ void TestSimpleEnvironment2()
 
 
 // region relationship of type none should be done automatically for neighbours (would require region relation checking)
+// finish adding in range functions for arrays
 
 void TestMesoscopic()
 {
@@ -376,6 +377,69 @@ void TestMesoscopic()
 //}
 
 #include "config_importer.h"
+void Accord()
+{
+	using namespace accord;
+	ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
+	const Json& j = config.GetJson();
+
+	Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), j["PassiveActors"].size(), j["ActiveActors"].size(), j["RandomNumberSeed"].get<uint64_t>());
+
+	Vec3i vec = j.at("DefaultProperties").at("DiffusionCoefficients").get<Vec3i>();
+
+	LOG_INFO(vec);
+
+	for (auto& region : j["MicroscopicRegions"])
+	{
+		std::string shape_str = region["Shape"].get<std::string>();
+
+		microscopic::SurfaceType surface_type = region["SurfaceType"].get<microscopic::SurfaceType>();
+		std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
+		std::vector<Vec3i> n_subvolumes = region["NumberOfSubvolumes"].get<std::vector<Vec3i>>();
+		double time_step = region["TimeStep"].get<double>();
+		int priority = region["Priority"].get<int>();
+
+		for (auto& s : n_subvolumes)
+		{
+			LOG_INFO(s);
+		}
+
+			
+		if (shape_str == "Box")
+		{
+			Vec3d origin = region["Origin"].get<Vec3d>();
+			Vec3d length = region["Length"].get<Vec3d>();
+			shape::basic::Box box(origin, length);
+			LOG_INFO("added box");
+			Environment::AddRegion(box, surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
+		}
+		else if (shape_str == "Sphere")
+		{
+			Vec3d centre = region["Centre"].get<Vec3d>();
+			double radius = region["Radius"].get<double>();
+			shape::basic::Sphere sphere(centre, radius);
+
+			Environment::AddRegion(sphere, surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
+		}
+		else if (shape_str == "Cylinder")
+		{
+			Vec3d base_centre = region["BaseCentre"].get<Vec3d>();
+			double radius = region["Radius"].get<double>();
+			double length = region["Length"].get<double>();
+			Axis3D axis = region["Axis"].get<Axis3D>();
+			shape::basic::Cylinder cylinder(base_centre, radius, length, axis);
+
+			Environment::AddRegion(cylinder, surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
+		}
+		else
+		{
+			LOG_CRITICAL("Shape must be of type \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", shape_str);
+			throw std::exception();
+		}
+	}
+}
+
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -385,7 +449,7 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	accord::ConfigImporter c("C:/dev/AcCoRD2/MATLAB/simulation2.json");
+	Accord();
 	//ReadJsonImport();
 
 

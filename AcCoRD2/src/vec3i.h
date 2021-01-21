@@ -136,4 +136,6 @@ namespace accord
 
 	void to_json(Json& j, const Vec3i& v);
 
+	void from_json(const Json& j, Vec3i& v);
+
 }

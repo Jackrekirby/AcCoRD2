@@ -35,9 +35,58 @@ namespace accord
 		void IsInRange(int min, int max);
 		
 
+
+		void IsBool();
+
+		void IsInt();
+
+		void IsFloat();
+
+		void IsNumber();
+
+		void IsString();
+
+		void IsArray();
+	
+		void IsObject();
+
+		void IsStructure();
+
+
+		void IsArrayOfType(void(JsonKeyPair::* IsType)());
+
+		void IsArrayOfBools();
+
+		void IsArrayOfInts();
+
+		void IsArrayOfFloats();
+
+		void IsArrayOfNumbers();
+
+		void IsArrayOfStrings();
+
+		void IsArrayOfArrays();
+
+		void IsArrayOfObjects();
+
+		void IsArrayOfStructures();
+
+
+		void IsPositive();
+
 		template<typename T>
 		void IsLessOrEqualTo(T max)
 		{
+			if (GetJson().is_array())
+			{
+				size_t n = GetJson().size();
+				for (size_t i = 0; i < n; i++)
+				{
+					SetIndex(i);
+					IsLessOrEqualTo(max);
+				}
+				has_index = false;
+			}
 			T value = GetJson().get<T>();
 			if (!(value <= max))
 			{
@@ -70,17 +119,23 @@ namespace accord
 		template<typename T>
 		void IsGreaterOrEqualTo(T min)
 		{
+			if (GetJson().is_array())
+			{
+				size_t n = GetJson().size();
+				for (size_t i = 0; i < n; i++)
+				{
+					SetIndex(i);
+					IsGreaterOrEqualTo(min);
+				}
+				has_index = false;
+				return;
+			}
 			T value = GetJson().get<T>();
 			if (!(value >= min))
 			{
 				LOG_ERROR("The key <{}> had value = {} but value >= {}", Log(), value, min);
 				throw std::exception();
 			}
-		}
-
-		void IsPositive()
-		{
-			IsGreaterThan(0);
 		}
 
 		template<typename T>
@@ -134,43 +189,6 @@ namespace accord
 				}
 			}
 		}
-
-		void operator < (int max);
-
-		void IsBool();
-
-		void IsInt();
-
-		void IsFloat();
-
-		void IsNumber();
-
-		void IsString();
-
-		void IsArray();
-	
-		void IsObject();
-
-		void IsStructure();
-
-
-		void IsArrayOfType(void(JsonKeyPair::* IsType)());
-
-		void IsArrayOfBools();
-
-		void IsArrayOfInts();
-
-		void IsArrayOfFloats();
-
-		void IsArrayOfNumbers();
-
-		void IsArrayOfStrings();
-
-		void IsArrayOfArrays();
-
-		void IsArrayOfObjects();
-
-		void IsArrayOfStructures();
 	private:
 		Json j;
 		std::string keys;

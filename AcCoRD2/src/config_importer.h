@@ -8,6 +8,8 @@ namespace accord
 	{
 	public:
 		ConfigImporter(std::string file_path);
+
+		const Json& GetJson();
 	private:
 		Json j;
 		std::vector<std::string> region_names;

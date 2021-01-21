@@ -6,4 +6,6 @@ namespace accord::microscopic
 	{
 		Absorbing, Adsorbing, Membrane, Reflecting, None
 	};
+
+	void from_json(const Json& j, SurfaceType& surface_type);
 }
