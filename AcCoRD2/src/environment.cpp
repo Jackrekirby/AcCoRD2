@@ -11,15 +11,15 @@
 namespace accord
 {
 	void Environment::Init(std::string simulation_path, int num_realisations,
-		double run_time, int num_molecule_types, int num_microscopic_regions,
-		int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
+		double run_time, int num_molecule_types, size_t num_microscopic_regions,
+		size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors,
 		uint64_t seed)
 	{
 		MoleculeID::SetNumIDs(num_molecule_types);
-		MicroscopicRegionID::SetNumIDs(num_microscopic_regions);
-		MesoscopicRegionID::SetNumIDs(num_mesoscopic_regions);
-		PassiveActorID::SetNumIDs(num_passive_actors);
-		ActiveActorID::SetNumIDs(num_active_actors);
+		MicroscopicRegionID::SetNumIDs(static_cast<int>(num_microscopic_regions));
+		MesoscopicRegionID::SetNumIDs(static_cast<int>(num_mesoscopic_regions));
+		PassiveActorID::SetNumIDs(static_cast<int>(num_passive_actors));
+		ActiveActorID::SetNumIDs(static_cast<int>(num_active_actors));
 
 		Environment::time = 0;
 		Environment::run_time = run_time;
@@ -380,4 +380,24 @@ namespace accord
 	int Environment::current_realisation = 0;
 	uint64_t Environment::seed = 1;
 	EventQueue Environment::event_queue;
+
+	void from_json(const Json& j, Environment::RelationshipPriority& relationship_priority)
+	{
+		std::string relationship_priority_str = j.get<std::string>();
+		if (relationship_priority_str == "A")
+		{
+			relationship_priority = Environment::RelationshipPriority::A;
+		}
+		else if (relationship_priority_str == "B")
+		{
+			relationship_priority = Environment::RelationshipPriority::B;
+		}
+		else if (relationship_priority_str == "None")
+		{
+			relationship_priority = Environment::RelationshipPriority::None;
+		} else
+		{
+			LOG_CRITICAL("RelationshipPriority expected \"A\", \"B\", or \"None\" but was {}", relationship_priority_str);
+		}
+	}
 }

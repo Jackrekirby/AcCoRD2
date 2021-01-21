@@ -11,8 +11,8 @@ namespace accord
 	{
 	public:
 		static void Init(std::string simulation_path, int num_realisations,
-			double run_time, int num_molecule_types, int num_microscopic_regions,
-			int num_mesoscopic_regions, int num_passive_actors, int num_active_actors, 
+			double run_time, int num_molecule_types, size_t num_microscopic_regions,
+			size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors,
 			uint64_t seed);
 
 		static void SetTime(double time);
@@ -108,4 +108,6 @@ namespace accord
 		static std::vector<std::unique_ptr<ActiveActor>> active_actors;
 		static std::vector<std::unique_ptr<PassiveActor>> passive_actors;
 	};
+
+	void from_json(const Json& j, Environment::RelationshipPriority& relationship_priority);
 }

@@ -19,7 +19,6 @@
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
 #include "reaction_manager.h"
-#include "basic_shape_3d.h"
 //#include "passive_actor2.h"
 
 #include "active_actor_shape.h"
@@ -28,6 +27,7 @@
 #include "active_actor_random_bits.h"
 
 #include "mesoscopic_region.h"
+#include "config_importer.h"
 
 void TestSimpleEnvironment2()
 {
@@ -167,8 +167,7 @@ void TestSimpleEnvironment2()
 
 
 
-// region relationship of type none should be done automatically for neighbours (would require region relation checking)
-// finish adding in range functions for arrays
+
 
 void TestMesoscopic()
 {
@@ -351,308 +350,21 @@ void TestMesoscopic()
 //   pass enums by const ref
 // X does FirstOrderReaction and SecondOrderReaction for microscopic regions need a next realisation function?
 // 	 test delete area of mesoscopic region
-
-//void ReadJsonValue(accord::Json& j, std::string key, bool& value)
-//{
-//	if (j["key"].is_boolean())
-//	{
-//		value = j[key].get<bool>();
-//	}
-//	else
-//	{
-//		LOG_ERROR("{} expected type bool but was type ", key, std::string(j[key].type_name()));
-//		throw std::exception();
-//	}
-//}
-//void ReadJsonImport()
-//{
-//	std::string path = "C:/dev/AcCoRD2/MATLAB/simulation.json";
-//	std::ifstream i(path);
-//	accord::Json j;
-//	i >> j;
-//	
-//	bool n;
-//	ReadJsonValue(j, "NumberOfRepeats", n);
-//
-//}
-
 // check logging of array of array of ints
+// region relationship of type none should be done automatically for neighbours (would require region relation checking)
+// finish adding in range functions for arrays
+// RenameIsInt to ThrowIfNotInt
 
-namespace accord
-{
-	class RegionIDList
-	{
-	public:
-		MicroscopicRegionIDs microscopic_ids;
-		MesoscopicRegionIDs mesoscopic_ids;
-	};
-	
-	RegionIDList GetRegionIDsFromStrings(std::vector<std::string> region_names, std::vector<std::string> microscopic_region_names, std::vector<std::string> mesoscopic_region_names)
-	{
-		RegionIDList region_list;
-
-		for (auto& region_name : region_names)
-		{
-			auto micro_region_it = std::find(microscopic_region_names.begin(), microscopic_region_names.end(), region_name);
-			if (micro_region_it != microscopic_region_names.end())
-			{
-				int region_id = micro_region_it - microscopic_region_names.begin();
-				region_list.microscopic_ids.emplace_back(region_id);
-			}
-			else
-			{
-				auto meso_region_it = std::find(mesoscopic_region_names.begin(), mesoscopic_region_names.end(), region_name);
-				if (meso_region_it != mesoscopic_region_names.end())
-				{
-					int region_id = meso_region_it - mesoscopic_region_names.begin();
-					region_list.mesoscopic_ids.emplace_back(region_id);
-				}
-				else
-				{
-					LOG_CRITICAL("Region name was not found in list of region names");
-					throw std::exception();
-				}
-			}
-		}
-	}
-
-	class JsonToShape
-	{
-	public:
-		JsonToShape()
-		{
-			
-		}
-
-		enum class Shape
-		{
-			Box, Sphere, Cylinder
-		};
-
-		Shape CreateShape(const Json& shape)
-		{
-			std::string shape_str = shape.get<std::string>();
-			if (shape_str == "Box")
-			{
-				Vec3d origin = shape["Origin"].get<Vec3d>();
-				Vec3d length = shape["Length"].get<Vec3d>();
-				box = std::make_optional<shape::basic::Box>(origin, length);
-				return Shape::Box;
-			}
-			else if (shape_str == "Sphere")
-			{
-				Vec3d centre = shape["Centre"].get<Vec3d>();
-				double radius = shape["Radius"].get<double>();
-				sphere = std::make_optional<shape::basic::Sphere>(centre, radius);
-				return Shape::Sphere;
-			}
-			else if (shape_str == "Cylinder")
-			{
-				Vec3d base_centre = shape["BaseCentre"].get<Vec3d>();
-				double radius = shape["Radius"].get<double>();
-				double length = shape["Length"].get<double>();
-				Axis3D axis = shape["Axis"].get<Axis3D>();
-				cylinder = std::make_optional<shape::basic::Cylinder>(base_centre, radius, length, axis);
-				return Shape::Cylinder;
-			}
-			else
-			{
-				LOG_CRITICAL("Shape must be of type \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", shape_str);
-				throw std::exception();
-			}
-		}
-
-		std::optional<shape::basic::Box> box;
-		std::optional<shape::basic::Sphere> sphere;
-		std::optional<shape::basic::Cylinder> cylinder;
-	};
-}
-
-#include "config_importer.h"
-void Accord()
-{
-	using namespace accord;
-	ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
-	const Json& j = config.GetJson();
-
-	Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), j["PassiveActors"].size(), j["ActiveActors"].size(), j["RandomNumberSeed"].get<uint64_t>());
-
-	Vec3i vec = j.at("DefaultProperties").at("DiffusionCoefficients").get<Vec3i>();
-
-	std::vector<std::string> microscopic_region_names, mesoscopic_region_names;
-	microscopic_region_names.reserve(j["MicroscopicRegions"].size());
-	mesoscopic_region_names.reserve(j["MesoscopicRegions"].size());
-
-	LOG_INFO("Importing Microscopic Regions");
-	for (auto& region : j["MicroscopicRegions"])
-	{
-		microscopic_region_names.emplace_back(region["Name"].get<std::string>());
-		microscopic::SurfaceType surface_type = region["SurfaceType"].get<microscopic::SurfaceType>();
-		std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
-		std::vector<Vec3i> n_subvolumes = region["NumberOfSubvolumes"].get<std::vector<Vec3i>>();
-		double time_step = region["TimeStep"].get<double>();
-		int priority = region["Priority"].get<int>();
-			
-		JsonToShape j2s;
-		JsonToShape::Shape j_shape = j2s.CreateShape(region["Shape"]);
-		switch (j_shape)
-		{
-		case JsonToShape::Shape::Box:
-			Environment::AddRegion(j2s.box.value(), surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
-			break;
-		case JsonToShape::Shape::Sphere:
-			Environment::AddRegion(j2s.sphere.value(), surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
-			break;
-		case JsonToShape::Shape::Cylinder:
-			Environment::AddRegion(j2s.cylinder.value(), surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
-			break;
-		}
-	}
-
-	LOG_INFO("Importing MesoscopicRegions Regions");
-	for (auto& region : j["MesoscopicRegions"])
-	{
-		mesoscopic_region_names.emplace_back(region["Name"].get<std::string>());
-		Vec3d origin = region["Origin"].get<Vec3d>();
-		double subvolume_length = region["SubvolumeLength"].get<double>();
-		std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
-		Vec3i n_subvolumes = region["NumberOfSubvolumes"].get<Vec3i>();
-		int priority = region["Priority"].get<int>();
-
-		Environment::AddMesoscopicRegion(origin, subvolume_length, n_subvolumes, diffision_coefficients, priority);
-	}
-
-	LOG_INFO("Importing PassiveActors");
-	for (auto& actor : j["PassiveActors"])
-	{
-		double start_time = actor["StartTime"].get<double>();
-		int priority = actor["Priority"].get<int>();
-		double time_step = actor["TimeStep"].get<double>();
-
-		bool record_positions = actor["RecordPositions"].get<bool>();
-		bool record_observation_time = actor["RecordObservationTime"].get<bool>();
-		MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToObserve"].get<MoleculeIDs>();
-
-		MicroscopicRegionIDs microscopic_ids;
-		MesoscopicRegionIDs mesoscopic_ids;
-		if (actor.contains("RegionsToObserve"))
-		{
-			std::vector<std::string> regions_to_observe = actor["RegionsToObserve"].get<std::vector<std::string>>();
-
-			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_observe, microscopic_region_names, mesoscopic_region_names);
-
-			Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(region_list.microscopic_ids, region_list.mesoscopic_ids,
-				molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
-		}
-		else if (actor.contains("Shape"))
-		{
-			JsonToShape j2s;
-			JsonToShape::Shape j_shape = j2s.CreateShape(actor["Shape"]);
-			switch (j_shape)
-			{
-			case JsonToShape::Shape::Box:
-				Environment::GetPassiveActors().emplace_back(std::make_unique<BoxPassiveActor>(j2s.box.value(), molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
-				break;
-			case JsonToShape::Shape::Sphere:
-				break;
-			case JsonToShape::Shape::Cylinder:
-				break;
-			}
-		}
-		else
-		{
-			LOG_CRITICAL("Passive actor must provide field \"RegionsToObserve\", or \"Shape\" but neither exists");
-			throw std::exception();
-		}
-
-	}
-
-	LOG_INFO("Importing ActiveActors");
-	for (auto& actor : j["ActiveActors"])
-	{
-
-		double start_time = actor["StartTime"].get<double>();
-		int priority = actor["Priority"].get<int>();
-
-		double action_interval = actor["ActionInterval"].get<double>();
-		double release_interval = actor["ReleaseInterval"].get<double>();
-		int modulation_strength = actor["ModulationStrength"].get<int>();
-		MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToObserve"].get<MoleculeIDs>();
-
-		std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
-		RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in, microscopic_region_names, mesoscopic_region_names);
-
-		JsonToShape j2s;
-		JsonToShape::Shape j_shape = j2s.CreateShape(actor["Shape"]);
-		std::unique_ptr<ActiveActorShape> active_actor_shape;
-		switch (j_shape)
-		{
-		case JsonToShape::Shape::Box:
-			active_actor_shape = std::make_unique<ActiveActorBox>(j2s.box.value());
-			break;
-		case JsonToShape::Shape::Sphere:
-			break;
-		case JsonToShape::Shape::Cylinder:
-			break;
-		}
-
-		std::string type_str = actor["Type"].get<std::string>();
-		if (type_str == "RandomTime")
-		{
-		}
-		else if (type_str == "RandomBits")
-		{
-			int symbol_size = actor["SymbolSize"].get<int>();
-			int slot_interval = actor["SlotInterval"].get<double>();
-			double bit_probability = actor["BitProbability"].get<double>();
-		}
-		else if (type_str == "NonRandom")
-		{
-			int symbol_size = actor["SymbolSize"].get<int>();
-			int slot_interval = actor["SlotInterval"].get<double>();
-			std::vector<int> bit_sequence = actor["BitSequence"].get<std::vector<int>>();
-		}
-		else
-		{
-			LOG_ERROR("The field <{}> expected value of \"RandomTime\", \"RandomBits\" or \"NonRandom\" but was \"{}\"", type_str);
-			throw std::exception();
-		}
-	}
-}
-
+// current relationships are only for microscopci regions
+// need to be able to search in microscopic regions only
 
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
 	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
 	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");       
-
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	Accord();
-	//ReadJsonImport();
-
-
-
-	//TestMesoscopic();
-
-	//Event2Test();
-	//TestSimpleEnvironment2();
-	//ActiveActorTest();
-
-	//TestEnvironment2();
-	
-	//TestEnvironment();
-	//accord::LoggerTest();
-	//accord::JsonTest();
-	//accord::RandomTest();
-	//accord::VecTest();
-	//accord::OutputBinaryTest();
-	//accord::OutputBinaryVectorTest();
-	//accord::WriteBinarySingles();
-	//accord::EventQueueTest();
-	//accord::ShapeRelationTest();
-	//accord::Shape3DRelationTest();
-	//accord::ShapeCollisionTest();
+	accord::CreateEnvironment();
 }

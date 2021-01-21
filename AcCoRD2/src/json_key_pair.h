@@ -189,14 +189,17 @@ namespace accord
 				}
 			}
 		}
+
+		void ThrowIncorrectType(const std::string& type);
+
+		void ThrowIfNotKey(const std::string& key) const;
+
 	private:
 		Json j;
 		std::string keys;
 		size_t index;
 		bool has_index;
 
-		void ThrowIncorrectType(const std::string& type);
 
-		void ThrowIfNotKey(const std::string& key) const;
 	};
 }
