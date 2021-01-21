@@ -72,4 +72,8 @@ namespace accord
 		}
 
 	int MoleculeID::count = 0;
+	void from_json(const Json& j, MoleculeID& id)
+	{
+		id = j.get<int>();
+	}
 }

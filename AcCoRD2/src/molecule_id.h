@@ -33,4 +33,6 @@ namespace accord
 	};
 	
 	using MoleculeIDs = std::vector<MoleculeID>;
+
+	void from_json(const Json& j, MoleculeID& id);
 }

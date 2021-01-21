@@ -40,18 +40,14 @@
       "Priority":0
    }
    ],
-   "MesoscopicRegions":{
+   "MesoscopicRegions":[{
       "Name":"MesoRegion1",
       "Origin":[
          0,
          0,
          0
       ],
-      "SubvolumeLength":[
-         1,
-         1,
-         1
-      ],
+      "SubvolumeLength":0,
       "NumberOfSubvolumes":[
          1,
          2,
@@ -63,12 +59,12 @@
       ],
       "RemoveSubvolumes":0,
       "Priority":0
-   },
-   "PassiveActors":{
+   }],
+   "PassiveActors":[{
       "Name":"PassiveActor1",
       "MoleculeTypesToObserve":[
          0,
-         2
+         1
       ],
       "StartTime":0,
       "Priority":0,
@@ -90,7 +86,7 @@
          1,
          1
       ]
-   },
+   }],
    "ActiveActors":[
       {
          "Name":"ActiveActor1",

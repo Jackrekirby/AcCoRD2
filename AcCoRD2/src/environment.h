@@ -75,6 +75,9 @@ namespace accord
 		static void AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type,
 			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 			double time_step, int priority);
+
+		static void AddMesoscopicRegion(const Vec3d& origin, double length, const Vec3i& n_subvolumes, 
+			const std::vector<double>& diffusion_coefficients, int priority);
 		
 		static void DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 			RelationshipPriority priority,

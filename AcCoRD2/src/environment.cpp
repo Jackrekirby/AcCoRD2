@@ -257,6 +257,13 @@ namespace accord
 		return event_queue;
 	}
 
+	void Environment::AddMesoscopicRegion(const Vec3d& origin, double length, const Vec3i& n_subvolumes, const std::vector<double>& diffusion_coefficients, int priority)
+	{
+		std::vector<Vec3i> removedSubvolumes;
+		mesoscopic_regions.emplace_back(origin, length, n_subvolumes, diffusion_coefficients, removedSubvolumes, 
+			priority, static_cast<int>(mesoscopic_regions.size()));
+	}
+
 	// the only type of relationship which does not need to be defined is a neighbour and none
 	// if region a has a reflective surface and b is the neighbour
 	void Environment::DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,

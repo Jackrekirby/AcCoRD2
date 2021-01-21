@@ -9,6 +9,11 @@ namespace accord
 
 	}
 
+	ActiveActorBox::ActiveActorBox(const shape::basic::Box& box)
+		: shape::generating::Box(box), shape::basic::Box(box)
+	{
+	}
+
 	Vec3d ActiveActorBox::GenerateMolecule()
 	{
 		return shape::generating::Box::GeneratePointInVolume();

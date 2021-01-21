@@ -143,7 +143,7 @@ namespace accord
 				name.IsString();
 				region_names.emplace_back(name.GetJson().get<std::string>());
 				mesoscopic_regions.Add("Origin").IsArrayOfNumbers();
-				mesoscopic_regions.Add("SubvolumeLength").IsArrayOfNumbers();
+				mesoscopic_regions.Add("SubvolumeLength").IsNumber();
 				mesoscopic_regions.Add("NumberOfSubvolumes").IsArrayOfInts();
 				mesoscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers();
 				mesoscopic_regions.Add("Priority").IsInt();
@@ -200,7 +200,7 @@ namespace accord
 				}
 				else
 				{
-					LOG_ERROR("The field <{}> expected value of \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", type.Log(), type_str);
+					LOG_ERROR("The field <{}> expected value of \"RandomTime\", \"RandomBits\" or \"NonRandom\" but was \"{}\"", type.Log(), type_str);
 					throw std::exception();
 				}
 			}

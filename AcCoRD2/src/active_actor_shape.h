@@ -26,6 +26,8 @@ namespace accord
 	public:
 		ActiveActorBox(const Vec3d& origin, const Vec3d& length);
 
+		ActiveActorBox(const shape::basic::Box& box);
+
 		Vec3d GenerateMolecule();
 
 		double CalculateVolume();
