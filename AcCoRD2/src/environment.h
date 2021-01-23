@@ -45,6 +45,9 @@ namespace accord
 
 		static std::vector<std::unique_ptr<ActiveActor>>& GetActiveActors();
 
+		static void RunSimulation();
+
+		static void AddEventsToEventQueue();
 
 		static std::string GetRealisationPath();
 

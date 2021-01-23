@@ -349,12 +349,13 @@ void TestMesoscopic()
 // region relationship of type none should be done automatically for neighbours (would require region relation checking)
 // finish adding in range functions for arrays
 // RenameIsInt to ThrowIfNotInt
-
 // current relationships are only for microscopci regions
 // need to be able to search in microscopic regions only
 // turn microscopic surface type into surface type per molecule type
 // consider grouping all optional json keys 
-
+// mesoscopic region no logn need to link sibling subvolumes and subvoluem queues later as none are deleted
+// import shapes from config file in MATLAB
+// https://uk.mathworks.com/matlabcentral/answers/724917-forcing-a-scalar-to-be-represented-as-a-1x1-vector
 
 int main()
 {
@@ -364,5 +365,11 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	accord::ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
+	//accord::ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
+	using namespace accord;
+	
+	ConfigImporter config("C:/dev/AcCoRD2/configs/sample1.json");
+	Environment::LinkReactionsToRegions();
+	Environment::AddEventsToEventQueue();
+	Environment::RunSimulation();
 }

@@ -221,6 +221,68 @@ namespace accord
 		return active_actors;
 	}
 
+	void Environment::RunSimulation()
+	{
+		{
+			do {
+				LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
+				if (Environment::GetRealisationNumber() > 0)
+				{
+					for (auto& passive_actor : Environment::GetPassiveActors())
+					{
+						passive_actor->NextRealisation();
+					}
+					for (auto& region : Environment::GetRegions())
+					{
+						region->NextRealisation();
+					}
+					for (auto& active_actors : Environment::GetActiveActors())
+					{
+						active_actors->NextRealisation();
+					}
+					for (auto& region : Environment::GetMesoscopicRegions())
+					{
+						region.NextRealisation();
+					}
+				}
+				while (true)
+				{
+					auto& event = Environment::GetEventQueue().Front();
+					Environment::SetTime(event.GetEventTime());
+					if (Environment::GetTime() > Environment::GetRunTime())
+					{
+						break;
+					}
+					//LOG_INFO("Event:({})", event.LogEvent());
+					event.Run();
+				}
+			} while (Environment::NextRealisation());
+		}
+	}
+
+	void Environment::AddEventsToEventQueue()
+	{
+		for (auto& region : Environment::GetRegions())
+		{
+			Environment::GetEventQueue().Add(region.get());
+		}
+
+		for (auto& region : Environment::GetMesoscopicRegions())
+		{
+			Environment::GetEventQueue().Add(&region);
+		}
+
+		for (auto& actor : Environment::GetPassiveActors())
+		{
+			Environment::GetEventQueue().Add(actor.get());
+		}
+
+		for (auto& actor : Environment::GetActiveActors())
+		{
+			Environment::GetEventQueue().Add(actor.get());
+		}
+	}
+
 	std::string Environment::GetRealisationPath()
 	{
 		return Environment::GetSimulationPath() +

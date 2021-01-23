@@ -1,0 +1,41 @@
+{
+   "SaveToFolder": "D:/dev/sample1",
+   "NumberOfRealisations":5,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":1,
+   "MicroscopicRegions":[
+		{
+		  "Name":"MicroBox1",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[0, 0, 0],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceType":"Reflecting",
+		  "DiffusionCoefficients":[0.1],
+		  "NumberOfSubvolumes":[ [2, 2, 2] ],
+		  "TimeStep":0.05,
+		  "Priority":0
+	   }
+   ],
+   "PassiveActors":[
+		{
+		  "Name":"PassiveActor1",
+		  "RecordPositions":true,
+		  "RecordObservationTime":true,
+		  "RegionsToObserve":[ "MicroBox1"],
+		  "MoleculeTypesToObserve":[ 0 ],
+		  "StartTime":0,
+		  "TimeStep":0.05,
+		  "Priority":0
+		}
+   ],
+   "ZerothOrderReactions":[
+      {
+         "Products":[0],
+         "ReactionRate":1,
+         "OccurInRegions":[ "MicroBox1" ]
+      }
+   ]
+}

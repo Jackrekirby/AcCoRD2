@@ -16,14 +16,25 @@
 clear all;
 clc;
 tic;
-sim = Accord.importFiles("D:\dev", "meso_sim", [], [], true);
+sim = Accord.importFiles("D:\dev", "sample1", [], [], true);
 toc
+%% Draw Shapes
+render.Micro = true;
+render.Meso = true;
+render.ActiveActors = true;
+render.PassiveActors = true;
+Accord.plotShapes("C:\dev\AcCoRD2\MATLAB\simulation2.json", render)
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('LineColorMap', hsv(2), ...
 'FaceColorMap', hsv(2), 'EdgeAlpha', 1);
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
+render.Micro = true;
+render.Meso = true;
+render.ActiveActors = true;
+render.PassiveActors = true;
+Accord.plotShapes("C:\dev\AcCoRD2\configs\sample1.json", render);
 r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video

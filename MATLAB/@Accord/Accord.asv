@@ -203,29 +203,21 @@ classdef Accord
             % Region Names
             if(isfield(s, "MesoscopicRegions"))
                 nMesoscopicRegions = length(s.MesoscopicRegions);
-                 mesoscopicRegionNames(nMesoscopicRegions) = "";
-                 for i = 1:length(s.MesoscopicRegions)
-                    mesoscopicRegionNames(i) = s.MesoscopicRegions(i).Name;
-                end
             else
                 nMesoscopicRegions = 0;
-                 mesoscopicRegionNames = "";
             end
-           
             
-            if(isfield(s, "MicroscopicRegions"))
-                nMicroscopicRegions = length(s.MicroscopicRegions);
-                microscopicRegionNames(nMicroscopicRegions) = "";
-                for i = 1:nMicroscopicRegions
-                microscopicRegionNames(i) = s.MicroscopicRegions(i).Name;
-                end
-            else
-                nMicroscopicRegions = 0;
-                microscopicRegionNames = "";
+            mesoscopicRegionNames(nMesoscopicRegions) = "";
+            for i = 1:length(s.MesoscopicRegions)
+                mesoscopicRegionNames(i) = s.MesoscopicRegions(i).Name;
             end
-
+            nMicroscopicRegions = length(s.MicroscopicRegions);
+            microscopicRegionNames(nMicroscopicRegions) = "";
+            for i = 1:nMicroscopicRegions
+                microscopicRegionNames(i) = s.MicroscopicRegions(i).Name;
+            end
             % Mesoscopic Regions
-            if(render.Meso && isfield(s, "MesoscopicRegions"))
+            if(render.Meso)
                 mesoShape3D = Shape3D('FaceColorMap', autumn(nMesoscopicRegions), ...
                     'LineColorMap', autumn(nMesoscopicRegions), 'FaceAlpha', 0, 'EdgeAlpha', 1);
                 for i = 1:nMesoscopicRegions
@@ -235,7 +227,7 @@ classdef Accord
                 end
             end
             % Microscopic Regions
-            if(render.Micro && isfield(s, "MicroscopicRegions"))
+            if(render.Micro)
                 microShape3D = Shape3D('FaceColorMap', winter(nMicroscopicRegions), ...
                     'LineColorMap', winter(nMicroscopicRegions), 'FaceAlpha', 0, 'EdgeAlpha', 1);
                 for i = 1:nMicroscopicRegions
@@ -245,7 +237,7 @@ classdef Accord
                 end
             end
             % Active Actors
-            if(render.ActiveActors && isfield(s, "ActiveActors"))
+            if(render.ActiveActors)
                 nActiveActors = length(s.ActiveActors);
                 activeActorShape3D = Shape3D('FaceColorMap', spring(nActiveActors), ...
                     'LineColorMap', spring(nActiveActors), 'EdgeAlpha', 0);
@@ -276,7 +268,7 @@ classdef Accord
                 end
             end
             % Passive Actors
-            if(render.PassiveActors && isfield(s, "PassiveActors"))
+            if(render.PassiveActors)
                 nPassiveActors = length(s.PassiveActors);
                 passiveActorShape3D = Shape3D('FaceColorMap', summer(nPassiveActors), ...
                     'LineColorMap', summer(nPassiveActors), 'EdgeAlpha', 0);
