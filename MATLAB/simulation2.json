@@ -21,6 +21,19 @@
 		  "NumberOfSubvolumes":[ [1, 1, 1], [1, 2, 1] ],
 		  "TimeStep":0.1,
 		  "Priority":0
+	   },
+	   {
+		  "Name":"MicroRegion2",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[1, 0, 0],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceType":"Reflecting",
+		  "DiffusionCoefficients":[3, 4],
+		  "NumberOfSubvolumes":[ [1, 1, 1], [1, 2, 1] ],
+		  "TimeStep":0.1,
+		  "Priority":0
 	   }
    ],
    "MesoscopicRegions":[
@@ -73,13 +86,13 @@
          "BitProbability":0.5
       }
    ],
-   "Relationship":[
+   "Relationships":[
       {
-         "RegionA":"MesoRegion1",
-         "RegionB":"MicroRegion1",
+         "RegionA":"MicroRegion1",
+         "RegionB":"MicroRegion2",
          "Priority":"None",
-         "SurfaceTypes":"Reflecting",
-         "AToBSurfaceTypes":"Reflecting",
+         "SurfaceTypes":["None", "Reflecting"],
+         "AToBSurfaceTypes":["Reflecting"],
          "BToASurfaceTypes":[
             "None",
             "Reflecting",
@@ -89,7 +102,7 @@
    ],
    "ZerothOrderReactions":[
       {
-         "Products":[2, 3, 0],
+         "Products":[1, 0],
          "ReactionRate":4.6,
          "OccurInRegions":[ "MicroRegion1", "MesoRegion1" ]
       }
@@ -97,7 +110,7 @@
    "FirstOrderReactions":[
       {
          "Reactant":0,
-         "Products":[ 2, 3, 0 ],
+         "Products":[1, 0],
          "ReactionRate":1.2,
          "OccurInRegions":[ "MicroRegion1", "MesoRegion1" ]
       }
@@ -106,7 +119,7 @@
       {
          "ReactantA":0,
          "ReactantB":0,
-         "Products":[ 2, 3, 0 ],
+         "Products":[1, 0],
          "ReactionRate":1.2,
          "BindingRadius":3,
          "UnBindingRadius":3.5,

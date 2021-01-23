@@ -424,6 +424,7 @@ namespace accord
 				throw std::exception();
 			}
 		}
+		return region_list;
 	}
 
 	OptionalShapes CreateShape(const Json& shape)
@@ -480,6 +481,12 @@ namespace accord
 
 		LOG_INFO("Importing ActiveActors");
 		CreateActiveActors(j, microscopic_region_names, mesoscopic_region_names);
+
+		LOG_INFO("Importing Relationships");
+		CreateRelationships(j, microscopic_region_names, mesoscopic_region_names);
+
+		LOG_INFO("Importing Reactions");
+		CreateReactions(j, microscopic_region_names, mesoscopic_region_names);
 	}
 
 	std::vector<std::string> CreateMicroscopicRegions(const Json& j)
@@ -639,15 +646,25 @@ namespace accord
 			std::string region_b_name = relationship["RegionB"].get<std::string>();
 			Environment::RelationshipPriority priority = relationship["Priority"].get<Environment::RelationshipPriority>();
 
-			MicroscopicRegionID region_a = GetIndexOfStringInStrings(region_a_name, microscopic_region_names).value();
+			std::optional<MicroscopicRegionID> region_a = GetIndexOfStringInStrings(region_a_name, microscopic_region_names);
+			if (!region_a.has_value())
+			{
+				LOG_ERROR("Region a {} could not be found in list of regions", region_a_name);
+				throw std::exception();
+			}
 
-			MicroscopicRegionID region_b = GetIndexOfStringInStrings(region_b_name, microscopic_region_names).value();
+			std::optional<MicroscopicRegionID> region_b = GetIndexOfStringInStrings(region_b_name, microscopic_region_names);
+			if (!region_b.has_value())
+			{
+				LOG_ERROR("Region b {} could not be found in list of regions", region_b_name);
+				throw std::exception();
+			}
 
 			if (relationship.contains("SurfaceTypes"))
 			{
 				std::vector<microscopic::SurfaceType> surface_types = relationship["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
 
-				Environment::DefineRelationship(region_a, region_b, priority, surface_types);
+				Environment::DefineRelationship(*region_a, *region_b, priority, surface_types);
 			}
 			else if (relationship.contains("AToBSurfaceTypes") && relationship.contains("BToASurfaceTypes"))
 			{
@@ -655,7 +672,7 @@ namespace accord
 
 				std::vector<microscopic::SurfaceType> ba_surface_types = relationship["BToASurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
 
-				Environment::DefineRelationship(region_a, region_b, priority, ab_surface_types, ba_surface_types);
+				Environment::DefineRelationship(*region_a, *region_b, priority, ab_surface_types, ba_surface_types);
 			}
 		}
 	}
@@ -663,6 +680,40 @@ namespace accord
 	void CreateReactions(const Json& j, const std::vector<std::string>& microscopic_region_names,
 		const std::vector<std::string>& mesoscopic_region_names)
 	{
+		LOG_INFO("Zeroth Order Reactions");
+		for (auto& reaction : j["ZerothOrderReactions"])
+		{
+			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
+			double reaction_rate = reaction["ReactionRate"].get<double>();
+			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
+			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions, microscopic_region_names, mesoscopic_region_names);
 
+			ReactionManager::AddZerothOrderReaction(products, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
+		}
+		LOG_INFO("First Order Reactions");
+		for (auto& reaction : j["FirstOrderReactions"])
+		{
+			MoleculeID reactant = reaction["Reactant"].get<MoleculeID>();
+			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
+			double reaction_rate = reaction["ReactionRate"].get<double>();
+			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
+			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions, microscopic_region_names, mesoscopic_region_names);
+
+			ReactionManager::AddFirstOrderReaction(reactant, products, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
+		}
+		LOG_INFO("Second Order Reactions");
+		for (auto& reaction : j["SecondOrderReactions"])
+		{
+			MoleculeID reactant_a = reaction["ReactantA"].get<MoleculeID>();
+			MoleculeID reactant_b = reaction["ReactantA"].get<MoleculeID>();
+			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
+			int reaction_rate = reaction["ReactionRate"].get<int>();
+			double binding_radius = reaction["BindingRadius"].get<double>();
+			double unbinding_radius = reaction["UnBindingRadius"].get<double>();
+			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
+			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions, microscopic_region_names, mesoscopic_region_names);
+
+			ReactionManager::AddSecondOrderReaction(reactant_a, reactant_b, products, reaction_rate, binding_radius, unbinding_radius, region_list.microscopic_ids, region_list.mesoscopic_ids);
+		}
 	}
 }
