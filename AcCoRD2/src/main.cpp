@@ -366,5 +366,5 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	accord::CreateEnvironment();
+	accord::ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
 }

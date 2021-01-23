@@ -38,6 +38,7 @@ namespace accord
 {
 	ConfigImporter::ConfigImporter(std::string file_path)
 	{
+		// Check file path is valid
 		std::ifstream i(file_path);
 		if (!i.is_open())
 		{
@@ -54,12 +55,9 @@ namespace accord
 		}
 
 		ValidateJson();
+		CreateEnvironment();
 	}
 
-	const Json& ConfigImporter::GetJson()
-	{
-		return j;
-	}
 
 	void ConfigImporter::ValidateJson()
 	{
@@ -136,6 +134,7 @@ namespace accord
 				JsonKeyPair name = microscopic_regions.Add("Name");
 				name.IsString();
 				region_names.emplace_back(name.GetJson().get<std::string>());
+				microscopic_region_names.emplace_back(name.GetJson().get<std::string>());
 				microscopic_regions.Add("SurfaceType").IsString();
 				microscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers();
 
@@ -176,6 +175,7 @@ namespace accord
 				JsonKeyPair name = mesoscopic_regions.Add("Name");
 				name.IsString();
 				region_names.emplace_back(name.GetJson().get<std::string>());
+				mesoscopic_region_names.emplace_back(name.GetJson().get<std::string>());
 				mesoscopic_regions.Add("Origin").IsArrayOfNumbers();
 				mesoscopic_regions.Add("SubvolumeLength").IsNumber();
 				mesoscopic_regions.Add("NumberOfSubvolumes").IsArrayOfInts();
@@ -391,7 +391,9 @@ namespace accord
 		}
 	}
 
-	std::optional<int> GetIndexOfStringInStrings(const std::string& key, const std::vector<std::string>& strings)
+
+
+	std::optional<int> ConfigImporter::GetIndexOfStringInStrings(const std::string& key, const std::vector<std::string>& strings)
 	{
 		auto key_it = std::find(strings.begin(), strings.end(), key);
 		if (key_it != strings.end())
@@ -401,7 +403,7 @@ namespace accord
 		return std::nullopt;
 	}
 
-	RegionIDList GetRegionIDsFromStrings(std::vector<std::string> region_names, std::vector<std::string> microscopic_region_names, std::vector<std::string> mesoscopic_region_names)
+	ConfigImporter::RegionIDList ConfigImporter::GetRegionIDsFromStrings(std::vector<std::string> region_names)
 	{
 		RegionIDList region_list;
 
@@ -427,7 +429,7 @@ namespace accord
 		return region_list;
 	}
 
-	OptionalShapes CreateShape(const Json& shape)
+	ConfigImporter::OptionalShapes ConfigImporter::CreateShape(const Json& shape)
 	{
 		OptionalShapes shapes;
 		std::string type_str = shape["Type"].get<std::string>();
@@ -462,40 +464,35 @@ namespace accord
 		return shapes;
 	}
 
-	void CreateEnvironment()
-	{
-		using namespace accord;
-		ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
-		const Json& j = config.GetJson();
 
+
+	void ConfigImporter::CreateEnvironment()
+	{
 		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), j["PassiveActors"].size(), j["ActiveActors"].size(), j["RandomNumberSeed"].get<uint64_t>());
 
 		LOG_INFO("Importing Microscopic Regions");
-		std::vector<std::string> microscopic_region_names = CreateMicroscopicRegions(j);
+		CreateMicroscopicRegions();
 
 		LOG_INFO("Importing Mesoscopic Regions");
-		std::vector<std::string> mesoscopic_region_names = CreateMesoscopicRegion(j);
+		CreateMesoscopicRegion();
 
 		LOG_INFO("Importing PassiveActors");
-		CreatePassiveActors(j, microscopic_region_names, mesoscopic_region_names);
+		CreatePassiveActors();
 
 		LOG_INFO("Importing ActiveActors");
-		CreateActiveActors(j, microscopic_region_names, mesoscopic_region_names);
+		CreateActiveActors();
 
 		LOG_INFO("Importing Relationships");
-		CreateRelationships(j, microscopic_region_names, mesoscopic_region_names);
+		CreateRelationships();
 
 		LOG_INFO("Importing Reactions");
-		CreateReactions(j, microscopic_region_names, mesoscopic_region_names);
+		CreateReactions();
 	}
 
-	std::vector<std::string> CreateMicroscopicRegions(const Json& j)
+	void ConfigImporter::CreateMicroscopicRegions()
 	{
-		std::vector<std::string> microscopic_region_names;
-		microscopic_region_names.reserve(j["MicroscopicRegions"].size());
 		for (auto& region : j["MicroscopicRegions"])
 		{
-			microscopic_region_names.emplace_back(region["Name"].get<std::string>());
 			microscopic::SurfaceType surface_type = region["SurfaceType"].get<microscopic::SurfaceType>();
 			std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
 			std::vector<Vec3i> n_subvolumes = region["NumberOfSubvolumes"].get<std::vector<Vec3i>>();
@@ -516,16 +513,12 @@ namespace accord
 				break;
 			}
 		}
-		return microscopic_region_names;
 	}
 
-	std::vector<std::string> CreateMesoscopicRegion(const Json& j)
+	void ConfigImporter::CreateMesoscopicRegion()
 	{
-		std::vector<std::string> mesoscopic_region_names;
-		mesoscopic_region_names.reserve(j["MesoscopicRegions"].size());
 		for (auto& region : j["MesoscopicRegions"])
 		{
-			mesoscopic_region_names.emplace_back(region["Name"].get<std::string>());
 			Vec3d origin = region["Origin"].get<Vec3d>();
 			double subvolume_length = region["SubvolumeLength"].get<double>();
 			std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
@@ -534,11 +527,9 @@ namespace accord
 
 			Environment::AddMesoscopicRegion(origin, subvolume_length, n_subvolumes, diffision_coefficients, priority);
 		}
-		return mesoscopic_region_names;
 	}
 
-	void CreatePassiveActors(const Json& j, const std::vector<std::string>& microscopic_region_names,
-		const std::vector<std::string>& mesoscopic_region_names)
+	void ConfigImporter::CreatePassiveActors()
 	{
 		for (auto& actor : j["PassiveActors"])
 		{
@@ -556,7 +547,7 @@ namespace accord
 			{
 				std::vector<std::string> regions_to_observe = actor["RegionsToObserve"].get<std::vector<std::string>>();
 
-				RegionIDList region_list = GetRegionIDsFromStrings(regions_to_observe, microscopic_region_names, mesoscopic_region_names);
+				RegionIDList region_list = GetRegionIDsFromStrings(regions_to_observe);
 
 				Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(region_list.microscopic_ids, region_list.mesoscopic_ids,
 					molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
@@ -580,12 +571,10 @@ namespace accord
 				LOG_CRITICAL("Passive actor must provide field \"RegionsToObserve\", or \"Shape\" but neither exists");
 				throw std::exception();
 			}
-
 		}
 	}
 
-	void CreateActiveActors(const Json& j, const std::vector<std::string>& microscopic_region_names,
-		const std::vector<std::string>& mesoscopic_region_names)
+	void ConfigImporter::CreateActiveActors()
 	{
 		for (auto& actor : j["ActiveActors"])
 		{
@@ -599,7 +588,7 @@ namespace accord
 			MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToRelease"].get<MoleculeIDs>();
 
 			std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
-			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in, microscopic_region_names, mesoscopic_region_names);
+			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in);
 
 			OptionalShapes shapes = CreateShape(actor["Shape"]);
 			std::unique_ptr<ActiveActorShape> active_actor_shape;
@@ -638,7 +627,7 @@ namespace accord
 		}
 	}
 
-	void CreateRelationships(const Json& j, const std::vector<std::string>& microscopic_region_names, const std::vector<std::string>& mesoscopic_region_names)
+	void ConfigImporter::CreateRelationships()
 	{
 		for (auto& relationship : j["Relationships"])
 		{
@@ -677,8 +666,7 @@ namespace accord
 		}
 	}
 
-	void CreateReactions(const Json& j, const std::vector<std::string>& microscopic_region_names,
-		const std::vector<std::string>& mesoscopic_region_names)
+	void ConfigImporter::CreateReactions()
 	{
 		LOG_INFO("Zeroth Order Reactions");
 		for (auto& reaction : j["ZerothOrderReactions"])
@@ -686,7 +674,7 @@ namespace accord
 			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
 			double reaction_rate = reaction["ReactionRate"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
-			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions, microscopic_region_names, mesoscopic_region_names);
+			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);
 
 			ReactionManager::AddZerothOrderReaction(products, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
@@ -697,7 +685,7 @@ namespace accord
 			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
 			double reaction_rate = reaction["ReactionRate"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
-			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions, microscopic_region_names, mesoscopic_region_names);
+			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);
 
 			ReactionManager::AddFirstOrderReaction(reactant, products, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
@@ -711,7 +699,7 @@ namespace accord
 			double binding_radius = reaction["BindingRadius"].get<double>();
 			double unbinding_radius = reaction["UnBindingRadius"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
-			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions, microscopic_region_names, mesoscopic_region_names);
+			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);
 
 			ReactionManager::AddSecondOrderReaction(reactant_a, reactant_b, products, reaction_rate, binding_radius, unbinding_radius, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}

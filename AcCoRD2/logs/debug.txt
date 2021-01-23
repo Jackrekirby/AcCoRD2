@@ -1,10 +1,10 @@
-[09:28:18.621] [info] config_importer.cpp:473 accord::CreateEnvironment() Importing Microscopic Regions
-[09:28:18.624] [info] config_importer.cpp:476 accord::CreateEnvironment() Importing Mesoscopic Regions
-[09:28:18.625] [info] mesoscopic_region.cpp:14 accord::mesoscopic::Region::Region() n subs = [1, 2, 3]
-[09:28:18.626] [info] config_importer.cpp:479 accord::CreateEnvironment() Importing PassiveActors
-[09:28:18.628] [info] config_importer.cpp:482 accord::CreateEnvironment() Importing ActiveActors
-[09:28:18.629] [info] config_importer.cpp:485 accord::CreateEnvironment() Importing Relationships
-[09:28:18.629] [info] config_importer.cpp:488 accord::CreateEnvironment() Importing Reactions
-[09:28:18.630] [info] config_importer.cpp:683 accord::CreateReactions() Zeroth Order Reactions
-[09:28:18.630] [info] config_importer.cpp:693 accord::CreateReactions() First Order Reactions
-[09:28:18.631] [info] config_importer.cpp:704 accord::CreateReactions() Second Order Reactions
+[09:48:35.854] [info] config_importer.cpp:473 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[09:48:35.858] [info] config_importer.cpp:476 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[09:48:35.859] [info] mesoscopic_region.cpp:14 accord::mesoscopic::Region::Region() n subs = [1, 2, 3]
+[09:48:35.860] [info] config_importer.cpp:479 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[09:48:35.862] [info] config_importer.cpp:482 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[09:48:35.862] [info] config_importer.cpp:485 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[09:48:35.863] [info] config_importer.cpp:488 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[09:48:35.863] [info] config_importer.cpp:671 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[09:48:35.863] [info] config_importer.cpp:681 accord::ConfigImporter::CreateReactions() First Order Reactions
+[09:48:35.864] [info] config_importer.cpp:692 accord::ConfigImporter::CreateReactions() Second Order Reactions
