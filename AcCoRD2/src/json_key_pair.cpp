@@ -38,12 +38,26 @@ namespace accord
 
 	JsonKeyPair& JsonKeyPair::IsInRange(int min, int max)
 	{
-		int value = GetJson().get<int>();
-		if (!(value >= min && value <= max))
+		if (GetJson().is_array())
 		{
-			LOG_ERROR("The key <{}> had value = {} but {} <= value <= {}", Log(), value, min, max);
-			throw std::exception();
+			size_t n = GetJson().size();
+			for (size_t i = 0; i < n; i++)
+			{
+				SetIndex(i);
+				IsInRange(min, max);
+			}
+			has_index = false;
 		}
+		else
+		{
+			int value = GetJson().get<int>();
+			if (!(value >= min && value <= max))
+			{
+				LOG_ERROR("The key <{}> had value = {} but {} <= value <= {}", Log(), value, min, max);
+				throw std::exception();
+			}
+		}
+		return *this;
 	}
 
 	void JsonKeyPair::ThrowIfNotKey(const std::string& key) const
@@ -150,7 +164,14 @@ namespace accord
 
 	JsonKeyPair& JsonKeyPair::IsPositive()
 	{
-		IsGreaterThan(0);
+		IsGreaterThan(0.0);
+		return *this;
+	}
+
+	JsonKeyPair& JsonKeyPair::IsNonNegative()
+	{
+		IsGreaterOrEqualTo(0.0);
+		return *this;
 	}
 
 	JsonKeyPair& JsonKeyPair::HasSize(size_t size)
@@ -161,6 +182,7 @@ namespace accord
 
 			throw std::exception();
 		}
+		return *this;
 	}
 
 
@@ -246,7 +268,6 @@ namespace accord
 			(this->*IsType)();
 		}
 		has_index = false;
-		return *this;
 	}
 
 	JsonKeyPair& JsonKeyPair::IsArrayOfBools()

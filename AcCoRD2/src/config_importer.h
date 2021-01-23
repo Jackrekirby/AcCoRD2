@@ -40,6 +40,7 @@ namespace accord
 		std::vector<std::string> microscopic_region_names;
 		std::vector<std::string> mesoscopic_region_names;
 		size_t n_molecule_types;
+		int max_molecule_id;
 
 		// Check JSON Input files contains correct variables, types, and ranges
 

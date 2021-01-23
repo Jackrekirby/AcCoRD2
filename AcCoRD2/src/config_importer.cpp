@@ -63,23 +63,12 @@ namespace accord
 	void ConfigImporter::ValidateJson()
 	{
 		JsonKeyPair config(j);
-		JsonKeyPair a;
-
-		a = config.Add("SaveToFolder");
-		a.IsString();
-		a = config.Add("NumberOfRealisations");
-		a.IsInt();
-		a.IsPositive();
-		a = config.Add("FinalSimulationTime");
-		a.IsNumber();
-		a.IsPositive();
-		a = config.Add("RandomNumberSeed");
-		a.IsInt();
-		a.IsPositive();
-		config.Add("NumberOfMoleculeTypes");
-		a.IsInt();
-		a.IsPositive();
-		n_molecule_types = a.GetJson().get<size_t>();
+		config.Add("SaveToFolder").IsString();
+		config.Add("NumberOfRealisations").IsInt().IsPositive();
+		config.Add("FinalSimulationTime").IsNumber().IsPositive();
+		config.Add("RandomNumberSeed").IsInt().IsPositive();
+		n_molecule_types = config.Add("NumberOfMoleculeTypes").IsInt().IsPositive().GetJson().get<size_t>();
+		max_molecule_id = static_cast<int>(n_molecule_types) - 1;
 
 		ValidateMicroscopicRegions(config);
 		ValidateMesoscopicRegions(config);
@@ -93,8 +82,7 @@ namespace accord
 
 	void ConfigImporter::ValidateShape(JsonKeyPair& shape)
 	{
-		JsonKeyPair shape_type = shape.Add("Type");
-		shape_type.IsString();
+		JsonKeyPair shape_type = shape.Add("Type").IsString();
 		std::string type_str = shape_type.GetJson().get<std::string>();
 		if (type_str == "Box")
 		{
@@ -109,18 +97,9 @@ namespace accord
 		else if (type_str == "Cylinder")
 		{
 			shape.Add("BaseCentre").IsArrayOfNumbers().HasSize(3);
-
-			JsonKeyPair radius = shape.Add("Radius");
-			radius.IsNumber();
-			radius.IsPositive();
-
-			JsonKeyPair length = shape.Add("Length");
-			length.IsNumber();
-			length.IsPositive();
-
-			JsonKeyPair axis = shape.Add("Axis");
-			axis.IsString();
-			axis.IsOneOf<std::string>({ "x", "y", "z" });
+			shape.Add("Radius").IsNumber().IsPositive();
+			shape.Add("Length").IsNumber().IsPositive();
+			shape.Add("Axis").IsString().IsOneOf<std::string>({ "X", "Y", "Z" });
 		}
 		else
 		{
@@ -133,43 +112,32 @@ namespace accord
 	{
 		if (config.IsKey("MicroscopicRegions"))
 		{
-			JsonKeyPair microscopic_regions = config.Add("MicroscopicRegions");
-			microscopic_regions.IsArray();
+			JsonKeyPair microscopic_regions = config.Add("MicroscopicRegions").IsArray();
 			size_t n = microscopic_regions.GetArraySize();
 
 			for (size_t i = 0; i < n; i++)
 			{
 				microscopic_regions.SetIndex(i);
 
-				JsonKeyPair name = microscopic_regions.Add("Name");
-				name.IsString();
+				JsonKeyPair name = microscopic_regions.Add("Name").IsString();
 				region_names.emplace_back(name.GetJson().get<std::string>());
 				microscopic_region_names.emplace_back(name.GetJson().get<std::string>());
 
 				microscopic_regions.Add("SurfaceType").IsString();
+				microscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers().HasSize(n_molecule_types);
+				JsonKeyPair number_of_subvolumes = microscopic_regions.Add("NumberOfSubvolumes").IsArrayOfArrays().HasSize(n_molecule_types);
 
-				JsonKeyPair diffusion_coefficients = microscopic_regions.Add("DiffusionCoefficients");
-				diffusion_coefficients.IsArrayOfNumbers();
-				diffusion_coefficients.HasSize(n_molecule_types);
-
-				JsonKeyPair number_of_subvolumes = microscopic_regions.Add("NumberOfSubvolumes");
-				number_of_subvolumes.IsArrayOfArrays();
-				number_of_subvolumes.HasSize(n_molecule_types);
-
-				size_t number_of_subvolumes_size = number_of_subvolumes.GetArraySize();
-				for (size_t i2 = 0; i2 < number_of_subvolumes_size; i2++)
+				for (size_t i2 = 0; i2 < n_molecule_types; i2++)
 				{
 					number_of_subvolumes.SetIndex(i2);
 					JsonKeyPair nos(number_of_subvolumes.GetJson());
-					nos.IsArrayOfInts();
-					nos.HasSize(3);
+					nos.IsArrayOfInts().HasSize(3);
 				}
 
-				microscopic_regions.Add("TimeStep").IsNumber();
+				microscopic_regions.Add("TimeStep").IsNumber().IsPositive();
 				microscopic_regions.Add("Priority").IsInt();
 
-				JsonKeyPair shape_object = microscopic_regions.Add("Shape");
-				shape_object.IsObject();
+				JsonKeyPair shape_object = microscopic_regions.Add("Shape").IsObject();
 				ValidateShape(shape_object);
 			}
 			return n;
@@ -181,31 +149,20 @@ namespace accord
 	{
 		if (config.IsKey("MesoscopicRegions"))
 		{
-			JsonKeyPair mesoscopic_regions = config.Add("MesoscopicRegions");
-			mesoscopic_regions.IsArray();
+			JsonKeyPair mesoscopic_regions = config.Add("MesoscopicRegions").IsArray();
 			size_t n = mesoscopic_regions.GetArraySize();
 
 			for (size_t i = 0; i < n; i++)
 			{
 				mesoscopic_regions.SetIndex(i);
-				JsonKeyPair name = mesoscopic_regions.Add("Name");
-				name.IsString();
+				JsonKeyPair name = mesoscopic_regions.Add("Name").IsString();
 				region_names.emplace_back(name.GetJson().get<std::string>());
 				mesoscopic_region_names.emplace_back(name.GetJson().get<std::string>());
 
-				JsonKeyPair origin = mesoscopic_regions.Add("Origin");
-				origin.IsArrayOfNumbers();
-				origin.HasSize(3);
-				mesoscopic_regions.Add("SubvolumeLength").IsNumber();
-
-				JsonKeyPair n_subvolumes = mesoscopic_regions.Add("NumberOfSubvolumes");
-				n_subvolumes.IsArrayOfInts();
-				n_subvolumes.HasSize(3);
-
-				JsonKeyPair diffusion_coefficients = mesoscopic_regions.Add("DiffusionCoefficients");
-				diffusion_coefficients.IsArrayOfNumbers();
-				diffusion_coefficients.HasSize(n_molecule_types);
-
+				mesoscopic_regions.Add("Origin").IsArrayOfNumbers().HasSize(3);
+				mesoscopic_regions.Add("SubvolumeLength").IsNumber().IsPositive();
+				mesoscopic_regions.Add("NumberOfSubvolumes").IsArrayOfInts().HasSize(3).IsPositive();
+				mesoscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers().HasSize(n_molecule_types);
 				mesoscopic_regions.Add("Priority").IsInt();
 			}
 			return n;
@@ -226,41 +183,33 @@ namespace accord
 				active_actors.SetIndex(i);
 
 				active_actors.Add("Name").IsString();
-				active_actors.Add("StartTime").IsNumber();
+				active_actors.Add("StartTime").IsNumber().IsNonNegative();
 				active_actors.Add("Priority").IsInt();
+				active_actors.Add("ActionInterval").IsNumber().IsPositive();
+				active_actors.Add("ReleaseInterval").IsNumber().IsPositive();
+				active_actors.Add("ModulationStrength").IsInt().IsPositive();
+				active_actors.Add("MoleculeTypesToRelease").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				active_actors.Add("RegionsToActIn").IsArrayOfStrings().IsEachOneOf(region_names);
 
-				active_actors.Add("ActionInterval").IsNumber();
-				active_actors.Add("ReleaseInterval").IsNumber();
-				active_actors.Add("ModulationStrength").IsInt();
-				JsonKeyPair molecule_types = active_actors.Add("MoleculeTypesToRelease");
-				molecule_types.IsArrayOfInts();
-				molecule_types.IsInRange(0, static_cast<int>(n_molecule_types));
-
-				JsonKeyPair region_to_act_in = active_actors.Add("RegionsToActIn");
-				region_to_act_in.IsArrayOfStrings();
-				region_to_act_in.IsEachOneOf(region_names);
-
-				JsonKeyPair shape_object = active_actors.Add("Shape");
-				shape_object.IsObject();
+				JsonKeyPair shape_object = active_actors.Add("Shape").IsObject();
 				ValidateShape(shape_object);
 
-				JsonKeyPair type = active_actors.Add("Type");
-				type.IsString();
+				JsonKeyPair type = active_actors.Add("Type").IsString();
 				std::string type_str = type.GetJson().get<std::string>();
 				if (type_str == "RandomTime")
 				{
 				}
 				else if (type_str == "RandomBits")
 				{
-					active_actors.Add("SymbolSize").IsInt();
-					active_actors.Add("SlotInterval").IsNumber();
-					active_actors.Add("BitProbability").IsNumber();
+					active_actors.Add("SymbolSize").IsInt().IsPositive();
+					active_actors.Add("SlotInterval").IsNumber().IsPositive();
+					active_actors.Add("BitProbability").IsNumber().IsInRange(0, 1);
 				}
 				else if (type_str == "NonRandom")
 				{
-					active_actors.Add("SymbolSize").IsInt();
-					active_actors.Add("SlotInterval").IsNumber();
-					active_actors.Add("BitSequence").IsInt();
+					active_actors.Add("SymbolSize").IsInt().IsPositive();
+					active_actors.Add("SlotInterval").IsNumber().IsPositive();
+					active_actors.Add("BitSequence").IsInt().IsInRange(0, 1);
 				}
 				else
 				{
@@ -286,26 +235,20 @@ namespace accord
 				passive_actors.SetIndex(i);
 
 				passive_actors.Add("Name").IsString();
-				passive_actors.Add("StartTime").IsNumber();
+				passive_actors.Add("StartTime").IsNumber().IsNonNegative();
 				passive_actors.Add("Priority").IsInt();
-				passive_actors.Add("TimeStep").IsNumber();
-
+				passive_actors.Add("TimeStep").IsNumber().IsPositive();
 				passive_actors.Add("RecordPositions").IsBool();
 				passive_actors.Add("RecordObservationTime").IsBool();
-				JsonKeyPair molecule_types = passive_actors.Add("MoleculeTypesToObserve");
-				molecule_types.IsArrayOfInts();
-				molecule_types.IsInRange(0, static_cast<int>(n_molecule_types));
+				passive_actors.Add("MoleculeTypesToObserve").IsArrayOfInts().IsInRange(0, max_molecule_id);
 
 				if (passive_actors.IsKey("RegionsToObserve"))
 				{
-					JsonKeyPair region_to_observe = passive_actors.Add("RegionsToObserve");
-					region_to_observe.IsArrayOfStrings();
-					region_to_observe.IsEachOneOf(region_names);
+					passive_actors.Add("RegionsToObserve").IsArrayOfStrings().IsEachOneOf(region_names);
 				}
 				else if (passive_actors.IsKey("Shape"))
 				{
-					JsonKeyPair shape_object = passive_actors.Add("Shape");
-					shape_object.IsObject();
+					JsonKeyPair shape_object = passive_actors.Add("Shape").IsObject();
 					ValidateShape(shape_object);
 				}
 				else
@@ -331,17 +274,19 @@ namespace accord
 			{
 				relationships.SetIndex(i);
 
-				relationships.Add("RegionA").IsString();
-				relationships.Add("RegionB").IsString();
-				relationships.Add("Priority").IsString();
+				relationships.Add("RegionA").IsString().IsOneOf(microscopic_region_names);
+				relationships.Add("RegionB").IsString().IsOneOf(microscopic_region_names);;
+				relationships.Add("Priority").IsString().IsOneOf<std::string>({"A", "B", "None"});;	
+
+				std::vector<std::string> surface_types = { "Absorbing", "Adsorbing", "Membrane", "Reflecting", "None" };
 				
 				if (relationships.IsKey("SurfaceTypes"))
 				{
-					relationships.Add("SurfaceTypes").IsArrayOfStrings();
+					relationships.Add("SurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
 				} else if (relationships.IsKey("AToBSurfaceTypes") && relationships.IsKey("BToASurfaceTypes"))
 				{
-					relationships.Add("AToBSurfaceTypes").IsArrayOfStrings();
-					relationships.Add("BToASurfaceTypes").IsArrayOfStrings();
+					relationships.Add("AToBSurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
+					relationships.Add("BToASurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
 				}
 				else
 				{
@@ -356,20 +301,16 @@ namespace accord
 	{
 		if (config.IsKey("ZerothOrderReactions"))
 		{
-			JsonKeyPair reactions = config.Add("ZerothOrderReactions");
-			reactions.IsArray();
+			JsonKeyPair reactions = config.Add("ZerothOrderReactions").IsArray();
 			size_t n = reactions.GetArraySize();
 
 			for (size_t i = 0; i < n; i++)
 			{
 				reactions.SetIndex(i);
 
-				reactions.Add("Products").IsArrayOfInts();
-				reactions.Add("ReactionRate").IsNumber();
-
-				JsonKeyPair occurs_in_regions = reactions.Add("OccurInRegions");
-				occurs_in_regions.IsArrayOfStrings();
-				occurs_in_regions.IsEachOneOf(region_names);
+				reactions.Add("Products").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				reactions.Add("ReactionRate").IsNumber().IsPositive();
+				reactions.Add("OccurInRegions").IsArrayOfStrings().IsEachOneOf(region_names);
 			}
 		}
 	}
@@ -385,13 +326,10 @@ namespace accord
 			for (size_t i = 0; i < n; i++)
 			{
 				reactions.SetIndex(i);
-				reactions.Add("Reactant").IsInt();
-				reactions.Add("Products").IsArrayOfInts();
-				reactions.Add("ReactionRate").IsNumber();
-
-				JsonKeyPair occurs_in_regions = reactions.Add("OccurInRegions");
-				occurs_in_regions.IsArrayOfStrings();
-				occurs_in_regions.IsEachOneOf(region_names);
+				reactions.Add("Reactant").IsInt().IsInRange(0, max_molecule_id);
+				reactions.Add("Products").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				reactions.Add("ReactionRate").IsNumber().IsPositive();
+				reactions.Add("OccurInRegions").IsArrayOfStrings().IsEachOneOf(region_names);
 			}
 		}
 	}
@@ -407,16 +345,13 @@ namespace accord
 			for (size_t i = 0; i < n; i++)
 			{
 				reactions.SetIndex(i);
-				reactions.Add("ReactantA").IsInt();
-				reactions.Add("ReactantB").IsInt();
-				reactions.Add("Products").IsArrayOfInts();
-				reactions.Add("ReactionRate").IsNumber();
-				reactions.Add("BindingRadius").IsNumber();
-				reactions.Add("UnBindingRadius").IsNumber();
-
-				JsonKeyPair occurs_in_regions = reactions.Add("OccurInRegions");
-				occurs_in_regions.IsArrayOfStrings();
-				occurs_in_regions.IsEachOneOf(region_names);
+				reactions.Add("ReactantA").IsInt().IsInRange(0, max_molecule_id);
+				reactions.Add("ReactantB").IsInt().IsInRange(0, max_molecule_id);
+				reactions.Add("Products").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				reactions.Add("ReactionRate").IsNumber().IsPositive();
+				reactions.Add("OccurInRegions").IsArrayOfStrings().IsEachOneOf(region_names);
+				reactions.Add("BindingRadius").IsNumber().IsNonNegative();
+				reactions.Add("UnBindingRadius").IsNumber().IsNonNegative();
 			}
 		}
 	}

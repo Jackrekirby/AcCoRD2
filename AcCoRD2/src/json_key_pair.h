@@ -74,6 +74,8 @@ namespace accord
 
 		JsonKeyPair& IsPositive();
 
+		JsonKeyPair& IsNonNegative();
+
 		template<typename T>
 		JsonKeyPair& IsLessOrEqualTo(T max)
 		{
@@ -87,11 +89,14 @@ namespace accord
 				}
 				has_index = false;
 			}
-			T value = GetJson().get<T>();
-			if (!(value <= max))
+			else
 			{
-				LOG_ERROR("The key <{}> had value = {} but value <= {}", Log(), value, max);
-				throw std::exception();
+				T value = GetJson().get<T>();
+				if (!(value <= max))
+				{
+					LOG_ERROR("The key <{}> had value = {} but value <= {}", Log(), value, max);
+					throw std::exception();
+				}
 			}
 			return *this;
 		}
@@ -109,11 +114,14 @@ namespace accord
 				}
 				has_index = false;
 			}
-			T value = GetJson().get<T>();
-			if (!(value < max))
+			else
 			{
-				LOG_ERROR("The key <{}> had value = {} but value < {}", Log(), value, max);
-				throw std::exception();
+				T value = GetJson().get<T>();
+				if (!(value < max))
+				{
+					LOG_ERROR("The key <{}> had value = {} but value < {}", Log(), value, max);
+					throw std::exception();
+				}
 			}
 			return *this;
 		}
@@ -130,13 +138,15 @@ namespace accord
 					IsGreaterOrEqualTo(min);
 				}
 				has_index = false;
-				return;
 			}
-			T value = GetJson().get<T>();
-			if (!(value >= min))
+			else
 			{
-				LOG_ERROR("The key <{}> had value = {} but value >= {}", Log(), value, min);
-				throw std::exception();
+				T value = GetJson().get<T>();
+				if (!(value >= min))
+				{
+					LOG_ERROR("The key <{}> had value = {} but value >= {}", Log(), value, min);
+					throw std::exception();
+				}
 			}
 			return *this;
 		}
@@ -153,13 +163,15 @@ namespace accord
 					IsGreaterThan(min);
 				}
 				has_index = false;
-				return;
 			}
-			T value = GetJson().get<T>();
-			if (!(value > min))
+			else
 			{
-				LOG_ERROR("The key <{}> had value = {} but value > {}", Log(), value, min);
-				throw std::exception();
+				T value = GetJson().get<T>();
+				if (!(value > min))
+				{
+					LOG_ERROR("The key <{}> had value = {} but value > {}", Log(), value, min);
+					throw std::exception();
+				}
 			}
 			return *this;
 		}

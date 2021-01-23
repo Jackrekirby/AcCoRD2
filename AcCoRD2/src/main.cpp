@@ -353,6 +353,8 @@ void TestMesoscopic()
 // current relationships are only for microscopci regions
 // need to be able to search in microscopic regions only
 // turn microscopic surface type into surface type per molecule type
+// consider grouping all optional json keys 
+
 
 int main()
 {
