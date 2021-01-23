@@ -32,50 +32,50 @@ namespace accord
 
 		bool IsKey(const std::string& key) const;
 
-		void IsInRange(int min, int max);
+		JsonKeyPair& IsInRange(int min, int max);
 		
 
 
-		void IsBool();
+		JsonKeyPair& IsBool();
 
-		void IsInt();
+		JsonKeyPair& IsInt();
 
-		void IsFloat();
+		JsonKeyPair& IsFloat();
 
-		void IsNumber();
+		JsonKeyPair& IsNumber();
 
-		void IsString();
+		JsonKeyPair& IsString();
 
-		void IsArray();
-	
-		void IsObject();
+		JsonKeyPair& IsArray();
 
-		void IsStructure();
+		JsonKeyPair& IsObject();
 
-
-		void IsArrayOfType(void(JsonKeyPair::* IsType)());
-
-		void IsArrayOfBools();
-
-		void IsArrayOfInts();
-
-		void IsArrayOfFloats();
-
-		void IsArrayOfNumbers();
-
-		void IsArrayOfStrings();
-
-		void IsArrayOfArrays();
-
-		void IsArrayOfObjects();
-
-		void IsArrayOfStructures();
+		JsonKeyPair& IsStructure();
 
 
-		void IsPositive();
+		void IsArrayOfType(JsonKeyPair&(JsonKeyPair::* IsType)());
+
+		JsonKeyPair& IsArrayOfBools();
+
+		JsonKeyPair& IsArrayOfInts();
+
+		JsonKeyPair& IsArrayOfFloats();
+
+		JsonKeyPair& IsArrayOfNumbers();
+
+		JsonKeyPair& IsArrayOfStrings();
+
+		JsonKeyPair& IsArrayOfArrays();
+
+		JsonKeyPair& IsArrayOfObjects();
+
+		JsonKeyPair& IsArrayOfStructures();
+
+
+		JsonKeyPair& IsPositive();
 
 		template<typename T>
-		void IsLessOrEqualTo(T max)
+		JsonKeyPair& IsLessOrEqualTo(T max)
 		{
 			if (GetJson().is_array())
 			{
@@ -93,10 +93,11 @@ namespace accord
 				LOG_ERROR("The key <{}> had value = {} but value <= {}", Log(), value, max);
 				throw std::exception();
 			}
+			return *this;
 		}
 
 		template<typename T>
-		void IsLessThan(T max)
+		JsonKeyPair& IsLessThan(T max)
 		{
 			if (GetJson().is_array())
 			{
@@ -114,10 +115,11 @@ namespace accord
 				LOG_ERROR("The key <{}> had value = {} but value < {}", Log(), value, max);
 				throw std::exception();
 			}
+			return *this;
 		}
 
 		template<typename T>
-		void IsGreaterOrEqualTo(T min)
+		JsonKeyPair& IsGreaterOrEqualTo(T min)
 		{
 			if (GetJson().is_array())
 			{
@@ -136,10 +138,11 @@ namespace accord
 				LOG_ERROR("The key <{}> had value = {} but value >= {}", Log(), value, min);
 				throw std::exception();
 			}
+			return *this;
 		}
 
 		template<typename T>
-		void IsGreaterThan(T min)
+		JsonKeyPair& IsGreaterThan(T min)
 		{
 			if (GetJson().is_array())
 			{
@@ -158,7 +161,38 @@ namespace accord
 				LOG_ERROR("The key <{}> had value = {} but value > {}", Log(), value, min);
 				throw std::exception();
 			}
+			return *this;
 		}
+
+		template<typename T>
+		JsonKeyPair& IsOneOf(std::vector<T> values)
+		{
+			T value = GetJson().get<T>();
+			if (std::find(values.begin(), values.end(), value) == values.end()) {
+				LOG_ERROR("The key <{}> had value = {} but was expected to be one of [{}]", Log(), value, Log(values));
+				throw std::exception();
+			}
+			return *this;
+		}
+
+		JsonKeyPair& HasSize(size_t size);
+
+		template<typename T>
+		JsonKeyPair& IsEachOneOf(std::vector<T> values)
+		{
+			size_t n = GetArraySize();
+			for (size_t i = 0; i < n; i++)
+			{
+				SetIndex(i);
+				T value = GetJson().get<T>();
+				if (std::find(values.begin(), values.end(), value) == values.end()) {
+					LOG_ERROR("The key <{}> had value = {} but was expected to be one of [{}]", Log(), value, Log(values));
+					throw std::exception();
+				}
+			}
+			return *this;
+		}
+
 
 		template<typename T>
 		std::string Log(std::vector<T> values)
@@ -173,21 +207,6 @@ namespace accord
 				ss << values.back();
 			}
 			return ss.str();
-		}
-
-		template<typename T>
-		void IsEachOneOf(std::vector<T> values)
-		{
-			size_t n = GetArraySize();
-			for (size_t i = 0; i < n; i++)
-			{
-				SetIndex(i);
-				T value = GetJson().get<T>();
-				if (std::find(values.begin(), values.end(), value) == values.end()) {
-					LOG_ERROR("The key <{}> had value = {} but was expected to be one of [{}]", Log(), value, Log(values));
-					throw std::exception();
-				}
-			}
 		}
 
 		void ThrowIncorrectType(const std::string& type);

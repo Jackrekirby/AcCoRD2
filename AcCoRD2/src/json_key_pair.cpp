@@ -36,7 +36,7 @@ namespace accord
 		return (GetJson().contains(key));
 	}
 
-	void JsonKeyPair::IsInRange(int min, int max)
+	JsonKeyPair& JsonKeyPair::IsInRange(int min, int max)
 	{
 		int value = GetJson().get<int>();
 		if (!(value >= min && value <= max))
@@ -148,77 +148,95 @@ namespace accord
 		}
 	}
 
-	void JsonKeyPair::IsPositive()
+	JsonKeyPair& JsonKeyPair::IsPositive()
 	{
 		IsGreaterThan(0);
 	}
 
+	JsonKeyPair& JsonKeyPair::HasSize(size_t size)
+	{
+		if (!GetJson().size())
+		{
+			LOG_ERROR("Expected <{}> to have a size of {} but had size {}", Log(), size, GetJson().size());
 
-	void JsonKeyPair::IsBool()
+			throw std::exception();
+		}
+	}
+
+
+	JsonKeyPair& JsonKeyPair::IsBool()
 	{
 		if (!GetJson().is_boolean())
 		{
 			ThrowIncorrectType("boolean");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsInt()
+	JsonKeyPair& JsonKeyPair::IsInt()
 	{
 		if (!GetJson().is_number_integer())
 		{
 			ThrowIncorrectType("integer");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsFloat()
+	JsonKeyPair& JsonKeyPair::IsFloat()
 	{
 		if (!GetJson().is_number_float())
 		{
 			ThrowIncorrectType("float");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsNumber()
+	JsonKeyPair& JsonKeyPair::IsNumber()
 	{
 		if (!GetJson().is_number())
 		{
 			ThrowIncorrectType("float or int");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsString()
+	JsonKeyPair& JsonKeyPair::IsString()
 	{
 		if (!GetJson().is_string())
 		{
 			ThrowIncorrectType("string");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsArray()
+	JsonKeyPair& JsonKeyPair::IsArray()
 	{
 		if (!GetJson().is_array())
 		{
 			ThrowIncorrectType("array");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsObject()
+	JsonKeyPair& JsonKeyPair::IsObject()
 	{
 		if (!GetJson().is_object())
 		{
 			ThrowIncorrectType("object");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsStructure()
+	JsonKeyPair& JsonKeyPair::IsStructure()
 	{
 		if (!j.is_structured())
 		{
 			ThrowIncorrectType("array or object");
 		}
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfType(void(JsonKeyPair::* IsType)())
+	void JsonKeyPair::IsArrayOfType(JsonKeyPair&(JsonKeyPair::* IsType)())
 	{
 		IsArray();
 		size_t n = GetArraySize();
@@ -228,45 +246,54 @@ namespace accord
 			(this->*IsType)();
 		}
 		has_index = false;
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfBools()
+	JsonKeyPair& JsonKeyPair::IsArrayOfBools()
 	{
 		IsArrayOfType(&JsonKeyPair::IsBool);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfInts()
+	JsonKeyPair& JsonKeyPair::IsArrayOfInts()
 	{
 		IsArrayOfType(&JsonKeyPair::IsInt);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfFloats()
+	JsonKeyPair& JsonKeyPair::IsArrayOfFloats()
 	{
 		IsArrayOfType(&JsonKeyPair::IsFloat);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfNumbers()
+	JsonKeyPair& JsonKeyPair::IsArrayOfNumbers()
 	{
 		IsArrayOfType(&JsonKeyPair::IsNumber);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfStrings()
+	JsonKeyPair& JsonKeyPair::IsArrayOfStrings()
 	{
 		IsArrayOfType(&JsonKeyPair::IsString);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfArrays()
+	JsonKeyPair& JsonKeyPair::IsArrayOfArrays()
 	{
 		IsArrayOfType(&JsonKeyPair::IsArray);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfObjects()
+	JsonKeyPair& JsonKeyPair::IsArrayOfObjects()
 	{
 		IsArrayOfType(&JsonKeyPair::IsObject);
+		return *this;
 	}
 
-	void JsonKeyPair::IsArrayOfStructures()
+	JsonKeyPair& JsonKeyPair::IsArrayOfStructures()
 	{
 		IsArrayOfType(&JsonKeyPair::IsStructure);
+		return *this;
 	}
 }

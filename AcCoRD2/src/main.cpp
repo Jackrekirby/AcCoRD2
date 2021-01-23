@@ -19,7 +19,6 @@
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
 #include "reaction_manager.h"
-//#include "passive_actor2.h"
 
 #include "active_actor_shape.h"
 #include "active_actor_random_time.h"
@@ -164,10 +163,6 @@ void TestSimpleEnvironment2()
 
 	LOG_INFO("Cleaning Up");
 }
-
-
-
-
 
 void TestMesoscopic()
 {
@@ -357,6 +352,7 @@ void TestMesoscopic()
 
 // current relationships are only for microscopci regions
 // need to be able to search in microscopic regions only
+// turn microscopic surface type into surface type per molecule type
 
 int main()
 {
