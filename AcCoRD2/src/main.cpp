@@ -374,7 +374,7 @@ int main()
 	//accord::ConfigImporter config();
 	using namespace accord;
 	//std::string config_filepath = "C:/dev/AcCoRD2/MATLAB/simulation2.json";
-	std::string config_filepath = "C:/dev/AcCoRD2/configs/sample1.json";
+	std::string config_filepath = "C:/dev/AcCoRD2/configs/all_micro_regions.json";
 	ConfigImporter config(config_filepath);
 	Environment::LinkReactionsToRegions();
 	Environment::AddEventsToEventQueue();

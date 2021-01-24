@@ -602,9 +602,6 @@ namespace accord
 				active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
 			}
 			
-
-			
-
 			std::string type_str = actor["Type"].get<std::string>();
 			if (type_str == "RandomTime")
 			{

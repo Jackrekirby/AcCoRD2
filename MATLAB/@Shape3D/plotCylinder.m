@@ -4,7 +4,7 @@
         baseCentre (1, 3) double = [0, 0, -0.5];
         radius (1, 1) double = 0.5;
         length (1, 1) double = 1;
-        axis (1, 1) char {mustBeXYZ(axis)} = 'z';
+        axis (1, 1) char {mustBeXYZ(axis)} = 'Z';
         args.Resolution (1, 1) double = obj.CircleResolution;
         args.FaceAlpha double = obj.FaceAlpha;
         args.EdgeAlpha double = obj.EdgeAlpha;
@@ -17,19 +17,19 @@
     
     [x,y,z] = cylinder(radius, args.Resolution);
     topCentre = baseCentre;
-    if(axis == 'x')
+    if(axis == 'X')
         hCylinder.tube = mesh(baseCentre(1) + z * length, baseCentre(2) + x, ...
         baseCentre(3) + y, 'FaceColor', args.FaceColor, ...
         'EdgeColor', args.LineColor, 'FaceAlpha', args.FaceAlpha,...
         'EdgeAlpha', args.EdgeAlpha);
         topCentre(1) = baseCentre(1) + length;
-    elseif(axis == 'y')
+    elseif(axis == 'Y')
         hCylinder.tube = mesh(baseCentre(1) + x, baseCentre(2) + z * length, ...
         baseCentre(3) + y, 'FaceColor', args.FaceColor, ...
         'EdgeColor', args.LineColor, 'FaceAlpha', args.FaceAlpha, ...
         'EdgeAlpha', args.EdgeAlpha);
         topCentre(2) = baseCentre(2) + length;
-    elseif(axis == 'z')
+    elseif(axis == 'Z')
         hCylinder.tube = mesh(baseCentre(1) + x, baseCentre(2) + y, ...
         baseCentre(3) + z * length, 'FaceColor', args.FaceColor, ...
         'EdgeColor', args.LineColor, 'FaceAlpha', args.FaceAlpha, ...
@@ -51,9 +51,9 @@
 end
 
 function mustBeXYZ(axis)
-    if (axis ~= 'x' && axis ~= 'y' && axis ~= 'z')
+    if (axis ~= 'X' && axis ~= 'Y' && axis ~= 'Z')
         eid = 'plotCylinder:UnknownAxis';
-        msg = 'unknown axis supplied, must be x, y or z';
+        msg = 'unknown axis supplied, must be X, Y or Z';
         throwAsCaller(MException(eid,msg))
     end
 end

@@ -7,24 +7,24 @@ namespace accord
 		switch (axis)
 		{
 		case Axis3D::x:
-			return "x";
+			return "X";
 		case Axis3D::y:
-			return "y";
+			return "Y";
 		case Axis3D::z:
-			return "z";
+			return "Z";
 		}
 		LOG_CRITICAL("Unknown Axis3D type");
 		throw std::exception();
 	}
 
 	Axis3D StringToEnum(const std::string& axis) {
-		if (axis == "x")
+		if (axis == "X")
 		{
 			return Axis3D::x;
-		} else if (axis == "y")
+		} else if (axis == "Y")
 		{
 			return Axis3D::y;
-		} else if (axis == "z")
+		} else if (axis == "Z")
 		{
 			return Axis3D::z;
 		}

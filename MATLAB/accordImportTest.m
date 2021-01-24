@@ -24,7 +24,9 @@ render.Micro = true;
 render.Meso = true;
 render.ActiveActors = true;
 render.PassiveActors = true;
-Accord.plotShapes("C:\dev\AcCoRD2\MATLAB\simulation2.json", render)
+Accord.plotShapes("C:\dev\AcCoRD2\configs\all_micro_regions.json", render);
+view(3);
+axis equal;
 %% Watch Animation Live
 clc;
 shape3d = Shape3D('LineColorMap', hsv(2), ...
@@ -35,7 +37,7 @@ render.Micro = true;
 render.Meso = true;
 render.ActiveActors = true;
 render.PassiveActors = true;
-Accord.plotShapes("C:\dev\AcCoRD2\configs\sample1.json", render);
+Accord.plotShapes("C:\dev\AcCoRD2\configs\all_micro_regions.json", render);
 r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
