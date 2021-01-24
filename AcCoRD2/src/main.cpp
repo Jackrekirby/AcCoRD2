@@ -356,6 +356,13 @@ void TestMesoscopic()
 // mesoscopic region no logn need to link sibling subvolumes and subvoluem queues later as none are deleted
 // import shapes from config file in MATLAB
 // https://uk.mathworks.com/matlabcentral/answers/724917-forcing-a-scalar-to-be-represented-as-a-1x1-vector
+// clean up matlab compilation
+// still need visualisation of debug paths
+
+
+// switch molecule format from vector of molecule IDs to vector of number of molecules per type
+// reactions
+// active actors
 
 int main()
 {
