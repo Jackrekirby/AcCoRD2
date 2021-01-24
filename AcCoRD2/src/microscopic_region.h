@@ -46,16 +46,16 @@ namespace accord::microscopic
 
 		// reaction classes can always internally get and pass a Grid to the reaction class constructor.
 		// Zeroth Order Reaction
-		void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate);
+		void AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate);
 
 		// First Order Reaction
-		void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate);
+		void AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate, double total_reaction_rate);
 
 		// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
-		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products,
+		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const std::vector<int>& products,
 			double binding_radius, double unbinding_radius);
 
-		void AddSecondOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double binding_radius, double unbinding_radius);
+		void AddSecondOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double binding_radius, double unbinding_radius);
 
 		// returns environment time + time_step
 		double GetNextEventTime() const;

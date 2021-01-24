@@ -37,11 +37,11 @@ namespace accord::mesoscopic
 		void CreateSubvolumes(const Vec3i& n_subvolumes, std::vector<double> diffusion_coefficients,
 			double subvolume_length, const std::vector<int>& removed_indices);
 
-		void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate);
+		void AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate);
 
-		void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate);
+		void AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate);
 
-		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate);
+		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const std::vector<int>& products, double reaction_rate);
 
 		// will delete subvolumes from the region in preparation for another mesoscopic or microscopic region to be placed inside
 		void AddChild();

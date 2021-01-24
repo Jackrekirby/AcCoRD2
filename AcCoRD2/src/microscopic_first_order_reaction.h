@@ -12,7 +12,7 @@ namespace accord::microscopic
 	class FirstOrderReaction
 	{
 	public:
-		FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region);
+		FirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate, double total_reaction_rate, Region* region);
 
 		void Run();
 	private:
@@ -21,7 +21,7 @@ namespace accord::microscopic
 		double min_reaction_time;
 		double total_reaction_rate;
 		Grid* reaction_grid;
-		std::vector<Grid*> product_grids;
+		std::vector<int> products;
 
 		double CalculateMinimumReactionTime(double total_reaction_rate, double region_time_step);
 
@@ -30,8 +30,6 @@ namespace accord::microscopic
 		void CreateProductMolecules(const Vec3d& position, double reaction_time);
 
 		double CalculateReactionProbability(double reaction_rate, double total_reaction_rate, double region_time_step);
-
-		std::vector<Grid*> GetProductGrids(const MoleculeIDs& products);
 
 	};
 }

@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "mesoscopic_first_order_reaction.h"
 #include "mesoscopic_layer.h"
+#include "mesoscopic_subvolume.h"
 
 namespace accord::mesoscopic
 {
-	FirstOrderReaction::FirstOrderReaction(Layer* reactant, const std::vector<Layer*>& products, double reaction_rate)
-		: reaction_propensity(0), products(products), reaction_rate(reaction_rate), reactant(reactant)
+	FirstOrderReaction::FirstOrderReaction(Layer* reactant, const std::vector<int>& products, double reaction_rate, Subvolume* subvolume)
+		: reaction_propensity(0), products(products), reaction_rate(reaction_rate), reactant(reactant), subvolume(subvolume)
 	{
 
 	}
@@ -13,9 +14,12 @@ namespace accord::mesoscopic
 	void FirstOrderReaction::React()
 	{
 		reactant->RemoveMolecule();
-		for (Layer* product : products)
+
+		size_t i = 0;
+		for (auto& layer : subvolume->GetLayers())
 		{
-			product->AddMolecule();
+			layer.AddMolecule(products.at(i));
+			i++;
 		}
 	}
 

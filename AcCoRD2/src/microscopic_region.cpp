@@ -105,25 +105,25 @@ namespace accord::microscopic
 
 	// reaction classes can always internally get and pass a Grid to the reaction class constructor.
 	// Zeroth Order Reaction
-	void Region::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
+	void Region::AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate)
 	{
 		zeroth_order_reactions.emplace_back(products, reaction_rate, this);
 	}
 
 	// First Order Reaction
-	void Region::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate)
+	void Region::AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate, double total_reaction_rate)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, total_reaction_rate, this);
 	}
 
 	// Second Order Reaction (if reactant_a == reactant_b then construct single reactant class)
 	void Region::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius)
+		const std::vector<int>& products, double binding_radius, double unbinding_radius)
 	{
 		two_reactant_second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, unbinding_radius, this);
 	}
 
-	void Region::AddSecondOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products,
+	void Region::AddSecondOrderReaction(const MoleculeID& reactant, const std::vector<int>& products,
 		double binding_radius, double unbinding_radius)
 	{
 		one_reactant_second_order_reactions.emplace_back(reactant, products, binding_radius, unbinding_radius, this);

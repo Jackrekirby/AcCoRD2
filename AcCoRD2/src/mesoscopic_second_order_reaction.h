@@ -7,8 +7,8 @@ namespace accord::mesoscopic
 	class SecondOrderReaction : public PropensityObject
 	{
 	public:
-		SecondOrderReaction(Layer* reactant_a, Layer* reactant_b, const std::vector<Layer*>& products,
-			double reaction_rate, double volume);
+		SecondOrderReaction(Layer* reactant_a, Layer* reactant_b, const std::vector<int>& products,
+			double reaction_rate, double volume, Subvolume* subvolume);
 
 		void React();
 
@@ -21,6 +21,7 @@ namespace accord::mesoscopic
 		int is_one_reactant;
 		Layer* reactant_a;
 		Layer* reactant_b;
-		std::vector<Layer*> product_layers;
+		std::vector<int> products;
+		Subvolume* subvolume;
 	};
 }

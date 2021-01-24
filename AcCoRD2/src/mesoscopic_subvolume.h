@@ -57,11 +57,13 @@ namespace accord::mesoscopic
 
 		std::vector<Layer*> GetLayers(const MoleculeIDs& ids);
 
-		void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate);
+		std::vector<Layer> GetLayers();
 
-		void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate);
+		void AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate);
 
-		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate);
+		void AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate);
+
+		void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const std::vector<int>& products, double reaction_rate);
 
 		void AddLinkToPropensityObject(const MoleculeID& id, PropensityObject* object);
 

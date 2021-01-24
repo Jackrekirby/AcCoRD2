@@ -13,14 +13,14 @@ namespace accord
 	}
 
 	// Zeroth Order Reaction
-	void ReactionManager::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
+	void ReactionManager::AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate,
 		const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 	{
 		zeroth_order_reactions.emplace_back(products, reaction_rate, microscopic_regions, mesoscopic_regions);
 	}
 
 	// First Order Reaction
-	void ReactionManager::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, 
+	void ReactionManager::AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products,
 		double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 	{
 		first_order_reactions.emplace_back(reactant, products, reaction_rate, microscopic_regions, mesoscopic_regions);
@@ -28,14 +28,14 @@ namespace accord
 	}
 
 	void ReactionManager::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, 
+		const std::vector<int>& products, double binding_radius, double unbinding_radius,
 		double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 	{
 		second_order_reactions.emplace_back(reactant_a, reactant_b, products, binding_radius, 
 			unbinding_radius, reaction_rate, microscopic_regions, mesoscopic_regions);
 	}
 
-	void ReactionManager::AddSecondOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products,
+	void ReactionManager::AddSecondOrderReaction(const MoleculeID& reactant, const std::vector<int>& products,
 		double binding_radius, double unbinding_radius, double reaction_rate, 
 		const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 	{

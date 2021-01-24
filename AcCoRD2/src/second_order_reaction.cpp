@@ -4,7 +4,7 @@
 namespace accord
 {
 	SecondOrderReaction::SecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, double reaction_rate,
+		const std::vector<int>& products, double binding_radius, double unbinding_radius, double reaction_rate,
 		const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 		: reactant_a(reactant_a), reactant_b(reactant_b), products(products), binding_radius(binding_radius),
 		unbinding_radius(unbinding_radius), reaction_rate(reaction_rate), microscopic_regions(microscopic_regions), 
@@ -22,7 +22,7 @@ namespace accord
 		return reactant_b;
 	}
 
-	const MoleculeIDs& SecondOrderReaction::GetProducts() const
+	const std::vector<int>& SecondOrderReaction::GetProducts() const
 	{
 		return products;
 	}

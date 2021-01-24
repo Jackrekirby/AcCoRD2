@@ -7,7 +7,7 @@
 namespace accord::microscopic
 {
 	TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region)
+		const std::vector<int>& products, double binding_radius, double unbinding_radius, Region* region)
 		: reactant_a(reactant_a), reactant_b(reactant_b), SecondOrderReaction(products, binding_radius, unbinding_radius), 
 		reactant_a_grid(&(region->GetGrid(reactant_a)))
 	{
@@ -27,7 +27,7 @@ namespace accord::microscopic
 
 
 	OneReactantSecondOrderReaction::OneReactantSecondOrderReaction(const MoleculeID& reactant,
-		const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region)
+		const std::vector<int>& products, double binding_radius, double unbinding_radius, Region* region)
 		: reactant(reactant), SecondOrderReaction(products, binding_radius, unbinding_radius),
 		reactant_grid(&(region->GetGrid(reactant)))
 	{
@@ -90,10 +90,13 @@ namespace accord::microscopic
 	}
 
 
-	SecondOrderReaction::SecondOrderReaction(const MoleculeIDs& products, double binding_radius, double unbinding_radius)
-		: products(products), binding_radius(binding_radius), unbinding_radius(unbinding_radius)
+	SecondOrderReaction::SecondOrderReaction(const std::vector<int>& products, double binding_radius, double unbinding_radius)
+		: products(products), binding_radius(binding_radius), unbinding_radius(unbinding_radius), n_products(CalculateNumberOfProductMolecules(products))
 	{
-
+		if (n_products <= 2)
+		{
+			AssignProductsAB();
+		}
 	}
 
 	void SecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume& s1, Subvolume& s2, double current_time)
@@ -171,48 +174,94 @@ namespace accord::microscopic
 				{
 					Region& reaction_region = dynamic_cast<Grid&>(p1->GetOwner()).GetRegion();
 					//LOG_INFO("molecules reacted");
-					if (products.size() == 1)
+					if (n_products == 1)
 					{
-						reaction_region.AddMolecule(products.front(), reaction_site, current_time);
+						reaction_region.AddMolecule(product_a, reaction_site, current_time);
 					}
-					else if(products.size() == 2)
+					else if(n_products == 2)
 					{
 						
 						double relative_unbinding_radius = unbinding_radius * diffusion_coefficient;
 						Vec3d offset = (m1.GetPosition() - reaction_site).Normalise() * relative_unbinding_radius;
 						Vec3d product_a_site = reaction_site + offset;
 						Vec3d product_b_site = reaction_site - offset;
-						auto product_a_destination = reaction_region.GetGrid(products.at(0)).CheckMoleculePath(reaction_site, product_a_site, 20);
+						auto product_a_destination = reaction_region.GetGrid(product_a).CheckMoleculePath(reaction_site, product_a_site, 20);
 						if (product_a_destination.has_value())
 						{
 							product_a_destination->GetOwner().AddMolecule(product_a_destination->GetPosition(), current_time);
 						}
-						auto product_b_destination = reaction_region.GetGrid(products.at(1)).CheckMoleculePath(reaction_site, product_b_site, 20);
+						auto product_b_destination = reaction_region.GetGrid(product_b).CheckMoleculePath(reaction_site, product_b_site, 20);
 						if (product_b_destination.has_value())
 						{
 							product_b_destination->GetOwner().AddMolecule(product_b_destination->GetPosition(), current_time);
 						}
 					}
-					else if (products.size() > 2)
+					else if (n_products > 2)
 					{
-						double relative_unbinding_radius = unbinding_radius * diffusion_coefficient;
-						for (auto& product : products)
-						{
-							Vec3d product_site = reaction_site + relative_unbinding_radius * Vec3d::GenerateRandomPolar();
 
-							auto product_destination = reaction_region.GetGrid(product).CheckMoleculePath(reaction_site, product_site, 20);
-							if (product_destination.has_value())
+						size_t molecule_type = 0;
+						double relative_unbinding_radius = unbinding_radius * diffusion_coefficient;
+						for (auto& grid : reaction_region.GetGrids())
+						{
+							int n_molecules_to_release = products.at(molecule_type);
+							for (int i = 0; i < n_molecules_to_release; i++)
 							{
-								product_destination->GetOwner().AddMolecule(product_destination->GetPosition(), current_time);
+								Vec3d product_site = reaction_site + relative_unbinding_radius * Vec3d::GenerateRandomPolar();
+
+								auto product_destination = grid.CheckMoleculePath(reaction_site, product_site, 20);
+								if (product_destination.has_value())
+								{
+									product_destination->GetOwner().AddMolecule(product_destination->GetPosition(), current_time);
+								}
 							}
+							molecule_type++;
 						}
-					} // else products.size() == 0
-					
+					}
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+
+	int SecondOrderReaction::CalculateNumberOfProductMolecules(const std::vector<int>& products)
+	{
+		int count = 0;
+		for (auto& product : products)
+		{
+			count += product;
+		}
+		return count;
+	}
+
+	void SecondOrderReaction::AssignProductsAB()
+	{
+		int count = 0;
+		int molecule_type = 0;
+		for (int product : products)
+		{
+			if (product > 0)
+			{
+				if (count == 0)
+				{
+					if (product == 1)
+					{
+						product_a = molecule_type;
+					}
+					else // (product == 2)
+					{
+						product_b = molecule_type;
+					}
+				}
+				else // (count == 1)
+				{
+					product_b = molecule_type;
+				}
+			}
+			count += product;
+			molecule_type++;
+			if (count >= 2) break;
+		}
 	}
 	
 }

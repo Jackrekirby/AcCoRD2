@@ -11,7 +11,7 @@ namespace accord::microscopic
 	class ZerothOrderReaction
 	{
 	public:
-		ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, Region* region);
+		ZerothOrderReaction(const std::vector<int>& products, double reaction_rate, Region* region);
 
 		void NextRealisation();
 
@@ -20,15 +20,12 @@ namespace accord::microscopic
 		Region* region;
 		double reaction_coefficient;
 		double time;
-		std::vector<Grid*> product_grids;
+		std::vector<int> products;
 
 		void CreateProductMolecules();
 
 		double GenerateNextReactionTime();
 
 		double CalculateReactionCoefficient(double reaction_rate);
-
-		std::vector<Grid*> GetProductGrids(const MoleculeIDs& products);
-
 	};
 }

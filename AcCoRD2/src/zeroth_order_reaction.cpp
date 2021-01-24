@@ -3,7 +3,7 @@
 
 namespace accord
 {
-	ZerothOrderReaction::ZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
+	ZerothOrderReaction::ZerothOrderReaction(const std::vector<int>& products, double reaction_rate,
 		const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 		: products(products), reaction_rate(reaction_rate),
 		microscopic_regions(microscopic_regions), mesoscopic_regions(mesoscopic_regions)
@@ -11,7 +11,7 @@ namespace accord
 
 	}
 
-	const MoleculeIDs& ZerothOrderReaction::GetProducts() const
+	const std::vector<int>& ZerothOrderReaction::GetProducts() const
 	{
 		return products;
 	}

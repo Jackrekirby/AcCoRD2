@@ -14,10 +14,10 @@ namespace accord::mesoscopic
 
 	}
 
-	void Layer::AddMolecule()
+	void Layer::AddMolecule(int count)
 	{
 		//LOG_INFO("id = {}", id);
-		molecule_count++;
+		molecule_count += count;
 		linked_propensities->RequiresUpdate();
 	}
 

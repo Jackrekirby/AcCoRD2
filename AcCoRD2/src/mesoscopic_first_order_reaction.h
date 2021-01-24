@@ -4,11 +4,12 @@
 namespace accord::mesoscopic
 {
 	class Layer;
+	class Subvolume;
 
 	class FirstOrderReaction : public PropensityObject
 	{
 	public:
-		FirstOrderReaction(Layer* reactant, const std::vector<Layer*>& products, double reaction_rate);
+		FirstOrderReaction(Layer* reactant, const std::vector<int>& products, double reaction_rate, Subvolume* subvolume);
 
 		void React();
 
@@ -20,6 +21,7 @@ namespace accord::mesoscopic
 		double reaction_propensity;
 		double reaction_rate;
 		Layer* reactant;
-		std::vector<Layer*> products;
+		std::vector<int> products;
+		Subvolume* subvolume;
 	};
 }

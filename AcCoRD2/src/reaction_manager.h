@@ -12,18 +12,18 @@ namespace accord
 		static void Init(int num_of_molecule_types);
 
 		// Zeroth Order Reaction
-		static void AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate, 
+		static void AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate,
 			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
 
 		// First Order Reaction
-		static void AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate,
+		static void AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate,
 			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& meso_regions);
 
 		static void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius,
+			const std::vector<int>& products, double binding_radius, double unbinding_radius,
 			double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
 
-		static void AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeIDs& products, double binding_radius, 
+		static void AddSecondOrderReaction(const MoleculeID& reactant_a, const std::vector<int>& products, double binding_radius,
 			double unbinding_radius,  double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, 
 			const MesoscopicRegionIDs& mesoscopic_regions);
 

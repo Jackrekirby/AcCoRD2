@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "mesoscopic_second_order_reaction.h"
+#include "mesoscopic_subvolume.h"
 
 namespace accord::mesoscopic
 {
-	SecondOrderReaction::SecondOrderReaction(Layer* reactant_a, Layer* reactant_b, const std::vector<Layer*>& products,
-		double reaction_rate, double volume)
+	SecondOrderReaction::SecondOrderReaction(Layer* reactant_a, Layer* reactant_b, const std::vector<int>& products,
+		double reaction_rate, double volume, Subvolume* subvolume)
 		: reaction_factor(reaction_rate / volume), reactant_a(reactant_a), reactant_b(reactant_b),
-		is_one_reactant(reactant_a == reactant_b), product_layers(products), reaction_propensity(0)
+		is_one_reactant(reactant_a == reactant_b), products(products), reaction_propensity(0), subvolume(subvolume)
 	{
 
 	}
@@ -15,9 +16,11 @@ namespace accord::mesoscopic
 	{
 		reactant_a->RemoveMolecule();
 		reactant_b->RemoveMolecule();
-		for (Layer* layer : product_layers)
+		size_t i = 0;
+		for (auto& layer : subvolume->GetLayers())
 		{
-			layer->AddMolecule();
+			layer.AddMolecule(products.at(i));
+			i++;
 		}
 	}
 

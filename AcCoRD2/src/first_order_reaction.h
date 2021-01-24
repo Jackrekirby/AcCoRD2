@@ -8,12 +8,12 @@ namespace accord
 	class FirstOrderReaction
 	{
 	public:
-		FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, 
+		FirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate,
 			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
 
 		const MoleculeID& GetReactant() const;
 
-		const MoleculeIDs& GetProducts() const;
+		const std::vector<int>& GetProducts() const;
 
 		double GetRate() const;
 
@@ -25,7 +25,7 @@ namespace accord
 
 	private:
 		MoleculeID reactant;
-		MoleculeIDs products;
+		std::vector<int> products;
 		double reaction_rate;
 		MicroscopicRegionIDs microscopic_regions;
 		MesoscopicRegionIDs mesoscopic_regions;

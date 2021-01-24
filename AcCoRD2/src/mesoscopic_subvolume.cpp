@@ -136,25 +136,48 @@ namespace accord::mesoscopic
 		return layer_ptrs;
 	}
 
-	void Subvolume::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
+	std::vector<Layer> Subvolume::GetLayers()
 	{
-		zeroth_order_reactions.emplace_back(GetLayers(products), reaction_rate, GetBoundingBox().CalculateVolume());
+		return layers;
+	}
+
+	void Subvolume::AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate)
+	{
+		zeroth_order_reactions.emplace_back(products, reaction_rate, GetBoundingBox().CalculateVolume(), this);
 		reaction_propensity += zeroth_order_reactions.back().GetPropensity();
 	}
 
-	void Subvolume::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate)
+	// is a propensity link to products required because products do not affect the propensity of reactions?
+	void Subvolume::AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate)
 	{
-		first_order_reactions.emplace_back(&GetLayer(reactant), GetLayers(products), reaction_rate);
+		first_order_reactions.emplace_back(&GetLayer(reactant), products, reaction_rate, this);
 		AddLinkToPropensityObject(reactant, &first_order_reactions.back());
-		AddLinkToPropensityObjects(products, &first_order_reactions.back());
+
+		int molecule_type = 0;
+		for (int product : products)
+		{
+			if (product > 0)
+			{
+				AddLinkToPropensityObject(molecule_type, &first_order_reactions.back());
+			}
+			molecule_type++;
+		}
 	}
 
-	void Subvolume::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate)
+	void Subvolume::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const std::vector<int>& products, double reaction_rate)
 	{
-		second_order_reactions.emplace_back(&GetLayer(reactant_a), &GetLayer(reactant_b), GetLayers(products),
-			reaction_rate, GetBoundingBox().CalculateVolume());
+		second_order_reactions.emplace_back(&GetLayer(reactant_a), &GetLayer(reactant_b), products,
+			reaction_rate, GetBoundingBox().CalculateVolume(), this);
 		AddLinkToPropensityObjects({ reactant_a, reactant_b }, &second_order_reactions.back());
-		AddLinkToPropensityObjects(products, &second_order_reactions.back());
+		int molecule_type = 0;
+		for (int product : products)
+		{
+			if (product > 0)
+			{
+				AddLinkToPropensityObject(molecule_type, &second_order_reactions.back());
+			}
+			molecule_type++;
+		}
 	}
 
 	void Subvolume::AddLinkToPropensityObject(const MoleculeID& id, PropensityObject* object)

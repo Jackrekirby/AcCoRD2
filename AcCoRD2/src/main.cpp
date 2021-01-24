@@ -363,6 +363,7 @@ void TestMesoscopic()
 // switch molecule format from vector of molecule IDs to vector of number of molecules per type
 // reactions
 // active actors
+// is a propensity link to products required because products do not affect the propensity of reactions?
 
 int main()
 {
@@ -375,8 +376,8 @@ int main()
 	//accord::ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
 	using namespace accord;
 	
-	ConfigImporter config("C:/dev/AcCoRD2/configs/sample1.json");
-	Environment::LinkReactionsToRegions();
-	Environment::AddEventsToEventQueue();
-	Environment::RunSimulation();
+	//ConfigImporter config("C:/dev/AcCoRD2/configs/sample1.json");
+	//Environment::LinkReactionsToRegions();
+	//Environment::AddEventsToEventQueue();
+	//Environment::RunSimulation();
 }

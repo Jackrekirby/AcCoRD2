@@ -139,7 +139,7 @@ namespace accord::mesoscopic
 		return subvolumes;
 	}
 
-	void Region::AddZerothOrderReaction(const MoleculeIDs& products, double reaction_rate)
+	void Region::AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{
@@ -147,7 +147,7 @@ namespace accord::mesoscopic
 		}
 	}
 
-	void Region::AddFirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate)
+	void Region::AddFirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{
@@ -155,7 +155,7 @@ namespace accord::mesoscopic
 		}
 	}
 
-	void Region::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products, double reaction_rate)
+	void Region::AddSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const std::vector<int>& products, double reaction_rate)
 	{
 		for (auto& subvolume : subvolumes)
 		{

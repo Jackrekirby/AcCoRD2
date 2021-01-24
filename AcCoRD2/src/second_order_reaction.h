@@ -8,7 +8,7 @@ namespace accord
 	class SecondOrderReaction
 	{
 	public:
-		SecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const MoleculeIDs& products,
+		SecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b, const std::vector<int>& products,
 			double binding_radius, double unbinding_radius, double reaction_rate, 
 			const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions);
 
@@ -16,7 +16,7 @@ namespace accord
 
 		const MoleculeID& GetReactantB() const;
 
-		const MoleculeIDs& GetProducts() const;
+		const std::vector<int>& GetProducts() const;
 
 		double GetBindingRadius() const;
 
@@ -31,7 +31,7 @@ namespace accord
 	private:
 		MoleculeID reactant_a;
 		MoleculeID reactant_b;
-		MoleculeIDs products;
+		std::vector<int> products;
 		double binding_radius;
 		double unbinding_radius;
 		double reaction_rate;

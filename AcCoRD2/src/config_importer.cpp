@@ -636,7 +636,7 @@ namespace accord
 		LOG_INFO("Zeroth Order Reactions");
 		for (auto& reaction : j["ZerothOrderReactions"])
 		{
-			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
+			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
 			double reaction_rate = reaction["ReactionRate"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
 			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);
@@ -647,7 +647,7 @@ namespace accord
 		for (auto& reaction : j["FirstOrderReactions"])
 		{
 			MoleculeID reactant = reaction["Reactant"].get<MoleculeID>();
-			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
+			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
 			double reaction_rate = reaction["ReactionRate"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
 			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);
@@ -659,7 +659,7 @@ namespace accord
 		{
 			MoleculeID reactant_a = reaction["ReactantA"].get<MoleculeID>();
 			MoleculeID reactant_b = reaction["ReactantA"].get<MoleculeID>();
-			MoleculeIDs products = reaction["Products"].get<MoleculeIDs>();
+			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
 			int reaction_rate = reaction["ReactionRate"].get<int>();
 			double binding_radius = reaction["BindingRadius"].get<double>();
 			double unbinding_radius = reaction["UnBindingRadius"].get<double>();

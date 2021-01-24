@@ -20,7 +20,7 @@ namespace accord::mesoscopic
 	public:
 		Layer(double diffusion_coefficient, LinkedPropensityObjects* linked_propensities, MoleculeID id);
 
-		void AddMolecule();
+		void AddMolecule(int count = 1);
 
 		void RemoveMolecule();
 

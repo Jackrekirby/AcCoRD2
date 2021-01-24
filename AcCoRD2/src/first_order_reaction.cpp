@@ -4,7 +4,7 @@
 
 namespace accord
 {
-	FirstOrderReaction::FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, 
+	FirstOrderReaction::FirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products,
 		double reaction_rate, const MicroscopicRegionIDs& microscopic_regions, const MesoscopicRegionIDs& mesoscopic_regions)
 		: reactant(reactant), products(products), reaction_rate(reaction_rate),
 		microscopic_regions(microscopic_regions), mesoscopic_regions(mesoscopic_regions)
@@ -17,7 +17,7 @@ namespace accord
 		return reactant;
 	}
 
-	const MoleculeIDs& FirstOrderReaction::GetProducts() const
+	const std::vector<int>& FirstOrderReaction::GetProducts() const
 	{
 		return products;
 	}

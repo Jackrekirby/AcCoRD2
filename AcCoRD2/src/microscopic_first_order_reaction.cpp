@@ -5,10 +5,10 @@
 
 namespace accord::microscopic
 {
-	FirstOrderReaction::FirstOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, double reaction_rate, double total_reaction_rate, Region* region)
+	FirstOrderReaction::FirstOrderReaction(const MoleculeID& reactant, const std::vector<int>& products, double reaction_rate, double total_reaction_rate, Region* region)
 		: region(region), reaction_probability(CalculateReactionProbability(reaction_rate, total_reaction_rate, region->GetTimeStep())),
 		min_reaction_time(CalculateMinimumReactionTime(total_reaction_rate, region->GetTimeStep())), total_reaction_rate(total_reaction_rate),
-		product_grids(GetProductGrids(products)), reaction_grid(&(region->GetGrid(reactant)))
+		reaction_grid(&(region->GetGrid(reactant)))
 	{
 	}
 
@@ -48,24 +48,20 @@ namespace accord::microscopic
 
 	void FirstOrderReaction::CreateProductMolecules(const Vec3d& position, double reaction_time)
 	{
-		for (auto& grid : product_grids)
+		size_t molecule_type = 0;
+		for (auto& grid : region->GetGrids())
 		{
-			grid->AddMolecule(position, reaction_time);
+			int n_molecules_to_release = products.at(molecule_type);
+			for (int i = 0; i < n_molecules_to_release; i++)
+			{
+				grid.AddMolecule(position, reaction_time);
+			}
+			molecule_type++;
 		}
 	}
 
 	double FirstOrderReaction::CalculateReactionProbability(double reaction_rate, double total_reaction_rate, double region_time_step)
 	{
 		return ((reaction_rate / total_reaction_rate) * (1 - std::exp(-region_time_step * total_reaction_rate)));
-	}
-
-	std::vector<Grid*> FirstOrderReaction::GetProductGrids(const MoleculeIDs& products)
-	{
-		std::vector<Grid*> product_grids;
-		for (auto product : products)
-		{
-			product_grids.emplace_back(&(region->GetGrid(product)));
-		}
-		return product_grids;
 	}
 }

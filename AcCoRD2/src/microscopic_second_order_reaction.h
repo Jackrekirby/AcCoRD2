@@ -13,11 +13,16 @@ namespace accord::microscopic
 	class SecondOrderReaction
 	{
 	public:
-		SecondOrderReaction(const MoleculeIDs& products, double binding_radius, double unbinding_radius);
+		SecondOrderReaction(const std::vector<int>& products, double binding_radius, double unbinding_radius);
 
 		virtual void CalculateReactions(double current_time) = 0;
 	protected:
-		MoleculeIDs products;
+		std::vector<int> products;
+		// variables only used if there is only 1 or 2 products
+		MoleculeID product_a;
+		MoleculeID product_b;
+
+		int n_products;
 		double binding_radius;
 		double unbinding_radius;
 
@@ -25,12 +30,16 @@ namespace accord::microscopic
 
 		bool AttemptToReactMolecules(const NormalMolecule& m1, const NormalMolecule& m2,
 			Subvolume& s1, Subvolume& s2, double current_time);
+
+		int CalculateNumberOfProductMolecules(const std::vector<int>& products);
+
+		void AssignProductsAB();
 	};
 
 	class OneReactantSecondOrderReaction : public SecondOrderReaction
 	{
 	public:
-		OneReactantSecondOrderReaction(const MoleculeID& reactant, const MoleculeIDs& products, 
+		OneReactantSecondOrderReaction(const MoleculeID& reactant, const std::vector<int>& products,
 			double binding_radius, double unbinding_radius, Region* region);
 
 		void CalculateReactions(double current_time);
@@ -45,7 +54,7 @@ namespace accord::microscopic
 	{
 	public:
 		TwoReactantSecondOrderReaction(const MoleculeID& reactant_a, const MoleculeID& reactant_b,
-			const MoleculeIDs& products, double binding_radius, double unbinding_radius, Region* region);
+			const std::vector<int>& products, double binding_radius, double unbinding_radius, Region* region);
 
 		void CalculateReactions(double current_time);
 	private:
