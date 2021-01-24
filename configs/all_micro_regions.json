@@ -18,13 +18,26 @@
 		  "TimeStep":0.05,
 		  "Priority":0
 	   }
+	   {
+		  "Name":"MicroSphere1",
+		  "Shape":{
+			  "Type":"Sphere",
+			  "Centre":[5, 0, 0],
+			  "Radius":1
+		   },
+		  "SurfaceType":"Reflecting",
+		  "DiffusionCoefficients":[0.1],
+		  "NumberOfSubvolumes":[ [2, 2, 2] ],
+		  "TimeStep":0.05,
+		  "Priority":0
+	   }
    ],
    "PassiveActors":[
 		{
 		  "Name":"PassiveActor1",
 		  "RecordPositions":true,
 		  "RecordObservationTime":true,
-		  "RegionsToObserve":[ "MicroBox1"],
+		  "RegionsToObserve":[ "MicroBox1", "MicroSphere1"],
 		  "MoleculeTypesToObserve":[ 0 ],
 		  "StartTime":0,
 		  "TimeStep":0.05,
@@ -35,7 +48,7 @@
       {
          "Products":[10],
          "ReactionRate":1,
-         "OccurInRegions":[ "MicroBox1" ]
+         "OccurInRegions":[ "MicroBox1", "MicroSphere1"]
       }
    ]
 }

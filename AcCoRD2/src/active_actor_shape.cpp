@@ -4,13 +4,13 @@
 namespace accord
 {
 	ActiveActorBox::ActiveActorBox(const Vec3d& origin, const Vec3d& length)
-		: shape::generating::Box(origin, length), shape::basic::Box(origin, length)
+		: shape::generating::Box(origin, length), shape::basic::Box(origin, length), shape::relation::Box(origin, length)
 	{ 
 
 	}
 
 	ActiveActorBox::ActiveActorBox(const shape::basic::Box& box)
-		: shape::generating::Box(box), shape::basic::Box(box)
+		: shape::generating::Box(box), shape::basic::Box(box), shape::relation::Box(box)
 	{
 	}
 
@@ -22,6 +22,11 @@ namespace accord
 	double ActiveActorBox::CalculateVolume()
 	{
 		return shape::generating::Box::CalculateVolume();
+	}
+
+	bool ActiveActorBox::IsOverlapping(const shape::relation::Shape3D& other) const
+	{
+		return shape::relation::Box::IsOverlapping(other);
 	}
 
 	void ActiveActorBox::ToJson(Json& j) const

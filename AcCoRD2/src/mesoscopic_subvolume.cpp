@@ -258,7 +258,7 @@ namespace accord::mesoscopic
 	// could store start time locally instead
 	void Subvolume::NextRealisation()
 	{
-		LOG_INFO("subvolume id = {}", id);
+		//LOG_INFO("subvolume id = {}", id);
 		SetTime(0);
 		for (auto& layer : layers)
 		{

@@ -187,11 +187,9 @@ void TestMesoscopic()
 		}
 	}
 
-
 	Environment::GetMesoscopicRegions().emplace_back(Vec3d(0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, remove_subvolumes, 0, 0);
 	Environment::GetMesoscopicRegions().emplace_back(Vec3d(3, 0, 0), 1, Vec3i(3, 3, 3), std::vector<double>{1, 1, 1}, std::vector<Vec3i>{}, 0, 1);
 
-	
 	Environment::GetMesoscopicRegion(1).AddNeighbour(Environment::GetMesoscopicRegion(0));
 	Environment::GetMesoscopicRegion(0).AddNeighbour(Environment::GetMesoscopicRegion(1));
 	
@@ -373,11 +371,12 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	//accord::ConfigImporter config("C:/dev/AcCoRD2/MATLAB/simulation2.json");
+	//accord::ConfigImporter config();
 	using namespace accord;
-	
-	//ConfigImporter config("C:/dev/AcCoRD2/configs/sample1.json");
-	//Environment::LinkReactionsToRegions();
-	//Environment::AddEventsToEventQueue();
-	//Environment::RunSimulation();
+	//std::string config_filepath = "C:/dev/AcCoRD2/MATLAB/simulation2.json";
+	std::string config_filepath = "C:/dev/AcCoRD2/configs/sample1.json";
+	ConfigImporter config(config_filepath);
+	Environment::LinkReactionsToRegions();
+	Environment::AddEventsToEventQueue();
+	Environment::RunSimulation();
 }

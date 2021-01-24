@@ -1,0 +1,14 @@
+[11:51:32.925] [info] config_importer.cpp:438 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[11:51:32.929] [info] config_importer.cpp:441 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[11:51:32.929] [info] config_importer.cpp:444 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[11:51:32.931] [info] config_importer.cpp:447 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[11:51:32.931] [info] config_importer.cpp:450 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[11:51:32.931] [info] config_importer.cpp:453 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[11:51:32.932] [info] config_importer.cpp:673 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[11:51:32.932] [info] config_importer.cpp:683 accord::ConfigImporter::CreateReactions() First Order Reactions
+[11:51:32.933] [info] config_importer.cpp:694 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[11:51:32.936] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 0
+[11:51:33.174] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 1
+[11:51:33.360] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 2
+[11:51:33.498] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 3
+[11:51:33.713] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 4

@@ -83,6 +83,8 @@ namespace accord::microscopic
 		void NextRealisation();
 
 		void LinkGrids(Region& region, const MoleculeIDs& ids);
+
+		MicroscopicRegionID GetID() const;
 	private:
 		//std::unique_ptr<SurfaceShape> surface_shape;
 		SurfaceType surface_type;

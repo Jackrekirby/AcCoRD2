@@ -65,6 +65,8 @@ namespace accord::mesoscopic
 
 		void NextRealisation();
 
+		MesoscopicRegionID GetID() const;
+
 	private:
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;

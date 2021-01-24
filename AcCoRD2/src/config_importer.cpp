@@ -308,7 +308,7 @@ namespace accord
 			{
 				reactions.SetIndex(i);
 
-				reactions.Add("Products").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				reactions.Add("Products").IsArrayOfInts().HasSize(n_molecule_types).IsNonNegative();
 				reactions.Add("ReactionRate").IsNumber().IsPositive();
 				reactions.Add("OccurInRegions").IsArrayOfStrings().IsEachOneOf(region_names);
 			}
@@ -327,7 +327,7 @@ namespace accord
 			{
 				reactions.SetIndex(i);
 				reactions.Add("Reactant").IsInt().IsInRange(0, max_molecule_id);
-				reactions.Add("Products").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				reactions.Add("Products").IsArrayOfInts().HasSize(n_molecule_types).IsNonNegative();
 				reactions.Add("ReactionRate").IsNumber().IsPositive();
 				reactions.Add("OccurInRegions").IsArrayOfStrings().IsEachOneOf(region_names);
 			}
@@ -347,7 +347,7 @@ namespace accord
 				reactions.SetIndex(i);
 				reactions.Add("ReactantA").IsInt().IsInRange(0, max_molecule_id);
 				reactions.Add("ReactantB").IsInt().IsInRange(0, max_molecule_id);
-				reactions.Add("Products").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				reactions.Add("Products").IsArrayOfInts().HasSize(n_molecule_types).IsNonNegative();
 				reactions.Add("ReactionRate").IsNumber().IsPositive();
 				reactions.Add("OccurInRegions").IsArrayOfStrings().IsEachOneOf(region_names);
 				reactions.Add("BindingRadius").IsNumber().IsNonNegative();
@@ -552,21 +552,58 @@ namespace accord
 			int modulation_strength = actor["ModulationStrength"].get<int>();
 			MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToRelease"].get<MoleculeIDs>();
 
-			std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
-			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in);
-
-			OptionalShapes shapes = CreateShape(actor["Shape"]);
 			std::unique_ptr<ActiveActorShape> active_actor_shape;
-			switch (shapes.shape)
+			RegionIDList region_list;
+			if (actor.contains("Shape"))
 			{
-			case OptionalShapes::Shape::Box:
-				active_actor_shape = std::make_unique<ActiveActorBox>(shapes.box.value());
-				break;
-			case OptionalShapes::Shape::Sphere:
-				break;
-			case OptionalShapes::Shape::Cylinder:
-				break;
+				OptionalShapes shapes = CreateShape(actor["Shape"]);
+				
+				switch (shapes.shape)
+				{
+				case OptionalShapes::Shape::Box:
+					active_actor_shape = std::make_unique<ActiveActorBox>(shapes.box.value());
+					break;
+				case OptionalShapes::Shape::Sphere:
+					break;
+				case OptionalShapes::Shape::Cylinder:
+					break;
+				}
+
+				for (auto& region : Environment::GetRegions())
+				{
+					if (active_actor_shape->IsOverlapping(shape::relation::Box(region->GetShape().GetBasicShape().GenerateBoundingBox())))
+					{
+						region_list.microscopic_ids.emplace_back(region->GetID());
+					}
+				}
+
+				for (auto& region : Environment::GetMesoscopicRegions())
+				{
+					if (active_actor_shape->IsOverlapping(shape::relation::Box(region.GetBoundingBox())))
+					{
+						region_list.mesoscopic_ids.emplace_back(region.GetID());
+					}
+				}
 			}
+			else
+			{
+				std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
+				region_list = GetRegionIDsFromStrings(regions_to_act_in);
+
+				shape::basic::Box bounding_box = Environment::GetMicroscopicRegion(0).GetShape().GetBasicShape().GenerateBoundingBox();
+				for (auto& region : Environment::GetRegions())
+				{
+					bounding_box = bounding_box.GenerateBoundingBox(region->GetShape().GetBasicShape().GenerateBoundingBox());
+				}
+				for (auto& region : Environment::GetMesoscopicRegions())
+				{
+					bounding_box = bounding_box.GenerateBoundingBox(region.GetBoundingBox());
+				}
+				active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
+			}
+			
+
+			
 
 			std::string type_str = actor["Type"].get<std::string>();
 			if (type_str == "RandomTime")

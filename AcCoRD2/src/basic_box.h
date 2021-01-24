@@ -19,6 +19,8 @@ namespace accord::shape::basic
 
 		Box GenerateBoundingBox() const;
 
+		Box GenerateBoundingBox(const Box& box) const;
+
 		void Move(const Vec3d& origin);
 
 		void Resize(const Vec3d& length);

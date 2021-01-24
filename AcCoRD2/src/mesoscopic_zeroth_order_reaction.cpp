@@ -7,7 +7,7 @@ namespace accord::mesoscopic
 	ZerothOrderReaction::ZerothOrderReaction(const std::vector<int>& products, double reaction_rate, double volume, Subvolume* subvolume)
 		: reaction_propensity(reaction_rate * volume), products(products), subvolume(subvolume)
 	{
-		LOG_INFO("propensity = {}", reaction_propensity);
+		//LOG_INFO("propensity = {}", reaction_propensity);
 	}
 
 	void ZerothOrderReaction::React()

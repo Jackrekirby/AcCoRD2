@@ -102,7 +102,7 @@
    ],
    "ZerothOrderReactions":[
       {
-         "Products":[1, 0],
+         "Products":[2, 5],
          "ReactionRate":4.6,
          "OccurInRegions":[ "MicroRegion1", "MesoRegion1" ]
       }
@@ -110,7 +110,7 @@
    "FirstOrderReactions":[
       {
          "Reactant":0,
-         "Products":[1, 0],
+         "Products":[3, 4],
          "ReactionRate":1.2,
          "OccurInRegions":[ "MicroRegion1", "MesoRegion1" ]
       }

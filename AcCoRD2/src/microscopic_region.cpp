@@ -198,6 +198,11 @@ namespace accord::microscopic
 		}
 	}
 
+	MicroscopicRegionID Region::GetID() const
+	{
+		return id;
+	}
+
 	std::string Region::LogEvent() const
 	{
 		return fmt::format("Mesoscopic Region. ID:{}, Priority:{}, Time:{}", id, priority, time);

@@ -33,6 +33,11 @@ namespace accord::shape::basic
 		return *this;
 	}
 
+	Box Box::GenerateBoundingBox(const Box& box) const
+	{
+		return {Vec3d::Min(origin, box.origin), Vec3d::Max(end, box.end)};
+	}
+
 	void Box::Move(const Vec3d& origin)
 	{
 		this->origin = origin;

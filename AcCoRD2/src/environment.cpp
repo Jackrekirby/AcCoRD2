@@ -270,6 +270,8 @@ namespace accord
 		for (auto& region : Environment::GetMesoscopicRegions())
 		{
 			Environment::GetEventQueue().Add(&region);
+			region.LinkSiblingSubvolumes();
+			region.AddSubvolumesToQueue();
 		}
 
 		for (auto& actor : Environment::GetPassiveActors())

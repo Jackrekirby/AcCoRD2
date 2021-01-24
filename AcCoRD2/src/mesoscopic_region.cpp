@@ -33,29 +33,13 @@ namespace accord::mesoscopic
 	{
 		// now subvolumes are confirmed delete subvolumes marked for deletion (because other regions have replaced the subvolumes)
 		LOG_INFO("num_subvolume = {}", subvolumes.size());
-		std::vector<Subvolume> new_subvolumes;
-		for (auto& subvolume : subvolumes)
-		{
-			if (!subvolume.IsMarkedForDeletion())
-			{
-				new_subvolumes.emplace_back(subvolume);
-			}
-			else
-			{
-				LOG_INFO("is marked for deletion");
-			}
-		}
-		subvolumes = new_subvolumes;
-		LOG_INFO("num_subvolume = {}", subvolumes.size());
 		subvolume_queue.Reserve(subvolumes.size());
 		for (auto& subvolume : subvolumes)
 		{
 			subvolume_queue.Add(&subvolume);
 			subvolume.UpdateReactionTime();
 			//LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
-			
 		}
-
 		SetEventTime(subvolume_queue.Front().GetTime());
 	}
 
@@ -273,6 +257,11 @@ namespace accord::mesoscopic
 			subvolume.NextRealisation();
 		}
 		RefreshEventTime();
+	}
+
+	MesoscopicRegionID Region::GetID() const
+	{
+		return id;
 	}
 
 	void Region::ToJson(Json& j) const
