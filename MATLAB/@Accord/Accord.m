@@ -350,6 +350,7 @@ classdef Accord
             % files
             sf = dir(simulationDir);
             sf = sf([sf.isdir]);
+            nFiles = 0;
             for iSf = 1:length(sf)
                 if(startsWith(sf(iSf).name, 's'))
                     seed = str2double(sf(iSf).name(2:end));
@@ -364,6 +365,7 @@ classdef Accord
                                     for iFile = 1:length(files)
                                         if(endsWith(files(iFile).name, '.bin'))
                                             % display file paths
+                                            nFiles = nFiles + 1;
                                             if(t)
                                                 disp(files(iFile).folder + "\" + files(iFile).name);
                                             end
@@ -377,6 +379,7 @@ classdef Accord
                     end
                 end
             end
+            disp("Imported " + nFiles + " .bin files");
         end
         
         function sim = importBinaryFile(sim, sn, rn, folder, file)

@@ -190,7 +190,7 @@ namespace accord
 
 	JsonKeyPair& JsonKeyPair::HasSize(size_t size)
 	{
-		LOG_INFO("{} {} {}", Log(), size, GetJson().size());
+		//LOG_INFO("{} {} {}", Log(), size, GetJson().size());
 		if (size != GetJson().size())
 		{
 			LOG_ERROR("Expected <{}> to have a size of {} but had size {}", Log(), size, GetJson().size());

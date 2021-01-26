@@ -797,7 +797,7 @@ namespace accord
 		for (auto& reaction : j["SecondOrderReactions"])
 		{
 			MoleculeID reactant_a = reaction["ReactantA"].get<MoleculeID>();
-			MoleculeID reactant_b = reaction["ReactantA"].get<MoleculeID>();
+			MoleculeID reactant_b = reaction["ReactantB"].get<MoleculeID>();
 			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
 			int reaction_rate = reaction["ReactionRate"].get<int>();
 			double binding_radius = reaction["BindingRadius"].get<double>();

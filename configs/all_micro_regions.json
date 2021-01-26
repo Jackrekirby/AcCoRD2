@@ -4,12 +4,13 @@
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":4,
-   "ObserveAllRegions":true,
+   "ObserveEachRegion":true,
    "G":{
       "TimeStep":0.05,
 	  "DiffusionCoefficients":[0.02, 0.04, 0.06, 0.08],
 	  "NofS":[2, 2, 2],
-	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ]
+	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ],
+	  "AllMicroRegions":[ "MicroBox1", "MicroSphere1", "MicroCylinder1" ]
    },
    "MicroscopicRegions":[
 		{
@@ -54,30 +55,38 @@
 		  "Priority":0
 	   }
    ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@G:TimeStep",
+	  "Priority":0
+	},
    "ZerothOrderReactions":[
       {
-         "Products":[1, 0, 0],
+         "Products":[0, 1, 1, 0],
          "ReactionRate":1,
-         "OccurInRegions":[ "MicroBox1", "MicroSphere1", "MicroCylinder1" ]
+         "OccurInRegions":"@G:AllMicroRegions"
       }
    ],
-   "FirstOrderReactions":[
+   "FirstOrderReactionsX":[
       {
          "Reactant":0,
-         "Products":[0, 1, 0],
+         "Products":[0, 1, 1, 0],
          "ReactionRate":1,
-         "OccurInRegions":[ "MicroBox1", "MicroSphere1" ]
+         "OccurInRegions":"@G:AllMicroRegions"
       }
    ],
    "SecondOrderReactions":[
       {
-         "ReactantA":0,
-         "ReactantB":1,
-         "Products":[0, 0, 1],
+         "ReactantA":1,
+         "ReactantB":2,
+         "Products":[0, 0, 0, 1],
          "ReactionRate":1,
          "BindingRadius":1,
          "UnBindingRadius":1.5,
-         "OccurInRegions":[ "MicroCylinder1" ]
+         "OccurInRegions":"@G:AllMicroRegions"
       }
    ]
 }

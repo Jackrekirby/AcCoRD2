@@ -17,7 +17,7 @@
 clear all; clc; tic;
 config.FilePath = "C:\dev\AcCoRD2\configs\all_micro_regions.json";
 config.Json = jsondecode(fileread(config.FilePath));
-sim = Accord.importFiles(config.Json.SaveToFolder, [], [], true);
+sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
 %% Draw Shapes
 render.Micro = true;
@@ -76,8 +76,12 @@ Accord.plotCount(sim, 1, 1, Inf, Inf);
 subplot(3, 1, 2);
 Accord.plotCountForMoleculeType(sim, 1, Inf, Inf);
 subplot(3, 1, 3);
-Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
+Accord.plotCountForPassiveActor(sim, 3, Inf, Inf);
 
+
+%%
+clc; figure;
+Accord.plotCountForPassiveActor(sim, 3, Inf, Inf);
 
 %% Force all Figures and Files To Close 
 close all force
