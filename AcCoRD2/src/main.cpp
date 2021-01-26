@@ -365,6 +365,9 @@ void TestMesoscopic()
 // add maximum number of reflections to json config file
 // make colours of molecules and regions match
 // change active actors to release products according to [5, 6, 2, 0, 1]
+// update modulation stength from int to double
+// what is burst mode?
+// add remaining active actor constructors to config
 
 namespace accord
 {

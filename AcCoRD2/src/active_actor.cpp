@@ -36,10 +36,10 @@ namespace accord
 		// TODO: Abstract mesoscopic and microscopic regions by ensuring consistent function names (GetShape and IsMoleculeInsideBorder)
 		for (int i = 0; i < n_releases; i++)
 		{
-			for (MoleculeID molecule : release_molecules)
+			for (MoleculeID& molecule : release_molecules)
 			{
-				//LOG_INFO("molecule id = {}", molecule);
 				Vec3d position = GetShape().GenerateMolecule();
+				LOG_INFO("molecule id = {}, pos = {}", molecule, position);
 				for (auto& region : microscopic_regions)
 				{
 					if (region->GetShape().IsMoleculeInsideBorder(position))

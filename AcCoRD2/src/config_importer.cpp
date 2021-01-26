@@ -666,7 +666,7 @@ namespace accord
 			double action_interval = actor["ActionInterval"].get<double>();
 			double release_interval = actor["ReleaseInterval"].get<double>();
 			int modulation_strength = actor["ModulationStrength"].get<int>();
-			MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToRelease"].get<MoleculeIDs>();
+			MoleculeIDs molecule_types_to_release = actor["MoleculeTypesToRelease"].get<MoleculeIDs>();
 
 			std::unique_ptr<ActiveActorShape> active_actor_shape;
 			RegionIDList region_list;
@@ -706,16 +706,25 @@ namespace accord
 				std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
 				region_list = GetRegionIDsFromStrings(regions_to_act_in);
 
-				shape::basic::Box bounding_box = Environment::GetMicroscopicRegion(0).GetShape().GetBasicShape().GenerateBoundingBox();
-				for (auto& region : Environment::GetRegions())
+				shape::basic::Box bounding_box(Vec3d(0), Vec3d(0));
+				if (!region_list.microscopic_ids.empty())
+				{
+					bounding_box = Environment::GetMicroscopicRegion(region_list.microscopic_ids.front()).GetShape().GetBasicShape().GenerateBoundingBox();
+				} else if(!region_list.mesoscopic_ids.empty())
+				{
+					bounding_box = Environment::GetMesoscopicRegion(region_list.mesoscopic_ids.front()).GetBoundingBox();
+				} // else no regions throw error
+
+				for (auto& region : Environment::GetRegions(region_list.microscopic_ids))
 				{
 					bounding_box = bounding_box.GenerateBoundingBox(region->GetShape().GetBasicShape().GenerateBoundingBox());
 				}
-				for (auto& region : Environment::GetMesoscopicRegions())
+				for (auto& region : Environment::GetMesoscopicRegions(region_list.mesoscopic_ids))
 				{
-					bounding_box = bounding_box.GenerateBoundingBox(region.GetBoundingBox());
+					bounding_box = bounding_box.GenerateBoundingBox(region->GetBoundingBox());
 				}
 				active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
+				LOG_INFO("Active actor shape = {}", bounding_box);
 			}
 			
 			std::string type_str = actor["Type"].get<std::string>();
@@ -733,6 +742,11 @@ namespace accord
 				int symbol_size = actor["SymbolSize"].get<int>();
 				double slot_interval = actor["SlotInterval"].get<double>();
 				std::vector<int> bit_sequence = actor["BitSequence"].get<std::vector<int>>();
+
+				Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorNonRandom>(action_interval, release_interval, slot_interval,
+					bit_sequence, symbol_size, molecule_types_to_release, modulation_strength, Environment::GetRegions(region_list.microscopic_ids),
+					Environment::GetMesoscopicRegions(region_list.mesoscopic_ids), std::move(active_actor_shape), start_time, priority, 
+					ActiveActorID(static_cast<int>(Environment::GetActiveActors().size()))));
 			}
 			else
 			{
