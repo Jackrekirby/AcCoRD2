@@ -240,7 +240,7 @@ namespace accord::microscopic
 		int molecule_type = 0;
 		for (int product : products)
 		{
-			LOG_INFO("Number of product type {} = {}", molecule_type, product);
+			//LOG_INFO("Number of product type {} = {}", molecule_type, product);
 			if (product > 0)
 			{
 				if (count == 0)
@@ -263,7 +263,7 @@ namespace accord::microscopic
 			molecule_type++;
 			if (count >= 2) break;
 		}
-		LOG_INFO("Product A = {}, Product B = {}", product_a, product_b);
+		//LOG_INFO("Product A = {}, Product B = {}", product_a, product_b);
 	}
 	
 }

@@ -362,6 +362,9 @@ void TestMesoscopic()
 // reactions
 // active actors
 // is a propensity link to products required because products do not affect the propensity of reactions?
+// add maximum number of reflections to json config file
+// make colours of molecules and regions match
+// change active actors to release products according to [5, 6, 2, 0, 1]
 
 namespace accord
 {
@@ -434,6 +437,7 @@ namespace accord
 
 int main()
 {
+	// log should save into seed file or atleast into config folder
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
 	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
 	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");       
@@ -451,6 +455,6 @@ int main()
 	//j["d"] = "@jack";
 
 	//ReplaceValues(j, j);
-	Run("C:/dev/AcCoRD2/configs/all_micro_regions.json");
+	Run("C:/dev/AcCoRD2/configs/absorption.json");
 	
 }

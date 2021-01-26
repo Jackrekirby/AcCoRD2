@@ -111,7 +111,7 @@ namespace accord
 				if (!value.empty() && value.at(0) == '@')
 				{
 					std::string key = value.substr(1, std::string::npos);
-					LOG_WARN("Key = {}", key);
+					//LOG_WARN("Key = {}", key);
 					subelement = GetReferencedValue(key);
 				}
 			}
@@ -246,11 +246,22 @@ namespace accord
 				active_actors.Add("ReleaseInterval").IsNumber().IsPositive();
 				active_actors.Add("ModulationStrength").IsInt().IsPositive();
 				active_actors.Add("MoleculeTypesToRelease").IsArrayOfInts().IsInRange(0, max_molecule_id);
-				active_actors.Add("RegionsToActIn").IsArrayOfStrings().IsEachOneOf(region_names);
 
-				JsonKeyPair shape_object = active_actors.Add("Shape").IsObject();
-				ValidateShape(shape_object);
-
+				if (active_actors.IsKey("RegionsToActIn"))
+				{
+					active_actors.Add("RegionsToActIn").IsArrayOfStrings().IsEachOneOf(region_names);
+				}
+				else if (active_actors.IsKey("Shape"))
+				{
+					JsonKeyPair shape_object = active_actors.Add("Shape").IsObject();
+					ValidateShape(shape_object);
+				}
+				else
+				{
+					LOG_ERROR("The object <{}> expected field of \"RegionsToActIn\" or \"Shape\" but neither exist", active_actors.Log());
+					throw std::exception();
+				}
+				
 				JsonKeyPair type = active_actors.Add("Type").IsString();
 				std::string type_str = type.GetJson().get<std::string>();
 				if (type_str == "RandomTime")
@@ -266,7 +277,7 @@ namespace accord
 				{
 					active_actors.Add("SymbolSize").IsInt().IsPositive();
 					active_actors.Add("SlotInterval").IsNumber().IsPositive();
-					active_actors.Add("BitSequence").IsInt().IsInRange(0, 1);
+					active_actors.Add("BitSequence").IsArrayOfInts().IsInRange(0, 1);
 				}
 				else
 				{
