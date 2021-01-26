@@ -55,10 +55,73 @@ namespace accord
 			throw std::exception();
 		}
 
+		ReplaceReferenceValues(j);
 		ValidateJson();
 		CreateEnvironment();
 	}
 
+	const Json& ConfigImporter::GetJson()
+	{
+		return j;
+	}
+
+	Json ConfigImporter::GetReferencedValue(const std::string& reference)
+	{
+		Json output = j;
+		size_t pos = 0;
+		std::string token;
+		std::string s = reference;
+		while ((pos = s.find(':')) != std::string::npos) {
+			token = s.substr(0, pos);
+			//LOG_INFO("token = {}", token);
+			if (output.contains(token))
+			{
+				output = output[token];
+			}
+			else
+			{
+				LOG_ERROR("Attepting to access non existent field {}, using reference {}", token, reference);
+				throw std::exception();
+			}
+			s.erase(0, pos + 1);
+		}
+
+		//LOG_INFO("last token = {}", s);
+		if (output.contains(s))
+		{
+			output = output[s];
+		}
+		else
+		{
+			LOG_ERROR("Attepting to access non existent field {}, using reference {}", s, reference);
+			throw std::exception();
+		}
+		return output;
+	}
+
+	void ConfigImporter::ReplaceReferenceValues(Json& element)
+	{
+		for (auto& subelement : element)
+		{
+			if (subelement.is_string())
+			{
+				//LOG_INFO("Is String");
+				std::string value = subelement.get<std::string>();
+				//LOG_INFO(value);
+				if (!value.empty() && value.at(0) == '@')
+				{
+					std::string key = value.substr(1, std::string::npos);
+					LOG_WARN("Key = {}", key);
+					subelement = GetReferencedValue(key);
+				}
+			}
+			else if (subelement.is_structured())
+			{
+				//LOG_INFO("Is Structure");
+				ReplaceReferenceValues(subelement);
+			}
+		}
+	}
 
 	void ConfigImporter::ValidateJson()
 	{
@@ -108,7 +171,7 @@ namespace accord
 		}
 	}
 
-	size_t ConfigImporter::ValidateMicroscopicRegions(JsonKeyPair& config)
+	void ConfigImporter::ValidateMicroscopicRegions(JsonKeyPair& config)
 	{
 		if (config.IsKey("MicroscopicRegions"))
 		{
@@ -131,7 +194,7 @@ namespace accord
 				{
 					number_of_subvolumes.SetIndex(i2);
 					JsonKeyPair nos(number_of_subvolumes.GetJson());
-					nos.IsArrayOfInts().HasSize(3);
+					number_of_subvolumes.EnterIndex().IsArrayOfInts().HasSize(3);
 				}
 
 				microscopic_regions.Add("TimeStep").IsNumber().IsPositive();
@@ -140,12 +203,10 @@ namespace accord
 				JsonKeyPair shape_object = microscopic_regions.Add("Shape").IsObject();
 				ValidateShape(shape_object);
 			}
-			return n;
 		}
-		return 0;
 	}
 
-	size_t ConfigImporter::ValidateMesoscopicRegions(JsonKeyPair& config)
+	void ConfigImporter::ValidateMesoscopicRegions(JsonKeyPair& config)
 	{
 		if (config.IsKey("MesoscopicRegions"))
 		{
@@ -165,12 +226,10 @@ namespace accord
 				mesoscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers().HasSize(n_molecule_types);
 				mesoscopic_regions.Add("Priority").IsInt();
 			}
-			return n;
 		}
-		return 0;
 	}
 
-	size_t ConfigImporter::ValidateActiveActors(JsonKeyPair& config)
+	void ConfigImporter::ValidateActiveActors(JsonKeyPair& config)
 	{
 		if (config.IsKey("ActiveActors"))
 		{
@@ -181,8 +240,6 @@ namespace accord
 			for (size_t i = 0; i < n; i++)
 			{
 				active_actors.SetIndex(i);
-
-				active_actors.Add("Name").IsString();
 				active_actors.Add("StartTime").IsNumber().IsNonNegative();
 				active_actors.Add("Priority").IsInt();
 				active_actors.Add("ActionInterval").IsNumber().IsPositive();
@@ -217,49 +274,56 @@ namespace accord
 					throw std::exception();
 				}
 			}
-			return n;
 		}
-		return 0;
 	}
 
-	size_t ConfigImporter::ValidatePassiveActors(JsonKeyPair& config)
+	void ConfigImporter::ValidatePassiveActors(JsonKeyPair& config)
 	{
 		if (config.IsKey("PassiveActors"))
 		{
-			JsonKeyPair passive_actors = config.Add("PassiveActors");
-			passive_actors.IsArray();
-			size_t n = passive_actors.GetArraySize();
-
-			for (size_t i = 0; i < n; i++)
+			if (j.contains("ObserveEachRegion"))
 			{
-				passive_actors.SetIndex(i);
-
-				passive_actors.Add("Name").IsString();
+				JsonKeyPair passive_actors = config.Add("PassiveActors");
+				passive_actors.IsObject();
 				passive_actors.Add("StartTime").IsNumber().IsNonNegative();
 				passive_actors.Add("Priority").IsInt();
 				passive_actors.Add("TimeStep").IsNumber().IsPositive();
 				passive_actors.Add("RecordPositions").IsBool();
 				passive_actors.Add("RecordObservationTime").IsBool();
-				passive_actors.Add("MoleculeTypesToObserve").IsArrayOfInts().IsInRange(0, max_molecule_id);
+			}
+			else
+			{
+				JsonKeyPair passive_actors = config.Add("PassiveActors");
+				passive_actors.IsArray();
+				size_t n = passive_actors.GetArraySize();
 
-				if (passive_actors.IsKey("RegionsToObserve"))
+				for (size_t i = 0; i < n; i++)
 				{
-					passive_actors.Add("RegionsToObserve").IsArrayOfStrings().IsEachOneOf(region_names);
-				}
-				else if (passive_actors.IsKey("Shape"))
-				{
-					JsonKeyPair shape_object = passive_actors.Add("Shape").IsObject();
-					ValidateShape(shape_object);
-				}
-				else
-				{
-					LOG_ERROR("<{}> expected field \"RegionsToObserve\", or \"Shape\" but neither exists", passive_actors.Log());
-					throw std::exception();
+					passive_actors.SetIndex(i);
+					passive_actors.Add("StartTime").IsNumber().IsNonNegative();
+					passive_actors.Add("Priority").IsInt();
+					passive_actors.Add("TimeStep").IsNumber().IsPositive();
+					passive_actors.Add("RecordPositions").IsBool();
+					passive_actors.Add("RecordObservationTime").IsBool();
+					passive_actors.Add("MoleculeTypesToObserve").IsArrayOfInts().IsInRange(0, max_molecule_id);
+
+					if (passive_actors.IsKey("RegionsToObserve"))
+					{
+						passive_actors.Add("RegionsToObserve").IsArrayOfStrings().IsEachOneOf(region_names);
+					}
+					else if (passive_actors.IsKey("Shape"))
+					{
+						JsonKeyPair shape_object = passive_actors.Add("Shape").IsObject();
+						ValidateShape(shape_object);
+					}
+					else
+					{
+						LOG_ERROR("<{}> expected field \"RegionsToObserve\", or \"Shape\" but neither exists", passive_actors.Log());
+						throw std::exception();
+					}
 				}
 			}
-			return 0;
 		}
-		return 0;
 	}
 
 	void ConfigImporter::ValidateRelations(JsonKeyPair& config)
@@ -299,6 +363,7 @@ namespace accord
 
 	void ConfigImporter::ValidateZerothOrderReactions(JsonKeyPair& config)
 	{
+		LOG_INFO("n_molecule_types = {}", n_molecule_types);
 		if (config.IsKey("ZerothOrderReactions"))
 		{
 			JsonKeyPair reactions = config.Add("ZerothOrderReactions").IsArray();
@@ -433,7 +498,17 @@ namespace accord
 
 	void ConfigImporter::CreateEnvironment()
 	{
-		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), j["PassiveActors"].size(), j["ActiveActors"].size(), j["RandomNumberSeed"].get<uint64_t>());
+		size_t n_passive_actors;
+		if (j.contains("ObserveEachRegion"))
+		{
+			n_passive_actors = j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size();
+		}
+		else
+		{
+			n_passive_actors = j["PassiveActors"].size();
+		}
+
+		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["RandomNumberSeed"].get<uint64_t>());
 
 		LOG_INFO("Importing Microscopic Regions");
 		CreateMicroscopicRegions();
@@ -496,45 +571,75 @@ namespace accord
 
 	void ConfigImporter::CreatePassiveActors()
 	{
-		for (auto& actor : j["PassiveActors"])
+		if (j.contains("ObserveEachRegion"))
 		{
+			Json actor = j["PassiveActors"];
 			double start_time = actor["StartTime"].get<double>();
 			int priority = actor["Priority"].get<int>();
 			double time_step = actor["TimeStep"].get<double>();
-
 			bool record_positions = actor["RecordPositions"].get<bool>();
 			bool record_observation_time = actor["RecordObservationTime"].get<bool>();
-			MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToObserve"].get<MoleculeIDs>();
-
-			MicroscopicRegionIDs microscopic_ids;
-			MesoscopicRegionIDs mesoscopic_ids;
-			if (actor.contains("RegionsToObserve"))
+			MoleculeIDs molecule_types_to_observe;
+			molecule_types_to_observe.reserve(n_molecule_types);
+			for (int i = 0; i < n_molecule_types; i++)
 			{
-				std::vector<std::string> regions_to_observe = actor["RegionsToObserve"].get<std::vector<std::string>>();
+				molecule_types_to_observe.emplace_back(i);
+			}
 
-				RegionIDList region_list = GetRegionIDsFromStrings(regions_to_observe);
-
-				Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(region_list.microscopic_ids, region_list.mesoscopic_ids,
+			for (int i = 0; i < static_cast<int>(Environment::GetRegions().size()); i++)
+			{
+				Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(MicroscopicRegionIDs({ MicroscopicRegionID(i) }), MesoscopicRegionIDs({}),
 					molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
 			}
-			else if (actor.contains("Shape"))
+
+			for (int i = 0; i < static_cast<int>(Environment::GetMesoscopicRegions().size()); i ++)
 			{
-				OptionalShapes shapes = CreateShape(actor["Shape"]);
-				switch (shapes.shape)
-				{
-				case OptionalShapes::Shape::Box:
-					Environment::GetPassiveActors().emplace_back(std::make_unique<BoxPassiveActor>(shapes.box.value(), molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
-					break;
-				case OptionalShapes::Shape::Sphere:
-					break;
-				case OptionalShapes::Shape::Cylinder:
-					break;
-				}
+				Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(MicroscopicRegionIDs({}), MesoscopicRegionIDs({ MesoscopicRegionID(i) }),
+					molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
 			}
-			else
+		}
+		else
+		{
+			for (auto& actor : j["PassiveActors"])
 			{
-				LOG_CRITICAL("Passive actor must provide field \"RegionsToObserve\", or \"Shape\" but neither exists");
-				throw std::exception();
+				double start_time = actor["StartTime"].get<double>();
+				int priority = actor["Priority"].get<int>();
+				double time_step = actor["TimeStep"].get<double>();
+
+				bool record_positions = actor["RecordPositions"].get<bool>();
+				bool record_observation_time = actor["RecordObservationTime"].get<bool>();
+				MoleculeIDs molecule_types_to_observe = actor["MoleculeTypesToObserve"].get<MoleculeIDs>();
+
+				MicroscopicRegionIDs microscopic_ids;
+				MesoscopicRegionIDs mesoscopic_ids;
+				if (actor.contains("RegionsToObserve"))
+				{
+					std::vector<std::string> regions_to_observe = actor["RegionsToObserve"].get<std::vector<std::string>>();
+
+					RegionIDList region_list = GetRegionIDsFromStrings(regions_to_observe);
+
+					Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(region_list.microscopic_ids, region_list.mesoscopic_ids,
+						molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
+				}
+				else if (actor.contains("Shape"))
+				{
+					OptionalShapes shapes = CreateShape(actor["Shape"]);
+					switch (shapes.shape)
+					{
+					case OptionalShapes::Shape::Box:
+						Environment::GetPassiveActors().emplace_back(std::make_unique<BoxPassiveActor>(shapes.box.value(), molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
+						break;
+					case OptionalShapes::Shape::Sphere:
+						break;
+					case OptionalShapes::Shape::Cylinder:
+						break;
+					}
+				}
+				else
+				{
+					LOG_CRITICAL("Passive actor must provide field \"RegionsToObserve\", or \"Shape\" but neither exists");
+					throw std::exception();
+				}
 			}
 		}
 	}

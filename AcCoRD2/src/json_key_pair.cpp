@@ -31,6 +31,20 @@ namespace accord
 		keys.append(key);
 	}
 
+	JsonKeyPair JsonKeyPair::EnterIndex()
+	{
+		JsonKeyPair jkp;
+		jkp.j = GetJson();
+		jkp.keys = keys;
+
+		if (has_index)
+		{
+			jkp.keys.append(fmt::format("[{}]", index));
+		}
+
+		return jkp;
+	}
+
 	bool JsonKeyPair::IsKey(const std::string& key) const
 	{
 		return (GetJson().contains(key));
@@ -176,7 +190,8 @@ namespace accord
 
 	JsonKeyPair& JsonKeyPair::HasSize(size_t size)
 	{
-		if (!GetJson().size())
+		LOG_INFO("{} {} {}", Log(), size, GetJson().size());
+		if (size != GetJson().size())
 		{
 			LOG_ERROR("Expected <{}> to have a size of {} but had size {}", Log(), size, GetJson().size());
 

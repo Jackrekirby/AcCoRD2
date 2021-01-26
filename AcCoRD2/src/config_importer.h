@@ -15,6 +15,8 @@ namespace accord
 	public:
 		ConfigImporter(std::string file_path);
 
+		const Json& GetJson();
+
 		class RegionIDList
 		{
 		public:
@@ -44,17 +46,21 @@ namespace accord
 
 		// Check JSON Input files contains correct variables, types, and ranges
 
+		Json GetReferencedValue(const std::string& reference);
+
+		void ReplaceReferenceValues(Json& element);
+
 		void ValidateJson();
 
 		void ValidateShape(JsonKeyPair& shape_owner);
 
-		size_t ValidateMicroscopicRegions(JsonKeyPair& config);
+		void ValidateMicroscopicRegions(JsonKeyPair& config);
 
-		size_t ValidateMesoscopicRegions(JsonKeyPair& config);
+		void ValidateMesoscopicRegions(JsonKeyPair& config);
 
-		size_t ValidateActiveActors(JsonKeyPair& config);
+		void ValidateActiveActors(JsonKeyPair& config);
 
-		size_t ValidatePassiveActors(JsonKeyPair& config);
+		void ValidatePassiveActors(JsonKeyPair& config);
 
 		void ValidateRelations(JsonKeyPair& config);
 

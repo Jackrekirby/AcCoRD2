@@ -363,6 +363,75 @@ void TestMesoscopic()
 // active actors
 // is a propensity link to products required because products do not affect the propensity of reactions?
 
+namespace accord
+{
+	void Run(const std::string& config_filepath)
+	{
+		ConfigImporter config(config_filepath);
+		LOG_INFO(accord::JsonToPrettyString(config.GetJson()));
+		Environment::LinkReactionsToRegions();
+		Environment::AddEventsToEventQueue();
+		Environment::RunSimulation();
+	}
+
+	Json GetWords(const Json& j, std::string reference)
+	{
+		Json output = j;
+		size_t pos = 0;
+		std::string token;
+		std::string s = reference;
+		while ((pos = s.find(':')) != std::string::npos) {
+			token = s.substr(0, pos);
+			LOG_INFO("token = {}", token);
+			if (output.contains(token))
+			{
+				output = output[token];
+			} else
+			{
+				LOG_ERROR("Attepting to access non existent field {}, using reference {}", token, reference);
+				throw std::exception();
+			}
+			s.erase(0, pos + 1);
+		}
+
+		LOG_INFO("last token = {}", s);
+		if (output.contains(s))
+		{
+			output = output[s];
+		}
+		else
+		{
+			LOG_ERROR("Attepting to access non existent field {}, using reference {}", s, reference);
+			throw std::exception();
+		}
+		return output;
+	}
+
+	void ReplaceValues(Json& j, Json& global)
+	{
+		for (auto& element : j)
+		{
+			if (element.is_string())
+			{
+				//LOG_INFO("Is String");
+				std::string value = element.get<std::string>();
+				//LOG_INFO(value);
+				if (!value.empty() && value.at(0) == '@')
+				{
+					std::string key = value.substr(1, std::string::npos);
+					LOG_WARN("Key = {}", key);
+					
+					element = GetWords(global, key);
+				}
+			} else if(element.is_structured())
+			{
+				//LOG_INFO("Is Structure");
+				ReplaceValues(element, global);
+			}
+		}
+	}
+}
+
 int main()
 {
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -371,12 +440,17 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	//accord::ConfigImporter config();
+	
 	using namespace accord;
-	//std::string config_filepath = "C:/dev/AcCoRD2/MATLAB/simulation2.json";
-	std::string config_filepath = "C:/dev/AcCoRD2/configs/all_micro_regions.json";
-	ConfigImporter config(config_filepath);
-	Environment::LinkReactionsToRegions();
-	Environment::AddEventsToEventQueue();
-	Environment::RunSimulation();
+	//Json j;
+	//j["jack"] = "abc";
+	//j["b"] = 1.6;
+	//j["c"].emplace_back(0);
+	//j["c"].emplace_back("@jack:kirby");
+	//j["c"].emplace_back(2);
+	//j["d"] = "@jack";
+
+	//ReplaceValues(j, j);
+	Run("C:/dev/AcCoRD2/configs/all_micro_regions.json");
+	
 }

@@ -1,10 +1,9 @@
 classdef Accord
     methods (Access = public, Static)
-        function simulation = importFiles(directory, simulationName, ...
+        function simulation = importFiles(simulationDir, ...
                 seeds, realisations, trackImporting)
             arguments
-                directory
-                simulationName
+                simulationDir
                 seeds = [];
                 realisations = [];
                 trackImporting = true;
@@ -12,7 +11,7 @@ classdef Accord
             if(trackImporting)
                 disp("Importing Files:")
             end
-            simulationDir = Accord.isSimulationDirValid(directory, simulationName);           
+            Accord.isSimulationDirValid(simulationDir);           
             simulation = Accord.findEachRealisationFolder(simulationDir, ...
                 seeds, realisations, trackImporting);
 %             simulation.regions = Accord.importRegionShapes(simulationDir, trackImporting);
@@ -332,8 +331,7 @@ classdef Accord
     
     methods (Access = private, Static)
         %% importFiles
-        function simulationDir = isSimulationDirValid(directory, simulationName)
-            simulationDir = directory + "\" + simulationName;
+        function simulationDir = isSimulationDirValid(simulationDir)
             if ~exist(simulationDir, 'dir')
                 error(simulationDir + " is not a valid folder directory");
             end

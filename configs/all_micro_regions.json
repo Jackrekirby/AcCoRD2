@@ -3,8 +3,14 @@
    "NumberOfRealisations":5,
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
-   "NumberOfMoleculeTypes":1,
+   "NumberOfMoleculeTypes":4,
    "ObserveAllRegions":true,
+   "G":{
+      "TimeStep":0.05,
+	  "DiffusionCoefficients":[0.02, 0.04, 0.06, 0.08],
+	  "NofS":[2, 2, 2],
+	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ]
+   },
    "MicroscopicRegions":[
 		{
 		  "Name":"MicroBox1",
@@ -14,77 +20,64 @@
 			  "Length":[1, 1, 1]
 		   },
 		  "SurfaceType":"Reflecting",
-		  "DiffusionCoefficients":[0.1],
-		  "NumberOfSubvolumes":[ [2, 2, 2] ],
-		  "TimeStep":0.05,
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
 		  "Priority":0
 	   },
 	   {
 		  "Name":"MicroSphere1",
 		  "Shape":{
 			  "Type":"Sphere",
-			  "Centre":[5, 0, 0],
+			  "Centre":[3, 0, 0],
 			  "Radius":1
 		   },
 		  "SurfaceType":"Reflecting",
-		  "DiffusionCoefficients":[0.1],
-		  "NumberOfSubvolumes":[ [2, 2, 2] ],
-		  "TimeStep":0.05,
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
 		  "Priority":0
 	   },
 	    {
 		  "Name":"MicroCylinder1",
 		  "Shape":{
 			  "Type":"Cylinder",
-			  "BaseCentre":[10, 0, 0],
+			  "BaseCentre":[5, 0, 0],
 			  "Radius":0.5,
 			  "Length":2,
 			  "Axis":"X"
 		   },
 		  "SurfaceType":"Reflecting",
-		  "DiffusionCoefficients":[0.1],
-		  "NumberOfSubvolumes":[ [2, 2, 2] ],
-		  "TimeStep":0.05,
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
 		  "Priority":0
 	   }
    ],
-   "PassiveActors":[
-		{
-		  "Name":"PassiveActor1",
-		  "RecordPositions":true,
-		  "RecordObservationTime":true,
-		  "RegionsToObserve":[ "MicroBox1"],
-		  "MoleculeTypesToObserve":[ 0 ],
-		  "StartTime":0,
-		  "TimeStep":0.05,
-		  "Priority":0
-		},
-		{
-		  "Name":"PassiveActor2",
-		  "RecordPositions":true,
-		  "RecordObservationTime":true,
-		  "RegionsToObserve":[ "MicroSphere1"],
-		  "MoleculeTypesToObserve":[ 0 ],
-		  "StartTime":0,
-		  "TimeStep":0.05,
-		  "Priority":0
-		},
-		{
-		  "Name":"PassiveActor3",
-		  "RecordPositions":true,
-		  "RecordObservationTime":true,
-		  "RegionsToObserve":[ "MicroCylinder1"],
-		  "MoleculeTypesToObserve":[ 0 ],
-		  "StartTime":0,
-		  "TimeStep":0.05,
-		  "Priority":0
-		}
-   ],
    "ZerothOrderReactions":[
       {
-         "Products":[1],
+         "Products":[1, 0, 0],
          "ReactionRate":1,
-         "OccurInRegions":[ "MicroBox1", "MicroSphere1", "MicroCylinder1"]
+         "OccurInRegions":[ "MicroBox1", "MicroSphere1", "MicroCylinder1" ]
+      }
+   ],
+   "FirstOrderReactions":[
+      {
+         "Reactant":0,
+         "Products":[0, 1, 0],
+         "ReactionRate":1,
+         "OccurInRegions":[ "MicroBox1", "MicroSphere1" ]
+      }
+   ],
+   "SecondOrderReactions":[
+      {
+         "ReactantA":0,
+         "ReactantB":1,
+         "Products":[0, 0, 1],
+         "ReactionRate":1,
+         "BindingRadius":1,
+         "UnBindingRadius":1.5,
+         "OccurInRegions":[ "MicroCylinder1" ]
       }
    ]
 }

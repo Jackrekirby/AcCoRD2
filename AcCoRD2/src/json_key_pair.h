@@ -13,6 +13,8 @@ namespace accord
 
 		JsonKeyPair(const JsonKeyPair& json_key_pair, const std::string& key);
 
+		JsonKeyPair EnterIndex();
+
 		JsonKeyPair Add(const std::string& key) const;
 
 
