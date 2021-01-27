@@ -358,6 +358,9 @@
     <ClCompile Include="src\basic_circle_surface.cpp">
       <Filter>src\shapes\basic\surface</Filter>
     </ClCompile>
+    <ClCompile Include="src\active_actor_circle_surface.cpp">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -752,6 +755,9 @@
     </ClInclude>
     <ClInclude Include="src\basic_circle_surface.h">
       <Filter>src\shapes\basic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_circle_surface.h">
+      <Filter>src\simulation\active actor\shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

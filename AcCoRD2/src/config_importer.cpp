@@ -34,6 +34,10 @@
 #include "mesoscopic_region.h"
 
 #include "active_actor_box.h"
+#include "active_actor_rect_surface.h"
+#include "active_actor_cylinder.h"
+#include "active_actor_sphere.h"
+#include "active_actor_circle_surface.h"
 
 
 namespace accord
@@ -166,6 +170,17 @@ namespace accord
 			shape.Add("Length").IsNumber().IsPositive();
 			shape.Add("Axis").IsString().IsOneOf<std::string>({ "X", "Y", "Z" });
 		}
+		else if (type_str == "RectSurface")
+		{
+			shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
+			shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsNonNegative().ExactNumMatchValue(0, 1);
+		}
+		else if (type_str == "CircleSurface")
+		{
+			shape.Add("Centre").IsArrayOfNumbers().HasSize(3);
+			shape.Add("Radius").IsNumber().IsPositive();
+			shape.Add("Axis").IsString().IsOneOf<std::string>({ "X", "Y", "Z" });
+		}
 		else
 		{
 			LOG_ERROR("The field <{}> expected value of \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", shape_type.Log(), type_str);
@@ -253,14 +268,16 @@ namespace accord
 				{
 					active_actors.Add("RegionsToActIn").IsArrayOfStrings().IsEachOneOf(region_names);
 				}
-				else if (active_actors.IsKey("Shape"))
+				
+				if (active_actors.IsKey("Shape"))
 				{
 					JsonKeyPair shape_object = active_actors.Add("Shape").IsObject();
 					ValidateShape(shape_object);
 				}
-				else
+
+				if(!active_actors.IsKey("Shape") && !active_actors.IsKey("RegionsToActIn"))
 				{
-					LOG_ERROR("The object <{}> expected field of \"RegionsToActIn\" or \"Shape\" but neither exist", active_actors.Log());
+					LOG_ERROR("The object <{}> expected field of \"RegionsToActIn\" and/or \"Shape\" but neither exist", active_actors.Log());
 					throw std::exception();
 				}
 				
@@ -499,6 +516,21 @@ namespace accord
 			shapes.cylinder = std::make_optional<shape::basic::Cylinder>(base_centre, radius, length, axis);
 			shapes.shape = OptionalShapes::Shape::Cylinder;
 		}
+		else if (type_str == "RectSurface")
+		{
+			Vec3d origin = shape["Origin"].get<Vec3d>();
+			Vec3d length = shape["Length"].get<Vec3d>();
+			shapes.rect_surface = std::make_optional<shape::basic::RectSurface>(origin, length);
+			shapes.shape = OptionalShapes::Shape::RectSurface;
+		}
+		else if (type_str == "CircleSurface")
+		{
+			Vec3d centre = shape["Centre"].get<Vec3d>();
+			double radius = shape["Radius"].get<double>();
+			Axis3D axis = shape["Axis"].get<Axis3D>();
+			shapes.circle_surface = std::make_optional<shape::basic::CircleSurface>(centre, radius, axis);
+			shapes.shape = OptionalShapes::Shape::CircleSurface;
+		}
 		else
 		{
 			LOG_CRITICAL("Shape must be of type \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", type_str);
@@ -682,28 +714,40 @@ namespace accord
 					active_actor_shape = std::make_unique<ActiveActorBox>(shapes.box.value());
 					break;
 				case OptionalShapes::Shape::Sphere:
+					active_actor_shape = std::make_unique<ActiveActorSphere>(shapes.sphere.value());
 					break;
 				case OptionalShapes::Shape::Cylinder:
+					active_actor_shape = std::make_unique<ActiveActorCylinder>(shapes.cylinder.value());
+					break;
+				case OptionalShapes::Shape::RectSurface:
+					active_actor_shape = std::make_unique<ActiveActorRectSurface>(shapes.rect_surface.value());
+					break;
+				case OptionalShapes::Shape::CircleSurface:
+					active_actor_shape = std::make_unique<ActiveActorCircleSurface>(shapes.circle_surface.value());
 					break;
 				}
 
-				for (auto& region : Environment::GetRegions())
+				if (!actor.contains("RegionsToActIn"))
 				{
-					if (active_actor_shape->IsOverlapping(shape::relation::Box(region->GetShape().GetBasicShape().GenerateBoundingBox())))
+					for (auto& region : Environment::GetRegions())
 					{
-						region_list.microscopic_ids.emplace_back(region->GetID());
+						if (active_actor_shape->IsOverlapping(shape::relation::Box(region->GetShape().GetBasicShape().GenerateBoundingBox())))
+						{
+							region_list.microscopic_ids.emplace_back(region->GetID());
+						}
 					}
-				}
 
-				for (auto& region : Environment::GetMesoscopicRegions())
-				{
-					if (active_actor_shape->IsOverlapping(shape::relation::Box(region.GetBoundingBox())))
+					for (auto& region : Environment::GetMesoscopicRegions())
 					{
-						region_list.mesoscopic_ids.emplace_back(region.GetID());
+						if (active_actor_shape->IsOverlapping(shape::relation::Box(region.GetBoundingBox())))
+						{
+							region_list.mesoscopic_ids.emplace_back(region.GetID());
+						}
 					}
 				}
 			}
-			else
+			
+			if (actor.contains("RegionsToActIn"))
 			{
 				std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
 				region_list = GetRegionIDsFromStrings(regions_to_act_in);
@@ -716,29 +760,33 @@ namespace accord
 					LOG_INFO("meso id = {}", id);
 				}
 
-				shape::basic::Box bounding_box(Vec3d(0), Vec3d(0));
-				if (!region_list.microscopic_ids.empty())
+				if (!actor.contains("Shape"))
 				{
-					bounding_box = Environment::GetMicroscopicRegion(region_list.microscopic_ids.front()).GetShape().GetBasicShape().GenerateBoundingBox();
-					LOG_INFO("box = {}", bounding_box);
-				} else if(!region_list.mesoscopic_ids.empty())
-				{
-					bounding_box = Environment::GetMesoscopicRegion(region_list.mesoscopic_ids.front()).GetBoundingBox();
-					LOG_INFO("box = {}", bounding_box);
-				} // else no regions throw error
+					shape::basic::Box bounding_box(Vec3d(0), Vec3d(0));
+					if (!region_list.microscopic_ids.empty())
+					{
+						bounding_box = Environment::GetMicroscopicRegion(region_list.microscopic_ids.front()).GetShape().GetBasicShape().GenerateBoundingBox();
+						LOG_INFO("box = {}", bounding_box);
+					}
+					else if (!region_list.mesoscopic_ids.empty())
+					{
+						bounding_box = Environment::GetMesoscopicRegion(region_list.mesoscopic_ids.front()).GetBoundingBox();
+						LOG_INFO("box = {}", bounding_box);
+					} // else no regions throw error
 
-				for (auto& region : Environment::GetRegions(region_list.microscopic_ids))
-				{
-					bounding_box = bounding_box.GenerateBoundingBox(region->GetShape().GetBasicShape().GenerateBoundingBox());
-					LOG_INFO("box = {}", bounding_box);
+					for (auto& region : Environment::GetRegions(region_list.microscopic_ids))
+					{
+						bounding_box = bounding_box.GenerateBoundingBox(region->GetShape().GetBasicShape().GenerateBoundingBox());
+						LOG_INFO("box = {}", bounding_box);
+					}
+					for (auto& region : Environment::GetMesoscopicRegions(region_list.mesoscopic_ids))
+					{
+						bounding_box = bounding_box.GenerateBoundingBox(region->GetBoundingBox());
+						LOG_INFO("box = {}", bounding_box);
+					}
+					active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
+					LOG_INFO("Active actor shape = {}", bounding_box);
 				}
-				for (auto& region : Environment::GetMesoscopicRegions(region_list.mesoscopic_ids))
-				{
-					bounding_box = bounding_box.GenerateBoundingBox(region->GetBoundingBox());
-					LOG_INFO("box = {}", bounding_box);
-				}
-				active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
-				LOG_INFO("Active actor shape = {}", bounding_box);
 			}
 			
 			std::string type_str = actor["Type"].get<std::string>();
@@ -856,5 +904,9 @@ namespace accord
 
 			ReactionManager::AddSecondOrderReaction(reactant_a, reactant_b, products, reaction_rate, binding_radius, unbinding_radius, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
+	}
+	ConfigImporter::OptionalShapes::OptionalShapes()
+		: shape(Shape::None)
+	{
 	}
 }

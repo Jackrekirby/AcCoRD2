@@ -60,6 +60,7 @@ classdef Shape3D < handle
         hRectSurface = plotRectSurface(obj, origin, length, args)
         hGrid = plotGriddedBox(obj, origin, length, nPartitions, args)
         hPlots = plot(obj, shapes)
+        plotShape(obj, shape)
         
         function nextFaceColor(obj)
             obj.FaceColorMapIndex = obj.FaceColorMapIndex + 1;

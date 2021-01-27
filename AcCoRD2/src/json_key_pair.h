@@ -79,6 +79,28 @@ namespace accord
 		JsonKeyPair& IsNonNegative();
 
 		template<typename T>
+		JsonKeyPair& ExactNumMatchValue(T value, int matching)
+		{
+			if (GetJson().is_array())
+			{
+				size_t n = GetJson().size();
+				int do_match = 0;
+				for (size_t i = 0; i < n; i++)
+				{
+					SetIndex(i);
+					do_match += static_cast<int>(value == GetJson().get<T>());
+				}
+				has_index = false;
+				if (matching != do_match)
+				{
+					LOG_ERROR("Exactly {} of the values in array <{}> must have value {} but {} did", matching, Log(), value, do_match);
+					throw std::exception();
+				}
+			}
+			return *this;
+		}
+
+		template<typename T>
 		JsonKeyPair& IsLessOrEqualTo(T max)
 		{
 			if (GetJson().is_array())

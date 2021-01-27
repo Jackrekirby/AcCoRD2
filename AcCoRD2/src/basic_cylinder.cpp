@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "basic_cylinder.h"
 #include "constants.h"
+#include "basic_circle_surface.h"
 
 namespace accord::shape::basic
 {
@@ -10,6 +11,14 @@ namespace accord::shape::basic
 		circle_centre(base_centre.GetPlane(axis)), top(base + length)
 	{
 
+	}
+
+	Cylinder::Cylinder(const CircleSurface& circle_surface)
+		: base_centre(Vec3d(circle_surface.plane.GetPosition(), circle_surface.circle.GetCentre(), circle_surface.plane.GetAxis())), 
+			radius(circle_surface.circle.GetRadius()), length(0), axis(circle_surface.plane.GetAxis()),
+		radius2(radius* radius), base(base_centre.GetAxis(axis)),
+		circle_centre(base_centre.GetPlane(axis)), top(base)
+	{
 	}
 
 	Box Cylinder::GenerateBoundingBox() const

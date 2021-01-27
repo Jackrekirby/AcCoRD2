@@ -372,6 +372,7 @@
 // may need to update is overlapping box code as it includes neighbouring.
 // surfaces on the boundary of two rect regions will 'overlap' / 'be neighbours' of both surfaces, even if you want the surface to ownly release molecules onto one region
 // only volume actors should be allowed to be specified by multiple regions
+// need to catch cells in MATLAB
 
 namespace accord
 {
@@ -442,8 +443,11 @@ namespace accord
 	}
 }
 
+#include "basic_rect_surface.h"
 int main()
 {
+	
+
 	// log should save into seed file or atleast into config folder
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
 	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
@@ -453,6 +457,8 @@ int main()
 
 	
 	using namespace accord;
+
+	shape::basic::RectSurface(Vec3d(0), Vec3d(1, 1, 0));
 	//Json j;
 	//j["jack"] = "abc";
 	//j["b"] = 1.6;

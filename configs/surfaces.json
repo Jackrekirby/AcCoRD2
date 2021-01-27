@@ -59,14 +59,20 @@
 	  "Priority":0
 	},
 	"ActiveActors":[
-      {
+	  {
          "Name":"ActiveActor1",
          "StartTime":0,
          "Priority":0,
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":50,
+         "ModulationStrength":100,
          "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
+		  "Shape":{
+			  "Type":"CircleSurface",
+			  "Centre":[0, 0.5, 0.5],
+			  "Radius":1,
+			  "Axis":"X"
+		  },
          "RegionsToActIn":[ "Box1" ],
          "Type":"NonRandom",
          "SymbolSize":1,

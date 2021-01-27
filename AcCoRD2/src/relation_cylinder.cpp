@@ -3,6 +3,7 @@
 #include "relation_box.h"
 #include "relation_sphere.h"
 #include "vec1d.h"
+#include "basic_circle_surface.h"
 
 namespace accord::shape::relation
 {
@@ -22,6 +23,17 @@ namespace accord::shape::relation
 		base_face({ GetBase(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() }),
 		top_face({ GetTop(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() }),
 		projected_face(relation::Circle(GetCircleCentre(), cylinder.GetRadius())),
+		projected_side_x(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
+		projected_side_y(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
+	{
+
+	}
+
+	Cylinder::Cylinder(const CircleSurface& circle_surface)
+		: basic::Cylinder(circle_surface.ToBasic()),
+		base_face({ GetBase(), GetAxis() }, { GetCircleCentre(), GetRadius() }),
+		top_face({ GetTop(), GetAxis() }, { GetCircleCentre(), GetRadius() }),
+		projected_face(relation::Circle(GetCircleCentre(), GetRadius())),
 		projected_side_x(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
 		projected_side_y(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
 	{

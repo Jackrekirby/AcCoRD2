@@ -6,6 +6,8 @@
 #include "basic_box.h"
 #include "basic_sphere.h"
 #include "basic_cylinder.h"
+#include "basic_rect_surface.h"
+#include "basic_circle_surface.h"
 
 namespace accord
 {
@@ -27,14 +29,19 @@ namespace accord
 		class OptionalShapes
 		{
 		public:
+			OptionalShapes();
+
 			enum class Shape
 			{
-				Box, Sphere, Cylinder
+				Box, Sphere, Cylinder, RectSurface, CircleSurface, None
 			};
+
 			Shape shape;
 			std::optional<shape::basic::Box> box;
 			std::optional<shape::basic::Sphere> sphere;
 			std::optional<shape::basic::Cylinder> cylinder;
+			std::optional<shape::basic::RectSurface> rect_surface;
+			std::optional<shape::basic::CircleSurface> circle_surface;
 		};
 	private:
 		Json j;

@@ -245,12 +245,17 @@ classdef Accord
             end
             % Active Actors
             if(render.ActiveActors && isfield(s, "ActiveActors"))
+                disp("Try to Plot Active Actor");
                 nActiveActors = length(s.ActiveActors);
                 activeActorShape3D = Shape3D('FaceColorMap', spring(nActiveActors), ...
                     'LineColorMap', spring(nActiveActors), 'EdgeAlpha', 0);
                 for i = 1:nActiveActors
-                    r = s.ActiveActors(i);
-                    if(isfield(r, '1Shape'))
+                    r = s.ActiveActors(i)
+                    if(iscell(r))
+                        r = r{1};
+                    end
+                    r
+                    if(isfield(r, 'Shape'))
                         disp("Plot Active Actor");
                         activeActorShape3D.plotShape(r.Shape);
                     elseif(isfield(r, 'RegionsToActIn'))   
@@ -276,12 +281,13 @@ classdef Accord
             end
             % Passive Actors
             if(render.PassiveActors && isfield(s, "PassiveActors"))
+                disp("Try to Plot Passive Actor");
                 nPassiveActors = length(s.PassiveActors);
                 passiveActorShape3D = Shape3D('FaceColorMap', summer(nPassiveActors), ...
                     'LineColorMap', summer(nPassiveActors), 'EdgeAlpha', 0);
                 for i = 1:nPassiveActors
                     r = s.PassiveActors(i);
-                    if(isfield(r, '1Shape'))
+                    if(isfield(r, 'Shape'))
                         disp("Plot Passive Actor");
                         passiveActorShape3D.plotShape(r.Shape);
                     elseif(isfield(r, 'RegionsToObserve'))   

@@ -21,6 +21,7 @@ namespace accord::shape::relation
 {
 	class Shape3D;
 	class SufaceShape;
+	class CircleSurface;
 
 	class Cylinder : virtual public basic::Cylinder, public Shape3D
 	{
@@ -28,6 +29,8 @@ namespace accord::shape::relation
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
 
 		Cylinder(basic::Cylinder cylinder);
+
+		Cylinder(const CircleSurface& circle_surface);
 
 		Vec3d CalculateNearestPoint(const Vec3d& position) const;
 

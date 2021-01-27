@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\active_actor_circle_surface.cpp" />
     <ClCompile Include="src\basic_circle_surface.cpp" />
     <ClCompile Include="src\basic_rect_surface.cpp" />
     <ClCompile Include="src\active_actor_box.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\active_actor_circle_surface.h" />
     <ClInclude Include="src\basic_circle_surface.h" />
     <ClInclude Include="src\basic_rect_surface.h" />
     <ClInclude Include="src\active_actor_box.h" />

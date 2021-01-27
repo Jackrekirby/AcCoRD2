@@ -15,6 +15,11 @@ namespace accord::shape::relation
 	{
 	}
 
+	basic::CircleSurface CircleSurface::ToBasic() const
+	{
+		return { GetPlane(), circle };
+	}
+
 	const Circle& CircleSurface::GetShape() const
 	{
 		return circle;

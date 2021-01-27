@@ -17,6 +17,8 @@ namespace accord::shape::relation
 
 		CircleSurface(const basic::CircleSurface& circle_surface);
 
+		basic::CircleSurface ToBasic() const;
+
 		const Circle& GetShape() const;
 	private:
 		Circle circle;

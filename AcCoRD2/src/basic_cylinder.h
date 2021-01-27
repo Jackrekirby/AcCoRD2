@@ -7,10 +7,14 @@
 
 namespace accord::shape::basic
 {
+	class CircleSurface;
+
 	class Cylinder : public Shape3D
 	{
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
+
+		Cylinder(const CircleSurface& circle_surface);
 
 		Box GenerateBoundingBox() const;
 
@@ -56,14 +60,15 @@ namespace accord::shape::basic
 		}
 
 	private:
-		Vec3d base_centre; // centre of the base (face with smaller position value)
-		Vec2d circle_centre; // circle_centre = base_centre.GetPlane(axis)
+		
 		double base; // base = base_centre.GetAxis(axis)
 		double length;
 		double top; // top = base + length
 		double radius;
 		double radius2; // radius * radius
 		Axis3D axis;
+		Vec3d base_centre; // centre of the base (face with smaller position value)
+		Vec2d circle_centre; // circle_centre = base_centre.GetPlane(axis)
 	};
 
 	void to_json(Json& j, const Cylinder& cylinder);

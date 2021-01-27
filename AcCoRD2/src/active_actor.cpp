@@ -34,6 +34,7 @@ namespace accord
 	void ActiveActor::ReleaseMolecules(int n_releases)
 	{
 		// TODO: Abstract mesoscopic and microscopic regions by ensuring consistent function names (GetShape and IsMoleculeInsideBorder)
+		int max_insert_attempts = 100;
 		for (int i = 0; i < n_releases; i++)
 		{
 			int molecule_id = 0;
@@ -41,28 +42,37 @@ namespace accord
 			{
 				for (int n = 0; n < n_molecules; n++)
 				{
-					Vec3d position = GetShape().GenerateMolecule();
-					//LOG_INFO("molecule id = {}, pos = {}", molecule_id, position);
-					for (auto& region : microscopic_regions)
+					int n_insert_attempts = 0;
+					bool inserted = false;
+					while (n_insert_attempts < max_insert_attempts && !inserted)
 					{
-						if (region->GetShape().IsMoleculeInsideBorder(position))
+						LOG_INFO("Insert attempt: {}", n_insert_attempts);
+						Vec3d position = GetShape().GenerateMolecule();
+						//LOG_INFO("molecule id = {}, pos = {}", molecule_id, position);
+						for (auto& region : microscopic_regions)
 						{
-							region->AddMolecule(molecule_id, position, local_time);
-							break;
-						}
-					}
-
-					for (auto& region : mesoscopic_regions)
-					{
-						for (auto& subvolume : region->GetSubvolumes())
-						{
-							if (subvolume.GetBoundingBox().IsWithinOrOnBorder(position))
+							if (region->GetShape().IsMoleculeInsideBorder(position))
 							{
-								subvolume.AddMolecule(molecule_id);
+								region->AddMolecule(molecule_id, position, local_time);
+								inserted = true;
 								break;
 							}
 						}
-						region->RefreshEventTime();
+
+						for (auto& region : mesoscopic_regions)
+						{
+							for (auto& subvolume : region->GetSubvolumes())
+							{
+								if (subvolume.GetBoundingBox().IsWithinOrOnBorder(position))
+								{
+									subvolume.AddMolecule(molecule_id);
+									inserted = true;
+									break;
+								}
+							}
+							region->RefreshEventTime();
+						}
+						n_insert_attempts++;
 					}
 				}
 				molecule_id++;
