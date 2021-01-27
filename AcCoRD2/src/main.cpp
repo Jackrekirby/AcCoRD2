@@ -75,7 +75,7 @@ void TestSimpleEnvironment2()
 	int modulation_strength = 1;
 	int n_modulation_bits = 1;
 	double bit_probability = 0.5;
-	MoleculeIDs release_molecules = { 1, 2 };
+	std::vector<int> release_molecules = { 1, 1, 0, 0 };
 	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
 		action_interval, release_interval, slot_interval,
 		bit_probability, n_modulation_bits,
@@ -215,7 +215,7 @@ void TestMesoscopic()
 	int modulation_strength = 1;
 	int n_modulation_bits = 2;
 	double bit_probability = 0.3;
-	MoleculeIDs release_molecules = { 0, 1, 2 };
+	std::vector<int> release_molecules = { 0, 1, 1 };
 	//
 	Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(
 		action_interval, release_interval, slot_interval,
@@ -356,8 +356,6 @@ void TestMesoscopic()
 // https://uk.mathworks.com/matlabcentral/answers/724917-forcing-a-scalar-to-be-represented-as-a-1x1-vector
 // clean up matlab compilation
 // still need visualisation of debug paths
-
-
 // switch molecule format from vector of molecule IDs to vector of number of molecules per type
 // reactions
 // active actors
@@ -368,6 +366,8 @@ void TestMesoscopic()
 // update modulation stength from int to double
 // what is burst mode?
 // add remaining active actor constructors to config
+// current molecule generation either by reactions or active actors can be in child regions
+// rename molecule type to release to NumberOfMoleculeToReleasePerMoleculeType
 
 namespace accord
 {
@@ -458,6 +458,6 @@ int main()
 	//j["d"] = "@jack";
 
 	//ReplaceValues(j, j);
-	Run("C:/dev/AcCoRD2/configs/absorption.json");
+	Run("C:/dev/AcCoRD2/configs/all_micro_regions.json");
 	
 }

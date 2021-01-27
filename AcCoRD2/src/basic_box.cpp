@@ -35,7 +35,7 @@ namespace accord::shape::basic
 
 	Box Box::GenerateBoundingBox(const Box& box) const
 	{
-		return {Vec3d::Min(origin, box.origin), Vec3d::Max(end, box.end)};
+		return {Vec3d::Min(origin, box.origin), Vec3d::Max(end, box.end) - Vec3d::Min(origin, box.origin) };
 	}
 
 	void Box::Move(const Vec3d& origin)

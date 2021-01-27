@@ -245,7 +245,7 @@ namespace accord
 				active_actors.Add("ActionInterval").IsNumber().IsPositive();
 				active_actors.Add("ReleaseInterval").IsNumber().IsPositive();
 				active_actors.Add("ModulationStrength").IsInt().IsPositive();
-				active_actors.Add("MoleculeTypesToRelease").IsArrayOfInts().IsInRange(0, max_molecule_id);
+				active_actors.Add("MoleculeTypesToRelease").IsArrayOfInts().HasSize(n_molecule_types);
 
 				if (active_actors.IsKey("RegionsToActIn"))
 				{
@@ -666,7 +666,7 @@ namespace accord
 			double action_interval = actor["ActionInterval"].get<double>();
 			double release_interval = actor["ReleaseInterval"].get<double>();
 			int modulation_strength = actor["ModulationStrength"].get<int>();
-			MoleculeIDs molecule_types_to_release = actor["MoleculeTypesToRelease"].get<MoleculeIDs>();
+			std::vector<int> molecule_types_to_release = actor["MoleculeTypesToRelease"].get<std::vector<int>>();
 
 			std::unique_ptr<ActiveActorShape> active_actor_shape;
 			RegionIDList region_list;
@@ -705,23 +705,35 @@ namespace accord
 			{
 				std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
 				region_list = GetRegionIDsFromStrings(regions_to_act_in);
+				for (auto& id : region_list.microscopic_ids)
+				{
+					LOG_INFO("micro id = {}", id);
+				}
+				for (auto& id : region_list.mesoscopic_ids)
+				{
+					LOG_INFO("meso id = {}", id);
+				}
 
 				shape::basic::Box bounding_box(Vec3d(0), Vec3d(0));
 				if (!region_list.microscopic_ids.empty())
 				{
 					bounding_box = Environment::GetMicroscopicRegion(region_list.microscopic_ids.front()).GetShape().GetBasicShape().GenerateBoundingBox();
+					LOG_INFO("box = {}", bounding_box);
 				} else if(!region_list.mesoscopic_ids.empty())
 				{
 					bounding_box = Environment::GetMesoscopicRegion(region_list.mesoscopic_ids.front()).GetBoundingBox();
+					LOG_INFO("box = {}", bounding_box);
 				} // else no regions throw error
 
 				for (auto& region : Environment::GetRegions(region_list.microscopic_ids))
 				{
 					bounding_box = bounding_box.GenerateBoundingBox(region->GetShape().GetBasicShape().GenerateBoundingBox());
+					LOG_INFO("box = {}", bounding_box);
 				}
 				for (auto& region : Environment::GetMesoscopicRegions(region_list.mesoscopic_ids))
 				{
 					bounding_box = bounding_box.GenerateBoundingBox(region->GetBoundingBox());
+					LOG_INFO("box = {}", bounding_box);
 				}
 				active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
 				LOG_INFO("Active actor shape = {}", bounding_box);
@@ -730,12 +742,22 @@ namespace accord
 			std::string type_str = actor["Type"].get<std::string>();
 			if (type_str == "RandomTime")
 			{
+				Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomTime>(action_interval, release_interval,
+					molecule_types_to_release, modulation_strength, Environment::GetRegions(region_list.microscopic_ids),
+					Environment::GetMesoscopicRegions(region_list.mesoscopic_ids), std::move(active_actor_shape), start_time, priority,
+					ActiveActorID(static_cast<int>(Environment::GetActiveActors().size()))));
 			}
 			else if (type_str == "RandomBits")
 			{
 				int symbol_size = actor["SymbolSize"].get<int>();
 				double slot_interval = actor["SlotInterval"].get<double>();
 				double bit_probability = actor["BitProbability"].get<double>();
+
+				Environment::GetActiveActors().emplace_back(std::make_unique<ActiveActorRandomBits>(action_interval, release_interval, slot_interval,
+					bit_probability, symbol_size, molecule_types_to_release, modulation_strength, Environment::GetRegions(region_list.microscopic_ids),
+					Environment::GetMesoscopicRegions(region_list.mesoscopic_ids), std::move(active_actor_shape), start_time, priority,
+					ActiveActorID(static_cast<int>(Environment::GetActiveActors().size()))));
+
 			}
 			else if (type_str == "NonRandom")
 			{

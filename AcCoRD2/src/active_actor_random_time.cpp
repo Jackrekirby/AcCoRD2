@@ -4,7 +4,7 @@
 namespace accord
 {
 	ActiveActorRandomTime::ActiveActorRandomTime(double action_interval, double release_interval,
-		MoleculeIDs release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& micro_regions,
+		const std::vector<int>& release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& micro_regions,
 		const std::vector<mesoscopic::Region*>&  meso_regions, std::unique_ptr<ActiveActorShape> shape,
 		double start_time, int priority, const ActiveActorID& id)
 		: ActiveActor(action_interval, release_interval, release_molecules, modulation_strength, micro_regions, meso_regions, std::move(shape),

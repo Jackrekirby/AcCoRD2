@@ -7,7 +7,7 @@
 // need to add check so a shape checks all regions it can place molecules in
 namespace accord
 {
-	ActiveActor::ActiveActor(double action_interval, double release_interval, const MoleculeIDs& release_molecules,
+	ActiveActor::ActiveActor(double action_interval, double release_interval, const std::vector<int>& release_molecules,
 		int modulation_strength, const std::vector<microscopic::Region*>& microscopic_regions, const std::vector<mesoscopic::Region*>& mesoscopic_regions,
 		std::unique_ptr<ActiveActorShape> shape, double start_time, int priority, const ActiveActorID& id)
 		: action_interval(action_interval), release_interval(release_interval), release_molecules(release_molecules),
@@ -36,31 +36,36 @@ namespace accord
 		// TODO: Abstract mesoscopic and microscopic regions by ensuring consistent function names (GetShape and IsMoleculeInsideBorder)
 		for (int i = 0; i < n_releases; i++)
 		{
-			for (MoleculeID& molecule : release_molecules)
+			int molecule_id = 0;
+			for (int n_molecules : release_molecules)
 			{
-				Vec3d position = GetShape().GenerateMolecule();
-				LOG_INFO("molecule id = {}, pos = {}", molecule, position);
-				for (auto& region : microscopic_regions)
+				for (int n = 0; n < n_molecules; n++)
 				{
-					if (region->GetShape().IsMoleculeInsideBorder(position))
+					Vec3d position = GetShape().GenerateMolecule();
+					//LOG_INFO("molecule id = {}, pos = {}", molecule_id, position);
+					for (auto& region : microscopic_regions)
 					{
-						region->AddMolecule(molecule, position, local_time);
-						break;
-					}
-				}
-
-				for (auto& region : mesoscopic_regions)
-				{
-					for (auto& subvolume : region->GetSubvolumes())
-					{
-						if (subvolume.GetBoundingBox().IsWithinOrOnBorder(position))
+						if (region->GetShape().IsMoleculeInsideBorder(position))
 						{
-							subvolume.AddMolecule(molecule);
+							region->AddMolecule(molecule_id, position, local_time);
 							break;
 						}
 					}
-					region->RefreshEventTime();
+
+					for (auto& region : mesoscopic_regions)
+					{
+						for (auto& subvolume : region->GetSubvolumes())
+						{
+							if (subvolume.GetBoundingBox().IsWithinOrOnBorder(position))
+							{
+								subvolume.AddMolecule(molecule_id);
+								break;
+							}
+						}
+						region->RefreshEventTime();
+					}
 				}
+				molecule_id++;
 			}
 		}
 	}

@@ -9,8 +9,8 @@ namespace accord
 	{
 	public:
 		ActiveActorNonRandom(double action_interval, double release_interval, double slot_interval,
-			std::vector<int> bit_sequence, int n_modulation_bits,
-			MoleculeIDs release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& micro_regions,
+			const std::vector<int>& bit_sequence, int n_modulation_bits,
+			const std::vector<int>& release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& micro_regions,
 			const std::vector<mesoscopic::Region*>& meso_regions, std::unique_ptr<ActiveActorShape> shape,
 			double start_time, int priority, const ActiveActorID& id);
 

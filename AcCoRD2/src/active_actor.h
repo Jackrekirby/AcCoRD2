@@ -20,7 +20,7 @@ namespace accord
 	class ActiveActor : public Event
 	{
 	public:
-		ActiveActor(double action_interval, double release_interval, const MoleculeIDs& release_molecules,
+		ActiveActor(double action_interval, double release_interval, const std::vector<int>& release_molecules,
 			int modulation_strength, const std::vector<microscopic::Region*>& microscopic_regions, const std::vector<mesoscopic::Region*>& mesoscopic_regions,
 			std::unique_ptr<ActiveActorShape> shape, double start_time, int priority, const ActiveActorID& id);
 
@@ -43,7 +43,7 @@ namespace accord
 		std::vector<microscopic::Region*> microscopic_regions;
 		std::vector<mesoscopic::Region*> mesoscopic_regions;
 		std::unique_ptr<ActiveActorShape> shape;
-		MoleculeIDs release_molecules;
+		std::vector<int> release_molecules;
 		ActiveActorID id;
 	protected:
 		double action_interval;

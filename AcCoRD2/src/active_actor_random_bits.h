@@ -9,7 +9,7 @@ namespace accord
 	public:
 		ActiveActorRandomBits(double action_interval, double release_interval, double slot_interval,
 			double bit_probability, int n_modulation_bits,
-			MoleculeIDs release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& microscopic_regions,
+			const std::vector<int>& release_molecules, int modulation_strength, const std::vector<microscopic::Region*>& microscopic_regions,
 			const std::vector<mesoscopic::Region*>& mesoscopic_regions, std::unique_ptr<ActiveActorShape> shape,
 			double start_time, int priority, const ActiveActorID& id);
 

@@ -15,7 +15,7 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\absorption.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\all_micro_regions.json";
 config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
@@ -34,8 +34,8 @@ shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, true, true, 15, shape3d);
 render.Micro = true;
 render.Meso = true;
-render.ActiveActors = true;
-render.PassiveActors = true;
+render.ActiveActors = false;
+render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
 r = Accord.playAnimateRealisation(r, 1);
 
