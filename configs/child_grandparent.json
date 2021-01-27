@@ -1,0 +1,101 @@
+{
+   "SaveToFolder": "D:/dev/sample1",
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":200,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":4,
+   "ObserveEachRegion":true,
+   "G":{
+      "TimeStep":0.05,
+	  "DiffusionCoefficients":[0.03, 0.04, 0.06, 0.08],
+	  "NofS":[2, 2, 2],
+	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ],
+	  "SurfaceTypesNone":[ "None",  "None", "None", "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ]
+   },
+   "MicroscopicRegions":[
+		{
+		  "Name":"Parent",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[0, 0, 0],
+			  "Length":[2, 2, 2]
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":0
+	   },
+	   {
+		  "Name":"Child",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[1, 0.5, 0.5],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":0
+	   },
+	   {
+		  "Name":"GrandParent",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-1, -1, -1],
+			  "Length":[4, 4, 4]
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":0
+	   }
+   ],
+   "Relationships":[
+	  {
+         "RegionA":"Child",
+         "RegionB":"Parent",
+         "Priority":"A",
+         "SurfaceTypes":"@G:SurfaceTypesNone"
+      },
+	  {
+         "RegionA":"Child",
+         "RegionB":"GrandParent",
+         "Priority":"A",
+         "SurfaceTypes":"@G:SurfaceTypesNone"
+      },
+	  {
+         "RegionA":"GrandParent",
+         "RegionB":"Parent",
+         "Priority":"B",
+         "SurfaceTypes":"@G:SurfaceTypesReflecting"
+      }
+   ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@G:TimeStep",
+	  "Priority":0
+	},
+	"ActiveActors":[
+      {
+         "Name":"ActiveActor1",
+         "StartTime":0,
+         "Priority":0,
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":1,
+         "MoleculeTypesToRelease":[ 1, 0, 0, 0 ],
+         "RegionsToActIn":[ "Parent" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ]
+}

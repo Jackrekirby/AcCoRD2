@@ -1,151 +1,85 @@
-[10:11:12.395] [info] config_importer.cpp:377 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
-[10:11:12.428] [info] config_importer.cpp:524 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[10:11:12.450] [info] config_importer.cpp:527 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[10:11:12.451] [info] config_importer.cpp:530 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[10:11:12.470] [info] config_importer.cpp:533 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[10:11:12.470] [info] config_importer.cpp:710 accord::ConfigImporter::CreateActiveActors() micro id = 8
-[10:11:12.471] [info] config_importer.cpp:721 accord::ConfigImporter::CreateActiveActors() box = origin = [2.5, 2, -1], length = [2, 2, 2], end = [4.5, 4, 1]
-[10:11:12.471] [info] config_importer.cpp:731 accord::ConfigImporter::CreateActiveActors() box = origin = [2.5, 2, -1], length = [2, 2, 2], end = [4.5, 4, 1]
-[10:11:12.472] [info] config_importer.cpp:739 accord::ConfigImporter::CreateActiveActors() Active actor shape = origin = [2.5, 2, -1], length = [2, 2, 2], end = [4.5, 4, 1]
-[10:11:12.472] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 20.0, release = 20.0, slot = 20.0
-[10:11:12.473] [info] config_importer.cpp:536 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[10:11:12.478] [info] config_importer.cpp:539 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[10:11:12.478] [info] config_importer.cpp:822 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[10:11:12.478] [info] config_importer.cpp:832 accord::ConfigImporter::CreateReactions() First Order Reactions
-[10:11:12.479] [info] config_importer.cpp:843 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[10:11:12.482] [info] main.cpp:377 accord::Run() {
+[10:52:05.622] [info] config_importer.cpp:377 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
+[10:52:05.641] [info] config_importer.cpp:524 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[10:52:05.652] [info] config_importer.cpp:527 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[10:52:05.653] [info] config_importer.cpp:530 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[10:52:05.663] [info] config_importer.cpp:533 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[10:52:05.664] [info] config_importer.cpp:710 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[10:52:05.664] [info] config_importer.cpp:721 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [2, 2, 2], end = [2, 2, 2]
+[10:52:05.665] [info] config_importer.cpp:731 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [2, 2, 2], end = [2, 2, 2]
+[10:52:05.665] [info] config_importer.cpp:739 accord::ConfigImporter::CreateActiveActors() Active actor shape = origin = [0, 0, 0], length = [2, 2, 2], end = [2, 2, 2]
+[10:52:05.666] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
+[10:52:05.667] [info] config_importer.cpp:536 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[10:52:05.669] [info] config_importer.cpp:539 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[10:52:05.669] [info] config_importer.cpp:822 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[10:52:05.669] [info] config_importer.cpp:832 accord::ConfigImporter::CreateReactions() First Order Reactions
+[10:52:05.676] [info] config_importer.cpp:843 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[10:52:05.686] [info] main.cpp:377 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
-    "FinalSimulationTime": 20,
+    "FinalSimulationTime": 200,
     "RandomNumberSeed": 1,
     "NumberOfMoleculeTypes": 4,
     "ObserveEachRegion": true,
     "G": {
         "TimeStep": 0.05,
-        "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
+        "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
         "NofS": [ 2, 2, 2 ],
         "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-        "AllBoxRegions": [ "MicroBox1", "MicroBox2", "MicroBox3", "MicroBox4" ],
-        "AllMicroRegions": [ "MicroBox1", "MicroSphere1", "MicroCylinder1", "MicroBox2", "MicroCylinder2", "MicroCylinder3", "MicroCylinder4", "MicroBox3", "MicroBox4" ],
         "SurfaceTypesNone": [ "None", "None", "None", "None" ],
         "SurfaceTypesReflecting": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
     },
     "MicroscopicRegions": [ {
-            "Name": "MicroBox1",
+            "Name": "Parent",
             "Shape": {
                 "Type": "Box",
-                "Origin": [ -3.5, -0.5, -0.5 ],
-                "Length": [ 1, 1, 1 ]
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroBox2",
-            "Shape": {
-                "Type": "Box",
-                "Origin": [ -0.5, -0.5, 3.5 ],
-                "Length": [ 1, 1, 1 ]
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroSphere1",
-            "Shape": {
-                "Type": "Sphere",
-                "Centre": [ 0, 0, 0 ],
-                "Radius": 1
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroCylinder1",
-            "Shape": {
-                "Type": "Cylinder",
-                "BaseCentre": [ -2.5, 0, 0 ],
-                "Radius": 0.5,
-                "Length": 1.8,
-                "Axis": "X"
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroCylinder2",
-            "Shape": {
-                "Type": "Cylinder",
-                "BaseCentre": [ 0, 0, 0.7 ],
-                "Radius": 0.2,
-                "Length": 2.8,
-                "Axis": "Z"
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroCylinder3",
-            "Shape": {
-                "Type": "Cylinder",
-                "BaseCentre": [ 0.7, 0, 0 ],
-                "Radius": 0.5,
-                "Length": 2.3,
-                "Axis": "X"
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroCylinder4",
-            "Shape": {
-                "Type": "Cylinder",
-                "BaseCentre": [ 3.5, -2, 0 ],
-                "Radius": 0.8,
-                "Length": 4,
-                "Axis": "Y"
-            },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "MicroBox3",
-            "Shape": {
-                "Type": "Box",
-                "Origin": [ 2.5, -3.5, -1 ],
+                "Origin": [ 0, 0, 0 ],
                 "Length": [ 2, 2, 2 ]
             },
-            "SurfaceType": "Reflecting",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
+            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         }, {
-            "Name": "MicroBox4",
+            "Name": "Child",
             "Shape": {
                 "Type": "Box",
-                "Origin": [ 2.5, 2, -1 ],
-                "Length": [ 2, 2, 2 ]
+                "Origin": [ 1, 0.5, 0.5 ],
+                "Length": [ 1, 1, 1 ]
             },
-            "SurfaceType": "Absorbing",
-            "DiffusionCoefficients": [ 0.01, 0.04, 0.06, 0.08 ],
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
+            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
+        }, {
+            "Name": "GrandParent",
+            "Shape": {
+                "Type": "Box",
+                "Origin": [ -1, -1, -1 ],
+                "Length": [ 4, 4, 4 ]
+            },
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
+            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
+            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
+            "TimeStep": 0.05,
+            "Priority": 0
+        } ],
+    "Relationships": [ {
+            "RegionA": "Child",
+            "RegionB": "Parent",
+            "Priority": "A",
+            "SurfaceTypes": [ "None", "None", "None", "None" ]
+        }, {
+            "RegionA": "Child",
+            "RegionB": "GrandParent",
+            "Priority": "A",
+            "SurfaceTypes": [ "None", "None", "None", "None" ]
+        }, {
+            "RegionA": "GrandParent",
+            "RegionB": "Parent",
+            "Priority": "B",
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
         } ],
     "PassiveActors": {
         "RecordPositions": true,
@@ -158,85 +92,23 @@
             "Name": "ActiveActor1",
             "StartTime": 0,
             "Priority": 0,
-            "ActionInterval": 20,
-            "ReleaseInterval": 20,
+            "ActionInterval": 200,
+            "ReleaseInterval": 200,
             "ModulationStrength": 1,
-            "MoleculeTypesToRelease": [ 100, 0, 0, 0 ],
-            "RegionsToActIn": [ "MicroBox4" ],
+            "MoleculeTypesToRelease": [ 1, 0, 0, 0 ],
+            "RegionsToActIn": [ "Parent" ],
             "Type": "NonRandom",
             "SymbolSize": 1,
-            "SlotInterval": 20,
+            "SlotInterval": 200,
             "BitSequence": [ 1 ]
-        } ],
-    "ZerothOrderReactionsX": [ {
-            "Products": [ 1, 0, 0, 0 ],
-            "ReactionRate": 1,
-            "OccurInRegions": [ "MicroBox1" ]
-        } ],
-    "FirstOrderReactionsX": [ {
-            "Reactant": 0,
-            "Products": [ 0, 1, 1, 0 ],
-            "ReactionRate": 1,
-            "OccurInRegions": [ "MicroBox1" ]
-        } ],
-    "SecondOrderReactionsX": [ {
-            "ReactantA": 1,
-            "ReactantB": 2,
-            "Products": [ 0, 0, 0, 1 ],
-            "ReactionRate": 1,
-            "BindingRadius": 0.2,
-            "UnBindingRadius": 0.4,
-            "OccurInRegions": [ "MicroBox1" ]
-        } ],
-    "Relationships": [ {
-            "RegionA": "MicroBox1",
-            "RegionB": "MicroCylinder1",
-            "Priority": "None",
-            "AToBSurfaceTypes": [ "None", "None", "None", "None" ],
-            "BToASurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
-        }, {
-            "RegionA": "MicroCylinder1",
-            "RegionB": "MicroSphere1",
-            "Priority": "B",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "MicroCylinder2",
-            "RegionB": "MicroSphere1",
-            "Priority": "B",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "MicroCylinder3",
-            "RegionB": "MicroSphere1",
-            "Priority": "A",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "MicroBox2",
-            "RegionB": "MicroCylinder2",
-            "Priority": "None",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "MicroCylinder3",
-            "RegionB": "MicroCylinder4",
-            "Priority": "A",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "MicroBox3",
-            "RegionB": "MicroCylinder4",
-            "Priority": "None",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "MicroBox4",
-            "RegionB": "MicroCylinder4",
-            "Priority": "None",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
         } ],
     "MesoscopicRegions": null,
     "ZerothOrderReactions": null,
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[10:11:12.486] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 0
-[10:11:12.486] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[10:11:12.487] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[10:11:12.487] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 1
-[10:11:13.231] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[10:52:05.693] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 0
+[10:52:05.703] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[10:52:05.705] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[10:52:05.706] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 1
+[10:52:07.517] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols

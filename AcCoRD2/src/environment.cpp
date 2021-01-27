@@ -129,31 +129,31 @@ namespace accord
 		}
 	}
 
-	void Environment::AddRegion(shape::basic::Box box, SurfaceType surface_type, 
+	void Environment::AddRegion(shape::basic::Box box, const std::vector<SurfaceType>& surface_types, 
 		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
 			box, diffision_coefficients, n_subvolumes, time_step, priority,
-			surface_type, static_cast<int>(GetRegions().size())));
+			surface_types, static_cast<int>(GetRegions().size())));
 	}
 
-	void Environment::AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type, 
+	void Environment::AddRegion(shape::basic::Sphere sphere, const std::vector<SurfaceType>& surface_types,
 		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::SphereRegion>(
 			sphere, diffision_coefficients, n_subvolumes, time_step, priority,
-			surface_type, static_cast<int>(Environment::GetRegions().size())));
+			surface_types, static_cast<int>(Environment::GetRegions().size())));
 	}
 
-	void Environment::AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type, 
+	void Environment::AddRegion(shape::basic::Cylinder cylinder, const std::vector<SurfaceType>& surface_types,
 		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
 			cylinder, diffision_coefficients, n_subvolumes, time_step, priority,
-			surface_type, static_cast<int>(Environment::GetRegions().size())));
+			surface_types, static_cast<int>(Environment::GetRegions().size())));
 	}
 
 	std::string Environment::GetSimulationPath()

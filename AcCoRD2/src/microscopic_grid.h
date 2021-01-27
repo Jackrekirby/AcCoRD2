@@ -40,7 +40,7 @@ namespace accord::microscopic
 	class Grid : public Owner, public Relative
 	{
 	public:
-		Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const MoleculeID& id, Region* region);
+		Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const SurfaceType& surface_type, const MoleculeID& id, Region* region);
 
 		void AddMolecule(const Vec3d& position);
 
@@ -136,6 +136,7 @@ namespace accord::microscopic
 		shape::relation::Box box;
 		double diffision_coefficient;
 		std::vector<Subvolume> subvolumes;
+		SurfaceType surface_type;
 		
 		// create subvolumes upon class construction
 		void CreateSubvolumes();

@@ -67,15 +67,15 @@ namespace accord
 		static void LinkReactionsToRegions();
 
 		typedef microscopic::SurfaceType SurfaceType;
-		static void AddRegion(shape::basic::Box box, SurfaceType surface_type, 
+		static void AddRegion(shape::basic::Box box, const std::vector<SurfaceType>& surface_types,
 			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes, 
 			double time_step, int priority);
 
-		static void AddRegion(shape::basic::Sphere sphere, SurfaceType surface_type,
+		static void AddRegion(shape::basic::Sphere sphere, const std::vector<SurfaceType>& surface_types,
 			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 			double time_step, int priority);
 
-		static void AddRegion(shape::basic::Cylinder cylinder, SurfaceType surface_type,
+		static void AddRegion(shape::basic::Cylinder cylinder, const std::vector<SurfaceType>& surface_types,
 			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 			double time_step, int priority);
 

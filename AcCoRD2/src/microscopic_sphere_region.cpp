@@ -5,10 +5,10 @@ namespace accord::microscopic
 {
 	SphereRegion::SphereRegion(shape::basic::Sphere sphere, const std::vector<double>& diffision_coefficients,
 		const std::vector<Vec3i>& n_subvolumes_per_grid, double time_step, int priority,
-		SurfaceType surface_type, const MicroscopicRegionID& id)
-		: Region(diffision_coefficients, n_subvolumes_per_grid, time_step, priority, surface_type, id), surface_shape(sphere)
+		const std::vector<SurfaceType>& surface_types, const MicroscopicRegionID& id)
+		: Region(time_step, priority, id), surface_shape(sphere)
 	{
-		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid);
+		GenerateGrids(diffision_coefficients, n_subvolumes_per_grid, surface_types);
 		LinkGrids();
 	}
 

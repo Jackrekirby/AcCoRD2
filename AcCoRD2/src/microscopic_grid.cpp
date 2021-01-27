@@ -15,8 +15,8 @@
 
 namespace accord::microscopic
 {
-	Grid::Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const MoleculeID& id, Region* region)
-		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient), region(region), id(id)
+	Grid::Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const SurfaceType& surface_type, const MoleculeID& id, Region* region)
+		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient), region(region), id(id), surface_type(surface_type)
 	{
 		//LOG_INFO("id = {}", id);
 		CreateSubvolumes();
@@ -383,10 +383,9 @@ namespace accord::microscopic
 		return region->GetShape();
 	}
 
-	// may want a different default surface per molecule type
 	SurfaceType Grid::GetDefaultSurfaceType() const
 	{
-		return region->GetSurfaceType();
+		return surface_type;
 	}
 
 	double Grid::GetDiffusionCoeffient() const

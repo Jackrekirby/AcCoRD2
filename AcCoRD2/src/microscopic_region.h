@@ -20,8 +20,7 @@ namespace accord::microscopic
 	class Region : public Event
 	{
 	public:
-		Region(const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
-			double time_step, int priority, SurfaceType surface_type, const MicroscopicRegionID& id);
+		Region(double time_step, int priority, const MicroscopicRegionID& id);
 
 		void Run();
 
@@ -78,16 +77,12 @@ namespace accord::microscopic
 
 		virtual const SurfaceShape& GetShape() const = 0;
 
-		SurfaceType GetSurfaceType() const;
-
 		void NextRealisation();
 
 		void LinkGrids(Region& region, const MoleculeIDs& ids);
 
 		MicroscopicRegionID GetID() const;
 	private:
-		//std::unique_ptr<SurfaceShape> surface_shape;
-		SurfaceType surface_type;
 
 		std::vector<Grid> grids;
 		// reactions will need to be passed pointer to region
@@ -107,7 +102,7 @@ namespace accord::microscopic
 		
 
 	protected:
-		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes);
+		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, const std::vector<SurfaceType>& surface_types);
 
 		// links local grids to eachother for bi-molecular reactions
 		void LinkGrids();

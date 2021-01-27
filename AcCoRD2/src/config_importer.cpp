@@ -186,7 +186,7 @@ namespace accord
 				region_names.emplace_back(name.GetJson().get<std::string>());
 				microscopic_region_names.emplace_back(name.GetJson().get<std::string>());
 
-				microscopic_regions.Add("SurfaceType").IsString();
+				microscopic_regions.Add("SurfaceTypes").IsArrayOfStrings().HasSize(n_molecule_types);
 				microscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers().HasSize(n_molecule_types);
 				JsonKeyPair number_of_subvolumes = microscopic_regions.Add("NumberOfSubvolumes").IsArrayOfArrays().HasSize(n_molecule_types);
 
@@ -544,7 +544,7 @@ namespace accord
 	{
 		for (auto& region : j["MicroscopicRegions"])
 		{
-			microscopic::SurfaceType surface_type = region["SurfaceType"].get<microscopic::SurfaceType>();
+			std::vector<microscopic::SurfaceType> surface_types = region["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
 			std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
 			std::vector<Vec3i> n_subvolumes = region["NumberOfSubvolumes"].get<std::vector<Vec3i>>();
 			double time_step = region["TimeStep"].get<double>();
@@ -554,13 +554,13 @@ namespace accord
 			switch (shapes.shape)
 			{
 			case OptionalShapes::Shape::Box:
-				Environment::AddRegion(shapes.box.value(), surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
+				Environment::AddRegion(shapes.box.value(), surface_types, diffision_coefficients, n_subvolumes, time_step, priority);
 				break;
 			case OptionalShapes::Shape::Sphere:
-				Environment::AddRegion(shapes.sphere.value(), surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
+				Environment::AddRegion(shapes.sphere.value(), surface_types, diffision_coefficients, n_subvolumes, time_step, priority);
 				break;
 			case OptionalShapes::Shape::Cylinder:
-				Environment::AddRegion(shapes.cylinder.value(), surface_type, diffision_coefficients, n_subvolumes, time_step, priority);
+				Environment::AddRegion(shapes.cylinder.value(), surface_types, diffision_coefficients, n_subvolumes, time_step, priority);
 				break;
 			}
 		}

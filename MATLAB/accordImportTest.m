@@ -15,7 +15,7 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\all_micro_regions.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\child_grandparent.json";
 config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
@@ -37,7 +37,7 @@ render.Meso = true;
 render.ActiveActors = false;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 10);
 
 %% Save Animation as Video
 clc;
@@ -82,6 +82,10 @@ Accord.plotCountForPassiveActor(sim, 3, Inf, Inf);
 %%
 clc; figure;
 Accord.plotCountForPassiveActor(sim, 3, Inf, Inf);
+
+%%
+clc; figure;
+Accord.plotCountForMoleculeType(sim, 1, Inf, Inf);
 
 %% Force all Figures and Files To Close 
 close all force

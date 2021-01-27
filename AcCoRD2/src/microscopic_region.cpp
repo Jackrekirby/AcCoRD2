@@ -10,9 +10,9 @@
 
 namespace accord::microscopic
 {
-	Region::Region(const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes_per_grid,
-		double time_step, int priority, SurfaceType surface_type, const MicroscopicRegionID& id)
-		: Event(time_step, priority), time_step(time_step), id(id), surface_type(surface_type), local_time(0)
+	// could remove const std::vector<SurfaceType> surface_type from constructor as passed straight to generate grids
+	Region::Region(double time_step, int priority, const MicroscopicRegionID& id)
+		: Event(time_step, priority), time_step(time_step), id(id), local_time(0)
 	{
 		
 	}
@@ -157,7 +157,7 @@ namespace accord::microscopic
 		return grids.at(id);
 	}
 
-	void Region::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid)
+	void Region::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid, const std::vector<SurfaceType>& surface_types)
 	{
 		//LOG_INFO("generating grid");
 		grids.reserve(Environment::GetNumberOfMoleculeTypes());
@@ -165,7 +165,7 @@ namespace accord::microscopic
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
 		{
 			grids.emplace_back(b.GetOrigin(), b.GetLength(), 
-				n_subvolumes_per_grid.at(i), diffision_coefficients.at(i), i, this);
+				n_subvolumes_per_grid.at(i), diffision_coefficients.at(i), surface_types.at(i), i, this);
 		}
 	}
 
@@ -206,11 +206,6 @@ namespace accord::microscopic
 	std::string Region::LogEvent() const
 	{
 		return fmt::format("Mesoscopic Region. ID:{}, Priority:{}, Time:{}", id, priority, time);
-	}
-
-	SurfaceType Region::GetSurfaceType() const
-	{
-		return surface_type;
 	}
 
 	void Region::NextRealisation()
