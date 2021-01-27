@@ -9,6 +9,11 @@ namespace accord::shape::generating
 
 	}
 
+	Rect::Rect(basic::Rect rect)
+		: basic::Rect(rect)
+	{
+	}
+
 	Vec2d Rect::GeneratePointInArea() const
 	{
 		return { Random::GenerateRealUniform(GetOrigin().x, GetEnd().x) ,

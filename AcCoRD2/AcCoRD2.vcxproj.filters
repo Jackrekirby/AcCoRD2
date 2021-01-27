@@ -340,6 +340,24 @@
     <ClCompile Include="src\config_importer.cpp">
       <Filter>src\simulation\import</Filter>
     </ClCompile>
+    <ClCompile Include="src\active_actor_box.cpp">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_sphere.cpp">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_rect_surface.cpp">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\active_actor_cylinder.cpp">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_rect_surface.cpp">
+      <Filter>src\shapes\basic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_circle_surface.cpp">
+      <Filter>src\shapes\basic\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -717,6 +735,24 @@
     <ClInclude Include="src\json_key_pair.h">
       <Filter>src\simulation\import</Filter>
     </ClInclude>
+    <ClInclude Include="src\active_actor_box.h">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_sphere.h">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_rect_surface.h">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\active_actor_cylinder.h">
+      <Filter>src\simulation\active actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic_rect_surface.h">
+      <Filter>src\shapes\basic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic_circle_surface.h">
+      <Filter>src\shapes\basic\surface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -977,6 +1013,12 @@
     </Filter>
     <Filter Include="src\simulation\import">
       <UniqueIdentifier>{66a68ed6-2ed7-4026-ae28-59c8ccda956b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\active actor\shapes">
+      <UniqueIdentifier>{4d2ac572-c748-4f87-830c-bafd75e28b66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes\basic\surface">
+      <UniqueIdentifier>{ff28cfa1-b262-4295-9eb0-046cbff4ecd6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

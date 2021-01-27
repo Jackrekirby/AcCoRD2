@@ -9,6 +9,12 @@ namespace accord::shape::relation
 
 	}
 
+	Plane::Plane(basic::Plane plane)
+		: basic::Plane(plane)
+	{
+
+	}
+
 	bool Plane::IsNeighbouring(const Plane& other) const
 	{
 		return (GetPosition() == other.GetPosition() && GetAxis() == GetAxis());

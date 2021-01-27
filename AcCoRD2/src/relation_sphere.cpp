@@ -12,7 +12,14 @@ namespace accord::shape::relation
 		: basic::Sphere(centre, radius),
 		projected_shapes(GenerateProjectedShapes())
 	{
-		Circle c(GetCentre().GetPlane(Axis3D::x), radius);
+		//Circle c(GetCentre().GetPlane(Axis3D::x), radius);
+	}
+
+	Sphere::Sphere(basic::Sphere sphere)
+		: basic::Sphere(sphere),
+		projected_shapes(GenerateProjectedShapes())
+	{
+
 	}
 
 	bool Sphere::IsOverlapping(const relation::Shape3D& other) const

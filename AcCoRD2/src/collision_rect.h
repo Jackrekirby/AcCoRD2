@@ -9,6 +9,8 @@ namespace accord::shape::collision
 	public:
 		Rect(Vec2d origin, Vec2d length);
 
+		Rect(basic::Rect rect);
+
 		bool IsWithinOrOnBorder(const Vec2d& position) const;
 
 		void ToJson(Json& j) const;

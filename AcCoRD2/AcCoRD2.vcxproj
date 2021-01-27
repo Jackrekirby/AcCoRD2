@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\basic_circle_surface.cpp" />
+    <ClCompile Include="src\basic_rect_surface.cpp" />
+    <ClCompile Include="src\active_actor_box.cpp" />
+    <ClCompile Include="src\active_actor_cylinder.cpp" />
+    <ClCompile Include="src\active_actor_rect_surface.cpp" />
+    <ClCompile Include="src\active_actor_sphere.cpp" />
     <ClCompile Include="src\config_importer.cpp" />
     <ClCompile Include="src\microscopic_surface_type.cpp" />
     <ClCompile Include="src\json_key_pair.cpp" />
@@ -164,6 +170,12 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\basic_circle_surface.h" />
+    <ClInclude Include="src\basic_rect_surface.h" />
+    <ClInclude Include="src\active_actor_box.h" />
+    <ClInclude Include="src\active_actor_cylinder.h" />
+    <ClInclude Include="src\active_actor_rect_surface.h" />
+    <ClInclude Include="src\active_actor_sphere.h" />
     <ClInclude Include="src\json_key_pair.h" />
     <ClInclude Include="src\config_importer.h" />
     <ClInclude Include="src\mesoscopic_subvolume_event.h" />

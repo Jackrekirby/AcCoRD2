@@ -12,6 +12,12 @@ namespace accord::shape::collision
 
 	}
 
+	Plane::Plane(basic::Plane plane)
+		: basic::Plane(plane)
+	{
+
+	}
+
 	std::optional<double> Plane::CalculateCollisionTimeWithPositiveFace(double origin, double end) const
 	{
 		if (origin >= GetPosition() && end < GetPosition())

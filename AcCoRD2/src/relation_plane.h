@@ -8,6 +8,8 @@ namespace accord::shape::relation
 	public:
 		Plane(double position, Axis3D axis);
 
+		Plane(basic::Plane plane);
+
 		bool IsNeighbouring(const Plane& other) const;
 	};
 

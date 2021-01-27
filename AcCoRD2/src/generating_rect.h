@@ -9,6 +9,8 @@ namespace accord::shape::generating
 	public:
 		Rect(Vec2d origin, Vec2d length);
 
+		Rect(basic::Rect rect);
+
 		Vec2d GeneratePointInArea() const;
 
 		void ToJson(Json& j) const;

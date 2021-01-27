@@ -11,6 +11,12 @@ namespace accord::shape::collision
 
 	}
 
+	Circle::Circle(basic::Circle circle)
+		: basic::Circle(circle)
+	{
+
+	}
+
 	bool Circle::IsWithinOrOnBorder(const Vec2d& position) const
 	{
 		return basic::Circle::IsWithinOrOnBorder(position);

@@ -14,6 +14,8 @@ namespace accord::shape::relation
 	public:
 		Sphere(Vec3d centre, double radius);
 
+		Sphere(basic::Sphere sphere);
+
 		bool IsOverlapping(const Sphere& other) const;
 
 		bool IsEnveloping(const Sphere& other) const;

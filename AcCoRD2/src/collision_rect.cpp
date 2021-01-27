@@ -8,6 +8,11 @@ namespace accord::shape::collision
 
 	}
 
+	Rect::Rect(basic::Rect rect)
+		: basic::Rect(rect)
+	{
+	}
+
 	bool Rect::IsWithinOrOnBorder(const Vec2d& position) const
 	{
 		return basic::Rect::IsWithinOrOnBorder(position);

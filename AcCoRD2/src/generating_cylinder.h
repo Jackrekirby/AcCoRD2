@@ -12,7 +12,7 @@ namespace accord::shape::generating
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
 
-		Cylinder(basic::Cylinder);
+		Cylinder(basic::Cylinder cylinder);
 
 		Vec3d GeneratePointOnSurface() const;
 

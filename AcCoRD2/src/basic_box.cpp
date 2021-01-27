@@ -4,6 +4,7 @@
 #include "vec2d.h"
 #include "basic_cylinder.h"
 #include "basic_sphere.h"
+#include "basic_rect_surface.h"
 
 namespace accord::shape::basic
 {
@@ -24,6 +25,13 @@ namespace accord::shape::basic
 		: origin(sphere.GetCentre() - sphere.GetRadius()),
 		length(sphere.GetRadius() * 2),
 		end(origin + length)
+	{
+
+	}
+
+	Box::Box(const RectSurface& rect_surface)
+		:origin(Vec3d(0, rect_surface.rect.GetOrigin(), rect_surface.plane.GetAxis())),
+		length(Vec3d(0, rect_surface.rect.GetLength(), rect_surface.plane.GetAxis()))
 	{
 
 	}

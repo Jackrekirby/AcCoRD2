@@ -10,7 +10,18 @@ namespace accord::shape::relation
 		: basic::Cylinder(base_centre, radius, length, axis),
 		base_face({ GetBase(), axis }, { GetCircleCentre(), radius }),
 		top_face({ GetTop(), axis }, { GetCircleCentre(), radius }),
-		projected_face({ GetCircleCentre(), radius }),
+		projected_face(relation::Circle( GetCircleCentre(), radius )),
+		projected_side_x(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
+		projected_side_y(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
+	{
+
+	}
+
+	Cylinder::Cylinder(basic::Cylinder cylinder)
+		: basic::Cylinder(cylinder),
+		base_face({ GetBase(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() }),
+		top_face({ GetTop(), cylinder.GetAxis() }, { GetCircleCentre(), cylinder.GetRadius() }),
+		projected_face(relation::Circle(GetCircleCentre(), cylinder.GetRadius())),
 		projected_side_x(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(0))),
 		projected_side_y(relation::Box(GenerateBoundingBox()).FlattenInAxis(GetOtherAxes(GetAxis()).at(1)))
 	{

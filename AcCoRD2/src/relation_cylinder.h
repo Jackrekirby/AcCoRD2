@@ -27,6 +27,8 @@ namespace accord::shape::relation
 	public:
 		Cylinder(Vec3d base_centre, double radius, double length, Axis3D axis);
 
+		Cylinder(basic::Cylinder cylinder);
+
 		Vec3d CalculateNearestPoint(const Vec3d& position) const;
 
 		Vec3d CalculateFurthestPoint(const Vec3d& position) const;

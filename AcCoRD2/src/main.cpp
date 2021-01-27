@@ -368,6 +368,10 @@
 // add remaining active actor constructors to config
 // current molecule generation either by reactions or active actors can be in child regions
 // rename molecule type to release to NumberOfMoleculeToReleasePerMoleculeType
+// update molecule generation in mesoscopic regions
+// may need to update is overlapping box code as it includes neighbouring.
+// surfaces on the boundary of two rect regions will 'overlap' / 'be neighbours' of both surfaces, even if you want the surface to ownly release molecules onto one region
+// only volume actors should be allowed to be specified by multiple regions
 
 namespace accord
 {
@@ -458,6 +462,6 @@ int main()
 	//j["d"] = "@jack";
 
 	//ReplaceValues(j, j);
-	Run("C:/dev/AcCoRD2/configs/child_grandparent.json");
+	Run("C:/dev/AcCoRD2/configs/surfaces.json");
 	
 }

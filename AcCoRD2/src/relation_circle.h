@@ -11,6 +11,8 @@ namespace accord::shape::relation
 	public:
 		Circle(Vec2d centre, double radius);
 
+		Circle(basic::Circle circle);
+
 		bool IsOverlapping(const Circle& other) const;
 
 		bool IsEnveloping(const Circle& other) const;

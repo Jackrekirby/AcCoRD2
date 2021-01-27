@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "generating_circle_surface.h"
+#include "basic_circle_surface.h"
 
 namespace accord::shape::generating
 {
@@ -7,6 +8,11 @@ namespace accord::shape::generating
 		: Surface(plane), circle(circle)
 	{
 
+	}
+
+	CircleSurface::CircleSurface(const basic::CircleSurface& circle_surface)
+		: Surface(circle_surface.plane), circle(circle_surface.circle)
+	{
 	}
 
 	const Circle& CircleSurface::GetShape() const

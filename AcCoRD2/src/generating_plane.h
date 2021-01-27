@@ -9,6 +9,8 @@ namespace accord::shape::generating
 	public:
 		Plane(double position, const Axis3D& axis);
 
+		Plane(basic::Plane plane);
+
 		Vec3d PlacePointOnPlane(const Vec2d& position) const;
 
 		Vec3d GeneratePointNormalToPlane(double normal, const Vec2d& tangential) const;

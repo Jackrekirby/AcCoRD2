@@ -33,6 +33,8 @@
 #include "active_actor_random_bits.h"
 #include "mesoscopic_region.h"
 
+#include "active_actor_box.h"
+
 
 namespace accord
 {

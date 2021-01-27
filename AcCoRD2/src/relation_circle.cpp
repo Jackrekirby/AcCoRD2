@@ -11,6 +11,12 @@ namespace accord::shape::relation
 
 	}
 
+	Circle::Circle(basic::Circle circle)
+		: basic::Circle(circle)
+	{
+
+	}
+
 	bool Circle::IsOverlapping(const Shape2D& other) const
 	{
 		return other.IsOverlapping(*this);

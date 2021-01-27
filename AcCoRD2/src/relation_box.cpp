@@ -5,6 +5,7 @@
 #include "vec3b.h"
 #include "axis_3d.h"
 #include "relation_cylinder.h"
+#include "basic_rect_surface.h"
 
 namespace accord::shape::relation
 {
@@ -19,6 +20,12 @@ namespace accord::shape::relation
 		: basic::Box(box.GetOrigin(), box.GetLength()), faces(GenerateFaces()),
 		projected_shapes(GenerateProjectedShapes())
 	{
+	}
+
+	Box::Box(const RectSurface& rect_surface)
+		: basic::Box(rect_surface.ToBasic()), faces(GenerateFaces()), projected_shapes(GenerateProjectedShapes())
+	{
+
 	}
 
 	std::enum_array<Face, RectSurface, 6> Box::GenerateFaces()

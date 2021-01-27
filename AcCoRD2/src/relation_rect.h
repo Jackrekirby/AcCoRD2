@@ -11,6 +11,8 @@ namespace accord::shape::relation
 	public:
 		Rect(Vec2d origin, Vec2d length);
 
+		Rect(basic::Rect rect);
+
 		bool IsOverlapping(const Rect& other) const;
 
 		bool IsEnveloping(const Rect& other) const;

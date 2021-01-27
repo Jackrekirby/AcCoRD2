@@ -1,0 +1,77 @@
+{
+   "SaveToFolder": "D:/dev/sample1",
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":200,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":4,
+   "ObserveEachRegion":true,
+   "G":{
+      "TimeStep":0.05,
+	  "DiffusionCoefficients":[0.01, 0.01, 0.01, 0.01],
+	  "NofS":[2, 2, 2],
+	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ],
+	  "SurfaceTypesNone":[ "None",  "None", "None", "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ]
+   },
+   "MicroscopicRegions":[
+		{
+		  "Name":"Box1",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[0, 0, 0],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceTypes":[ "Absorbing",  "Reflecting", "Reflecting", "Reflecting" ],
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":0
+	   },
+	   {
+		  "Name":"Box2",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[1, 0, 0],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceTypes":[ "Reflecting",  "Reflecting", "Absorbing", "Reflecting" ],
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":0
+	   }
+   ],
+   "Relationships":[
+	  {
+         "RegionA":"Box1",
+         "RegionB":"Box2",
+         "Priority":"None",
+         "AToBSurfaceTypes":[ "Reflecting",  "Reflecting", "None", "None" ],
+		 "BToASurfaceTypes":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ]
+      }
+   ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@G:TimeStep",
+	  "Priority":0
+	},
+	"ActiveActors":[
+      {
+         "Name":"ActiveActor1",
+         "StartTime":0,
+         "Priority":0,
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":50,
+         "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
+         "RegionsToActIn":[ "Box1" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ]
+}

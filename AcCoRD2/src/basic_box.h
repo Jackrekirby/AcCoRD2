@@ -7,6 +7,7 @@ namespace accord::shape::basic
 {
 	class Cylinder;
 	class Sphere;
+	class RectSurface;
 
 	class Box : public Shape3D
 	{
@@ -16,6 +17,8 @@ namespace accord::shape::basic
 		Box(const Cylinder& cylinder);
 
 		Box(const Sphere& sphere);
+
+		Box(const RectSurface& rect_surface);
 
 		Box GenerateBoundingBox() const;
 

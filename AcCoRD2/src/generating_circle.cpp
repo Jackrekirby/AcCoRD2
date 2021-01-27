@@ -10,6 +10,12 @@ namespace accord::shape::generating
 
 	}
 
+	Circle::Circle(basic::Circle circle)
+		: basic::Circle(circle)
+	{
+
+	}
+
 	Vec2d Circle::GeneratePointInArea() const
 	{
 		return (GetCentre() + Vec2d::GenerateRandomPolar() * GetRadius());

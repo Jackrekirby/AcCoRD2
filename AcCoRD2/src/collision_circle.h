@@ -10,6 +10,8 @@ namespace accord::shape::collision
 	public:
 		Circle(Vec2d centre, double radius);
 
+		Circle(basic::Circle circle);
+
 		std::optional<Collision2D> CalculateExternalCollisionData(const Vec2d& origin, const Vec2d& end) const;
 
 		std::optional<Collision2D> CalculateInternalCollisionData(const Vec2d& origin, const Vec2d& end) const;

@@ -15,6 +15,8 @@ namespace accord::shape::relation
 
 		Box(basic::Box box);
 
+		Box(const RectSurface& rect_surface);
+
 		bool IsOverlapping(const Box& other) const;
 
 		bool IsEnveloping(const Box& other) const;

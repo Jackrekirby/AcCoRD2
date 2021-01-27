@@ -10,6 +10,8 @@ namespace accord::shape::collision
 	public:
 		Plane(double position, const Axis3D& axis);
 
+		Plane(basic::Plane plane);
+
 		std::optional<double> CalculateCollisionTimeWithPositiveFace
 			(double origin, double end) const;
 

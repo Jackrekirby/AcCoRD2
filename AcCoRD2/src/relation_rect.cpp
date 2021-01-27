@@ -11,6 +11,11 @@ namespace accord::shape::relation
 
 	}
 
+	Rect::Rect(basic::Rect rect)
+		: basic::Rect(rect)
+	{
+	}
+
 	bool Rect::IsOverlapping(const Shape2D& other) const
 	{
 		return other.IsOverlapping(*this);

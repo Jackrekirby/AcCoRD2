@@ -9,6 +9,8 @@ namespace accord::shape::generating
 	public:
 		Circle(Vec2d centre, double radius);
 
+		Circle(basic::Circle circle);
+
 		Vec2d GeneratePointInArea() const;
 
 		Vec2d GeneratePointOnSurface() const;

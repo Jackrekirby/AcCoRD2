@@ -1,7 +1,4 @@
 #pragma once
-#include "generating_box.h"
-#include "relation_box.h"
-
 namespace accord
 {
 	namespace shape::relation
@@ -29,21 +26,6 @@ namespace accord
 	//ActiveActorRectSurface
 	//ActiveActorCircleSurface
 	//ActiveActorBoxSurface
-	class ActiveActorBox : public ActiveActorShape, public shape::generating::Box, public shape::relation::Box
-	{
-	public:
-		ActiveActorBox(const Vec3d& origin, const Vec3d& length);
-
-		ActiveActorBox(const shape::basic::Box& box);
-
-		Vec3d GenerateMolecule();
-
-		double CalculateVolume();
-
-		bool IsOverlapping(const shape::relation::Shape3D& other) const;
-
-		void ToJson(Json& j) const;
-	};
 
 	void to_json(Json& j, const ActiveActorShape& shape);
 }

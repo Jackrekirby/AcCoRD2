@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "relation_circle_surface.h"
+#include "basic_circle_surface.h"
 
 namespace accord::shape::relation
 {
@@ -7,6 +8,11 @@ namespace accord::shape::relation
 		: Surface(plane), circle(circle)
 	{
 
+	}
+
+	CircleSurface::CircleSurface(const basic::CircleSurface& circle_surface)
+		: Surface(circle_surface.plane), circle(circle_surface.circle)
+	{
 	}
 
 	const Circle& CircleSurface::GetShape() const

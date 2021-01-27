@@ -1,19 +1,19 @@
-[10:52:05.622] [info] config_importer.cpp:377 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
-[10:52:05.641] [info] config_importer.cpp:524 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[10:52:05.652] [info] config_importer.cpp:527 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[10:52:05.653] [info] config_importer.cpp:530 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[10:52:05.663] [info] config_importer.cpp:533 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[10:52:05.664] [info] config_importer.cpp:710 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[10:52:05.664] [info] config_importer.cpp:721 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [2, 2, 2], end = [2, 2, 2]
-[10:52:05.665] [info] config_importer.cpp:731 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [2, 2, 2], end = [2, 2, 2]
-[10:52:05.665] [info] config_importer.cpp:739 accord::ConfigImporter::CreateActiveActors() Active actor shape = origin = [0, 0, 0], length = [2, 2, 2], end = [2, 2, 2]
-[10:52:05.666] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
-[10:52:05.667] [info] config_importer.cpp:536 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[10:52:05.669] [info] config_importer.cpp:539 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[10:52:05.669] [info] config_importer.cpp:822 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[10:52:05.669] [info] config_importer.cpp:832 accord::ConfigImporter::CreateReactions() First Order Reactions
-[10:52:05.676] [info] config_importer.cpp:843 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[10:52:05.686] [info] main.cpp:377 accord::Run() {
+[12:23:01.753] [info] config_importer.cpp:379 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
+[12:23:01.765] [info] config_importer.cpp:526 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[12:23:01.772] [info] config_importer.cpp:529 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[12:23:01.773] [info] config_importer.cpp:532 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[12:23:01.781] [info] config_importer.cpp:535 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[12:23:01.782] [info] config_importer.cpp:712 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[12:23:01.782] [info] config_importer.cpp:723 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
+[12:23:01.783] [info] config_importer.cpp:733 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
+[12:23:01.783] [info] config_importer.cpp:741 accord::ConfigImporter::CreateActiveActors() Active actor shape = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
+[12:23:01.784] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
+[12:23:01.785] [info] config_importer.cpp:538 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[12:23:01.785] [info] config_importer.cpp:541 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[12:23:01.785] [info] config_importer.cpp:824 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[12:23:01.786] [info] config_importer.cpp:834 accord::ConfigImporter::CreateReactions() First Order Reactions
+[12:23:01.787] [info] config_importer.cpp:845 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[12:23:01.788] [info] main.cpp:378 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
     "FinalSimulationTime": 200,
@@ -22,64 +22,43 @@
     "ObserveEachRegion": true,
     "G": {
         "TimeStep": 0.05,
-        "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
+        "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
         "NofS": [ 2, 2, 2 ],
         "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
         "SurfaceTypesNone": [ "None", "None", "None", "None" ],
         "SurfaceTypesReflecting": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
     },
     "MicroscopicRegions": [ {
-            "Name": "Parent",
+            "Name": "Box1",
             "Shape": {
                 "Type": "Box",
                 "Origin": [ 0, 0, 0 ],
-                "Length": [ 2, 2, 2 ]
-            },
-            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
-            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
-            "TimeStep": 0.05,
-            "Priority": 0
-        }, {
-            "Name": "Child",
-            "Shape": {
-                "Type": "Box",
-                "Origin": [ 1, 0.5, 0.5 ],
                 "Length": [ 1, 1, 1 ]
             },
-            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
+            "SurfaceTypes": [ "Absorbing", "Reflecting", "Reflecting", "Reflecting" ],
+            "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         }, {
-            "Name": "GrandParent",
+            "Name": "Box2",
             "Shape": {
                 "Type": "Box",
-                "Origin": [ -1, -1, -1 ],
-                "Length": [ 4, 4, 4 ]
+                "Origin": [ 1, 0, 0 ],
+                "Length": [ 1, 1, 1 ]
             },
-            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Absorbing", "Reflecting" ],
+            "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         } ],
     "Relationships": [ {
-            "RegionA": "Child",
-            "RegionB": "Parent",
-            "Priority": "A",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "Child",
-            "RegionB": "GrandParent",
-            "Priority": "A",
-            "SurfaceTypes": [ "None", "None", "None", "None" ]
-        }, {
-            "RegionA": "GrandParent",
-            "RegionB": "Parent",
-            "Priority": "B",
-            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
+            "RegionA": "Box1",
+            "RegionB": "Box2",
+            "Priority": "None",
+            "AToBSurfaceTypes": [ "Reflecting", "Reflecting", "None", "None" ],
+            "BToASurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
         } ],
     "PassiveActors": {
         "RecordPositions": true,
@@ -94,9 +73,9 @@
             "Priority": 0,
             "ActionInterval": 200,
             "ReleaseInterval": 200,
-            "ModulationStrength": 1,
-            "MoleculeTypesToRelease": [ 1, 0, 0, 0 ],
-            "RegionsToActIn": [ "Parent" ],
+            "ModulationStrength": 50,
+            "MoleculeTypesToRelease": [ 1, 1, 1, 1 ],
+            "RegionsToActIn": [ "Box1" ],
             "Type": "NonRandom",
             "SymbolSize": 1,
             "SlotInterval": 200,
@@ -107,8 +86,8 @@
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[10:52:05.693] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 0
-[10:52:05.703] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[10:52:05.705] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[10:52:05.706] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 1
-[10:52:07.517] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[12:23:01.791] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 0
+[12:23:01.792] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[12:23:01.793] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[12:23:01.793] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 50
+[12:23:07.226] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols

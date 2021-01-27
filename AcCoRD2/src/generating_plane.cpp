@@ -11,6 +11,12 @@ namespace accord::shape::generating
 
 	}
 
+	Plane::Plane(basic::Plane plane)
+		: basic::Plane(plane)
+	{
+
+	}
+
 	Vec3d Plane::PlacePointOnPlane(const Vec2d& position) const
 	{
 		return { GetPosition(), position, GetAxis() };
