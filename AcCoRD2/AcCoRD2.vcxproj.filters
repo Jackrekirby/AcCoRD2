@@ -175,9 +175,6 @@
     <ClCompile Include="src\event_queue_test.cpp">
       <Filter>src\tests</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_box_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\molecule_destination.cpp">
       <Filter>src\simulation\microscopic\molecule</Filter>
     </ClCompile>
@@ -186,9 +183,6 @@
     </ClCompile>
     <ClCompile Include="src\microscopic_relationship.cpp">
       <Filter>src\simulation\microscopic\relations</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\basic_cylinder.cpp">
       <Filter>src\shapes\basic\cylinder</Filter>
@@ -222,9 +216,6 @@
     </ClCompile>
     <ClCompile Include="src\collision_shape_3d.cpp">
       <Filter>src\shapes\collision\shape</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\basic_shape.cpp">
       <Filter>src\shapes\basic\shape</Filter>
@@ -334,9 +325,6 @@
     <ClCompile Include="src\json_key_pair.cpp">
       <Filter>src\simulation\import</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_surface_type.cpp">
-      <Filter>src\simulation\microscopic\surface</Filter>
-    </ClCompile>
     <ClCompile Include="src\config_importer.cpp">
       <Filter>src\simulation\import</Filter>
     </ClCompile>
@@ -372,6 +360,21 @@
     </ClCompile>
     <ClCompile Include="src\active_actor_point.cpp">
       <Filter>src\simulation\active actor\shapes\volumes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_surface_type.cpp">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_box_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="microscopic_surface.cpp">
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -570,14 +573,8 @@
     <ClInclude Include="src\environment.h">
       <Filter>src\simulation\environment</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface</Filter>
-    </ClInclude>
     <ClInclude Include="src\event_queue_test.h">
       <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_box_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\molecule_destination.h">
       <Filter>src\simulation\microscopic\molecule</Filter>
@@ -593,12 +590,6 @@
     </ClInclude>
     <ClInclude Include="src\microscopic_relationship.h">
       <Filter>src\simulation\microscopic\relations</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_surface_type.h">
-      <Filter>src\simulation\microscopic\surface</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_sphere_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\collision_cylinder.h">
       <Filter>src\shapes\collision\cylinder</Filter>
@@ -632,9 +623,6 @@
     </ClInclude>
     <ClInclude Include="src\collision_shape_3d.h">
       <Filter>src\shapes\collision\shape</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_cylinder_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
     <ClInclude Include="src\basic_shape.h">
       <Filter>src\shapes\basic\shape</Filter>
@@ -782,6 +770,24 @@
     </ClInclude>
     <ClInclude Include="src\active_actor_point.h">
       <Filter>src\simulation\active actor\shapes\volumes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_surface_type.h">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_surface_shape.h">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_sphere_surface_shape.h">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_cylinder_surface_shape.h">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_box_surface_shape.h">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="microscopic_surface.h">
+      <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1055,6 +1061,9 @@
     </Filter>
     <Filter Include="src\simulation\active actor\shapes\surfaces">
       <UniqueIdentifier>{af7803e2-a773-410e-beb9-b58e1a85e144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\surface\shapes">
+      <UniqueIdentifier>{3a6238be-3a90-4b9c-886d-eb06d19ffcfc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

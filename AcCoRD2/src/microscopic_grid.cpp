@@ -403,7 +403,7 @@ namespace accord::microscopic
 		const shape::collision::Collision3D& collision, Grid* owner,
 		SurfaceType surface_type, int cycles, bool allowObstructions)
 	{
-		//Absorping, Adsorbing, Membrane, Reflecting, None
+		//Absorbing, Adsorbing, Membrane, Reflecting, None
 		switch (surface_type)
 		{
 		case SurfaceType::None:
@@ -414,9 +414,8 @@ namespace accord::microscopic
 		case SurfaceType::Absorbing:
 			return std::nullopt;
 		default:
-			// must throw
-			break;
+			LOG_CRITICAL("SurfaceType must be None, Reflecting Or Absorbing");
+			throw std::exception();
 		}
-		return std::nullopt;
 	}
 }
