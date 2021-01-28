@@ -376,9 +376,25 @@
     <ClCompile Include="src\microscopic_surface.cpp">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_relative.cpp">
+    <ClCompile Include="src\microscopic_rect_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_relative.cpp">
       <Filter>src\simulation\microscopic\relations</Filter>
     </ClCompile>
+    <ClCompile Include="src\microscopic_high_priority_relationship.cpp">
+      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_low_priority_relationship.cpp">
+      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_neighbour_relationship.cpp">
+      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+    </ClCompile>
+    <ClCompile Include="microscopic_high_priority_relative.cpp">
+      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_circle_surface_shape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -792,6 +808,40 @@
     <ClInclude Include="src\microscopic_surface.h">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
+    <ClInclude Include="src\microscopic_rect_surface_shape.h">
+      <Filter>src\simulation\microscopic\surface\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_relative2.h">
+      <Filter>src\simulation\microscopic\relations\new</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_high_priority_relative_shape.h">
+      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_high_priority_relative.h">
+      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_high_priority_relationship.h">
+      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_low_priority_relative_shape.h">
+      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_low_priority_relative.h">
+      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_low_priority_relationship.h">
+      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_neighbour_relative_shape.h">
+      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_neighbour_relative.h">
+      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_neighbour_relationship.h">
+      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_circle_surface_shape.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -1067,6 +1117,18 @@
     </Filter>
     <Filter Include="src\simulation\microscopic\surface\shapes">
       <UniqueIdentifier>{3a6238be-3a90-4b9c-886d-eb06d19ffcfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\new">
+      <UniqueIdentifier>{b9751cfb-3e6c-41ca-9be9-a2b77d411370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\new\high priority">
+      <UniqueIdentifier>{4bcc6a81-9074-4431-bd50-708a925773ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\new\low priority">
+      <UniqueIdentifier>{2407f55e-9725-4f88-9266-45ca09a1997c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\new\neighbour">
+      <UniqueIdentifier>{f25c1270-b1d3-47e8-a9a8-b1506247e26f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

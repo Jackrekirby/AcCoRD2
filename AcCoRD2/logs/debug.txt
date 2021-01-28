@@ -1,17 +1,17 @@
-[13:52:43.868] [info] config_importer.cpp:425 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
-[13:52:43.883] [info] config_importer.cpp:618 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[13:52:43.892] [info] config_importer.cpp:621 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
-[13:52:43.894] [info] config_importer.cpp:624 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[13:52:43.894] [info] config_importer.cpp:627 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[13:52:43.905] [info] config_importer.cpp:630 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[13:52:43.905] [info] config_importer.cpp:869 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[13:52:43.906] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 20.0, release = 20.0, slot = 20.0
-[13:52:43.907] [info] config_importer.cpp:633 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[13:52:43.907] [info] config_importer.cpp:636 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[13:52:43.907] [info] config_importer.cpp:985 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[13:52:43.910] [info] config_importer.cpp:995 accord::ConfigImporter::CreateReactions() First Order Reactions
-[13:52:43.910] [info] config_importer.cpp:1006 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[13:52:43.911] [info] main.cpp:382 accord::Run() {
+[16:53:18.563] [info] config_importer.cpp:430 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
+[16:53:18.573] [info] config_importer.cpp:623 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[16:53:18.577] [info] config_importer.cpp:626 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[16:53:18.578] [info] config_importer.cpp:629 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[16:53:18.578] [info] config_importer.cpp:632 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[16:53:18.585] [info] config_importer.cpp:635 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[16:53:18.586] [info] config_importer.cpp:880 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[16:53:18.586] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 20.0, release = 20.0, slot = 20.0
+[16:53:18.587] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[16:53:18.587] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[16:53:18.588] [info] config_importer.cpp:996 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[16:53:18.590] [info] config_importer.cpp:1006 accord::ConfigImporter::CreateReactions() First Order Reactions
+[16:53:18.590] [info] config_importer.cpp:1017 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[16:53:18.592] [info] main.cpp:382 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
     "FinalSimulationTime": 20,
@@ -36,7 +36,7 @@
                 "Origin": [ 0, 0, 0 ],
                 "Length": [ 1, 1, 1 ]
             },
-            "SurfaceTypes": [ "Absorbing", "Reflecting", "Reflecting", "Reflecting" ],
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
             "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
@@ -48,28 +48,28 @@
                 "Origin": [ 1, 0, 0 ],
                 "Length": [ 1, 1, 1 ]
             },
-            "SurfaceTypes": [ "Reflecting", "Reflecting", "Absorbing", "Reflecting" ],
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
             "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         } ],
-    "MicroscopicSurfaces": [ {
-            "Shape": {
-                "Type": "Sphere",
-                "Centre": [ 0.5, 0.5, 0.5 ],
-                "Radius": 0.4
-            },
-            "SurfaceDirection": "Internal",
-            "SurfaceTypes": [ "Reflecting", "Absorbing", "Absorbing", "Absorbing" ],
-            "AddToRegions": [ "Box1" ]
-        } ],
     "Relationships": [ {
             "RegionA": "Box1",
             "RegionB": "Box2",
             "Priority": "None",
-            "AToBSurfaceTypes": [ "Reflecting", "Reflecting", "None", "None" ],
-            "BToASurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
+        } ],
+    "MicroscopicSurfaces": [ {
+            "Shape": {
+                "Type": "CircleSurface",
+                "Centre": [ 1, 0.5, 0.5 ],
+                "Radius": 0.1,
+                "Axis": "X"
+            },
+            "SurfaceDirection": "Internal",
+            "SurfaceTypes": [ "Membrane", "Membrane", "Membrane", "Membrane" ],
+            "AddToRegions": [ "Box1" ]
         } ],
     "PassiveActors": {
         "RecordPositions": true,
@@ -84,7 +84,7 @@
             "Priority": 2,
             "ActionInterval": 20,
             "ReleaseInterval": 20,
-            "ModulationStrength": 100,
+            "ModulationStrength": 25,
             "MoleculeTypesToRelease": [ 1, 1, 1, 1 ],
             "Shape": {
                 "Type": "Point",
@@ -101,308 +101,29 @@
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[13:52:43.913] [info] environment.cpp:238 accord::Environment::RunSimulation() Realisation 0
-[13:52:43.913] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[13:52:43.914] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[13:52:43.919] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 100
-[13:52:44.013] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.035] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.046] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.077] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.088] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.109] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.111] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.116] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.119] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.122] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.127] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.133] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.135] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.149] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.152] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.153] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.158] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.159] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.163] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.165] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.166] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.166] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.169] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.174] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.176] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.179] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.180] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.183] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.184] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.184] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.185] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.190] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.191] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.194] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.194] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.196] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.198] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.202] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.202] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.204] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.205] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.210] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.212] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.213] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.214] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.217] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.218] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.218] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.219] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.220] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.221] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.221] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.222] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.223] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.223] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.224] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.227] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.227] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.229] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.229] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.233] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.236] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.240] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.241] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.243] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.243] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.244] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.248] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.251] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.252] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.252] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.256] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.256] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.257] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.258] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.259] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.259] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.260] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.265] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.268] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.270] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.270] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.271] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.272] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.276] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.278] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.280] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.281] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.282] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.287] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.288] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.288] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.289] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.290] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.291] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.291] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.294] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.295] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.303] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.303] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.304] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.305] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.306] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.307] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.308] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.310] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.311] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.312] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.312] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.313] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.317] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.324] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.325] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.327] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.327] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.328] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.334] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.336] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.339] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.341] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.344] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.345] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.346] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.349] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.354] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.355] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.359] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.362] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.365] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.373] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.375] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.385] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.390] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.395] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.396] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.397] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.400] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.402] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.402] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.403] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.403] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.404] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.406] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.407] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.408] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.410] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.413] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.414] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.416] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.420] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.421] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.422] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.425] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.426] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.426] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.427] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.427] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.430] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.431] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.434] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.438] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.439] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.442] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.443] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.444] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.447] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.450] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.452] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.455] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.456] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.459] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.461] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.463] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.467] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.472] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.473] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.475] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.478] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.479] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.480] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.481] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.482] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.485] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.486] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.487] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.487] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.488] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.488] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.491] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.494] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.494] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.495] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.496] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.499] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.499] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.502] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.505] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.506] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.506] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.509] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.510] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.510] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.513] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.513] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.514] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.515] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.515] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.521] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.530] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.531] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.532] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.532] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.533] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.536] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.536] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.537] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.537] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.540] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.540] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.541] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.543] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.543] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.547] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.548] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.549] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.549] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.555] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.556] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.557] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.557] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.560] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.566] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.568] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.571] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.575] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.577] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.588] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.592] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.601] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.602] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.605] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.606] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.609] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.611] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.614] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.615] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.618] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.621] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.621] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.622] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.623] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.623] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.627] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.628] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.633] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.638] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.647] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.651] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.658] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.661] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.662] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.666] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.667] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.668] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.671] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.675] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.687] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.688] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.692] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.693] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.701] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.706] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.709] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.711] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.713] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.714] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.719] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.719] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.721] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.722] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.726] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.728] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.735] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.735] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.744] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.749] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.751] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.756] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.756] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.761] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.767] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.771] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.773] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.790] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.813] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.818] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.827] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.833] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.910] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:44.928] [info] microscopic_surface.cpp:29 accord::microscopic::Surface::PassMolecule() Absorbing
-[13:52:45.319] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[16:53:18.593] [info] environment.cpp:238 accord::Environment::RunSimulation() Realisation 0
+[16:53:18.594] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[16:53:18.595] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[16:53:18.595] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 25
+[16:53:18.668] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:18.668] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:18.669] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:18.686] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:18.687] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:18.687] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:18.804] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:18.805] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:18.806] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:18.903] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:18.903] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:18.904] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:18.931] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:18.931] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:18.932] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:18.961] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:18.962] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:18.962] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:19.090] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
+[16:53:19.090] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
+[16:53:19.091] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
+[16:53:19.252] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols

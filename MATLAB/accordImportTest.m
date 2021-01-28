@@ -33,7 +33,7 @@ r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
 render.ActiveActors = true;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 0.5);
 
 %% Save Animation as Video
 clc;

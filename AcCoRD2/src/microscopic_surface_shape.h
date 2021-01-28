@@ -4,17 +4,20 @@
 #include "basic_box.h"
 #include "collision_shape_3d.h"
 #include "basic_shape.h"
+#include "microscopic_high_priority_relative_shape.h"
+#include "microscopic_low_priority_relative_shape.h"
+#include "microscopic_neighbour_relative_shape.h"
 
 namespace accord
 {
 	struct Vec3d;
 }
-
+// the shape requirements for a microscopic region
 namespace accord::microscopic
 {
 	// could just be a collision shape3D but may require other shape type functionality
 	// consider seperating surface shape into one per relationship type
-	class SurfaceShape
+	class SurfaceShape : public HighPriorityRelativeShape, public LowPriorityRelativeShape, public NeighbourRelativeShape
 	{
 	public:
 		virtual std::optional<shape::collision::Collision3D>

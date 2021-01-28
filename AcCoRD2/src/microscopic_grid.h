@@ -12,9 +12,13 @@
 #include "microscopic_owner.h"
 //#include "microscopic_surface.h"
 
-#include "microscopic_relative.h"
-#include "microscopic_relationship.h"
-
+#include "microscopic_low_priority_relative.h"
+#include "microscopic_low_priority_relationship.h"
+#include "microscopic_neighbour_relative.h"
+#include "microscopic_neighbour_relationship.h"
+#include "microscopic_high_priority_relative.h"
+#include "microscopic_high_priority_relationship.h"
+#include "microscopic_surface_shape.h"
 #include "molecule_id.h"
 //#include "microscopic_high_priority_relative.h"
 //#include "microscopic_low_priority_relative.h"
@@ -37,7 +41,7 @@ namespace accord::microscopic
 	// an Owner is class which can own molecules, which includes Grid or Adsorbing Surfaces
 	class Region;
 
-	class Grid : public Owner, public Relative
+	class Grid : public Owner, public HighPriorityRelative, public LowPriorityRelative, public NeighbourRelative
 	{
 	public:
 		Grid(const Vec3d& origin, const Vec3d& length, const Vec3i& n_subvolumes, double diffision_coefficient, const SurfaceType& surface_type, const MoleculeID& id, Region* region);
@@ -88,18 +92,11 @@ namespace accord::microscopic
 
 		const MoleculeID& GetMoleculeID();
 
-		void AddNeighbour(Relative* relative, SurfaceType type);
+		void AddRelative(NeighbourRelative* relative, SurfaceType type);
 
-		void AddLowPriorityRelative(Relative* relative, SurfaceType type);
+		void AddRelative(LowPriorityRelative* relative, SurfaceType type);
 
-		void AddHighPriorityRelative(Relative* relative, SurfaceType type);
-
-
-		std::vector<Relationship>& GetNeighbourRelationships();
-
-		std::vector<Relationship>& GetLowPriorityRelationships();
-
-		std::vector<Relationship>& GetHighPriorityRelationships();
+		void AddRelative(HighPriorityRelative* relative, SurfaceType type);
 
 		// Inherited Class Functions
 
@@ -109,7 +106,7 @@ namespace accord::microscopic
 
 		double GetDiffusionCoeffient() const;
 
-		const SurfaceDirection& GetSurfaceDirection() const;
+		const HighPriorityRelative::SurfaceDirection& GetSurfaceDirection() const;
 
 		// may be able to merge these pass functions
 		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
@@ -128,9 +125,9 @@ namespace accord::microscopic
 
 		// neighbour.checkcollision called external for regions and gets direction for surfaces
 
-		std::vector<Relationship> neighbour_relationships; // can be grids, mesoregion or adsorbing surfaces
-		std::vector<Relationship> low_priority_relationships; // can be grids or mesoregions
-		std::vector<Relationship> high_priority_relationships; // cans be grids, mesoregions or surfaces
+		std::vector<NeighbourRelationship> neighbour_relationships; // can be grids, mesoregion or adsorbing surfaces
+		std::vector<LowPriorityRelationship> low_priority_relationships; // can be grids or mesoregions
+		std::vector<HighPriorityRelationship> high_priority_relationships; // cans be grids, mesoregions or surfaces
 
 		MoleculeID id;
 		Region* region; // regions which owns this grid

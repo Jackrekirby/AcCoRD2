@@ -128,25 +128,26 @@ namespace accord::microscopic
 			//g_json["path3D"].emplace_back(origin);
 			//g_json["path3D"].emplace_back(end);
 
+			// membranes could be to high or low or neighbour priority relations. Add membranes before region relations
 
 			// need to add max reflections counter
 
-			Relationship* closest_relationship = nullptr;
+			HighPriorityRelationship* closest_relationship = nullptr;
 			shape::collision::Collision3D closest_collision;
 			double shortest_time = 2; // collision time must be between 0 and 1
 			for (auto& relationship : high_priority_relationships)
 			{
-				auto& relative = relationship.GetRelative();
+				auto& relative = relationship.GetHighPriorityRelative();
 				std::optional<shape::collision::Collision3D> collision;
 				switch (relative.GetSurfaceDirection())
 				{
-				case Relative::SurfaceDirection::Internal:
+				case HighPriorityRelative::SurfaceDirection::Internal:
 					collision = relative.GetShape().CalculateInternalCollisionData(origin, end);
 					break;
-				case Relative::SurfaceDirection::External:
+				case HighPriorityRelative::SurfaceDirection::External:
 					collision = relative.GetShape().CalculateExternalCollisionData(origin, end);
 					break;
-				case Relative::SurfaceDirection::Both:
+				case HighPriorityRelative::SurfaceDirection::Both:
 					collision = relative.GetShape().CalculateExternalCollisionData(origin, end);
 					if (!collision.has_value())
 					{
@@ -161,23 +162,51 @@ namespace accord::microscopic
 				}
 			}
 			// if the collision time changed there was a valid collision
+			bool has_passed_through_membrane = false;
 			if (closest_relationship != nullptr)
 			{
-				return closest_relationship->GetRelative().PassMolecule(end,
-					closest_collision, this, closest_relationship->GetSurfaceType(), cycles,
-					allowObstructions);
+				if (closest_relationship->GetSurfaceType() == SurfaceType::Membrane)
+				{
+					LOG_INFO("has passed through membrane");
+					has_passed_through_membrane = true;
+				}
+				else
+				{
+					return closest_relationship->GetHighPriorityRelative().PassMolecule(end,
+						closest_collision, this, closest_relationship->GetSurfaceType(), cycles,
+						allowObstructions);
+				}
 			}
 
 			auto collision = GetRegion().GetShape().CalculateInternalCollisionData(origin, end);
 			if (collision.has_value())
 			{
+				if (has_passed_through_membrane)
+				{
+					LOG_INFO("has passed through membrane and has hit external surface");
+					if ((closest_collision.intersection == collision->intersection).All())
+					{
+						LOG_INFO("membrane and external surface are the same");
+						has_passed_through_membrane = true;
+					}
+					else
+					{
+						has_passed_through_membrane = false;
+					}
+				}
+
+				SurfaceType surface_type = SurfaceType::None;
 				for (auto& relationship : low_priority_relationships)
 				{
-					if (relationship.GetRelative().GetShape().IsMoleculeInsideBorder(collision->intersection))
+					if (relationship.GetLowPriorityRelative().GetShape().IsMoleculeInsideBorder(collision->intersection))
 					{
+						if (!has_passed_through_membrane)
+						{
+							surface_type = relationship.GetSurfaceType();
+						}
 						// assumes you dont have mulitple valid low priority neighbours overlapping
-						return relationship.GetRelative().PassMolecule(end, collision.value(),
-							this, relationship.GetSurfaceType(), cycles, allowObstructions);
+						return relationship.GetLowPriorityRelative().PassMolecule(end, collision.value(),
+							this, surface_type, cycles, allowObstructions);
 					}
 				}
 
@@ -185,11 +214,15 @@ namespace accord::microscopic
 				for (auto& relationship : neighbour_relationships)
 				{
 					// neighbours must be sorted by youngest and neighbours of the same age must not overlap
-					if (relationship.GetRelative().GetShape().IsMoleculeOnBorder(collision->intersection))
+					if (relationship.GetNeighbourRelative().GetShape().IsMoleculeOnBorder(collision->intersection))
 					{
+						if (!has_passed_through_membrane)
+						{
+							surface_type = relationship.GetSurfaceType();
+						}
 						//LOG_INFO("HIT NEIGHBOUR");
-						return relationship.GetRelative().PassMolecule(end, collision.value(),
-							this, relationship.GetSurfaceType(), cycles, allowObstructions);
+						return relationship.GetNeighbourRelative().PassMolecule(end, collision.value(),
+							this, surface_type, cycles, allowObstructions);
 					}
 				}
 
@@ -296,34 +329,19 @@ namespace accord::microscopic
 		return id;
 	}
 
-	void Grid::AddNeighbour(Relative* relative, SurfaceType type)
+	void Grid::AddRelative(NeighbourRelative* relative, SurfaceType type)
 	{
 		neighbour_relationships.emplace_back(relative, type);
 	}
 
-	void Grid::AddLowPriorityRelative(Relative* relative, SurfaceType type)
+	void Grid::AddRelative(LowPriorityRelative* relative, SurfaceType type)
 	{
 		low_priority_relationships.emplace_back(relative, type);
 	}
 
-	void Grid::AddHighPriorityRelative(Relative* relative, SurfaceType type)
+	void Grid::AddRelative(HighPriorityRelative* relative, SurfaceType type)
 	{
 		high_priority_relationships.emplace_back(relative, type);
-	}
-
-	std::vector<Relationship>& Grid::GetNeighbourRelationships()
-	{
-		return neighbour_relationships;
-	}
-
-	std::vector<Relationship>& Grid::GetLowPriorityRelationships()
-	{
-		return low_priority_relationships;
-	}
-
-	std::vector<Relationship>& Grid::GetHighPriorityRelationships()
-	{
-		return high_priority_relationships;
 	}
 
 	// create subvolumes upon class construction
@@ -410,9 +428,9 @@ namespace accord::microscopic
 		return diffision_coefficient;
 	}
 
-	const Relative::SurfaceDirection& Grid::GetSurfaceDirection() const
+	const HighPriorityRelative::SurfaceDirection& Grid::GetSurfaceDirection() const
 	{
-		return Relative::SurfaceDirection::External;
+		return HighPriorityRelative::SurfaceDirection::External;
 	}
 
 	// the global surface must be absorbing or adsorbing

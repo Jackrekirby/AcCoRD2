@@ -1,16 +1,17 @@
 #include "pch.h"
 #include "microscopic_surface.h"
 #include "microscopic_grid.h"
+#include "collision_3d.h"
 
 namespace accord::microscopic
 {
-	Surface::Surface(std::unique_ptr<SurfaceShape> shape, const SurfaceDirection& surface_direction)
+	Surface::Surface(std::unique_ptr<HighPriorityRelativeShape> shape, const SurfaceDirection& surface_direction)
 		:shape(std::move(shape)), surface_direction(surface_direction)
 	{
 
 	}
 
-	const SurfaceShape& Surface::GetShape() const
+	const HighPriorityRelativeShape& Surface::GetShape() const
 	{
 		return *shape;
 	}
@@ -34,7 +35,7 @@ namespace accord::microscopic
 		}
 	}
 
-	const Relative::SurfaceDirection& Surface::GetSurfaceDirection() const
+	const HighPriorityRelative::SurfaceDirection& Surface::GetSurfaceDirection() const
 	{
 		return surface_direction;
 	}

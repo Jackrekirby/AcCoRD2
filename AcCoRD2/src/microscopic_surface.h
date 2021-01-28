@@ -1,15 +1,15 @@
 #pragma once
-#include "microscopic_surface_shape.h"
-#include "microscopic_relative.h"
+#include "microscopic_high_priority_relative_shape.h"
+#include "microscopic_high_priority_relative.h"
 
 namespace accord::microscopic
 {
-	class Surface : public Relative
+	class Surface : public HighPriorityRelative
 	{
 	public:
-		Surface(std::unique_ptr<SurfaceShape> shape, const SurfaceDirection& surface_direction);
+		Surface(std::unique_ptr<HighPriorityRelativeShape> shape, const SurfaceDirection& surface_direction);
 
-		const SurfaceShape& GetShape() const;
+		const HighPriorityRelativeShape& GetShape() const;
 
 		// remove const SurfaceType&
 		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
@@ -18,7 +18,7 @@ namespace accord::microscopic
 
 		const SurfaceDirection& GetSurfaceDirection() const;
 	private:
-		std::unique_ptr<SurfaceShape> shape;
+		std::unique_ptr<HighPriorityRelativeShape> shape;
 		SurfaceDirection surface_direction;
 	};
 }

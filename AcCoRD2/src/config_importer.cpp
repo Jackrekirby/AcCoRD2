@@ -41,8 +41,13 @@
 #include "active_actor_box_surface.h"
 #include "active_actor_sphere_surface.h"
 #include "active_actor_cylinder_surface.h"
+
+#include "microscopic_rect_surface_shape.h"
+#include "microscopic_circle_surface_shape.h"
 #include "active_actor_point.h"
+
 #include "microscopic_surface.h"
+#include "microscopic_high_priority_relative.h"
 
 namespace accord
 {
@@ -671,9 +676,9 @@ namespace accord
 			std::vector<std::string> regions_to_act_in = surface["AddToRegions"].get<std::vector<std::string>>();
 			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in);
 
-			microscopic::Relative::SurfaceDirection surface_direction = surface["SurfaceDirection"].get<microscopic::Relative::SurfaceDirection>();
+			microscopic::HighPriorityRelative::SurfaceDirection surface_direction = surface["SurfaceDirection"].get<microscopic::HighPriorityRelative::SurfaceDirection>();
 
-			std::unique_ptr<microscopic::SurfaceShape> surface_shape;
+			std::unique_ptr<microscopic::HighPriorityRelativeShape> surface_shape;
 			OptionalShapes shapes = CreateShape(surface["Shape"]);
 			switch (shapes.shape)
 			{
@@ -685,6 +690,12 @@ namespace accord
 				break;
 			case OptionalShapes::Shape::Cylinder:
 				surface_shape = std::make_unique<microscopic::CylinderSurfaceShape>(shapes.cylinder.value());
+				break;
+			case OptionalShapes::Shape::RectSurface:
+				surface_shape = std::make_unique<microscopic::RectSurfaceShape>(shapes.rect_surface.value());
+				break;
+			case OptionalShapes::Shape::CircleSurface:
+				surface_shape = std::make_unique<microscopic::CircleSurfaceShape>(shapes.circle_surface.value());
 				break;
 			}
 			microscopic::Surface surface(std::move(surface_shape), surface_direction);

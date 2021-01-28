@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="microscopic_relative.cpp" />
+    <ClCompile Include="microscopic_high_priority_relative.cpp" />
+    <ClCompile Include="src\microscopic_circle_surface_shape.cpp" />
+    <ClCompile Include="src\microscopic_high_priority_relationship.cpp" />
+    <ClCompile Include="src\microscopic_low_priority_relationship.cpp" />
+    <ClCompile Include="src\microscopic_neighbour_relationship.cpp" />
+    <ClCompile Include="src\microscopic_relative.cpp" />
+    <ClCompile Include="src\microscopic_rect_surface_shape.cpp" />
     <ClCompile Include="src\microscopic_surface.cpp" />
     <ClCompile Include="src\active_actor_box_surface.cpp" />
     <ClCompile Include="src\active_actor_circle_surface.cpp" />
@@ -177,6 +183,18 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\microscopic_circle_surface_shape.h" />
+    <ClInclude Include="src\microscopic_high_priority_relationship.h" />
+    <ClInclude Include="src\microscopic_high_priority_relative.h" />
+    <ClInclude Include="src\microscopic_high_priority_relative_shape.h" />
+    <ClInclude Include="src\microscopic_low_priority_relationship.h" />
+    <ClInclude Include="src\microscopic_low_priority_relative.h" />
+    <ClInclude Include="src\microscopic_low_priority_relative_shape.h" />
+    <ClInclude Include="src\microscopic_neighbour_relationship.h" />
+    <ClInclude Include="src\microscopic_neighbour_relative.h" />
+    <ClInclude Include="src\microscopic_neighbour_relative_shape.h" />
+    <ClInclude Include="src\microscopic_relative2.h" />
+    <ClInclude Include="src\microscopic_rect_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface.h" />
     <ClInclude Include="src\active_actor_box_surface.h" />
     <ClInclude Include="src\active_actor_circle_surface.h" />
