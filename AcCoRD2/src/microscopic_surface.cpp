@@ -5,13 +5,13 @@
 
 namespace accord::microscopic
 {
-	Surface::Surface(std::unique_ptr<HighPriorityRelativeShape> shape, const SurfaceDirection& surface_direction)
+	Surface::Surface(std::unique_ptr<SurfaceShape> shape, const SurfaceDirection& surface_direction)
 		:shape(std::move(shape)), surface_direction(surface_direction)
 	{
 
 	}
 
-	const HighPriorityRelativeShape& Surface::GetShape() const
+	const SurfaceShape& Surface::GetShape() const
 	{
 		return *shape;
 	}
@@ -29,6 +29,8 @@ namespace accord::microscopic
 		case SurfaceType::Absorbing:
 			//LOG_INFO("Absorbing");
 			return std::nullopt;
+		case SurfaceType::Membrane:
+			return owner->CheckMoleculePath(collision.intersection, end, cycles);
 		default:
 			LOG_CRITICAL("SurfaceType must be None, Reflecting Or Absorbing");
 			throw std::exception();
@@ -38,5 +40,10 @@ namespace accord::microscopic
 	const HighPriorityRelative::SurfaceDirection& Surface::GetSurfaceDirection() const
 	{
 		return surface_direction;
+	}
+
+	bool Surface::IsRegion() const
+	{
+		return false;
 	}
 }

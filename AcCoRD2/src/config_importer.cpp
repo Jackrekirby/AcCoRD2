@@ -16,7 +16,7 @@
 #include "shapeless_passive_actor.h"
 #include "box_passive_actor.h"
 #include "microscopic_box_surface_shape.h"
-#include "microscopic_surface_shape.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_sphere_surface_shape.h"
 #include "microscopic_cylinder_surface_shape.h"
 #include "collision_cylinder.h"
@@ -184,7 +184,7 @@ namespace accord
 		else if (type_str == "RectSurface")
 		{
 			shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
-			shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsNonNegative().ExactNumMatchValue(0, 1);
+			shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsNonNegative().ExactNumMatchValue(0.0, 1);
 		}
 		else if (type_str == "CircleSurface")
 		{
@@ -251,6 +251,7 @@ namespace accord
 				surface.Add("SurfaceDirection").IsString().IsOneOf<std::string>({ "Internal", "External", "Both" });
 				surface.Add("SurfaceTypes").IsArrayOfStrings().HasSize(n_molecule_types);
 				surface.Add("AddToRegions").IsArrayOfStrings().IsEachOneOf(microscopic_region_names);
+				surface.Add("IsOnRegionSurface").IsBool();
 				JsonKeyPair shape_object = surface.Add("Shape").IsObject();
 				ValidateShape(shape_object);
 			}
@@ -674,12 +675,14 @@ namespace accord
 		{
 			std::vector<microscopic::SurfaceType> surface_types = surface["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
 			std::vector<std::string> regions_to_act_in = surface["AddToRegions"].get<std::vector<std::string>>();
+			bool is_on_region_surface = surface["IsOnRegionSurface"].get<bool>();
 			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in);
 
 			microscopic::HighPriorityRelative::SurfaceDirection surface_direction = surface["SurfaceDirection"].get<microscopic::HighPriorityRelative::SurfaceDirection>();
 
-			std::unique_ptr<microscopic::HighPriorityRelativeShape> surface_shape;
+			std::unique_ptr<microscopic::SurfaceShape> surface_shape;
 			OptionalShapes shapes = CreateShape(surface["Shape"]);
+			
 			switch (shapes.shape)
 			{
 			case OptionalShapes::Shape::Box:
@@ -699,7 +702,7 @@ namespace accord
 				break;
 			}
 			microscopic::Surface surface(std::move(surface_shape), surface_direction);
-			Environment::AddSurfaceToMicroscopicRegions(surface, surface_types, region_list.microscopic_ids);
+			Environment::AddSurfaceToMicroscopicRegions(surface, surface_types, is_on_region_surface, region_list.microscopic_ids);
 		}
 	}
 

@@ -157,12 +157,20 @@ namespace accord
 			surface_types, static_cast<int>(Environment::GetRegions().size())));
 	}
 
-	void Environment::AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types, const MicroscopicRegionIDs& microscopic_regions)
+	void Environment::AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types, bool is_on_region_surface, const MicroscopicRegionIDs& microscopic_regions)
 	{	
+		microscopic_surfaces.reserve(2);
 		microscopic_surfaces.emplace_back(std::move(surface));
 		for (auto& region : GetRegions(microscopic_regions))
 		{
-			region->AddSurface(microscopic_surfaces.back(), surface_types);
+			if (is_on_region_surface)
+			{
+				region->AddNeighbourSurface(microscopic_surfaces.back(), surface_types);
+			}
+			else
+			{
+				region->AddHighPrioritySurface(microscopic_surfaces.back(), surface_types);
+			}
 		}
 	}
 

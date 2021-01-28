@@ -8,7 +8,7 @@
 #include "microscopic_first_order_reaction.h"
 #include "microscopic_second_order_reaction.h"
 #include "microscopic_relationship.h"
-#include "microscopic_surface_shape.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_surface_type.h"
 #include "microscopic_region_id.h"
 #include "molecule_id.h"
@@ -33,7 +33,9 @@ namespace accord::microscopic
 
 		void AddLowPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids);
 
-		void AddSurface(Surface& surface, const std::vector<SurfaceType>& types);
+		void AddHighPrioritySurface(Surface& surface, const std::vector<SurfaceType>& types);
+
+		void AddNeighbourSurface(Surface& surface, const std::vector<SurfaceType>& types);
 
 		// add a recent molecule
 		void AddMolecule(const MoleculeID& id, const Vec3d& position, double time);
@@ -79,7 +81,7 @@ namespace accord::microscopic
 		// each region type will have its own surface shape which is why GetSurface is virtual
 		// may need const version of get surface
 
-		virtual const SurfaceShape& GetShape() const = 0;
+		virtual const RegionShape& GetShape() const = 0;
 
 		void NextRealisation();
 

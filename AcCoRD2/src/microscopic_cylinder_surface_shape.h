@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "collision_cylinder.h"
 #include "generating_cylinder.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_surface_shape.h"
 
 namespace accord
@@ -11,7 +12,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class CylinderSurfaceShape : public SurfaceShape, public shape::collision::Cylinder, public shape::generating::Cylinder
+	class CylinderSurfaceShape : public RegionShape, public SurfaceShape, public shape::collision::Cylinder, public shape::generating::Cylinder
 	{
 	public:
 		CylinderSurfaceShape(Vec3d base_centre, double radius, double length, Axis3D axis);

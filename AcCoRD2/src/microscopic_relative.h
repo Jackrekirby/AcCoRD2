@@ -13,7 +13,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class SurfaceShape;
+	class RegionShape;
 	class Relationship;
 	class Grid;
 
@@ -28,7 +28,7 @@ namespace accord::microscopic
 
 		virtual const SurfaceDirection& GetSurfaceDirection() const = 0;
 
-		virtual const SurfaceShape& GetShape() const = 0;
+		virtual const RegionShape& GetShape() const = 0;
 		
 		// remove const SurfaceType&
 		virtual std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,

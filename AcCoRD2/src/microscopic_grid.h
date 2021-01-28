@@ -18,7 +18,7 @@
 #include "microscopic_neighbour_relationship.h"
 #include "microscopic_high_priority_relative.h"
 #include "microscopic_high_priority_relationship.h"
-#include "microscopic_surface_shape.h"
+#include "microscopic_region_shape.h"
 #include "molecule_id.h"
 //#include "microscopic_high_priority_relative.h"
 //#include "microscopic_low_priority_relative.h"
@@ -100,11 +100,13 @@ namespace accord::microscopic
 
 		// Inherited Class Functions
 
-		const SurfaceShape& GetShape() const;
+		const RegionShape& GetShape() const;
 
 		SurfaceType GetDefaultSurfaceType() const;
 
 		double GetDiffusionCoeffient() const;
+
+		bool IsRegion() const;
 
 		const HighPriorityRelative::SurfaceDirection& GetSurfaceDirection() const;
 
@@ -136,6 +138,7 @@ namespace accord::microscopic
 		double diffision_coefficient;
 		std::vector<Subvolume> subvolumes;
 		SurfaceType surface_type;
+		HighPriorityRelative::SurfaceDirection surface_direction;
 		
 		// create subvolumes upon class construction
 		void CreateSubvolumes();

@@ -1,31 +1,5 @@
 #include "pch.h"
-#include "event_queue_test.h"
-#include "microscopic_region.h"
 #include "environment.h"
-#include "event_queue.h"
-#include "event.h"
-#include "passive_actor.h"
-#include "shapeless_passive_actor.h"
-#include "box_passive_actor.h"
-#include "microscopic_box_surface_shape.h"
-#include "microscopic_surface_shape.h"
-#include "microscopic_sphere_surface_shape.h"
-#include "microscopic_cylinder_surface_shape.h"
-#include "collision_cylinder.h"
-#include "relation_cylinder.h"
-#include "relation_sphere.h"
-
-#include "microscopic_box_region.h"
-#include "microscopic_cylinder_region.h"
-#include "microscopic_sphere_region.h"
-#include "reaction_manager.h"
-
-#include "active_actor_shape.h"
-#include "active_actor_random_time.h"
-#include "active_actor_non_random.h"
-#include "active_actor_random_bits.h"
-
-#include "mesoscopic_region.h"
 #include "config_importer.h"
 
 //void TestSimpleEnvironment2()
@@ -384,87 +358,9 @@ namespace accord
 		Environment::AddEventsToEventQueue();
 		Environment::RunSimulation();
 	}
-
-	Json GetWords(const Json& j, std::string reference)
-	{
-		Json output = j;
-		size_t pos = 0;
-		std::string token;
-		std::string s = reference;
-		while ((pos = s.find(':')) != std::string::npos) {
-			token = s.substr(0, pos);
-			LOG_INFO("token = {}", token);
-			if (output.contains(token))
-			{
-				output = output[token];
-			} else
-			{
-				LOG_ERROR("Attepting to access non existent field {}, using reference {}", token, reference);
-				throw std::exception();
-			}
-			s.erase(0, pos + 1);
-		}
-
-		LOG_INFO("last token = {}", s);
-		if (output.contains(s))
-		{
-			output = output[s];
-		}
-		else
-		{
-			LOG_ERROR("Attepting to access non existent field {}, using reference {}", s, reference);
-			throw std::exception();
-		}
-		return output;
-	}
-
-	void ReplaceValues(Json& j, Json& global)
-	{
-		for (auto& element : j)
-		{
-			if (element.is_string())
-			{
-				//LOG_INFO("Is String");
-				std::string value = element.get<std::string>();
-				//LOG_INFO(value);
-				if (!value.empty() && value.at(0) == '@')
-				{
-					std::string key = value.substr(1, std::string::npos);
-					LOG_WARN("Key = {}", key);
-					
-					element = GetWords(global, key);
-				}
-			} else if(element.is_structured())
-			{
-				//LOG_INFO("Is Structure");
-				ReplaceValues(element, global);
-			}
-		}
-	}
-
-	void SplitShapeName(std::string shape)
-	{
-		bool is_surface_actor = false;
-		std::string non_surface_shape = shape;
-		size_t pos = shape.find("Surface");
-		if (pos != std::string::npos)
-		{
-			non_surface_shape = shape.substr(0, pos);
-			if (non_surface_shape == "Box" || non_surface_shape == "Sphere" || non_surface_shape == "Cylinder")
-			{
-				is_surface_actor = true;
-			}
-			else
-			{
-				non_surface_shape = shape;
-			}
-		}
-
-		LOG_INFO(non_surface_shape);
-	}
 }
 
-#include "basic_rect_surface.h"
+//is owner still required?
 int main()
 {
 	// log should save into seed file or atleast into config folder
@@ -474,9 +370,8 @@ int main()
 	//set run time global Logger level
 	accord::Logger::GetLogger()->set_level(spdlog::level::info);
 
-	
 	using namespace accord;
 	//SplitShapeName("RectSurface");
-	Run("C:/dev/AcCoRD2/configs/surfaces.json");
+	Run("C:/dev/AcCoRD2/configs/child_grandparent.json");
 	
 }

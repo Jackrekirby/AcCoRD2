@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "collision_sphere.h"
 #include "generating_sphere.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_surface_shape.h"
 
 namespace accord
@@ -11,7 +12,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class SphereSurfaceShape : public SurfaceShape, public shape::collision::Sphere, public shape::generating::Sphere
+	class SphereSurfaceShape : public RegionShape, public SurfaceShape, public shape::collision::Sphere, public shape::generating::Sphere
 	{
 	public:
 		SphereSurfaceShape(Vec3d centre, double radius);

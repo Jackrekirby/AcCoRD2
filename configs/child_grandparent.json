@@ -55,17 +55,18 @@
 	   }
    ],
    "Relationships":[
-	  {
+		{
          "RegionA":"Child",
-         "RegionB":"Parent",
+         "RegionB":"GrandParent",
          "Priority":"A",
          "SurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"Child",
-         "RegionB":"GrandParent",
+         "RegionB":"Parent",
          "Priority":"A",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"GrandParent",
@@ -83,14 +84,18 @@
 	  "Priority":0
 	},
 	"ActiveActors":[
-      {
+       {
          "Name":"ActiveActor1",
          "StartTime":0,
          "Priority":0,
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":1,
+         "ModulationStrength":25,
          "MoleculeTypesToRelease":[ 1, 0, 0, 0 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[0.5 , 1, 1]
+		  },
          "RegionsToActIn":[ "Parent" ],
          "Type":"NonRandom",
          "SymbolSize":1,

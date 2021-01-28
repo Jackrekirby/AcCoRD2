@@ -4,7 +4,7 @@
 namespace accord::microscopic
 {
 	class Grid;
-	class SurfaceShape;
+	class RegionShape;
 
 	LowPriorityRelationship::LowPriorityRelationship(LowPriorityRelative* relative, SurfaceType type)
 		: relative(relative), type(type)

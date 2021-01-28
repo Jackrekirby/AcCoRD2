@@ -2,6 +2,8 @@
 #include "pch.h"
 #include "collision_rect_surface.h"
 #include "microscopic_high_priority_relative_shape.h"
+#include "microscopic_neighbour_relative_shape.h"
+#include "microscopic_surface_shape.h"
 
 namespace accord
 {
@@ -10,7 +12,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class RectSurfaceShape : public HighPriorityRelativeShape, public shape::collision::RectSurface
+	class RectSurfaceShape : public SurfaceShape, public shape::collision::RectSurface
 	{
 	public:
 
@@ -21,5 +23,7 @@ namespace accord::microscopic
 
 		std::optional<shape::collision::Collision3D>
 			CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
+
+		bool IsMoleculeOnBorder(const Vec3d& position) const;
 	};
 }

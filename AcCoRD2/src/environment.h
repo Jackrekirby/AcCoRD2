@@ -12,7 +12,7 @@ namespace accord
 	public:
 		static void Init(std::string simulation_path, int num_realisations,
 			double run_time, int num_molecule_types, size_t num_microscopic_regions,
-			size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors,
+			size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors, 
 			uint64_t seed);
 
 		static void SetTime(double time);
@@ -80,7 +80,7 @@ namespace accord
 			double time_step, int priority);
 
 		static void AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types,
-			const MicroscopicRegionIDs& microscopic_regions);
+			bool is_on_region_surface, const MicroscopicRegionIDs& microscopic_regions);
 
 		static void AddMesoscopicRegion(const Vec3d& origin, double length, const Vec3i& n_subvolumes, 
 			const std::vector<double>& diffusion_coefficients, int priority);

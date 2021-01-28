@@ -1,7 +1,7 @@
 {
    "SaveToFolder": "D:/dev/sample1",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":20,
+   "FinalSimulationTime":100,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":4,
    "ObserveEachRegion":true,
@@ -49,20 +49,22 @@
          "RegionA":"Box1",
          "RegionB":"Box2",
          "Priority":"None",
-         "SurfaceTypes":"@G:SurfaceTypesReflecting"
+         "AToBSurfaceTypes":"@G:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
       }
    ],
    "MicroscopicSurfaces":[
 		{
 		  "Shape":{
-			  "Type":"CircleSurface",
-			  "Centre":[1, 0.5, 0.5],
-			  "Radius":0.1,
+			  "Type":"RectSurface",
+			  "Origin":[1, 0, 0],
+			  "Length":[0, 1, 0.8],
 			  "Axis":"X"
 		   },
 		   "SurfaceDirection":"Internal",
-		  "SurfaceTypes":[ "Membrane",  "Membrane", "Membrane", "Membrane" ],
-		  "AddToRegions":[ "Box1" ]
+		   "IsOnRegionSurface":true,
+		   "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		   "AddToRegions":[ "Box1" ]
 	   }
    ],
    "PassiveActors":
@@ -84,7 +86,7 @@
          "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
 		  "Shape":{
 			  "Type":"Point",
-			  "Origin":[0.5, 0.5, 0.5]
+			  "Origin":[0.9, 0.5, 0.1]
 		  },
          "RegionsToActIn":[ "Box1" ],
          "Type":"NonRandom",

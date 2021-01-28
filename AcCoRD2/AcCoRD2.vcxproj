@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="microscopic_high_priority_relative.cpp" />
+    <ClCompile Include="src\microscopic_high_priority_relative.cpp" />
     <ClCompile Include="src\microscopic_circle_surface_shape.cpp" />
     <ClCompile Include="src\microscopic_high_priority_relationship.cpp" />
     <ClCompile Include="src\microscopic_low_priority_relationship.cpp" />
@@ -183,6 +183,7 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\microscopic_surface_shape.h" />
     <ClInclude Include="src\microscopic_circle_surface_shape.h" />
     <ClInclude Include="src\microscopic_high_priority_relationship.h" />
     <ClInclude Include="src\microscopic_high_priority_relative.h" />
@@ -255,7 +256,7 @@
     <ClInclude Include="src\microscopic_relative.h" />
     <ClInclude Include="src\passive_actor.h" />
     <ClInclude Include="src\microscopic_box_surface_shape.h" />
-    <ClInclude Include="src\microscopic_surface_shape.h" />
+    <ClInclude Include="src\microscopic_region_shape.h" />
     <ClInclude Include="src\molecule_destination.h" />
     <ClInclude Include="src\environment.h" />
     <ClInclude Include="src\microscopic_first_order_reaction.h" />

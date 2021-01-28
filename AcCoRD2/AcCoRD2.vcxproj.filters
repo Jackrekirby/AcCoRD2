@@ -361,23 +361,8 @@
     <ClCompile Include="src\active_actor_point.cpp">
       <Filter>src\simulation\active actor\shapes\volumes</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_surface_type.cpp">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_box_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClCompile>
     <ClCompile Include="src\microscopic_surface.cpp">
       <Filter>src\simulation\microscopic\surface</Filter>
-    </ClCompile>
-    <ClCompile Include="src\microscopic_rect_surface_shape.cpp">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_relative.cpp">
       <Filter>src\simulation\microscopic\relations</Filter>
@@ -391,10 +376,27 @@
     <ClCompile Include="src\microscopic_neighbour_relationship.cpp">
       <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_high_priority_relative.cpp">
+    <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_rect_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_cylinder_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_circle_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_box_surface_shape.cpp">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_surface_type.cpp">
+      <Filter>src\simulation\microscopic\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\microscopic_high_priority_relative.cpp">
       <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_circle_surface_shape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -790,26 +792,8 @@
     <ClInclude Include="src\active_actor_point.h">
       <Filter>src\simulation\active actor\shapes\volumes</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_surface_type.h">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_sphere_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_cylinder_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_box_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
-    </ClInclude>
     <ClInclude Include="src\microscopic_surface.h">
       <Filter>src\simulation\microscopic\surface</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_rect_surface_shape.h">
-      <Filter>src\simulation\microscopic\surface\shapes</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_relative2.h">
       <Filter>src\simulation\microscopic\relations\new</Filter>
@@ -841,7 +825,30 @@
     <ClInclude Include="src\microscopic_neighbour_relationship.h">
       <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_circle_surface_shape.h" />
+    <ClInclude Include="src\microscopic_region_shape.h">
+      <Filter>src\simulation\microscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_sphere_surface_shape.h">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_rect_surface_shape.h">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_cylinder_surface_shape.h">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_circle_surface_shape.h">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_box_surface_shape.h">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_surface_type.h">
+      <Filter>src\simulation\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_surface_shape.h">
+      <Filter>src\simulation\microscopic\surface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
@@ -1115,9 +1122,6 @@
     <Filter Include="src\simulation\active actor\shapes\surfaces">
       <UniqueIdentifier>{af7803e2-a773-410e-beb9-b58e1a85e144}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\simulation\microscopic\surface\shapes">
-      <UniqueIdentifier>{3a6238be-3a90-4b9c-886d-eb06d19ffcfc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\simulation\microscopic\relations\new">
       <UniqueIdentifier>{b9751cfb-3e6c-41ca-9be9-a2b77d411370}</UniqueIdentifier>
     </Filter>
@@ -1129,6 +1133,9 @@
     </Filter>
     <Filter Include="src\simulation\microscopic\relations\new\neighbour">
       <UniqueIdentifier>{f25c1270-b1d3-47e8-a9a8-b1506247e26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\shapes">
+      <UniqueIdentifier>{8048f985-4db8-40b2-aa2e-e71aa4b47b06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

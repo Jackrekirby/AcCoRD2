@@ -15,7 +15,7 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\surfaces.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\child_grandparent.json";
 config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
@@ -29,11 +29,11 @@ axis equal;
 clc;
 shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1);
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
-r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
+r = Accord.initAnimateRealisation(sim, 1, 1, 5, true, true, 15, shape3d);
 render.ActiveActors = true;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 0.5);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;

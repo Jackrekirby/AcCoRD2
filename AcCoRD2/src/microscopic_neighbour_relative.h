@@ -8,5 +8,7 @@ namespace accord::microscopic
 	{
 	public:
 		virtual const NeighbourRelativeShape& GetShape() const = 0;
+
+		virtual bool IsRegion() const = 0;
 	};
 }

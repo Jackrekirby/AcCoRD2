@@ -1,129 +1,118 @@
-[16:53:18.563] [info] config_importer.cpp:430 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
-[16:53:18.573] [info] config_importer.cpp:623 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[16:53:18.577] [info] config_importer.cpp:626 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
-[16:53:18.578] [info] config_importer.cpp:629 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[16:53:18.578] [info] config_importer.cpp:632 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[16:53:18.585] [info] config_importer.cpp:635 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[16:53:18.586] [info] config_importer.cpp:880 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[16:53:18.586] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 20.0, release = 20.0, slot = 20.0
-[16:53:18.587] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[16:53:18.587] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[16:53:18.588] [info] config_importer.cpp:996 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[16:53:18.590] [info] config_importer.cpp:1006 accord::ConfigImporter::CreateReactions() First Order Reactions
-[16:53:18.590] [info] config_importer.cpp:1017 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[16:53:18.592] [info] main.cpp:382 accord::Run() {
+[22:43:48.062] [info] config_importer.cpp:431 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
+[22:43:48.079] [info] config_importer.cpp:624 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[22:43:48.088] [info] config_importer.cpp:627 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[22:43:48.088] [info] config_importer.cpp:630 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[22:43:48.089] [info] config_importer.cpp:633 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[22:43:48.098] [info] config_importer.cpp:636 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[22:43:48.099] [info] config_importer.cpp:883 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[22:43:48.100] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
+[22:43:48.101] [info] config_importer.cpp:639 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[22:43:48.102] [info] config_importer.cpp:642 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[22:43:48.103] [info] config_importer.cpp:999 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[22:43:48.107] [info] config_importer.cpp:1009 accord::ConfigImporter::CreateReactions() First Order Reactions
+[22:43:48.107] [info] config_importer.cpp:1020 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[22:43:48.109] [info] main.cpp:356 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
-    "FinalSimulationTime": 20,
+    "FinalSimulationTime": 200,
     "RandomNumberSeed": 1,
     "NumberOfMoleculeTypes": 4,
     "ObserveEachRegion": true,
     "G": {
         "TimeStep": 0.05,
-        "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
+        "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
         "NofS": [ 2, 2, 2 ],
         "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
         "SurfaceTypesNone": [ "None", "None", "None", "None" ],
-        "SurfaceTypesReflecting": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-        "RegionPriority": 0,
-        "ActiveActorPriority": 2,
-        "PassiveActorPriority": 1
+        "SurfaceTypesReflecting": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
     },
     "MicroscopicRegions": [ {
-            "Name": "Box1",
+            "Name": "Parent",
             "Shape": {
                 "Type": "Box",
                 "Origin": [ 0, 0, 0 ],
-                "Length": [ 1, 1, 1 ]
+                "Length": [ 2, 2, 2 ]
             },
             "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-            "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
+            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         }, {
-            "Name": "Box2",
+            "Name": "Child",
             "Shape": {
                 "Type": "Box",
-                "Origin": [ 1, 0, 0 ],
+                "Origin": [ 1, 0.5, 0.5 ],
                 "Length": [ 1, 1, 1 ]
             },
             "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-            "DiffusionCoefficients": [ 0.01, 0.01, 0.01, 0.01 ],
+            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
+            "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
+            "TimeStep": 0.05,
+            "Priority": 0
+        }, {
+            "Name": "GrandParent",
+            "Shape": {
+                "Type": "Box",
+                "Origin": [ -1, -1, -1 ],
+                "Length": [ 4, 4, 4 ]
+            },
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
+            "DiffusionCoefficients": [ 0.03, 0.04, 0.06, 0.08 ],
             "NumberOfSubvolumes": [ [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ], [ 2, 2, 2 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         } ],
     "Relationships": [ {
-            "RegionA": "Box1",
-            "RegionB": "Box2",
-            "Priority": "None",
+            "RegionA": "Child",
+            "RegionB": "GrandParent",
+            "Priority": "A",
+            "SurfaceTypes": [ "None", "None", "None", "None" ]
+        }, {
+            "RegionA": "Child",
+            "RegionB": "Parent",
+            "Priority": "A",
+            "AToBSurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
+            "BToASurfaceTypes": [ "None", "None", "None", "None" ]
+        }, {
+            "RegionA": "GrandParent",
+            "RegionB": "Parent",
+            "Priority": "B",
             "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ]
-        } ],
-    "MicroscopicSurfaces": [ {
-            "Shape": {
-                "Type": "CircleSurface",
-                "Centre": [ 1, 0.5, 0.5 ],
-                "Radius": 0.1,
-                "Axis": "X"
-            },
-            "SurfaceDirection": "Internal",
-            "SurfaceTypes": [ "Membrane", "Membrane", "Membrane", "Membrane" ],
-            "AddToRegions": [ "Box1" ]
         } ],
     "PassiveActors": {
         "RecordPositions": true,
         "RecordObservationTime": true,
         "StartTime": 0,
         "TimeStep": 0.05,
-        "Priority": 1
+        "Priority": 0
     },
     "ActiveActors": [ {
             "Name": "ActiveActor1",
             "StartTime": 0,
-            "Priority": 2,
-            "ActionInterval": 20,
-            "ReleaseInterval": 20,
+            "Priority": 0,
+            "ActionInterval": 200,
+            "ReleaseInterval": 200,
             "ModulationStrength": 25,
-            "MoleculeTypesToRelease": [ 1, 1, 1, 1 ],
+            "MoleculeTypesToRelease": [ 1, 0, 0, 0 ],
             "Shape": {
                 "Type": "Point",
-                "Origin": [ 0.5, 0.5, 0.5 ]
+                "Origin": [ 0.5, 1, 1 ]
             },
-            "RegionsToActIn": [ "Box1" ],
+            "RegionsToActIn": [ "Parent" ],
             "Type": "NonRandom",
             "SymbolSize": 1,
-            "SlotInterval": 20,
+            "SlotInterval": 200,
             "BitSequence": [ 1 ]
         } ],
     "MesoscopicRegions": null,
+    "MicroscopicSurfaces": null,
     "ZerothOrderReactions": null,
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[16:53:18.593] [info] environment.cpp:238 accord::Environment::RunSimulation() Realisation 0
-[16:53:18.594] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[16:53:18.595] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[16:53:18.595] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 25
-[16:53:18.668] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:18.668] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:18.669] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:18.686] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:18.687] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:18.687] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:18.804] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:18.805] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:18.806] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:18.903] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:18.903] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:18.904] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:18.931] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:18.931] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:18.932] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:18.961] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:18.962] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:18.962] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:19.090] [info] microscopic_grid.cpp:169 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane
-[16:53:19.090] [info] microscopic_grid.cpp:185 accord::microscopic::Grid::CheckMoleculePath() has passed through membrane and has hit external surface
-[16:53:19.091] [info] microscopic_grid.cpp:188 accord::microscopic::Grid::CheckMoleculePath() membrane and external surface are the same
-[16:53:19.252] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[22:43:48.112] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
+[22:43:48.112] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[22:43:48.113] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[22:43:48.114] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 25
+[22:43:51.696] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols

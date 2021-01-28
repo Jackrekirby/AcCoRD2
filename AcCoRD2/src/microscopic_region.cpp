@@ -6,7 +6,7 @@
 //#include "microscopic_neighbour.h"
 //#include "microscopic_low_priority_relation.h"
 //#include "microscopic_high_priority_relation.h"
-#include "microscopic_surface_shape.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_surface.h"
 
 namespace accord::microscopic
@@ -82,14 +82,27 @@ namespace accord::microscopic
 		}
 	}
 
-	void Region::AddSurface(Surface& surface, const std::vector<SurfaceType>& types)
+	void Region::AddHighPrioritySurface(Surface& surface, const std::vector<SurfaceType>& types)
 	{
 		int i = 0;
 		for (auto& grid : grids)
 		{
 			if (types.at(i) != SurfaceType::None)
 			{
-				grid.AddRelative(&surface, types.at(i));
+				grid.AddRelative(static_cast<HighPriorityRelative*>(&surface), types.at(i));
+			}
+			i++;
+		}
+	}
+
+	void Region::AddNeighbourSurface(Surface& surface, const std::vector<SurfaceType>& types)
+	{
+		int i = 0;
+		for (auto& grid : grids)
+		{
+			if (types.at(i) != SurfaceType::None)
+			{
+				grid.AddRelative(static_cast<NeighbourRelative*>(&surface), types.at(i));
 			}
 			i++;
 		}

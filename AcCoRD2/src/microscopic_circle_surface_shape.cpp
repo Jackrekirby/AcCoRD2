@@ -21,4 +21,8 @@ namespace accord::microscopic
 	{
 		return shape::collision::CircleSurface::CalculateCollisionDataWithNegativeFace(origin, end);
 	}
+	bool CircleSurfaceShape::IsMoleculeOnBorder(const Vec3d& position) const
+	{
+		return shape::collision::CircleSurface::GetShape().IsWithinOrOnBorder(position.GetPlane(shape::collision::CircleSurface::GetPlane().GetAxis()));
+	}
 }
