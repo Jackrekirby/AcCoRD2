@@ -25,6 +25,8 @@ namespace accord::microscopic
 		std::optional<shape::collision::Collision3D>
 			CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
+		bool IsMoleculeInsideOrOnBorder(const Vec3d& position) const;
+
 		bool IsMoleculeInsideBorder(const Vec3d& position) const;
 
 		bool IsMoleculeOnBorder(const Vec3d& position) const;

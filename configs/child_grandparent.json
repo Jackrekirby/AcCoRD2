@@ -55,18 +55,17 @@
 	   }
    ],
    "Relationships":[
+	   {
+         "RegionA":"Child",
+         "RegionB":"Parent",
+         "Priority":"A",
+		 "SurfaceTypes":"@G:SurfaceTypesNone"
+       },
 		{
          "RegionA":"Child",
          "RegionB":"GrandParent",
          "Priority":"A",
          "SurfaceTypes":"@G:SurfaceTypesNone"
-      },
-	  {
-         "RegionA":"Child",
-         "RegionB":"Parent",
-         "Priority":"A",
-         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
-		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"GrandParent",

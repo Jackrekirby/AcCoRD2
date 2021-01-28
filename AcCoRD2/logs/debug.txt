@@ -1,17 +1,17 @@
-[22:43:48.062] [info] config_importer.cpp:431 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
-[22:43:48.079] [info] config_importer.cpp:624 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[22:43:48.088] [info] config_importer.cpp:627 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
-[22:43:48.088] [info] config_importer.cpp:630 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[22:43:48.089] [info] config_importer.cpp:633 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[22:43:48.098] [info] config_importer.cpp:636 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[22:43:48.099] [info] config_importer.cpp:883 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[22:43:48.100] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
-[22:43:48.101] [info] config_importer.cpp:639 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[22:43:48.102] [info] config_importer.cpp:642 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[22:43:48.103] [info] config_importer.cpp:999 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[22:43:48.107] [info] config_importer.cpp:1009 accord::ConfigImporter::CreateReactions() First Order Reactions
-[22:43:48.107] [info] config_importer.cpp:1020 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[22:43:48.109] [info] main.cpp:356 accord::Run() {
+[23:03:12.398] [info] config_importer.cpp:431 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
+[23:03:12.411] [info] config_importer.cpp:624 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[23:03:12.421] [info] config_importer.cpp:627 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[23:03:12.421] [info] config_importer.cpp:630 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[23:03:12.421] [info] config_importer.cpp:633 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[23:03:12.431] [info] config_importer.cpp:636 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[23:03:12.432] [info] config_importer.cpp:883 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[23:03:12.432] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
+[23:03:12.433] [info] config_importer.cpp:639 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[23:03:12.435] [info] config_importer.cpp:642 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[23:03:12.436] [info] config_importer.cpp:999 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[23:03:12.438] [info] config_importer.cpp:1009 accord::ConfigImporter::CreateReactions() First Order Reactions
+[23:03:12.438] [info] config_importer.cpp:1020 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[23:03:12.441] [info] main.cpp:356 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
     "FinalSimulationTime": 200,
@@ -65,15 +65,14 @@
         } ],
     "Relationships": [ {
             "RegionA": "Child",
-            "RegionB": "GrandParent",
+            "RegionB": "Parent",
             "Priority": "A",
             "SurfaceTypes": [ "None", "None", "None", "None" ]
         }, {
             "RegionA": "Child",
-            "RegionB": "Parent",
+            "RegionB": "GrandParent",
             "Priority": "A",
-            "AToBSurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
-            "BToASurfaceTypes": [ "None", "None", "None", "None" ]
+            "SurfaceTypes": [ "None", "None", "None", "None" ]
         }, {
             "RegionA": "GrandParent",
             "RegionB": "Parent",
@@ -111,8 +110,8 @@
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[22:43:48.112] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
-[22:43:48.112] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[22:43:48.113] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[22:43:48.114] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 25
-[22:43:51.696] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[23:03:12.449] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
+[23:03:12.450] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[23:03:12.450] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[23:03:12.451] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 25
+[23:03:15.745] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols

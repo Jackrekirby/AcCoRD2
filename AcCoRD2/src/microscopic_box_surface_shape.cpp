@@ -33,6 +33,11 @@ namespace accord::microscopic
 
 	bool BoxSurfaceShape::IsMoleculeInsideBorder(const Vec3d& position) const
 	{
+		return shape::basic::Box::IsWithinBorder(position);
+	}
+
+	bool BoxSurfaceShape::IsMoleculeInsideOrOnBorder(const Vec3d& position) const
+	{
 		return shape::basic::Box::IsWithinOrOnBorder(position);
 	}
 

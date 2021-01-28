@@ -51,7 +51,7 @@ namespace accord
 						//LOG_INFO("molecule id = {}, pos = {}", molecule_id, position);
 						for (auto& region : microscopic_regions)
 						{
-							if (region->GetShape().IsMoleculeInsideBorder(position))
+							if (region->GetShape().IsMoleculeInsideOrOnBorder(position))
 							{
 								region->AddMolecule(molecule_id, position, local_time);
 								inserted = true;

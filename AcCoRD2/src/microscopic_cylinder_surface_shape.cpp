@@ -30,9 +30,14 @@ namespace accord::microscopic
 		return shape::collision::Cylinder::CalculateInternalCollisionData(origin, end);
 	}
 
-	bool CylinderSurfaceShape::IsMoleculeInsideBorder(const Vec3d& position) const
+	bool CylinderSurfaceShape::IsMoleculeInsideOrOnBorder(const Vec3d& position) const
 	{
 		return shape::basic::Cylinder::IsWithinOrOnBorder(position);
+	}
+
+	bool CylinderSurfaceShape::IsMoleculeInsideBorder(const Vec3d& position) const
+	{
+		return shape::basic::Cylinder::IsWithinBorder(position);
 	}
 
 	bool CylinderSurfaceShape::IsMoleculeOnBorder(const Vec3d& position) const

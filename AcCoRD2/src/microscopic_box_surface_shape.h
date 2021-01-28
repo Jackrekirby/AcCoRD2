@@ -27,6 +27,8 @@ namespace accord::microscopic
 
 		bool IsMoleculeInsideBorder(const Vec3d& position) const;
 
+		bool IsMoleculeInsideOrOnBorder(const Vec3d& position) const;
+
 		bool IsMoleculeOnBorder(const Vec3d& position) const;
 
 		const shape::basic::Box& GetBasicShape() const;

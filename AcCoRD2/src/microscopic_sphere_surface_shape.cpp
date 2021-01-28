@@ -30,8 +30,14 @@ namespace accord::microscopic
 		return shape::collision::Sphere::CalculateInternalCollisionData(origin, end);
 	}
 
+	bool SphereSurfaceShape::IsMoleculeInsideOrOnBorder(const Vec3d& position) const
+	{
+		return shape::basic::Sphere::IsWithinOrOnBorder(position);
+	}
+
 	bool SphereSurfaceShape::IsMoleculeInsideBorder(const Vec3d& position) const
 	{
+		// sphere shape does not have accuracy to check if not on border.
 		return shape::basic::Sphere::IsWithinOrOnBorder(position);
 	}
 
