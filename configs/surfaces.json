@@ -44,6 +44,17 @@
 		  "Priority":"@G:RegionPriority"
 	   }
    ],
+   "MicroscopicSurfaces":[
+		{
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[0.4, 0.4, 0.4],
+			  "Length":[0.2, 0.2, 0.2]
+		   },
+		  "SurfaceTypes":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ],
+		  "AddToRegions":[ "Box1" ]
+	   }
+   ],
    "Relationships":[
 	  {
          "RegionA":"Box1",
@@ -71,9 +82,8 @@
          "ModulationStrength":100,
          "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
 		  "Shape":{
-			  "Type":"SphereSurface",
-			  "Centre":[0.5, 0.5, 0.5],
-			  "Radius":0.5
+			  "Type":"Point",
+			  "Origin":[0.5, 0.5, 0.5]
 		  },
          "RegionsToActIn":[ "Box1" ],
          "Type":"NonRandom",

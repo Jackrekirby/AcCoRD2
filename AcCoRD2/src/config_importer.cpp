@@ -42,6 +42,7 @@
 #include "active_actor_sphere_surface.h"
 #include "active_actor_cylinder_surface.h"
 #include "active_actor_point.h"
+#include "microscopic_surface.h"
 
 namespace accord
 {
@@ -143,6 +144,7 @@ namespace accord
 		max_molecule_id = static_cast<int>(n_molecule_types) - 1;
 
 		ValidateMicroscopicRegions(config);
+		ValidateMicroscopicSurfaces(config);
 		ValidateMesoscopicRegions(config);
 		ValidateActiveActors(config);
 		ValidatePassiveActors(config);
@@ -226,6 +228,24 @@ namespace accord
 				microscopic_regions.Add("Priority").IsInt();
 
 				JsonKeyPair shape_object = microscopic_regions.Add("Shape").IsObject();
+				ValidateShape(shape_object);
+			}
+		}
+	}
+
+	void ConfigImporter::ValidateMicroscopicSurfaces(JsonKeyPair& config)
+	{
+		if (config.IsKey("MicroscopicSurfaces"))
+		{
+			JsonKeyPair surface = config.Add("MicroscopicSurfaces").IsArray();
+			size_t n = surface.GetArraySize();
+
+			for (size_t i = 0; i < n; i++)
+			{
+				surface.SetIndex(i);
+				surface.Add("SurfaceTypes").IsArrayOfStrings().HasSize(n_molecule_types);
+				surface.Add("AddToRegions").IsArrayOfStrings().IsEachOneOf(microscopic_region_names);
+				JsonKeyPair shape_object = surface.Add("Shape").IsObject();
 				ValidateShape(shape_object);
 			}
 		}
@@ -597,6 +617,9 @@ namespace accord
 		LOG_INFO("Importing Microscopic Regions");
 		CreateMicroscopicRegions();
 
+		LOG_INFO("Importing Microscopic Surfaces");
+		CreateMicroscopicSurfaces();
+
 		LOG_INFO("Importing Mesoscopic Regions");
 		CreateMesoscopicRegion();
 
@@ -636,6 +659,33 @@ namespace accord
 				Environment::AddRegion(shapes.cylinder.value(), surface_types, diffision_coefficients, n_subvolumes, time_step, priority);
 				break;
 			}
+		}
+	}
+
+	void ConfigImporter::CreateMicroscopicSurfaces()
+	{
+		for (auto& surface : j["MicroscopicSurfaces"])
+		{
+			std::vector<microscopic::SurfaceType> surface_types = surface["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
+			std::vector<std::string> regions_to_act_in = surface["AddToRegions"].get<std::vector<std::string>>();
+			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in);
+
+			std::unique_ptr<microscopic::SurfaceShape> surface_shape;
+			OptionalShapes shapes = CreateShape(surface["Shape"]);
+			switch (shapes.shape)
+			{
+			case OptionalShapes::Shape::Box:
+				surface_shape = std::make_unique<microscopic::BoxSurfaceShape>(shapes.box.value());
+				break;
+			case OptionalShapes::Shape::Sphere:
+				surface_shape = std::make_unique<microscopic::SphereSurfaceShape>(shapes.sphere.value());
+				break;
+			case OptionalShapes::Shape::Cylinder:
+				surface_shape = std::make_unique<microscopic::CylinderSurfaceShape>(shapes.cylinder.value());
+				break;
+			}
+			microscopic::Surface surface(std::move(surface_shape), microscopic::Relative::SurfaceDirection::Internal);
+			Environment::AddSurfaceToMicroscopicRegions(surface, surface_types, region_list.microscopic_ids);
 		}
 	}
 
@@ -965,6 +1015,7 @@ namespace accord
 			ReactionManager::AddSecondOrderReaction(reactant_a, reactant_b, products, reaction_rate, binding_radius, unbinding_radius, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
 	}
+
 	ConfigImporter::OptionalShapes::OptionalShapes()
 		: shape(Shape::None)
 	{

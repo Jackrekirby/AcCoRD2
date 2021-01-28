@@ -109,6 +109,8 @@ namespace accord::microscopic
 
 		double GetDiffusionCoeffient() const;
 
+		const SurfaceDirection& GetSurfaceDirection() const;
+
 		// may be able to merge these pass functions
 		std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
 			const shape::collision::Collision3D& collision, Grid* owner,

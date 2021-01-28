@@ -64,6 +64,8 @@ namespace accord
 
 		void ValidateMicroscopicRegions(JsonKeyPair& config);
 
+		void ValidateMicroscopicSurfaces(JsonKeyPair& config);
+
 		void ValidateMesoscopicRegions(JsonKeyPair& config);
 
 		void ValidateActiveActors(JsonKeyPair& config);
@@ -99,6 +101,8 @@ namespace accord
 		void CreateEnvironment();
 
 		void CreateMicroscopicRegions();
+
+		void CreateMicroscopicSurfaces();
 
 		void CreateMesoscopicRegion();
 

@@ -136,7 +136,24 @@ namespace accord::microscopic
 			double shortest_time = 2; // collision time must be between 0 and 1
 			for (auto& relationship : high_priority_relationships)
 			{
-				auto collision = relationship.GetRelative().GetShape().CalculateExternalCollisionData(origin, end);
+				auto& relative = relationship.GetRelative();
+				std::optional<shape::collision::Collision3D> collision;
+				switch (relative.GetSurfaceDirection())
+				{
+				case Relative::SurfaceDirection::Internal:
+					collision = relative.GetShape().CalculateInternalCollisionData(origin, end);
+					break;
+				case Relative::SurfaceDirection::External:
+					collision = relative.GetShape().CalculateExternalCollisionData(origin, end);
+					break;
+				case Relative::SurfaceDirection::Both:
+					collision = relative.GetShape().CalculateExternalCollisionData(origin, end);
+					if (!collision.has_value())
+					{
+						collision = relative.GetShape().CalculateInternalCollisionData(origin, end);
+					}
+					break;
+				}
 				if (collision.has_value() && collision->time < shortest_time)
 				{
 					closest_relationship = &relationship;
@@ -391,6 +408,11 @@ namespace accord::microscopic
 	double Grid::GetDiffusionCoeffient() const
 	{
 		return diffision_coefficient;
+	}
+
+	const Relative::SurfaceDirection& Grid::GetSurfaceDirection() const
+	{
+		return Relative::SurfaceDirection::External;
 	}
 
 	// the global surface must be absorbing or adsorbing

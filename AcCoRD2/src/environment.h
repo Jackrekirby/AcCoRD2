@@ -79,6 +79,9 @@ namespace accord
 			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
 			double time_step, int priority);
 
+		static void AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types,
+			const MicroscopicRegionIDs& microscopic_regions);
+
 		static void AddMesoscopicRegion(const Vec3d& origin, double length, const Vec3i& n_subvolumes, 
 			const std::vector<double>& diffusion_coefficients, int priority);
 		
@@ -106,6 +109,7 @@ namespace accord
 		static uint64_t seed;
 		static EventQueue event_queue;
 
+		static std::vector<microscopic::Surface> microscopic_surfaces;
 		static std::vector<std::unique_ptr<microscopic::Region>> microscopic_regions;
 		static std::vector<mesoscopic::Region> mesoscopic_regions;
 		static std::vector<std::unique_ptr<ActiveActor>> active_actors;

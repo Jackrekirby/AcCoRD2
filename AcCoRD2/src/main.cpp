@@ -467,8 +467,6 @@ namespace accord
 #include "basic_rect_surface.h"
 int main()
 {
-	
-
 	// log should save into seed file or atleast into config folder
 	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
 	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");

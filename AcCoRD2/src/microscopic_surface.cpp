@@ -4,9 +4,10 @@
 
 namespace accord::microscopic
 {
-	SurfaceType Surface::GetDefaultSurfaceType() const
+	Surface::Surface(std::unique_ptr<SurfaceShape> shape, const SurfaceDirection& surface_direction)
+		:shape(std::move(shape)), surface_direction(surface_direction)
 	{
-		return SurfaceType();
+
 	}
 
 	const SurfaceShape& Surface::GetShape() const
@@ -32,18 +33,8 @@ namespace accord::microscopic
 		}
 	}
 
-	std::vector<Relationship>& Surface::GetNeighbourRelationships()
+	const Relative::SurfaceDirection& Surface::GetSurfaceDirection() const
 	{
-		// TODO: insert return statement here
-	}
-
-	std::vector<Relationship>& Surface::GetLowPriorityRelationships()
-	{
-		// TODO: insert return statement here
-	}
-
-	std::vector<Relationship>& Surface::GetHighPriorityRelationships()
-	{
-		// TODO: insert return statement here
+		return surface_direction;
 	}
 }

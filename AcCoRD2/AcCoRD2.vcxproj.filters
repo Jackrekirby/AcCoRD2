@@ -373,7 +373,7 @@
     <ClCompile Include="src\microscopic_box_surface_shape.cpp">
       <Filter>src\simulation\microscopic\surface\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="microscopic_surface.cpp">
+    <ClCompile Include="src\microscopic_surface.cpp">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
   </ItemGroup>
@@ -786,7 +786,7 @@
     <ClInclude Include="src\microscopic_box_surface_shape.h">
       <Filter>src\simulation\microscopic\surface\shapes</Filter>
     </ClInclude>
-    <ClInclude Include="microscopic_surface.h">
+    <ClInclude Include="src\microscopic_surface.h">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
   </ItemGroup>

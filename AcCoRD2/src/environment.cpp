@@ -7,6 +7,7 @@
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
 #include "event_queue.h"
+#include "microscopic_surface.h"
 
 namespace accord
 {
@@ -154,6 +155,15 @@ namespace accord
 		GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
 			cylinder, diffision_coefficients, n_subvolumes, time_step, priority,
 			surface_types, static_cast<int>(Environment::GetRegions().size())));
+	}
+
+	void Environment::AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types, const MicroscopicRegionIDs& microscopic_regions)
+	{	
+		microscopic_surfaces.emplace_back(std::move(surface));
+		for (auto& region : GetRegions(microscopic_regions))
+		{
+			region->AddSurface(microscopic_surfaces.back(), surface_types);
+		}
 	}
 
 	std::string Environment::GetSimulationPath()
@@ -433,6 +443,7 @@ namespace accord
 	}
 
 	std::vector<std::unique_ptr<microscopic::Region>> Environment::microscopic_regions;
+	std::vector<microscopic::Surface> Environment::microscopic_surfaces;
 	std::vector<mesoscopic::Region> Environment::mesoscopic_regions;
 	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
 	std::vector<std::unique_ptr<ActiveActor>> Environment::active_actors;

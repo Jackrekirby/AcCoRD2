@@ -20,7 +20,13 @@ namespace accord::microscopic
 	class Relative
 	{
 	public:
-		virtual SurfaceType GetDefaultSurfaceType() const = 0;
+
+		enum class SurfaceDirection
+		{
+			Internal, External, Both
+		};
+
+		virtual const SurfaceDirection& GetSurfaceDirection() const = 0;
 
 		virtual const SurfaceShape& GetShape() const = 0;
 		
@@ -28,11 +34,5 @@ namespace accord::microscopic
 		virtual std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
 			const shape::collision::Collision3D& collision, Grid* owner, 
 			 SurfaceType surface_type, int cycles, bool allowObstructions) = 0;
-
-		virtual std::vector<Relationship>& GetNeighbourRelationships() = 0;
-
-		virtual std::vector<Relationship>& GetLowPriorityRelationships() = 0;
-
-		virtual std::vector<Relationship>& GetHighPriorityRelationships() = 0;
 	};
 }

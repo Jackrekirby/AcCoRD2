@@ -1,16 +1,22 @@
-[11:07:51.473] [info] config_importer.cpp:404 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
-[11:07:51.488] [info] config_importer.cpp:597 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[11:07:51.495] [info] config_importer.cpp:600 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[11:07:51.496] [info] config_importer.cpp:603 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[11:07:51.503] [info] config_importer.cpp:606 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[11:07:51.504] [info] config_importer.cpp:816 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[11:07:51.504] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 100.0, release = 100.0, slot = 100.0
-[11:07:51.505] [info] config_importer.cpp:609 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[11:07:51.506] [info] config_importer.cpp:612 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[11:07:51.507] [info] config_importer.cpp:932 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[11:07:51.507] [info] config_importer.cpp:942 accord::ConfigImporter::CreateReactions() First Order Reactions
-[11:07:51.510] [info] config_importer.cpp:953 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[11:07:51.516] [info] main.cpp:382 accord::Run() {
+[12:37:05.236] [info] config_importer.cpp:424 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 4
+[12:37:05.242] [info] config_importer.cpp:617 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[12:37:05.246] [info] config_importer.cpp:620 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[12:37:05.246] [info] microscopic_region.cpp:87 accord::microscopic::Region::AddSurface() Adding Surface
+[12:37:05.247] [info] microscopic_region.cpp:92 accord::microscopic::Region::AddSurface() Adding Surface2
+[12:37:05.247] [info] microscopic_region.cpp:92 accord::microscopic::Region::AddSurface() Adding Surface2
+[12:37:05.247] [info] microscopic_region.cpp:92 accord::microscopic::Region::AddSurface() Adding Surface2
+[12:37:05.247] [info] microscopic_region.cpp:92 accord::microscopic::Region::AddSurface() Adding Surface2
+[12:37:05.248] [info] config_importer.cpp:623 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[12:37:05.248] [info] config_importer.cpp:626 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[12:37:05.254] [info] config_importer.cpp:629 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[12:37:05.254] [info] config_importer.cpp:866 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[12:37:05.255] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 100.0, release = 100.0, slot = 100.0
+[12:37:05.256] [info] config_importer.cpp:632 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[12:37:05.256] [info] config_importer.cpp:635 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[12:37:05.257] [info] config_importer.cpp:982 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[12:37:05.259] [info] config_importer.cpp:992 accord::ConfigImporter::CreateReactions() First Order Reactions
+[12:37:05.259] [info] config_importer.cpp:1003 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[12:37:05.260] [info] main.cpp:382 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
     "FinalSimulationTime": 100,
@@ -53,6 +59,15 @@
             "TimeStep": 0.05,
             "Priority": 0
         } ],
+    "MicroscopicSurfaces": [ {
+            "Shape": {
+                "Type": "Box",
+                "Origin": [ 0.4, 0.4, 0.4 ],
+                "Length": [ 0.2, 0.2, 0.2 ]
+            },
+            "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting", "Reflecting" ],
+            "AddToRegions": [ "Box1" ]
+        } ],
     "Relationships": [ {
             "RegionA": "Box1",
             "RegionB": "Box2",
@@ -76,9 +91,8 @@
             "ModulationStrength": 100,
             "MoleculeTypesToRelease": [ 1, 1, 1, 1 ],
             "Shape": {
-                "Type": "SphereSurface",
-                "Centre": [ 0.5, 0.5, 0.5 ],
-                "Radius": 0.5
+                "Type": "Point",
+                "Origin": [ 0.5, 0.5, 0.5 ]
             },
             "RegionsToActIn": [ "Box1" ],
             "Type": "NonRandom",
@@ -91,8 +105,8 @@
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[11:07:51.518] [info] environment.cpp:228 accord::Environment::RunSimulation() Realisation 0
-[11:07:51.519] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[11:07:51.521] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[11:07:51.521] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 100
-[11:07:56.435] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[12:37:05.262] [info] environment.cpp:238 accord::Environment::RunSimulation() Realisation 0
+[12:37:05.262] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[12:37:05.263] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[12:37:05.263] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 100
+[12:37:16.625] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols

@@ -37,7 +37,7 @@ render.Meso = true;
 render.ActiveActors = true;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 0.01);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;

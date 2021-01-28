@@ -17,6 +17,8 @@
 
 namespace accord::microscopic
 {
+	class Surface;
+
 	class Region : public Event
 	{
 	public:
@@ -30,6 +32,8 @@ namespace accord::microscopic
 		void AddHighPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids);
 
 		void AddLowPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids);
+
+		void AddSurface(Surface& surface, const std::vector<SurfaceType>& types);
 
 		// add a recent molecule
 		void AddMolecule(const MoleculeID& id, const Vec3d& position, double time);

@@ -7,7 +7,7 @@ namespace accord::microscopic
 	class Surface : public Relative
 	{
 	public:
-		SurfaceType GetDefaultSurfaceType() const;
+		Surface(std::unique_ptr<SurfaceShape> shape, const SurfaceDirection& surface_direction);
 
 		const SurfaceShape& GetShape() const;
 
@@ -16,12 +16,9 @@ namespace accord::microscopic
 			const shape::collision::Collision3D& collision, Grid* owner,
 			SurfaceType surface_type, int cycles, bool allowObstructions);
 
-		std::vector<Relationship>& GetNeighbourRelationships();
-
-		std::vector<Relationship>& GetLowPriorityRelationships();
-
-		std::vector<Relationship>& GetHighPriorityRelationships();
+		const SurfaceDirection& GetSurfaceDirection() const;
 	private:
 		std::unique_ptr<SurfaceShape> shape;
+		SurfaceDirection surface_direction;
 	};
 }

@@ -7,6 +7,7 @@
 //#include "microscopic_low_priority_relation.h"
 //#include "microscopic_high_priority_relation.h"
 #include "microscopic_surface_shape.h"
+#include "microscopic_surface.h"
 
 namespace accord::microscopic
 {
@@ -78,6 +79,19 @@ namespace accord::microscopic
 		for (auto& id : ids)
 		{
 			GetGrid(id).AddLowPriorityRelative(static_cast<Relative*>(&region.GetGrid(id)), type);
+		}
+	}
+
+	void Region::AddSurface(Surface& surface, const std::vector<SurfaceType>& types)
+	{
+		LOG_INFO("Adding Surface");
+		for (auto& grid : grids)
+		{
+			if (types.at(id) != SurfaceType::None)
+			{
+				LOG_INFO("Adding Surface2");
+				grid.AddHighPriorityRelative(&surface, types.at(id));
+			}
 		}
 	}
 
