@@ -2,6 +2,7 @@
 namespace accord
 {
 	enum class Axis3D;
+	struct Vec3d;
 }
 
 namespace accord::shape::relation
@@ -39,6 +40,8 @@ namespace accord::shape::relation
 		virtual bool IsEnveloping(const Shape3D& other) const = 0;
 
 		virtual bool IsEnvelopedBy(const Shape3D& other) const = 0;
+
+		virtual bool IsWithinOrOnBorder(const Vec3d& position) const = 0;
 
 		virtual const Shape2D& FlattenInAxis(const Axis3D& axis) const = 0;
 

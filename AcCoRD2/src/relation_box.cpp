@@ -156,6 +156,11 @@ namespace accord::shape::relation
 		return projected_shapes.at(axis);
 	}
 
+	bool Box::IsWithinOrOnBorder(const Vec3d& position) const
+	{
+		return basic::Box::IsWithinOrOnBorder(position);
+	}
+
 	double Box::CalculateAreaBetweenNeighbouringBoxes(const Box& other) const
 	{
 		//LOG_INFO("box = {}, neighbouring = {}, {}, {}", *this, other, GetOrigin() == other.GetEnd(), (GetOrigin() == other.GetEnd()));

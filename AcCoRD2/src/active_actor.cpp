@@ -46,7 +46,7 @@ namespace accord
 					bool inserted = false;
 					while (n_insert_attempts < max_insert_attempts && !inserted)
 					{
-						LOG_INFO("Insert attempt: {}", n_insert_attempts);
+						//LOG_INFO("Insert attempt: {}", n_insert_attempts);
 						Vec3d position = GetShape().GenerateMolecule();
 						//LOG_INFO("molecule id = {}, pos = {}", molecule_id, position);
 						for (auto& region : microscopic_regions)

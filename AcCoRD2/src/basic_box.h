@@ -38,6 +38,8 @@ namespace accord::shape::basic
 
 		double CalculateVolume() const;
 
+		double CalculateSurfaceArea() const;
+
 		bool IsWithinBorder(const Vec3d& position) const;
 
 		bool IsWithinOrOnBorder(const Vec3d& position) const;

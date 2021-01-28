@@ -24,6 +24,8 @@ namespace accord::shape::basic
 
 		double CalculateVolume() const;
 
+		double CalculateSurfaceArea() const;
+
 		bool IsWithinOrOnBorder(const Vec3d& position) const;
 		
 		void ToJson(Json& j) const;

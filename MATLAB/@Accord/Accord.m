@@ -116,7 +116,8 @@ classdef Accord
             title("Molecule Count of Molecule Type " + moleculeType + ", Per Passive Actor");
             xlabel("time (s)");
             ylabel("count");
-            legend(legendSubset, legendLabels);
+            leg = legend(legendSubset, legendLabels);
+            title(leg,'Passive Actor');
         end
         
         function p = plotCount(sim, passiveActor, moleculeType, ...
@@ -193,7 +194,8 @@ classdef Accord
             title("Molecule Count of Passive Actor " + passiveActor + ", Per Molecule Type");
             xlabel("time (s)");
             ylabel("count");
-            legend(legendSubset, legendLabels);
+            leg = legend(legendSubset, legendLabels);
+            title(leg,'Molecule Types');
         end
         
         function plotShapes(configFilePath, render)
@@ -245,16 +247,14 @@ classdef Accord
             end
             % Active Actors
             if(render.ActiveActors && isfield(s, "ActiveActors"))
-                disp("Try to Plot Active Actor");
                 nActiveActors = length(s.ActiveActors);
                 activeActorShape3D = Shape3D('FaceColorMap', spring(nActiveActors), ...
                     'LineColorMap', spring(nActiveActors), 'EdgeAlpha', 0);
                 for i = 1:nActiveActors
-                    r = s.ActiveActors(i)
+                    r = s.ActiveActors(i);
                     if(iscell(r))
                         r = r{1};
                     end
-                    r
                     if(isfield(r, 'Shape'))
                         disp("Plot Active Actor");
                         activeActorShape3D.plotShape(r.Shape);
@@ -281,7 +281,6 @@ classdef Accord
             end
             % Passive Actors
             if(render.PassiveActors && isfield(s, "PassiveActors"))
-                disp("Try to Plot Passive Actor");
                 nPassiveActors = length(s.PassiveActors);
                 passiveActorShape3D = Shape3D('FaceColorMap', summer(nPassiveActors), ...
                     'LineColorMap', summer(nPassiveActors), 'EdgeAlpha', 0);

@@ -56,6 +56,8 @@ namespace accord::shape::relation
 
 		const Rect& FlattenInAxis(const Axis3D& axis) const;
 
+		bool IsWithinOrOnBorder(const Vec3d& position) const;
+
 		void ToJson(Json& j) const;
 
 		const Box& GetShape() const;

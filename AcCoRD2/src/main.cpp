@@ -441,6 +441,27 @@ namespace accord
 			}
 		}
 	}
+
+	void SplitShapeName(std::string shape)
+	{
+		bool is_surface_actor = false;
+		std::string non_surface_shape = shape;
+		size_t pos = shape.find("Surface");
+		if (pos != std::string::npos)
+		{
+			non_surface_shape = shape.substr(0, pos);
+			if (non_surface_shape == "Box" || non_surface_shape == "Sphere" || non_surface_shape == "Cylinder")
+			{
+				is_surface_actor = true;
+			}
+			else
+			{
+				non_surface_shape = shape;
+			}
+		}
+
+		LOG_INFO(non_surface_shape);
+	}
 }
 
 #include "basic_rect_surface.h"
@@ -457,17 +478,7 @@ int main()
 
 	
 	using namespace accord;
-
-	shape::basic::RectSurface(Vec3d(0), Vec3d(1, 1, 0));
-	//Json j;
-	//j["jack"] = "abc";
-	//j["b"] = 1.6;
-	//j["c"].emplace_back(0);
-	//j["c"].emplace_back("@jack:kirby");
-	//j["c"].emplace_back(2);
-	//j["d"] = "@jack";
-
-	//ReplaceValues(j, j);
+	//SplitShapeName("RectSurface");
 	Run("C:/dev/AcCoRD2/configs/surfaces.json");
 	
 }

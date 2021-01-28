@@ -1,7 +1,7 @@
 {
    "SaveToFolder": "D:/dev/sample1",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":200,
+   "FinalSimulationTime":100,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":4,
    "ObserveEachRegion":true,
@@ -11,7 +11,10 @@
 	  "NofS":[2, 2, 2],
 	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ],
 	  "SurfaceTypesNone":[ "None",  "None", "None", "None" ],
-	  "SurfaceTypesReflecting":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ]
+	  "SurfaceTypesReflecting":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ],
+	  "RegionPriority":0,
+	   "ActiveActorPriority":2,
+	   "PassiveActorPriority":1
    },
    "MicroscopicRegions":[
 		{
@@ -25,7 +28,7 @@
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
-		  "Priority":0
+		  "Priority":"@G:RegionPriority"
 	   },
 	   {
 		  "Name":"Box2",
@@ -38,7 +41,7 @@
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
-		  "Priority":0
+		  "Priority":"@G:RegionPriority"
 	   }
    ],
    "Relationships":[
@@ -56,22 +59,20 @@
 	  "RecordObservationTime":true,
 	  "StartTime":0,
 	  "TimeStep":"@G:TimeStep",
-	  "Priority":0
+	  "Priority":"@G:PassiveActorPriority"
 	},
 	"ActiveActors":[
 	  {
          "Name":"ActiveActor1",
          "StartTime":0,
-         "Priority":0,
+         "Priority":"@G:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
          "ModulationStrength":100,
          "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
 		  "Shape":{
-			  "Type":"CircleSurface",
-			  "Centre":[0, 0.5, 0.5],
-			  "Radius":1,
-			  "Axis":"X"
+			  "Type":"Point",
+			  "Origin":[0.5, 0.5, 0.5]
 		  },
          "RegionsToActIn":[ "Box1" ],
          "Type":"NonRandom",

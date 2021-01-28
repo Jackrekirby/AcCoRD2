@@ -237,6 +237,11 @@ namespace accord::shape::relation
 		}
 	}
 
+	bool Cylinder::IsWithinOrOnBorder(const Vec3d& position) const
+	{
+		return basic::Cylinder::IsWithinOrOnBorder(position);
+	}
+
 	void Cylinder::ToJson(Json& j) const
 	{
 		j = static_cast<basic::Cylinder>(*this);

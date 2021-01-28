@@ -91,6 +91,11 @@ namespace accord::shape::basic
 		return 2 * PI * radius2 * length;
 	}
 
+	double Cylinder::CalculateSurfaceArea() const
+	{
+		return (2 * PI * radius * length) + (2 * PI * radius2);
+	}
+
 	bool Cylinder::IsWithinBorder(const Vec3d& position) const
 	{
 		return (

@@ -46,6 +46,11 @@ namespace accord::shape::basic
 		return (4 / 3) * PI * std::pow(radius, 3);
 	}
 
+	double Sphere::CalculateSurfaceArea() const
+	{
+		return (4 * PI * radius2);
+	}
+
 	bool Sphere::IsWithinOrOnBorder(const Vec3d& position) const
 	{
 		return ((position - GetCentre()).Size2() < GetRadius2());

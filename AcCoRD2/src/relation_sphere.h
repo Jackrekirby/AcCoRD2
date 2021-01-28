@@ -42,6 +42,8 @@ namespace accord::shape::relation
 
 		const Circle& FlattenInAxis(const Axis3D& axis) const;
 
+		bool IsWithinOrOnBorder(const Vec3d& position) const;
+
 		const Sphere& GetShape() const;
 
 		void ToJson(Json& j) const;

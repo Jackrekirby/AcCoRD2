@@ -87,6 +87,11 @@ namespace accord::shape::relation
 		return other.IsEnveloping(*this);
 	}
 
+	bool Sphere::IsWithinOrOnBorder(const Vec3d& position) const
+	{
+		return basic::Sphere::IsWithinOrOnBorder(position);
+	}
+
 	const Sphere& Sphere::GetShape() const
 	{
 		return *this;

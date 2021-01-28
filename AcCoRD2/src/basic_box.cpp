@@ -83,6 +83,11 @@ namespace accord::shape::basic
 		return length.Volume();
 	}
 
+	double Box::CalculateSurfaceArea() const
+	{
+		return ((2 * length.x * length.y) + (2 * length.y * length.z) + (2 * length.x * length.z));
+	}
+
 	void Box::ToJson(Json& j) const
 	{
 		j = *this;

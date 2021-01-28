@@ -34,10 +34,10 @@ shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
 render.Micro = true;
 render.Meso = true;
-render.ActiveActors = false;
+render.ActiveActors = true;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 5);
 
 %% Save Animation as Video
 clc;

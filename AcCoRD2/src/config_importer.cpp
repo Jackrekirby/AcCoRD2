@@ -38,7 +38,10 @@
 #include "active_actor_cylinder.h"
 #include "active_actor_sphere.h"
 #include "active_actor_circle_surface.h"
-
+#include "active_actor_box_surface.h"
+#include "active_actor_sphere_surface.h"
+#include "active_actor_cylinder_surface.h"
+#include "active_actor_point.h"
 
 namespace accord
 {
@@ -153,6 +156,7 @@ namespace accord
 	{
 		JsonKeyPair shape_type = shape.Add("Type").IsString();
 		std::string type_str = shape_type.GetJson().get<std::string>();
+		type_str = SplitShapeName(type_str).shape;
 		if (type_str == "Box")
 		{
 			shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
@@ -180,6 +184,10 @@ namespace accord
 			shape.Add("Centre").IsArrayOfNumbers().HasSize(3);
 			shape.Add("Radius").IsNumber().IsPositive();
 			shape.Add("Axis").IsString().IsOneOf<std::string>({ "X", "Y", "Z" });
+		}
+		else if (type_str == "Point")
+		{
+			shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
 		}
 		else
 		{
@@ -493,6 +501,7 @@ namespace accord
 	{
 		OptionalShapes shapes;
 		std::string type_str = shape["Type"].get<std::string>();
+		type_str = SplitShapeName(type_str).shape;
 		if (type_str == "Box")
 		{
 			Vec3d origin = shape["Origin"].get<Vec3d>();
@@ -531,12 +540,42 @@ namespace accord
 			shapes.circle_surface = std::make_optional<shape::basic::CircleSurface>(centre, radius, axis);
 			shapes.shape = OptionalShapes::Shape::CircleSurface;
 		}
+		else if (type_str == "Point")
+		{
+			Vec3d origin = shape["Origin"].get<Vec3d>();
+			shapes.point = std::make_optional<Vec3d>(origin);
+			shapes.shape = OptionalShapes::Shape::Point;
+		}
 		else
 		{
 			LOG_CRITICAL("Shape must be of type \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", type_str);
 			throw std::exception();
 		}
 		return shapes;
+	}
+
+
+
+	ConfigImporter::SurfaceShape::SurfaceShape(bool is_surface, const std::string& shape)
+		: is_surface(is_surface), shape(shape)
+	{
+
+	}
+
+	ConfigImporter::SurfaceShape ConfigImporter::SplitShapeName(const std::string& shape)
+	{
+		bool is_surface_actor = false;
+		std::string non_surface_shape = shape;
+		size_t pos = shape.find("Surface");
+		if (pos != std::string::npos)
+		{
+			non_surface_shape = shape.substr(0, pos);
+			if (non_surface_shape == "Box" || non_surface_shape == "Sphere" || non_surface_shape == "Cylinder")
+			{
+				return { true, non_surface_shape };
+			}
+		}
+		return { false, shape };
 	}
 
 
@@ -707,24 +746,45 @@ namespace accord
 			if (actor.contains("Shape"))
 			{
 				OptionalShapes shapes = CreateShape(actor["Shape"]);
-				
-				switch (shapes.shape)
+				if (!SplitShapeName(actor["Shape"]["Type"]).is_surface)
 				{
-				case OptionalShapes::Shape::Box:
-					active_actor_shape = std::make_unique<ActiveActorBox>(shapes.box.value());
-					break;
-				case OptionalShapes::Shape::Sphere:
-					active_actor_shape = std::make_unique<ActiveActorSphere>(shapes.sphere.value());
-					break;
-				case OptionalShapes::Shape::Cylinder:
-					active_actor_shape = std::make_unique<ActiveActorCylinder>(shapes.cylinder.value());
-					break;
-				case OptionalShapes::Shape::RectSurface:
-					active_actor_shape = std::make_unique<ActiveActorRectSurface>(shapes.rect_surface.value());
-					break;
-				case OptionalShapes::Shape::CircleSurface:
-					active_actor_shape = std::make_unique<ActiveActorCircleSurface>(shapes.circle_surface.value());
-					break;
+					switch (shapes.shape)
+					{
+					case OptionalShapes::Shape::Box:
+
+						active_actor_shape = std::make_unique<ActiveActorBox>(shapes.box.value());
+						break;
+					case OptionalShapes::Shape::Sphere:
+						active_actor_shape = std::make_unique<ActiveActorSphere>(shapes.sphere.value());
+						break;
+					case OptionalShapes::Shape::Cylinder:
+						active_actor_shape = std::make_unique<ActiveActorCylinder>(shapes.cylinder.value());
+						break;
+					case OptionalShapes::Shape::RectSurface:
+						active_actor_shape = std::make_unique<ActiveActorRectSurface>(shapes.rect_surface.value());
+						break;
+					case OptionalShapes::Shape::CircleSurface:
+						active_actor_shape = std::make_unique<ActiveActorCircleSurface>(shapes.circle_surface.value());
+						break;
+					case OptionalShapes::Shape::Point:
+						active_actor_shape = std::make_unique<ActiveActorPoint>(shapes.point.value());
+						break;
+					}
+				}
+				else
+				{
+					switch (shapes.shape)
+					{
+					case OptionalShapes::Shape::Box:
+						active_actor_shape = std::make_unique<ActiveActorBoxSurface>(shapes.box.value());
+						break;
+					case OptionalShapes::Shape::Sphere:
+						active_actor_shape = std::make_unique<ActiveActorSphereSurface>(shapes.sphere.value());
+						break;
+					case OptionalShapes::Shape::Cylinder:
+						active_actor_shape = std::make_unique<ActiveActorCylinderSurface>(shapes.cylinder.value());
+						break;
+					}
 				}
 
 				if (!actor.contains("RegionsToActIn"))

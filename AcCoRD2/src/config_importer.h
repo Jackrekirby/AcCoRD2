@@ -33,7 +33,7 @@ namespace accord
 
 			enum class Shape
 			{
-				Box, Sphere, Cylinder, RectSurface, CircleSurface, None
+				Box, Sphere, Cylinder, RectSurface, CircleSurface, Point, None
 			};
 
 			Shape shape;
@@ -42,6 +42,7 @@ namespace accord
 			std::optional<shape::basic::Cylinder> cylinder;
 			std::optional<shape::basic::RectSurface> rect_surface;
 			std::optional<shape::basic::CircleSurface> circle_surface;
+			std::optional<Vec3d> point;
 		};
 	private:
 		Json j;
@@ -84,6 +85,15 @@ namespace accord
 		RegionIDList GetRegionIDsFromStrings(std::vector<std::string> region_names);
 
 		OptionalShapes CreateShape(const Json& shape);
+
+		struct SurfaceShape
+		{
+			SurfaceShape(bool is_surface, const std::string& shape);
+			bool is_surface;
+			std::string shape;
+		};
+
+		SurfaceShape SplitShapeName(const std::string& shape);
 
 
 		void CreateEnvironment();
