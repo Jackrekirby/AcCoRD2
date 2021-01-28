@@ -376,6 +376,9 @@
     <ClCompile Include="src\microscopic_surface.cpp">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
+    <ClCompile Include="microscopic_relative.cpp">
+      <Filter>src\simulation\microscopic\relations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">

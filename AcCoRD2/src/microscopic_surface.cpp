@@ -26,6 +26,7 @@ namespace accord::microscopic
 			if (!allowObstructions) return std::nullopt;
 			return owner->CheckMoleculePath(collision.intersection, collision.reflection, cycles);
 		case SurfaceType::Absorbing:
+			//LOG_INFO("Absorbing");
 			return std::nullopt;
 		default:
 			LOG_CRITICAL("SurfaceType must be None, Reflecting Or Absorbing");

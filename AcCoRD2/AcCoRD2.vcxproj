@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="microscopic_relative.cpp" />
     <ClCompile Include="src\microscopic_surface.cpp" />
     <ClCompile Include="src\active_actor_box_surface.cpp" />
     <ClCompile Include="src\active_actor_circle_surface.cpp" />

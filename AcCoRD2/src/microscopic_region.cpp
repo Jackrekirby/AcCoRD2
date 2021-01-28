@@ -84,14 +84,14 @@ namespace accord::microscopic
 
 	void Region::AddSurface(Surface& surface, const std::vector<SurfaceType>& types)
 	{
-		LOG_INFO("Adding Surface");
+		int i = 0;
 		for (auto& grid : grids)
 		{
-			if (types.at(id) != SurfaceType::None)
+			if (types.at(i) != SurfaceType::None)
 			{
-				LOG_INFO("Adding Surface2");
-				grid.AddHighPriorityRelative(&surface, types.at(id));
+				grid.AddHighPriorityRelative(&surface, types.at(i));
 			}
+			i++;
 		}
 	}
 

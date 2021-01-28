@@ -1,7 +1,7 @@
 {
    "SaveToFolder": "D:/dev/sample1",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":100,
+   "FinalSimulationTime":20,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":4,
    "ObserveEachRegion":true,
@@ -47,11 +47,12 @@
    "MicroscopicSurfaces":[
 		{
 		  "Shape":{
-			  "Type":"Box",
-			  "Origin":[0.4, 0.4, 0.4],
-			  "Length":[0.2, 0.2, 0.2]
+			  "Type":"Sphere",
+			  "Centre":[0.5, 0.5, 0.5],
+			  "Radius":0.4
 		   },
-		  "SurfaceTypes":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ],
+		   "SurfaceDirection":"Internal",
+		  "SurfaceTypes":[ "Reflecting",  "Absorbing", "Absorbing", "Absorbing" ],
 		  "AddToRegions":[ "Box1" ]
 	   }
    ],

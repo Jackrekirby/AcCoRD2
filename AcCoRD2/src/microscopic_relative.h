@@ -35,4 +35,6 @@ namespace accord::microscopic
 			const shape::collision::Collision3D& collision, Grid* owner, 
 			 SurfaceType surface_type, int cycles, bool allowObstructions) = 0;
 	};
+
+	void from_json(const Json& j, Relative::SurfaceDirection& surface_direction);
 }

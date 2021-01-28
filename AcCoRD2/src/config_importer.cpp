@@ -243,6 +243,7 @@ namespace accord
 			for (size_t i = 0; i < n; i++)
 			{
 				surface.SetIndex(i);
+				surface.Add("SurfaceDirection").IsString().IsOneOf<std::string>({ "Internal", "External", "Both" });
 				surface.Add("SurfaceTypes").IsArrayOfStrings().HasSize(n_molecule_types);
 				surface.Add("AddToRegions").IsArrayOfStrings().IsEachOneOf(microscopic_region_names);
 				JsonKeyPair shape_object = surface.Add("Shape").IsObject();
@@ -670,6 +671,8 @@ namespace accord
 			std::vector<std::string> regions_to_act_in = surface["AddToRegions"].get<std::vector<std::string>>();
 			RegionIDList region_list = GetRegionIDsFromStrings(regions_to_act_in);
 
+			microscopic::Relative::SurfaceDirection surface_direction = surface["SurfaceDirection"].get<microscopic::Relative::SurfaceDirection>();
+
 			std::unique_ptr<microscopic::SurfaceShape> surface_shape;
 			OptionalShapes shapes = CreateShape(surface["Shape"]);
 			switch (shapes.shape)
@@ -684,7 +687,7 @@ namespace accord
 				surface_shape = std::make_unique<microscopic::CylinderSurfaceShape>(shapes.cylinder.value());
 				break;
 			}
-			microscopic::Surface surface(std::move(surface_shape), microscopic::Relative::SurfaceDirection::Internal);
+			microscopic::Surface surface(std::move(surface_shape), surface_direction);
 			Environment::AddSurfaceToMicroscopicRegions(surface, surface_types, region_list.microscopic_ids);
 		}
 	}
