@@ -232,7 +232,7 @@ classdef Accord
                 for i = 1:nMesoscopicRegions
                     r = s.MesoscopicRegions(i);
                     disp("Plot Mesoscopic Region");
-                    mesoShape3D.plotBox(r.Origin, r.SubvolumeLength * r.NumberOfSubvolumes);
+                    mesoShape3D.plotGriddedBox(r.Origin, r.SubvolumeLength * r.NumberOfSubvolumes, r.NumberOfSubvolumes);
                 end
             end
              % MicroscopicSurfaces

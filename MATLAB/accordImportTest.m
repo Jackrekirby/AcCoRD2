@@ -15,11 +15,12 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\sphere_cylinder2.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\hybrid.json";
 config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
 %% Draw Shapes
+figure;
 Accord.plotShapes(config.FilePath, [1, 0]);
 view(3);
 axis equal;
@@ -27,10 +28,10 @@ axis equal;
 clc;
 shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1);
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
-r = Accord.initAnimateRealisation(sim, 1, 1, 5, true, true, 15, shape3d);
+r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
 Accord.plotShapes(config.FilePath, [1, 0]);
 %set(get(handle(gcf),'JavaFrame'),'Maximized',1);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 0.5);
 
 %% Save Animation as Video
 clc;
@@ -71,7 +72,7 @@ Accord.plotCountForPassiveActor(sim, 3, Inf, Inf);
 
 %%
 clc; figure;
-Accord.plotCountForPassiveActor(sim, 2, Inf, Inf);
+Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
 
 %%
 clc; figure;

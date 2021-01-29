@@ -38,7 +38,7 @@ namespace accord::mesoscopic
 		{
 			subvolume_queue.Add(&subvolume);
 			subvolume.UpdateReactionTime();
-			//LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
+			LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
 		}
 		SetEventTime(subvolume_queue.Front().GetTime());
 	}

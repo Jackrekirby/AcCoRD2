@@ -1,0 +1,91 @@
+{
+   "SaveToFolder": "D:/dev/sample1",
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":20,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":3,
+   "ObserveEachRegion":true,
+   "G":{
+      "TimeStep":0.05,
+	  "DiffusionCoefficients":[0.02, 0.04, 0.08],
+	  "NofS":[2, 2, 2],
+	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS" ],
+	  "SurfaceTypesNone":[ "None", "None", "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+    "MesoscopicRegions":[
+	   {
+		  "Name":"MesoRegion1",
+		  "Origin":[0, 0, 0],
+		  "SubvolumeLength":1,
+		  "NumberOfSubvolumes":[4, 4, 4],
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "RemoveSubvolumes":0,
+		  "Priority":"@G:RegionPriority"
+	   }
+   ],
+   "MicroscopicRegions":[
+	   {
+		  "Name":"Box1",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[4, 0, 0],
+			  "Length":[4, 4, 4]
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":"@G:RegionPriority"
+	   }
+   ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@G:TimeStep",
+	  "Priority":"@G:PassiveActorPriority"
+	},
+	"ActiveActors":[
+	  {
+         "Name":"ActiveActor1",
+         "StartTime":0,
+         "Priority":"@G:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":20,
+         "MoleculeTypesToRelease":[ 1, 1, 1 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[0.5, 0.5, 0.5]
+		  },
+         "RegionsToActIn":[ "MesoRegion1" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "Name":"ActiveActor1",
+         "StartTime":0,
+         "Priority":"@G:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":20,
+         "MoleculeTypesToRelease":[ 1, 1, 1 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[4.5, 0.5, 0.5]
+		  },
+         "RegionsToActIn":[ "Box1" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ]
+}

@@ -614,7 +614,7 @@ namespace accord
 		size_t n_passive_actors;
 		if (j.contains("ObserveEachRegion"))
 		{
-			n_passive_actors = j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size();
+			n_passive_actors = j["MicroscopicRegions"].size() + j["MesoscopicRegions"].size();
 		}
 		else
 		{
@@ -746,7 +746,7 @@ namespace accord
 			}
 
 			for (int i = 0; i < static_cast<int>(Environment::GetMesoscopicRegions().size()); i ++)
-			{
+			{	
 				Environment::GetPassiveActors().emplace_back(std::make_unique<ShapelessPassiveActor>(MicroscopicRegionIDs({}), MesoscopicRegionIDs({ MesoscopicRegionID(i) }),
 					molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
 			}

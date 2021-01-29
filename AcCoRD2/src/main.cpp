@@ -373,7 +373,7 @@ int main()
 
 	using namespace accord;
 	//SplitShapeName("RectSurface");
-	Run("C:/dev/AcCoRD2/configs/sphere_cylinder2.json");
+	Run("C:/dev/AcCoRD2/configs/hybrid.json");
 
 	//shape::collision::Cylinder cylinder({ 0, 0, 0 }, 1, 5, Axis3D::x);
 
