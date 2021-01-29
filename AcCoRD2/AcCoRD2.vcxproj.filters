@@ -397,6 +397,9 @@
     <ClCompile Include="src\microscopic_high_priority_relative.cpp">
       <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
     </ClCompile>
+    <ClCompile Include="src\microscopic_box_surface_shape2.cpp">
+      <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -848,6 +851,9 @@
     </ClInclude>
     <ClInclude Include="src\microscopic_surface_shape.h">
       <Filter>src\simulation\microscopic\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_box_surface_shape2.h">
+      <Filter>src\simulation\microscopic\shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

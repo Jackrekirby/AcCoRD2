@@ -1,8 +1,6 @@
 #pragma once
 #include "pch.h"
 #include "collision_3d.h"
-#include "basic_box.h"
-#include "collision_shape_3d.h"
 #include "basic_shape.h"
 #include "microscopic_high_priority_relative_shape.h"
 #include "microscopic_low_priority_relative_shape.h"

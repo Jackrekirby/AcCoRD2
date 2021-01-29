@@ -14,7 +14,7 @@ namespace accord
 	void Environment::Init(std::string simulation_path, int num_realisations,
 		double run_time, int num_molecule_types, size_t num_microscopic_regions,
 		size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors,
-		uint64_t seed)
+		size_t num_surfaces, uint64_t seed)
 	{
 		MoleculeID::SetNumIDs(num_molecule_types);
 		MicroscopicRegionID::SetNumIDs(static_cast<int>(num_microscopic_regions));
@@ -29,6 +29,7 @@ namespace accord
 		Environment::mesoscopic_regions.reserve(num_mesoscopic_regions);
 		Environment::passive_actors.reserve(num_passive_actors);
 		Environment::active_actors.reserve(num_active_actors);
+		Environment::microscopic_surfaces.reserve(num_surfaces);
 		Environment::simulation_path = simulation_path;
 		Environment::num_realisations = num_realisations;
 		Environment::current_realisation = 0;
@@ -159,7 +160,6 @@ namespace accord
 
 	void Environment::AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types, bool is_on_region_surface, const MicroscopicRegionIDs& microscopic_regions)
 	{	
-		microscopic_surfaces.reserve(2);
 		microscopic_surfaces.emplace_back(std::move(surface));
 		for (auto& region : GetRegions(microscopic_regions))
 		{

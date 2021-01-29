@@ -13,7 +13,7 @@ namespace accord
 		static void Init(std::string simulation_path, int num_realisations,
 			double run_time, int num_molecule_types, size_t num_microscopic_regions,
 			size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors, 
-			uint64_t seed);
+			size_t num_surfaces, uint64_t seed);
 
 		static void SetTime(double time);
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "pch.h"
-#include "collision_rect_surface.h"
+#include "collision_box.h"
+#include "generating_box.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_surface_shape.h"
 
 namespace accord
@@ -10,11 +12,12 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class RectSurfaceShape : public SurfaceShape, public shape::collision::RectSurface
+	class BoxSurfaceShape2 : public SurfaceShape, public shape::collision::Box
 	{
 	public:
+		BoxSurfaceShape2(Vec3d origin, Vec3d length);
 
-		RectSurfaceShape(const shape::basic::RectSurface& rect_surface);
+		BoxSurfaceShape2(shape::basic::Box box);
 
 		std::optional<shape::collision::Collision3D>
 			CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;

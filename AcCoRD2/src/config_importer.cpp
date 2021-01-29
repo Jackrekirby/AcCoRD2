@@ -15,10 +15,7 @@
 #include "passive_actor.h"
 #include "shapeless_passive_actor.h"
 #include "box_passive_actor.h"
-#include "microscopic_box_surface_shape.h"
 #include "microscopic_region_shape.h"
-#include "microscopic_sphere_surface_shape.h"
-#include "microscopic_cylinder_surface_shape.h"
 #include "collision_cylinder.h"
 #include "relation_cylinder.h"
 #include "relation_sphere.h"
@@ -43,11 +40,16 @@
 #include "active_actor_cylinder_surface.h"
 
 #include "microscopic_rect_surface_shape.h"
+#include "microscopic_box_surface_shape.h"
 #include "microscopic_circle_surface_shape.h"
+#include "microscopic_sphere_surface_shape.h"
+#include "microscopic_cylinder_surface_shape.h"
 #include "active_actor_point.h"
 
 #include "microscopic_surface.h"
 #include "microscopic_high_priority_relative.h"
+#include "microscopic_low_priority_relative.h"
+#include "microscopic_neighbour_relative.h"
 
 namespace accord
 {
@@ -619,7 +621,7 @@ namespace accord
 			n_passive_actors = j["PassiveActors"].size();
 		}
 
-		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["RandomNumberSeed"].get<uint64_t>());
+		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), j["RandomNumberSeed"].get<uint64_t>());
 
 		LOG_INFO("Importing Microscopic Regions");
 		CreateMicroscopicRegions();

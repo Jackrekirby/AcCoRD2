@@ -15,7 +15,7 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\child_grandparent.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\example.json";
 config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
@@ -33,7 +33,7 @@ r = Accord.initAnimateRealisation(sim, 1, 1, 5, true, true, 15, shape3d);
 render.ActiveActors = true;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 5);
 
 %% Save Animation as Video
 clc;
