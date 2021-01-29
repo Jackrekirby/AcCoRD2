@@ -31,7 +31,7 @@ shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
 Accord.plotShapes(config.FilePath, [1, 0]);
 %set(get(handle(gcf),'JavaFrame'),'Maximized',1);
-r = Accord.playAnimateRealisation(r, 0.5);
+r = Accord.playAnimateRealisation(r, 10);
 
 %% Save Animation as Video
 clc;

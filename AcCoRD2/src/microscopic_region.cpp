@@ -108,6 +108,30 @@ namespace accord::microscopic
 		}
 	}
 
+	void Region::AddNeighbour(mesoscopic::Region& region, const MoleculeIDs& ids)
+	{
+		for (auto& id : ids)
+		{
+			GetGrid(id).AddRelative(static_cast<NeighbourRelative*>(&region), SurfaceType::None);
+		}
+	}
+
+	void Region::AddHighPriorityRelative(mesoscopic::Region& region, const MoleculeIDs& ids)
+	{
+		for (auto& id : ids)
+		{
+			GetGrid(id).AddRelative(static_cast<HighPriorityRelative*>(&region), SurfaceType::None);
+		}
+	}
+
+	void Region::AddLowPriorityRelative(mesoscopic::Region& region, const MoleculeIDs& ids)
+	{
+		for (auto& id : ids)
+		{
+			GetGrid(id).AddRelative(static_cast<LowPriorityRelative*>(&region), SurfaceType::None);
+		}
+	}
+
 	// add a recent molecule
 	void Region::AddMolecule(const MoleculeID& id, const Vec3d& position, double time)
 	{

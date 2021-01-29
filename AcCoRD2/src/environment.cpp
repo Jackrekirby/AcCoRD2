@@ -271,7 +271,7 @@ namespace accord
 					{
 						break;
 					}
-					LOG_INFO("Event:({})", event.LogEvent());
+					//LOG_INFO("Event:({})", event.LogEvent());
 					event.Run();
 				}
 			} while (Environment::NextRealisation());

@@ -1,12 +1,12 @@
 {
    "SaveToFolder": "D:/dev/sample1",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":20,
+   "FinalSimulationTime":400,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":3,
    "ObserveEachRegion":true,
    "G":{
-      "TimeStep":0.05,
+      "TimeStep":0.1,
 	  "DiffusionCoefficients":[0.02, 0.04, 0.08],
 	  "NofS":[2, 2, 2],
 	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS" ],
@@ -41,6 +41,14 @@
 		  "TimeStep":"@G:TimeStep",
 		  "Priority":"@G:RegionPriority"
 	   }
+   ],
+   "Relationships":[
+      {
+         "RegionA":"Box1",
+         "RegionB":"MesoRegion1",
+         "Priority":"None",
+         "MoleculeTypes":[0, 1, 2, 3]
+      }
    ],
    "PassiveActors":
 	{

@@ -3,13 +3,14 @@
 #include "vec3d.h"
 #include "vec3i.h"
 #include "vec3b.h"
+#include "microscopic_grid.h"
 
 namespace accord::mesoscopic
 {
 	Region::Region(const Vec3d& origin, double subvolume_length, const Vec3i& n_subvolumes, 
 		const std::vector<double>& diffusion_coefficients, const std::vector<Vec3i>& removedSubvolumes, int priority, const MesoscopicRegionID& id)
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event(0, priority), id(id),
-			n_subvolumes(n_subvolumes), subvolume_length(subvolume_length)
+			n_subvolumes(n_subvolumes), subvolume_length(subvolume_length), surface_direction(microscopic::HighPriorityRelative::SurfaceDirection::External)
 	{
 		LOG_INFO("n subs = {}", n_subvolumes);
 		std::vector<int> removed_indices;
@@ -32,13 +33,13 @@ namespace accord::mesoscopic
 	void Region::AddSubvolumesToQueue()
 	{
 		// now subvolumes are confirmed delete subvolumes marked for deletion (because other regions have replaced the subvolumes)
-		LOG_INFO("num_subvolume = {}", subvolumes.size());
+		//LOG_INFO("num_subvolume = {}", subvolumes.size());
 		subvolume_queue.Reserve(subvolumes.size());
 		for (auto& subvolume : subvolumes)
 		{
 			subvolume_queue.Add(&subvolume);
 			subvolume.UpdateReactionTime();
-			LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
+			//LOG_INFO("subvolume propensity = {}, time = {}", subvolume.GetPropensity(), subvolume.GetTime());
 		}
 		SetEventTime(subvolume_queue.Front().GetTime());
 	}
@@ -271,6 +272,30 @@ namespace accord::mesoscopic
 		j["length"] = box.GetLength();
 		j["end"] = box.GetEnd();
 		j["nPartitions"] = n_subvolumes;
+	}
+
+	const RegionShape& Region::GetShape() const
+	{
+		return box;
+	}
+
+	const microscopic::HighPriorityRelative::SurfaceDirection& Region::GetSurfaceDirection() const
+	{
+		return surface_direction;
+	}
+
+	bool Region::IsRegion() const
+	{
+		// is not microscopic region
+		return false;
+	}
+
+	std::optional<microscopic::MoleculeDestination> Region::PassMolecule(const Vec3d& end,
+		const shape::collision::Collision3D& collision, microscopic::Grid* owner,
+		microscopic::SurfaceType surface_type, int cycles, bool allowObstructions)
+	{
+		AddMolecule(owner->GetMoleculeID(), collision.intersection);
+		return std::nullopt;
 	}
 
 	void to_json(Json& j, const Region& region)

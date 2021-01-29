@@ -33,9 +33,18 @@ namespace accord::microscopic
 
 		void AddLowPriorityRelative(Region& region, SurfaceType type, const MoleculeIDs& ids);
 
+
 		void AddHighPrioritySurface(Surface& surface, const std::vector<SurfaceType>& types);
 
 		void AddNeighbourSurface(Surface& surface, const std::vector<SurfaceType>& types);
+
+
+		void AddNeighbour(mesoscopic::Region& region, const MoleculeIDs& ids);
+
+		void AddHighPriorityRelative(mesoscopic::Region& region, const MoleculeIDs& ids);
+
+		void AddLowPriorityRelative(mesoscopic::Region& region, const MoleculeIDs& ids);
+
 
 		// add a recent molecule
 		void AddMolecule(const MoleculeID& id, const Vec3d& position, double time);

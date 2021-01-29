@@ -237,7 +237,7 @@ namespace accord::mesoscopic
 	void Subvolume::UpdateReactionPropensity(double delta_propensity)
 	{
 		//LOG_INFO("new reaction propensity = {}, {}", reaction_propensity, delta_propensity);
-		LOG_INFO("{} {}", reaction_propensity, delta_propensity);
+		//LOG_INFO("{} {}", reaction_propensity, delta_propensity);
 		reaction_propensity += delta_propensity;
 		// due to floating point error reaction_propensity < 0
 		if (reaction_propensity < 0) reaction_propensity = 0;

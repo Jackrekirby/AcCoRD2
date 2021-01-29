@@ -184,6 +184,7 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\mesoscopic_region_shape.h" />
     <ClInclude Include="src\microscopic_box_surface_shape2.h" />
     <ClInclude Include="src\microscopic_surface_shape.h" />
     <ClInclude Include="src\microscopic_circle_surface_shape.h" />

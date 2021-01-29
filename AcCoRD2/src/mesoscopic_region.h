@@ -4,6 +4,12 @@
 #include "event.h"
 #include "vec3i.h"
 #include "mesoscopic_region_id.h"
+#include "mesoscopic_region_shape.h"
+
+
+#include "microscopic_low_priority_relative.h"
+#include "microscopic_neighbour_relative.h"
+#include "microscopic_high_priority_relative.h"
 
 namespace accord
 {
@@ -15,7 +21,7 @@ namespace accord
 
 namespace accord::mesoscopic
 {
-	class Region : public Event
+	class Region : public Event, public microscopic::HighPriorityRelative, public microscopic::LowPriorityRelative, public microscopic::NeighbourRelative
 	{
 	public:
 		Region(const Vec3d& origin, double length, const Vec3i& n_subvolumes, const std::vector<double>& diffusion_coefficients, const std::vector<Vec3i>& removedSubvolumes, int priority, const MesoscopicRegionID& id);
@@ -66,14 +72,30 @@ namespace accord::mesoscopic
 		void NextRealisation();
 
 		MesoscopicRegionID GetID() const;
+		
+
+		// hybrid functions
+
+		const RegionShape& GetShape() const;
+
+		const SurfaceDirection& GetSurfaceDirection() const;
+
+		bool IsRegion() const;
+
+		std::optional<microscopic::MoleculeDestination> PassMolecule(const Vec3d& end,
+			const shape::collision::Collision3D& collision, microscopic::Grid* owner,
+			microscopic::SurfaceType surface_type, int cycles, bool allowObstructions);
 
 	private:
 		SubvolumeQueue subvolume_queue;
 		std::vector<Subvolume> subvolumes;
-		shape::relation::Box box;
+		RegionShape box;
 		MesoscopicRegionID id;
 		Vec3i n_subvolumes;
 		double subvolume_length;
+
+		// hybrid variables
+		microscopic::HighPriorityRelative::SurfaceDirection surface_direction;
 	};
 
 	void to_json(Json& j, const Region& region);

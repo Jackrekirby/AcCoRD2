@@ -855,6 +855,9 @@
     <ClInclude Include="src\microscopic_box_surface_shape2.h">
       <Filter>src\simulation\microscopic\shapes</Filter>
     </ClInclude>
+    <ClInclude Include="src\mesoscopic_region_shape.h">
+      <Filter>src\simulation\mesoscopic\region</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\pcg\LICENSE-MIT.txt">
