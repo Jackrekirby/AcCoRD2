@@ -1,20 +1,51 @@
-[21:51:38.261] [info] config_importer.cpp:433 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 3
-[21:51:38.275] [info] config_importer.cpp:626 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[21:51:38.277] [info] config_importer.cpp:629 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
-[21:51:38.278] [info] config_importer.cpp:632 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[21:51:38.278] [info] mesoscopic_region.cpp:15 accord::mesoscopic::Region::Region() n subs = [4, 4, 4]
-[21:51:38.281] [info] config_importer.cpp:635 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[21:51:38.288] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[21:51:38.289] [info] config_importer.cpp:889 accord::ConfigImporter::CreateActiveActors() meso id = 0
-[21:51:38.290] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 400.0, release = 400.0, slot = 400.0
-[21:51:38.292] [info] config_importer.cpp:885 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[21:51:38.292] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 400.0, release = 400.0, slot = 400.0
-[21:51:38.294] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[21:51:38.295] [info] config_importer.cpp:644 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[21:51:38.295] [info] config_importer.cpp:1001 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[21:51:38.296] [info] config_importer.cpp:1011 accord::ConfigImporter::CreateReactions() First Order Reactions
-[21:51:38.297] [info] config_importer.cpp:1022 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[21:51:38.303] [info] main.cpp:356 accord::Run() {
+[23:04:49.585] [info] config_importer.cpp:445 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 3
+[23:04:49.598] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[23:04:49.600] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[23:04:49.601] [info] config_importer.cpp:644 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[23:04:49.601] [info] mesoscopic_region.cpp:15 accord::mesoscopic::Region::Region() n subs = [4, 4, 4]
+[23:04:49.604] [info] mesoscopic_region.cpp:15 accord::mesoscopic::Region::Region() n subs = [2, 2, 2]
+[23:04:49.606] [info] config_importer.cpp:647 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[23:04:49.616] [info] config_importer.cpp:650 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[23:04:49.620] [info] config_importer.cpp:897 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[23:04:49.621] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 400.0, release = 400.0, slot = 400.0
+[23:04:49.622] [info] config_importer.cpp:653 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[23:04:49.624] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 0 and 48 are neighbours
+[23:04:49.624] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 0 and 49 are neighbours
+[23:04:49.625] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 0 and 52 are neighbours
+[23:04:49.625] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 0 and 53 are neighbours
+[23:04:49.626] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 1 and 50 are neighbours
+[23:04:49.626] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 1 and 51 are neighbours
+[23:04:49.627] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 1 and 54 are neighbours
+[23:04:49.627] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 1 and 55 are neighbours
+[23:04:49.627] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 2 and 56 are neighbours
+[23:04:49.628] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 2 and 57 are neighbours
+[23:04:49.629] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 2 and 60 are neighbours
+[23:04:49.629] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 2 and 61 are neighbours
+[23:04:49.630] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 3 and 58 are neighbours
+[23:04:49.631] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 3 and 59 are neighbours
+[23:04:49.632] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 3 and 62 are neighbours
+[23:04:49.638] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 3 and 63 are neighbours
+[23:04:49.640] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 48 and 0 are neighbours
+[23:04:49.640] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 49 and 0 are neighbours
+[23:04:49.641] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 50 and 1 are neighbours
+[23:04:49.642] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 51 and 1 are neighbours
+[23:04:49.642] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 52 and 0 are neighbours
+[23:04:49.643] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 53 and 0 are neighbours
+[23:04:49.643] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 54 and 1 are neighbours
+[23:04:49.648] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 55 and 1 are neighbours
+[23:04:49.649] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 56 and 2 are neighbours
+[23:04:49.652] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 57 and 2 are neighbours
+[23:04:49.653] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 58 and 3 are neighbours
+[23:04:49.653] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 59 and 3 are neighbours
+[23:04:49.654] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 60 and 2 are neighbours
+[23:04:49.655] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 61 and 2 are neighbours
+[23:04:49.656] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 62 and 3 are neighbours
+[23:04:49.656] [info] mesoscopic_region.cpp:189 accord::mesoscopic::Region::AddNeighbour() subvolumes 63 and 3 are neighbours
+[23:04:49.660] [info] config_importer.cpp:656 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[23:04:49.660] [info] config_importer.cpp:1032 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[23:04:49.663] [info] config_importer.cpp:1042 accord::ConfigImporter::CreateReactions() First Order Reactions
+[23:04:49.663] [info] config_importer.cpp:1053 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[23:04:49.665] [info] main.cpp:356 accord::Run() {
     "SaveToFolder": "D:/dev/sample1",
     "NumberOfRealisations": 1,
     "FinalSimulationTime": 400,
@@ -38,7 +69,13 @@
             "SubvolumeLength": 1,
             "NumberOfSubvolumes": [ 4, 4, 4 ],
             "DiffusionCoefficients": [ 0.02, 0.04, 0.08 ],
-            "RemoveSubvolumes": 0,
+            "Priority": 0
+        }, {
+            "Name": "MesoRegion2",
+            "Origin": [ 0, 0, 4 ],
+            "SubvolumeLength": 2,
+            "NumberOfSubvolumes": [ 2, 2, 2 ],
+            "DiffusionCoefficients": [ 0.02, 0.04, 0.08 ],
             "Priority": 0
         } ],
     "MicroscopicRegions": [ {
@@ -54,6 +91,15 @@
             "TimeStep": 0.1,
             "Priority": 0
         } ],
+    "Relationships": [ {
+            "RegionA": "Box1",
+            "RegionB": "MesoRegion1",
+            "Priority": "None"
+        }, {
+            "RegionA": "MesoRegion2",
+            "RegionB": "MesoRegion1",
+            "Priority": "None"
+        } ],
     "PassiveActors": {
         "RecordPositions": true,
         "RecordObservationTime": true,
@@ -62,7 +108,6 @@
         "Priority": 1
     },
     "ActiveActors": [ {
-            "Name": "ActiveActor1",
             "StartTime": 0,
             "Priority": 2,
             "ActionInterval": 400,
@@ -71,24 +116,7 @@
             "MoleculeTypesToRelease": [ 1, 1, 1 ],
             "Shape": {
                 "Type": "Point",
-                "Origin": [ 0.5, 0.5, 0.5 ]
-            },
-            "RegionsToActIn": [ "MesoRegion1" ],
-            "Type": "NonRandom",
-            "SymbolSize": 1,
-            "SlotInterval": 400,
-            "BitSequence": [ 1 ]
-        }, {
-            "Name": "ActiveActor1",
-            "StartTime": 0,
-            "Priority": 2,
-            "ActionInterval": 400,
-            "ReleaseInterval": 400,
-            "ModulationStrength": 20,
-            "MoleculeTypesToRelease": [ 1, 1, 1 ],
-            "Shape": {
-                "Type": "Point",
-                "Origin": [ 4.5, 0.5, 0.5 ]
+                "Origin": [ 6, 2, 2 ]
             },
             "RegionsToActIn": [ "Box1" ],
             "Type": "NonRandom",
@@ -97,18 +125,13 @@
             "BitSequence": [ 1 ]
         } ],
     "MicroscopicSurfaces": null,
-    "Relationships": null,
     "ZerothOrderReactions": null,
     "FirstOrderReactions": null,
     "SecondOrderReactions": null
 }
-[21:51:38.310] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
-[21:51:38.311] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[21:51:38.312] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[21:51:38.313] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 20
-[21:51:38.314] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[21:51:38.316] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[21:51:38.321] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 20
-[21:51:42.372] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
-[21:51:42.373] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
-[21:51:42.373] [info] main.cpp:360 accord::Run() Cleaning up
+[23:04:49.674] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
+[23:04:49.674] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[23:04:49.675] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[23:04:49.676] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 20
+[23:04:52.169] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[23:04:52.169] [info] main.cpp:360 accord::Run() Cleaning up

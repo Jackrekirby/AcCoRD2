@@ -15,6 +15,11 @@
 #include "microscopic_region_id.h"
 // Surface(Shape3D shape, Enum surface_type) OR Surface : public shape, public absorbing (multiple inheritance)
 
+namespace accord::mesoscopic
+{
+	class Region;
+}
+
 namespace accord::microscopic
 {
 	class Surface;

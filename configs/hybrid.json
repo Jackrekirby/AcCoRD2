@@ -23,7 +23,14 @@
 		  "SubvolumeLength":1,
 		  "NumberOfSubvolumes":[4, 4, 4],
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
-		  "RemoveSubvolumes":0,
+		  "Priority":"@G:RegionPriority"
+	   },
+	   {
+		  "Name":"MesoRegion2",
+		  "Origin":[0, 0, 4],
+		  "SubvolumeLength":2,
+		  "NumberOfSubvolumes":[2, 2, 2],
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "Priority":"@G:RegionPriority"
 	   }
    ],
@@ -43,11 +50,15 @@
 	   }
    ],
    "Relationships":[
-      {
+	  {
          "RegionA":"Box1",
          "RegionB":"MesoRegion1",
-         "Priority":"None",
-         "MoleculeTypes":[0, 1, 2, 3]
+         "Priority":"None"
+      },
+	  {
+         "RegionA":"MesoRegion2",
+         "RegionB":"MesoRegion1",
+         "Priority":"None"
       }
    ],
    "PassiveActors":
@@ -59,8 +70,7 @@
 	  "Priority":"@G:PassiveActorPriority"
 	},
 	"ActiveActors":[
-	  {
-         "Name":"ActiveActor1",
+	   {
          "StartTime":0,
          "Priority":"@G:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
@@ -69,25 +79,7 @@
          "MoleculeTypesToRelease":[ 1, 1, 1 ],
 		  "Shape":{
 			  "Type":"Point",
-			  "Origin":[0.5, 0.5, 0.5]
-		  },
-         "RegionsToActIn":[ "MesoRegion1" ],
-         "Type":"NonRandom",
-         "SymbolSize":1,
-         "SlotInterval":"@FinalSimulationTime",
-         "BitSequence":[ 1 ]
-      },
-	  {
-         "Name":"ActiveActor1",
-         "StartTime":0,
-         "Priority":"@G:ActiveActorPriority",
-         "ActionInterval":"@FinalSimulationTime",
-         "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":20,
-         "MoleculeTypesToRelease":[ 1, 1, 1 ],
-		  "Shape":{
-			  "Type":"Point",
-			  "Origin":[4.5, 0.5, 0.5]
+			  "Origin":[6, 2, 2]
 		  },
          "RegionsToActIn":[ "Box1" ],
          "Type":"NonRandom",

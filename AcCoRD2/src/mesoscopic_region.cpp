@@ -167,7 +167,7 @@ namespace accord::mesoscopic
 		// for those which neighbour add as neighbour
 		// each subvolume is checked against every other subvolume.
 		// Inefficient but as only done once not a high priority performace improvement unless a region contains 1000's of subvolumes
-		//LOG_INFO("add region");
+		//LOG_INFO("add region, b1 = {}, b2 = {}", box, other.box);
 		// could optimise by adding both at same time.
 		if (box.IsPartiallyNeighbouring(other.box))
 		{
@@ -177,8 +177,10 @@ namespace accord::mesoscopic
 				auto& b1 = s1.GetBoundingBox();
 				for (auto& s2 : other.subvolumes)
 				{
+					
 					//LOG_INFO("subvolume id = {}, {}", s1.GetID(), s2.GetID());
 					auto& b2 = s2.GetBoundingBox();
+					//LOG_INFO("subvolumes 1:{}, 2:{}", b1, b2);
 					if (b1.IsPartiallyNeighbouring(b2))
 					{
 						/*if (((b1.GetOrigin() == b2.GetEnd()) || (b1.GetEnd() == b2.GetOrigin())).Sum() == 1)

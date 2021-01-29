@@ -149,6 +149,7 @@ namespace accord
 		config.Add("RandomNumberSeed").IsInt().IsPositive();
 		n_molecule_types = config.Add("NumberOfMoleculeTypes").IsInt().IsPositive().GetJson().get<size_t>();
 		max_molecule_id = static_cast<int>(n_molecule_types) - 1;
+		MoleculeID::SetNumIDs(static_cast<int>(n_molecule_types));
 
 		ValidateMicroscopicRegions(config);
 		ValidateMicroscopicSurfaces(config);
@@ -211,6 +212,7 @@ namespace accord
 		{
 			JsonKeyPair microscopic_regions = config.Add("MicroscopicRegions").IsArray();
 			size_t n = microscopic_regions.GetArraySize();
+			MicroscopicRegionID::SetNumIDs(static_cast<int>(n));
 
 			for (size_t i = 0; i < n; i++)
 			{
@@ -266,6 +268,7 @@ namespace accord
 		{
 			JsonKeyPair mesoscopic_regions = config.Add("MesoscopicRegions").IsArray();
 			size_t n = mesoscopic_regions.GetArraySize();
+			MesoscopicRegionID::SetNumIDs(static_cast<int>(n));
 
 			for (size_t i = 0; i < n; i++)
 			{
@@ -405,24 +408,33 @@ namespace accord
 			{
 				relationships.SetIndex(i);
 
-				relationships.Add("RegionA").IsString().IsOneOf(microscopic_region_names);
-				relationships.Add("RegionB").IsString().IsOneOf(microscopic_region_names);;
+				relationships.Add("RegionA").IsString().IsOneOf(region_names);
+				relationships.Add("RegionB").IsString().IsOneOf(region_names);
 				relationships.Add("Priority").IsString().IsOneOf<std::string>({"A", "B", "None"});;	
 
-				std::vector<std::string> surface_types = { "Absorbing", "Adsorbing", "Membrane", "Reflecting", "None" };
-				
-				if (relationships.IsKey("SurfaceTypes"))
+				std::string region_a_name = relationships.Add("RegionA").GetJson().get<std::string>();
+				std::string region_b_name = relationships.Add("RegionB").GetJson().get<std::string>();
+				RegionIDList region_list = GetRegionIDsFromStrings({ region_a_name , region_b_name });
+
+				if (region_list.mesoscopic_ids.empty())
 				{
-					relationships.Add("SurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
-				} else if (relationships.IsKey("AToBSurfaceTypes") && relationships.IsKey("BToASurfaceTypes"))
-				{
-					relationships.Add("AToBSurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
-					relationships.Add("BToASurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
-				}
-				else
-				{
-					LOG_ERROR("<{}> expected field \"SurfaceTypes\", or \"AToBSurfaceTypes\" and  \"BToASurfaceTypes\" but neither exists", relationships.Log());
-					throw std::exception();
+					// microscopic_relationship
+					std::vector<std::string> surface_types = { "Absorbing", "Adsorbing", "Membrane", "Reflecting", "None" };
+
+					if (relationships.IsKey("SurfaceTypes"))
+					{
+						relationships.Add("SurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
+					}
+					else if (relationships.IsKey("AToBSurfaceTypes") && relationships.IsKey("BToASurfaceTypes"))
+					{
+						relationships.Add("AToBSurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
+						relationships.Add("BToASurfaceTypes").IsArrayOfStrings().IsEachOneOf(surface_types);
+					}
+					else
+					{
+						LOG_ERROR("<{}> expected field \"SurfaceTypes\", or \"AToBSurfaceTypes\" and  \"BToASurfaceTypes\" but neither exists", relationships.Log());
+						throw std::exception();
+					}
 				}
 			}
 		}
@@ -965,34 +977,53 @@ namespace accord
 			std::string region_b_name = relationship["RegionB"].get<std::string>();
 			Environment::RelationshipPriority priority = relationship["Priority"].get<Environment::RelationshipPriority>();
 
-			std::optional<MicroscopicRegionID> region_a = GetIndexOfStringInStrings(region_a_name, microscopic_region_names);
-			if (!region_a.has_value())
+			RegionIDList region_list = GetRegionIDsFromStrings({ region_a_name , region_b_name });
+
+			if (region_list.mesoscopic_ids.empty())
 			{
-				LOG_ERROR("Region a {} could not be found in list of regions", region_a_name);
-				throw std::exception();
+				// Microscopic Region Relationships
+				MicroscopicRegionIDs& ids = region_list.microscopic_ids;
+				if (relationship.contains("SurfaceTypes"))
+				{
+					std::vector<microscopic::SurfaceType> surface_types = relationship["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
+
+					Environment::DefineRelationship(ids.at(0), ids.at(1), priority, surface_types);
+				}
+				else if (relationship.contains("AToBSurfaceTypes") && relationship.contains("BToASurfaceTypes"))
+				{
+					std::vector<microscopic::SurfaceType> ab_surface_types = relationship["AToBSurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
+
+					std::vector<microscopic::SurfaceType> ba_surface_types = relationship["BToASurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
+
+					Environment::DefineRelationship(ids.at(0), ids.at(1), priority, ab_surface_types, ba_surface_types);
+				}
+			}
+			else if (region_list.microscopic_ids.empty())
+			{
+				// meso to meso relationship
+				MesoscopicRegionIDs& ids = region_list.mesoscopic_ids;
+				mesoscopic::Region& region_a = Environment::GetMesoscopicRegion(ids.at(0));
+				mesoscopic::Region& region_b = Environment::GetMesoscopicRegion(ids.at(1));
+				region_a.AddNeighbour(region_b);
+				region_b.AddNeighbour(region_a);
+			}
+			else
+			{
+				// hybrid relationship
+				microscopic::Region& micro_region = Environment::GetMicroscopicRegion(region_list.microscopic_ids.at(0));
+				mesoscopic::Region& meso_region = Environment::GetMesoscopicRegion(region_list.mesoscopic_ids.at(0));
+
+				MoleculeIDs molecule_ids;
+				for (int i = 0; i < n_molecule_types; i++)
+				{
+					molecule_ids.emplace_back(i);
+				}
+				micro_region.AddNeighbour(meso_region, molecule_ids);
+
 			}
 
-			std::optional<MicroscopicRegionID> region_b = GetIndexOfStringInStrings(region_b_name, microscopic_region_names);
-			if (!region_b.has_value())
-			{
-				LOG_ERROR("Region b {} could not be found in list of regions", region_b_name);
-				throw std::exception();
-			}
-
-			if (relationship.contains("SurfaceTypes"))
-			{
-				std::vector<microscopic::SurfaceType> surface_types = relationship["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
-
-				Environment::DefineRelationship(*region_a, *region_b, priority, surface_types);
-			}
-			else if (relationship.contains("AToBSurfaceTypes") && relationship.contains("BToASurfaceTypes"))
-			{
-				std::vector<microscopic::SurfaceType> ab_surface_types = relationship["AToBSurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
-
-				std::vector<microscopic::SurfaceType> ba_surface_types = relationship["BToASurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
-
-				Environment::DefineRelationship(*region_a, *region_b, priority, ab_surface_types, ba_surface_types);
-			}
+			
+			
 		}
 	}
 

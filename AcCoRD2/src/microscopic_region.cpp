@@ -8,6 +8,7 @@
 //#include "microscopic_high_priority_relation.h"
 #include "microscopic_region_shape.h"
 #include "microscopic_surface.h"
+#include "mesoscopic_region.h"
 
 namespace accord::microscopic
 {

@@ -362,6 +362,10 @@ namespace accord
 }
 
 // should low priority relative IsRegion be true for meso?
+// add mesoscopic relationships for certain molecule types
+// draw active actor points
+// add uniform flow
+// add passive actor per mesoscopic subvolume
 #include "collision_cylinder.h"
 int main()
 {
