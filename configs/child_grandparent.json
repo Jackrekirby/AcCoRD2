@@ -59,13 +59,15 @@
          "RegionA":"Child",
          "RegionB":"Parent",
          "Priority":"A",
-		 "SurfaceTypes":"@G:SurfaceTypesNone"
+		 "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
        },
 		{
          "RegionA":"Child",
          "RegionB":"GrandParent",
          "Priority":"A",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
       },
 	  {
          "RegionA":"GrandParent",
