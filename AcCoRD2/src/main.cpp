@@ -377,26 +377,26 @@ int main()
 
 	using namespace accord;
 	//SplitShapeName("RectSurface");
-	//Run("C:/dev/AcCoRD2/configs/example.json");
+	Run("C:/dev/AcCoRD2/configs/sphere_box.json");
 
-	{
-		LOG_INFO("1");
-		microscopic::Surface surface(std::make_unique<microscopic::RectSurfaceShape>(shape::basic::RectSurface(Vec3d(0), Vec3d(0, 1, 1))), microscopic::HighPriorityRelative::SurfaceDirection::Internal);
-		LOG_INFO("2");
-	}
-	LOG_INFO("3");
-	{
-		LOG_INFO("4");
-		//auto surface_shape = std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(0), Vec3d(1));
-		microscopic::Surface surface(std::make_unique<microscopic::BoxSurfaceShape2>(Vec3d(0), Vec3d(1)), microscopic::HighPriorityRelative::SurfaceDirection::Internal);
-		LOG_INFO("5");
-	}
-	LOG_INFO("6");
-	{
-		LOG_INFO("7");
-		//auto surface_shape = std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(0), Vec3d(1));
-		microscopic::Surface surface(std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(0), Vec3d(1)), microscopic::HighPriorityRelative::SurfaceDirection::Internal);
-		LOG_INFO("8");
-	}
-	LOG_INFO("9");
+	//{
+	//	LOG_INFO("1");
+	//	microscopic::Surface surface(std::make_unique<microscopic::RectSurfaceShape>(shape::basic::RectSurface(Vec3d(0), Vec3d(0, 1, 1))), microscopic::HighPriorityRelative::SurfaceDirection::Internal);
+	//	LOG_INFO("2");
+	//}
+	//LOG_INFO("3");
+	//{
+	//	LOG_INFO("4");
+	//	//auto surface_shape = std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(0), Vec3d(1));
+	//	microscopic::Surface surface(std::make_unique<microscopic::BoxSurfaceShape2>(Vec3d(0), Vec3d(1)), microscopic::HighPriorityRelative::SurfaceDirection::Internal);
+	//	LOG_INFO("5");
+	//}
+	//LOG_INFO("6");
+	//{
+	//	LOG_INFO("7");
+	//	//auto surface_shape = std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(0), Vec3d(1));
+	//	microscopic::Surface surface(std::make_unique<microscopic::BoxSurfaceShape>(Vec3d(0), Vec3d(1)), microscopic::HighPriorityRelative::SurfaceDirection::Internal);
+	//	LOG_INFO("8");
+	//}
+	//LOG_INFO("9");
 }

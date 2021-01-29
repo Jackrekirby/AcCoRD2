@@ -12,7 +12,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class CylinderSurfaceShape : public RegionShape, public SurfaceShape, public shape::collision::Cylinder, public shape::generating::Cylinder
+	class CylinderSurfaceShape : public RegionShape, public shape::collision::Cylinder, public shape::generating::Cylinder
 	{
 	public:
 		CylinderSurfaceShape(Vec3d base_centre, double radius, double length, Axis3D axis);

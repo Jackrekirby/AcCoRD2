@@ -12,7 +12,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class SphereSurfaceShape : public RegionShape, public SurfaceShape, public shape::collision::Sphere, public shape::generating::Sphere
+	class SphereSurfaceShape : public RegionShape, public shape::collision::Sphere, public shape::generating::Sphere
 	{
 	public:
 		SphereSurfaceShape(Vec3d centre, double radius);

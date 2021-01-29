@@ -587,6 +587,7 @@ classdef Accord
                         simulationTime = observationTime;
 
                         drawnow limitrate;
+                        
                     end
 
                     actorsToRender = [actorsToRender, observationID];

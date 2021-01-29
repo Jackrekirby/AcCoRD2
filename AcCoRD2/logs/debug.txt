@@ -1,0 +1,100 @@
+[14:09:32.779] [info] config_importer.cpp:433 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 1
+[14:09:32.788] [info] config_importer.cpp:626 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[14:09:32.790] [info] config_importer.cpp:629 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[14:09:32.790] [info] config_importer.cpp:632 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[14:09:32.791] [info] config_importer.cpp:635 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[14:09:32.793] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[14:09:32.794] [info] config_importer.cpp:885 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[14:09:32.794] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
+[14:09:32.797] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[14:09:32.798] [info] config_importer.cpp:644 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[14:09:32.798] [info] config_importer.cpp:1001 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[14:09:32.800] [info] config_importer.cpp:1011 accord::ConfigImporter::CreateReactions() First Order Reactions
+[14:09:32.800] [info] config_importer.cpp:1022 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[14:09:32.802] [info] main.cpp:356 accord::Run() {
+    "SaveToFolder": "D:/dev/sample1",
+    "NumberOfRealisations": 1,
+    "FinalSimulationTime": 200,
+    "RandomNumberSeed": 1,
+    "NumberOfMoleculeTypes": 1,
+    "ObserveEachRegion": true,
+    "G": {
+        "TimeStep": 0.05,
+        "DiffusionCoefficients": [ 0.02 ],
+        "NofS": [ 2, 2, 2 ],
+        "NumberOfSubvolumes": [ [ 2, 2, 2 ] ],
+        "SurfaceTypesNone": [ "None" ],
+        "SurfaceTypesReflecting": [ "Reflecting" ],
+        "RegionPriority": 0,
+        "ActiveActorPriority": 2,
+        "PassiveActorPriority": 1
+    },
+    "MicroscopicRegions": [ {
+            "Name": "Sphere1",
+            "Shape": {
+                "Type": "Sphere",
+                "Centre": [ 0, 0, 0 ],
+                "Radius": 1
+            },
+            "SurfaceTypes": [ "Reflecting" ],
+            "DiffusionCoefficients": [ 0.02 ],
+            "NumberOfSubvolumes": [ [ 2, 2, 2 ] ],
+            "TimeStep": 0.05,
+            "Priority": 0
+        }, {
+            "Name": "Box2",
+            "Shape": {
+                "Type": "Box",
+                "Origin": [ 0.8, -0.5, -0.5 ],
+                "Length": [ 2, 1, 1 ]
+            },
+            "SurfaceTypes": [ "Reflecting" ],
+            "DiffusionCoefficients": [ 0.02 ],
+            "NumberOfSubvolumes": [ [ 2, 2, 2 ] ],
+            "TimeStep": 0.05,
+            "Priority": 0
+        } ],
+    "Relationships": [ {
+            "RegionA": "Box2",
+            "RegionB": "Sphere1",
+            "Priority": "A",
+            "AToBSurfaceTypes": [ "Reflecting" ],
+            "BToASurfaceTypes": [ "None" ]
+        } ],
+    "PassiveActors": {
+        "RecordPositions": true,
+        "RecordObservationTime": true,
+        "StartTime": 0,
+        "TimeStep": 0.05,
+        "Priority": 1
+    },
+    "ActiveActors": [ {
+            "Name": "ActiveActor1",
+            "StartTime": 0,
+            "Priority": 2,
+            "ActionInterval": 200,
+            "ReleaseInterval": 200,
+            "ModulationStrength": 20,
+            "MoleculeTypesToRelease": [ 1 ],
+            "Shape": {
+                "Type": "Point",
+                "Origin": [ 0, 0, 0 ]
+            },
+            "RegionsToActIn": [ "Sphere1" ],
+            "Type": "NonRandom",
+            "SymbolSize": 1,
+            "SlotInterval": 200,
+            "BitSequence": [ 1 ]
+        } ],
+    "MesoscopicRegions": null,
+    "MicroscopicSurfaces": null,
+    "ZerothOrderReactions": null,
+    "FirstOrderReactions": null,
+    "SecondOrderReactions": null
+}
+[14:09:32.805] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
+[14:09:32.806] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[14:09:32.807] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[14:09:32.807] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 20
+[14:09:34.439] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[14:09:34.439] [info] main.cpp:360 accord::Run() Cleaning up

@@ -1,7 +1,7 @@
 {
    "SaveToFolder": "D:/dev/sample1",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":20,
+   "FinalSimulationTime":200,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":4,
    "ObserveEachRegion":true,
@@ -23,7 +23,7 @@
 			  "Origin":[-3.5, -0.5, -0.5],
 			  "Length":[1, 1, 1]
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -36,7 +36,7 @@
 			  "Origin":[-0.5, -0.5, 3.5],
 			  "Length":[1, 1, 1]
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -49,7 +49,7 @@
 			  "Centre":[0, 0, 0],
 			  "Radius":1
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -64,7 +64,7 @@
 			  "Length":1.8,
 			  "Axis":"X"
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -79,7 +79,7 @@
 			  "Length":2.8,
 			  "Axis":"Z"
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -94,7 +94,7 @@
 			  "Length":2.3,
 			  "Axis":"X"
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -109,7 +109,7 @@
 			  "Length":4,
 			  "Axis":"Y"
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -122,7 +122,7 @@
 			  "Origin":[2.5, -3.5, -1],
 			  "Length":[2, 2, 2]
 		   },
-		  "SurfaceType":"Reflecting",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -135,7 +135,7 @@
 			  "Origin":[2.5, 2, -1],
 			  "Length":[2, 2, 2]
 		   },
-		  "SurfaceType":"Absorbing",
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
 		  "TimeStep":"@G:TimeStep",
@@ -151,15 +151,19 @@
 	  "Priority":0
 	},
 	"ActiveActors":[
-      {
+        {
          "Name":"ActiveActor1",
          "StartTime":0,
          "Priority":0,
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":1,
-         "MoleculeTypesToRelease":[ 100, 0, 0, 0 ],
-         "RegionsToActIn":[ "MicroBox4" ],
+         "ModulationStrength":20,
+         "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[-3, 0, 0]
+		  },
+         "RegionsToActIn":[ "MicroBox1" ],
          "Type":"NonRandom",
          "SymbolSize":1,
          "SlotInterval":"@FinalSimulationTime",
@@ -204,43 +208,50 @@
          "RegionA":"MicroCylinder1",
          "RegionB":"MicroSphere1",
          "Priority":"B",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
       },
 	  {
          "RegionA":"MicroCylinder2",
          "RegionB":"MicroSphere1",
          "Priority":"B",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"MicroCylinder3",
          "RegionB":"MicroSphere1",
-         "Priority":"A",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "Priority":"B",
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"MicroBox2",
          "RegionB":"MicroCylinder2",
          "Priority":"None",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"MicroCylinder3",
          "RegionB":"MicroCylinder4",
          "Priority":"A",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
       },
 	  {
          "RegionA":"MicroBox3",
          "RegionB":"MicroCylinder4",
-         "Priority":"None",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "Priority":"B",
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       },
 	  {
          "RegionA":"MicroBox4",
          "RegionB":"MicroCylinder4",
          "Priority":"None",
-         "SurfaceTypes":"@G:SurfaceTypesNone"
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       }
    ]
 }

@@ -15,7 +15,7 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\example.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\sphere_box.json";
 config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
@@ -33,7 +33,8 @@ r = Accord.initAnimateRealisation(sim, 1, 1, 5, true, true, 15, shape3d);
 render.ActiveActors = true;
 render.PassiveActors = false;
 Accord.plotShapes(config.FilePath, render);
-r = Accord.playAnimateRealisation(r, 5);
+%set(get(handle(gcf),'JavaFrame'),'Maximized',1);
+r = Accord.playAnimateRealisation(r, 1);
 
 %% Save Animation as Video
 clc;
@@ -77,7 +78,7 @@ Accord.plotCountForPassiveActor(sim, 3, Inf, Inf);
 
 %%
 clc; figure;
-Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
+Accord.plotCountForPassiveActor(sim, 2, Inf, Inf);
 
 %%
 clc; figure;
@@ -85,5 +86,5 @@ Accord.plotCountForMoleculeType(sim, 1, Inf, Inf);
 
 %% Force all Figures and Files To Close 
 close all force
-fclose('all') 
+fclose('all')
 

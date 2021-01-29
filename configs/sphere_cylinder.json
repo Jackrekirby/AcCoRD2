@@ -3,55 +3,55 @@
    "NumberOfRealisations":1,
    "FinalSimulationTime":200,
    "RandomNumberSeed":1,
-   "NumberOfMoleculeTypes":4,
+   "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
    "G":{
       "TimeStep":0.05,
-	  "DiffusionCoefficients":[0.02, 0.02, 0.02, 0.02],
+	  "DiffusionCoefficients":[0.02],
 	  "NofS":[2, 2, 2],
-	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS", "@G:NofS" ],
-	  "SurfaceTypesNone":[ "None",  "None", "None", "None" ],
-	  "SurfaceTypesReflecting":[ "Reflecting",  "Reflecting", "Reflecting", "Reflecting" ],
-	  "SurfaceTypesMembrane":[ "Membrane",  "Membrane", "Membrane", "Membrane" ],
-	  "SurfaceTypesAbsorbing":[ "Absorbing",  "Absorbing", "Absorbing", "Absorbing" ],
+	  "NumberOfSubvolumes":[ "@G:NofS" ],
+	  "SurfaceTypesNone":[ "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
 	  "RegionPriority":0,
-	   "ActiveActorPriority":2,
-	   "PassiveActorPriority":1
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
    },
    "MicroscopicRegions":[
 		{
-		  "Name":"Box1",
-		  "Shape":{
-			  "Type":"Box",
-			  "Origin":[0, 0, 0],
-			  "Length":[1, 1, 1]
-		   },
-		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
-		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
-		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
-		  "TimeStep":"@G:TimeStep",
-		  "Priority":"@G:RegionPriority"
-	   },
-	   {
-		  "Name":"Box2",
-		  "Shape":{
-			  "Type":"Box",
-			  "Origin":[2, 0, 0],
-			  "Length":[1, 1, 1]
-		   },
-		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
-		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
-		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
-		  "TimeStep":"@G:TimeStep",
-		  "Priority":"@G:RegionPriority"
-	   },
-	   {
 		  "Name":"Cylinder1",
 		  "Shape":{
 			  "Type":"Cylinder",
-			  "BaseCentre":[1, 0.5, 0.5],
-			  "Radius":0.4,
-			  "Length":1,
+			  "BaseCentre":[-2.8, 0, 0],
+			  "Radius":0.5,
+			  "Length":2,
+			  "Axis":"X"
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":"@G:RegionPriority"
+	   },
+	   {
+		  "Name":"Sphere1",
+		  "Shape":{
+			  "Type":"Sphere",
+			  "Centre":[0, 0, 0],
+			  "Radius":1
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":"@G:RegionPriority"
+	   },
+	   {
+		  "Name":"Cylinder2",
+		  "Shape":{
+			  "Type":"Cylinder",
+			  "BaseCentre":[0.8, 0, 0],
+			  "Radius":0.5,
+			  "Length":2,
 			  "Axis":"X"
 		   },
 		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
@@ -63,43 +63,19 @@
    ],
    "Relationships":[
 	  {
-         "RegionA":"Box1",
-         "RegionB":"Cylinder1",
-         "Priority":"None",
-		 "SurfaceTypes":"@G:SurfaceTypesReflecting"
+         "RegionA":"Cylinder1",
+         "RegionB":"Sphere1",
+         "Priority":"A",
+		 "AToBSurfaceTypes":"@G:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
       },
 	  {
-         "RegionA":"Cylinder1",
-         "RegionB":"Box2",
-         "Priority":"None",
-         "AToBSurfaceTypes":"@G:SurfaceTypesNone",
-		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
+         "RegionA":"Cylinder2",
+         "RegionB":"Sphere1",
+         "Priority":"A",
+		 "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       }
-   ],
-   "MicroscopicSurfaces":[
-		{
-		  "Shape":{
-			  "Type":"CircleSurface",
-			  "Centre":[1, 0.5, 0.5],
-			  "Radius":0.3,
-			  "Axis":"X"
-		   },
-		   "SurfaceDirection":"Internal",
-		   "IsOnRegionSurface":true,
-		   "SurfaceTypes":"@G:SurfaceTypesMembrane",
-		   "AddToRegions":[ "Box1" ]
-	   },
-	   {
-		  "Shape":{
-			  "Type":"Sphere",
-			  "Centre":[2.5, 0.5, 0.5],
-			  "Radius":0.3
-		   },
-		   "SurfaceDirection":"External",
-		   "IsOnRegionSurface":false,
-		   "SurfaceTypes":"@G:SurfaceTypesAbsorbing",
-		   "AddToRegions":[ "Box2" ]
-	   }
    ],
    "PassiveActors":
 	{
@@ -117,13 +93,12 @@
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
          "ModulationStrength":20,
-         "MoleculeTypesToRelease":[ 1, 1, 1, 1 ],
+         "MoleculeTypesToRelease":[ 1 ],
 		  "Shape":{
-			  "Type":"RectSurface",
-			  "Origin":[0.2, 0.2, 0],
-			  "Length":[0.6, 0.6, 0]
+			  "Type":"Point",
+			  "Origin":[-2.5, 0, 0]
 		  },
-         "RegionsToActIn":[ "Box1" ],
+         "RegionsToActIn":[ "Cylinder1" ],
          "Type":"NonRandom",
          "SymbolSize":1,
          "SlotInterval":"@FinalSimulationTime",

@@ -1,10 +1,8 @@
 #pragma once
 #include "pch.h"
-#include "collision_3d.h"
+#include "microscopic_surface_shape.h"
 #include "basic_shape.h"
-#include "microscopic_high_priority_relative_shape.h"
 #include "microscopic_low_priority_relative_shape.h"
-#include "microscopic_neighbour_relative_shape.h"
 
 namespace accord
 {
@@ -15,7 +13,7 @@ namespace accord::microscopic
 {
 	// could just be a collision shape3D but may require other shape type functionality
 	// consider seperating surface shape into one per relationship type
-	class RegionShape : public HighPriorityRelativeShape, public LowPriorityRelativeShape, public NeighbourRelativeShape
+	class RegionShape : public SurfaceShape, public LowPriorityRelativeShape
 	{
 	public:
 		virtual std::optional<shape::collision::Collision3D>

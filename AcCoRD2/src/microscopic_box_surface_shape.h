@@ -12,7 +12,7 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class BoxSurfaceShape : public RegionShape, public SurfaceShape, public shape::collision::Box, public shape::generating::Box
+	class BoxSurfaceShape : public RegionShape, public shape::collision::Box, public shape::generating::Box
 	{
 	public:
 		BoxSurfaceShape(Vec3d origin, Vec3d length);
