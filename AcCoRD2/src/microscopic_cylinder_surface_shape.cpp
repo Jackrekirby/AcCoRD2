@@ -21,6 +21,7 @@ namespace accord::microscopic
 	std::optional<shape::collision::Collision3D>
 		CylinderSurfaceShape::CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const
 	{
+		//LOG_INFO("here");
 		return shape::collision::Cylinder::CalculateExternalCollisionData(origin, end);
 	}
 

@@ -51,7 +51,7 @@
          "RegionA":"Cylinder2",
          "RegionB":"Sphere1",
          "Priority":"A",
-		 "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
+		 "AToBSurfaceTypes":"@G:SurfaceTypesNone",
 		 "BToASurfaceTypes":"@G:SurfaceTypesNone"
       }
    ],

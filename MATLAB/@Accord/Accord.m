@@ -257,7 +257,7 @@ classdef Accord
                 end
             end
             % Active Actors
-            if(render.ActiveActors && isfield(s, "ActiveActors"))
+            if(render(1) && isfield(s, "ActiveActors"))
                 nActiveActors = length(s.ActiveActors);
                 activeActorShape3D = Shape3D('FaceColorMap', spring(nActiveActors), ...
                     'LineColorMap', spring(nActiveActors), 'EdgeAlpha', 0);
@@ -291,7 +291,7 @@ classdef Accord
                 end
             end
             % Passive Actors
-            if(render.PassiveActors && isfield(s, "PassiveActors"))
+            if(render(2) && isfield(s, "PassiveActors"))
                 nPassiveActors = length(s.PassiveActors);
                 passiveActorShape3D = Shape3D('FaceColorMap', summer(nPassiveActors), ...
                     'LineColorMap', summer(nPassiveActors), 'EdgeAlpha', 0);

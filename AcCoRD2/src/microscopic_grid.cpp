@@ -187,6 +187,7 @@ namespace accord::microscopic
 			// if the collision time changed there was a valid collision
 			if (closest_relationship != nullptr)
 			{
+				//LOG_INFO("hit");
 				return closest_relationship->GetHighPriorityRelative().PassMolecule(end,
 					closest_collision, this, surface_type, cycles, allowObstructions);
 			}

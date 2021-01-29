@@ -26,11 +26,26 @@ namespace accord::shape::collision
 	std::optional<Collision3D> Cylinder::CalculateExternalCollisionData
 		(const Vec3d& origin, const Vec3d& end) const
 	{
+		// new: if ray is before base or past top then no collision
+		// check base and top before tube to ensure any tube check is external
+		if (((origin.GetAxis(GetAxis()) <= GetBase()) && (end.GetAxis(GetAxis()) <= GetBase())) ||
+			((origin.GetAxis(GetAxis()) >= GetTop()) && (end.GetAxis(GetAxis()) >= GetTop())))
+		{
+			return std::nullopt;
+		}
+
+		std::optional<Collision3D> collision3D;
+		collision3D = base_face.CalculateCollisionDataWithNegativeFace(origin, end);
+		if (collision3D.has_value()) { LOG_INFO("base collision: {} {} {}", origin, end, collision3D);  return collision3D; }
+		collision3D = top_face.CalculateCollisionDataWithPositiveFace(origin, end);
+		if (collision3D.has_value()) { LOG_INFO("top collision: {} {} {}", origin, end, collision3D); return collision3D; }
+
 		// check path collision with tube first
 		std::optional<Collision2D> collision2D =
 			circle.CalculateExternalCollisionData(origin.GetPlane(GetAxis()), end.GetPlane(GetAxis()));
 		// if path collided with tube must check if it was between the base and top faces
 		// if the path was not between the faces it may have hit a face
+		
 		if (collision2D.has_value())
 		{
 			double longitudinal_intersection =
@@ -40,15 +55,11 @@ namespace accord::shape::collision
 				double longitudinal_reflection = end.GetAxis(GetAxis());
 				Vec3d intersection = { longitudinal_intersection, collision2D->intersection , GetAxis() };
 				Vec3d reflection = { longitudinal_reflection, collision2D->reflection , GetAxis() };
+				LOG_INFO("Tube collision: {}, {}, {}", origin, end, Collision3D(collision2D->time, intersection, reflection));
 				return Collision3D(collision2D->time, intersection, reflection);
 			}
 		}
-		std::optional<Collision3D> collision3D;
-		collision3D = base_face.CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision3D.has_value()) { LOG_DEBUG("base");  return collision3D; }
-		collision3D = top_face.CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision3D.has_value()) { LOG_DEBUG("top"); }
-		return collision3D;
+		return std::nullopt;
 	}
 
 	std::optional<Collision3D> Cylinder::CalculateInternalCollisionData
