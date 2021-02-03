@@ -435,6 +435,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>
+      </Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -453,6 +455,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>
+      </Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -471,6 +475,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>
+      </Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -489,6 +495,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)AcCoRD2_IO\lib;$(SolutionDir)AcCoRD2_IO\src;$(ProjectDir)src;$(ProjectDir)lib;$(ProjectDir)test;$(ProjectDir)lib\pcg\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>
+      </Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

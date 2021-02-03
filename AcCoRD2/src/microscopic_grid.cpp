@@ -19,7 +19,7 @@ namespace accord::microscopic
 		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient), region(region), id(id), surface_type(surface_type),
 		surface_direction(HighPriorityRelative::SurfaceDirection::External)
 	{
-		//LOG_INFO("id = {}", id);
+		LOG_INFO("n_subvolumes = {}", n_subvolumes);
 		CreateSubvolumes();
 		LinkSiblingSubvolumes();
 	}
@@ -28,6 +28,12 @@ namespace accord::microscopic
 	{
 		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
 		GetSubvolume(index).AddMolecule(position);
+	}
+
+	void Grid::AddNormalDiffusionMolecule(const Vec3d& position)
+	{
+		Vec3i index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
+		GetSubvolume(index).GetNormalDiffusionMolecules().emplace_back(position);
 	}
 
 	void Grid::AddMolecule(const Vec3d& position, double time)
@@ -51,6 +57,10 @@ namespace accord::microscopic
 		int max_cycles = 20;
 		for (auto& subvolume : subvolumes)
 		{
+			subvolume.GetNormalDiffusionMolecules().clear();
+		}
+		for (auto& subvolume : subvolumes)
+		{
 			// cannot add normal molecules back into subvolume or would result in loop until molecules are outisde of subvolume.
 			// molecules are being repeatedly diffused as if a molecule diffuses into a subvolume which has not yet been computed
 			// then a molecule is going to diffuse twice
@@ -58,9 +68,10 @@ namespace accord::microscopic
 			// normal molecule list is completed replaced each event instead of deleting molecules which move
 			// to a new owner
 			std::vector<NormalMolecule>& normal_molecules = subvolume.GetNormalDiffusionMolecules();
-			normal_molecules.clear();
 			for (auto& molecule : subvolume.GetNormalMolecules())
 			{
+				// remove owner class as if a mesoregion or absrobing surface takes the molecule it can just return nullopt
+				// therefore owner can always be grid
 				std::optional<MoleculeDestination> md = CheckMoleculePath(molecule.GetPosition(), DiffuseMolecule(molecule), max_cycles);
 				if (md.has_value())
 				{
@@ -68,7 +79,8 @@ namespace accord::microscopic
 					// if the owner is the same molecule remains a normal molecule
 					if (&(md->GetOwner()) == &static_cast<Owner&>(*this))
 					{
-						normal_molecules.emplace_back(md->GetPosition());
+						AddNormalDiffusionMolecule(md->GetPosition());
+						//normal_molecules.emplace_back(md->GetPosition());
 					}
 					// if the owner is another grid, meso region or adsorbing surface add as recent molecule
 					else
@@ -366,7 +378,7 @@ namespace accord::microscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					Vec3d subvolume_length = box.GetLength() / n_subvolumes;
-					subvolumes.emplace_back(box.GetOrigin() + i * subvolume_length, subvolume_length, this, Environment::GetNumberOfMoleculeTypes());
+					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, subvolume_length, this, Environment::GetNumberOfMoleculeTypes());
 				}
 			}
 		}
@@ -415,6 +427,7 @@ namespace accord::microscopic
 						if (subvolume2 != nullptr)
 						{
 							subvolume->LinkSibling(*subvolume2);
+							//LOG_INFO("sub id {}, {}", subvolume->GetMoleculeID(), subvolume2->GetMoleculeID());
 						}
 					}
 				}

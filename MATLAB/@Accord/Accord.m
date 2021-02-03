@@ -449,7 +449,7 @@ classdef Accord
         function file = importCountBinary(filePath)
             fileID_count = fopen(filePath,'r');
             % uint64 for 64 bit and uint32 for 32 bit
-            file = fread(fileID_count, 'uint64');
+            file = fread(fileID_count, 'int');
             fclose(fileID_count);
         end
 
@@ -459,7 +459,7 @@ classdef Accord
 
             fileID_count = fopen(c_filePath,'r');
             % uint64 for 64 bit and uint32 for 32 bit
-            file.c = fread(fileID_count, 'uint64');
+            file.c = fread(fileID_count, 'int');
 
             fclose(fileID_count);
             fclose(fileID_positions);

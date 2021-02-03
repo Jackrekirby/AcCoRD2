@@ -11,7 +11,7 @@ namespace accord::microscopic
 		: reactant_a(reactant_a), reactant_b(reactant_b), SecondOrderReaction(products, binding_radius, unbinding_radius), 
 		reactant_a_grid(&(region->GetGrid(reactant_a)))
 	{
-
+		LOG_INFO("binding radius = {}, {}", binding_radius, unbinding_radius);
 	}
 
 	void TwoReactantSecondOrderReaction::CalculateReactions(double current_time)

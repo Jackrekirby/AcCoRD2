@@ -403,7 +403,7 @@ int main()
 
 	using namespace accord;
 	//SplitShapeName("RectSurface");
-	Run("C:/dev/AcCoRD2/configs/simple_box.json");
+	Run("C:/dev/AcCoRD2/configs/bimolecular_reactions.json");
 
 	//shape::collision::Cylinder cylinder({ 0, 0, 0 }, 1, 5, Axis3D::x);
 

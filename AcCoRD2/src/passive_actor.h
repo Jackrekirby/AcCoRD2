@@ -79,7 +79,7 @@ namespace accord
 		virtual const PassiveActorShape* const GetShape() const = 0;
 	private:
 		std::vector<OutputBinaryVectors<Vec3d>> position_files;
-		std::vector<OutputBinarySingles<size_t>> count_files;
+		std::vector<OutputBinarySingles<int>> count_files;
 		std::vector<OutputBinarySingles<double>> time_files;
 
 		std::vector<TypedMicroscopicSubvolumes> enveloped_microscopic_subvolumes;
@@ -98,15 +98,15 @@ namespace accord
 
 		void AddMicroscopicSubvolumes(const MoleculeIDs& molecule_ids, const MicroscopicRegionIDs& region_ids);
 
-		void ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts);
+		void ObserveEnvelopedMicroscopicSubvolumes(std::vector<int>& counts);
 
-		void ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts);
+		void ObservePartialMicroscopicSubvolumes(std::vector<int>& counts);
 
 		void AddMesoscopicSubvolumes(const MesoscopicRegionIDs& region_ids);
 
-		void ObserveEnvelopedMesoscopicSubvolumes(std::vector<size_t>& counts);
+		void ObserveEnvelopedMesoscopicSubvolumes(std::vector<int>& counts);
 
-		void ObservePartialMesoscopicSubvolumes(std::vector<size_t>& counts);
+		void ObservePartialMesoscopicSubvolumes(std::vector<int>& counts);
 
 	protected:
 		void CreateFiles();

@@ -1058,11 +1058,12 @@ namespace accord
 			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
 			int reaction_rate = reaction["ReactionRate"].get<int>();
 			double binding_radius = reaction["BindingRadius"].get<double>();
+			LOG_INFO("binding radius = {}", binding_radius);
 			double unbinding_radius = reaction["UnBindingRadius"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
 			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);
 
-			ReactionManager::AddSecondOrderReaction(reactant_a, reactant_b, products, reaction_rate, binding_radius, unbinding_radius, region_list.microscopic_ids, region_list.mesoscopic_ids);
+			ReactionManager::AddSecondOrderReaction(reactant_a, reactant_b, products, binding_radius, unbinding_radius, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
 	}
 

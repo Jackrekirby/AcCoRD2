@@ -48,6 +48,8 @@ namespace accord::microscopic
 
 		void AddMolecule(const Vec3d& position);
 
+		void AddNormalDiffusionMolecule(const Vec3d& position);
+
 		void AddMolecule(const Vec3d& position, double time);
 
 		// Add normal molecule at random position

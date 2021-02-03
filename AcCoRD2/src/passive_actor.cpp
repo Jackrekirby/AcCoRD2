@@ -68,7 +68,7 @@ namespace accord
 	void PassiveActor::Run()
 	{
 		if (record_time) time_files.begin()->Write(GetEventTime());
-		std::vector<size_t> counts(Environment::GetNumberOfMoleculeTypes(), 0);
+		std::vector<int> counts(Environment::GetNumberOfMoleculeTypes(), 0);
 		ObserveEnvelopedMicroscopicSubvolumes(counts);
 		ObservePartialMicroscopicSubvolumes(counts);
 
@@ -78,6 +78,7 @@ namespace accord
 		int id = 0;
 		for (auto& count : counts)
 		{
+			//LOG_INFO("{}", count);
 			count_files.at(id).Write(count);
 			id++;
 		}
@@ -184,7 +185,7 @@ namespace accord
 		}
 	}
 
-	void PassiveActor::ObserveEnvelopedMicroscopicSubvolumes(std::vector<size_t>& counts)
+	void PassiveActor::ObserveEnvelopedMicroscopicSubvolumes(std::vector<int>& counts)
 	{
 		int id = 0;
 		// get all enveloped subvolumes of a given type
@@ -192,31 +193,32 @@ namespace accord
 		{
 			for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
 			{
-			
-					std::vector<Vec3d> positions;
-					// iterate through each subvolume all of the same type and get positions
-					for (auto& subvolume : typed_subvolumes.subvolumes)
+				std::vector<Vec3d> positions;
+				// iterate through each subvolume all of the same type and get positions
+				for (auto& subvolume : typed_subvolumes.subvolumes)
+				{
+					for (auto& molecule : subvolume->GetNormalMolecules())
 					{
-						for (auto& molecule : subvolume->GetNormalMolecules())
-						{
-							//LOG_ERROR(molecule.GetPosition());
-							positions.emplace_back(molecule.GetPosition());
-						}
+						//LOG_ERROR(molecule.GetPosition());
+						positions.emplace_back(molecule.GetPosition());
+					}
 
-						for (auto& molecule : subvolume->GetRecentMolecules())
-						{
-							//LOG_WARN(molecule.GetPosition());
-							positions.emplace_back(molecule.GetPosition());
-						}
-					}
-					// write positions all of the same molecule type to file
-					if (positions.size() != 0)
+					for (auto& molecule : subvolume->GetRecentMolecules())
 					{
-						position_files.at(id).Write(positions);
+						//LOG_WARN(molecule.GetPosition());
+						positions.emplace_back(molecule.GetPosition());
 					}
-					counts.at(id) += positions.size();
-					positions.clear();
-					id++;
+				}
+				// write positions all of the same molecule type to file
+				if (positions.size() != 0)
+				{
+					position_files.at(id).Write(positions);
+				}
+				//LOG_INFO("{} {} {}", counts.at(id), positions.size(), static_cast<int>(positions.size()));
+				counts.at(id) += static_cast<int>(positions.size());
+				//LOG_INFO("{} {} {}", counts.at(id), positions.size(), static_cast<int>(positions.size()));
+				positions.clear();
+				id++;
 			}
 		}
 		else
@@ -240,7 +242,7 @@ namespace accord
 		}
 	}
 
-	void PassiveActor::ObservePartialMicroscopicSubvolumes(std::vector<size_t>& counts)
+	void PassiveActor::ObservePartialMicroscopicSubvolumes(std::vector<int>& counts)
 	{
 		MoleculeID id = 0;
 		// get all partial subvolumes of a given type
@@ -273,13 +275,13 @@ namespace accord
 			{
 				position_files.at(id).Write(positions);
 			}
-			counts.at(id) += positions.size();
+			counts.at(id) += static_cast<int>(positions.size());
 			positions.clear();
 			id++;
 		}
 	}
 
-	void PassiveActor::ObserveEnvelopedMesoscopicSubvolumes(std::vector<size_t>& counts)
+	void PassiveActor::ObserveEnvelopedMesoscopicSubvolumes(std::vector<int>& counts)
 	{
 		for (MoleculeID id : molecule_ids)
 		{
@@ -299,12 +301,12 @@ namespace accord
 			{
 				position_files.at(id).Write(positions);
 			}
-			counts.at(id) += positions.size();
+			counts.at(id) += static_cast<int>(positions.size());
 			positions.clear();
 		}
 	}
 
-	void PassiveActor::ObservePartialMesoscopicSubvolumes(std::vector<size_t>& counts)
+	void PassiveActor::ObservePartialMesoscopicSubvolumes(std::vector<int>& counts)
 	{
 		for (MoleculeID id : molecule_ids)
 		{
@@ -327,7 +329,7 @@ namespace accord
 			{
 				position_files.at(id).Write(positions);
 			}
-			counts.at(id) += positions.size();
+			counts.at(id) += static_cast<int>(positions.size());
 			positions.clear();
 		}
 	}

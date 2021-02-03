@@ -138,7 +138,7 @@ namespace accord
 
 	bool BinaryToJson::ConvertMoleculeCounts(const std::string& file_path)
 	{
-		std::vector<size_t> counts = ReadBinaryAsVector<size_t>(file_path);
+		std::vector<int> counts = ReadBinaryAsVector<int>(file_path);
 		std::string json_file_path = ChangeBinForJsonFileExtension(file_path);
 		return WriteJson(json_file_path, Json(counts));
 	}
@@ -146,12 +146,12 @@ namespace accord
 	bool BinaryToJson::ConvertMoleculePositions(const std::string& positions_file_path, const std::string& count_file_path)
 	{
 		std::vector<Vec3d> positions = ReadBinaryAsVector<Vec3d>(positions_file_path);
-		std::vector<size_t> counts = ReadBinaryAsVector<size_t>(count_file_path);
+		std::vector<int> counts = ReadBinaryAsVector<int>(count_file_path);
 
 		Json json;
-		size_t count_sum = 0;
+		int count_sum = 0;
 
-		for (size_t i = 0; i < counts.size(); i++)
+		for (int i = 0; i < counts.size(); i++)
 		{
 			auto& count = counts.at(i);
 			json[i] = std::vector<Vec3d>(positions.begin() + count_sum, positions.begin() + count_sum + count);
