@@ -50,11 +50,17 @@ namespace accord::microscopic
 
 		Grid& GetGrid();
 
+		std::vector<bool>& GetHasReacted();
+
+		std::vector<NormalMolecule>& GetNonReactedNormalMolecules();
+
 	private:
 		Grid* grid; // the grid which owns this subvolume
 		shape::relation::Box box;
 		std::vector<NormalMolecule> normal_molecules;
 		std::vector<RecentMolecule> recent_molecules;
+		std::vector<bool> has_reacted;
+		std::vector<NormalMolecule> non_reacted_normal_molecules;
 
 		// temporary normal molecules which is written to during diffusion
 		std::vector<NormalMolecule> normal_diffusion_molecules;

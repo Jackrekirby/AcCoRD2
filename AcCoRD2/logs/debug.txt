@@ -1,116 +1,35 @@
-[22:10:20.862] [info] config_importer.cpp:445 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 3
-[22:10:20.877] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
-[22:10:20.880] [info] microscopic_grid.cpp:22 accord::microscopic::Grid::Grid() n_subvolumes = [3, 3, 3]
-[22:10:20.889] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.889] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.890] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.890] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.890] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.892] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.894] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.894] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.895] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.895] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.895] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.896] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.896] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.897] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.905] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.910] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.911] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.913] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.920] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.923] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.925] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.928] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.931] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.938] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.940] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.943] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.945] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.949] [info] microscopic_grid.cpp:22 accord::microscopic::Grid::Grid() n_subvolumes = [3, 3, 3]
-[22:10:20.954] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.957] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.960] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.962] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.964] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.971] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.973] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.975] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.976] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.977] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:20.989] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.023] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.041] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.045] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.047] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.048] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.051] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.056] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.058] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.062] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.065] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.069] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.071] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.073] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.075] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.078] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.080] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.084] [info] microscopic_grid.cpp:22 accord::microscopic::Grid::Grid() n_subvolumes = [3, 3, 3]
-[22:10:21.086] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.088] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.090] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.091] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.092] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.092] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.093] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.093] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.094] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.095] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.095] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.096] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.096] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.099] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.102] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.103] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.103] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.104] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0.333333], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.105] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.105] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.106] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.106] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.107] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.110] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.333333, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.110] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.111] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.333333, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.112] [info] microscopic_subvolume.cpp:10 accord::microscopic::Subvolume::Subvolume() grid origin = [0.666667, 0.666667, 0.666667], length = [0.333333, 0.333333, 0.333333]
-[22:10:21.113] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
-[22:10:21.113] [info] config_importer.cpp:644 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
-[22:10:21.113] [info] config_importer.cpp:647 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
-[22:10:21.117] [info] config_importer.cpp:650 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
-[22:10:21.117] [info] config_importer.cpp:897 accord::ConfigImporter::CreateActiveActors() micro id = 0
-[22:10:21.118] [info] config_importer.cpp:910 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
-[22:10:21.121] [info] config_importer.cpp:921 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
-[22:10:21.122] [info] config_importer.cpp:929 accord::ConfigImporter::CreateActiveActors() Active actor shape = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
-[22:10:21.123] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 200.0, release = 200.0, slot = 200.0
-[22:10:21.124] [info] config_importer.cpp:653 accord::ConfigImporter::CreateEnvironment() Importing Relationships
-[22:10:21.124] [info] config_importer.cpp:656 accord::ConfigImporter::CreateEnvironment() Importing Reactions
-[22:10:21.124] [info] config_importer.cpp:1032 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
-[22:10:21.125] [info] config_importer.cpp:1042 accord::ConfigImporter::CreateReactions() First Order Reactions
-[22:10:21.126] [info] config_importer.cpp:1053 accord::ConfigImporter::CreateReactions() Second Order Reactions
-[22:10:21.126] [info] config_importer.cpp:1061 accord::ConfigImporter::CreateReactions() binding radius = 0.01
-[22:10:21.127] [info] main.cpp:379 accord::Run() {
+[23:05:25.323] [info] config_importer.cpp:445 accord::ConfigImporter::ValidateZerothOrderReactions() n_molecule_types = 3
+[23:05:25.336] [info] config_importer.cpp:638 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Regions
+[23:05:25.336] [info] microscopic_grid.cpp:22 accord::microscopic::Grid::Grid() n_subvolumes = [1, 1, 1]
+[23:05:25.336] [info] microscopic_grid.cpp:22 accord::microscopic::Grid::Grid() n_subvolumes = [1, 1, 1]
+[23:05:25.338] [info] microscopic_grid.cpp:22 accord::microscopic::Grid::Grid() n_subvolumes = [1, 1, 1]
+[23:05:25.341] [info] config_importer.cpp:641 accord::ConfigImporter::CreateEnvironment() Importing Microscopic Surfaces
+[23:05:25.342] [info] config_importer.cpp:644 accord::ConfigImporter::CreateEnvironment() Importing Mesoscopic Regions
+[23:05:25.342] [info] config_importer.cpp:647 accord::ConfigImporter::CreateEnvironment() Importing PassiveActors
+[23:05:25.348] [info] config_importer.cpp:650 accord::ConfigImporter::CreateEnvironment() Importing ActiveActors
+[23:05:25.349] [info] config_importer.cpp:897 accord::ConfigImporter::CreateActiveActors() micro id = 0
+[23:05:25.349] [info] config_importer.cpp:910 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
+[23:05:25.350] [info] config_importer.cpp:921 accord::ConfigImporter::CreateActiveActors() box = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
+[23:05:25.350] [info] config_importer.cpp:929 accord::ConfigImporter::CreateActiveActors() Active actor shape = origin = [0, 0, 0], length = [1, 1, 1], end = [1, 1, 1]
+[23:05:25.351] [info] active_actor_non_random.cpp:17 accord::ActiveActorNonRandom::ActiveActorNonRandom() action = 1.0, release = 1.0, slot = 1.0
+[23:05:25.352] [info] config_importer.cpp:653 accord::ConfigImporter::CreateEnvironment() Importing Relationships
+[23:05:25.352] [info] config_importer.cpp:656 accord::ConfigImporter::CreateEnvironment() Importing Reactions
+[23:05:25.358] [info] config_importer.cpp:1032 accord::ConfigImporter::CreateReactions() Zeroth Order Reactions
+[23:05:25.359] [info] config_importer.cpp:1042 accord::ConfigImporter::CreateReactions() First Order Reactions
+[23:05:25.359] [info] config_importer.cpp:1053 accord::ConfigImporter::CreateReactions() Second Order Reactions
+[23:05:25.359] [info] config_importer.cpp:1061 accord::ConfigImporter::CreateReactions() binding radius = 0.01
+[23:05:25.360] [info] main.cpp:379 accord::Run() {
     "SaveToFolder": "D:/dev/simulation",
     "NumberOfRealisations": 1,
-    "FinalSimulationTime": 200,
+    "FinalSimulationTime": 1,
     "RandomNumberSeed": 1,
     "NumberOfMoleculeTypes": 3,
     "ObserveEachRegion": true,
     "G": {
         "TimeStep": 0.05,
         "DiffusionCoefficients": [ 0.02, 0.02, 0.02 ],
-        "NofS": [ 3, 3, 3 ],
-        "NumberOfSubvolumes": [ [ 3, 3, 3 ], [ 3, 3, 3 ], [ 3, 3, 3 ] ],
+        "NofS": [ 1, 1, 1 ],
+        "NumberOfSubvolumes": [ [ 1, 1, 1 ], [ 1, 1, 1 ], [ 1, 1, 1 ] ],
         "SurfaceTypesNone": [ "None", "None", "None" ],
         "SurfaceTypesReflecting": [ "Reflecting", "Reflecting", "Reflecting" ],
         "RegionPriority": 0,
@@ -126,7 +45,7 @@
             },
             "SurfaceTypes": [ "Reflecting", "Reflecting", "Reflecting" ],
             "DiffusionCoefficients": [ 0.02, 0.02, 0.02 ],
-            "NumberOfSubvolumes": [ [ 3, 3, 3 ], [ 3, 3, 3 ], [ 3, 3, 3 ] ],
+            "NumberOfSubvolumes": [ [ 1, 1, 1 ], [ 1, 1, 1 ], [ 1, 1, 1 ] ],
             "TimeStep": 0.05,
             "Priority": 0
         } ],
@@ -140,14 +59,14 @@
     "ActiveActors": [ {
             "StartTime": 0,
             "Priority": 2,
-            "ActionInterval": 200,
-            "ReleaseInterval": 200,
-            "ModulationStrength": 10,
+            "ActionInterval": 1,
+            "ReleaseInterval": 1,
+            "ModulationStrength": 1000,
             "MoleculeTypesToRelease": [ 1, 1, 0 ],
             "RegionsToActIn": [ "Box" ],
             "Type": "NonRandom",
             "SymbolSize": 1,
-            "SlotInterval": 200,
+            "SlotInterval": 1,
             "BitSequence": [ 1 ]
         } ],
     "SecondOrderReactions": [ {
@@ -165,11 +84,11 @@
     "ZerothOrderReactions": null,
     "FirstOrderReactions": null
 }
-[22:10:21.128] [info] microscopic_second_order_reaction.cpp:14 accord::microscopic::TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction() binding radius = 0.01, 0.01
-[22:10:21.128] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
-[22:10:21.129] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
-[22:10:21.132] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
-[22:10:21.134] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 10
-[22:10:23.979] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
-[22:10:23.979] [info] main.cpp:384 accord::Run() Run time = 2.851
-[22:10:23.980] [info] main.cpp:385 accord::Run() Cleaning up
+[23:05:25.362] [info] microscopic_second_order_reaction.cpp:14 accord::microscopic::TwoReactantSecondOrderReaction::TwoReactantSecondOrderReaction() binding radius = 0.01, 0.01
+[23:05:25.367] [info] environment.cpp:246 accord::Environment::RunSimulation() Realisation 0
+[23:05:25.367] [info] active_actor_non_random.cpp:66 accord::ActiveActorNonRandom::GenerateSymbol() bit = 1, symbol = 1
+[23:05:25.368] [info] active_actor_non_random.cpp:69 accord::ActiveActorNonRandom::GenerateSymbol() symbol_index = 0
+[23:05:25.369] [info] active_actor_non_random.cpp:43 accord::ActiveActorNonRandom::Run() Releasing Molecule 1000
+[23:05:26.996] [info] active_actor_non_random.cpp:29 accord::ActiveActorNonRandom::Run() no more symbols
+[23:05:26.997] [info] main.cpp:384 accord::Run() Run time = 1.6300000000000001
+[23:05:26.998] [info] main.cpp:385 accord::Run() Cleaning up

@@ -101,9 +101,13 @@ namespace accord::microscopic
 
 	void SecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume& s1, Subvolume& s2, double current_time)
 	{
+		auto& has_reacted1 = s1.GetHasReacted();
+		auto& has_reacted2 = s2.GetHasReacted();
+		has_reacted1.resize(s1.GetNormalMolecules().size(), false);
+		has_reacted2.resize(s2.GetNormalMolecules().size(), false);
 		//if (&s1 == &s2) LOG_INFO("SAME SUBVOLUMES");
-		std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
-		std::vector<bool> has_reacted2(s2.GetNormalMolecules().size(), false);
+		//std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
+		//std::vector<bool> has_reacted2(s2.GetNormalMolecules().size(), false);
 		int n_reactions = 0;
 		int i1 = 0, i2 = 0;
 		for (auto& m1 : s1.GetNormalMolecules())
@@ -130,9 +134,12 @@ namespace accord::microscopic
 		}
 
 		// keep the normal molecules per subvolume which did not react
-		std::vector<NormalMolecule> ms1, ms2;
-		ms1.reserve(s1.GetNormalMolecules().size() - n_reactions);
-		ms2.reserve(s2.GetNormalMolecules().size() - n_reactions);
+		auto& ms1 = s1.GetNonReactedNormalMolecules();
+		auto& ms2 = s2.GetNonReactedNormalMolecules();
+		ms1.clear();
+		ms2.clear();
+		//ms1.reserve(s1.GetNormalMolecules().size() - n_reactions);
+		//ms2.reserve(s2.GetNormalMolecules().size() - n_reactions);
 		int i = 0;
 		for (auto& m1 : s1.GetNormalMolecules())
 		{
