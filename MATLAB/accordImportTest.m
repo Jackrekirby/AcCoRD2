@@ -15,8 +15,9 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\hybrid.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\simple_box.json";
 config.Json = jsondecode(fileread(config.FilePath));
+% simulation = importFiles(simulationDir, seeds, realisations, trackImporting)
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
 %% Draw Shapes

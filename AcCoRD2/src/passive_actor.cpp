@@ -188,32 +188,55 @@ namespace accord
 	{
 		int id = 0;
 		// get all enveloped subvolumes of a given type
-		for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
+		if (record_positions)
 		{
-			std::vector<Vec3d> positions;
-			// iterate through each subvolume all of the same type and get positions
-			for (auto& subvolume : typed_subvolumes.subvolumes)
+			for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
 			{
-				for (auto& molecule : subvolume->GetNormalMolecules())
-				{
-					//LOG_ERROR(molecule.GetPosition());
-					positions.emplace_back(molecule.GetPosition());
-				}
+			
+					std::vector<Vec3d> positions;
+					// iterate through each subvolume all of the same type and get positions
+					for (auto& subvolume : typed_subvolumes.subvolumes)
+					{
+						for (auto& molecule : subvolume->GetNormalMolecules())
+						{
+							//LOG_ERROR(molecule.GetPosition());
+							positions.emplace_back(molecule.GetPosition());
+						}
 
-				for (auto& molecule : subvolume->GetRecentMolecules())
-				{
-					//LOG_WARN(molecule.GetPosition());
-					positions.emplace_back(molecule.GetPosition());
-				}
+						for (auto& molecule : subvolume->GetRecentMolecules())
+						{
+							//LOG_WARN(molecule.GetPosition());
+							positions.emplace_back(molecule.GetPosition());
+						}
+					}
+					// write positions all of the same molecule type to file
+					if (positions.size() != 0)
+					{
+						position_files.at(id).Write(positions);
+					}
+					counts.at(id) += positions.size();
+					positions.clear();
+					id++;
 			}
-			// write positions all of the same molecule type to file
-			if (positions.size() != 0)
+		}
+		else
+		{
+			for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
 			{
-				position_files.at(id).Write(positions);
+				auto& count = counts.at(id);
+				for (auto& subvolume : typed_subvolumes.subvolumes)
+				{
+					for (auto& molecule : subvolume->GetNormalMolecules())
+					{
+						++count;
+					}
+					for (auto& molecule : subvolume->GetRecentMolecules())
+					{
+						++count;
+					}
+				}
+				id++;
 			}
-			counts.at(id) += positions.size();
-			positions.clear();
-			id++;
 		}
 	}
 
