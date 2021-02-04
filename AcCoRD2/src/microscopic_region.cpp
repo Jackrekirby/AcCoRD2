@@ -21,6 +21,7 @@ namespace accord::microscopic
 
 	void Region::Run()
 	{
+		LOG_INFO("Run");
 		// zeroth order reactions
 		for (auto& reaction : zeroth_order_reactions)
 		{

@@ -18,11 +18,71 @@ namespace accord::microscopic
 	{
 		for (auto& subvolume_a : reactant_a_grid->GetSubvolumes())
 		{
-			//LOG_INFO("SubvolumeA id = {}, molecule id = {}", subvolume_a.GetSubvolumeID(), subvolume_a.GetMoleculeID());
+			bool& is_reacting = subvolume_a.GetIsReacting();
+			if (!is_reacting)
+			{
+				is_reacting = true;
+				auto& normal_molecules = subvolume_a.GetNormalMolecules();
+				subvolume_a.GetHasReacted().assign(normal_molecules.size(), false);
+				subvolume_a.GetNonReactedNormalMolecules() = normal_molecules;
+				normal_molecules.clear();
+			}
 			for (auto& subvolume_b : subvolume_a.GetRelation(reactant_b).GetSubvolumes())
 			{
-				//LOG_INFO("SubvolumeB id = {}, molecule id = {}", subvolume_b->GetSubvolumeID(), subvolume_b->GetMoleculeID());
+				bool& is_reacting2 = subvolume_b->GetIsReacting();
+				if (!is_reacting2)
+				{
+					is_reacting2 = true;
+					auto& normal_molecules2 = subvolume_b->GetNormalMolecules();
+					subvolume_b->GetHasReacted().assign(normal_molecules2.size(), false);
+					subvolume_b->GetNonReactedNormalMolecules() = normal_molecules2;
+					normal_molecules2.clear();
+				}
+			}
+		}
+
+		for (auto& subvolume_a : reactant_a_grid->GetSubvolumes())
+		{
+			//LOG_INFO("SubvolumeA id = {}, molecule id = {}, num_molecules = {}", subvolume_a.GetSubvolumeID(), subvolume_a.GetMoleculeID(), subvolume_a.GetNormalMolecules().size());
+			for (auto& subvolume_b : subvolume_a.GetRelation(reactant_b).GetSubvolumes())
+			{
+				//LOG_INFO("SubvolumeB id = {}, molecule id = {}, num_molecules = {}", subvolume_b->GetSubvolumeID(), subvolume_b->GetMoleculeID(), subvolume_b->GetNormalMolecules().size());
 				CompareMoleculesInSubvolumes(subvolume_a, *subvolume_b, current_time);
+			}
+		}
+
+		for (auto& subvolume_a : reactant_a_grid->GetSubvolumes())
+		{
+			bool& is_reacting = subvolume_a.GetIsReacting();
+			if (is_reacting)
+			{
+				is_reacting = false;
+				auto& ms1 = subvolume_a.GetNormalMolecules();
+				auto& has_reacted1 = subvolume_a.GetHasReacted();
+				int i = 0;
+				for (auto& m1 : subvolume_a.GetNonReactedNormalMolecules())
+				{
+					if (!has_reacted1.at(i)) ms1.emplace_back(m1);
+					i++;
+				}
+				i = 0;
+			}
+			for (auto& subvolume_b : subvolume_a.GetRelation(reactant_b).GetSubvolumes())
+			{
+				bool& is_reacting2 = subvolume_b->GetIsReacting();
+				if (is_reacting2)
+				{
+					is_reacting2 = false;
+					auto& ms2 = subvolume_b->GetNormalMolecules();
+					auto& has_reacted2 = subvolume_b->GetHasReacted();
+					int i = 0;
+					for (auto& m2 : subvolume_b->GetNonReactedNormalMolecules())
+					{
+						if (!has_reacted2.at(i)) ms2.emplace_back(m2);
+						i++;
+					}
+					i = 0;
+				}
 			}
 		}
 	}
@@ -103,69 +163,71 @@ namespace accord::microscopic
 
 	void SecondOrderReaction::CompareMoleculesInSubvolumes(Subvolume& s1, Subvolume& s2, double current_time)
 	{
+		//LOG_INFO("Compare Molecules");
 		auto& has_reacted1 = s1.GetHasReacted();
 		auto& has_reacted2 = s2.GetHasReacted();
-		has_reacted1.resize(s1.GetNormalMolecules().size());
-		has_reacted2.resize(s2.GetNormalMolecules().size());
+		//has_reacted1.resize(s1.GetNormalMolecules().size());
+		//has_reacted2.resize(s2.GetNormalMolecules().size());
 
-		for (auto&& r : has_reacted1)
-		{
-			r = false;
-		}
+		//for (auto&& r : has_reacted1)
+		//{
+		//	r = false;
+		//}
 
-		for (auto&& r : has_reacted2)
-		{
-			r = false;
-		}
+		//for (auto&& r : has_reacted2)
+		//{
+		//	r = false;
+		//}
 		//if (&s1 == &s2) LOG_INFO("SAME SUBVOLUMES");
 		//std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
 		//std::vector<bool> has_reacted2(s2.GetNormalMolecules().size(), false);
-		int n_reactions = 0;
-		int i1 = 0, i2 = 0;
-		for (auto& m1 : s1.GetNormalMolecules())
+		size_t i1 = 0, i2 = 0;
+		for (auto& m1 : s1.GetNonReactedNormalMolecules())
 		{
-			for (auto& m2 : s2.GetNormalMolecules())
+			if (!has_reacted1.at(i1))
 			{
-				//LOG_INFO("checking molecules");
-				//LOG_INFO("comparing molecules");
-				if (!has_reacted2.at(i2))
+				for (auto& m2 : s2.GetNonReactedNormalMolecules())
 				{
-					if (AttemptToReactMolecules(m1, m2, s1, s2, current_time))
+					//LOG_INFO("checking molecules");
+					//LOG_INFO("comparing molecules");
+					if (!has_reacted2.at(i2))
 					{
-						//LOG_INFO("molecule reacted in different subvolume");
-						has_reacted1.at(i1) = true;
-						has_reacted2.at(i2) = true;
-						n_reactions++;
-						break;
+						if (AttemptToReactMolecules(m1, m2, s1, s2, current_time))
+						{
+							//LOG_INFO("molecule reacted in different subvolume");
+							has_reacted1.at(i1) = true;
+							has_reacted2.at(i2) = true;
+							break;
+						}
 					}
+					i2++;
 				}
-				i2++;
+				i2 = 0;
 			}
-			i2 = 0;
 			i1++;
 		}
 
-		// keep the normal molecules per subvolume which did not react
-		auto& ms1 = s1.GetNonReactedNormalMolecules();
-		auto& ms2 = s2.GetNonReactedNormalMolecules();
-		ms1.clear();
-		ms2.clear();
-		//ms1.reserve(s1.GetNormalMolecules().size() - n_reactions);
-		//ms2.reserve(s2.GetNormalMolecules().size() - n_reactions);
-		int i = 0;
-		for (auto& m1 : s1.GetNormalMolecules())
-		{
-			if (!has_reacted1.at(i)) ms1.emplace_back(m1);
-			i++;
-		}
-		i = 0;
-		for (auto& m2 : s2.GetNormalMolecules())
-		{
-			if (!has_reacted2.at(i)) ms2.emplace_back(m2);
-			i++;
-		}
-		s1.GetNormalMolecules() = ms1;
-		s2.GetNormalMolecules() = ms2;
+		//// keep the normal molecules per subvolume which did not react
+		//auto& ms1 = s1.GetNonReactedNormalMolecules();
+		//auto& ms2 = s2.GetNonReactedNormalMolecules();
+		//ms1.clear();
+		//ms2.clear();
+		////ms1.reserve(s1.GetNormalMolecules().size() - n_reactions);
+		////ms2.reserve(s2.GetNormalMolecules().size() - n_reactions);
+		//int i = 0;
+		//for (auto& m1 : s1.GetNormalMolecules())
+		//{
+		//	if (!has_reacted1.at(i)) ms1.emplace_back(m1);
+		//	i++;
+		//}
+		//i = 0;
+		//for (auto& m2 : s2.GetNormalMolecules())
+		//{
+		//	if (!has_reacted2.at(i)) ms2.emplace_back(m2);
+		//	i++;
+		//}
+		//s1.GetNormalMolecules() = ms1;
+		//s2.GetNormalMolecules() = ms2;
 
 		
 	}
