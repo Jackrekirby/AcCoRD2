@@ -332,8 +332,6 @@ namespace accord::microscopic
 		{
 			for (auto& s2 : grid.subvolumes)
 			{
-
-
 				//LOG_INFO("{}, {}", s1.GetMoleculeID(), s2.GetMoleculeID());
 				//LOG_INFO(grid.GetMoleculeID());
 				s1.Link(s2);
@@ -433,6 +431,48 @@ namespace accord::microscopic
 							subvolume->LinkSibling(*subvolume2);
 							//LOG_INFO("sub id {}, {}", subvolume->GetMoleculeID(), subvolume2->GetMoleculeID());
 						}
+					}
+				}
+			}
+		}
+	}
+
+	void Grid::LinkCousinSubvolumes(Grid& grid)
+	{
+		Vec3i i;
+		for (i.z = 0; i.z < n_subvolumes.z; i.z++)
+		{
+			for (i.y = 0; i.y < n_subvolumes.y; i.y++)
+			{
+				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
+				{
+					LinkCousinSubvolumes(i, grid);
+				}
+			}
+		}
+	}
+
+	void Grid::LinkCousinSubvolumes(const Vec3i& i, Grid& grid)
+	{
+		// should always be passing a valid subvolume;
+		auto subvolume = GetSubvolumeIfExists(i);
+		if (subvolume == nullptr)
+		{
+			LOG_CRITICAL("Index of subvolume is out of range. Index = [{}]", i);
+			throw std::exception();
+		}
+
+		Vec3i j;
+		for (j.z = -1; j.z <= 1; j.z++)
+		{
+			for (j.y = -1; j.y <= 1; j.y++)
+			{
+				for (j.x = -1; j.x <= 1; j.x++)
+				{
+					auto subvolume2 = grid.GetSubvolumeIfExists(i + j);
+					if (subvolume2 != nullptr)
+					{
+						subvolume->LinkCousin(*subvolume2);
 					}
 				}
 			}

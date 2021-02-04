@@ -2,6 +2,7 @@
 #include "vec3d.h"
 #include "box_faces.h"
 #include "basic_shape_3d.h"
+#include "vec3i.h"
 
 namespace accord::shape::basic
 {
@@ -20,7 +21,11 @@ namespace accord::shape::basic
 
 		Box(const RectSurface& rect_surface);
 
+		std::vector<int> GetIndices(const Box& other, const Vec3i& n_subvolumes) const;
+
 		Box GenerateBoundingBox() const;
+
+		Box GenerateOverlapBox(const Box& box) const;
 
 		Box GenerateBoundingBox(const Box& box) const;
 

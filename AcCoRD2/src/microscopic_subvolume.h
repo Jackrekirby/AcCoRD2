@@ -34,6 +34,8 @@ namespace accord::microscopic
 		// Only one sibling needs to know about the relation so two subvolumes are only checked against eachother once
 		void LinkSibling(Subvolume& subvolume);
 
+		void LinkCousin(Subvolume& subvolume);
+
 		// link a subvolume not owned by the same grid (thus molecule id needs to be provided)
 		void Link(Subvolume& subvolume);
 

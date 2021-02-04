@@ -15,11 +15,13 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\bimolecular_reactions.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\bimolecular_reactions1.json";
 config.Json = jsondecode(fileread(config.FilePath));
 % simulation = importFiles(simulationDir, seeds, realisations, trackImporting)
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
+clc; figure;
+Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
 %% Draw Shapes
 figure;
 Accord.plotShapes(config.FilePath, [1, 0]);
@@ -82,12 +84,6 @@ Accord.plotCountForMoleculeType(sim, 1, Inf, Inf);
 %% Force all Figures and Files To Close 
 close all force
 fclose('all')
-
-%% 
-clc;
-
-figure;
-plot(sim.s(1).r(1).p(1).t, sim.s(1).r(1).p(1).m(1).c)
 
 
 

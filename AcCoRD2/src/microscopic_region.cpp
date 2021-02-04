@@ -228,8 +228,9 @@ namespace accord::microscopic
 			// ignore unintended copy warning for g2 = g1
 			for (auto g2 = g1 + 1; g2 != grids.end(); ++g2)
 			{
-				LOG_INFO("Linking {} to {}", g1->GetMoleculeID(), g2->GetMoleculeID());
-				g1->LinkGrid(*g2);
+				//LOG_INFO("Linking {} to {}", g1->GetMoleculeID(), g2->GetMoleculeID());
+				//g1->LinkGrid(*g2);
+				g1->LinkCousinSubvolumes(*g2);
 			}
 		}
 	}

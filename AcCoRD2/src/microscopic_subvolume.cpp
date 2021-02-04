@@ -56,6 +56,13 @@ namespace accord::microscopic
 		}
 	}
 
+	void Subvolume::LinkCousin(Subvolume& subvolume)
+	{
+		GetRelation(subvolume.GetMoleculeID()).Add(subvolume);
+		//LOG_INFO("CousinA id = {}, molecule id = {}", subvolume_id, GetMoleculeID());
+		//LOG_INFO("CousinB id = {}, molecule id = {}\n", subvolume.subvolume_id, subvolume.GetMoleculeID());
+	}
+
 	// link a subvolume not owned by the same grid
 	void Subvolume::Link(Subvolume& subvolume)
 	{

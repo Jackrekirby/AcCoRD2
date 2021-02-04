@@ -1,14 +1,14 @@
 {
    "SaveToFolder": "D:/dev/simulation",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":1,
+   "FinalSimulationTime":5,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":3,
    "ObserveEachRegion":true,
    "G":{
-      "TimeStep":0.1,
+      "TimeStep":0.05,
 	  "DiffusionCoefficients":[0.02, 0.02, 0.02],
-	  "NofS":[10, 10, 10],
+	  "NofS":[1, 1, 1],
 	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS" ],
 	  "SurfaceTypesNone":[ "None" , "None", "None"],
 	  "SurfaceTypesReflecting":[ "Reflecting" ,  "Reflecting", "Reflecting" ],
@@ -58,10 +58,10 @@
       {
          "ReactantA":0,
          "ReactantB":1,
-         "Products":[0, 0, 0],
+         "Products":[0, 0, 1],
          "ReactionRate":1,
-         "BindingRadius":0.0,
-         "UnBindingRadius":0.0,
+         "BindingRadius":0.01,
+         "UnBindingRadius":0,
          "OccurInRegions":[ "Box" ]
       }
    ]

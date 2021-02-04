@@ -36,9 +36,46 @@ namespace accord::shape::basic
 
 	}
 
+	std::vector<int> Box::GetIndices(const Box& other, const Vec3i& n_subvolumes) const
+	{
+		Box overlap = GenerateOverlapBox(other);
+		LOG_INFO("Box A: {}, Box B: {}, Overlap Box: {}", *this, other, overlap);
+
+		Vec3d subvolume_length = length / Vec3d(n_subvolumes);
+		
+		Vec3i index_origin = (overlap.origin - origin) / subvolume_length;
+
+		Vec3i index_end = (overlap.end - origin) / subvolume_length;
+		index_end.Clip(Vec3d(0), n_subvolumes - 1);
+
+		LOG_INFO("length: {}, origin: {}, end: {}", subvolume_length, index_origin, index_end);
+
+		Vec3i i;
+		std::vector<int> indices;
+		for (i.z = index_origin.z; i.z <= index_end.z; i.z++)
+		{
+			for (i.y = index_origin.y; i.y <= index_end.y; i.y++)
+			{
+				for (i.x = index_origin.x; i.x <= index_end.x; i.x++)
+				{
+					int index = i.x + i.y * n_subvolumes.x + i.z * n_subvolumes.x * n_subvolumes.y;
+					LOG_INFO("index 3d: {}, 1d: {}, size: {}", i, index, indices.size());
+					indices.emplace_back(index);
+				}
+			}
+		}
+		
+		return indices;
+	}
+
 	Box Box::GenerateBoundingBox() const
 	{
 		return *this;
+	}
+
+	Box Box::GenerateOverlapBox(const Box& box) const
+	{
+		return { Vec3d::Max(origin, box.origin), Vec3d::Min(end, box.end) - Vec3d::Max(origin, box.origin) };
 	}
 
 	Box Box::GenerateBoundingBox(const Box& box) const

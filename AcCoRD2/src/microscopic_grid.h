@@ -117,6 +117,9 @@ namespace accord::microscopic
 			const shape::collision::Collision3D& collision, Grid* owner,
 			SurfaceType surface_type, int cycles, bool allowObstructions);
 
+		// go through each subvolume of the same grid but different molecule type
+		void LinkCousinSubvolumes(Grid& grid);
+
 	private:
 		// need to change to NeighbourAndSurfaceType ...
 		// consider changing GetSurface to GetShape due to confusion of Surface.GetSurface
@@ -150,5 +153,9 @@ namespace accord::microscopic
 
 		// for a given cell check the 26 cells surrounding it and link them if they are not already linked
 		void LinkSiblingSubvolumes(const Vec3i& i);
+
+		// for a given cell check the 26 cells surrounding it and link them if they are not already linked
+		void LinkCousinSubvolumes(const Vec3i& i, Grid& grid);
+
 	};
 }

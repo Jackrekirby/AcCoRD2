@@ -387,6 +387,8 @@ namespace accord
 		LOG_INFO("Run Time = {}s", timer2.Stop());
 		LOG_INFO("Cleaning Memory");
 	}
+
+	
 }
 
 // should low priority relative IsRegion be true for meso?
@@ -400,4 +402,9 @@ namespace accord
 int main()
 {
 	accord::Run("C:/dev/AcCoRD2/configs/bimolecular_reactions1.json");
+	//using namespace accord;
+	//accord::shape::basic::Box a(Vec3d(0), Vec3d(1));
+	//accord::shape::basic::Box b(Vec3d(-0.5), Vec3d(1));
+
+	//a.GetIndices(b, {2, 2, 2});
 }

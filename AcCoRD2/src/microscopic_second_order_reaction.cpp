@@ -105,8 +105,18 @@ namespace accord::microscopic
 	{
 		auto& has_reacted1 = s1.GetHasReacted();
 		auto& has_reacted2 = s2.GetHasReacted();
-		has_reacted1.resize(s1.GetNormalMolecules().size(), false);
-		has_reacted2.resize(s2.GetNormalMolecules().size(), false);
+		has_reacted1.resize(s1.GetNormalMolecules().size());
+		has_reacted2.resize(s2.GetNormalMolecules().size());
+
+		for (auto&& r : has_reacted1)
+		{
+			r = false;
+		}
+
+		for (auto&& r : has_reacted2)
+		{
+			r = false;
+		}
 		//if (&s1 == &s2) LOG_INFO("SAME SUBVOLUMES");
 		//std::vector<bool> has_reacted1(s1.GetNormalMolecules().size(), false);
 		//std::vector<bool> has_reacted2(s2.GetNormalMolecules().size(), false);
