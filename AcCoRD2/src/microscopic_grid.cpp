@@ -327,7 +327,7 @@ namespace accord::microscopic
 	// neighbours. Grid is of same molecule type
 	void Grid::LinkGrid(Grid& grid)
 	{
-		LOG_INFO("Linking {} to {}", GetMoleculeID(), grid.GetMoleculeID());
+		//LOG_INFO("Linking {} to {}", GetMoleculeID(), grid.GetMoleculeID());
 		for (auto& s1 : subvolumes)
 		{
 			auto& b1 = s1.GetBoundingBox();
@@ -338,7 +338,7 @@ namespace accord::microscopic
 			
 			for (auto& i : grid.box.GetIndices(b11, grid.n_subvolumes))
 			{
-				LOG_INFO("{}, {}", s1.GetSubvolumeID(), i);
+				//LOG_INFO("{}, {}", s1.GetSubvolumeID(), i);
 				s1.Link(grid.subvolumes.at(i));
 			}
 			//LOG_INFO(" ");

@@ -1,12 +1,12 @@
 {
    "SaveToFolder": "D:/dev/simulation",
    "NumberOfRealisations":1,
-   "FinalSimulationTime":1.0,
+   "FinalSimulationTime":100.0,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
    "G":{
-      "TimeStep":0.9,
+      "TimeStep":0.05,
 	  "DiffusionCoefficients":[0.02],
 	  "NofS":[5, 5, 5],
 	  "NumberOfSubvolumes":[ "@G:NofS" ],

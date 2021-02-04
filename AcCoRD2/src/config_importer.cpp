@@ -372,7 +372,7 @@ namespace accord
 	{
 		if (config.IsKey("PassiveActors"))
 		{
-			if (j.contains("ObserveEachRegion"))
+			if (j.contains("ObserveEachRegion") && j["ObserveEachRegion"].get<bool>())
 			{
 				JsonKeyPair passive_actors = config.Add("PassiveActors");
 				passive_actors.IsObject();
@@ -758,7 +758,7 @@ namespace accord
 
 	void ConfigImporter::CreatePassiveActors()
 	{
-		if (j.contains("ObserveEachRegion"))
+		if (j.contains("ObserveEachRegion") && j["ObserveEachRegion"].get<bool>())
 		{
 			Json actor = j["PassiveActors"];
 			double start_time = actor["StartTime"].get<double>();

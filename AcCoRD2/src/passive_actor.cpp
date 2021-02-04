@@ -68,19 +68,19 @@ namespace accord
 	void PassiveActor::Run()
 	{
 		if (record_time) time_files.begin()->Write(GetEventTime());
-		std::vector<int> counts(Environment::GetNumberOfMoleculeTypes(), 0);
+		std::vector<int> counts(molecule_ids.size(), 0);
 		ObserveEnvelopedMicroscopicSubvolumes(counts);
 		ObservePartialMicroscopicSubvolumes(counts);
 
 		ObserveEnvelopedMesoscopicSubvolumes(counts);
 		ObservePartialMesoscopicSubvolumes(counts);
 
-		int id = 0;
+		int i = 0;
 		for (auto& count : counts)
 		{
 			//LOG_INFO("{}", count);
-			count_files.at(id).Write(count);
-			id++;
+			count_files.at(i).Write(count);
+			i++;
 		}
 		UpdateEventTime(time_step);
 	}
@@ -187,7 +187,7 @@ namespace accord
 
 	void PassiveActor::ObserveEnvelopedMicroscopicSubvolumes(std::vector<int>& counts)
 	{
-		int id = 0;
+		int i = 0;
 		// get all enveloped subvolumes of a given type
 		if (record_positions)
 		{
@@ -212,20 +212,20 @@ namespace accord
 				// write positions all of the same molecule type to file
 				if (positions.size() != 0)
 				{
-					position_files.at(id).Write(positions);
+					position_files.at(i).Write(positions);
 				}
 				//LOG_INFO("{} {} {}", counts.at(id), positions.size(), static_cast<int>(positions.size()));
-				counts.at(id) += static_cast<int>(positions.size());
+				counts.at(i) += static_cast<int>(positions.size());
 				//LOG_INFO("{} {} {}", counts.at(id), positions.size(), static_cast<int>(positions.size()));
 				positions.clear();
-				id++;
+				i++;
 			}
 		}
 		else
 		{
 			for (auto& typed_subvolumes : enveloped_microscopic_subvolumes)
 			{
-				auto& count = counts.at(id);
+				auto& count = counts.at(i);
 				for (auto& subvolume : typed_subvolumes.subvolumes)
 				{
 					for (auto& molecule : subvolume->GetNormalMolecules())
@@ -237,14 +237,14 @@ namespace accord
 						++count;
 					}
 				}
-				id++;
+				i++;
 			}
 		}
 	}
 
 	void PassiveActor::ObservePartialMicroscopicSubvolumes(std::vector<int>& counts)
 	{
-		MoleculeID id = 0;
+		int i = 0;
 		// get all partial subvolumes of a given type
 		for (auto& typed_subvolumes : partial_microscopic_subvolumes)
 		{
@@ -273,16 +273,17 @@ namespace accord
 			// write positions all of the same molecule type to file
 			if (positions.size() != 0)
 			{
-				position_files.at(id).Write(positions);
+				position_files.at(i).Write(positions);
 			}
-			counts.at(id) += static_cast<int>(positions.size());
+			counts.at(i) += static_cast<int>(positions.size());
 			positions.clear();
-			id++;
+			i++;
 		}
 	}
 
 	void PassiveActor::ObserveEnvelopedMesoscopicSubvolumes(std::vector<int>& counts)
 	{
+		int i = 0;
 		for (MoleculeID id : molecule_ids)
 		{
 			std::vector<Vec3d> positions;
@@ -291,7 +292,7 @@ namespace accord
 				auto& box = subvolume->GetBoundingBox();
 				size_t count = subvolume->GetLayer(id).GetCount();
 				positions.reserve(positions.size() + count);
-				for (size_t i = 0; i < count; i++)
+				for (size_t j = 0; j < count; j++)
 				{
 					positions.emplace_back(box.GeneratePointInVolume());
 				}
@@ -299,15 +300,17 @@ namespace accord
 			// write positions all of the same molecule type to file
 			if (positions.size() != 0)
 			{
-				position_files.at(id).Write(positions);
+				position_files.at(i).Write(positions);
 			}
-			counts.at(id) += static_cast<int>(positions.size());
+			counts.at(i) += static_cast<int>(positions.size());
 			positions.clear();
+			i++;
 		}
 	}
 
 	void PassiveActor::ObservePartialMesoscopicSubvolumes(std::vector<int>& counts)
 	{
+		int i = 0;
 		for (MoleculeID id : molecule_ids)
 		{
 			std::vector<Vec3d> positions;
@@ -319,7 +322,7 @@ namespace accord
 				// partial subvolume a single random number can be generated to determine the total number of molecules inside the
 				// parital subvolume.
 				int count_in_partial_subvolume = static_cast<int>(std::round(count * ((Random::GenerateRealUniform() - probability) / probability)));
-				for (int i = 0; i < count_in_partial_subvolume; i++)
+				for (int j = 0; j < count_in_partial_subvolume; j++)
 				{
 					positions.emplace_back(partial_subvolume.box.GeneratePointInVolume());
 				}
@@ -327,10 +330,11 @@ namespace accord
 			// write positions all of the same molecule type to file
 			if (positions.size() != 0)
 			{
-				position_files.at(id).Write(positions);
+				position_files.at(i).Write(positions);
 			}
-			counts.at(id) += static_cast<int>(positions.size());
+			counts.at(i) += static_cast<int>(positions.size());
 			positions.clear();
+			i++;
 		}
 	}
 

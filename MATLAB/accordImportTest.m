@@ -21,7 +21,7 @@ config.Json = jsondecode(fileread(config.FilePath));
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
 toc
 clc; figure;
-Accord.plotCountForPassiveActor(sim, 1, Inf, Inf);
+Accord.plotCounts(sim);
 %% Draw Shapes
 figure;
 Accord.plotShapes(config.FilePath, [1, 0]);

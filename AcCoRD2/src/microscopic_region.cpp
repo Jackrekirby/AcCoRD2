@@ -240,7 +240,7 @@ namespace accord::microscopic
 	// they are called by relationship functions
 	void Region::LinkGrids(Region& region, const MoleculeIDs& ids)
 	{
-		LOG_INFO("Linking Grids: {} {}", GetID(), region.GetID());
+		//LOG_INFO("Linking Grids: {} {}", GetID(), region.GetID());
 		for (auto& id1 : ids)
 		{
 			for (auto& id2 : ids)
