@@ -66,11 +66,11 @@ namespace accord::microscopic
 	// link a subvolume not owned by the same grid
 	void Subvolume::Link(Subvolume& subvolume)
 	{
+		LOG_INFO("SubvolumeA id = {}, molecule id = {}, box = {}", subvolume_id, GetMoleculeID(), box);
+		LOG_INFO("SubvolumeB id = {}, molecule id = {}, box = {} \n", subvolume.subvolume_id, subvolume.GetMoleculeID(), subvolume.box);
 		if (box.IsOverlapping(subvolume.box) || box.IsPartiallyNeighbouring(subvolume.box))
 		{
-			//LOG_INFO("{} {}", box.IsOverlapping(subvolume.box), box.IsPartiallyNeighbouring(subvolume.box));
-			//LOG_INFO("SubvolumeA id = {}, molecule id = {}, box = {}", subvolume_id, GetMoleculeID(), box);
-			//LOG_INFO("SubvolumeB id = {}, molecule id = {}, box = {} \n", subvolume.subvolume_id, subvolume.GetMoleculeID(), subvolume.box);
+			LOG_INFO("{} {}", box.IsOverlapping(subvolume.box), box.IsPartiallyNeighbouring(subvolume.box));
 			//if (&subvolume == this) LOG_ERROR("attempt to add same subvolume");
 			GetRelation(subvolume.GetMoleculeID()).Add(subvolume);
 		}

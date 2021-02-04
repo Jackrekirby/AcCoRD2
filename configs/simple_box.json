@@ -46,7 +46,7 @@
          "Priority":"@G:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":2000,
+         "ModulationStrength":1000,
          "MoleculeTypesToRelease":[ 1 ],
          "RegionsToActIn":[ "Box" ],
          "Type":"NonRandom",

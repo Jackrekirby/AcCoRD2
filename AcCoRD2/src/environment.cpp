@@ -370,6 +370,7 @@ namespace accord
 			throw std::exception();
 		}
 
+		//LOG_INFO("Link Regions");
 		if (ab_surface == SurfaceType::None && ba_surface == SurfaceType::None)
 		{
 			GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), GetMoleculeIDs());
@@ -434,14 +435,18 @@ namespace accord
 			throw std::exception();
 		}
 
+		//LOG_INFO("Link Regions 2");
+		MoleculeIDs links;
 		for (int i = 0; i < num_molecule_types; i++)
 		{
 			if (ab_surfaces.at(i) == SurfaceType::None && ba_surfaces.at(i) == SurfaceType::None)
 			{
-				GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), {i});
-				GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), {i});
+				links.emplace_back(i);
 			}
 		}
+
+		GetMicroscopicRegion(region_a).LinkGrids(GetMicroscopicRegion(region_b), links);
+		GetMicroscopicRegion(region_b).LinkGrids(GetMicroscopicRegion(region_a), links);
 	}
 
 	void Environment::DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,

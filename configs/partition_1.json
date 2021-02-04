@@ -3,15 +3,15 @@
    "NumberOfRealisations":1,
    "FinalSimulationTime":1.0,
    "RandomNumberSeed":1,
-   "NumberOfMoleculeTypes":3,
+   "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
    "G":{
       "TimeStep":0.9,
-	  "DiffusionCoefficients":[0.02, 0.02, 0.02],
-	  "NofS":[3, 1, 3],
-	  "NumberOfSubvolumes":[ "@G:NofS", "@G:NofS", "@G:NofS" ],
-	  "SurfaceTypesNone":[ "None" , "None", "None"],
-	  "SurfaceTypesReflecting":[ "Reflecting" ,  "Reflecting", "Reflecting" ],
+	  "DiffusionCoefficients":[0.02],
+	  "NofS":[5, 5, 5],
+	  "NumberOfSubvolumes":[ "@G:NofS" ],
+	  "SurfaceTypesNone":[ "None"],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
 	  "RegionPriority":0,
 	  "ActiveActorPriority":1,
 	  "PassiveActorPriority":-1
@@ -67,7 +67,7 @@
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
          "ModulationStrength":500,
-         "MoleculeTypesToRelease":[ 1, 1, 0 ],
+         "MoleculeTypesToRelease":[ 1 ],
          "RegionsToActIn":[ "Box1" ],
          "Type":"NonRandom",
          "SymbolSize":1,
@@ -75,7 +75,7 @@
          "BitSequence":[ 1 ]
       }
    ],
-   "SecondOrderReactions":[
+   "SecondOrderReactionsX":[
       {
          "ReactantA":0,
          "ReactantB":1,

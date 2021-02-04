@@ -21,7 +21,7 @@ namespace accord::microscopic
 
 	void Region::Run()
 	{
-		LOG_INFO("Run");
+		//LOG_INFO("Run");
 		// zeroth order reactions
 		for (auto& reaction : zeroth_order_reactions)
 		{
@@ -240,13 +240,12 @@ namespace accord::microscopic
 	// they are called by relationship functions
 	void Region::LinkGrids(Region& region, const MoleculeIDs& ids)
 	{
-		//LOG_INFO(" {} {} ", GetID(), region.GetID());
-		// link each molecule type to every other molecule type
-		// could be more efficient by only linking molecule types where a reaction can occur between them
+		LOG_INFO("Linking Grids: {} {}", GetID(), region.GetID());
 		for (auto& id1 : ids)
 		{
 			for (auto& id2 : ids)
 			{
+				
 				GetGrid(id1).LinkGrid(region.GetGrid(id2));
 			}
 		}
