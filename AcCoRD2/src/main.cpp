@@ -375,14 +375,17 @@ namespace accord
 
 	void Run(const std::string& config_filepath)
 	{
+		Timer timer1;
 		ConfigImporter config(config_filepath);
-		LOG_INFO(accord::JsonToPrettyString(config.GetJson()));
+		//LOG_INFO(accord::JsonToPrettyString(config.GetJson()));
 		Environment::LinkReactionsToRegions();
 		Environment::AddEventsToEventQueue();
-		Timer timer;
+		LOG_INFO("Build Time = {}s", timer1.Stop());
+		Timer timer2;
+		LOG_INFO("Starting Simulation");
 		Environment::RunSimulation();
-		LOG_INFO("Run time = {}", timer.Stop());
-		LOG_INFO("Cleaning up");
+		LOG_INFO("Run Time = {}s", timer2.Stop());
+		LOG_INFO("Cleaning Memory");
 	}
 }
 
@@ -391,24 +394,10 @@ namespace accord
 // draw active actor points
 // add uniform flow
 // add passive actor per mesoscopic subvolume
+
+// If subvolumes of another molecule type are a different size are they linking?
 #include "collision_cylinder.h"
 int main()
 {
-	// log should save into seed file or atleast into config folder
-	accord::Logger::Initialise("logs/debug.txt", "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
-	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %s:%# %!() %v");
-	//accord::Logger::Initialise("logs/debug.txt", "[%^%l%$] %v");       
-	//set run time global Logger level
-	accord::Logger::GetLogger()->set_level(spdlog::level::info);
-
-	using namespace accord;
-	//SplitShapeName("RectSurface");
-	Run("C:/dev/AcCoRD2/configs/bimolecular_reactions.json");
-
-	//shape::collision::Cylinder cylinder({ 0, 0, 0 }, 1, 5, Axis3D::x);
-
-	//LOG_INFO(cylinder.CalculateExternalCollisionData({-1, 0, 0}, {-3, 0, 0}));
-	//LOG_INFO(cylinder.CalculateExternalCollisionData({ -1, 0, 0 }, { 1, 0, 0 }));
-	//LOG_INFO(cylinder.CalculateExternalCollisionData({ -1, 0, 0 }, { 1, 1, 0 }));
-	//LOG_INFO(cylinder.CalculateExternalCollisionData({ -1, 0, 0 }, { -2, 5, 0 }));
+	accord::Run("C:/dev/AcCoRD2/configs/bimolecular_reactions1.json");
 }

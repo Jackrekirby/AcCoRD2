@@ -14,7 +14,7 @@ namespace accord
 			slot_interval(slot_interval), symbol(0), symbol_index(0),
 			n_releases_per_interval(static_cast<int>(release_interval / slot_interval)), release_index(0)
 	{
-		LOG_INFO("action = {}, release = {}, slot = {}", action_interval, release_interval, slot_interval);
+		//LOG_INFO("action = {}, release = {}, slot = {}", action_interval, release_interval, slot_interval);
 
 		OutputBinaryVectors<int> symbol_file(CreateSymbolFilePath());
 		symbol_file.Write(bit_sequence);
@@ -26,7 +26,7 @@ namespace accord
 		{
 			if (symbol_index >= bit_sequence.size())
 			{
-				LOG_INFO("no more symbols");
+				//LOG_INFO("no more symbols");
 				// if there are no more bits left that set its next event to after the end of the simulation
 				// could add max number of event executions
 				SetEventTime(Environment::GetRunTime() + 1);
@@ -40,7 +40,7 @@ namespace accord
 		
 		if (release_index < n_releases_per_interval)
 		{
-			LOG_INFO("Releasing Molecule {}", symbol * modulation_strength);
+			//LOG_INFO("Releasing Molecule {}", symbol * modulation_strength);
 			ReleaseMolecules(symbol * modulation_strength);
 			release_index++;
 			local_time += slot_interval;
@@ -63,10 +63,10 @@ namespace accord
 		for (auto bit = bit_sequence.begin() + symbol_index; bit != end; ++bit)
 		{
 			symbol += *bit * power;
-			LOG_INFO("bit = {}, symbol = {}", *bit, symbol);
+			//LOG_INFO("bit = {}, symbol = {}", *bit, symbol);
 			power /= 2;
 		}
-		LOG_INFO("symbol_index = {}", symbol_index);
+		//LOG_INFO("symbol_index = {}", symbol_index);
 		symbol_index += n_modulation_bits;
 	}
 

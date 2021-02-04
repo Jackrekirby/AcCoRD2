@@ -19,7 +19,7 @@ namespace accord::microscopic
 		: box(origin, length), n_subvolumes(n_subvolumes), diffision_coefficient(diffision_coefficient), region(region), id(id), surface_type(surface_type),
 		surface_direction(HighPriorityRelative::SurfaceDirection::External)
 	{
-		LOG_INFO("n_subvolumes = {}", n_subvolumes);
+		//LOG_INFO("n_subvolumes = {}", n_subvolumes);
 		CreateSubvolumes();
 		LinkSiblingSubvolumes();
 	}
@@ -332,6 +332,8 @@ namespace accord::microscopic
 		{
 			for (auto& s2 : grid.subvolumes)
 			{
+
+
 				//LOG_INFO("{}, {}", s1.GetMoleculeID(), s2.GetMoleculeID());
 				//LOG_INFO(grid.GetMoleculeID());
 				s1.Link(s2);
@@ -371,6 +373,7 @@ namespace accord::microscopic
 	{
 		subvolumes.reserve(n_subvolumes.Volume());
 		Vec3i i;
+		int subvolume_id = 0;
 		for (i.z = 0; i.z < n_subvolumes.z; i.z++)
 		{
 			for (i.y = 0; i.y < n_subvolumes.y; i.y++)
@@ -378,7 +381,8 @@ namespace accord::microscopic
 				for (i.x = 0; i.x < n_subvolumes.x; i.x++)
 				{
 					Vec3d subvolume_length = box.GetLength() / n_subvolumes;
-					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, subvolume_length, this, Environment::GetNumberOfMoleculeTypes());
+					subvolumes.emplace_back(box.GetOrigin() + Vec3d(i) * subvolume_length, subvolume_length, this, Environment::GetNumberOfMoleculeTypes(), subvolume_id);
+					subvolume_id++;
 				}
 			}
 		}

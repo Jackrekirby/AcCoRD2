@@ -11,15 +11,17 @@ namespace accord::microscopic
 		: reactant_a(reactant_a), reactant_b(reactant_b), SecondOrderReaction(products, binding_radius, unbinding_radius), 
 		reactant_a_grid(&(region->GetGrid(reactant_a)))
 	{
-		LOG_INFO("binding radius = {}, {}", binding_radius, unbinding_radius);
+		//LOG_INFO("binding radius = {}, {}", binding_radius, unbinding_radius);
 	}
 
 	void TwoReactantSecondOrderReaction::CalculateReactions(double current_time)
 	{
 		for (auto& subvolume_a : reactant_a_grid->GetSubvolumes())
 		{
+			//LOG_INFO("SubvolumeA id = {}, molecule id = {}", subvolume_a.GetSubvolumeID(), subvolume_a.GetMoleculeID());
 			for (auto& subvolume_b : subvolume_a.GetRelation(reactant_b).GetSubvolumes())
 			{
+				//LOG_INFO("SubvolumeB id = {}, molecule id = {}", subvolume_b->GetSubvolumeID(), subvolume_b->GetMoleculeID());
 				CompareMoleculesInSubvolumes(subvolume_a, *subvolume_b, current_time);
 			}
 		}

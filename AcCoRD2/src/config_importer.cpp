@@ -60,7 +60,8 @@ namespace accord
 		std::ifstream i(file_path);
 		if (!i.is_open())
 		{
-			LOG_ERROR("Could not open config file <{}>", file_path);
+			std::cout << fmt::format("[ERROR] Could not open config file <{}>\n", file_path);
+			throw std::exception();
 		}
 		try
 		{
@@ -68,11 +69,31 @@ namespace accord
 		}
 		catch (Json::parse_error& e)
 		{
-			LOG_ERROR("Message: {} \nException id: {}\nByte position of error: {}", e.what(), e.id, e.byte);
+			std::cout << fmt::format("[ERROR] Message: {} \nException id: {}\nByte position of error: {}", e.what(), e.id, e.byte);
 			throw std::exception();
 		}
 
+		std::string log_filepath;
+		if (j.contains("SaveToFolder"))
+		{
+			if (j["SaveToFolder"].is_string())
+			{
+				log_filepath = j["SaveToFolder"].get<std::string>() + "/log.txt";
+				std::cout << fmt::format("[INFO] Logging to file: {}\n", log_filepath);
+			}	
+		}
+
+		if (log_filepath.empty())
+		{
+			std::cout << fmt::format("[ERROR] Config file must provide key: SaveToFolder\n");
+			throw std::exception();
+		}
+
+		accord::Logger::Initialise(log_filepath, "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
+		accord::Logger::GetLogger()->set_level(spdlog::level::info);
+
 		ReplaceReferenceValues(j);
+		LOG_INFO("Validating Config File <{}>", file_path);
 		ValidateJson();
 		CreateEnvironment();
 	}
@@ -442,7 +463,7 @@ namespace accord
 
 	void ConfigImporter::ValidateZerothOrderReactions(JsonKeyPair& config)
 	{
-		LOG_INFO("n_molecule_types = {}", n_molecule_types);
+		//LOG_INFO("n_molecule_types = {}", n_molecule_types);
 		if (config.IsKey("ZerothOrderReactions"))
 		{
 			JsonKeyPair reactions = config.Add("ZerothOrderReactions").IsArray();
@@ -635,25 +656,26 @@ namespace accord
 
 		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), j["RandomNumberSeed"].get<uint64_t>());
 
-		LOG_INFO("Importing Microscopic Regions");
+		LOG_INFO("Building Environment");
+		LOG_INFO("Microscopic Regions");
 		CreateMicroscopicRegions();
 
-		LOG_INFO("Importing Microscopic Surfaces");
+		LOG_INFO("Microscopic Surfaces");
 		CreateMicroscopicSurfaces();
 
-		LOG_INFO("Importing Mesoscopic Regions");
+		LOG_INFO("Mesoscopic Regions");
 		CreateMesoscopicRegion();
 
-		LOG_INFO("Importing PassiveActors");
+		LOG_INFO("Passive Actors");
 		CreatePassiveActors();
 
-		LOG_INFO("Importing ActiveActors");
+		LOG_INFO("Active Actors");
 		CreateActiveActors();
 
-		LOG_INFO("Importing Relationships");
+		LOG_INFO("Relationships");
 		CreateRelationships();
 
-		LOG_INFO("Importing Reactions");
+		LOG_INFO("Reactions");
 		CreateReactions();
 	}
 
@@ -892,14 +914,14 @@ namespace accord
 			{
 				std::vector<std::string> regions_to_act_in = actor["RegionsToActIn"].get<std::vector<std::string>>();
 				region_list = GetRegionIDsFromStrings(regions_to_act_in);
-				for (auto& id : region_list.microscopic_ids)
-				{
-					LOG_INFO("micro id = {}", id);
-				}
-				for (auto& id : region_list.mesoscopic_ids)
-				{
-					LOG_INFO("meso id = {}", id);
-				}
+				//for (auto& id : region_list.microscopic_ids)
+				//{
+				//	LOG_INFO("micro id = {}", id);
+				//}
+				//for (auto& id : region_list.mesoscopic_ids)
+				//{
+				//	LOG_INFO("meso id = {}", id);
+				//}
 
 				if (!actor.contains("Shape"))
 				{
@@ -907,26 +929,26 @@ namespace accord
 					if (!region_list.microscopic_ids.empty())
 					{
 						bounding_box = Environment::GetMicroscopicRegion(region_list.microscopic_ids.front()).GetShape().GetBasicShape().GenerateBoundingBox();
-						LOG_INFO("box = {}", bounding_box);
+						//LOG_INFO("box = {}", bounding_box);
 					}
 					else if (!region_list.mesoscopic_ids.empty())
 					{
 						bounding_box = Environment::GetMesoscopicRegion(region_list.mesoscopic_ids.front()).GetBoundingBox();
-						LOG_INFO("box = {}", bounding_box);
+						//LOG_INFO("box = {}", bounding_box);
 					} // else no regions throw error
 
 					for (auto& region : Environment::GetRegions(region_list.microscopic_ids))
 					{
 						bounding_box = bounding_box.GenerateBoundingBox(region->GetShape().GetBasicShape().GenerateBoundingBox());
-						LOG_INFO("box = {}", bounding_box);
+						//LOG_INFO("box = {}", bounding_box);
 					}
 					for (auto& region : Environment::GetMesoscopicRegions(region_list.mesoscopic_ids))
 					{
 						bounding_box = bounding_box.GenerateBoundingBox(region->GetBoundingBox());
-						LOG_INFO("box = {}", bounding_box);
+						//LOG_INFO("box = {}", bounding_box);
 					}
 					active_actor_shape = std::make_unique<ActiveActorBox>(bounding_box);
-					LOG_INFO("Active actor shape = {}", bounding_box);
+					//LOG_INFO("Active actor shape = {}", bounding_box);
 				}
 			}
 			
@@ -1058,7 +1080,7 @@ namespace accord
 			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
 			int reaction_rate = reaction["ReactionRate"].get<int>();
 			double binding_radius = reaction["BindingRadius"].get<double>();
-			LOG_INFO("binding radius = {}", binding_radius);
+			//LOG_INFO("binding radius = {}", binding_radius);
 			double unbinding_radius = reaction["UnBindingRadius"].get<double>();
 			std::vector<std::string> occur_in_regions = reaction["OccurInRegions"].get<std::vector<std::string>>();
 			RegionIDList region_list = GetRegionIDsFromStrings(occur_in_regions);

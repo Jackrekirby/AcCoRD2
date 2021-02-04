@@ -17,7 +17,7 @@ namespace accord::microscopic
 	{
 	public:
 
-		Subvolume(const Vec3d& origin, const Vec3d& length, Grid* grid, int n_molecule_types);
+		Subvolume(const Vec3d& origin, const Vec3d& length, Grid* grid, int n_molecule_types, int subvolume_id);
 
 		void AddMolecule(const Vec3d& position);
 
@@ -54,12 +54,18 @@ namespace accord::microscopic
 
 		std::vector<NormalMolecule>& GetNonReactedNormalMolecules();
 
+		bool& GetIsReacting();
+
+		int GetSubvolumeID();
+
 	private:
+		int subvolume_id;
 		Grid* grid; // the grid which owns this subvolume
 		shape::relation::Box box;
 		std::vector<NormalMolecule> normal_molecules;
 		std::vector<RecentMolecule> recent_molecules;
 		std::vector<bool> has_reacted;
+		bool is_reacting;
 		std::vector<NormalMolecule> non_reacted_normal_molecules;
 
 		// temporary normal molecules which is written to during diffusion
