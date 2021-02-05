@@ -15,7 +15,7 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\bimolecular_reactions1.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\shapes_passive.json";
 config.Json = jsondecode(fileread(config.FilePath));
 % simulation = importFiles(simulationDir, seeds, realisations, trackImporting)
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
@@ -32,7 +32,7 @@ clc;
 shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1);
 % seed, realisation, figure lims, color by actor, solid molecules, molecule size
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
-Accord.plotShapes(config.FilePath, [1, 0]);
+Accord.plotShapes(config.FilePath, [1, 1]);
 %set(get(handle(gcf),'JavaFrame'),'Maximized',1);
 r = Accord.playAnimateRealisation(r, 1);
 

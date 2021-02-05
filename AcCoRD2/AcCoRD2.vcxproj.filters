@@ -232,9 +232,6 @@
     <ClCompile Include="src\shapeless_passive_actor.cpp">
       <Filter>src\simulation\passive actor</Filter>
     </ClCompile>
-    <ClCompile Include="src\box_passive_actor.cpp">
-      <Filter>src\simulation\passive actor</Filter>
-    </ClCompile>
     <ClCompile Include="src\reaction_manager.cpp">
       <Filter>src\simulation\reactions</Filter>
     </ClCompile>
@@ -399,6 +396,24 @@
     </ClCompile>
     <ClCompile Include="src\microscopic_box_surface_shape2.cpp">
       <Filter>src\simulation\microscopic\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\passive_actor_box_shape.cpp">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\passive_actor_sphere_shape.cpp">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\passive_actor_cylinder_shape.cpp">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\passive_actor_shape.cpp">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shaped_passive_actor.cpp">
+      <Filter>src\simulation\passive actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\passive_actor_no_shape.cpp">
+      <Filter>src\simulation\passive actor\shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -666,9 +681,6 @@
     <ClInclude Include="src\shapeless_passive_actor.h">
       <Filter>src\simulation\passive actor</Filter>
     </ClInclude>
-    <ClInclude Include="src\box_passive_actor.h">
-      <Filter>src\simulation\passive actor</Filter>
-    </ClInclude>
     <ClInclude Include="src\reaction_manager.h">
       <Filter>src\simulation\reactions</Filter>
     </ClInclude>
@@ -857,6 +869,24 @@
     </ClInclude>
     <ClInclude Include="src\mesoscopic_region_shape.h">
       <Filter>src\simulation\mesoscopic\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor_box_shape.h">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shaped_passive_actor.h">
+      <Filter>src\simulation\passive actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor_sphere_shape.h">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor_cylinder_shape.h">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor_shape.h">
+      <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\passive_actor_no_shape.h">
+      <Filter>src\simulation\passive actor\shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1145,6 +1175,9 @@
     </Filter>
     <Filter Include="src\simulation\microscopic\shapes">
       <UniqueIdentifier>{8048f985-4db8-40b2-aa2e-e71aa4b47b06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\passive actor\shapes">
+      <UniqueIdentifier>{960a5fbd-a82b-42c0-a28b-352f9d3e6e43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

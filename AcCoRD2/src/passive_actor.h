@@ -11,6 +11,7 @@
 #include "microscopic_region_id.h"
 #include "passive_actor_id.h"
 #include "molecule_id.h"
+#include "passive_actor_shape.h"
 
 namespace accord::microscopic
 {
@@ -24,25 +25,6 @@ namespace accord::mesoscopic
 
 namespace accord
 {
-	// move to seperate header
-	class PassiveActorShape
-	{
-	public:
-		virtual bool IsMoleculeInsideBorder(const Vec3d& position) const = 0;
-
-		virtual bool IsSubvolumeInsideBorder(const shape::relation::Box& box) const = 0;
-
-		virtual bool IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const = 0;
-
-		virtual void ToJson(Json& j) const = 0;
-	};
-
-	void to_json(Json& j, const PassiveActorShape& shape);
-
-	// make passive actor base class with derived classes of different shapes so the shape
-	// does not have to be a unique pointer
-	// will eventually need to add mesoscopic::subvolume to typed subvolumes
-
 	class PassiveActor : public Event
 	{
 		class TypedMicroscopicSubvolumes
@@ -76,7 +58,7 @@ namespace accord
 
 		void Run();
 
-		virtual const PassiveActorShape* const GetShape() const = 0;
+		virtual const PassiveActorShape& GetShape() const = 0;
 	private:
 		std::vector<OutputBinaryVectors<Vec3d>> position_files;
 		std::vector<OutputBinarySingles<int>> count_files;

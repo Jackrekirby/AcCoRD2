@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "box_passive_actor.h"
+#include "passive_actor_box_shape.h"
 
 namespace accord
 {
@@ -28,19 +28,5 @@ namespace accord
 	void PassiveActorBoxShape::ToJson(Json& j) const
 	{
 		j = static_cast<shape::basic::Box>(*this);
-	}
-
-	BoxPassiveActor::BoxPassiveActor(shape::relation::Box box, const MoleculeIDs& molecule_ids, double start_time,
-		int priority, double time_step, const PassiveActorID& id, bool record_positions, bool record_time)
-		: PassiveActor(molecule_ids, start_time, priority, time_step, id, record_positions,
-		record_time), box(box)
-	{
-		AddMicroscopicSubvolumesWhichAreInsideActor(molecule_ids);
-		CreateFiles();
-	}
-
-	const PassiveActorBoxShape* const BoxPassiveActor::GetShape() const
-	{
-		return &box;
 	}
 }

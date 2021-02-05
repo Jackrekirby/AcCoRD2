@@ -158,7 +158,7 @@ classdef Accord
             xlabel("Time (s)");
             ylabel("Molecule Count");
             leg = legend(legendSubset, legendLabels);
-            title(leg,'Passive Actor: #, Molecule Type: #');
+            title(leg,'Passive Actor: #\n, Molecule Type: #');
         end
         
         function p = plotCount(sim, passiveActor, moleculeType, ...

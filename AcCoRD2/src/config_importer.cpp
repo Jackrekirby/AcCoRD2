@@ -6,28 +6,37 @@
 // construction classes
 #include "basic_cylinder.h"
 #include "basic_sphere.h"
-#include "shapeless_passive_actor.h"
-#include "box_passive_actor.h"
-#include "microscopic_region.h"
-#include "environment.h"
-#include "event_queue.h"
-#include "event.h"
-#include "passive_actor.h"
-#include "shapeless_passive_actor.h"
-#include "box_passive_actor.h"
-#include "microscopic_region_shape.h"
 #include "collision_cylinder.h"
 #include "relation_cylinder.h"
 #include "relation_sphere.h"
+
+#include "shapeless_passive_actor.h"
+
+#include "environment.h"
+#include "event_queue.h"
+#include "event.h"
+
+#include "passive_actor.h"
+#include "shapeless_passive_actor.h"
+#include "shaped_passive_actor.h"
+#include "passive_actor_box_shape.h"
+#include "passive_actor_cylinder_shape.h"
+#include "passive_actor_sphere_shape.h"
+
+#include "microscopic_region.h"
+#include "microscopic_region_shape.h"
 #include "microscopic_box_region.h"
 #include "microscopic_cylinder_region.h"
 #include "microscopic_sphere_region.h"
+
 #include "reaction_manager.h"
 #include "basic_shape_3d.h"
+
 #include "active_actor_shape.h"
 #include "active_actor_random_time.h"
 #include "active_actor_non_random.h"
 #include "active_actor_random_bits.h"
+
 #include "mesoscopic_region.h"
 
 #include "active_actor_box.h"
@@ -811,16 +820,20 @@ namespace accord
 				else if (actor.contains("Shape"))
 				{
 					OptionalShapes shapes = CreateShape(actor["Shape"]);
+					std::unique_ptr<PassiveActorShape> passive_actor_shape;
 					switch (shapes.shape)
 					{
 					case OptionalShapes::Shape::Box:
-						Environment::GetPassiveActors().emplace_back(std::make_unique<BoxPassiveActor>(shapes.box.value(), molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
+						passive_actor_shape = std::make_unique<PassiveActorBoxShape>(shapes.box.value());
 						break;
 					case OptionalShapes::Shape::Sphere:
+						passive_actor_shape = std::make_unique<PassiveActorSphereShape>(shapes.sphere.value());
 						break;
 					case OptionalShapes::Shape::Cylinder:
+						passive_actor_shape = std::make_unique<PassiveActorCylinderShape>(shapes.cylinder.value());
 						break;
 					}
+					Environment::GetPassiveActors().emplace_back(std::make_unique<ShapedPassiveActor>(std::move(passive_actor_shape), molecule_types_to_observe, start_time, priority, time_step, PassiveActorID(static_cast<int>(Environment::GetPassiveActors().size())), record_positions, record_observation_time));
 				}
 				else
 				{

@@ -397,12 +397,13 @@ namespace accord
 
 // If subvolumes of another molecule type are a different size are they linking?
 #include "collision_cylinder.h"
+#include "passive_actor_cylinder_shape.h"
 int main()
 {
-	accord::Run("C:/dev/AcCoRD2/configs/bimolecular_reactions1.json");
+	accord::Run("C:/dev/AcCoRD2/configs/shapes_passive.json");
 	//using namespace accord;
 	//accord::shape::basic::Box a(Vec3d(0), Vec3d(1));
 	//accord::shape::basic::Box b(Vec3d(-0.5), Vec3d(1));
-
+	accord::PassiveActorCylinderShape cylinder();
 	//a.GetIndices(b, {2, 2, 2});
 }

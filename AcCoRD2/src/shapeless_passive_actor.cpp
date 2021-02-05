@@ -10,8 +10,8 @@ namespace accord
 
 	}
 
-	const PassiveActorShape* const ShapelessPassiveActor::GetShape() const
+	const PassiveActorShape& ShapelessPassiveActor::GetShape() const
 	{
-		return nullptr;
+		return shapeless;
 	}
 }

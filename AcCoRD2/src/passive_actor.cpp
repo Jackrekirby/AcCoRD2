@@ -3,6 +3,7 @@
 #include "microscopic_subvolume.h"
 #include "environment.h"
 #include "mesoscopic_subvolume.h"
+#include "passive_actor_shape.h"
 
 namespace accord
 {
@@ -118,12 +119,12 @@ namespace accord
 				//LOG_INFO(region->GetID());
 				for (auto& subvolume : region->GetGrid(id).GetSubvolumes())
 				{
-					if (GetShape()->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
+					if (GetShape().IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
 					{
 						//LOG_INFO("enveloped");
 						enveloped_microscopic_subvolumes.back().Add(&subvolume);
 					}
-					else if (GetShape()->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
+					else if (GetShape().IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
 					{
 						//LOG_INFO("partial");
 						partial_microscopic_subvolumes.back().Add(&subvolume);
@@ -140,12 +141,12 @@ namespace accord
 		{
 			for (auto& subvolume : region.GetSubvolumes())
 			{
-				if (GetShape()->IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
+				if (GetShape().IsSubvolumeInsideBorder(subvolume.GetBoundingBox()))
 				{
 					//LOG_INFO("enveloped");
 					enveloped_mesoscopic_subvolumes.emplace_back(&subvolume);
 				}
-				else if (GetShape()->IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
+				else if (GetShape().IsSubvolumeOverlappingBorder(subvolume.GetBoundingBox()))
 				{
 					// cannot generate overlap box if actor shape is not a box.
 					// therefore will have to resort to genrating position then checking if it is within the actor
@@ -255,7 +256,7 @@ namespace accord
 				for (auto& molecule : subvolume->GetNormalMolecules())
 				{
 					// check if each molecule is inside the shape
-					if (GetShape()->IsMoleculeInsideBorder(molecule.GetPosition()))
+					if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
 					{
 						positions.emplace_back(molecule.GetPosition());
 					}
@@ -264,7 +265,7 @@ namespace accord
 				for (auto& molecule : subvolume->GetRecentMolecules())
 				{
 					// check if each molecule is inside the shape
-					if (GetShape()->IsMoleculeInsideBorder(molecule.GetPosition()))
+					if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
 					{
 						positions.emplace_back(molecule.GetPosition());
 					}
@@ -341,11 +342,6 @@ namespace accord
 	std::string PassiveActor::LogEvent() const
 	{
 		return fmt::format("Passive Actor. ID:{}, Priority:{}, Time:{}", id, priority, time);
-	}
-
-	void to_json(Json& j, const PassiveActorShape& shape)
-	{
-		shape.ToJson(j);
 	}
 
 	PassiveActor::PartialMesoscopicSubvolume::PartialMesoscopicSubvolume(mesoscopic::Subvolume* subvolume, shape::generating::Box box)

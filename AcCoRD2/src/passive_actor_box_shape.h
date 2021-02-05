@@ -1,5 +1,5 @@
 #pragma once
-#include "passive_actor.h"
+#include "passive_actor_shape.h"
 #include "relation_box.h"
 
 namespace accord
@@ -16,17 +16,5 @@ namespace accord
 		bool IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const;
 
 		void ToJson(Json& j) const;
-	};
-
-	class BoxPassiveActor : public PassiveActor
-	{
-	public:
-		BoxPassiveActor(shape::relation::Box box, const MoleculeIDs& molecule_ids,
-			double start_time, int priority, double time_step,
-			const PassiveActorID& id, bool record_positions, bool record_time);
-
-		const PassiveActorBoxShape* const GetShape() const;
-	private:
-		PassiveActorBoxShape box;
 	};
 }

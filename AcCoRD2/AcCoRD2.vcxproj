@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\passive_actor_no_shape.cpp" />
+    <ClCompile Include="src\passive_actor_shape.cpp" />
+    <ClCompile Include="src\passive_actor_cylinder_shape.cpp" />
+    <ClCompile Include="src\passive_actor_sphere_shape.cpp" />
+    <ClCompile Include="src\shaped_passive_actor.cpp" />
     <ClCompile Include="src\microscopic_box_surface_shape2.cpp" />
     <ClCompile Include="src\microscopic_high_priority_relative.cpp" />
     <ClCompile Include="src\microscopic_circle_surface_shape.cpp" />
@@ -66,7 +71,7 @@
     <ClCompile Include="src\first_order_reaction.cpp" />
     <ClCompile Include="src\second_order_reaction.cpp" />
     <ClCompile Include="src\reaction_manager.cpp" />
-    <ClCompile Include="src\box_passive_actor.cpp" />
+    <ClCompile Include="src\passive_actor_box_shape.cpp" />
     <ClCompile Include="src\shapeless_passive_actor.cpp" />
     <ClCompile Include="src\microscopic_box_region.cpp" />
     <ClCompile Include="src\basic_shape.cpp" />
@@ -184,6 +189,11 @@
     <ClCompile Include="src\subvolume_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\passive_actor_no_shape.h" />
+    <ClInclude Include="src\passive_actor_shape.h" />
+    <ClInclude Include="src\passive_actor_cylinder_shape.h" />
+    <ClInclude Include="src\passive_actor_sphere_shape.h" />
+    <ClInclude Include="src\shaped_passive_actor.h" />
     <ClInclude Include="src\mesoscopic_region_shape.h" />
     <ClInclude Include="src\microscopic_box_surface_shape2.h" />
     <ClInclude Include="src\microscopic_surface_shape.h" />
@@ -237,7 +247,7 @@
     <ClInclude Include="src\first_order_reaction.h" />
     <ClInclude Include="src\second_order_reaction.h" />
     <ClInclude Include="src\reaction_manager.h" />
-    <ClInclude Include="src\box_passive_actor.h" />
+    <ClInclude Include="src\passive_actor_box_shape.h" />
     <ClInclude Include="src\shapeless_passive_actor.h" />
     <ClInclude Include="src\microscopic_box_region.h" />
     <ClInclude Include="src\basic_shape_3d.h" />
