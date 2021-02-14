@@ -1,0 +1,62 @@
+{
+   "SaveToFolder": "D:/dev/narrow_box_tube",
+   "NumberOfRealisations":30,
+   "FinalSimulationTime":2500,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":1,
+   "ObserveEachRegion":true,
+   "G":{
+      "TimeStep":5,
+	  "DiffusionCoefficients":[1.2],
+	  "NofS":[1, 1, 1],
+	  "NumberOfSubvolumes":[ "@G:NofS" ],
+	  "SurfaceTypesNone":[ "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+   "MicroscopicRegions":[
+	   {
+		  "Name":"Box1",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[0, 0, 0],
+			  "Length":[1, 100, 1]
+		   },
+		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
+		  "TimeStep":"@G:TimeStep",
+		  "Priority":"@G:RegionPriority"
+	   }
+   ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@G:TimeStep",
+	  "Priority":"@G:PassiveActorPriority"
+	},
+	"ActiveActors":[
+	  {
+         "Name":"ActiveActor1",
+         "StartTime":0,
+         "Priority":"@G:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":1000,
+         "MoleculeTypesToRelease":[ 1 ],
+         "RegionsToActIn":[ "Box1" ],
+		 "Shape":{
+			  "Type":"Point",
+			  "Origin":[0.5, 0.5, 0.5]
+		  },
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ]
+}

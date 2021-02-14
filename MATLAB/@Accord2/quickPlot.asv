@@ -1,0 +1,50 @@
+ function quickPlot(data, plotMeanOnly)
+    counts = Accord2.groupMoleculeCounts(data);
+    nP = length(counts);
+    
+    % Count the number of counts to plot (all passive actors per molecule type)
+    nPlots = 0;
+    for iP = 1:nP
+        nM = length(counts(iP).m);
+        for iM = 1:nM
+            % only plot count if not empty
+            if(~isempty(counts(iP).m(iM).c))
+                nPlots = nPlots + 1;
+            end
+        end
+    end
+    
+    % create a colour map equal in length to number of plots
+    colors = hsv(nPlots);
+    legendLabels{nPlots} = "";
+    legendSubset(nPlots) = 0;
+    
+    i = 0;
+    hold on;
+    for iP = 1:nP
+        nM = length(counts(iP).m);
+        for iM = 1:nM
+            if(~isempty(counts(iP).m(iM).c))
+                i = i + 1;
+                % plot mean of all realisations
+                hPlot = plot(data.s(1).r(1).p(iP).t, mean(counts(iP).m(iM).c, 2), ...
+                    'Color', colors(i, :));
+                legendLabels{i} = "P:" + num2str(iP) + ", M:" + num2str(iM);
+                legendSubset(i) = hPlot;
+                % plot all realisations individually
+                if(~plotMeanOnly)
+                    plot(data.s(1).r(1).p(iP).t, counts(iP).m(iM).c(:, :), ...
+                    'Color', colors(i, :), 'LineStyle', ':');
+                end
+            end
+        end
+    end
+    
+    hold off;
+    title("Molecule Counts");
+    xlabel("Time (s)");
+    ylabel("Molecule Count");
+    leg = legend(legendSubset, legendLabels);
+    title(leg,{'Passive Actor: #','Molecule Type: #'});
+    grid on;
+end

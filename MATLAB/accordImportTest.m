@@ -15,13 +15,21 @@
 
 %% Import Simulation Data
 clear all; clc; tic;
-config.FilePath = "C:\dev\AcCoRD2\configs\shapes_passive.json";
+config.FilePath = "C:\dev\AcCoRD2\configs\narrow_box_tube.json";
+%%
+clc;
 config.Json = jsondecode(fileread(config.FilePath));
 % simulation = importFiles(simulationDir, seeds, realisations, trackImporting)
 sim = Accord.importFiles(config.Json.SaveToFolder, [], [], false);
-toc
-clc; figure;
-Accord.plotCounts(sim);
+toc;
+%%
+figure;
+Accord.plotCounts(sim, true);
+
+%% Counts
+clc
+counts = Accord.getMeanCounts(sim);
+mean(counts.p(2).m(1).c(15:end))
 %% Draw Shapes
 figure;
 Accord.plotShapes(config.FilePath, [1, 0]);
@@ -34,7 +42,25 @@ shape3d = Shape3D('LineColorMap', hsv(2), 'FaceColorMap', hsv(2), 'EdgeAlpha', 1
 r = Accord.initAnimateRealisation(sim, 1, 1, 5, false, true, 15, shape3d);
 Accord.plotShapes(config.FilePath, [1, 1]);
 %set(get(handle(gcf),'JavaFrame'),'Maximized',1);
-r = Accord.playAnimateRealisation(r, 1);
+r = Accord.playAnimateRealisation(r, 200);
+
+%% test
+clc;
+figure;
+nRealisations = length(sim.s.r);
+height(length(sim.s.r(1).p.m.i)-1) = 0;
+for i = 1:length(sim.s.r(1).p.m.i)-1
+    for r = 1:nRealisations
+        pos = Accord.getPositions(sim.s.r(r).p.m, i);
+        height(i) = height(i) + mean(pos(:, 2));
+    end
+    height(i) = height(i) / nRealisations;
+end
+
+plot(sim.s.r(1).p.t, height);
+grid on;
+xlabel("Time (s)");
+ylabel("Average Molecule Distance Along Pipe");
 
 %% Save Animation as Video
 clc;

@@ -120,7 +120,7 @@ classdef Accord
             title(leg,'Passive Actor');
         end
         
-         function p = plotCounts(sim)
+         function p = plotCounts(sim, meanOnly)
             p = Accord.putCountsIntoMatrix(sim, Inf);
             hold on;
             nP = length(p);
@@ -148,8 +148,10 @@ classdef Accord
                         legendLabels{i} = "P:" + num2str(iP) + ", M:" + num2str(iM);
                         legendSubset(i) = hPlot;
                         % plot all realisations individually
-                        plot(sim.s(1).r(1).p(iP).t, p(iP).m(iM).c(:, :), ...
-                        'Color', colors(i, :), 'LineStyle', ':');
+                        if(~meanOnly)
+                            plot(sim.s(1).r(1).p(iP).t, p(iP).m(iM).c(:, :), ...
+                            'Color', colors(i, :), 'LineStyle', ':');
+                        end
                     end
                 end
             end
@@ -158,7 +160,8 @@ classdef Accord
             xlabel("Time (s)");
             ylabel("Molecule Count");
             leg = legend(legendSubset, legendLabels);
-            title(leg,'Passive Actor: #\n, Molecule Type: #');
+            title(leg,{'Passive Actor: #','Molecule Type: #'});
+            grid on;
         end
         
         function p = plotCount(sim, passiveActor, moleculeType, ...
@@ -383,6 +386,58 @@ classdef Accord
             view(45,30);
             a = [-limits, limits];
             xlim(a); zlim(a); ylim(a);
+        end
+        
+        function means = getMeanCounts(sim)
+            p = Accord.putCountsIntoMatrix(sim, Inf);
+            nP = length(p);
+            i = 0;
+            for iP = 1:nP
+                nM = length(p(iP).m);
+                for iM = 1:nM
+                    if(~isempty(p(iP).m(iM).c))
+                        i = i + 1;
+                    end
+                end
+            end
+            i = 0;
+           % mean.p(nP).m(nM).c = 0;
+            for iP = 1:nP
+                nM = length(p(iP).m);
+                for iM = 1:nM
+                    if(~isempty(p(iP).m(iM).c))
+                        i = i + 1;
+                        % plot mean of all realisations
+                        means.p(iP).m(iM).c = mean(p(iP).m(iM).c, 2);
+                    end
+                end
+            end
+        end
+        
+        function p = putCountsIntoMatrix(sim, maxTotalRealisations)
+            k = 0; % k = nTotalRealisations
+            for iS = 1:length(sim.s)
+                for iR = 1:length(sim.s(iS).r)
+                    if(maxTotalRealisations <= k)
+                        return;
+                    end
+                    k = k + 1;
+                    nP = length(sim.s(iS).r(iR).p);
+                    for iP = 1:nP
+                        nM = length(sim.s(iS).r(iR).p(iP).m);
+                        for iM = 1:nM
+                            if(~isempty(sim.s(iS).r(iR).p(iP).m(iM).c))
+                                p(iP).m(iM).c(:, k) = sim.s(iS).r(iR).p(iP).m(iM).c;
+                                %disp("s" + iS + "r" + iR + "p" + iP + "m" + iM);
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        
+        function positions= getPositions(file, index)
+            positions = file.p(file.i(index)+1:file.i(index+1), :);
         end
     end
     
@@ -758,32 +813,10 @@ classdef Accord
             waitbar(1, r.waitbar, 'Video Saved');
         end
         
-        function positions= getPositions(file, index)
-            positions = file.p(file.i(index)+1:file.i(index+1), :);
-        end
+        
         
         %% plotCount
-        function p = putCountsIntoMatrix(sim, maxTotalRealisations)
-            k = 0; % k = nTotalRealisations
-            for iS = 1:length(sim.s)
-                for iR = 1:length(sim.s(iS).r)
-                    if(maxTotalRealisations <= k)
-                        return;
-                    end
-                    k = k + 1;
-                    nP = length(sim.s(iS).r(iR).p);
-                    for iP = 1:nP
-                        nM = length(sim.s(iS).r(iR).p(iP).m);
-                        for iM = 1:nM
-                            if(~isempty(sim.s(iS).r(iR).p(iP).m(iM).c))
-                                p(iP).m(iM).c(:, k) = sim.s(iS).r(iR).p(iP).m(iM).c;
-                                %disp("s" + iS + "r" + iR + "p" + iP + "m" + iM);
-                            end
-                        end
-                    end
-                end
-            end
-        end
+
     end
 end
 
