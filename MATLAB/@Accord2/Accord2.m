@@ -7,7 +7,10 @@ classdef Accord2
         %   Molecule Plotting
         quickPlot(data, plotMeanOnly)
         %   Video Making
-        [video] = videoWatch(data, moleculeStyle, shape3D)
+        [video] = videoCreateScene(data, config, moleculeStyle)
+        videoPlotRegionsAndActors(config, render)
+        [video] = videoLive(video, playBackSpeed)
+        [video] = videoRecord(video, playBackSpeed, filePath)
         
         % Developer Functions
         %   Data Importing
@@ -21,6 +24,7 @@ classdef Accord2
         %   Video Making
         [video] = videoCreateMoleculePlots(video, moleculeStyle)
         [video] = videoCreateFigure(video)
+        [positions] = getMoleculePositions(moleculeType, timestep)
         
     end
 end
