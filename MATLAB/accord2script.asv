@@ -16,15 +16,11 @@ Accord2.quickPlot(data, false);
 %% Initialise Video
 clc;
 moleculeStyle = struct('colorMethod', 'actor', 'fill', true, 'size', 2);
-shapePlotters = ShapePlotter('CircleResolution', 3, 'SphereResolution', 3);
-colormaps = ["hsv"];
-display = [true, true, true, true, true];
-showLog = false;
-video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
+video = Accord2.videoCreateScene(data, config, moleculeStyle, ShapePlotter('FaceAlpha', 0), ["summe"], [1, 1, 1, 1, 1], true);
 
 %% Watch Video Live
 clc;
-video = Accord2.videoLive(video, 10);
+video = Accord2.video(video, 10);
 
 %% Record Video
 clc;

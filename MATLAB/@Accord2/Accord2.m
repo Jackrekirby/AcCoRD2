@@ -1,18 +1,18 @@
 classdef Accord2
     methods (Static)
-        % User Functions
+        % User Functions ==================================================
         %   Data Importing
         [data] = importData(simulationDirectory, logImporting, saveData)
         [config] = importConfig(filePath)
         %   Molecule Plotting
         quickPlot(data, plotMeanOnly)
         %   Video Making
-        [video] = videoCreateScene(data, config, moleculeStyle)
-        videoPlotRegionsAndActors(config, render)
+        [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, colormap, display, showLog)
+        [shapes] = videoPlotRegionsAndActors(config, render, shapePlotters, colormap, display, showLog)
         [video] = videoLive(video, playBackSpeed)
         [video] = videoRecord(video, playBackSpeed, filePath)
         
-        % Developer Functions
+        % Developer Functions =============================================
         %   Data Importing
         [data] = importBinaryFile(data, seedNo, realisationNo, folder, file)
         [timeData] = importTimeBinary(filePath)

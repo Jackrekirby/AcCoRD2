@@ -1,4 +1,4 @@
-function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, display, showLog)
+function [hShapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, display, showLog)
     % videoPlotRegionsAndActors.m - plots each region, actor and surface in
     % the simulation environment, specified by the config file. Output
     % files not necessary to render shapes.
@@ -15,14 +15,13 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
     %   empty string element can be passed in the 5 element vector if that
     %   type of object (e.g. active actors) are not being rendered, as
     %   specified by the 'display' input argument
-    % display - a single or vector of 5 booleans which state whether the type of
-    %   object is to be plotted. If single boolean then boolean applied to
-    %   all objects
+    % display - a vector of 5 booleans which state whether the type of
+    %   object is to be plotted.
     % showLog - a boolean which if true will provide output messages as to
     %   the types of shapes being plotted
     
     % OUTPUTS
-    % shapes - a struct containing vectors of handles to each shape plotted.
+    % hShapes - a vectors containing the handles to each shapes are plotted.
     
     % NOTES
     % The 5 element vectors for shapePlotters, colormaps and display all
@@ -37,10 +36,6 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
     % shape plot object supplied
     if(length(shapePlotters) == 1)
         shapePlotters = [shapePlotters, shapePlotters, shapePlotters, shapePlotters, shapePlotters];
-    end
-    
-    if(length(display) == 1)
-        display = [display, display, display, display, display];
     end
     
     % edgeTone = 0.3 : edge color 30% as bright as face color
@@ -109,7 +104,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
     
     %% Create the colormaps to apply to each shape object
     maxColormaps = 5;
-    nColormaps = length(colormaps);
+    nColormaps = (length(colormaps) == 1);
     switch nColormaps
         case 0
             % no colormap supplied. Use ShapePlotter default
@@ -126,9 +121,9 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
     end
     
     %% Plot regions, surfaces and actors
-    shapes = [];
+    
     % Plot microscopic regions
-    if(display(1) && nMicroscopicRegions ~= 0)
+    if(display(1))
         % if individual colormap supplied create it
         if(nColormaps == maxColormaps)
             colormapFnc = str2func(colormaps(1));
@@ -150,12 +145,12 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                 shapePlotters(1).EdgeColor = color * edgeTone;
                 shapePlotters(1).FaceColor = color;
             end
-            shapes(length(shapes) + 1).handle = shapePlotters(1).plotShape(r.Shape);
+            hShapes(length(hShapes) + 1) = shapePlotters(1).plotShape(r.Shape);
         end
     end
     
     % Plot microscopic surfaces
-    if(display(2) && nMicroscopicSurfaces ~= 0)
+    if(display(2))
         % if individual colormap supplied create it
         if(nColormaps == maxColormaps)
             colormapFnc = str2func(colormaps(2));
@@ -177,12 +172,12 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                 shapePlotters(2).EdgeColor = color * edgeTone;
                 shapePlotters(2).FaceColor = color;
             end
-            shapes(length(shapes) + 1).handle = shapePlotters(2).plotShape(r.Shape);
+            hShapes(length(hShapes) + 1) = shapePlotters(2).plotShape(r.Shape);
         end
     end
     
     % Plot mesoscopic regions
-    if(display(3) && nMesoscopicRegions ~= 0)
+    if(display(3))
         % if individual colormap supplied create it
         if(nColormaps == maxColormaps)
             colormapFnc = str2func(colormaps(3));
@@ -204,12 +199,12 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                 shapePlotters(3).EdgeColor = color * edgeTone;
                 shapePlotters(3).FaceColor = color;
             end
-            shapes(length(shapes) + 1).handle = shapePlotters(3).plotGriddedBox(...
+            hShapes(length(hShapes) + 1) = shapePlotters(3).plotGriddedBox(...
                 r.Origin, r.SubvolumeLength * r.NumberOfSubvolumes, r.NumberOfSubvolumes);
         end
     end
     
-    if(display(4) && nActiveActors ~= 0)
+    if(display(4))
         % if individual colormap supplied create it
         if(nColormaps == maxColormaps)
             colormapFnc = str2func(colormaps(4));
@@ -235,7 +230,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                 if(showLog)
                     disp("Plotting active actor");
                 end
-                shapes(length(shapes) + 1).handle = shapePlotters(4).plotShape(r.Shape);
+                hShapes(length(hShapes) + 1) = shapePlotters(4).plotShape(r.Shape);
             elseif(isfield(r, 'RegionsToActIn'))
                 % for each region the actor acts in. Check mesoscopic and
                 % microscopic region names. If name not found warn user.
@@ -247,7 +242,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                         if(showLog)
                             disp("Plotting mesoscopic active actor");
                         end
-                        shapes(length(shapes) + 1).handle = shapePlotters(4).plotBox(...
+                        hShapes(length(hShapes) + 1) = shapePlotters(4).plotBox(...
                             rr.Origin, rr.SubvolumeLength * rr.NumberOfSubvolumes);
                     else
                         [~, microID] = find(microscopicRegionNames == regionToActIn);
@@ -255,7 +250,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                             if(showLog)
                                 disp("Plotting microscopic active actor");
                             end
-                            shapes(length(shapes) + 1).handle = shapePlotters(4).plotShape(...
+                            hShapes(length(hShapes) + 1) = shapePlotters(4).plotShape(...
                                 config.MicroscopicRegions(microID).Shape);
                         else
                             warning("No region name matched that specified by active actor");
@@ -266,7 +261,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
         end
     end
     
-    if(display(5) && nPassiveActors ~= 0)
+    if(display(5))
         % if individual colormap supplied create it
         if(nColormaps == maxColormaps)
             colormapFnc = str2func(colormaps(5));
@@ -292,7 +287,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                 if(showLog)
                     disp("Plotting passive actor");
                 end
-                shapes(length(shapes) + 1).handle = shapePlotters(5).plotShape(r.Shape);
+                hShapes(length(hShapes) + 1) = shapePlotters(5).plotShape(r.Shape);
             elseif(isfield(r, 'RegionsToObserve'))   
                 % for each region the actor acts in. Check mesoscopic and
                 % microscopic region names. If name not found warn user.
@@ -304,7 +299,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                         if(showLog)
                             disp("Plotting mesoscopic passive actor");
                         end
-                        shapes(length(shapes) + 1).handle = shapePlotters(5).plotBox(...
+                        hShapes(length(hShapes) + 1) = shapePlotters(5).plotBox(...
                             rr.Origin, rr.SubvolumeLength * rr.NumberOfSubvolumes);
                     else
                         [~, microID] = find(microscopicRegionNames == RegionsToObserve);
@@ -312,7 +307,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
                             if(showLog)
                                 disp("Plotting microscopic passive actor");
                             end
-                            shapes(length(shapes) + 1).handle = shapePlotters(5).plotShape(...
+                            hShapes(length(hShapes) + 1) = shapePlotters(5).plotShape(...
                                 config.MicroscopicRegions(microID).Shape);
                         else
                             warning("No region name matched that specified by passive actor");
