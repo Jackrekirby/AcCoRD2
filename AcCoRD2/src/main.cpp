@@ -350,29 +350,6 @@
 
 namespace accord
 {
-	class Timer
-	{
-	public:
-		Timer()
-		{
-			start_time_point = std::chrono::high_resolution_clock::now();
-		}
-
-		double Stop()
-		{
-			auto end_time_point = std::chrono::high_resolution_clock::now();
-
-			auto start_time = std::chrono::time_point_cast<std::chrono::milliseconds>(start_time_point).time_since_epoch();
-
-			auto end_time = std::chrono::time_point_cast<std::chrono::milliseconds>(end_time_point).time_since_epoch();
-
-			auto duration = end_time - start_time;
-			return static_cast<double>(duration.count()) * 0.001;
-		}
-	private:
-		std::chrono::time_point<std::chrono::high_resolution_clock> start_time_point;
-	};
-
 	void Run(const std::string& config_filepath)
 	{
 		Timer timer1;

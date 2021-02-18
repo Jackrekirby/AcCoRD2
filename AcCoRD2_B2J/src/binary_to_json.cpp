@@ -1,9 +1,5 @@
-//#include "pch.h"
-#include "BinaryToJson.h"
-//#include "logger.h"
-#include "Vec3d.h"
-//#include <fstream>
-
+#include "binary_to_json.h"
+#include "vec3d.h"
 
 namespace accord
 {
@@ -40,13 +36,13 @@ namespace accord
 		std::vector<DirEntry> binary_files;
 		FindBinaries(base_directory, key, base_directory, binary_files);
 
-		LOG_INFO("Found {} file(s) to convert", binary_files.size());
-		LOG_INFO("List of converted file(s):");
-
+		int n_files = static_cast<int>(binary_files.size());
+		LOG_INFO("Found {} file(s) to convert. List of converted file(s):", n_files);
+		int i = 1;
 		for (auto& entry : binary_files)
 		{
 			ConvertBinary(entry);
-			LOG_INFO(std::filesystem::relative(entry, base_directory).string());
+			LOG_INFO("{}. {}", i++, std::filesystem::relative(entry, base_directory).string());
 		}
 
 		LOG_INFO("All file(s) converted");
@@ -77,7 +73,7 @@ namespace accord
 				std::string relative_path = std::filesystem::relative(entry, base_directory).string();
 				if (!key.has_value() || relative_path.find(key.value()) != std::string::npos)
 				{
-					LOG_DEBUG("Binary File = <{}>", relative_path);
+					LOG_DEBUG("Found binary file: {}", relative_path);
 					binary_files.emplace_back(entry);
 				}
 			}
@@ -90,7 +86,7 @@ namespace accord
 		std::string file_type = file_path.substr(file_path.rfind(file_name_delimiter) + 1);
 		if (file_type == "p.bin")
 		{
-			// remove position "p.bin" file type and replace with count "c.bin" file type
+			// removes position "p.bin" file type and replace with count "c.bin" file type
 			std::string count_file_path = file_path.substr(0, file_path.length() - 5) + "c.bin";
 			if (std::filesystem::exists(count_file_path))
 			{
@@ -183,7 +179,7 @@ namespace accord
 		}
 	}
 
-	template <typename T> // bool type not allowed, leads to read access violation.
+	template <typename T>
 	std::vector<T> BinaryToJson::ReadBinaryAsVector(std::string file_path)
 	{
 		std::ifstream input(file_path, std::ios::binary);

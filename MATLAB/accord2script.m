@@ -1,6 +1,7 @@
 clear all;
 clc;
-
+% markers should use face color and alpha aswell as edge width
+% switch molecules is use shapeplotter
 %% Importing
 clc;
 % [config] = importConfig(filePath)

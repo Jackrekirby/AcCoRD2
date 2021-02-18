@@ -187,6 +187,7 @@
     <ClCompile Include="src\vec_test.cpp" />
     <ClCompile Include="src\zeroth_order_reaction.cpp" />
     <ClCompile Include="src\subvolume_queue.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\passive_actor_no_shape.h" />
@@ -346,6 +347,7 @@
     <ClInclude Include="src\vec_test.h" />
     <ClInclude Include="src\zeroth_order_reaction.h" />
     <ClInclude Include="src\subvolume_queue.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\kanban.txt" />

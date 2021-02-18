@@ -1,5 +1,4 @@
-//#include "pch.h"
-#include "Vec3d.h"
+#include "vec3d.h"
 
 namespace accord
 {

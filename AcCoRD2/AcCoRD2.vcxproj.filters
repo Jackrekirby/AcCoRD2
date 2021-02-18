@@ -415,6 +415,9 @@
     <ClCompile Include="src\passive_actor_no_shape.cpp">
       <Filter>src\simulation\passive actor\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>src\other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\pcg\pcg_uint128.hpp">
@@ -887,6 +890,9 @@
     </ClInclude>
     <ClInclude Include="src\passive_actor_no_shape.h">
       <Filter>src\simulation\passive actor\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>src\other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
