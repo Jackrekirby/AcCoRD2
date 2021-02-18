@@ -31,7 +31,8 @@ namespace accord::shape::basic
 
 	Box::Box(const RectSurface& rect_surface)
 		:origin(Vec3d(0, rect_surface.rect.GetOrigin(), rect_surface.plane.GetAxis())),
-		length(Vec3d(0, rect_surface.rect.GetLength(), rect_surface.plane.GetAxis()))
+		length(Vec3d(0, rect_surface.rect.GetLength(), rect_surface.plane.GetAxis())),
+		end(origin + length)
 	{
 
 	}

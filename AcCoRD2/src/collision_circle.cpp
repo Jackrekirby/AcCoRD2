@@ -88,7 +88,7 @@ namespace accord::shape::collision
 		// Molecule in inside circle (which it shouldn't be, but can be a result of floating point error)
 		if (t1 * t2 < 0)
 		{
-			LOG_INFO("inside sphere");
+			//LOG_INFO("inside sphere");
 			// molecule is inside sphere and moving towards the centre [reflection required]
 			if (t1 < 0 && -t1 < t2) return t1;
 			if (t2 < 0 && -t2 < t1) return t2;
@@ -98,14 +98,14 @@ namespace accord::shape::collision
 		// molecule is outside of sphere and moving away from sphere [let the molecule continue]
 		else if (t1 <= 0 && t2 <= 0)
 		{
-			LOG_INFO("outside sphere and moving away from sphere");
+			//LOG_INFO("outside sphere and moving away from sphere");
 			// must be checked before next if statement
 			return std::nullopt;
 		}
 		else
 		{
 			// Molecule is outside of circle at origin and heading towards the sphere.
-			LOG_INFO("outside sphere and moving towards sphere");
+			//LOG_INFO("outside sphere and moving towards sphere");
 			// Get the closest time and if it is before the end a [reflection is required]
 			if (t1 <= t2 && t1 < 1.0) return t1;
 			if (t2 < t1 && t2 < 1.0) return t2;
@@ -116,6 +116,8 @@ namespace accord::shape::collision
 
 	std::optional<double> Circle::SelectInternalCollisionTime(double t1, double t2) const
 	{
+		// select the larger of the two times and return true if the time is within the segment of the ray
+		// as one time is positive and the other negative the larger of the two times must be positive
 		if (t1 > t2)
 		{
 			if (t1 < 1.0) return t1;

@@ -8,18 +8,18 @@ namespace accord
 	enum class Axis3D;
 }
 
+
 namespace accord::shape::collision
 {
+	// all 3D collision shapes must be able to calculate whether a ray has collided with either its internal or external surface
 	class Shape3D
 	{
 	public:
 		Shape3D() = default;
 
-		virtual std::optional<Collision3D> CalculateExternalCollisionData
-		(const Vec3d& origin, const Vec3d& end) const = 0;
+		virtual std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const = 0;
 
-		virtual std::optional<Collision3D> CalculateInternalCollisionData
-		(const Vec3d& origin, const Vec3d& end) const = 0;
+		virtual std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const = 0;
 	
 		virtual void ToJson(Json& j) const = 0;
 	};

@@ -3,16 +3,21 @@
 
 namespace accord
 {
+	// currently unused / untested
+	// create a vector with 3 dimensions of any type
+	// prefer use of a specific type vector (e.g. vec3d)
 	template <typename T>
 	struct Vec3
 	{
 		union
 		{
+			// acces vector by x, y and z dimensions or via array
 			struct
 			{
 				T x, y, z;
 			};
 
+			// must access array by enum. see enum_array
 			std::enum_array<Axis3D, T, 3> axis;
 		};
 
@@ -22,6 +27,7 @@ namespace accord
 
 		}
 
+		// apply same value across all dimensions
 		explicit Vec3(T s)
 			: x(s), y(s), z(s)
 		{

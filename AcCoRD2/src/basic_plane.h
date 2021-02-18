@@ -7,6 +7,8 @@ namespace accord::shape::basic
 	class Plane : public Shape
 	{
 	public:
+		// constructs position of plane along the dimension specified.
+		// the plane lies perpendicular to the specified axis
 		Plane(double position, Axis3D axis);
 
 		const Axis3D& GetAxis() const;
@@ -15,6 +17,7 @@ namespace accord::shape::basic
 
 		void ToJson(Json& j) const;
 
+		// log plane to output stream
 		template<typename OStream>
 		friend OStream& operator<<(OStream& os, const Plane& plane)
 		{

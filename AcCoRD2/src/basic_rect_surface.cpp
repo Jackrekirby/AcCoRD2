@@ -19,12 +19,14 @@ namespace accord::shape::basic
 
 	Plane RectSurface::CreatePlane(const Vec3d& origin, const Vec3d& length) const
 	{
+		// find the axis with zero length
 		Axis3D axis = (length == Vec3d(0)).FindAxis();
 		return { origin.GetAxis(axis), axis };
 	}
 
 	Rect RectSurface::CreateRect(const Vec3d& origin, const Vec3d& length) const
 	{
+		// find the axis with zero length
 		Axis3D axis = (length == Vec3d(0)).FindAxis();
 		return { origin.GetPlane(axis), length.GetPlane(axis) };
 	}

@@ -415,7 +415,7 @@
     <ClCompile Include="src\passive_actor_no_shape.cpp">
       <Filter>src\simulation\passive actor\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="timer.cpp">
+    <ClCompile Include="src\timer.cpp">
       <Filter>src\other</Filter>
     </ClCompile>
   </ItemGroup>
@@ -891,7 +891,7 @@
     <ClInclude Include="src\passive_actor_no_shape.h">
       <Filter>src\simulation\passive actor\shapes</Filter>
     </ClInclude>
-    <ClInclude Include="timer.h">
+    <ClInclude Include="src\timer.h">
       <Filter>src\other</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,7 +26,7 @@ namespace accord::shape::collision
 	std::optional<Collision3D> Cylinder::CalculateExternalCollisionData
 		(const Vec3d& origin, const Vec3d& end) const
 	{
-		// new: if ray is before base or past top then no collision
+		// If ray is before base or past top then no collision
 		// check base and top before tube to ensure any tube check is external
 		if (((origin.GetAxis(GetAxis()) <= GetBase()) && (end.GetAxis(GetAxis()) <= GetBase())) ||
 			((origin.GetAxis(GetAxis()) >= GetTop()) && (end.GetAxis(GetAxis()) >= GetTop())))
@@ -40,18 +40,18 @@ namespace accord::shape::collision
 		collision3D = top_face.CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision3D.has_value()) { LOG_INFO("top collision: {} {} {}", origin, end, collision3D); return collision3D; }
 
-		// check path collision with tube first
-		std::optional<Collision2D> collision2D =
-			circle.CalculateExternalCollisionData(origin.GetPlane(GetAxis()), end.GetPlane(GetAxis()));
+		// check collision of ray with tube
+		std::optional<Collision2D> collision2D = circle.CalculateExternalCollisionData(origin.GetPlane(GetAxis()), end.GetPlane(GetAxis()));
 		// if path collided with tube must check if it was between the base and top faces
 		// if the path was not between the faces it may have hit a face
 		
 		if (collision2D.has_value())
 		{
-			double longitudinal_intersection =
-				Vec1d::Lerp(origin.GetAxis(GetAxis()), end.GetAxis(GetAxis()), collision2D->time);
+			// if the ray collided with the tube in 2D must check the ray also collided in axial direction
+			double longitudinal_intersection = Vec1d::Lerp(origin.GetAxis(GetAxis()), end.GetAxis(GetAxis()), collision2D->time);
 			if (longitudinal_intersection >= GetBase() && longitudinal_intersection <= GetTop())
 			{
+				// calculate 3D collsion data from 2D collision data
 				double longitudinal_reflection = end.GetAxis(GetAxis());
 				Vec3d intersection = { longitudinal_intersection, collision2D->intersection , GetAxis() };
 				Vec3d reflection = { longitudinal_reflection, collision2D->reflection , GetAxis() };
@@ -84,9 +84,17 @@ namespace accord::shape::collision
 		}
 		std::optional<Collision3D> collision3D;
 		collision3D = base_face.CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision3D.has_value()) { LOG_DEBUG("base");  return collision3D; }
+		if (collision3D.has_value()) 
+		{ 
+			LOG_DEBUG("base");
+			return collision3D; 
+		}
 		collision3D = top_face.CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision3D.has_value()) { LOG_DEBUG("top"); }
+		if (collision3D.has_value()) 
+		{ 
+			LOG_DEBUG("top"); 
+		}
+		// if the ray failed to collide the tube or either base then no collision occurred
 		return collision3D;
 	}
 

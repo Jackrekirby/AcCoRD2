@@ -15,15 +15,20 @@ namespace accord::shape::collision
 	class Cylinder : virtual public basic::Cylinder, public Shape3D
 	{
 	public:
+		// define the cylinder either with primitive parameters or a basic cylinder
 		Cylinder(const Vec3d& base_centre, double radius, double length, const Axis3D& axis);
 
 		Cylinder(basic::Cylinder cylinder);
 
-		std::optional<Collision3D> CalculateExternalCollisionData
-		(const Vec3d& origin, const Vec3d& end) const;
+		// calculate the intersection point, time of intersection and reflected position
+		// of a ray starting at 'origin' to 'end' with the OUTSIDE surface.
+		// returns null if no collision occured. see Collision 3D
+		std::optional<Collision3D> CalculateExternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
-		std::optional<Collision3D> CalculateInternalCollisionData
-		(const Vec3d& origin, const Vec3d& end) const;
+		// calculate the intersection point, time of intersection and reflected position
+		// of a ray starting at 'origin' to 'end' with the INSIDE surface.
+		// returns null if no collision occured. see Collision 3D
+		std::optional<Collision3D> CalculateInternalCollisionData(const Vec3d& origin, const Vec3d& end) const;
 
 		void ToJson(Json& j) const;
 	private:
