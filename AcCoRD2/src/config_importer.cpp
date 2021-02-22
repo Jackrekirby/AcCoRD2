@@ -62,7 +62,7 @@
 
 namespace accord
 {
-	ConfigImporter::ConfigImporter(std::string file_path)
+	ConfigImporter::ConfigImporter(std::string file_path, std::optional<uint64_t> seed)
 		: n_molecule_types(0)
 	{
 		// Check file path is valid
@@ -88,7 +88,6 @@ namespace accord
 			if (j["SaveToFolder"].is_string())
 			{
 				log_filepath = j["SaveToFolder"].get<std::string>() + "/log.txt";
-				std::cout << fmt::format("[INFO] Logging to file: {}\n", log_filepath);
 			}	
 		}
 
@@ -98,13 +97,22 @@ namespace accord
 			throw std::exception();
 		}
 
-		accord::Logger::Initialise(log_filepath, "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
-		accord::Logger::GetLogger()->set_level(spdlog::level::info);
+		#ifdef NDEBUG
+			accord::Logger::Initialise(log_filepath, "[%^%l%$] %v");
+			accord::Logger::GetLogger()->set_level(spdlog::level::info);
+		#else
+			// switch to trace mode for more detailed debug messages
+			accord::Logger::Initialise(log_filepath, "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
+			accord::Logger::GetLogger()->set_level(spdlog::level::debug);
+		#endif
 
+		
+		LOG_INFO("Output folder location: <{}>", j["SaveToFolder"].get<std::string>());
 		ReplaceReferenceValues(j);
-		LOG_INFO("Validating Config File <{}>", file_path);
+		LOG_INFO("Validating configuration file: <{}>", file_path);
 		ValidateJson();
-		CreateEnvironment();
+		LOG_INFO("Environment properties:");
+		CreateEnvironment(seed);
 	}
 
 	const Json& ConfigImporter::GetJson()
@@ -643,7 +651,7 @@ namespace accord
 
 
 
-	void ConfigImporter::CreateEnvironment()
+	void ConfigImporter::CreateEnvironment(std::optional<uint64_t> seed)
 	{
 		size_t n_passive_actors;
 		if (j.contains("ObserveEachRegion"))
@@ -655,28 +663,21 @@ namespace accord
 			n_passive_actors = j["PassiveActors"].size();
 		}
 
-		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), j["RandomNumberSeed"].get<uint64_t>());
+		uint64_t random_number_seed = seed.has_value() ? seed.value() : j["RandomNumberSeed"].get<uint64_t>();
+		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), random_number_seed);
 
-		LOG_INFO("Building Environment");
-		LOG_INFO("Microscopic Regions");
 		CreateMicroscopicRegions();
 
-		LOG_INFO("Microscopic Surfaces");
 		CreateMicroscopicSurfaces();
 
-		LOG_INFO("Mesoscopic Regions");
 		CreateMesoscopicRegion();
 
-		LOG_INFO("Passive Actors");
 		CreatePassiveActors();
 
-		LOG_INFO("Active Actors");
 		CreateActiveActors();
 
-		LOG_INFO("Relationships");
 		CreateRelationships();
 
-		LOG_INFO("Reactions");
 		CreateReactions();
 	}
 
@@ -1056,7 +1057,6 @@ namespace accord
 
 	void ConfigImporter::CreateReactions()
 	{
-		LOG_INFO("Zeroth Order Reactions");
 		for (auto& reaction : j["ZerothOrderReactions"])
 		{
 			std::vector<int> products = reaction["Products"].get<std::vector<int>>();
@@ -1066,7 +1066,6 @@ namespace accord
 
 			ReactionManager::AddZerothOrderReaction(products, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
-		LOG_INFO("First Order Reactions");
 		for (auto& reaction : j["FirstOrderReactions"])
 		{
 			MoleculeID reactant = reaction["Reactant"].get<MoleculeID>();
@@ -1077,7 +1076,6 @@ namespace accord
 
 			ReactionManager::AddFirstOrderReaction(reactant, products, reaction_rate, region_list.microscopic_ids, region_list.mesoscopic_ids);
 		}
-		LOG_INFO("Second Order Reactions");
 		for (auto& reaction : j["SecondOrderReactions"])
 		{
 			MoleculeID reactant_a = reaction["ReactantA"].get<MoleculeID>();

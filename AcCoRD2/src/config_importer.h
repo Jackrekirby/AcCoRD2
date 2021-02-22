@@ -15,7 +15,7 @@ namespace accord
 	class ConfigImporter
 	{
 	public:
-		ConfigImporter(std::string file_path);
+		ConfigImporter(std::string file_path, std::optional<uint64_t> seed);
 
 		const Json& GetJson();
 
@@ -98,7 +98,7 @@ namespace accord
 		SurfaceShape SplitShapeName(const std::string& shape);
 
 
-		void CreateEnvironment();
+		void CreateEnvironment(std::optional<uint64_t> seed);
 
 		void CreateMicroscopicRegions();
 

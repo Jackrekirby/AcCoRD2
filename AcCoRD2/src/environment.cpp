@@ -17,6 +17,11 @@ namespace accord
 		size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors,
 		size_t num_surfaces, uint64_t seed)
 	{
+		LOG_INFO("Seed: {}, Realisations: {}, Simulated Time: {}s, Molecule Types: {}, Microscopic Surfaces: {}", 
+			seed, num_realisations, run_time, num_molecule_types, num_surfaces);
+		LOG_INFO("Microscopic Regions: {},  Mesoscopic Regions: {}, Passive Actors: {}, Active Actors: {}", 
+			num_microscopic_regions, num_mesoscopic_regions, num_passive_actors, num_active_actors);
+
 		MoleculeID::SetNumIDs(num_molecule_types);
 		MicroscopicRegionID::SetNumIDs(static_cast<int>(num_microscopic_regions));
 		MesoscopicRegionID::SetNumIDs(static_cast<int>(num_mesoscopic_regions));
