@@ -254,15 +254,7 @@ namespace accord
 
 				microscopic_regions.Add("SurfaceTypes").IsArrayOfStrings().HasSize(n_molecule_types);
 				microscopic_regions.Add("DiffusionCoefficients").IsArrayOfNumbers().HasSize(n_molecule_types);
-				JsonKeyPair number_of_subvolumes = microscopic_regions.Add("NumberOfSubvolumes").IsArrayOfArrays().HasSize(n_molecule_types);
-
-				for (size_t i2 = 0; i2 < n_molecule_types; i2++)
-				{
-					number_of_subvolumes.SetIndex(i2);
-					JsonKeyPair nos(number_of_subvolumes.GetJson());
-					number_of_subvolumes.EnterIndex().IsArrayOfInts().HasSize(3);
-				}
-
+				JsonKeyPair number_of_subvolumes = microscopic_regions.Add("NumberOfSubvolumes").IsArrayOfInts().HasSize(3);
 				microscopic_regions.Add("TimeStep").IsNumber().IsPositive();
 				microscopic_regions.Add("Priority").IsInt();
 
@@ -694,7 +686,7 @@ namespace accord
 		{
 			std::vector<microscopic::SurfaceType> surface_types = region["SurfaceTypes"].get<std::vector<microscopic::SurfaceType>>();
 			std::vector<double> diffision_coefficients = region["DiffusionCoefficients"].get<std::vector<double>>();
-			std::vector<Vec3i> n_subvolumes = region["NumberOfSubvolumes"].get<std::vector<Vec3i>>();
+			Vec3i n_subvolumes = region["NumberOfSubvolumes"].get<Vec3i>();
 			double time_step = region["TimeStep"].get<double>();
 			int priority = region["Priority"].get<int>();
 

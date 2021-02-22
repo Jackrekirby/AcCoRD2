@@ -8,6 +8,7 @@
 #include "microscopic_sphere_region.h"
 #include "event_queue.h"
 #include "microscopic_surface.h"
+#include "timer.h"
 
 namespace accord
 {
@@ -132,7 +133,7 @@ namespace accord
 	}
 
 	void Environment::AddRegion(shape::basic::Box box, const std::vector<SurfaceType>& surface_types, 
-		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+		const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes,
 		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::BoxRegion>(
@@ -141,7 +142,7 @@ namespace accord
 	}
 
 	void Environment::AddRegion(shape::basic::Sphere sphere, const std::vector<SurfaceType>& surface_types,
-		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+		const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes,
 		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::SphereRegion>(
@@ -150,7 +151,7 @@ namespace accord
 	}
 
 	void Environment::AddRegion(shape::basic::Cylinder cylinder, const std::vector<SurfaceType>& surface_types,
-		const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+		const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes,
 		double time_step, int priority)
 	{
 		GetRegions().emplace_back(std::make_unique<microscopic::CylinderRegion>(
@@ -241,41 +242,44 @@ namespace accord
 
 	void Environment::RunSimulation()
 	{
-		{
-			do {
-				LOG_INFO("Realisation {}", Environment::GetRealisationNumber());
-				if (Environment::GetRealisationNumber() > 0)
+		LOG_INFO("Realisation: 0");
+		Timer timer;
+		do {
+			if (current_realisation > 0)
+			{
+				double current_time = timer.GetTime();
+				double estimated_time_remaining = (num_realisations * (current_time / current_realisation)) - current_time;
+				LOG_INFO("Realisation: {}. Estimate time remaining: {:.3f}s", Environment::GetRealisationNumber(), estimated_time_remaining);
+				for (auto& passive_actor : Environment::GetPassiveActors())
 				{
-					for (auto& passive_actor : Environment::GetPassiveActors())
-					{
-						passive_actor->NextRealisation();
-					}
-					for (auto& region : Environment::GetRegions())
-					{
-						region->NextRealisation();
-					}
-					for (auto& active_actors : Environment::GetActiveActors())
-					{
-						active_actors->NextRealisation();
-					}
-					for (auto& region : Environment::GetMesoscopicRegions())
-					{
-						region.NextRealisation();
-					}
+					passive_actor->NextRealisation();
 				}
-				while (true)
+				for (auto& region : Environment::GetRegions())
 				{
-					auto& event = Environment::GetEventQueue().Front();
-					Environment::SetTime(event.GetEventTime());
-					if (Environment::GetTime() > Environment::GetRunTime())
-					{
-						break;
-					}
-					//LOG_INFO("Event:({})", event.LogEvent());
-					event.Run();
+					region->NextRealisation();
 				}
-			} while (Environment::NextRealisation());
-		}
+				for (auto& active_actors : Environment::GetActiveActors())
+				{
+					active_actors->NextRealisation();
+				}
+				for (auto& region : Environment::GetMesoscopicRegions())
+				{
+					region.NextRealisation();
+				}
+			}
+			while (true)
+			{
+				auto& event = Environment::GetEventQueue().Front();
+				Environment::SetTime(event.GetEventTime());
+				if (Environment::GetTime() > Environment::GetRunTime())
+				{
+					break;
+				}
+				//LOG_INFO("Event:({})", event.LogEvent());
+				event.Run();
+			}
+		} while (Environment::NextRealisation());
+		
 	}
 
 	void Environment::AddEventsToEventQueue()

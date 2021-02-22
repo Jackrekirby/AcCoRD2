@@ -24,7 +24,7 @@ namespace accord::shape::collision
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
 		if (!ct.has_value()) return std::nullopt;
 
-		LOG_TRACE("t1 = {}, t2 = {}", ct->t1, ct->t2);
+		//LOG_TRACE("t1 = {}, t2 = {}", ct->t1, ct->t2);
 		//check to see which collision point is the valid one if any
 		std::optional<double> time = SelectExternalCollisionTime(ct->t1, ct->t2);
 		if (!time.has_value()) return std::nullopt;
@@ -42,7 +42,7 @@ namespace accord::shape::collision
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
 		if (!ct.has_value()) return std::nullopt;
 
-		LOG_TRACE("t1 = {}, t2 = {}", ct->t1, ct->t2);
+		//LOG_TRACE("t1 = {}, t2 = {}", ct->t1, ct->t2);
 		//check to see which collision point is the valid one if any
 		std::optional<double> time = SelectInternalCollisionTime(ct->t1, ct->t2);
 		if (!time.has_value()) return std::nullopt;
@@ -70,7 +70,7 @@ namespace accord::shape::collision
 		double a = Vec3d::DotProduct((end - origin).Normalise(), oc);
 		double n = Vec1d::Square(a) - (oc.Size2() - GetRadius2());
 
-		LOG_TRACE("n = {}", n);
+		//LOG_TRACE("n = {}", n);
 		if (n <= 0) return std::nullopt;
 
 		double sqrt_n = std::sqrt(n);
@@ -83,7 +83,7 @@ namespace accord::shape::collision
 		// Molecule in inside circle (which it shouldn't be, but can be a result of floating point error)
 		if (t1 * t2 < 0)
 		{
-			LOG_TRACE("inside sphere");
+			//LOG_TRACE("inside sphere");
 			// molecule is inside sphere and moving towards the centre [reflection required]
 			if (t1 < 0 && -t1 < t2) return t1;
 			if (t2 < 0 && -t2 < t1) return t2;
@@ -93,14 +93,14 @@ namespace accord::shape::collision
 		// molecule is outside of sphere and moving away from sphere [let the molecule continue]
 		else if (t1 <= 0 && t2 <= 0)
 		{
-			LOG_TRACE("outside sphere and moving away from sphere");
+			//LOG_TRACE("outside sphere and moving away from sphere");
 			// must be checked before next if statement
 			return std::nullopt;
 		}
 		else
 		{
 			// Molecule is outside of circle at origin and heading towards the sphere.
-			LOG_TRACE("outside sphere and moving towards sphere");
+			//LOG_TRACE("outside sphere and moving towards sphere");
 			// Get the closest time and if it is before the end a [reflection is required]
 			if (t1 <= t2 && t1 < 1.0) return t1;
 			if (t2 < t1 && t2 < 1.0) return t2;

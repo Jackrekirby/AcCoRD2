@@ -210,15 +210,14 @@ namespace accord::microscopic
 		return grids.at(id);
 	}
 
-	void Region::GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes_per_grid, const std::vector<SurfaceType>& surface_types)
+	void Region::GenerateGrids(const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes, const std::vector<SurfaceType>& surface_types)
 	{
 		//LOG_INFO("generating grid");
 		grids.reserve(Environment::GetNumberOfMoleculeTypes());
 		shape::basic::Box b = GetShape().GetBasicShape().GenerateBoundingBox();
 		for (int i = 0; i < Environment::GetNumberOfMoleculeTypes(); i++)
 		{
-			grids.emplace_back(b.GetOrigin(), b.GetLength(), 
-				n_subvolumes_per_grid.at(i), diffision_coefficients.at(i), surface_types.at(i), i, this);
+			grids.emplace_back(b.GetOrigin(), b.GetLength(), n_subvolumes, diffision_coefficients.at(i), surface_types.at(i), i, this);
 		}
 	}
 

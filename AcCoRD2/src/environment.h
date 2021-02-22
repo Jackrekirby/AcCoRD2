@@ -68,15 +68,15 @@ namespace accord
 
 		typedef microscopic::SurfaceType SurfaceType;
 		static void AddRegion(shape::basic::Box box, const std::vector<SurfaceType>& surface_types,
-			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes, 
+			const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes, 
 			double time_step, int priority);
 
 		static void AddRegion(shape::basic::Sphere sphere, const std::vector<SurfaceType>& surface_types,
-			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+			const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes,
 			double time_step, int priority);
 
 		static void AddRegion(shape::basic::Cylinder cylinder, const std::vector<SurfaceType>& surface_types,
-			const std::vector<double>& diffision_coefficients, const std::vector<Vec3i>& n_subvolumes,
+			const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes,
 			double time_step, int priority);
 
 		static void AddSurfaceToMicroscopicRegions(microscopic::Surface& surface, const std::vector<microscopic::SurfaceType>& surface_types,

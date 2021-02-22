@@ -9,6 +9,7 @@ namespace accord::shape::basic
 
 namespace accord::shape::collision
 {
+	// a rectangular surface composed of a plane and rectangle
 	class RectSurface : public Surface
 	{
 	public:

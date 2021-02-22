@@ -122,7 +122,7 @@ namespace accord::microscopic
 		
 
 	protected:
-		void GenerateGrids(std::vector<double> diffision_coefficients, std::vector<Vec3i> n_subvolumes, const std::vector<SurfaceType>& surface_types);
+		void GenerateGrids(const std::vector<double>& diffision_coefficients, const Vec3i& n_subvolumes, const std::vector<SurfaceType>& surface_types);
 
 		// links local grids to eachother for bi-molecular reactions
 		void LinkGrids();

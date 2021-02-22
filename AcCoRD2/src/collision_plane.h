@@ -15,13 +15,13 @@ namespace accord::shape::collision
 
 		Plane(basic::Plane plane);
 
-		// calculate if a ray cross a plane from the POSITIVE to NEGATIVE side
+		// calculate if a ray crosses a plane from the POSITIVE to NEGATIVE side
 		// if the ray does cross the plane it returns time of intersection
 		// where time = 0 is at the origin and time = 1 is at the end of the ray segment
 		// the 3D collision can be simplified to a 1D collsion
 		std::optional<double> CalculateCollisionTimeWithPositiveFace(double origin, double end) const;
 
-		// calculate if a ray cross a plane from the NEGATIVE to POSITIVE side
+		// calculate if a ray crosses a plane from the NEGATIVE to POSITIVE side
 		// if the ray does cross the plane it returns time of intersection
 		// where time = 0 is at the origin and time = 1 is at the end of the ray segment
 		// the 3D collision can be simplified to a 1D collsion

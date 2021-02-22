@@ -9,6 +9,7 @@ namespace accord::shape::basic
 
 namespace accord::shape::collision
 {
+	// a circular surface, composed of a plane and circle
 	class CircleSurface : public Surface
 	{
 	public:

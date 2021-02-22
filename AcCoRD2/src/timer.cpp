@@ -5,10 +5,10 @@ namespace accord
 {
 	Timer::Timer()
 	{
-		start_time_point = std::chrono::high_resolution_clock::now();
+		Reset();
 	}
 
-	double Timer::Stop()
+	double Timer::GetTime()
 	{
 		auto end_time_point = std::chrono::high_resolution_clock::now();
 
@@ -19,5 +19,10 @@ namespace accord
 		auto duration = end_time - start_time;
 		// measure time to the nearest milli second then convert to seconds
 		return static_cast<double>(duration.count()) * 0.001;
+	}
+
+	void Timer::Reset()
+	{
+		start_time_point = std::chrono::high_resolution_clock::now();
 	}
 }
