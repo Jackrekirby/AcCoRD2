@@ -247,38 +247,70 @@ namespace accord
 	{
 		int i = 0;
 		// get all partial subvolumes of a given type
-		for (auto& typed_subvolumes : partial_microscopic_subvolumes)
+		if (record_positions)
 		{
-			std::vector<Vec3d> positions;
-			// iterate through each subvolume all of the same type and get positions
-			for (auto& subvolume : typed_subvolumes.subvolumes)
+			for (auto& typed_subvolumes : partial_microscopic_subvolumes)
 			{
-				for (auto& molecule : subvolume->GetNormalMolecules())
+				std::vector<Vec3d> positions;
+				// iterate through each subvolume all of the same type and get positions
+				for (auto& subvolume : typed_subvolumes.subvolumes)
 				{
-					// check if each molecule is inside the shape
-					if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
+					for (auto& molecule : subvolume->GetNormalMolecules())
 					{
-						positions.emplace_back(molecule.GetPosition());
+						// check if each molecule is inside the shape
+						if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
+						{
+							positions.emplace_back(molecule.GetPosition());
+						}
 					}
-				}
 
-				for (auto& molecule : subvolume->GetRecentMolecules())
-				{
-					// check if each molecule is inside the shape
-					if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
+					for (auto& molecule : subvolume->GetRecentMolecules())
 					{
-						positions.emplace_back(molecule.GetPosition());
+						// check if each molecule is inside the shape
+						if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
+						{
+							positions.emplace_back(molecule.GetPosition());
+						}
 					}
 				}
+				// write positions all of the same molecule type to file
+				if (positions.size() != 0)
+				{
+					position_files.at(i).Write(positions);
+				}
+				counts.at(i) += static_cast<int>(positions.size());
+				positions.clear();
+				i++;
 			}
-			// write positions all of the same molecule type to file
-			if (positions.size() != 0)
+		}
+		else
+		{
+			for (auto& typed_subvolumes : partial_microscopic_subvolumes)
 			{
-				position_files.at(i).Write(positions);
+				auto& count = counts.at(i);
+				// iterate through each subvolume all of the same type and get counts
+				for (auto& subvolume : typed_subvolumes.subvolumes)
+				{
+					for (auto& molecule : subvolume->GetNormalMolecules())
+					{
+						// check if each molecule is inside the shape
+						if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
+						{
+							++count;
+						}
+					}
+
+					for (auto& molecule : subvolume->GetRecentMolecules())
+					{
+						// check if each molecule is inside the shape
+						if (GetShape().IsMoleculeInsideBorder(molecule.GetPosition()))
+						{
+							++count;
+						}
+					}
+				}
+				i++;
 			}
-			counts.at(i) += static_cast<int>(positions.size());
-			positions.clear();
-			i++;
 		}
 	}
 

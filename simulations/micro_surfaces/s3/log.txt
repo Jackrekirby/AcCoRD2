@@ -1,0 +1,19 @@
+[info] Output folder location: <C:\dev\AcCoRD2\simulations\micro_surfaces>
+[info] Validating configuration file: <C:\dev\AcCoRD2\simulations\micro_surfaces/config.json>
+[info] Environment properties:
+[info] Seed: 3, Realisations: 10, Simulated Time: 10.0s, Molecule Types: 1, Microscopic Surfaces: 1
+[info] Microscopic Regions: 1,  Mesoscopic Regions: 0, Passive Actors: 2, Active Actors: 1
+[info] User Updates Every 1 Realisations
+[info] Build time: 0.008s
+[info] Starting simulation (Fri Feb 26 22:38:18 2021)
+[info] Realisation: 0
+[info] Realisation: 1. Estimate time remaining: 1.674s
+[info] Realisation: 2. Estimate time remaining: 1.836s
+[info] Realisation: 3. Estimate time remaining: 1.587s
+[info] Realisation: 4. Estimate time remaining: 1.362s
+[info] Realisation: 5. Estimate time remaining: 1.119s
+[info] Realisation: 6. Estimate time remaining: 0.917s
+[info] Realisation: 7. Estimate time remaining: 0.722s
+[info] Realisation: 8. Estimate time remaining: 0.481s
+[info] Realisation: 9. Estimate time remaining: 0.237s
+[info] Simulation complete (Fri Feb 26 22:38:20 2021). Run Time: 2.390s

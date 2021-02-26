@@ -98,7 +98,7 @@ namespace accord
 		SurfaceShape SplitShapeName(const std::string& shape);
 
 
-		void CreateEnvironment(std::optional<uint64_t> seed, std::string output_folder_path);
+		void CreateEnvironment(uint64_t seed, std::string output_folder_path);
 
 		void CreateMicroscopicRegions();
 

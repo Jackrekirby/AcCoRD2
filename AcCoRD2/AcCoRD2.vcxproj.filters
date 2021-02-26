@@ -181,9 +181,6 @@
     <ClCompile Include="src\passive_actor.cpp">
       <Filter>src\simulation\passive actor</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_relationship.cpp">
-      <Filter>src\simulation\microscopic\relations</Filter>
-    </ClCompile>
     <ClCompile Include="src\basic_cylinder.cpp">
       <Filter>src\shapes\basic\cylinder</Filter>
     </ClCompile>
@@ -361,17 +358,14 @@
     <ClCompile Include="src\microscopic_surface.cpp">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
-    <ClCompile Include="src\microscopic_relative.cpp">
-      <Filter>src\simulation\microscopic\relations</Filter>
-    </ClCompile>
     <ClCompile Include="src\microscopic_high_priority_relationship.cpp">
-      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+      <Filter>src\simulation\microscopic\relations\high priority</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_low_priority_relationship.cpp">
-      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+      <Filter>src\simulation\microscopic\relations\low priority</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_neighbour_relationship.cpp">
-      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+      <Filter>src\simulation\microscopic\relations\neighbour</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_sphere_surface_shape.cpp">
       <Filter>src\simulation\microscopic\shapes</Filter>
@@ -392,7 +386,7 @@
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_high_priority_relative.cpp">
-      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+      <Filter>src\simulation\microscopic\relations\high priority</Filter>
     </ClCompile>
     <ClCompile Include="src\microscopic_box_surface_shape2.cpp">
       <Filter>src\simulation\microscopic\shapes</Filter>
@@ -627,12 +621,6 @@
     <ClInclude Include="src\passive_actor.h">
       <Filter>src\simulation\passive actor</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_relative.h">
-      <Filter>src\simulation\microscopic\relations</Filter>
-    </ClInclude>
-    <ClInclude Include="src\microscopic_relationship.h">
-      <Filter>src\simulation\microscopic\relations</Filter>
-    </ClInclude>
     <ClInclude Include="src\collision_cylinder.h">
       <Filter>src\shapes\collision\cylinder</Filter>
     </ClInclude>
@@ -813,35 +801,32 @@
     <ClInclude Include="src\microscopic_surface.h">
       <Filter>src\simulation\microscopic\surface</Filter>
     </ClInclude>
-    <ClInclude Include="src\microscopic_relative2.h">
-      <Filter>src\simulation\microscopic\relations\new</Filter>
-    </ClInclude>
     <ClInclude Include="src\microscopic_high_priority_relative_shape.h">
-      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+      <Filter>src\simulation\microscopic\relations\high priority</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_high_priority_relative.h">
-      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+      <Filter>src\simulation\microscopic\relations\high priority</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_high_priority_relationship.h">
-      <Filter>src\simulation\microscopic\relations\new\high priority</Filter>
+      <Filter>src\simulation\microscopic\relations\high priority</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_low_priority_relative_shape.h">
-      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+      <Filter>src\simulation\microscopic\relations\low priority</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_low_priority_relative.h">
-      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+      <Filter>src\simulation\microscopic\relations\low priority</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_low_priority_relationship.h">
-      <Filter>src\simulation\microscopic\relations\new\low priority</Filter>
+      <Filter>src\simulation\microscopic\relations\low priority</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_neighbour_relative_shape.h">
-      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+      <Filter>src\simulation\microscopic\relations\neighbour</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_neighbour_relative.h">
-      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+      <Filter>src\simulation\microscopic\relations\neighbour</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_neighbour_relationship.h">
-      <Filter>src\simulation\microscopic\relations\new\neighbour</Filter>
+      <Filter>src\simulation\microscopic\relations\neighbour</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_region_shape.h">
       <Filter>src\simulation\microscopic\region</Filter>
@@ -893,6 +878,9 @@
     </ClInclude>
     <ClInclude Include="src\timer.h">
       <Filter>src\other</Filter>
+    </ClInclude>
+    <ClInclude Include="src\microscopic_relative.h">
+      <Filter>src\simulation\microscopic\relations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1167,23 +1155,20 @@
     <Filter Include="src\simulation\active actor\shapes\surfaces">
       <UniqueIdentifier>{af7803e2-a773-410e-beb9-b58e1a85e144}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\simulation\microscopic\relations\new">
-      <UniqueIdentifier>{b9751cfb-3e6c-41ca-9be9-a2b77d411370}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\microscopic\relations\new\high priority">
-      <UniqueIdentifier>{4bcc6a81-9074-4431-bd50-708a925773ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\microscopic\relations\new\low priority">
-      <UniqueIdentifier>{2407f55e-9725-4f88-9266-45ca09a1997c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\simulation\microscopic\relations\new\neighbour">
-      <UniqueIdentifier>{f25c1270-b1d3-47e8-a9a8-b1506247e26f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\simulation\microscopic\shapes">
       <UniqueIdentifier>{8048f985-4db8-40b2-aa2e-e71aa4b47b06}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\simulation\passive actor\shapes">
       <UniqueIdentifier>{960a5fbd-a82b-42c0-a28b-352f9d3e6e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\neighbour">
+      <UniqueIdentifier>{f25c1270-b1d3-47e8-a9a8-b1506247e26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\low priority">
+      <UniqueIdentifier>{2407f55e-9725-4f88-9266-45ca09a1997c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\simulation\microscopic\relations\high priority">
+      <UniqueIdentifier>{4bcc6a81-9074-4431-bd50-708a925773ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

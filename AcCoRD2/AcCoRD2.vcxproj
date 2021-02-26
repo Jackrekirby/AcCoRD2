@@ -30,7 +30,6 @@
     <ClCompile Include="src\microscopic_high_priority_relationship.cpp" />
     <ClCompile Include="src\microscopic_low_priority_relationship.cpp" />
     <ClCompile Include="src\microscopic_neighbour_relationship.cpp" />
-    <ClCompile Include="src\microscopic_relative.cpp" />
     <ClCompile Include="src\microscopic_rect_surface_shape.cpp" />
     <ClCompile Include="src\microscopic_surface.cpp" />
     <ClCompile Include="src\active_actor_box_surface.cpp" />
@@ -86,7 +85,6 @@
     <ClCompile Include="src\microscopic_sphere_region.cpp" />
     <ClCompile Include="src\relation_cylinder.cpp" />
     <ClCompile Include="src\basic_cylinder.cpp" />
-    <ClCompile Include="src\microscopic_relationship.cpp" />
     <ClCompile Include="src\microscopic_sphere_surface_shape.cpp" />
     <ClCompile Include="src\passive_actor.cpp" />
     <ClCompile Include="src\microscopic_box_surface_shape.cpp" />
@@ -208,7 +206,7 @@
     <ClInclude Include="src\microscopic_neighbour_relationship.h" />
     <ClInclude Include="src\microscopic_neighbour_relative.h" />
     <ClInclude Include="src\microscopic_neighbour_relative_shape.h" />
-    <ClInclude Include="src\microscopic_relative2.h" />
+    <ClInclude Include="src\microscopic_relative.h" />
     <ClInclude Include="src\microscopic_rect_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface.h" />
     <ClInclude Include="src\active_actor_box_surface.h" />
@@ -266,8 +264,6 @@
     <ClInclude Include="src\collision_cylinder.h" />
     <ClInclude Include="src\microscopic_sphere_surface_shape.h" />
     <ClInclude Include="src\microscopic_surface_type.h" />
-    <ClInclude Include="src\microscopic_relationship.h" />
-    <ClInclude Include="src\microscopic_relative.h" />
     <ClInclude Include="src\passive_actor.h" />
     <ClInclude Include="src\microscopic_box_surface_shape.h" />
     <ClInclude Include="src\microscopic_region_shape.h" />

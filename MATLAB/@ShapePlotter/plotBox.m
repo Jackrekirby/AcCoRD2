@@ -18,6 +18,8 @@
         args.FaceColor = obj.FaceColor;
         args.EdgeAlpha double = obj.EdgeAlpha;
         args.EdgeColor = obj.EdgeColor;
+        args.EdgeWidth = obj.EdgeWidth;
+        args.EdgeStyle = obj.EdgeStyle;
     end
 
     max = origin + length;
@@ -28,5 +30,6 @@
 
     hBox = patch('Vertices', vertices, 'Faces', faces,...
       'FaceColor', args.FaceColor, 'FaceAlpha', args.FaceAlpha,...
-      'EdgeColor', args.EdgeColor, 'EdgeAlpha', args.EdgeAlpha);
+      'EdgeColor', args.EdgeColor, 'EdgeAlpha', args.EdgeAlpha,...
+      'LineStyle', args.EdgeStyle, 'LineWidth', args.EdgeWidth);
  end

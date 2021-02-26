@@ -1,10 +1,10 @@
 #pragma once
-#include "microscopic_relative2.h"
+#include "microscopic_relative.h"
 namespace accord::microscopic
 {
 	class HighPriorityRelativeShape;
 
-	class HighPriorityRelative : public Relative2
+	class HighPriorityRelative : public Relative
 	{
 	public:
 		enum class SurfaceDirection

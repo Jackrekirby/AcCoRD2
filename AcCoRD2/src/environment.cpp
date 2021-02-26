@@ -49,10 +49,6 @@ namespace accord
 
 		Random::SetSeed(seed);
 
-		// will fail if files are open
-		std::filesystem::remove_all(simulation_path +
-			"/s" + std::to_string(Environment::seed));
-
 		Environment::CreateDirectories();
 
 		ReactionManager::Init(num_molecule_types);

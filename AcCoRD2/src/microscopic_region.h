@@ -7,7 +7,7 @@
 #include "microscopic_zeroth_order_reaction.h"
 #include "microscopic_first_order_reaction.h"
 #include "microscopic_second_order_reaction.h"
-#include "microscopic_relationship.h"
+//#include "microscopic_relationship.h"
 #include "microscopic_region_shape.h"
 #include "microscopic_surface_type.h"
 #include "microscopic_region_id.h"

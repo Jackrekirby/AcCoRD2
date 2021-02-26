@@ -1,10 +1,10 @@
 #pragma once
-#include "microscopic_relative2.h"
+#include "microscopic_relative.h"
 namespace accord::microscopic
 {
 	class NeighbourRelativeShape;
 
-	class NeighbourRelative : public Relative2
+	class NeighbourRelative : public Relative
 	{
 	public:
 		virtual const NeighbourRelativeShape& GetShape() const = 0;

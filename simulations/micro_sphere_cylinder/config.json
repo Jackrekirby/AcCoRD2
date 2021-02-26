@@ -10,7 +10,10 @@
 	  "DiffusionCoefficients":[0.03],
 	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None" ],
-	  "SurfaceTypesReflecting":[ "Reflecting"]
+	  "SurfaceTypesReflecting":[ "Reflecting"],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
    },
    "MicroscopicRegions":[
 		{
@@ -20,11 +23,11 @@
 			  "Centre":[-2, 0, 0],
 			  "Radius":1
 		   },
-		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
-		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
-		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
-		  "TimeStep":"@G:TimeStep",
-		  "Priority":0
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
 	   },
 		{
 		  "Name":"MicroB",
@@ -35,11 +38,11 @@
 			  "Length":4,
 			  "Axis":"X"
 		   },
-		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
-		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
-		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
-		  "TimeStep":"@G:TimeStep",
-		  "Priority":0
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
 	   },
 	    {
 		  "Name":"MicroC",
@@ -48,11 +51,11 @@
 			  "Centre":[2, 0, 0],
 			  "Radius":1
 		   },
-		  "SurfaceTypes":"@G:SurfaceTypesReflecting",
-		  "DiffusionCoefficients":"@G:DiffusionCoefficients",
-		  "NumberOfSubvolumes":"@G:NumberOfSubvolumes",
-		  "TimeStep":"@G:TimeStep",
-		  "Priority":0
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
 	   }
    ],
     "MicroscopicSurfaces":[
@@ -74,13 +77,13 @@
 	  "RecordPositions":true,
 	  "RecordObservationTime":true,
 	  "StartTime":0,
-	  "TimeStep":"@G:TimeStep",
-	  "Priority":0
+	  "TimeStep":"@R:TimeStep",
+	  "Priority":"@R:PassiveActorPriority"
 	},
 	"ActiveActors":[
         {
          "StartTime":0,
-         "Priority":0,
+         "Priority":"@R:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
          "ModulationStrength":40,
@@ -101,15 +104,15 @@
          "RegionA":"MicroA",
          "RegionB":"MicroB",
          "Priority":"A",
-		 "AToBSurfaceTypes":"@G:SurfaceTypesNone",
-		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
+		 "AToBSurfaceTypes":"@R:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@R:SurfaceTypesReflecting"
       },
 	  {
          "RegionA":"MicroB",
          "RegionB":"MicroC",
          "Priority":"A",
-         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
-		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
+         "AToBSurfaceTypes":"@R:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@R:SurfaceTypesReflecting"
       }
    ]
 }

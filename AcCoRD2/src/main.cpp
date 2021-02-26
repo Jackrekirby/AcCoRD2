@@ -60,8 +60,10 @@ int main(int argc, char** argv)
 	{
 		std::cout << fmt::format("Command Line Arguments:") << std::endl;
 		std::cout << fmt::format("[1] AcCoRD2.exe    (provides information about AcCoRD when it is the only argument parsed)") << std::endl;
-		std::cout << fmt::format("[2] config.json    (an absolute file path to the configuration file)") << std::endl;
+		std::cout << fmt::format("[2] config.json    (the absolute or relative file path to the configuration file)") << std::endl;
 		std::cout << fmt::format("[3] seed           (overrides the seed specified in the configuration file)") << std::endl;
+		std::cout << fmt::format("Simulation output data is written to the folder where the configuration file is located") << std::endl;
+		std::cout << fmt::format("The console log is written to a log.txt file located inside the seed folder") << std::endl;
 		break;
 	}
 	case 2:
@@ -86,8 +88,10 @@ int main(int argc, char** argv)
 		std::cout << fmt::format("[Error] Exactly {} command line arguments were provided but expected between 1 and 3.", args.size()) << std::endl;
 		std::cout << fmt::format("Command Line Arguments:") << std::endl;
 		std::cout << fmt::format("[1] AcCoRD2.exe    (provides information about AcCoRD when it is the only argument parsed)") << std::endl;
-		std::cout << fmt::format("[2] config.json    (an absolute file path to the configuration file)") << std::endl;
+		std::cout << fmt::format("[2] config.json    (the absolute or relative file path to the configuration file)") << std::endl;
 		std::cout << fmt::format("[3] seed           (overrides the seed specified in the configuration file)") << std::endl;
+		std::cout << fmt::format("Simulation output data is written to the folder where the configuration file is located") << std::endl;
+		std::cout << fmt::format("The console log is written to a log.txt file located inside the seed folder") << std::endl;
 		break;
 	}
 }

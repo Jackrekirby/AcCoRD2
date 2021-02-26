@@ -15,7 +15,7 @@ namespace accord
 		{
 			if (!file.is_open())
 			{
-				LOG_ERROR("OutputBinarySingles could not open file <{}>", file_path);
+				LOG_CRITICAL("OutputBinarySingles could not open file <{}>", file_path);
 			}
 		}
 
@@ -38,7 +38,7 @@ namespace accord
 			file.open(file_path);
 			if (!file.is_open())
 			{
-				LOG_ERROR("OutputBinaryVectors could not open file <{}>", file_path);
+				LOG_CRITICAL("OutputBinaryVectors could not open file <{}>", file_path);
 			}
 		}
 		

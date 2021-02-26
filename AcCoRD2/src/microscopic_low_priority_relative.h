@@ -1,10 +1,10 @@
 #pragma once
-#include "microscopic_relative2.h"
+#include "microscopic_relative.h"
 namespace accord::microscopic
 {
 	class LowPriorityRelativeShape;
 
-	class LowPriorityRelative : public Relative2
+	class LowPriorityRelative : public Relative
 	{
 	public:
 		virtual const LowPriorityRelativeShape& GetShape() const = 0;

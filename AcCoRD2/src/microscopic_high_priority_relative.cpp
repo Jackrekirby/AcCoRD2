@@ -6,11 +6,11 @@ namespace accord::microscopic
 	void from_json(const Json& j, HighPriorityRelative::SurfaceDirection& surface_direction)
 	{
 		std::string str = j.get<std::string>();
-		if (str == "Internal")
+		if (str == "Internal" || str == "Negative")
 		{
 			surface_direction = HighPriorityRelative::SurfaceDirection::Internal;
 		}
-		else if (str == "External")
+		else if (str == "External" || str == "Positive")
 		{
 			surface_direction = HighPriorityRelative::SurfaceDirection::External;
 		}

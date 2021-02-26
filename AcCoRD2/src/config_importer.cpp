@@ -85,13 +85,35 @@ namespace accord
 		}
 		catch (Json::parse_error& e)
 		{
+			// syntax error
 			std::cout << fmt::format("[ERROR] Message: {} \nException id: {}\nByte position of error: {}", e.what(), e.id, e.byte);
+			throw std::exception();
+		}
+
+		uint64_t random_number_seed = 1;
+		if (j.contains("RandomNumberSeed"))
+		{
+			if (j["RandomNumberSeed"].is_number_integer())
+			{
+				random_number_seed = seed.has_value() ? seed.value() : j["RandomNumberSeed"].get<uint64_t>();
+			}
+			else
+			{
+				std::cout << fmt::format("[ERROR] The value of RandomNumberSeed must be an integer");
+				throw std::exception();
+			}
+		}
+		else
+		{
+			std::cout << fmt::format("[ERROR] Config file must contain key: RandomNumberSeed");
 			throw std::exception();
 		}
 
 		// output folder is the parent folder of the config file
 		std::string output_folder_path = config_path.parent_path().string();
-		std::string log_filepath = output_folder_path + "/log.txt";
+		// delete contents of seed folder
+		std::filesystem::remove_all(output_folder_path + "/s" + std::to_string(random_number_seed));
+		std::string log_filepath = output_folder_path + "/s" + std::to_string(random_number_seed) +"/log.txt";
 
 		#ifdef NDEBUG
 			//accord::Logger::Initialise(log_filepath, "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -108,7 +130,7 @@ namespace accord
 		LOG_INFO("Validating configuration file: <{}>", file_path);
 		ValidateJson();
 		LOG_INFO("Environment properties:");
-		CreateEnvironment(seed, output_folder_path);
+		CreateEnvironment(random_number_seed, output_folder_path);
 	}
 
 	const Json& ConfigImporter::GetJson()
@@ -131,7 +153,7 @@ namespace accord
 			}
 			else
 			{
-				LOG_ERROR("Attepting to access non existent field {}, using reference {}", token, reference);
+				LOG_ERROR("Attempting to access non existent field {}, using reference {}", token, reference);
 				throw std::exception();
 			}
 			s.erase(0, pos + 1);
@@ -144,7 +166,7 @@ namespace accord
 		}
 		else
 		{
-			LOG_ERROR("Attepting to access non existent field {}, using reference {}", s, reference);
+			LOG_ERROR("Attempting to access non existent field {}, using reference {}", s, reference);
 			throw std::exception();
 		}
 		return output;
@@ -278,7 +300,7 @@ namespace accord
 			for (size_t i = 0; i < n; i++)
 			{
 				surface.SetIndex(i);
-				surface.Add("SurfaceDirection").IsString().IsOneOf<std::string>({ "Internal", "External", "Both" });
+				surface.Add("SurfaceDirection").IsString().IsOneOf<std::string>({ "Internal", "External", "Positive", "Negative", "Both" });
 				surface.Add("SurfaceTypes").IsArrayOfStrings().HasSize(n_molecule_types);
 				surface.Add("AddToRegions").IsArrayOfStrings().IsEachOneOf(microscopic_region_names);
 				surface.Add("IsOnRegionSurface").IsBool();
@@ -377,7 +399,8 @@ namespace accord
 	{
 		if (config.IsKey("PassiveActors"))
 		{
-			if (j.contains("ObserveEachRegion") && j["ObserveEachRegion"].get<bool>())
+			config.Add("ObserveEachRegion").IsBool();
+			if (j["ObserveEachRegion"].get<bool>())
 			{
 				JsonKeyPair passive_actors = config.Add("PassiveActors");
 				passive_actors.IsObject();
@@ -647,10 +670,10 @@ namespace accord
 
 
 
-	void ConfigImporter::CreateEnvironment(std::optional<uint64_t> seed, std::string output_folder_path)
+	void ConfigImporter::CreateEnvironment(uint64_t seed, std::string output_folder_path)
 	{
 		size_t n_passive_actors;
-		if (j.contains("ObserveEachRegion"))
+		if (j["ObserveEachRegion"] == true)
 		{
 			n_passive_actors = j["MicroscopicRegions"].size() + j["MesoscopicRegions"].size();
 		}
@@ -659,8 +682,7 @@ namespace accord
 			n_passive_actors = j["PassiveActors"].size();
 		}
 
-		uint64_t random_number_seed = seed.has_value() ? seed.value() : j["RandomNumberSeed"].get<uint64_t>();
-		Environment::Init(output_folder_path, j["MaxUpdates"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), random_number_seed);
+		Environment::Init(output_folder_path, j["MaxUpdates"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), seed);
 
 		CreateMicroscopicRegions();
 

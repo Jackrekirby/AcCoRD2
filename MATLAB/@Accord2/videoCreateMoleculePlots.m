@@ -2,7 +2,7 @@ function [video] = videoCreateMoleculePlots(video, moleculeStyle)
     % Create the molecule colors either by actor or molecule type
     colorByActor = strcmp(moleculeStyle.colorMethod, 'actor');
     if(colorByActor)
-        colors = hsv(length(video.p));
+        colors = moleculeStyle.colormap(length(video.p));
     else % if(strcmp(moleculeStyle.colorMethod, 'type'))
         % calculate the number of molecule types by checking the highest
         % molecule type of each passive actor
@@ -12,7 +12,7 @@ function [video] = videoCreateMoleculePlots(video, moleculeStyle)
                 nMoleculeTypes = length(video.p(iP).m);
             end
         end
-        colors = hsv(nMoleculeTypes);
+        colors = moleculeStyle.colormap(nMoleculeTypes);
     end
 
     for iP = 1:length(video.p)

@@ -81,7 +81,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
     end
     
     % Count number of passive actors
-    if(isfield(config, "PassiveActors") && ~isfield(config, "ObserveEachRegion"))
+    if(isfield(config, "PassiveActors") && ~config.ObserveEachRegion)
         nPassiveActors = length(config.PassiveActors);
     else
         nPassiveActors = 0;
@@ -90,7 +90,7 @@ function [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, 
     % Count the total number of objects
     nObjects = [nMicroscopicRegions, nMicroscopicSurfaces, ...
         nMesoscopicRegions, nActiveActors, nPassiveActors];
-    objectCount = sum(nObjects);
+    objectCount = sum(nObjects .* display);
     if(showLog)
         disp(objectCount + " objects to plot");
     end

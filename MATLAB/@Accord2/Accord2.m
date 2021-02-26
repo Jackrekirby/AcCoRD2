@@ -5,7 +5,7 @@ classdef Accord2
         [data] = importData(simulationDirectory, logImporting, saveData)
         [config] = importConfig(filePath)
         %   Molecule Plotting
-        quickPlot(data, plotMeanOnly)
+        [hPlots] = plotMoleculeCount(data, plotMeanOnly)
         %   Video Making
         [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, colormap, display, showLog)
         [video] = videoLive(video, playBackSpeed, endTime)

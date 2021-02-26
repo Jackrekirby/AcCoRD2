@@ -13,28 +13,14 @@ namespace accord
 
 namespace accord::microscopic
 {
-	class RegionShape;
-	class Relationship;
 	class Grid;
 
 	class Relative
 	{
 	public:
 
-		enum class SurfaceDirection
-		{
-			Internal, External, Both
-		};
-
-		virtual const SurfaceDirection& GetSurfaceDirection() const = 0;
-
-		virtual const RegionShape& GetShape() const = 0;
-		
-		// remove const SurfaceType&
 		virtual std::optional<MoleculeDestination> PassMolecule(const Vec3d& end,
-			const shape::collision::Collision3D& collision, Grid* owner, 
-			 SurfaceType surface_type, int cycles, bool allowObstructions) = 0;
+			const shape::collision::Collision3D& collision, Grid* owner,
+			SurfaceType surface_type, int cycles, bool allowObstructions) = 0;
 	};
-
-	void from_json(const Json& j, Relative::SurfaceDirection& surface_direction);
 }
