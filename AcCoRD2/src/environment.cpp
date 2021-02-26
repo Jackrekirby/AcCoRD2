@@ -12,7 +12,7 @@
 
 namespace accord
 {
-	void Environment::Init(std::string simulation_path, int num_realisations,
+	void Environment::Init(std::string simulation_path, int max_updates, int num_realisations,
 		double run_time, int num_molecule_types, size_t num_microscopic_regions,
 		size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors,
 		size_t num_surfaces, uint64_t seed)
@@ -28,6 +28,10 @@ namespace accord
 		PassiveActorID::SetNumIDs(static_cast<int>(num_passive_actors));
 		ActiveActorID::SetNumIDs(static_cast<int>(num_active_actors));
 
+		
+		update_each_n_realisations = num_realisations / max_updates;
+		if (update_each_n_realisations < 1) update_each_n_realisations = 1;
+		LOG_INFO("User Updates Every {} Realisations", update_each_n_realisations);
 		Environment::time = 0;
 		Environment::run_time = run_time;
 		Environment::num_molecule_types = num_molecule_types;
@@ -307,9 +311,10 @@ namespace accord
 			// set all event times back to start time (thus start time needs to be saved)
 			time = 0;
 			Environment::CreateDirectories();
-
-			double estimated_time_remaining = (num_realisations * (current_time / current_realisation)) - current_time;
-			LOG_INFO("Realisation: {}. Estimate time remaining: {:.3f}s", Environment::GetRealisationNumber(), estimated_time_remaining);
+			if (current_realisation % update_each_n_realisations == 0){
+				double estimated_time_remaining = (num_realisations * (current_time / current_realisation)) - current_time;
+				LOG_INFO("Realisation: {}. Estimate time remaining: {:.3f}s", Environment::GetRealisationNumber(), estimated_time_remaining);
+			}
 			for (auto& passive_actor : Environment::GetPassiveActors())
 			{
 				passive_actor->NextRealisation();
@@ -466,6 +471,7 @@ namespace accord
 	std::vector<mesoscopic::Region> Environment::mesoscopic_regions;
 	std::vector<std::unique_ptr<PassiveActor>> Environment::passive_actors;
 	std::vector<std::unique_ptr<ActiveActor>> Environment::active_actors;
+	int Environment::update_each_n_realisations = 0;
 	double Environment::run_time = 0;
 	double Environment::time = 0;
 	int Environment::num_molecule_types = 0;

@@ -10,7 +10,7 @@ namespace accord
 	class Environment
 	{
 	public:
-		static void Init(std::string simulation_path, int num_realisations,
+		static void Init(std::string simulation_path, int max_updates, int num_realisations,
 			double run_time, int num_molecule_types, size_t num_microscopic_regions,
 			size_t num_mesoscopic_regions, size_t num_passive_actors, size_t num_active_actors, 
 			size_t num_surfaces, uint64_t seed);
@@ -100,6 +100,7 @@ namespace accord
 		static void DefineRelationship(const MicroscopicRegionID& region_a, const MicroscopicRegionID& region_b,
 			RelationshipPriority priority, SurfaceTypes surfaces);
 	private:
+		static int update_each_n_realisations;
 		static double time;
 		static double run_time;
 		static int num_molecule_types;

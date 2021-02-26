@@ -1,13 +1,13 @@
 {
-   "SaveToFolder": "micro_sphere_cylinder",
-   "NumberOfRealisations":1,
+   "MaxUpdates": 50,
+   "NumberOfRealisations":100,
    "FinalSimulationTime":200,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
    "G":{
-      "TimeStep":0.05,
-	  "DiffusionCoefficients":[0.01],
+      "TimeStep":0.1,
+	  "DiffusionCoefficients":[0.03],
 	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None" ],
 	  "SurfaceTypesReflecting":[ "Reflecting"]
@@ -55,6 +55,20 @@
 		  "Priority":0
 	   }
    ],
+    "MicroscopicSurfaces":[
+		{
+		  "Shape":{
+			  "Type":"CircleSurface",
+			  "Centre":[2, 0, 0],
+			  "Radius":0.1,
+			  "Axis":"X"
+		   },
+		   "SurfaceDirection":"Internal",
+		   "IsOnRegionSurface":true,
+		   "SurfaceTypes":["Membrane"],
+		   "AddToRegions":[ "MicroB" ]
+	   }
+   ],
    "PassiveActors":
 	{
 	  "RecordPositions":true,
@@ -69,7 +83,7 @@
          "Priority":0,
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":20,
+         "ModulationStrength":40,
          "MoleculeTypesToRelease":[ 1 ],
 		  "Shape":{
 			  "Type":"Point",
@@ -94,7 +108,7 @@
          "RegionA":"MicroB",
          "RegionB":"MicroC",
          "Priority":"A",
-         "AToBSurfaceTypes":"@G:SurfaceTypesNone",
+         "AToBSurfaceTypes":"@G:SurfaceTypesReflecting",
 		 "BToASurfaceTypes":"@G:SurfaceTypesReflecting"
       }
    ]

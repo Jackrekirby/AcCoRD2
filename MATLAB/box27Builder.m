@@ -53,9 +53,9 @@ clear all;
 clc;
 
 % specify bounding volume for the passive actors to observe
-volumeOrigin = [0, 0, 0]; volumeLength = [5, 5, 10];
+volumeOrigin = [0, 0, 0]; volumeLength = [1, 1, 1];
 % specify the number of passive actors per dimension (x, y, z)
-resolution = [1, 1, 2];
+resolution = [10, 10, 10];
 % calculate length of each passive actor
 actorLength = volumeLength ./ resolution;
 % i = iterator, p = passive actor

@@ -1,9 +1,19 @@
-[info] Output folder location: <C:\dev\AcCoRD2/simulations/micro_sphere_cylinder>
-[info] Validating configuration file: <C:\dev\AcCoRD2/configs/micro_sphere_cylinder.json>
+[info] Output folder location: <C:\dev\AcCoRD2\simulations\micro_sphere_cylinder>
+[info] Validating configuration file: <C:\dev\AcCoRD2\simulations\micro_sphere_cylinder\config.json>
 [info] Environment properties:
-[info] Seed: 1, Realisations: 1, Simulated Time: 200.0s, Molecule Types: 1, Microscopic Surfaces: 0
+[info] Seed: 1, Realisations: 100, Simulated Time: 200.0s, Molecule Types: 1, Microscopic Surfaces: 1
 [info] Microscopic Regions: 3,  Mesoscopic Regions: 0, Passive Actors: 3, Active Actors: 1
-[info] Build time: 0.021s
-[info] Starting simulation (Fri Feb 26 11:34:44 2021)
+[info] User Updates Every 10 Realisations
+[info] Build time: 0.360s
+[info] Starting simulation (Fri Feb 26 15:17:47 2021)
 [info] Realisation: 0
-[info] Simulation complete (Fri Feb 26 11:34:44 2021). Run Time: 0.200s
+[info] Realisation: 10. Estimate time remaining: 25.191s
+[info] Realisation: 20. Estimate time remaining: 19.960s
+[info] Realisation: 30. Estimate time remaining: 16.660s
+[info] Realisation: 40. Estimate time remaining: 13.957s
+[info] Realisation: 50. Estimate time remaining: 11.405s
+[info] Realisation: 60. Estimate time remaining: 9.089s
+[info] Realisation: 70. Estimate time remaining: 6.756s
+[info] Realisation: 80. Estimate time remaining: 4.478s
+[info] Realisation: 90. Estimate time remaining: 2.223s
+[info] Simulation complete (Fri Feb 26 15:18:09 2021). Run Time: 22.188s

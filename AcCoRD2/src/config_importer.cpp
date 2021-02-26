@@ -68,7 +68,8 @@ namespace accord
 	{
 		std::filesystem::path config_path(file_path);
 		if (config_path.is_relative()) {
-			file_path = std::filesystem::current_path().parent_path().string() + "/configs/" + file_path;
+			file_path = std::filesystem::current_path().string() + "/" + file_path;
+			config_path = std::filesystem::path(file_path);
 		}
 
 		// Check file path is valid
@@ -88,28 +89,9 @@ namespace accord
 			throw std::exception();
 		}
 
-		std::string output_folder_path;
-		std::string log_filepath;
-		if (j.contains("SaveToFolder"))
-		{
-			if (j["SaveToFolder"].is_string())
-			{
-				output_folder_path = j["SaveToFolder"].get<std::string>();
-
-				std::filesystem::path output_path(output_folder_path);
-				if (output_path.is_relative()) {
-					output_folder_path = std::filesystem::current_path().parent_path().string() + "/simulations/" + output_folder_path;
-				}
-
-				log_filepath = output_folder_path + "/log.txt";
-			}	
-		}
-
-		if (log_filepath.empty())
-		{
-			std::cout << fmt::format("[ERROR] Config file must provide key: SaveToFolder\n");
-			throw std::exception();
-		}
+		// output folder is the parent folder of the config file
+		std::string output_folder_path = config_path.parent_path().string();
+		std::string log_filepath = output_folder_path + "/log.txt";
 
 		#ifdef NDEBUG
 			//accord::Logger::Initialise(log_filepath, "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
@@ -121,7 +103,6 @@ namespace accord
 			accord::Logger::GetLogger()->set_level(spdlog::level::debug);
 		#endif
 
-		
 		LOG_INFO("Output folder location: <{}>", output_folder_path);
 		ReplaceReferenceValues(j);
 		LOG_INFO("Validating configuration file: <{}>", file_path);
@@ -196,7 +177,7 @@ namespace accord
 	void ConfigImporter::ValidateJson()
 	{
 		JsonKeyPair config(j);
-		config.Add("SaveToFolder").IsString();
+		config.Add("MaxUpdates").IsInt().IsPositive();
 		config.Add("NumberOfRealisations").IsInt().IsPositive();
 		config.Add("FinalSimulationTime").IsNumber().IsPositive();
 		config.Add("RandomNumberSeed").IsInt().IsPositive();
@@ -679,7 +660,7 @@ namespace accord
 		}
 
 		uint64_t random_number_seed = seed.has_value() ? seed.value() : j["RandomNumberSeed"].get<uint64_t>();
-		Environment::Init(output_folder_path, j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), random_number_seed);
+		Environment::Init(output_folder_path, j["MaxUpdates"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), random_number_seed);
 
 		CreateMicroscopicRegions();
 

@@ -8,7 +8,7 @@ clc;
 configFolderPath = [pwd, '\..\configs\']; % path to configuration folder
 config = Accord2.importConfig(configFolderPath + "micro_sphere_cylinder.json");
 
-% [data] = importData(simulationDirectory, logImporting, saveData)
+%% [data] = importData(simulationDirectory, logImporting, saveData)
 clc;
 simsFolderPath = [pwd, '\..\simulations\']; % path to simulations folder
 data = Accord2.importData([simsFolderPath, config.SaveToFolder], 1, false);
@@ -21,17 +21,17 @@ Accord2.quickPlot(data, false);
 clc;
 moleculeStyle = struct('colorMethod', 'actor', 'fill', true, 'size', 10);
 shapePlotters = ShapePlotter('CircleResolution', 3, 'SphereResolution', 3);
-colormaps = ["hsv"];
+colormaps = ["hsv", "hsv", "hsv", "hsv", "hsv"];
 display = [true, true, true, true, true];
 showLog = false;
 
 %% Initialise Video
 clc;
 video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
-view([0 0]);
-%% Watch Video Live
+view([10 10]);
+% Watch Video Live
 clc;
-video = Accord2.videoLive(video, 5);
+video = Accord2.videoLive(video, 10, 100);
 
 %% Record Video
 clc;

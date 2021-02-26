@@ -1,11 +1,10 @@
-function [video] = videoLive(video, playBackSpeed)
+function [video] = videoLive(video, playBackSpeed, endTime)
     simulationTime = 0;
     % list of indicies of all the actors to render in next update
     actorsToRender = [];
-
     tic;
     % keep rendering until all observations have been rendered
-    while(min(video.observationTimes) ~= Inf)
+    while(min(video.observationTimes) < endTime)
         % if simulation is behind real time then skip frames
         if(simulationTime / playBackSpeed < toc)
             while(simulationTime / playBackSpeed < toc)

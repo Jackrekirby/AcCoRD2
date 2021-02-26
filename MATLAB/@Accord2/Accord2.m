@@ -8,7 +8,7 @@ classdef Accord2
         quickPlot(data, plotMeanOnly)
         %   Video Making
         [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, colormap, display, showLog)
-        [video] = videoLive(video, playBackSpeed)
+        [video] = videoLive(video, playBackSpeed, endTime)
         [video] = videoRecord(video, playBackSpeed, filePath)
         [hFigure] = plotEnvironment(config, shapePlotters, colormaps, display, showLog)
         
