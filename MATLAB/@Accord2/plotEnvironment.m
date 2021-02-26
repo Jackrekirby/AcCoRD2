@@ -1,4 +1,4 @@
-function [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, colormap, display, showLog)
+function [hFigure] = plotEnvironment(config, shapePlotters, colormaps, display, showLog)
     % shapePlotters = [ShapePlotter, ShapePlotter, ShapePlotter, ShapePlotter];
     % display = [true, true, true, true]
     % colormap = [hsv, jet, summer, autumn];
@@ -6,11 +6,9 @@ function [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, 
     % moleculeStyle.fill = true;
     % moleculeStyle.size = 10;
 
-    video = data.s(1).r(1);
-    video.hFigure = figure('Name', 'Simulation Time:','NumberTitle','off');
+    hFigure = figure('Name', 'Simulation Environment','NumberTitle','off');
     hold on;
-    video = Accord2.videoCreateMoleculePlots(video, moleculeStyle);
-    Accord2.videoPlotRegionsAndActors(config, shapePlotters, colormap, display, showLog);
+    Accord2.videoPlotRegionsAndActors(config, shapePlotters, colormaps, display, showLog);
     hold off;
     axis equal;
     axis tight;

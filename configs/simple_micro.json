@@ -1,7 +1,7 @@
 {
    "SaveToFolder": "D:/dev/simulation",
-   "NumberOfRealisations":10,
-   "FinalSimulationTime":1000,
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":100,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
@@ -45,7 +45,7 @@
          "Priority":"@G:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":100,
+         "ModulationStrength":1,
          "MoleculeTypesToRelease":[ 1 ],
          "RegionsToActIn":[ "Box" ],
          "Type":"NonRandom",

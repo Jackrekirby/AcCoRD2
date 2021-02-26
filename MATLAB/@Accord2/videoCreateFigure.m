@@ -1,3 +1,3 @@
-function [video] = videoCreateFigure(video)
+function [hFigure] = videoCreateFigure()
     video.hFigure = figure('Name', 'Simulation Time:','NumberTitle','off');
-end
+en

@@ -59,12 +59,18 @@
 #include "microscopic_high_priority_relative.h"
 #include "microscopic_low_priority_relative.h"
 #include "microscopic_neighbour_relative.h"
+#include <filesystem>
 
 namespace accord
 {
 	ConfigImporter::ConfigImporter(std::string file_path, std::optional<uint64_t> seed)
 		: n_molecule_types(0)
 	{
+		std::filesystem::path config_path(file_path);
+		if (config_path.is_relative()) {
+			file_path = std::filesystem::current_path().parent_path().string() + "/configs/" + file_path;
+		}
+
 		// Check file path is valid
 		std::ifstream i(file_path);
 		if (!i.is_open())
@@ -82,12 +88,20 @@ namespace accord
 			throw std::exception();
 		}
 
+		std::string output_folder_path;
 		std::string log_filepath;
 		if (j.contains("SaveToFolder"))
 		{
 			if (j["SaveToFolder"].is_string())
 			{
-				log_filepath = j["SaveToFolder"].get<std::string>() + "/log.txt";
+				output_folder_path = j["SaveToFolder"].get<std::string>();
+
+				std::filesystem::path output_path(output_folder_path);
+				if (output_path.is_relative()) {
+					output_folder_path = std::filesystem::current_path().parent_path().string() + "/simulations/" + output_folder_path;
+				}
+
+				log_filepath = output_folder_path + "/log.txt";
 			}	
 		}
 
@@ -98,6 +112,7 @@ namespace accord
 		}
 
 		#ifdef NDEBUG
+			//accord::Logger::Initialise(log_filepath, "[%H:%M:%S.%e] [%^%l%$] %s:%# %!() %v");
 			accord::Logger::Initialise(log_filepath, "[%^%l%$] %v");
 			accord::Logger::GetLogger()->set_level(spdlog::level::info);
 		#else
@@ -107,12 +122,12 @@ namespace accord
 		#endif
 
 		
-		LOG_INFO("Output folder location: <{}>", j["SaveToFolder"].get<std::string>());
+		LOG_INFO("Output folder location: <{}>", output_folder_path);
 		ReplaceReferenceValues(j);
 		LOG_INFO("Validating configuration file: <{}>", file_path);
 		ValidateJson();
 		LOG_INFO("Environment properties:");
-		CreateEnvironment(seed);
+		CreateEnvironment(seed, output_folder_path);
 	}
 
 	const Json& ConfigImporter::GetJson()
@@ -651,7 +666,7 @@ namespace accord
 
 
 
-	void ConfigImporter::CreateEnvironment(std::optional<uint64_t> seed)
+	void ConfigImporter::CreateEnvironment(std::optional<uint64_t> seed, std::string output_folder_path)
 	{
 		size_t n_passive_actors;
 		if (j.contains("ObserveEachRegion"))
@@ -664,7 +679,7 @@ namespace accord
 		}
 
 		uint64_t random_number_seed = seed.has_value() ? seed.value() : j["RandomNumberSeed"].get<uint64_t>();
-		Environment::Init(j["SaveToFolder"], j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), random_number_seed);
+		Environment::Init(output_folder_path, j["NumberOfRealisations"], j["FinalSimulationTime"], j["NumberOfMoleculeTypes"], j["MicroscopicRegions"].size(), j["MesoscopicRegions"].size(), n_passive_actors, j["ActiveActors"].size(), j["MicroscopicSurfaces"].size(), random_number_seed);
 
 		CreateMicroscopicRegions();
 

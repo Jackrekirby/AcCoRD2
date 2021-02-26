@@ -51,7 +51,7 @@ namespace accord
 
 		static std::string GetRealisationPath();
 
-		static bool NextRealisation();
+		static bool NextRealisation(double current_time);
 
 		static void CreateDirectories();
 

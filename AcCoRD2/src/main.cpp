@@ -4,6 +4,7 @@
 #include "timer.h"
 #include <regex>
 
+
 namespace accord
 {
 
@@ -18,7 +19,7 @@ namespace accord
 		return (end == std::string::npos) ? "" : date_time.substr(0, end + 1);
 	}
 
-	void Run(const std::string& config_filepath, std::optional<uint64_t> seed)
+	void Run(std::string config_filepath, std::optional<uint64_t> seed)
 	{
 		Timer timer;
 		ConfigImporter config(config_filepath, seed);

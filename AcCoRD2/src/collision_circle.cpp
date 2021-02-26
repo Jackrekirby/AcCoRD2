@@ -28,7 +28,7 @@ namespace accord::shape::collision
 		std::optional<CollisionTimes> ct = CalculateCollisionTime(origin, end);
 		if (!ct.has_value()) return std::nullopt;
 
-		LOG_INFO("t1 = {}, t2 = {}", ct->t1, ct->t2);
+		//LOG_INFO("t1 = {}, t2 = {}", ct->t1, ct->t2);
 		//check to see which collision point is the valid one if any
 		std::optional<double> time = SelectExternalCollisionTime(ct->t1, ct->t2);
 		if (!time.has_value()) return std::nullopt;

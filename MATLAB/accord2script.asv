@@ -31,7 +31,7 @@ video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, col
 view([0 0]);
 %% Watch Video Live
 clc;
-video = Accord2.videoLive(video, 5);
+video = Accord2.videoLive(video, 10);
 
 %% Record Video
 clc;

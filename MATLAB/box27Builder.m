@@ -48,10 +48,45 @@ end
 
 j = jsonencode(r);
 
+%%
+clear all;
+clc;
+
+% specify bounding volume for the passive actors to observe
+volumeOrigin = [0, 0, 0]; volumeLength = [5, 5, 10];
+% specify the number of passive actors per dimension (x, y, z)
+resolution = [1, 1, 2];
+% calculate length of each passive actor
+actorLength = volumeLength ./ resolution;
+% i = iterator, p = passive actor
+i = 0;
+for z = volumeOrigin(3):actorLength(3):volumeLength(3)
+    for y = volumeOrigin(2):actorLength(2):volumeLength(2)
+        for x = volumeOrigin(1):actorLength(1):volumeLength(1)
+            i = i + 1;
+            % define passive actor shape
+            p(i).shape.Type= "Box";
+            p(i).shape.Origin = [x, y, z];
+            p(i).shape.Length = actorLength;
+            % define other properties...
+            p(i).RecordPositions = "@G:RecordPositions";
+            p(i).RecordObservationTime = "@G:RecordObservationTime";
+            p(i).StartTime = "@G:StartTime";
+            p(i).TimeStep = "@G:TimeStep";
+            p(i).Priority = "@G:RegionPriority";
+        end
+    end
+end
+% encode passive actor struct into JSON format
+j = jsonencode(p);
+
+
+
 function shape = CreateBox(x, y, z)
     shape.Type= "Box";
     shape.Origin = [x, y, z];
     shape.Length = [1, 1, 1];
 end
+
 
 

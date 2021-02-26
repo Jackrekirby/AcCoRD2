@@ -8,9 +8,9 @@ classdef Accord2
         quickPlot(data, plotMeanOnly)
         %   Video Making
         [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, colormap, display, showLog)
-        [shapes] = videoPlotRegionsAndActors(config, render, shapePlotters, colormap, display, showLog)
         [video] = videoLive(video, playBackSpeed)
         [video] = videoRecord(video, playBackSpeed, filePath)
+        [hFigure] = plotEnvironment(config, shapePlotters, colormaps, display, showLog)
         
         % Developer Functions =============================================
         %   Data Importing
@@ -25,7 +25,7 @@ classdef Accord2
         [video] = videoCreateMoleculePlots(video, moleculeStyle)
         [video] = videoCreateFigure(video)
         [positions] = getMoleculePositions(moleculeType, timestep)
-        
+        [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, display, showLog)
     end
 end
 

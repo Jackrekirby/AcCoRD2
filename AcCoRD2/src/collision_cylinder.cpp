@@ -36,9 +36,15 @@ namespace accord::shape::collision
 
 		std::optional<Collision3D> collision3D;
 		collision3D = base_face.CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision3D.has_value()) { LOG_INFO("base collision: {} {} {}", origin, end, collision3D);  return collision3D; }
+		if (collision3D.has_value()) { 
+			//LOG_INFO("base collision: {} {} {}", origin, end, collision3D);  
+			return collision3D; 
+		}
 		collision3D = top_face.CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision3D.has_value()) { LOG_INFO("top collision: {} {} {}", origin, end, collision3D); return collision3D; }
+		if (collision3D.has_value()) { 
+			//LOG_INFO("top collision: {} {} {}", origin, end, collision3D); 
+			return collision3D; 
+		}
 
 		// check collision of ray with tube
 		std::optional<Collision2D> collision2D = circle.CalculateExternalCollisionData(origin.GetPlane(GetAxis()), end.GetPlane(GetAxis()));
@@ -55,7 +61,7 @@ namespace accord::shape::collision
 				double longitudinal_reflection = end.GetAxis(GetAxis());
 				Vec3d intersection = { longitudinal_intersection, collision2D->intersection , GetAxis() };
 				Vec3d reflection = { longitudinal_reflection, collision2D->reflection , GetAxis() };
-				LOG_INFO("Tube collision: {}, {}, {}", origin, end, Collision3D(collision2D->time, intersection, reflection));
+				//LOG_INFO("Tube collision: {}, {}, {}", origin, end, Collision3D(collision2D->time, intersection, reflection));
 				return Collision3D(collision2D->time, intersection, reflection);
 			}
 		}
@@ -86,13 +92,13 @@ namespace accord::shape::collision
 		collision3D = base_face.CalculateCollisionDataWithPositiveFace(origin, end);
 		if (collision3D.has_value()) 
 		{ 
-			LOG_DEBUG("base");
+			//LOG_DEBUG("base");
 			return collision3D; 
 		}
 		collision3D = top_face.CalculateCollisionDataWithNegativeFace(origin, end);
 		if (collision3D.has_value()) 
 		{ 
-			LOG_DEBUG("top"); 
+			//LOG_DEBUG("top"); 
 		}
 		// if the ray failed to collide the tube or either base then no collision occurred
 		return collision3D;

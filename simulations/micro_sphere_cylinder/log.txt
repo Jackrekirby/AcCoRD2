@@ -1,0 +1,9 @@
+[info] Output folder location: <C:\dev\AcCoRD2/simulations/micro_sphere_cylinder>
+[info] Validating configuration file: <C:\dev\AcCoRD2/configs/micro_sphere_cylinder.json>
+[info] Environment properties:
+[info] Seed: 1, Realisations: 1, Simulated Time: 200.0s, Molecule Types: 1, Microscopic Surfaces: 0
+[info] Microscopic Regions: 3,  Mesoscopic Regions: 0, Passive Actors: 3, Active Actors: 1
+[info] Build time: 0.021s
+[info] Starting simulation (Fri Feb 26 11:34:44 2021)
+[info] Realisation: 0
+[info] Simulation complete (Fri Feb 26 11:34:44 2021). Run Time: 0.200s

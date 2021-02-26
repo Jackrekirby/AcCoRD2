@@ -250,41 +250,18 @@ namespace accord
 		LOG_INFO("Realisation: 0");
 		Timer timer;
 		do {
-			if (current_realisation > 0)
-			{
-				double current_time = timer.GetTime();
-				double estimated_time_remaining = (num_realisations * (current_time / current_realisation)) - current_time;
-				LOG_INFO("Realisation: {}. Estimate time remaining: {:.3f}s", Environment::GetRealisationNumber(), estimated_time_remaining);
-				for (auto& passive_actor : Environment::GetPassiveActors())
-				{
-					passive_actor->NextRealisation();
-				}
-				for (auto& region : Environment::GetRegions())
-				{
-					region->NextRealisation();
-				}
-				for (auto& active_actors : Environment::GetActiveActors())
-				{
-					active_actors->NextRealisation();
-				}
-				for (auto& region : Environment::GetMesoscopicRegions())
-				{
-					region.NextRealisation();
-				}
-			}
 			while (true)
 			{
-				auto& event = Environment::GetEventQueue().Front();
-				Environment::SetTime(event.GetEventTime());
-				if (Environment::GetTime() > Environment::GetRunTime())
+				auto& event = GetEventQueue().Front();
+				SetTime(event.GetEventTime());
+				if (GetTime() > GetRunTime())
 				{
 					break;
 				}
 				//LOG_INFO("Event:({})", event.LogEvent());
 				event.Run();
 			}
-		} while (Environment::NextRealisation());
-		
+		} while (NextRealisation(timer.GetTime()));
 	}
 
 	void Environment::AddEventsToEventQueue()
@@ -320,7 +297,7 @@ namespace accord
 	}
 
 	// returns true if there is another relisation
-	bool Environment::NextRealisation()
+	bool Environment::NextRealisation(double current_time)
 	{
 		current_realisation++;
 		if (current_realisation < num_realisations)
@@ -330,6 +307,26 @@ namespace accord
 			// set all event times back to start time (thus start time needs to be saved)
 			time = 0;
 			Environment::CreateDirectories();
+
+			double estimated_time_remaining = (num_realisations * (current_time / current_realisation)) - current_time;
+			LOG_INFO("Realisation: {}. Estimate time remaining: {:.3f}s", Environment::GetRealisationNumber(), estimated_time_remaining);
+			for (auto& passive_actor : Environment::GetPassiveActors())
+			{
+				passive_actor->NextRealisation();
+			}
+			for (auto& region : Environment::GetRegions())
+			{
+				region->NextRealisation();
+			}
+			for (auto& active_actors : Environment::GetActiveActors())
+			{
+				active_actors->NextRealisation();
+			}
+			for (auto& region : Environment::GetMesoscopicRegions())
+			{
+				region.NextRealisation();
+			}
+
 			return true;
 		}
 		else
