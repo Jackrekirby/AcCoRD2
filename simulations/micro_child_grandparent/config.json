@@ -1,0 +1,152 @@
+{
+   "MaxUpdates": 10,
+   "NumberOfRealisations":100,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":1,
+   "ObserveEachRegion":true,
+   "R":{
+      "TimeStep":0.01,
+	  "DiffusionCoefficients":[2],
+	  "NumberOfSubvolumes":[1, 1, 1],
+	  "SurfaceTypesNone":[ "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+   "MicroscopicRegions":[
+		{
+		  "Name":"ChildA",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-2, -0.5, -0.5],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   },
+	   	{
+		  "Name":"ParentA",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-3, -1, -1],
+			  "Length":[2, 2, 2]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   },
+	   	{
+		  "Name":"Grandparent",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-4, -4, -4],
+			  "Length":[8, 8, 8]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   },
+	   {
+		  "Name":"ChildB",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[1, -0.5, -0.5],
+			  "Length":[1, 1, 1]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   },
+	   	{
+		  "Name":"ParentB",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[1, -1, -1],
+			  "Length":[2, 2, 2]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   }
+   ],
+   	"ActiveActors":[
+        {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":100,
+         "MoleculeTypesToRelease":[ 1 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[-2.8, 0, 0]
+		  },
+         "RegionsToActIn":[ "ParentA" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@R:TimeStep",
+	  "Priority":"@R:PassiveActorPriority"
+	},
+	"Relationships":[
+      {
+         "RegionA":"ChildA",
+         "RegionB":"ParentA",
+         "Priority":"A",
+		 "SurfaceTypes":"@R:SurfaceTypesNone"
+      },
+	  {
+         "RegionA":"ChildA",
+         "RegionB":"Grandparent",
+         "Priority":"A",
+         "AToBSurfaceTypes":"@R:SurfaceTypesNone",
+		 "BToASurfaceTypes":"@R:SurfaceTypesReflecting"
+      },
+	  {
+         "RegionA":"Grandparent",
+         "RegionB":"ParentA",
+         "Priority":"B",
+		 "SurfaceTypes":"@R:SurfaceTypesReflecting"
+      },
+	  {
+         "RegionA":"ChildB",
+         "RegionB":"ParentB",
+         "Priority":"A",
+		 "SurfaceTypes":"@R:SurfaceTypesNone"
+      },
+	  {
+         "RegionA":"ChildB",
+         "RegionB":"Grandparent",
+         "Priority":"A",
+         "AToBSurfaceTypes":"@R:SurfaceTypesReflecting",
+		 "BToASurfaceTypes":"@R:SurfaceTypesNone"
+      },
+	  {
+         "RegionA":"Grandparent",
+         "RegionB":"ParentB",
+         "Priority":"B",
+		 "SurfaceTypes":"@R:SurfaceTypesReflecting"
+      }
+   ]
+}

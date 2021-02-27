@@ -1,0 +1,95 @@
+{
+   "MaxUpdates": 10,
+   "NumberOfRealisations":10,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":1,
+   "ObserveEachRegion":false,
+   "R":{
+      "TimeStep":0.01,
+	  "DiffusionCoefficients":[0.2],
+	  "NumberOfSubvolumes":[5, 5, 5],
+	  "SurfaceTypesNone":[ "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+   "MicroscopicRegions":[
+		{
+		  "Name":"MicroA",
+		  "Shape":{
+			  "Type":"Sphere",
+			  "Centre":[0, 0, 0],
+			  "Radius":1
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   }
+   ],
+    "MicroscopicSurfaces":[
+		{
+		  "Shape":{
+			  "Type":"CircleSurface",
+			  "Centre":[0, 0, 0],
+			  "Radius":1.2,
+			  "Axis":"Z"
+		   },
+		   "SurfaceDirection":"Positive",
+		   "IsOnRegionSurface":false,
+		   "SurfaceTypes":["Reflecting"],
+		   "AddToRegions":[ "MicroA" ]
+	   }
+   ],
+   	"ActiveActors":[
+        {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":100,
+         "MoleculeTypesToRelease":[ 1 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[0, 0, -0.5]
+		  },
+         "RegionsToActIn":[ "MicroA" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+  "PassiveActors":[
+		{
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-1, -1, -1],
+			  "Length":[2, 2, 1]
+		   },
+		  "RecordPositions":true,
+		  "RecordObservationTime":true,
+		  "StartTime":0,
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:PassiveActorPriority",
+		  "MoleculeTypesToObserve":[0]
+		},
+		{
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-1, -1, 0],
+			  "Length":[2, 2, 1]
+		   },
+		  "RecordPositions":true,
+		  "RecordObservationTime":true,
+		  "StartTime":0,
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:PassiveActorPriority",
+		  "MoleculeTypesToObserve":[0]
+		}
+
+	]
+}
