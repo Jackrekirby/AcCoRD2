@@ -34,29 +34,11 @@
     <ClCompile Include="src\constants.cpp">
       <Filter>src\math\constants</Filter>
     </ClCompile>
-    <ClCompile Include="src\vec_test.cpp">
-      <Filter>src\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\random_test.cpp">
-      <Filter>src\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\output_binary_test.cpp">
-      <Filter>src\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\logger_test.cpp">
-      <Filter>src\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\json_test.cpp">
-      <Filter>src\tests</Filter>
-    </ClCompile>
     <ClCompile Include="src\basic_circle.cpp">
       <Filter>src\shapes\basic\circle</Filter>
     </ClCompile>
     <ClCompile Include="src\relation_circle.cpp">
       <Filter>src\shapes\relation\circle</Filter>
-    </ClCompile>
-    <ClCompile Include="src\shape_test.cpp">
-      <Filter>src\tests</Filter>
     </ClCompile>
     <ClCompile Include="src\generating_circle.cpp">
       <Filter>src\shapes\generating\circle</Filter>
@@ -171,9 +153,6 @@
     </ClCompile>
     <ClCompile Include="src\environment.cpp">
       <Filter>src\simulation\environment</Filter>
-    </ClCompile>
-    <ClCompile Include="src\event_queue_test.cpp">
-      <Filter>src\tests</Filter>
     </ClCompile>
     <ClCompile Include="src\molecule_destination.cpp">
       <Filter>src\simulation\microscopic\molecule</Filter>
@@ -465,32 +444,11 @@
     <ClInclude Include="src\constants.h">
       <Filter>src\math\constants</Filter>
     </ClInclude>
-    <ClInclude Include="src\vec_test.h">
-      <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\random_test.h">
-      <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\output_binary_test.h">
-      <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logger_test.h">
-      <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json_test.h">
-      <Filter>src\tests</Filter>
-    </ClInclude>
     <ClInclude Include="src\basic_circle.h">
       <Filter>src\shapes\basic\circle</Filter>
     </ClInclude>
     <ClInclude Include="src\relation_circle.h">
       <Filter>src\shapes\relation\circle</Filter>
-    </ClInclude>
-    <ClInclude Include="src\shape_test.h">
-      <Filter>src\tests</Filter>
-    </ClInclude>
-    <ClInclude Include="src\json_fwd_test.h">
-      <Filter>src\tests</Filter>
     </ClInclude>
     <ClInclude Include="src\generating_circle.h">
       <Filter>src\shapes\generating\circle</Filter>
@@ -608,9 +566,6 @@
     </ClInclude>
     <ClInclude Include="src\environment.h">
       <Filter>src\simulation\environment</Filter>
-    </ClInclude>
-    <ClInclude Include="src\event_queue_test.h">
-      <Filter>src\tests</Filter>
     </ClInclude>
     <ClInclude Include="src\molecule_destination.h">
       <Filter>src\simulation\microscopic\molecule</Filter>
@@ -947,9 +902,6 @@
     </Filter>
     <Filter Include="src\shapes\relation">
       <UniqueIdentifier>{c0a3d719-7c40-4d85-8994-c021e01568f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\tests">
-      <UniqueIdentifier>{c2730454-72b2-41ea-ac77-2a08a0e8f6ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\other">
       <UniqueIdentifier>{c127e013-c096-4c11-aa63-81b751ba92a8}</UniqueIdentifier>

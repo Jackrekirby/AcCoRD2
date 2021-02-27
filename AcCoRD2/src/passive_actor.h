@@ -37,16 +37,6 @@ namespace accord
 			MoleculeID id;
 			std::vector<microscopic::Subvolume*> subvolumes;
 		};
-
-		class PartialMesoscopicSubvolume
-		{
-		public:
-			PartialMesoscopicSubvolume(mesoscopic::Subvolume* subvolume, shape::generating::Box box);
-
-			double in_area_probability;
-			shape::generating::Box box;
-			mesoscopic::Subvolume* subvolume;
-		};
 	public:
 		PassiveActor(const MicroscopicRegionIDs& region_ids, const MesoscopicRegionIDs& mesoscopic_region_ids, const MoleculeIDs& molecule_ids, double start_time, int priority, double time_step, const PassiveActorID& id, bool record_positions, bool record_time);
 
@@ -68,8 +58,8 @@ namespace accord
 		std::vector<TypedMicroscopicSubvolumes> partial_microscopic_subvolumes;
 
 		std::vector<mesoscopic::Subvolume*> enveloped_mesoscopic_subvolumes;
-		std::vector<PartialMesoscopicSubvolume> partial_mesoscopic_subvolumes;
-		// SHOULD BE PASSIVE ACTOR ID
+		std::vector<mesoscopic::Subvolume*> partial_mesoscopic_subvolumes;
+
 		PassiveActorID id;
 		double time_step;
 		double start_time;

@@ -22,7 +22,9 @@ namespace accord
 
 	bool PassiveActorBoxShape::IsSubvolumeOverlappingBorder(const shape::relation::Box& box) const
 	{
-		return IsOverlapping(box);
+		bool overlap = IsOverlapping(box);
+		// is overlap area very small ignore (floating point error)
+		return (overlap && GenerateOverlapBox(box).CalculateVolume() > 1e-17);
 	}
 
 	void PassiveActorBoxShape::ToJson(Json& j) const

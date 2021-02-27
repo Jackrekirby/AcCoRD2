@@ -44,7 +44,7 @@ namespace accord::mesoscopic
 
 		const SubvolumeBox& GetBoundingBox() const;
 
-		// assumes the subvolums are neighbours
+		// assumes the subvolumes are neighbours
 		// add IfNeighbourAdd()
 		// add a sibling neighbour
 		void AddNeighbour(Subvolume& subvolume);

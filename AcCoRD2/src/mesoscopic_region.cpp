@@ -12,7 +12,7 @@ namespace accord::mesoscopic
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event(0, priority), id(id),
 			n_subvolumes(n_subvolumes), subvolume_length(subvolume_length), surface_direction(microscopic::HighPriorityRelative::SurfaceDirection::External)
 	{
-		LOG_INFO("n subs = {}", n_subvolumes);
+		//LOG_INFO("n subs = {}", n_subvolumes);
 		std::vector<int> removed_indices;
 		removed_indices.reserve(removedSubvolumes.size());
 		for (const Vec3i& subvolume_index : removedSubvolumes)
@@ -186,7 +186,7 @@ namespace accord::mesoscopic
 						/*if (((b1.GetOrigin() == b2.GetEnd()) || (b1.GetEnd() == b2.GetOrigin())).Sum() == 1)
 						{*/
 							s1.AddNeighbour(s2, &other);
-							LOG_INFO("subvolumes {} and {} are neighbours", s1.GetID(), s2.GetID());
+							//LOG_INFO("subvolumes {} and {} are neighbours", s1.GetID(), s2.GetID());
 						//}
 					}
 				}
@@ -204,14 +204,14 @@ namespace accord::mesoscopic
 		
 		Vec3i i = origin_subvolume;
 		Vec3i end_subvolume = origin_subvolume + n_subvolumes;
-		LOG_INFO("HERE {} {} {}", origin_subvolume, n_subvolumes, end_subvolume);
+		//LOG_INFO("HERE {} {} {}", origin_subvolume, n_subvolumes, end_subvolume);
 		for (i.x = origin_subvolume.x; i.x < end_subvolume.x; i.x++)
 		{
 			for (i.y = origin_subvolume.y; i.y < end_subvolume.y; i.y++)
 			{
 				for (i.z = origin_subvolume.z; i.z < end_subvolume.z; i.z++)
 				{
-					LOG_INFO("removing i = {}, {}", i, i.x + i.y * this->n_subvolumes.x + i.z * this->n_subvolumes.x * this->n_subvolumes.y);
+					//LOG_INFO("removing i = {}, {}", i, i.x + i.y * this->n_subvolumes.x + i.z * this->n_subvolumes.x * this->n_subvolumes.y);
 					Subvolume* s = GetSubvolumeIfExists(i);
 					if (s != nullptr)
 					{

@@ -9,6 +9,7 @@ namespace accord
 			record_time), shape(std::move(shape))
 	{
 		AddMicroscopicSubvolumesWhichAreInsideActor(molecule_ids);
+		AddMesoscopicSubvolumesWhichAreInsideActor();
 		CreateFiles();
 	}
 
