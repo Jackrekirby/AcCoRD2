@@ -1,9 +1,0 @@
-[info] Output folder location: <C:\dev\AcCoRD2\simulations\micro_box_countmap>
-[info] Validating configuration file: <C:\dev\AcCoRD2\simulations\micro_box_countmap\config.json>
-[info] Environment properties:
-[info] Seed: 1, Realisations: 100, Simulated Time: 10.0s, Molecule Types: 1, Microscopic Surfaces: 0
-[info] Microscopic Regions: 1,  Mesoscopic Regions: 0, Passive Actors: 125, Active Actors: 1
-[info] User Updates Every 10 Realisations
-[info] Build time: 8.224s
-[info] Starting simulation (Fri Feb 26 21:31:11 2021)
-[info] Realisation: 0
