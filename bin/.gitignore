@@ -1,0 +1,5 @@
+intermediates/
+*.bat
+*.txt
+*.lastcodeanalysissucceeded
+AcCoRD2_IO/

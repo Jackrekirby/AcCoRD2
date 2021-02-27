@@ -1,11 +1,11 @@
 {
    "MaxUpdates": 10,
-   "NumberOfRealisations":100,
+   "NumberOfRealisations":1,
    "FinalSimulationTime":200,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
-   "G":{
+   "R":{
       "TimeStep":0.1,
 	  "DiffusionCoefficients":[0.03],
 	  "NumberOfSubvolumes":[1, 1, 1],

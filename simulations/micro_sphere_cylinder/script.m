@@ -12,12 +12,16 @@ clear all; clc;
 close all; % close any open figures
 fclose('all'); % close any open files
 addpath('..\..\MATLAB'); % add access to MATLAB functions
-%% Run Config File
-system('accord_win64_release.bat','-echo');
 
-%% [config] = importConfig(filePath)
+%% Import Config, Run Simulation, Import Data
+clc;
+% [config] = importConfig(filePath)
 config = Accord2.importConfig(pwd + "\config.json");
-
+%% Run Config File
+seeds = 1;
+for i = 1:length(seeds)
+    system(['accord_win64_release_matlab.bat ', num2str(seeds(i))],'-echo');
+end
 %% [data] = importData(simulationDirectory, logImporting, saveData)
 data = Accord2.importData(pwd, 1, false);
 

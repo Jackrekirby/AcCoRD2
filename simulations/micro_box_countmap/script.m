@@ -17,9 +17,12 @@ addpath('..\..\MATLAB'); % add access to MATLAB functions
 clc;
 % [config] = importConfig(filePath)
 config = Accord2.importConfig(pwd + "\config.json");
-% Run Config File
-%system('accord_win64_release_no_pause.bat','-echo');
-% [data] = importData(simulationDirectory, logImporting, saveData)
+%% Run Config File
+seeds = 1;
+for i = 1:length(seeds)
+    system(['accord_win64_release_matlab.bat ', num2str(seeds(i))],'-echo');
+end
+%% [data] = importData(simulationDirectory, logImporting, saveData)
 data = Accord2.importData(pwd, 1, false);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)

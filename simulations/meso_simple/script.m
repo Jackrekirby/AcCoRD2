@@ -32,13 +32,11 @@ axis square;
 
 %% Video And Environment Style Arguments
 clc;
-moleculeStyle = struct('colormap', @hsv, 'colorMethod', 'actor', 'fill', true, 'size', 10);
-shapePlotGeneral = ShapePlotter('CircleResolution', 4, 'SphereResolution', 3);
-shapePlotSurface = ShapePlotter('CircleResolution', 4, 'SphereResolution', 3, 'FaceAlpha', 0.2);
-shapePlotPassive = ShapePlotter('EdgeStyle', '-.');
+moleculeStyle = struct('colormap', @hsv, 'colorMethod', 'actor', 'fill', true, 'size', 30);
+shapePlotGeneral = ShapePlotter('EdgeWidth', 2);
 % [microscopic regions, microscopic surfaces, mesoscopic regions, active actors, passive actors]
-shapePlotters = [shapePlotGeneral, shapePlotSurface, shapePlotGeneral shapePlotGeneral, shapePlotPassive];
-colormaps = ["summer", "winter", "hsv", "spring", "hsv"];
+shapePlotters = shapePlotGeneral;
+colormaps = ["hsv", "winter", "hsv", "spring", "hsv"];
 display = [true, true, true, true, true];
 showLog = false;
 
@@ -50,7 +48,7 @@ clc;
 clc;
 video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
 % Watch Video Live
-video = Accord2.videoLive(video, 0.5, 0.5);
+video = Accord2.videoLive(video, 1, 1.3);
 
 %% Record Video
 video = Accord2.videoRecord(video, 10, "/video.mp4");
