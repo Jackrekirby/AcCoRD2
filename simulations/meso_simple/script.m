@@ -27,7 +27,7 @@ data = Accord2.importData(pwd, 1, false);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)
 clc;
-Accord2.plotMoleculeCount(data, false);
+Accord2.plotMoleculeCount(data, true);
 axis square;
 ylim([0 1000]);
 %% Video And Environment Style Arguments
