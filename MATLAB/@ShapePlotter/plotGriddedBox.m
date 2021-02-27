@@ -15,17 +15,20 @@
         obj
         origin (1, 3) double = [-0.5, -0.5, -0.5];
         length (1, 3) double = [1, 1, 1];
-        nPartitions (1, 3) double = [1, 1, 1];
+        nPartitions (1, 3) double = [3, 3, 3];
         args.FaceAlpha double = obj.FaceAlpha;
         args.EdgeAlpha double = obj.EdgeAlpha;
         args.EdgeColor = obj.EdgeColor;
         args.FaceColor = obj.FaceColor;
+        args.EdgeWidth = obj.EdgeWidth;
+        args.EdgeStyle = obj.EdgeStyle;
     end
    
     holdState = ishold; 
     hGriddedBox.outer = plotBox(obj, origin, length, ...
         'FaceColor', args.FaceColor, 'EdgeColor', args.EdgeColor, ...
-        'FaceAlpha', args.FaceAlpha, 'EdgeAlpha', args.EdgeAlpha);
+        'FaceAlpha', args.FaceAlpha, 'EdgeAlpha', args.EdgeAlpha, ...
+        'EdgeStyle', args.EdgeStyle, 'EdgeWidth', args.EdgeWidth);
     subvolumeLength = length ./ nPartitions;
     i = 0;
     hold on;
@@ -36,7 +39,8 @@
                 hGriddedBox.subvolume(i) = plotBox(obj, origin + [x, y, z] ...
                     .* subvolumeLength, subvolumeLength, ...
                     'FaceColor', args.FaceColor, 'EdgeColor', args.EdgeColor, ... 
-                    'FaceAlpha', 0, 'EdgeAlpha', args.EdgeAlpha);
+                    'FaceAlpha', 0, 'EdgeAlpha', args.EdgeAlpha, ...
+                    'EdgeStyle', args.EdgeStyle, 'EdgeWidth', args.EdgeWidth);
             end
         end
     end

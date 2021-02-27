@@ -1,0 +1,10 @@
+[info] Output folder location: <C:\dev\AcCoRD2\simulations\micro_surfaces_multi_mole_types>
+[info] Validating configuration file: <C:\dev\AcCoRD2\simulations\micro_surfaces_multi_mole_types/config.json>
+[info] Environment properties:
+[info] Seed: 1, Realisations: 1, Simulated Time: 10.0s, Molecule Types: 4, Microscopic Surfaces: 0
+[info] Microscopic Regions: 2,  Mesoscopic Regions: 0, Passive Actors: 2, Active Actors: 1
+[info] User Updates Every 1 Realisations
+[info] Build time: 0.014s
+[info] Starting simulation (Sat Feb 27 10:05:13 2021)
+[info] Realisation: 0
+[info] Simulation complete (Sat Feb 27 10:05:13 2021). Run Time: 0.062s

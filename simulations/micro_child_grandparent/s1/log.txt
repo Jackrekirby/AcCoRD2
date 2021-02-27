@@ -1,0 +1,19 @@
+[info] Output folder location: <C:\dev\AcCoRD2\simulations\micro_child_grandparent>
+[info] Validating configuration file: <C:\dev\AcCoRD2\simulations\micro_child_grandparent/config.json>
+[info] Environment properties:
+[info] Seed: 1, Realisations: 100, Simulated Time: 10.0s, Molecule Types: 1, Microscopic Surfaces: 0
+[info] Microscopic Regions: 5,  Mesoscopic Regions: 0, Passive Actors: 5, Active Actors: 1
+[info] User Updates Every 10 Realisations
+[info] Build time: 0.019s
+[info] Starting simulation (Sat Feb 27 09:14:11 2021)
+[info] Realisation: 0
+[info] Realisation: 10. Estimate time remaining: 30.996s
+[info] Realisation: 20. Estimate time remaining: 27.640s
+[info] Realisation: 30. Estimate time remaining: 24.227s
+[info] Realisation: 40. Estimate time remaining: 20.759s
+[info] Realisation: 50. Estimate time remaining: 17.414s
+[info] Realisation: 60. Estimate time remaining: 14.061s
+[info] Realisation: 70. Estimate time remaining: 10.599s
+[info] Realisation: 80. Estimate time remaining: 7.103s
+[info] Realisation: 90. Estimate time remaining: 3.559s
+[info] Simulation complete (Sat Feb 27 09:14:47 2021). Run Time: 35.520s

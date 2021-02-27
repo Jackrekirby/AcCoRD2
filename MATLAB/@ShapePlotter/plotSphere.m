@@ -19,11 +19,14 @@ function [hSphere] = plotSphere(obj, centre, radius, args)
         args.EdgeAlpha double = obj.EdgeAlpha;
         args.FaceColor = obj.FaceColor;
         args.EdgeColor = obj.EdgeColor;
+        args.EdgeWidth = obj.EdgeWidth;
+        args.EdgeStyle = obj.EdgeStyle;
     end
 
     [x, y, z] = sphere(args.Resolution);
     [hSphere] = mesh(centre(1) + x * radius, ...
         centre(2) + y * radius, centre(3) + z * radius, ...
         'FaceAlpha', args.FaceAlpha, 'EdgeColor', args.EdgeColor, ... 
-        'FaceColor', args.FaceColor, 'EdgeAlpha', args.EdgeAlpha);
+        'FaceColor', args.FaceColor, 'EdgeAlpha', args.EdgeAlpha, ...
+        'LineStyle', args.EdgeStyle, 'LineWidth', args.EdgeWidth);
 end

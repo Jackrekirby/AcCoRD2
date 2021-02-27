@@ -25,6 +25,8 @@ function [hCircleSurface] = plotCircleSurface(obj, centre, radius, axis, args)
         args.EdgeAlpha double = obj.EdgeAlpha;
         args.FaceColor = obj.FaceColor;
         args.EdgeColor = obj.EdgeColor;
+        args.EdgeWidth = obj.EdgeWidth;
+        args.EdgeStyle = obj.EdgeStyle;
     end
 
     theta = linspace(0, 2*pi, args.Resolution + 1);
@@ -44,7 +46,8 @@ function [hCircleSurface] = plotCircleSurface(obj, centre, radius, axis, args)
     
     hCircleSurface = fill3(x, y, z, args.FaceColor, ...
         'FaceAlpha', args.FaceAlpha, ...
-        'EdgeColor', args.EdgeColor, 'EdgeAlpha', args.EdgeAlpha);
+        'EdgeColor', args.EdgeColor, 'EdgeAlpha', args.EdgeAlpha, ...
+        'LineStyle', args.EdgeStyle, 'LineWidth', args.EdgeWidth);
 end
 
 % function checks that the user has specified the correct char for axis

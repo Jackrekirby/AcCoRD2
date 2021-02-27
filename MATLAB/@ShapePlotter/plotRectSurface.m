@@ -20,6 +20,8 @@ function [hRectSurface] = plotRectSurface(obj, origin, length, args)
         args.EdgeAlpha double = obj.EdgeAlpha;
         args.FaceColor = obj.FaceColor;
         args.EdgeColor = obj.EdgeColor;
+        args.EdgeWidth = obj.EdgeWidth;
+        args.EdgeStyle = obj.EdgeStyle;
     end
     
     hasZeroLength = (length == 0); % returns boolean vector containing which axis lengths are zero
@@ -37,7 +39,8 @@ function [hRectSurface] = plotRectSurface(obj, origin, length, args)
 
     hRectSurface = patch(p(1, :), p(2, :), p(3, :), args.FaceColor, ...
     'EdgeColor', args.EdgeColor, 'FaceAlpha', args.FaceAlpha, ...
-    'EdgeAlpha', args.EdgeAlpha);
+    'EdgeAlpha', args.EdgeAlpha, ...
+    'LineStyle', args.EdgeStyle, 'LineWidth', args.EdgeWidth);
 end
 
 % function checks that the length vector passed has exactly 2 non-zero lengths
