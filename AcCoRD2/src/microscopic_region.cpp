@@ -32,13 +32,16 @@ namespace accord::microscopic
 		{
 			reaction.Run();
 		}
+
 		//diffuse molecules
 		for (auto& grid : grids)
 		{
 			grid.DiffuseMolecules();
 		}
 
+
 		// update region time
+		//LOG_INFO("Local Time {}, Next Time: {}", local_time, Environment::GetTime());
 		local_time = Environment::GetTime();
 
 		// second order reactions

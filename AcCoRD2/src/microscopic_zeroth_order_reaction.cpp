@@ -35,6 +35,7 @@ namespace accord::microscopic
 			int n_molecules_to_release = products.at(molecule_type);
 			for (int i = 0; i < n_molecules_to_release; i++)
 			{
+				//LOG_INFO("Creating Zeroth products {}", molecule_type);
 				grid.AddMolecule(time);
 			}
 			molecule_type++;

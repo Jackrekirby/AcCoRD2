@@ -39,6 +39,7 @@ namespace accord::microscopic
 	void Grid::AddMolecule(const Vec3d& position, double time)
 	{
 		Vec3d index = Vec3d(n_subvolumes) * ((position - box.GetOrigin()) / box.GetLength());
+		//LOG_INFO(index);
 		GetSubvolume(index).AddMolecule(position, time);
 	}
 
@@ -59,6 +60,7 @@ namespace accord::microscopic
 		{
 			subvolume.GetNormalDiffusionMolecules().clear();
 		}
+
 		for (auto& subvolume : subvolumes)
 		{
 			// cannot add normal molecules back into subvolume or would result in loop until molecules are outisde of subvolume.
@@ -310,6 +312,7 @@ namespace accord::microscopic
 		// if index is below or above index range limit it to within range
 		index *= (index > Vec3i(0, 0, 0));
 		index.EqualIf((index >= n_subvolumes), n_subvolumes - 1);
+		//LOG_INFO("subvolume: {}", index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 		return subvolumes.at(index.x + index.y * n_subvolumes.x + index.z * n_subvolumes.x * n_subvolumes.y);
 	}
 

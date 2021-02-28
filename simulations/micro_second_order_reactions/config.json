@@ -1,0 +1,88 @@
+{
+   "MaxUpdates": 10,
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":3,
+   "ObserveEachRegion":true,
+   "R":{
+      "TimeStep":0.01,
+	  "DiffusionCoefficients":[1, 1, 1],
+	  "NumberOfSubvolumes":[1, 1, 1],
+	  "SurfaceTypesNone":[ "None", "None", "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+   "MicroscopicRegions":[
+		{
+		  "Name":"A",
+		  "Shape":{
+			  "Type":"Box",
+			  "Origin":[-10, -10, -10],
+			  "Length":[20, 20, 20]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   }
+   ],
+    "SecondOrderReactions":[
+      {
+         "ReactantA":0,
+         "ReactantB":1,
+         "Products":[0, 0, 2],
+         "ReactionRate":1,
+         "BindingRadius":0.5,
+         "UnBindingRadius":0.5,
+         "OccurInRegions":[ "A" ]
+      }
+   ],
+   	"ActiveActors":[
+        {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":100,
+         "MoleculeTypesToRelease":[ 1, 0, 0 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[-2.5, 0, 0]
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":50,
+         "MoleculeTypesToRelease":[ 0, 1, 0 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[2.5, 0, 0]
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+   "PassiveActors":
+	{
+	  "RecordPositions":true,
+	  "RecordObservationTime":true,
+	  "StartTime":0,
+	  "TimeStep":"@R:TimeStep",
+	  "Priority":"@R:PassiveActorPriority"
+	}
+}

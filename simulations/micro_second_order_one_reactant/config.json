@@ -1,13 +1,13 @@
 {
    "MaxUpdates": 10,
    "NumberOfRealisations":1,
-   "FinalSimulationTime":10,
+   "FinalSimulationTime":100,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":3,
    "ObserveEachRegion":true,
    "R":{
       "TimeStep":0.01,
-	  "DiffusionCoefficients":[1, 1, 1],
+	  "DiffusionCoefficients":[1e-3, 1e-3, 1e-3],
 	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None", "None", "None" ],
 	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
@@ -20,8 +20,8 @@
 		  "Name":"A",
 		  "Shape":{
 			  "Type":"Box",
-			  "Origin":[0, 0, 0],
-			  "Length":[10, 10, 10]
+			  "Origin":[-1, -0.05, -1],
+			  "Length":[2, 0.1, 2]
 		   },
 		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
@@ -30,28 +30,51 @@
 		  "Priority":"@R:RegionPriority"
 	   }
    ],
+      "RelationshipsX":[
+      {
+         "RegionA":"A",
+         "RegionB":"B",
+         "Priority":"B",
+		 "SurfaceTypes":"@R:SurfaceTypesReflecting"
+      }
+   ],
     "SecondOrderReactions":[
       {
          "ReactantA":0,
-         "ReactantB":1,
-         "Products":[0, 0, 2],
-         "ReactionRate":1,
-         "BindingRadius":0.5,
-         "UnBindingRadius":0.5,
+         "ReactantB":0,
+         "Products":[2, 0, 0],
+         "ReactionRate":4,
+         "BindingRadius":0.3,
+         "UnBindingRadius":0.3,
          "OccurInRegions":[ "A" ]
       }
    ],
-   	"ActiveActors":[
-        {
+    "ActiveActors":[
+	   {
          "StartTime":0,
          "Priority":"@R:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":100,
-         "MoleculeTypesToRelease":[ 1, 0, 0 ],
+         "ModulationStrength":50,
+         "MoleculeTypesToRelease":[ 1, 0, 0],
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+   	"ActiveActorsX":[
+       {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":1,
+         "MoleculeTypesToRelease":[ 1, 0, 0],
 		  "Shape":{
 			  "Type":"Point",
-			  "Origin":[2.5, 5, 5]
+			  "Origin":[-2, 0.5, 0.5]
 		  },
          "RegionsToActIn":[ "A" ],
          "Type":"NonRandom",
@@ -59,16 +82,16 @@
          "SlotInterval":"@FinalSimulationTime",
          "BitSequence":[ 1 ]
       },
-	  {
+	   {
          "StartTime":0,
          "Priority":"@R:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":100,
-         "MoleculeTypesToRelease":[ 0, 1, 0 ],
+         "ModulationStrength":1,
+         "MoleculeTypesToRelease":[ 1, 0, 0],
 		  "Shape":{
 			  "Type":"Point",
-			  "Origin":[7.5, 5, 5]
+			  "Origin":[2, 0.5, 0.5]
 		  },
          "RegionsToActIn":[ "A" ],
          "Type":"NonRandom",

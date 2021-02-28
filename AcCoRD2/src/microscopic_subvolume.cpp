@@ -22,6 +22,7 @@ namespace accord::microscopic
 
 	void Subvolume::AddMolecule(const Vec3d& position, double time)
 	{
+		//LOG_INFO("Add molecule, position {}, time {}", position, time);
 		recent_molecules.emplace_back(position, time);
 	}
 

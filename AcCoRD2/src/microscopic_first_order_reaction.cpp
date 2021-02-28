@@ -10,15 +10,18 @@ namespace accord::microscopic
 		min_reaction_time(CalculateMinimumReactionTime(total_reaction_rate, region->GetTimeStep())), total_reaction_rate(total_reaction_rate),
 		reaction_grid(&(region->GetGrid(reactant))), products(products)
 	{
+		//LOG_INFO("First order reaction {}", reaction_probability);
 	}
 
 	void FirstOrderReaction::Run()
 	{
+		//LOG_INFO("Running");
 		std::vector<microscopic::NormalMolecule> non_reacted_molecules;
 		for (auto& subvolume : reaction_grid->GetSubvolumes())
 		{
 			for (auto& molecule : subvolume.GetNormalMolecules())
 			{
+				
 				if (Random::GenerateRealUniform() < reaction_probability)
 				{
 					CreateProductMolecules(molecule.GetPosition(), CalculateReactionTime());
@@ -54,6 +57,7 @@ namespace accord::microscopic
 			int n_molecules_to_release = products.at(molecule_type);
 			for (int i = 0; i < n_molecules_to_release; i++)
 			{
+				//LOG_INFO("Creating First products {}", molecule_type);
 				grid.AddMolecule(position, reaction_time);
 			}
 			molecule_type++;

@@ -15,8 +15,10 @@
         args.MarkerStyle = obj.MarkerStyle;
         args.EdgeColor = obj.EdgeColor;
         args.MarkerSize = obj.MarkerSize;
+        args.EdgeWidth = obj.EdgeWidth;
     end
 
     hPoint = scatter3(origin(1), origin(2), origin(3), 'Marker', args.MarkerStyle, ...
-        'MarkerEdgeColor', args.EdgeColor, 'SizeData', args.MarkerSize);
+        'MarkerEdgeColor', args.EdgeColor, 'SizeData', args.MarkerSize, ...
+        'LineWidth', args.EdgeWidth);
  end

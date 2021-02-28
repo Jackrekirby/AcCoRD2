@@ -1,0 +1,73 @@
+{
+   "MaxUpdates": 10,
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":1,
+   "ObserveEachRegion":true,
+   "R":{
+	  "StartTime":0,
+     "RecordObservationTime":true,
+	  "RecordPositions":false,
+	  "MoleculeTypesToObserve":[0],
+      "TimeStep":0.01,
+	  "DiffusionCoefficients":[0.02],
+	  "NumberOfSubvolumes":[5, 5, 5],
+	  "SurfaceTypesNone":[ "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+    "MesoscopicRegions":[
+	   {
+		  "Name":"A",
+		  "Origin":[0, 0, 0],
+		  "SubvolumeLength":0.2,
+		  "NumberOfSubvolumes":[5, 5, 5],
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "Priority":"@R:RegionPriority"
+	   }
+   ],
+    "ZerothOrderReactions":[
+      {
+         "Products":[1, 0],
+         "ReactionRate":10,
+         "OccurInRegions":[ "A" ]
+      }
+   ],
+   "FirstOrderReactionsX":[
+      {
+         "Reactant":0,
+         "Products":[0, 1],
+         "ReactionRate":0.7,
+         "OccurInRegions":[ "A" ]
+      }
+   ],
+   	"ActiveActorsX":[
+        {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":100,
+         "MoleculeTypesToRelease":[ 1 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[0.5, 0.5, 0.5]
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+     "PassiveActors":{
+		  "RecordPositions":true,
+		  "RecordObservationTime":true,
+		  "StartTime":0,
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:PassiveActorPriority"
+	}
+}
