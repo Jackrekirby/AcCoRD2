@@ -194,7 +194,7 @@ namespace accord::microscopic
 					{
 						if (AttemptToReactMolecules(m1, m2, s1, s2, current_time))
 						{
-							//LOG_INFO("molecule reacted in different subvolume");
+							LOG_INFO("molecule reacted in different subvolume");
 							has_reacted1.at(i1) = true;
 							has_reacted2.at(i2) = true;
 							break;
@@ -254,7 +254,7 @@ namespace accord::microscopic
 				if (p2.has_value() && (p2.value().GetPosition() == reaction_site).All())
 				{
 					Region& reaction_region = dynamic_cast<Grid&>(p1->GetOwner()).GetRegion();
-					//LOG_INFO("molecules reacted");
+					LOG_INFO("molecules reacted {}", n_products);
 					if (n_products == 1)
 					{
 						reaction_region.AddMolecule(product_a, reaction_site, current_time);
@@ -332,6 +332,7 @@ namespace accord::microscopic
 					}
 					else // (product == 2)
 					{
+						product_a = molecule_type;
 						product_b = molecule_type;
 					}
 				}
@@ -344,7 +345,7 @@ namespace accord::microscopic
 			molecule_type++;
 			if (count >= 2) break;
 		}
-		//LOG_INFO("Product A = {}, Product B = {}", product_a, product_b);
+		LOG_INFO("Product A = {}, Product B = {}", product_a, product_b);
 	}
 	
 }

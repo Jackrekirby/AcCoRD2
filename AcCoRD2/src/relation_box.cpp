@@ -163,8 +163,18 @@ namespace accord::shape::relation
 
 	double Box::CalculateAreaBetweenNeighbouringBoxes(const Box& other) const
 	{
-		//LOG_INFO("box = {}, neighbouring = {}, {}, {}", *this, other, GetOrigin() == other.GetEnd(), (GetOrigin() == other.GetEnd()));
-		Axis3D axis = ((GetOrigin() == other.GetEnd()) || (GetEnd() == other.GetOrigin())).FindAxis();
+		// assumed boxes do neighbour, find axis with smallest distance between them (in case of floating point error)
+		Vec3d d1 = GetOrigin() - other.GetEnd();
+		Vec3d d2 = GetEnd() - other.GetOrigin();
+		Axis3D a1 = d1.Abs().MinAxis();
+		Axis3D a2 = d2.Abs().MinAxis();
+		Axis3D axis = (std::abs(d1.GetAxis(a1)) < std::abs(d2.GetAxis(a2))) ? a1 : a2;
+		
+		//Axis3D axis = ((GetOrigin() == other.GetEnd()) || (GetEnd() == other.GetOrigin())).FindAxis();
+		//if (axis2 != axis)
+		//{
+		//	LOG_INFO("box = {}, neighbouring = {}, {}, {}, {}, {}, {}, {}", *this, other, axis, axis2, d1, d2, a1, a2);
+		//}
 		return FlattenInAxis(axis).GenerateOverlapRect(other.FlattenInAxis(axis)).CalculateArea();
 	}
 

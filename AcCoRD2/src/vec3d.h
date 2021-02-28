@@ -82,6 +82,9 @@ namespace accord
 		// returns the smaller component in each axis of the two vectors
 		static Vec3d Min(const Vec3d& v, const Vec3d& u);
 
+		// returns the smallest Axis
+		Axis3D MinAxis() const;
+
 		// volume = x * y * z
 		double Volume() const;
 

@@ -150,7 +150,25 @@ namespace accord::mesoscopic
 
 	void Region::RefreshEventTime()
 	{
-		//LOG_INFO("time = {}", subvolume_queue.Front().GetTime());
+		//LOG_INFO("NEXT REGION TIME = {}", subvolume_queue.Front().GetTime());
+
+		//double mintime = 1e10;
+		//for (auto& subvolume : subvolume_queue.GetSubvolumes())
+		//{
+		//	if (subvolume->GetTime() < mintime) mintime = subvolume->GetTime();
+		//}
+
+		//LOG_INFO("NEXT MIN TIME = {}", mintime);
+		
+		//
+		//if (subvolume_queue.Front().GetTime() > 100)
+		//{
+		//	for (auto& subvolume : subvolume_queue.GetSubvolumes())
+		//	{
+		//		LOG_INFO("TIMES: {}", subvolume->GetTime());
+		//	}
+		//	throw std::exception();
+		//}
 		SetEventTime(subvolume_queue.Front().GetTime());
 	}
 

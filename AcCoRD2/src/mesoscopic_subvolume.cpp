@@ -229,9 +229,11 @@ namespace accord::mesoscopic
 
 		// this (using parent) is the incorrect way to update the reaction time if it is not a subvolume event as event time has since updated 
 		// CORRECTED by updating and not setting time
+		//LOG_INFO("HERE: {},  {}", Environment::GetTime(), -log(Random::GenerateRealUniform()) / reaction_propensity);
 		SetTime(Environment::GetTime() - log(Random::GenerateRealUniform()) / reaction_propensity);
+		
 		//UpdateTime(-log(Random::GenerateRealUniform()) / reaction_propensity);
-		//LOG_INFO("time = {}", GetTime());
+		//LOG_INFO("Subvolume time = {}", GetTime());
 	}
 
 	void Subvolume::UpdateReactionPropensity(double delta_propensity)

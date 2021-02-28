@@ -38,6 +38,7 @@ namespace accord
 
 	void Event::SetEventTime(double new_time)
 	{
+		//LOG_INFO("THIS TIME {}", new_time);
 		if (new_time > time)
 		{
 			time = new_time;

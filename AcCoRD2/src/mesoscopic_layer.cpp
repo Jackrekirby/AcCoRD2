@@ -52,6 +52,7 @@ namespace accord::mesoscopic
 				neighbour.linked_propensities->UpdatePropensities();
 				if (relationship.GetRegion() != nullptr)
 				{
+					LOG_INFO("NEIGHBOUR LAYER");
 					relationship.GetRegion()->RefreshEventTime();
 				}
 				return;

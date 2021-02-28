@@ -29,12 +29,13 @@ namespace accord::mesoscopic
 				delta += object->UpdatePropensity();
 			}
 			requires_update = false;
-
+			//LOG_INFO("new delta propensity = {}", delta);
+			//LOG_INFO("new subvolume time = {}", subvolume->GetTime());
 			subvolume->UpdateReactionPropensity(delta);
 			subvolume->UpdateReactionTime();
 		}
-		//LOG_INFO("new delta propensity = {}", delta);
+		
 
-		//LOG_INFO("new subvolume time = {}", subvolume->GetTime());
+		
 	}
 }

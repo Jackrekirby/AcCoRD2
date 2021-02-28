@@ -166,6 +166,19 @@ namespace accord
 		return { (v.x < u.x) ? v.x : u.x, (v.y < u.y) ? v.y : u.y,  (v.z < u.z) ? v.z : u.z };
 	}
 
+	Axis3D Vec3d::MinAxis() const
+	{
+		if (x < y) {
+			if (x < z) {
+				return Axis3D::x;
+			}
+		}
+		else if (y < z){
+			return Axis3D::y;
+		}
+		return Axis3D::z;
+	}
+
 	// volume = x * y * z
 	double Vec3d::Volume() const
 	{
