@@ -225,8 +225,21 @@ namespace accord
 		type_str = SplitShapeName(type_str).shape;
 		if (type_str == "Box")
 		{
-			shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
-			shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsPositive();
+			if (shape.GetJson().contains("Origin") && shape.GetJson().contains("Length"))
+			{
+				shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
+				shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsPositive();
+			}
+			else if (shape.GetJson().contains("Centre") && shape.GetJson().contains("HalfLength"))
+			{
+				shape.Add("Centre").IsArrayOfNumbers().HasSize(3);
+				shape.Add("HalfLength").IsArrayOfNumbers().HasSize(3).IsPositive();
+			}
+			else
+			{
+				LOG_ERROR("Box must contain the keys: Origin & Length, or Centre and HalfLength but neither combination was found");
+				throw std::exception();
+			}
 		}
 		else if (type_str == "Sphere")
 		{
@@ -242,8 +255,22 @@ namespace accord
 		}
 		else if (type_str == "RectSurface")
 		{
-			shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
-			shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsNonNegative().ExactNumMatchValue(0.0, 1);
+			if (shape.GetJson().contains("Origin") && shape.GetJson().contains("Length"))
+			{
+				shape.Add("Origin").IsArrayOfNumbers().HasSize(3);
+				shape.Add("Length").IsArrayOfNumbers().HasSize(3).IsNonNegative().ExactNumMatchValue(0.0, 1);
+			}
+			else if (shape.GetJson().contains("Centre") && shape.GetJson().contains("HalfLength"))
+			{
+				shape.Add("Centre").IsArrayOfNumbers().HasSize(3);
+				shape.Add("HalfLength").IsArrayOfNumbers().HasSize(3).IsNonNegative().ExactNumMatchValue(0.0, 1);
+			}
+			else
+			{
+				LOG_ERROR("RectSurface must contain the keys: Origin & Length, or Centre and HalfLength but neither combination was found");
+				throw std::exception();
+			}
+			
 		}
 		else if (type_str == "CircleSurface")
 		{
@@ -257,7 +284,7 @@ namespace accord
 		}
 		else
 		{
-			LOG_ERROR("The field <{}> expected value of \"Box\", \"Sphere\" or \"Cylinder\" but was \"{}\"", shape_type.Log(), type_str);
+			LOG_ERROR("The field <{}> expected value of \"Box(Surface)\", \"Sphere(Surface)\", \"Cylinder(Surface)\", \"RectSurface\" or \"CircleSurface\"but was \"{}\"", shape_type.Log(), type_str);
 			throw std::exception();
 		}
 	}
@@ -594,8 +621,18 @@ namespace accord
 		type_str = SplitShapeName(type_str).shape;
 		if (type_str == "Box")
 		{
-			Vec3d origin = shape["Origin"].get<Vec3d>();
-			Vec3d length = shape["Length"].get<Vec3d>();
+			Vec3d origin, length;
+			if (shape.contains("Origin"))
+			{
+				origin = shape["Origin"].get<Vec3d>();
+				length = shape["Length"].get<Vec3d>();
+			}
+			else
+			{
+				origin = shape["Centre"].get<Vec3d>() - shape["HalfLength"].get<Vec3d>();
+				length = shape["HalfLength"].get<Vec3d>() * 2;
+			}
+
 			shapes.box = std::make_optional<shape::basic::Box>(origin, length);
 			shapes.shape = OptionalShapes::Shape::Box;
 		}
@@ -617,8 +654,17 @@ namespace accord
 		}
 		else if (type_str == "RectSurface")
 		{
-			Vec3d origin = shape["Origin"].get<Vec3d>();
-			Vec3d length = shape["Length"].get<Vec3d>();
+			Vec3d origin, length;
+			if (shape.contains("Origin"))
+			{
+				origin = shape["Origin"].get<Vec3d>();
+				length = shape["Length"].get<Vec3d>();
+			}
+			else
+			{
+				origin = shape["Centre"].get<Vec3d>() - shape["HalfLength"].get<Vec3d>();
+				length = shape["HalfLength"].get<Vec3d>() * 2;
+			}
 			shapes.rect_surface = std::make_optional<shape::basic::RectSurface>(origin, length);
 			shapes.shape = OptionalShapes::Shape::RectSurface;
 		}

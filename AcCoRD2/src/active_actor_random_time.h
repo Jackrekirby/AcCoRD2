@@ -12,6 +12,8 @@ namespace accord
 			double start_time, int priority, const ActiveActorID& id);
 
 		void Run();
+
+		void NextRealisation();
 	private:
 		double release_coefficient;
 

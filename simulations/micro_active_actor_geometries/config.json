@@ -1,0 +1,196 @@
+{
+   "MaxUpdates": 10,
+   "NumberOfRealisations":1,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":3,
+   "ObserveEachRegion":true,
+   "R":{
+      "StartTime":0,
+	  "ModulationStrength":100,
+	  "RecordObservationTime":true,
+	  "RecordPositions":false,
+	  "MoleculeTypesToObserve":[0],
+      "TimeStep":0.01,
+	  "DiffusionCoefficients":[0.02, 0.02, 0.02],
+	  "NumberOfSubvolumes":[1, 1, 1],
+	  "SurfaceTypesNone":[ "None", "None", "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+   "MicroscopicRegions":[
+	   {
+		  "Name":"A",
+		  "Shape":{
+			  "Type":"Box",
+			  "Centre":[0, 0.5, 0.5],
+			  "HalfLength":[5, 1, 1]
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
+	   }
+   ],
+   	"ActiveActors":[
+        {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		 "Shape":{
+			 "Type":"Box",
+			  "Centre":[-1.9, 0.5, 0.5],
+			  "HalfLength":[0.5, 0.5, 0.5]
+		 },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		 "Shape":{
+			  "Type":"BoxSurface",
+			  "Centre":[1.9, 0.5, 0.5],
+			  "HalfLength":[0.5, 0.5, 0.5]
+		 },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		  "Shape":{
+			  "Type":"Sphere",
+			  "Centre":[-3.1, 0.5, 0.5],
+			  "Radius":0.5
+		   },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		  "Shape":{
+			  "Type":"SphereSurface",
+			  "Centre":[3.1, 0.5, 0.5],
+			  "Radius":0.5
+		   },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		  "Shape":{
+			  "Type":"CircleSurface",
+			  "Centre":[-0.7, 0.5, 0.5],
+			  "Radius":0.5,
+			  "Axis":"Z"
+		   },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		  "Shape":{
+			  "Type":"RectSurface",
+			  "Origin":[0.2, 0, 0.5],
+			  "Length":[1, 1, 0]
+		   },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		  "Shape":{
+			  "Type":"Cylinder",
+			  "BaseCentre":[-4.3, 0, 0.5],
+			  "Radius":0.5,
+			  "Length":1,
+			  "Axis":"Y"
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":"@R:ModulationStrength",
+         "MoleculeTypesToRelease":[ 1, 1, 1],
+		  "Shape":{
+			  "Type":"CylinderSurface",
+			  "BaseCentre":[4.3, 0, 0.5],
+			  "Radius":0.5,
+			  "Length":1,
+			  "Axis":"Y"
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+    "PassiveActors":{
+		  "RecordPositions":true,
+		  "RecordObservationTime":true,
+		  "StartTime":0,
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:PassiveActorPriority"
+	}
+}

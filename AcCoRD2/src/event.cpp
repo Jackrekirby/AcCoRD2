@@ -10,6 +10,11 @@ namespace accord
 
 	}
 
+	void Event::SetTimeNoUpdate(double time)
+	{
+		this->time = time;
+	}
+
 	void Event::LinkToQueue(EventQueue* queue, size_t queue_index)
 	{
 		this->queue = queue;

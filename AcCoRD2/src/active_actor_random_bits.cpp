@@ -56,7 +56,6 @@ namespace accord
 			
 			//LOG_INFO("i = {}, bit = {}, symbol = {}", i, bit, symbol);
 			power /= 2;
-			
 		}
 		symbol_file.Write(bits);
 	}

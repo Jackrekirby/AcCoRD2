@@ -10,13 +10,21 @@ function [hShape] = plotShape(obj, shape)
     
     hShape = [];
     if(shape.Type == "Box" || shape.Type == "BoxSurface")
-        hShape = obj.plotBox(shape.Origin, shape.Length);
+        if(isfield(shape, 'Origin'))
+            hShape = obj.plotBox(shape.Origin, shape.Length);
+        else
+            hShape = obj.plotBox(shape.Centre - shape.HalfLength, shape.HalfLength * 2);
+        end
     elseif(shape.Type == "Sphere" || shape.Type == "SphereSurface")
         hShape = obj.plotSphere(shape.Centre, shape.Radius);
     elseif(shape.Type == "Cylinder" || shape.Type == "CylinderSurface")
         hShape = obj.plotCylinder(shape.BaseCentre, shape.Radius, shape.Length, shape.Axis);
     elseif(shape.Type == "RectSurface")
-        hShape = obj.plotRectSurface(shape.Origin, shape.Length);
+        if(isfield(shape, 'Origin'))
+            hShape = obj.plotRectSurface(shape.Origin, shape.Length);
+        else
+            hShape = obj.plotRectSurface(shape.Centre - shape.HalfLength, shape.HalfLength * 2);
+        end
     elseif(shape.Type == "CircleSurface")
         hShape = obj.plotCircleSurface(shape.Centre, shape.Radius, shape.Axis);
     elseif(shape.Type == "Point")

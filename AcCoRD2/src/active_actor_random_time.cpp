@@ -10,13 +10,27 @@ namespace accord
 		: ActiveActor(action_interval, release_interval, release_molecules, modulation_strength, micro_regions, meso_regions, std::move(shape),
 			start_time, priority, id), release_coefficient(CalculateReleaseCoefficient(modulation_strength))
 	{
-		LOG_INFO("release coefficient = {}", release_coefficient);
+		//LOG_INFO("release coefficient = {}", release_coefficient);
+		double first_release_time = start_time + GenerateDeltaTime();
+		SetTimeNoUpdate(first_release_time);
+		local_time = first_release_time;
+		last_action_time = first_release_time;
 	}
 
 	void ActiveActorRandomTime::Run()
 	{
-		ReleaseMolecules(1);
-		SetNextReleaseTime(GenerateDeltaTime());
+		if (!SetNextReleaseTime(GenerateDeltaTime()))
+		{
+			ReleaseMolecules(1);
+		}
+	}
+
+	void ActiveActorRandomTime::NextRealisation()
+	{
+		double first_release_time = start_time + GenerateDeltaTime();
+		SetEventTime(first_release_time);
+		local_time = first_release_time;
+		last_action_time = first_release_time;
 	}
 
 	double ActiveActorRandomTime::GenerateDeltaTime()

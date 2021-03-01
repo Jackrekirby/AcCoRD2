@@ -12,7 +12,7 @@ namespace accord::mesoscopic
 		: box(origin, subvolume_length * Vec3d(n_subvolumes)), Event(0, priority), id(id),
 			n_subvolumes(n_subvolumes), subvolume_length(subvolume_length), surface_direction(microscopic::HighPriorityRelative::SurfaceDirection::External)
 	{
-		LOG_INFO("n subs = {}", n_subvolumes);
+		//LOG_INFO("n subs = {}", n_subvolumes);
 		std::vector<int> removed_indices;
 		removed_indices.reserve(removedSubvolumes.size());
 		for (const Vec3i& subvolume_index : removedSubvolumes)
@@ -255,17 +255,17 @@ namespace accord::mesoscopic
 	{
 		subvolume_queue.Front().Run();
 		SetEventTime(subvolume_queue.Front().GetTime());
-		LOG_INFO("RUN: Event time = {}", GetEventTime());
-		for (auto& subvolume : subvolumes)
-		{
-			for (auto& layer : subvolume.GetLayers())
-			{
-				if (layer.GetCount() > 0)
-				{
-					LOG_INFO("RUN: Layer molecule {}", layer.GetCount());
-				}
-			}
-		}
+		//LOG_INFO("RUN: Event time = {}", GetEventTime());
+		//for (auto& subvolume : subvolumes)
+		//{
+		//	for (auto& layer : subvolume.GetLayers())
+		//	{
+		//		if (layer.GetCount() > 0)
+		//		{
+		//			LOG_INFO("RUN: Layer molecule {}", layer.GetCount());
+		//		}
+		//	}
+		//}
 	}
 
 	void Region::Print()

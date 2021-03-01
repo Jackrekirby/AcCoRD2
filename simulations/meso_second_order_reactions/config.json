@@ -1,0 +1,78 @@
+{
+   "MaxUpdates": 10,
+   "NumberOfRealisations":100,
+   "FinalSimulationTime":10,
+   "RandomNumberSeed":1,
+   "NumberOfMoleculeTypes":3,
+   "ObserveEachRegion":true,
+   "R":{
+      "TimeStep":0.01,
+	  "RegionPriority":0,
+	  "ActiveActorPriority":2,
+	  "PassiveActorPriority":1
+   },
+    "MesoscopicRegions":[
+	   {
+		  "Name":"A",
+		  "Origin":[-10, -10, -10],
+		  "SubvolumeLength":20,
+		  "NumberOfSubvolumes":[1, 1, 1],
+		  "DiffusionCoefficients":[1, 1, 1],
+		  "Priority":"@R:RegionPriority"
+	   }
+   ],
+   "SecondOrderReactions":[
+      {
+         "ReactantA":0,
+         "ReactantB":1,
+         "Products":[0, 0, 2],
+         "ReactionRate":20,
+         "BindingRadius":0,
+         "UnBindingRadius":0,
+         "OccurInRegions":[ "A" ]
+      }
+   ],
+   	"ActiveActors":[
+        {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":100,
+         "MoleculeTypesToRelease":[ 1, 0, 0 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[-2.5, 0, 0]
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      },
+	  {
+         "StartTime":0,
+         "Priority":"@R:ActiveActorPriority",
+         "ActionInterval":"@FinalSimulationTime",
+         "ReleaseInterval":"@FinalSimulationTime",
+         "ModulationStrength":50,
+         "MoleculeTypesToRelease":[ 0, 1, 0 ],
+		  "Shape":{
+			  "Type":"Point",
+			  "Origin":[2.5, 0, 0]
+		  },
+         "RegionsToActIn":[ "A" ],
+         "Type":"NonRandom",
+         "SymbolSize":1,
+         "SlotInterval":"@FinalSimulationTime",
+         "BitSequence":[ 1 ]
+      }
+   ],
+     "PassiveActors":{
+		  "RecordPositions":false,
+		  "RecordObservationTime":true,
+		  "StartTime":0,
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:PassiveActorPriority"
+	}
+}

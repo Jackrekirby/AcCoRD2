@@ -9,6 +9,9 @@ namespace accord
 	public:
 		Event(double start_time = 0, int priority = 0);
 
+		// used to update the event time before it is added to a queue
+		void SetTimeNoUpdate(double time);
+
 		void LinkToQueue(EventQueue* queue, size_t queue_index);
 
 		double GetEventTime() const;

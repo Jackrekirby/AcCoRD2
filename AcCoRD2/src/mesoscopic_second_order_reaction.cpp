@@ -9,7 +9,7 @@ namespace accord::mesoscopic
 		: reaction_factor(reaction_rate / volume), reactant_a(reactant_a), reactant_b(reactant_b),
 		is_one_reactant(reactant_a == reactant_b), products(products), reaction_propensity(0), subvolume(subvolume)
 	{
-
+		//LOG_INFO("volume = {}, reaction rate = {}, reaction_factor = {}", volume, reaction_rate, reaction_factor);
 	}
 
 	void SecondOrderReaction::React()
@@ -28,6 +28,7 @@ namespace accord::mesoscopic
 	{
 		double old_propensity = reaction_propensity;
 		reaction_propensity = static_cast<double>(reactant_a->GetCount() * (reactant_b->GetCount() - is_one_reactant)) * reaction_factor;
+		//LOG_INFO("a {} b {}, reaction_propensity = {}", reactant_a->GetCount(), reactant_b->GetCount(), reaction_propensity);
 		return reaction_propensity - old_propensity;
 	}
 

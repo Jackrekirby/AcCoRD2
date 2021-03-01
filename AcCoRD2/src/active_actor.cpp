@@ -83,7 +83,7 @@ namespace accord
 	// return true if a new symbol needs to be generated
 	bool ActiveActor::SetNextReleaseTime(double elapsed_time)
 	{
-		LOG_INFO("local time = {}, last_action_time = {}, elapsed_time = {}, delta = {}", local_time, last_action_time, elapsed_time, local_time - last_action_time);
+		//LOG_INFO("local time = {}, last_action_time = {}, elapsed_time = {}, delta = {}", local_time, last_action_time, elapsed_time, local_time - last_action_time);
 		local_time += elapsed_time; // or random time
 		if (local_time - last_action_time < release_interval)
 		{
@@ -94,9 +94,10 @@ namespace accord
 		}
 		else // local_time - last_action_time >= release_interval
 		{
+			double time_remaining = release_interval - (local_time - last_action_time);
 			// release interval passed so must wait until next action interval
-			//LOG_INFO("wait until next action interval", local_time);
-			last_action_time += action_interval;
+			//LOG_INFO("wait until next action interval {}, {}", local_time, time_remaining);
+			last_action_time += action_interval - time_remaining;
 			local_time = last_action_time;
 			SetEventTime(local_time);
 			return true;

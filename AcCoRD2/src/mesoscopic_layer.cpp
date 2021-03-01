@@ -19,7 +19,7 @@ namespace accord::mesoscopic
 		//LOG_INFO("id = {}", id);
 		molecule_count += count;
 		linked_propensities->RequiresUpdate();
-		LOG_INFO("molecule count {}", molecule_count);
+		//LOG_INFO("molecule count {}", molecule_count);
 	}
 
 	void Layer::RemoveMolecule()
@@ -53,7 +53,7 @@ namespace accord::mesoscopic
 				neighbour.linked_propensities->UpdatePropensities();
 				if (relationship.GetRegion() != nullptr)
 				{
-					LOG_INFO("NEIGHBOUR LAYER");
+					//LOG_INFO("NEIGHBOUR LAYER");
 					relationship.GetRegion()->RefreshEventTime();
 				}
 				return;

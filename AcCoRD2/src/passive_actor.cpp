@@ -152,7 +152,7 @@ namespace accord
 					// therefore will have to resort to genrating position then checking if it is within the actor
 					//subvolume.GetBoundingBox().GenerateOverlapBox();
 					//LOG_INFO("Adding partial subvolume");
-					//partial_mesoscopic_subvolumes.emplace_back(&subvolume);
+					partial_mesoscopic_subvolumes.emplace_back(&subvolume);
 				}
 				// otherwise subvolume is not inside actor so is ignored
 			}

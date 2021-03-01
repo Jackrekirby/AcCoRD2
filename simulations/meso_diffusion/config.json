@@ -1,6 +1,6 @@
 {
    "MaxUpdates": 10,
-   "NumberOfRealisations":1,
+   "NumberOfRealisations":10,
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
