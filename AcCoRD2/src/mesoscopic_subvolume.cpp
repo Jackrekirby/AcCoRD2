@@ -53,6 +53,13 @@ namespace accord::mesoscopic
 		//LOG_INFO("subvolume id = {}", id);
 		// change event to reaction
 		SelectEvent();
+		for (auto& layer : GetLayers())
+		{
+			if (layer.GetCount() > 0)
+			{
+				LOG_INFO("SUBVOLUME: Layer molecule {}", layer.GetCount());
+			}
+		}
 		UpdatePropensities();
 		// update next event time
 	}
@@ -136,15 +143,17 @@ namespace accord::mesoscopic
 		return layer_ptrs;
 	}
 
-	std::vector<Layer> Subvolume::GetLayers()
+	std::vector<Layer>& Subvolume::GetLayers()
 	{
 		return layers;
 	}
 
 	void Subvolume::AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate)
 	{
+		
 		zeroth_order_reactions.emplace_back(products, reaction_rate, GetBoundingBox().CalculateVolume(), this);
 		reaction_propensity += zeroth_order_reactions.back().GetPropensity();
+		LOG_INFO("zeroth order reaction {}", reaction_propensity);
 	}
 
 	// is a propensity link to products required because products do not affect the propensity of reactions?
@@ -223,6 +232,7 @@ namespace accord::mesoscopic
 
 	void Subvolume::UpdateReactionTime()
 	{
+		LOG_INFO("reaction_propensity = {}", reaction_propensity);
 		// Changed environment.GetTime() to region.GetTime() so subvolume reactions times can be offset from the regions start time
 		// it is incorrect to keep updating form environment time as if another object updates the subvolume then event the same propensity
 		// will result in a later subvolume reaction time.
@@ -233,7 +243,7 @@ namespace accord::mesoscopic
 		SetTime(Environment::GetTime() - log(Random::GenerateRealUniform()) / reaction_propensity);
 		
 		//UpdateTime(-log(Random::GenerateRealUniform()) / reaction_propensity);
-		//LOG_INFO("Subvolume time = {}", GetTime());
+		LOG_INFO("Subvolume time = {}", GetTime());
 	}
 
 	void Subvolume::UpdateReactionPropensity(double delta_propensity)

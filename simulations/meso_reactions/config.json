@@ -12,7 +12,7 @@
 	  "MoleculeTypesToObserve":[0],
       "TimeStep":0.01,
 	  "DiffusionCoefficients":[0.02],
-	  "NumberOfSubvolumes":[5, 5, 5],
+	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None" ],
 	  "SurfaceTypesReflecting":[ "Reflecting" ],
 	  "RegionPriority":0,
@@ -23,16 +23,16 @@
 	   {
 		  "Name":"A",
 		  "Origin":[0, 0, 0],
-		  "SubvolumeLength":0.2,
-		  "NumberOfSubvolumes":[5, 5, 5],
+		  "SubvolumeLength":1,
+		  "NumberOfSubvolumes":[1, 1, 1],
 		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
 		  "Priority":"@R:RegionPriority"
 	   }
    ],
     "ZerothOrderReactions":[
       {
-         "Products":[1, 0],
-         "ReactionRate":10,
+         "Products":[1],
+         "ReactionRate":1,
          "OccurInRegions":[ "A" ]
       }
    ],
@@ -44,13 +44,13 @@
          "OccurInRegions":[ "A" ]
       }
    ],
-   	"ActiveActorsX":[
+   	"ActiveActors":[
         {
          "StartTime":0,
          "Priority":"@R:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":100,
+         "ModulationStrength":10,
          "MoleculeTypesToRelease":[ 1 ],
 		  "Shape":{
 			  "Type":"Point",

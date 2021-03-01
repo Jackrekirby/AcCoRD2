@@ -12,10 +12,13 @@ namespace accord::mesoscopic
 
 	void ZerothOrderReaction::React()
 	{
+		LOG_INFO("zeroth order reaction");
 		size_t i = 0;
 		for (auto& layer : subvolume->GetLayers())
 		{
+			LOG_INFO("add molecule {}, count {}", products.at(i), layer.GetCount());
 			layer.AddMolecule(products.at(i));
+			LOG_INFO("addded molecule {}, count {}", products.at(i), layer.GetCount());
 			i++;
 		}
 	}

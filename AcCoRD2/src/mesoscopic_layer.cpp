@@ -19,6 +19,7 @@ namespace accord::mesoscopic
 		//LOG_INFO("id = {}", id);
 		molecule_count += count;
 		linked_propensities->RequiresUpdate();
+		LOG_INFO("molecule count {}", molecule_count);
 	}
 
 	void Layer::RemoveMolecule()
@@ -27,7 +28,7 @@ namespace accord::mesoscopic
 		linked_propensities->RequiresUpdate();
 		if (molecule_count < 0)
 		{
-			LOG_ERROR("attempting to remove molecule when there are no molecules");
+			LOG_CRITICAL("attempting to remove molecule when there are no molecules");
 			molecule_count = 0;
 		}
 	}

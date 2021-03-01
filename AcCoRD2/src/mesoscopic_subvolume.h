@@ -57,7 +57,7 @@ namespace accord::mesoscopic
 
 		std::vector<Layer*> GetLayers(const MoleculeIDs& ids);
 
-		std::vector<Layer> GetLayers();
+		std::vector<Layer>& GetLayers();
 
 		void AddZerothOrderReaction(const std::vector<int>& products, double reaction_rate);
 

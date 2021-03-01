@@ -29,7 +29,6 @@ data = Accord2.importData(pwd, 1, false);
 clc;
 Accord2.plotMoleculeCount(data, true);
 axis square;
-ylim([0 1000]);
 %% Video And Environment Style Arguments
 clc;
 moleculeStyle = struct('colormap', @hsv, 'colorMethod', 'actor', 'fill', true, 'size', 10);
