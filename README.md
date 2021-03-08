@@ -1,5 +1,7 @@
 # AcCoRD 2.0
-AcCoRD (Actor-based Communication via Reaction-Diffusion) is a simulation tool for molecular communication. AcCoRD 2.0 is a completely redesigned version of the original simulator (built in C) using C++ and an object-orientated design. This version is still at pre-release stage, with not all of the original features re-implemented in the new version. Compiled for Windows only. Built using MSVS. 
+AcCoRD (Actor-based Communication via Reaction-Diffusion) is a simulation tool for molecular communication. AcCoRD 2.0 is a completely redesigned version of the original simulator (built in C) using C++ and an object-orientated design. This version is still at pre-release stage, with not all of the original features re-implemented in the new version. Compiled for Windows only. Built using MSVS.
+
+Find example configuration files and results inside the simulations folder. Find videos demonstrating the simulations here: https://youtube.com/playlist?list=PL55Vx_QaVKZS6qdoi66Zng4fkF8YPCw3p
 
 ## Simulator Components
 * AcCoRD simulates at the microscopic and mesoscopic scale
