@@ -50,7 +50,7 @@ function [video] = videoRecord(video, playBackSpeed, filePath)
                         % only attempt to update plot if passive actor
                         % includes the molecule type
                         if(~isempty(video.p(actor_id).m(iM).p))
-                            positions = Accord.getPositions(video.p(actor_id).m(iM), ...
+                            positions = Accord2.getMoleculePositions(video.p(actor_id).m(iM), ...
                                 video.p(actor_id).timeIndex - 1);
                             video.p(actor_id).m(iM).hPlot.XData = positions(:, 1);
                             video.p(actor_id).m(iM).hPlot.YData = positions(:, 2);

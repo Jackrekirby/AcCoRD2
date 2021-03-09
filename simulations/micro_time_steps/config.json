@@ -1,18 +1,18 @@
 {
    "MaxUpdates": 10,
-   "NumberOfRealisations":100,
+   "NumberOfRealisations":1,
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":3,
    "ObserveEachRegion":false,
    "R":{
       "StartTime":0,
-	  "ModulationStrength":100,
+	  "ModulationStrength":10,
 	  "RecordObservationTime":true,
-	  "RecordPositions":false,
+	  "RecordPositions":true,
 	  "MoleculeTypesToObserve":[0],
       "TimeStep":0.01,
-	  "DiffusionCoefficients":[20, 30, 40],
+	  "DiffusionCoefficients":[5, 10, 15],
 	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None", "None", "None" ],
 	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
@@ -44,7 +44,7 @@
 		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
 		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
 		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
-		  "TimeStep":0.01,
+		  "TimeStep":0.05,
 		  "Priority":"@R:RegionPriority"
 	   }
    ],

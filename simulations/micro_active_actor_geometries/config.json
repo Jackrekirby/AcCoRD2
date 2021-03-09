@@ -7,9 +7,9 @@
    "ObserveEachRegion":true,
    "R":{
       "StartTime":0,
-	  "ModulationStrength":100,
+	  "ModulationStrength":10,
 	  "RecordObservationTime":true,
-	  "RecordPositions":false,
+	  "RecordPositions":true,
 	  "MoleculeTypesToObserve":[0],
       "TimeStep":0.01,
 	  "DiffusionCoefficients":[0.02, 0.02, 0.02],

@@ -7,7 +7,7 @@
    "ObserveEachRegion":true,
    "R":{
       "TimeStep":0.01,
-	  "DiffusionCoefficients":[2],
+	  "DiffusionCoefficients":[0.5],
 	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None" ],
 	  "SurfaceTypesReflecting":[ "Reflecting" ],

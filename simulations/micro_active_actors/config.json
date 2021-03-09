@@ -3,7 +3,7 @@
    "NumberOfRealisations":100,
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
-   "NumberOfMoleculeTypes":3,
+   "NumberOfMoleculeTypes":2,
    "ObserveEachRegion":true,
    "R":{
       "StartTime":0,
@@ -11,10 +11,10 @@
 	  "RecordPositions":false,
 	  "MoleculeTypesToObserve":[0],
       "TimeStep":0.01,
-	  "DiffusionCoefficients":[0.02, 0.02, 0.02],
+	  "DiffusionCoefficients":[0.02, 0.02],
 	  "NumberOfSubvolumes":[1, 1, 1],
-	  "SurfaceTypesNone":[ "None", "None", "None" ],
-	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
+	  "SurfaceTypesNone":[ "None", "None"],
+	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting"],
 	  "RegionPriority":0,
 	  "ActiveActorPriority":1,
 	  "PassiveActorPriority":2
@@ -41,7 +41,7 @@
          "ActionInterval":2,
          "ReleaseInterval":0.5,
          "ModulationStrength":1,
-         "MoleculeTypesToRelease":[ 1, 2, 0],
+         "MoleculeTypesToRelease":[ 1, 0],
 		  "Shape":{
 			  "Type":"Point",
 			  "Origin":[0.5, 0.5, 0.25]
@@ -50,15 +50,15 @@
          "Type":"NonRandom",
          "SymbolSize":2,
          "SlotInterval":0.1,
-         "BitSequence":[ 1, 0, 0, 0, 1, 1, 0, 1, 0, 0 ]
+         "BitSequence":[ 1, 1, 0, 0, 1, 0, 0, 1, 0, 0 ]
       },
 	  {
          "StartTime":0,
          "Priority":"@R:ActiveActorPriority",
          "ActionInterval":2,
-         "ReleaseInterval":1,
+         "ReleaseInterval":0.5,
          "ModulationStrength":10,
-         "MoleculeTypesToRelease":[ 0, 0, 1 ],
+         "MoleculeTypesToRelease":[ 0, 1 ],
 		  "Shape":{
 			  "Type":"Point",
 			  "Origin":[0.5, 0.5, 0.75]

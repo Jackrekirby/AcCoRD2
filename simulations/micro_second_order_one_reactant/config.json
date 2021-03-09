@@ -28,9 +28,24 @@
 		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
 		  "TimeStep":"@R:TimeStep",
 		  "Priority":"@R:RegionPriority"
+	   },
+	   {
+		  "Name":"B",
+		  "Shape":{
+			  "Type":"Cylinder",
+			  "BaseCentre":[-0.2, -0.05, -0.2],
+			  "Length":0.1,
+			  "Radius":0.3,
+			  "Axis":"Y"
+		   },
+		  "SurfaceTypes":"@R:SurfaceTypesReflecting",
+		  "DiffusionCoefficients":"@R:DiffusionCoefficients",
+		  "NumberOfSubvolumes":"@R:NumberOfSubvolumes",
+		  "TimeStep":"@R:TimeStep",
+		  "Priority":"@R:RegionPriority"
 	   }
    ],
-      "RelationshipsX":[
+      "Relationships":[
       {
          "RegionA":"A",
          "RegionB":"B",

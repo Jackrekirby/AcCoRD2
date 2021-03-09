@@ -27,7 +27,7 @@ data = Accord2.importData(pwd, 1, false);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)
 clc;
-Accord2.plotMoleculeCount(data, true);
+Accord2.plotMoleculeCount(data, @hsv, true);
 axis square;
 
 %% Video And Environment Style Arguments
@@ -50,8 +50,14 @@ clc;
 video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
 % Watch Video Live
 view([0, 0]);
-video = Accord2.videoLive(video, 10, 90);
+video = Accord2.videoLive(video, 2, 50);
 
 %% Record Video
-video = Accord2.videoRecord(video, 1, "/video.mp4");
+clc;
+video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
+%set(gcf,'Position',[0 0 800 800]);
+view([0, 0]);
+%%
+video = Accord2.videoRecord(video, 2, "video.mp4");
+
 

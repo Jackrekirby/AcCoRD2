@@ -67,7 +67,7 @@
    "ActiveActors":[
       {
          "Name":"ActiveActor1",
-         "StartTime":0,
+         "StartTime":0.6,
          "Priority":0,
          "ActionInterval":1,
          "ReleaseInterval":1,

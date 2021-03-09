@@ -35,7 +35,7 @@
          "ReactantA":0,
          "ReactantB":1,
          "Products":[0, 0, 2],
-         "ReactionRate":1,
+         "ReactionRate":8,
          "BindingRadius":0.5,
          "UnBindingRadius":0.5,
          "OccurInRegions":[ "A" ]

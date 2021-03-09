@@ -27,10 +27,10 @@ data = Accord2.importData(pwd, 1, false);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)
 clc;
-Accord2.plotMoleculeCount(data, true);
+Accord2.plotMoleculeCount(data, @hsv, false);
 ylim([0, Inf]);
-grid minor;
-axis square;
+axi = gca;
+set(axi.Legend, 'Location', 'NorthWest');
 
 %% Video And Environment Style Arguments
 clc;

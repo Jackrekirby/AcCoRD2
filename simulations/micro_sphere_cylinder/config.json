@@ -1,13 +1,13 @@
 {
    "MaxUpdates": 10,
    "NumberOfRealisations":1,
-   "FinalSimulationTime":200,
+   "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
    "R":{
-      "TimeStep":0.1,
-	  "DiffusionCoefficients":[0.03],
+      "TimeStep":0.01,
+	  "DiffusionCoefficients":[0.6],
 	  "NumberOfSubvolumes":[1, 1, 1],
 	  "SurfaceTypesNone":[ "None" ],
 	  "SurfaceTypesReflecting":[ "Reflecting"],
@@ -63,7 +63,7 @@
 		  "Shape":{
 			  "Type":"CircleSurface",
 			  "Centre":[2, 0, 0],
-			  "Radius":0.1,
+			  "Radius":0.3,
 			  "Axis":"X"
 		   },
 		   "SurfaceDirection":"Internal",
