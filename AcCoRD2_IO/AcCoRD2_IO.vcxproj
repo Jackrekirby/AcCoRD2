@@ -162,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\nlohmann\json.hpp" />
-    <ClInclude Include="src\json_fwd.hpp" />
     <ClInclude Include="lib\spdlog\async.h" />
     <ClInclude Include="lib\spdlog\async_logger-inl.h" />
     <ClInclude Include="lib\spdlog\async_logger.h" />
