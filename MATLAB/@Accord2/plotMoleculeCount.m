@@ -1,7 +1,23 @@
  function [hPlots] = plotMoleculeCount(data, colormap, plotMeanOnly)
+    % plotMoleculeCount.m - plots the molecule count of all passive actors
+    % and all molecule types over the entire simulation. It can plot
+    % each realisation individually in addition to the mean of all
+    % realisation
+    
+    % INPUTS
+    % data - the simulation data from importData()
+    % colormap - a function handle to a colormap used to give each count
+    %   line for a given molecule type and passive actor a different color.
+    % plotMeanOnly - a boolean which if true will only plot the mean line
+    %   of each molecule type per passive actor over all realisations. If
+    %   false both the mean and each realisation are plotted. The individual
+    %   realisation plots have a faded color compared to the mean line.
+
+    % OUTPUTS
+    % hPlots - the plots of each mean line.
+    
     counts = Accord2.groupMoleculeCounts(data);
     nP = length(counts);
-    
     % Count the number of counts to plot (all passive actors per molecule type)
     nPlots = 0;
     % For each passive actor
@@ -23,6 +39,7 @@
     
     % Track index of current plot
     iPlot = 0;
+    figure;
     hold on;
     % plot individual realisatiosn first so mean plots are at front
     if(~plotMeanOnly)

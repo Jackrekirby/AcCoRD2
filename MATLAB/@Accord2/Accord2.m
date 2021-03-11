@@ -23,7 +23,6 @@ classdef Accord2
         [counts] = groupMoleculeCounts(data)
         %   Video Making
         [video] = videoCreateMoleculePlots(video, moleculeStyle)
-        [video] = videoCreateFigure(video)
         [positions] = getMoleculePositions(moleculeType, timestep)
         [shapes] = videoPlotRegionsAndActors(config, shapePlotters, colormaps, display, showLog)
     end

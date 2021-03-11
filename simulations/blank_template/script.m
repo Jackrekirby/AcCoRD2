@@ -27,19 +27,15 @@ data = Accord2.importData(pwd, 1, false);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)
 clc;
-Accord2.plotMoleculeCount(data, true);
-axis square;
+Accord2.plotMoleculeCount(data, @hsv, true);
 
 %% Video And Environment Style Arguments
 clc;
 moleculeStyle = struct('colormap', @hsv, 'colorMethod', 'actor', 'fill', true, 'size', 30);
-shapePlotGeneral = ShapePlotter('EdgeWidth', 2);
-% [microscopic regions, microscopic surfaces, mesoscopic regions, active actors, passive actors]
-shapePlotters = shapePlotGeneral;
-colormaps = ["hsv", "winter", "hsv", "spring", "hsv"];
-display = [true, true, true, true, true];
+shapePlotters = ShapePlotter();
+colormaps = "hsv";
+display = true;
 showLog = false;
-
 %% Plot Regions & Actors
 clc;
 [shapes] = Accord2.plotEnvironment(config, shapePlotters, colormaps, display, showLog);
@@ -48,8 +44,8 @@ clc;
 clc;
 video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
 % Watch Video Live
-video = Accord2.videoLive(video, 1, 1.3);
+video = Accord2.videoLive(video, 0.2, Inf);
 
 %% Record Video
-video = Accord2.videoRecord(video, 10, "/video.mp4");
+video = Accord2.videoRecord(video, 0.2, "video.mp4");
 

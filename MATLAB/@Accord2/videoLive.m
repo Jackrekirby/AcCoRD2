@@ -1,4 +1,26 @@
 function [video] = videoLive(video, playBackSpeed, endTime)
+    % videoLive.m - displays a live animation of the simulation environment
+    %   at a given playback speed, and upto a given time in the simulation.
+    %   This is different to videoRecord which does not attempt to maintain a
+    %   constant playback speed, but will render the video as fast as
+    %   possible, whose speed depends on the computer's performance.
+    %   videoLive will skip frames if it begins to lag behind the playback
+    %   speed.
+    
+    % INPUTS
+    % video - a struct containing molecule data and a figure, created by
+    %   videoCreateScene.m
+    % playBackSpeed - the speed relative to the simulation length for the
+    %   animation to play at. E.g. playBackSpeed = 8, plays the simulationm 8
+    %   times faster than its actual speed. playBackSpeed = 0.1 plays the
+    %   simulation 10 times slower.
+    % endTime - the time which the simulation will stop. The faster the
+    %   playback speed the less accurate this is.
+    
+    % OUTPUTS
+    % video - the same input struct with the updated graphic and logic
+    %   data
+
     simulationTime = 0;
     % list of indicies of all the actors to render in next update
     actorsToRender = [];

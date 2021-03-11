@@ -23,14 +23,14 @@ for i = 1:length(seeds)
     system(['accord_win64_release_matlab.bat ', num2str(seeds(i))],'-echo');
 end
 %% [data] = importData(simulationDirectory, logImporting, saveData)
-data = Accord2.importData(pwd, 1, false);
+data = Accord2.importData(pwd, 1, true);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)
 clc;
 Accord2.plotMoleculeCount(data, @hsv, true);
 axi = gca;
 set(axi.Legend, 'Location', 'SouthWest');
-ylim([0, Inf]);
+ylim([65, Inf]);
 grid minor;
 axis square;
 

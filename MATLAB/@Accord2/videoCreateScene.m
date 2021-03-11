@@ -1,11 +1,16 @@
 function [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, colormap, display, showLog)
-    % shapePlotters = [ShapePlotter, ShapePlotter, ShapePlotter, ShapePlotter];
-    % display = [true, true, true, true]
-    % colormap = [hsv, jet, summer, autumn];
-    % moleculeStyle.colorMethod = 'actor'; % or 'type'
-    % moleculeStyle.fill = true;
-    % moleculeStyle.size = 10;
-
+    % videoCreateScene.m - plots the envrionment specified by the
+    %   configuration file and initialises the molecule plots.
+    %   It is a wrapper for the videoCreateMoleculePlots 
+    %   & videoPlotRegionsAndActors function 
+    
+    % INPUTS
+    % see requirements of videoCreateMoleculePlots & videoPlotRegionsAndActors.m
+    
+    % OUTPUTS
+    % video - returns a struct containing the molecule data, video graphics and
+    %   logics
+    
     video = data.s(1).r(1);
     video.hFigure = figure('Name', 'Simulation Time:','NumberTitle','off');
     hold on;
@@ -14,14 +19,13 @@ function [video] = videoCreateScene(data, config, moleculeStyle, shapePlotters, 
     hold off;
     axis equal;
     axis tight;
+    % force 3D perspective
     view(45,30);
+    % set background to white
     set(gcf,'color','w');
-    set(gca,'XTickLabel',[]);
-    set(gca,'YTickLabel',[]);
-    set(gca,'ZTickLabel',[]);
-    set(gca,'xtick',[]);
-    set(gca,'ytick',[]);
-    set(gca,'ztick',[]);
+    % remove all axis labels
+    set(gca,'XTickLabel',[]); set(gca,'YTickLabel',[]); set(gca,'ZTickLabel',[]);
+    set(gca,'xtick',[]); set(gca,'ytick',[]); set(gca,'ztick',[]);
     set(gca,'XColor', 'none','YColor','none','ZColor','none');
 end
 

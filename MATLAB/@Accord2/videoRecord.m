@@ -1,4 +1,29 @@
 function [video] = videoRecord(video, playBackSpeed, filePath)
+    % videoRecord.m - records an video of the simulation environment
+    %   to file in mp4 format.
+    %   This is different to videoLive as it does not attempt to maintain a
+    %   constant playback speed, but will render the video as fast as
+    %   possible, whose speed depends on the computer's performance.
+    %   Note that the video when saved will still run at the defined playback
+    %   speed, just not whilst rendering.
+    %   A progress bar is displayed throughout the rendering and saving
+    %   process. 
+    %   The frame rate is automatically capped to 30.
+    
+    % INPUTS
+    % video - a struct containing molecule data and a figure, created by
+    %   videoCreateScene.m
+    % playBackSpeed - the speed relative to the simulation length for the
+    %   animation to play at. E.g. playBackSpeed = 8, plays the simulationm 8
+    %   times faster than its actual speed. playBackSpeed = 0.1 plays the
+    %   simulation 10 times slower.
+    % filePath - the relative or absolute file path location where the
+    %   video will be saved to
+    
+    % OUTPUTS
+    % video - the same input struct with the updated graphic and logic
+    %   data
+
     video.waitbar = waitbar(0, 'Rendering Simulation', 'Name', filePath);
 
     simulationTime = 0;

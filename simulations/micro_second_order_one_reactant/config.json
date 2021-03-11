@@ -3,14 +3,14 @@
    "NumberOfRealisations":1,
    "FinalSimulationTime":100,
    "RandomNumberSeed":1,
-   "NumberOfMoleculeTypes":3,
+   "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":true,
    "R":{
       "TimeStep":0.01,
-	  "DiffusionCoefficients":[1e-3, 1e-3, 1e-3],
+	  "DiffusionCoefficients":[1e-3],
 	  "NumberOfSubvolumes":[1, 1, 1],
-	  "SurfaceTypesNone":[ "None", "None", "None" ],
-	  "SurfaceTypesReflecting":[ "Reflecting", "Reflecting", "Reflecting" ],
+	  "SurfaceTypesNone":[ "None" ],
+	  "SurfaceTypesReflecting":[ "Reflecting" ],
 	  "RegionPriority":0,
 	  "ActiveActorPriority":2,
 	  "PassiveActorPriority":1
@@ -57,7 +57,7 @@
       {
          "ReactantA":0,
          "ReactantB":0,
-         "Products":[2, 0, 0],
+         "Products":[2],
          "ReactionRate":4,
          "BindingRadius":0.3,
          "UnBindingRadius":0.3,
@@ -71,43 +71,7 @@
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
          "ModulationStrength":50,
-         "MoleculeTypesToRelease":[ 1, 0, 0],
-         "RegionsToActIn":[ "A" ],
-         "Type":"NonRandom",
-         "SymbolSize":1,
-         "SlotInterval":"@FinalSimulationTime",
-         "BitSequence":[ 1 ]
-      }
-   ],
-   	"ActiveActorsX":[
-       {
-         "StartTime":0,
-         "Priority":"@R:ActiveActorPriority",
-         "ActionInterval":"@FinalSimulationTime",
-         "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":1,
-         "MoleculeTypesToRelease":[ 1, 0, 0],
-		  "Shape":{
-			  "Type":"Point",
-			  "Origin":[-2, 0.5, 0.5]
-		  },
-         "RegionsToActIn":[ "A" ],
-         "Type":"NonRandom",
-         "SymbolSize":1,
-         "SlotInterval":"@FinalSimulationTime",
-         "BitSequence":[ 1 ]
-      },
-	   {
-         "StartTime":0,
-         "Priority":"@R:ActiveActorPriority",
-         "ActionInterval":"@FinalSimulationTime",
-         "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":1,
-         "MoleculeTypesToRelease":[ 1, 0, 0],
-		  "Shape":{
-			  "Type":"Point",
-			  "Origin":[2, 0.5, 0.5]
-		  },
+         "MoleculeTypesToRelease":[ 1 ],
          "RegionsToActIn":[ "A" ],
          "Type":"NonRandom",
          "SymbolSize":1,

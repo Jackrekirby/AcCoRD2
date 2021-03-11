@@ -100,7 +100,7 @@ function [data] = importData(simulationDirectory, logLevel, saveData)
     
     % save the data to a .mat file
     if(saveData)
-        saveFile = [simulationDirectory, '/data.mat'];
+        saveFile = [simulationDirectory, '\data.mat'];
         save(saveFile, 'data');
         if(logLevel > 0)
             disp("Saved data to: " + saveFile);

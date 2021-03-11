@@ -1,6 +1,6 @@
 {
    "MaxUpdates": 10,
-   "NumberOfRealisations":1,
+   "NumberOfRealisations":100,
    "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":2,
@@ -39,13 +39,13 @@
    ],
    "FirstOrderReactions":[
       {
-         "Reactant":1,
-         "Products":[0, 2],
-         "ReactionRate":0.7,
+         "Reactant":0,
+         "Products":[0, 1],
+         "ReactionRate":0.5,
          "OccurInRegions":[ "A" ]
       }
    ],
-   	"ActiveActors":[
+   	"ActiveActorsX":[
         {
          "StartTime":0,
          "Priority":"@R:ActiveActorPriority",
@@ -66,7 +66,7 @@
    ],
    "PassiveActors":
 	{
-	  "RecordPositions":true,
+	  "RecordPositions":false,
 	  "RecordObservationTime":true,
 	  "StartTime":0,
 	  "TimeStep":"@R:TimeStep",
