@@ -1,4 +1,8 @@
 function [hRectSurface] = plotRectSurface(obj, origin, length, args)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % plotRectSurface.m plots as rectangular surface, which is in the plane
     % determined by the axis with a zero length
     

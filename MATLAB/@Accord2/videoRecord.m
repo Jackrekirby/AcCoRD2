@@ -1,4 +1,8 @@
 function [video] = videoRecord(video, playBackSpeed, filePath)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % videoRecord.m - records an video of the simulation environment
     %   to file in mp4 format.
     %   This is different to videoLive as it does not attempt to maintain a

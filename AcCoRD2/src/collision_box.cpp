@@ -41,17 +41,17 @@ namespace accord::shape::collision
 	{
 		std::optional<Collision3D> collision;
 		collision = faces.at(Face::nx).CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("nx"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::ny).CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("ny"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::nz).CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("nz"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::px).CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("px"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::py).CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("py"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::pz).CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("pz"); }
+		if (collision.has_value()) { }
 		return collision;
 	}
 
@@ -59,17 +59,17 @@ namespace accord::shape::collision
 	{
 		std::optional<Collision3D> collision;
 		collision = faces.at(Face::nx).CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("nx");  return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::ny).CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("ny"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::nz).CalculateCollisionDataWithPositiveFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("nz"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::px).CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("px"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::py).CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("py"); return collision; }
+		if (collision.has_value()) { return collision; }
 		collision = faces.at(Face::pz).CalculateCollisionDataWithNegativeFace(origin, end);
-		if (collision.has_value()) { LOG_DEBUG("pz"); }
+		if (collision.has_value()) { }
 		return collision;
 	}
 

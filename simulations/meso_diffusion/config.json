@@ -1,14 +1,14 @@
 {
    "MaxUpdates": 10,
-   "NumberOfRealisations":1,
-   "FinalSimulationTime":1,
+   "NumberOfRealisations":100,
+   "FinalSimulationTime":10,
    "RandomNumberSeed":1,
    "NumberOfMoleculeTypes":1,
    "ObserveEachRegion":false,
    "R":{
 	  "StartTime":0,
      "RecordObservationTime":true,
-	  "RecordPositions":true,
+	  "RecordPositions":false,
 	  "MoleculeTypesToObserve":[0],
       "TimeStep":0.01,
 	  "DiffusionCoefficients":[0.02],
@@ -35,7 +35,7 @@
          "Priority":"@R:ActiveActorPriority",
          "ActionInterval":"@FinalSimulationTime",
          "ReleaseInterval":"@FinalSimulationTime",
-         "ModulationStrength":250,
+         "ModulationStrength":6250,
          "MoleculeTypesToRelease":[ 1 ],
 		  "Shape":{
 			  "Type":"Point",
@@ -49,7 +49,7 @@
       }
    ],
      "PassiveActorsX":{
-		  "RecordPositions":true,
+		  "RecordPositions":false,
 		  "RecordObservationTime":true,
 		  "StartTime":0,
 		  "TimeStep":"@R:TimeStep",

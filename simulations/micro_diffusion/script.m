@@ -27,22 +27,22 @@ data = Accord2.importData(pwd, 1, false);
 
 %% [hPlots] = plotMoleculeCount(data, plotMeanOnly)
 clc;
-Accord2.plotMoleculeCount(data, @hsv, false);
+Accord2.plotMoleculeCount(data, @jet, true);
 ylim([0, 500]);
 
 %% Video And Environment Style Arguments
 clc;
-moleculeStyle = struct('colormap', @hsv, 'colorMethod', 'actor', 'fill', true, 'size', 10);
+moleculeStyle = struct('colormap', @jet, 'colorMethod', 'actor', 'fill', true, 'size', 10);
 shapePlotters = ShapePlotter('EdgeWidth', 1);
 % [microscopic regions, microscopic surfaces, mesoscopic regions, active actors, passive actors]
-colormaps = ["hsv", "hsv", "hsv", "hsv", "hsv"];
+colormaps = "jet";
 display = [false, true, true, true, true];
 showLog = false;
 
 %% Plot Regions & Actors
 clc;
 [shapes] = Accord2.plotEnvironment(config, shapePlotters, colormaps, display, showLog);
-colormap hsv
+colormap jet
 colorbar('Ticks',[],'TickLabels',{});
 axis square;
 axis equal;

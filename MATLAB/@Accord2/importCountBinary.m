@@ -1,4 +1,8 @@
 function [countData] = importCountBinary(filePath)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % importTimeBinary.m converts a binary file containing the molecule count
     %   of a molecule type observed by a passive actor into an array of
     %   ints

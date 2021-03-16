@@ -1,4 +1,8 @@
  function [hPlots] = plotMoleculeCount(data, colormap, plotMeanOnly)
+ 	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % plotMoleculeCount.m - plots the molecule count of all passive actors
     % and all molecule types over the entire simulation. It can plot
     % each realisation individually in addition to the mean of all

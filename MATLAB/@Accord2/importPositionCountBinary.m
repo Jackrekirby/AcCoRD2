@@ -1,4 +1,8 @@
 function [positionCountData] = importPositionCountBinary(positionFilePath, countFilePath)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % importPositionCountBinary.m - imports the position and count data
     %   from a position binary file and count binary file into a structure
     %   containing arrays for the position, count and the cumulative count 

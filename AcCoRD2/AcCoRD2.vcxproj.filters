@@ -2,13 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
-      <Filter>src\other</Filter>
+      <Filter>src\miscellaneous</Filter>
     </ClCompile>
     <ClCompile Include="src\random.cpp">
-      <Filter>src\other\random</Filter>
+      <Filter>src\miscellaneous\random</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp">
-      <Filter>src\other\pch</Filter>
+      <Filter>src\miscellaneous\pch</Filter>
     </ClCompile>
     <ClCompile Include="src\vec3i.cpp">
       <Filter>src\math\vec\3D</Filter>
@@ -389,7 +389,7 @@
       <Filter>src\simulation\passive actor\shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\timer.cpp">
-      <Filter>src\other</Filter>
+      <Filter>src\miscellaneous</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,16 +403,16 @@
       <Filter>lib\pcg</Filter>
     </ClInclude>
     <ClInclude Include="src\output_binary_singles.h">
-      <Filter>src\other\binary</Filter>
+      <Filter>src\miscellaneous\binary</Filter>
     </ClInclude>
     <ClInclude Include="src\output_binary_vectors.h">
-      <Filter>src\other\binary</Filter>
+      <Filter>src\miscellaneous\binary</Filter>
     </ClInclude>
     <ClInclude Include="src\random.h">
-      <Filter>src\other\random</Filter>
+      <Filter>src\miscellaneous\random</Filter>
     </ClInclude>
     <ClInclude Include="src\pch.h">
-      <Filter>src\other\pch</Filter>
+      <Filter>src\miscellaneous\pch</Filter>
     </ClInclude>
     <ClInclude Include="src\vec3i.h">
       <Filter>src\math\vec\3D</Filter>
@@ -571,7 +571,7 @@
       <Filter>src\simulation\microscopic\molecule</Filter>
     </ClInclude>
     <ClInclude Include="src\enum_array.h">
-      <Filter>src\other\containers</Filter>
+      <Filter>src\miscellaneous\containers</Filter>
     </ClInclude>
     <ClInclude Include="src\passive_actor.h">
       <Filter>src\simulation\passive actor</Filter>
@@ -832,7 +832,7 @@
       <Filter>src\simulation\passive actor\shapes</Filter>
     </ClInclude>
     <ClInclude Include="src\timer.h">
-      <Filter>src\other</Filter>
+      <Filter>src\miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="src\microscopic_relative.h">
       <Filter>src\simulation\microscopic\relations</Filter>
@@ -849,7 +849,7 @@
       <Filter>lib\pcg</Filter>
     </Text>
     <Text Include="src\kanban.txt">
-      <Filter>src\other</Filter>
+      <Filter>src\miscellaneous</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -903,9 +903,6 @@
     <Filter Include="src\shapes\relation">
       <UniqueIdentifier>{c0a3d719-7c40-4d85-8994-c021e01568f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\other">
-      <UniqueIdentifier>{c127e013-c096-4c11-aa63-81b751ba92a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\math\vec\1D">
       <UniqueIdentifier>{757e3288-446a-41ef-b0fb-8cbb71aaef4d}</UniqueIdentifier>
     </Filter>
@@ -920,15 +917,6 @@
     </Filter>
     <Filter Include="src\math\constants">
       <UniqueIdentifier>{4cee4f28-9ad3-483e-a0c9-e5a7b7618b50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\other\binary">
-      <UniqueIdentifier>{a36730ac-8fdb-49aa-8139-f9f0ee9ebc0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\other\random">
-      <UniqueIdentifier>{212ada0a-1ba8-4ec3-a41e-f5c97fc04760}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\other\pch">
-      <UniqueIdentifier>{c4a8652b-8740-4343-a543-dc9f795114ae}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\shapes\collision\box">
       <UniqueIdentifier>{7fd56c08-3153-427f-a6af-337f5259df9d}</UniqueIdentifier>
@@ -1007,9 +995,6 @@
     </Filter>
     <Filter Include="src\simulation\environment">
       <UniqueIdentifier>{45be9e45-5002-4669-9acc-a03c46f00f2f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\other\containers">
-      <UniqueIdentifier>{7ccf8c18-8a6f-4de2-b071-39aa565600b9}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\shapes\basic\cylinder">
       <UniqueIdentifier>{f0ed210c-14a4-4655-8854-807c2e2ca54a}</UniqueIdentifier>
@@ -1121,6 +1106,21 @@
     </Filter>
     <Filter Include="src\simulation\microscopic\relations\high priority">
       <UniqueIdentifier>{4bcc6a81-9074-4431-bd50-708a925773ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\miscellaneous">
+      <UniqueIdentifier>{c127e013-c096-4c11-aa63-81b751ba92a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\miscellaneous\binary">
+      <UniqueIdentifier>{a36730ac-8fdb-49aa-8139-f9f0ee9ebc0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\miscellaneous\random">
+      <UniqueIdentifier>{212ada0a-1ba8-4ec3-a41e-f5c97fc04760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\miscellaneous\pch">
+      <UniqueIdentifier>{c4a8652b-8740-4343-a543-dc9f795114ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\miscellaneous\containers">
+      <UniqueIdentifier>{7ccf8c18-8a6f-4de2-b071-39aa565600b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

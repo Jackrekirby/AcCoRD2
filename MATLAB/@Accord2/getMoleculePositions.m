@@ -1,4 +1,8 @@
 function [positions] = getMoleculePositions(moleculeType, timeStep)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+
     % getMoleculePositions.m - gets the positions of all molecules at a 
     % given time step for a given molecule type observed by a passive actor
     

@@ -1,4 +1,8 @@
 function [hShape] = plotShape(obj, shape)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % plotShape.m - is passed a shape from the json config file and it
     % will plot the shape, given a shape 'Type'
     

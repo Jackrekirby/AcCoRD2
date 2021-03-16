@@ -1,4 +1,8 @@
 function [hFigure] = plotEnvironment(config, shapePlotters, colormaps, display, showLog)
+	% The AcCoRD 2 Simulator (Actor - based Communication via Reaction - Diffusion)
+	% Copyright 2021 Jack Kirby. All rights reserved.
+	% For license details, read LICENSE.txt in the root AcCoRD2 directory
+	
     % plotEnvironment.m - plots the envrionment specified by the
     %   configuration file. No molecules are plotted, only regions,
     %   surfaces and actors. It is a wrapper for the

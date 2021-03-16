@@ -43,7 +43,8 @@ clc;
 %% Initialise Video
 clc;
 video = Accord2.videoCreateScene(data, config, moleculeStyle, shapePlotters, colormaps, display, showLog);
-% Watch Video Live
+
+%% Watch Video Live
 video = Accord2.videoLive(video, 0.2, Inf);
 
 %% Record Video
